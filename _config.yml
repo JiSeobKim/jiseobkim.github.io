@@ -1,8 +1,8 @@
 # SITE CONFIGURATION
-baseurl: ""
-url: "https://jiseobkim.github.io"
-title: Personal Blog of KJS # site's title
-description: "개인용 블로그!" # used by search engines
+baseurl: "/Type-on-Strap"
+url: "https://sylhare.github.io"
+title: Type on Strap # site's title
+description: "A website with blog posts and pages" # used by search engines
 
 
 # THEME-SPECIFIC CONFIGURATION
