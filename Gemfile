@@ -1,5 +1,2 @@
-source 'https://rubygems.org'
-
-gem 'rouge'
-gem 'jekyll'
-gem 'jemoji'
+source "https://rubygems.org"
+gemspec

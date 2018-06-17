@@ -1,96 +1,63 @@
-var env       = require('minimist')(process.argv.slice(2)),
-  gulp        = require('gulp'),
-  plumber     = require('gulp-plumber'),
-  browserSync = require('browser-sync'),
-  stylus      = require('gulp-stylus'),
-  uglify      = require('gulp-uglify'),
-  concat      = require('gulp-concat'),
-  jeet        = require('jeet'),
-  rupture     = require('rupture'),
-  koutoSwiss  = require('kouto-swiss'),
-  prefixer    = require('autoprefixer-stylus'),
-  imagemin    = require('gulp-imagemin'),
-  cp          = require('child_process');
+// Use npm install to install all the dependencies located in package.json
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const gutil = require('gulp-util');
+const shell = require('gulp-shell');
+const less = require('gulp-less');
+const cssmin = require('gulp-cssmin')
+const replace = require('gulp-replace');
 
-var messages = {
-  jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
-};
-
-/**
- * Build the Jekyll Site
- */
-gulp.task('jekyll-build', function (done) {
-  browserSync.notify(messages.jekyllBuild);
-  return cp.spawn('bundle', ['exec', 'jekyll build'], {stdio: 'inherit'})
-    .on('close', done);
+gulp.task('js', function () {
+    gutil.log('... Minifying js');
+    gulp.src(['assets/js/partials/**.js'])
+        .pipe(concat('main.min.js'))
+        .pipe(uglify())
+        .on('error', (err) => {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
+        .pipe(gulp.dest("assets/js/"))
 });
 
-/**
- * Rebuild Jekyll & do page reload
- */
-gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
-  browserSync.reload();
+gulp.task("img", function () {
+    gutil.log('... Minifying images');
+    gulp.src('assets/img/**/*.{png,svg,jpg,gif}')
+        .pipe(imagemin())
+        .on('error', (err) => {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
+        .pipe(gulp.dest('assets/img/'))
 });
 
-/**
- * Wait for jekyll-build, then launch the Server
- */
-gulp.task('browser-sync', ['jekyll-build'], function() {
-  browserSync({
-    server: {
-      baseDir: '_site'
-    }
-  });
+gulp.task('minify-bootstrap-css', function () {
+    gutil.log('... Minifying isolated bootstrap');
+    gulp.src('assets/css/vendor/bootstrap-iso.css')
+        .pipe(cssmin())
+        .on('error', (err) => {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
+        .pipe(concat('bootstrap-iso.min.css'))
+        .pipe(gulp.dest('assets/css/vendor/'));
+})
+
+gulp.task("isolate-bootstrap-css", ['minify-bootstrap-css'], function () {
+    gutil.log('... Generating isolated bootstrap');
+    gulp.src('assets/css/bootstrap-iso.less')
+        .pipe(less())
+        .pipe(replace('.bootstrap-iso html', ''))
+        .pipe(replace('.bootstrap-iso body', ''))
+        .pipe(gulp.dest('assets/css/vendor/'));
 });
 
-/**
- * Stylus task
- */
-gulp.task('stylus', function(){
-    gulp.src('src/styl/main.styl')
-    .pipe(plumber())
-    .pipe(stylus({
-      use:[koutoSwiss(), prefixer(), jeet(), rupture()],
-      compress: true
-    }))
-    .pipe(gulp.dest('_site/assets/css/'))
-    .pipe(browserSync.reload({stream:true}))
-    .pipe(gulp.dest('assets/css'));
+gulp.task("serve", function () {
+    gutil.log('... Launching Web browser');
+    gutil.log('... Starting Jelyll');
+    shell.task([
+        "python -m webbrowser 'http://localhost:4000/Type-on-Strap/' && bundle exec jekyll serve --watch"
+    ])
 });
 
-/**
- * Javascript Task
- */
-gulp.task('js', function(){
-  return gulp.src((env.p) ? 'src/js/**/*.js' : ['src/js/**/*.js', '!src/js/analytics.js'])
-    .pipe(plumber())
-    .pipe(concat('main.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('assets/js/'));
+gulp.task('default', ['js', 'img'], function () {
+    return gutil.log('... Gulp is running!');
 });
-
-/**
- * Imagemin Task
- */
-gulp.task('imagemin', function() {
-  return gulp.src('src/img/**/*.{jpg,png,gif}')
-    .pipe(plumber())
-    .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
-    .pipe(gulp.dest('assets/img/'));
-});
-
-/**
- * Watch stylus files for changes & recompile
- * Watch html/md files, run jekyll & reload BrowserSync
- */
-gulp.task('watch', function () {
-  gulp.watch('src/styl/**/*.styl', ['stylus']);
-  gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch(['**/*.html','index.html', '_includes/*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
-});
-
-/**
- * Default task, running just `gulp` will compile the stylus,
- * compile the jekyll site, launch BrowserSync & watch files.
- */
-gulp.task('default', ['js', 'stylus', 'browser-sync', 'watch']);
