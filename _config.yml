@@ -1,15 +1,15 @@
 # Site Settings
 title: Personal Blog of JS
-email: youremail@xyz.com
-description: Some text about your blog.
+email: jiseob812@gmail.com
+description: For Life
 baseurl: " " # the subpath of your site, e.g. /blog
 url: "https://JiSeobKim.github.io" # the base hostname & protocol for your site
 google_analytics: "UA-XXXXXXXX-X"
 
 # User Settings
-username:
-user_description: Some text about you.
-disqus_username: disqus_username
+username: JiSeobKim
+user_description: Swift Developer
+disqus_username: JiSeobKim
 
 # Social Media
 # Remove the item if you don't need it
