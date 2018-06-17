@@ -8,8 +8,8 @@ description: "A website with blog posts and pages" # used by search engines
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Type on Strap # blog's title
-  avatar: assets/img/triangle.svg
+  title: Personal Blog of KJS # blog's title
+  avatar: assets/img/swift_icon.png
   favicon: assets/favicon.ico
   gravatar: # Email MD5 hash
 
@@ -18,7 +18,7 @@ theme_settings:
      <p>Change header text in <code>_config.yml</code> <br> to update this feature.</p>
   header_text_feature_image: assets/img/pexels/triangular.jpeg
   footer_text: >
-   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+   Powered by <a href="https://jiseobkim.github.io">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
   # Icons
   rss: true  # Make sure you created a feed.xml with feed.xml layout
