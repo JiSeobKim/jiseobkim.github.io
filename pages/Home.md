@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Gallery
+title: Home
 subtitle: For Life
-permalink: /gallery/
+permalink: /
 gallery_path: "assets/img/pexels"
 feature-img: "assets/img/pexels/disco-full.jpeg"
-tags: [Gallery, Photo]
+tags: [Home]
 ---
 
 This is a photo gallery made from the static files in the `assets/img/pexels` folder.
