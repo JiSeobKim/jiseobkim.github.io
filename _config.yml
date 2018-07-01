@@ -2,34 +2,32 @@
 baseurl: ""
 url: "https://jiseobkim.github.io"
 title: Personal Blog of KJS # site's title
-description: "A website with blog posts and pages" # used by search engines
-
+description: "Personal Space" # used by search engines
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
   title: Personal Blog of KJS # blog's title
   avatar: assets/img/swift_icon.png
-  favicon: assets/favicon.ico
+  favicon: assets/favi.ico
   gravatar: # Email MD5 hash
-
   # Header and footer text
   header_text: > #two or three lines to describe your site
-     <p>Change header text in <code>_config.yml</code> <br> to update this feature.</p>
-  header_text_feature_image: assets/img/pexels/triangular.jpeg
+     <p> <h1> Welcome </h1> <h2>My Space</h2></p>
+  header_text_feature_image: assets/img/pexels/desk-messy.jpeg
   footer_text: >
-   Powered by <a href="https://jiseobkim.github.io">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+    Contact me AnyTime!
 
   # Icons
   rss: true  # Make sure you created a feed.xml with feed.xml layout
-  email_address: # Full email address, e.g. "sam@example.com"
+  email_address: jiseob812@gmail.com # Full email address, e.g. "sam@example.com"
   behance:
   bitbucket:
   dribbble:
   facebook:
   flickr:
   gitlab:
-  github: "sylhare"
+  github: "JiSeobKim"
   google_plus:
   instagram:
   keybase:
