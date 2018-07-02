@@ -1,22 +1,24 @@
 # SITE CONFIGURATION
 baseurl: ""
 url: "https://jiseobkim.github.io"
-title: Personal Blog of KJS # site's title
+title: Personal Blog Of KJS # site's title
 description: "Personal Space" # used by search engines
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Personal Blog of KJS # blog's title
+  title: Personal Blog Of KJS # blog's title
   avatar: assets/img/swift_icon.png
   favicon: assets/favi.ico
   gravatar: # Email MD5 hash
   # Header and footer text
   header_text: > #two or three lines to describe your site
-     <p> <h1> Welcome </h1> <h2>My Space</h2></p>
+     <p> <h1> Why & How </h1> <h2> Welcome </h2></p>
   header_text_feature_image: assets/img/pexels/desk-messy.jpeg
   footer_text: >
-    Contact me AnyTime!
+       <div style = "text-align:center">
+       Contact me, Anytime!
+       </div>
 
   # Icons
   rss: true  # Make sure you created a feed.xml with feed.xml layout
