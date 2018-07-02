@@ -5,18 +5,59 @@
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
         <link>http://localhost:4000/</link>
         <description></description>
-        <pubDate>Sun, 01 Jul 2018 22:32:47 +0900</pubDate>
+        <pubDate>Mon, 02 Jul 2018 22:55:30 +0900</pubDate>
         
         <item>
-            <title>사이트 오픈 예정일</title>
-            <link>/2018/06/17/%EA%B3%B5%EC%A7%80-%EC%98%A4%ED%94%88-%EC%98%88%EC%A0%95%EC%9D%BC.html</link>
-            <guid isPermaLink="true">/2018/06/17/%EA%B3%B5%EC%A7%80-%EC%98%A4%ED%94%88-%EC%98%88%EC%A0%95%EC%9D%BC.html</guid>
-            <description>&lt;p&gt;DisQus 테스트중입니다.
-&lt;!--more--&gt;&lt;/p&gt;
+            <title>주로 쓰게될 주제?</title>
+            <link>/2018/07/02/%EA%B3%B5%EC%A7%80-%EC%A3%BC%EB%A1%9C-%EC%93%B0%EA%B2%8C%EB%90%A0-%EC%A3%BC%EC%A0%9C.html</link>
+            <guid isPermaLink="true">/2018/07/02/%EA%B3%B5%EC%A7%80-%EC%A3%BC%EB%A1%9C-%EC%93%B0%EA%B2%8C%EB%90%A0-%EC%A3%BC%EC%A0%9C.html</guid>
+            <description>&lt;h1 id=&quot;swift-그리고-ios&quot;&gt;Swift 그리고 iOS&lt;/h1&gt;
 
-&lt;h3 id=&quot;오픈-예정일-미정&quot;&gt;오픈 예정일: 미정&lt;/h3&gt;
+&lt;!--more--&gt;
+
+&lt;p&gt;여기 저기 주변에서 많은 추천을 받아 블로그를 시작해야겠다고 마음을 먹은지는 몇개월 된 것 같습니다.&lt;/p&gt;
+
+&lt;p&gt;그치만 언제나 그렇듯 생각만으론 이미 블로그 글을 100만개 올린듯합니다.&lt;/p&gt;
+
+&lt;p&gt;그러다 얼마전 회사 선임분중 한분께서 한 블로그를 추천해주셔서 읽고 시작의 마음을 제대로 굳힌거 같군요.&lt;/p&gt;
+
+&lt;p&gt;그분께선 자기 관리를 블로그를 통해 진행하였고, git엔 초록색 밭이었습니다.&lt;/p&gt;
+
+&lt;p&gt;또한, 신입으로 입사하고 얼마뒤부터 다른 곳으로 이직을 위하여 준비를 하시던 모습이 엄청난 충격을 주더군요,,,&lt;/p&gt;
+
+&lt;p&gt;2017.12.26 제 첫 입사날입니다만, 벌써 7개월차가 되어버렸습니다. 너무 안일하게 있었던것 아닌가 싶네요.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;그래서-시작합니다-swift와-ios로&quot;&gt;그래서 시작합니다. Swift와 iOS로!&lt;/h2&gt;
+
+&lt;p&gt;우선, 저는 iOS 개발자입니다! 이 블로그는 제 기술을 갈고 닦는데 도움을 주는 위주로 진행될 예정이며,&lt;/p&gt;
+
+&lt;p&gt;먼 훗날, 이 블로그의 글들을 보며, “저런걸 왜썼지?” 라고도 생각이들테지만 그만큼 지금보다 성장해서 그렇겠죠?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;틀린부분도-있을-수-있습니다&quot;&gt;틀린부분도 있을 수 있습니다.&lt;/h3&gt;
+
+&lt;p&gt;자료는 많이 찾아보고 올리겠지만, 혹여나 실수 또는 더 좋은 방법이 있다면 언제든 알려주세요! 모두들 제 사수가 되어주세요.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;why-그리고-how&quot;&gt;Why 그리고 How&lt;/h3&gt;
+
+&lt;p&gt;이 블로그를 어떻게 진행하면 좋을까 고민을 했어요.&lt;/p&gt;
+
+&lt;p&gt;단순한 class에 대해, 단순한 변수에 대한, 단순한 함수에 대한, 등등 단순한 &lt;u&gt;설명은 피하려고 해요&lt;/u&gt;&lt;/p&gt;
+
+&lt;p&gt;학생 시절때부터, 이유(why)를 모르면 하기가 너무 싫더군요. 이유없이 그냥 써! 라는 방식은 저도 원치 않아요&lt;/p&gt;
+
+&lt;p&gt;학생 시절 이것 저것은 배웠지만 어떻게?(How)부분은 모르는게 많았던것 같네요,&lt;/p&gt;
+
+&lt;p&gt;배우긴 했지만 왜 배운지 모르고 어떻게 사용할지 모르고,,,,&lt;/p&gt;
+
+&lt;p&gt;그래서 이 블로그엔 Why와 How를 이용하여, 설명을 해나갈까합니다!&lt;/p&gt;
 </description>
-            <pubDate>Sun, 17 Jun 2018 00:00:00 +0900</pubDate>
+            <pubDate>Mon, 02 Jul 2018 00:00:00 +0900</pubDate>
         </item>
         
     </channel>
