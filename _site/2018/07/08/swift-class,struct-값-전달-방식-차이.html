@@ -456,7 +456,7 @@
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">row1</span><span class="p">)</span> <span class="k">in</span> <span class="n">school1</span><span class="o">.</span><span class="n">gradeList</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">row2</span><span class="p">)</span> <span class="k">in</span> <span class="n">row1</span><span class="o">.</span><span class="n">classList</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">row3</span><span class="p">)</span> <span class="k">in</span> <span class="n">row2</span><span class="o">.</span><span class="n">studentList</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">(){</span>           
- <span class="n">school1</span><span class="o">.</span><span class="n">gradeList</span><span class="p">[</span><span class="n">x1</span><span class="p">]</span><span class="o">.</span><span class="n">classList</span><span class="p">[</span><span class="n">x2</span><span class="p">]</span><span class="o">.</span><span class="n">studentList</span><span class="p">[</span><span class="n">x3</span><span class="p">]</span><span class="o">.</span><span class="n">number</span> <span class="o">+=</span> <span class="mi">1</span>
+ <span class="n">school1</span><span class="o">.</span><span class="n">gradeList</span><span class="p">[</span><span class="n">x1</span><span class="p">]</span><span class="o">.</span><span class="n">classList</span><span class="p">[</span><span class="n">x2</span><span class="p">]</span><span class="o">.</span><span class="n">studentList</span><span class="p">[</span><span class="n">x3</span><span class="p">]</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">row3</span><span class="o">.</span><span class="n">number</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -465,13 +465,20 @@
 <p>오.. 좋다.. 마음에 평화가 오기  시작한다</p>
 
 <blockquote>
-  <p>간단하게 enumerate()에 대해 설명하자면,<br />
-x  -&gt; 현재 카운트 번호<br />
-row -&gt; 현재 데이터<br />
-라고 생각하자.  그래서 값을 넣을때 각 자리에 x1,x2,x3를 넣어주는 것이다.<br />
-그리고 +1 할땐 간단하게 += 1 해주면 된다.<br />
-( 이해가 안된다면 천천이 읽어보자.)</p>
+  <p>간단하게 enumerate()에 대해 설명하자면,
+<br />- x :현재 카운트 번호
+<br />- row : 현재 데이터
+<br />라고 생각하자.  그래서 값을 넣을때 각 자리에 x1,x2,x3를 넣어주는 것이다.
+<br />그리고 +1 row3.number에 +1을 하는것이고!
+<br />but. value += 1 이런 방식이면 더 깔끔
+<br />( 이해가 안된다면 천천이 읽어보자.)</p>
 </blockquote>
+
+<p>row -&gt; 현재 데이터<br />
+라고 생각하자.  그래서 값을 넣을때 각 자리에 x1,x2,x3를 넣어주는 것이다.<br />
+그리고 +1 row3.number에 +1을 하는것이고!
+but. value += 1 이런 방식이면 더 깔끔
+( 이해가 안된다면 천천이 읽어보자.)</p>
 
 <p>그치만 역시나 아쉽다. 값 넣는 부분이 맘에 들지 않는다.</p>
 
