@@ -257,7 +257,7 @@ school1.gradeList[0].classList[0].studentList[0].number
 for (x1, row1) in school1.gradeList.enumerated() {
     for (x2, row2) in row1.classList.enumerated() {
         for (x3, row3) in row2.studentList.enumerated(){           
- school1.gradeList[x1].classList[x2].studentList[x3].number += 1
+ school1.gradeList[x1].classList[x2].studentList[x3].number = row3.number + 1
         }
     }
 }
@@ -269,7 +269,8 @@ for (x1, row1) in school1.gradeList.enumerated() {
 > x  -> 현재 카운트 번호  
 > row -> 현재 데이터  
 > 라고 생각하자.  그래서 값을 넣을때 각 자리에 x1,x2,x3를 넣어주는 것이다.  
-> 그리고 +1 할땐 간단하게 += 1 해주면 된다.  
+> 그리고 +1 row3.number에 +1을 하는것이고!
+> but. value += 1 이런 방식이면 더 깔끔 
 > ( 이해가 안된다면 천천이 읽어보자.)  
 
 그치만 역시나 아쉽다. 값 넣는 부분이 맘에 들지 않는다.
