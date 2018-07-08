@@ -5,13 +5,13 @@
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
         <link>http://localhost:4000/</link>
         <description></description>
-        <pubDate>Sun, 08 Jul 2018 21:54:32 +0900</pubDate>
+        <pubDate>Sun, 08 Jul 2018 22:04:31 +0900</pubDate>
         
         <item>
-            <title>Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?</title>
+            <title>Class, Struct 값 전달 방식이 &lt;br&gt; 다른건 알지만 언제쓰지?</title>
             <link>/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html</link>
             <guid isPermaLink="true">/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html</guid>
-            <description>&lt;h3 id=&quot;값에-의한-전달-그리고-참조에-의한-전달&quot;&gt;값에 의한 전달 그리고 참조에 의한 전달&lt;/h3&gt;
+            <description>&lt;h3 id=&quot;swift---값에-의한-전달-그리고-참조에-의한-전달&quot;&gt;Swift - 값에 의한 전달 그리고 참조에 의한 전달&lt;/h3&gt;
 
 &lt;!--more--&gt;
 
@@ -38,13 +38,15 @@
 &lt;h2 id=&quot;예시-구조&quot;&gt;예시 구조&lt;/h2&gt;
 &lt;p&gt;학교라는 틀에서 설명을 해보려고한다.&lt;/p&gt;
 
-&lt;p&gt;학교		-&amp;gt; ( 학교 이름 / 학년 리스트 )&lt;/p&gt;
-
-&lt;p&gt;학년		-&amp;gt; ( 학년 이름 / 반 리스트 )&lt;/p&gt;
-
-&lt;p&gt;반            -&amp;gt; ( 반 이름 / 학생 리스트 )&lt;/p&gt;
-
-&lt;p&gt;학생 정보 -&amp;gt; ( 이름 / 번호 )&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;학교 : ( 학교 이름 / 학년 리스트 )
+&lt;br /&gt;
+학년 : ( 학년 이름 / 반 리스트 )
+&lt;br /&gt;
+반 : ( 반 이름 / 학생 리스트 )
+&lt;br /&gt;
+학생 정보 : ( 이름 / 번호 )&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;이런식으로 상위 개념이 하위 개념들을 포함하고 있다고 가정을 하자.&lt;/p&gt;
 
@@ -165,8 +167,9 @@
 &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;별로다. 괄호가 너무 많아서 별로다.
-여기선 row에 관해서만 생략이 되었다.&lt;/p&gt;
+&lt;p&gt;별로다. 괄호가 너무 많아서 별로다.&lt;/p&gt;
+
+&lt;p&gt;여기선 row에 관해서만 생략이 되었다.&lt;/p&gt;
 
 &lt;p&gt;뭘 어떻게 생략했는지, 아니면 관심이 더간다면 &lt;strong&gt;클로저&lt;/strong&gt; 검색!&lt;/p&gt;
 
