@@ -1,11 +1,262 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Personal Blog Of KJS</title>
+        <title>Personal Blog of KJS</title>
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
         <link>http://localhost:4000/</link>
         <description></description>
-        <pubDate>Mon, 16 Jul 2018 00:02:56 +0900</pubDate>
+        <pubDate>Sat, 21 Jul 2018 20:19:24 +0900</pubDate>
+        
+        <item>
+            <title>Alamofire와 Codable</title>
+            <link>/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</link>
+            <guid isPermaLink="true">/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</guid>
+            <description>&lt;p&gt;통신 위한 Alamofire와 그 효율성을 높혀주는 Codable
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;요즘 시대엔 앱을 사용하면서 통신은 필수인듯 하다. 
+여러 기기간의 동기화, 결제, 등등 통신을 통해 데이터를 다루는 분야가 훨씬 많다.&lt;/p&gt;
+
+&lt;p&gt;필자도 맨처음 시작했던 Swift 스터디에서 로컬 앱을 만들었으나 통신의 필요성을 느껴서 졸업 작품때 통신을 하는 앱을 시도 했었으며, 취업에 많은 도움이 되었던 것 같다.&lt;/p&gt;
+
+&lt;p&gt;여담으로 아무것도 모르는 상태서 html, php, MariaDB, 포트포워딩 등등 배우려니 너무 힘들었던 기억이 있다. 서버는 집에 있던 NAS를 조금이나마 돈값하게 이용했었다.&lt;/p&gt;
+
+&lt;p&gt;그때 알게된 Alamofire 라는 훌륭한 라이브러리를 알게 되었다.&lt;/p&gt;
+
+&lt;p&gt;CocoaPod을 이용해서 설치했으며, 설치법은 시간이 된다면 나중에 다뤄보기로…..&lt;/p&gt;
+
+&lt;p&gt;로컬 서버를 이용한 응답값을 먼저 보자.
+(응답값)
+&lt;img src=&quot;/assets/img/post/2018-07-21/img1.png&quot; alt=&quot;&quot; /&gt;
+JSON 형태이며, 값은 간단하게 3개가 온다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;hp (String)&lt;/li&gt;
+  &lt;li&gt;name (String)&lt;/li&gt;
+  &lt;li&gt;age (Int)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;간단하지만, 이것을 앱에서 받으려면 처음 사용자는 엄청난 혼란이 온다.
+내가 그랬다.&lt;/p&gt;
+
+&lt;p&gt;Alamofire만 있다면 아주아주 간단하게 할 수 있다. 라이브러리를 안쓰고 통신도 가능하지만, 라이브러리를 쓴다면 편해지는건 사실! 아직 사용을 안해봤다면 한번쯤 써보게 된다면 아~ 이렇게 쓰는거군! 하게 될것이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주의: Alamofire를 설치했다는 가정하부터 진행&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(앱화면)
+&lt;img src=&quot;/assets/img/post/2018-07-21/img2.png&quot; alt=&quot;&quot; /&gt;
+처음 이미지에 보았던 전화번호, 이름, 나이를 서버로부터 받아서 위의 이미지에 알맞게 데이터를 넣어줄 것이다.&lt;/p&gt;
+
+&lt;p&gt;순서는 다음과 같다&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;통신을 통해 값 받아오기&lt;/li&gt;
+  &lt;li&gt;가져온 값에서 필요한값 빼내오기&lt;/li&gt;
+  &lt;li&gt;빼내온값 표출하기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;** * 주의사항 (아래서 추가 설명) **&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Alamofire 통신시 &lt;strong&gt;비동기&lt;/strong&gt;로 진행됨을 잊으면 안된다.&lt;/li&gt;
+  &lt;li&gt;UI 관련 작업은 메인쓰레드에서만 가능하다, Alamofire 통신하여 UI 관련 작업이 제대로 안된다면 DispatchQueue.main.async를 이용해서 &lt;strong&gt;메인 쓰레드에서 비동기로&lt;/strong&gt; 진행 시켜보자.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&amp;lt;/br&amp;gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-통신을-통해-값-받아오기&quot;&gt;1. 통신을 통해 값 받아오기&lt;/h2&gt;
+&lt;p&gt;우선 데이터를 받아오자, 코드는 아주 간단하다. 사진으로 첨부!
+&lt;img src=&quot;/assets/img/post/2018-07-21/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;주석에 따라 설명을 진행!&lt;/p&gt;
+&lt;h3 id=&quot;1-alamofire-import하기&quot;&gt;1. Alamofire import하기&lt;/h3&gt;
+&lt;p&gt;가장 중요한 설정인 Alamofire를 import 해줘야한다! 잊지말기&lt;/p&gt;
+
+&lt;h3 id=&quot;2-url-정의&quot;&gt;2. URL 정의&lt;/h3&gt;
+&lt;p&gt;이건 별다른 설명이 필요하지 않을듯 싶다. 통신을 하기위해선 누구에게 요청을 할것인가는 당연히 필요하기에 URL을 정의해야한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-전송request&quot;&gt;3. 전송(request)&lt;/h3&gt;
+&lt;p&gt;비록 한줄이지만 이번에 글의 가장 중요한 부분이다. Alamofire 라이브러리를 이용해주면 저렇게 단 한줄에 요청(request)을 할 수있다. 여기서 요청이란 주소창에다가 해당 URL을 입력했다. 정도로 생각하면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-응답response-처리&quot;&gt;4. 응답(response) 처리&lt;/h3&gt;
+&lt;p&gt;응답이란 3에서 말한 URL을 입력했다가 전송(request)이라면, 입력했을때 반응(response)한것이 응답값이다. 
+&lt;img src=&quot;/assets/img/post/2018-07-21/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;이해가 잘안된다면, “내가 주소창에 URL을 입력(요청)했더니 위와 같은 화면(응답)이 나왔다” 정도로?? 생각하자. (이 부분은 설명이 부족한 것이니, 아래 내용이 이해가 안될경우에만 이 정도로만 생각하고, 아래에서 추가 설명함)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;그렇담 여기서 doNetwork 뒤의 responseJSON이란 ??&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;위의 이미지는 JSON 형태로 응답을 하고 있다. 그렇기에 responseJSON을 써주는 것이다.&lt;/p&gt;
+
+&lt;p&gt;바로뒤에 중괄호가 있다. 이건 클로져 구문이다. 일반적인 함수에는 소괄호’()’안에 인자값들이 있다. &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; 앞에 부분이 인자값이다. 다시말해 응답한 값은 response라는 변수에 담아주는 것이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;이후에 나오는 것은 일반적인 함수에서  중괄호’{}’ 에 해당되는 부분이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-결과에-따른-switch문&quot;&gt;5. 결과에 따른 switch문&lt;/h3&gt;
+&lt;p&gt;명확히 얘기하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;response&lt;/code&gt;는 JSON 문구를 의미하는게 아니다. 우리가 그다음 판별 해야할것은 내가 요청한 통신이 성공 or 실패를 먼저 따져야한다. 실패의 경우 여러가지가 있다, 정확하지않은 URL, 인터넷 끊김 등등?&lt;/p&gt;
+
+&lt;p&gt;성공에 의미는 위의 JSON 데이터를 성공적으로 가져왔다는 것이다. 즉, 우리가 사용할 수가 있다는 것이다. 
+쓸 수 있는 값을 못가져 온경우를 모두 실패로 생각하자!&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;위의 대해 좀더 자세히 보면 아래 사진과 같다
+&lt;img src=&quot;/assets/img/post/2018-07-21/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;우선 타입은 enum이다, 그리고 그 케이스는 2가지다&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;success&lt;/li&gt;
+  &lt;li&gt;failure&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그래서 위에서 switch문을 썼을때 2가지만 써도 &lt;code class=&quot;highlighter-rouge&quot;&gt;default일 경우 처리하세요&lt;/code&gt;라는 경고를 안띄운다. &lt;br /&gt;
+isSuccess는 성공 여부를 &lt;br /&gt;
+isFailur는 실패 여부를 &lt;br /&gt;
+value는 받아온 값이며 error는 Error타입이다, 이 둘중 한가지는  nil이기 때문에 옵셔널&lt;code class=&quot;highlighter-rouge&quot;&gt;?&lt;/code&gt;으로 감싸져있다.&lt;/p&gt;
+
+&lt;p&gt;필요할때 알맞게 사용하도록 하자. 여기서 우리가 필요한건 success의 value이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-1-통신-성공&quot;&gt;5-1. 통신 성공&lt;/h3&gt;
+&lt;p&gt;타입을 먼저보자.
+&lt;img src=&quot;/assets/img/post/2018-07-21/img5.png&quot; alt=&quot;&quot; /&gt;
+Any 형태이다. 왜 Any일진 생각해보면 간단하다.&lt;/p&gt;
+
+&lt;p&gt;그럼 실행을 해보자
+&lt;img src=&quot;/assets/img/post/2018-07-21/img6.png&quot; alt=&quot;&quot; /&gt;
+콘솔창에 보면 성공적으로 가져왔다. 위에서 말했듯이 이 값의 타입은 Any이다. NSDictionary로 캐스팅을 먼저해야하자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img7.png&quot; alt=&quot;&quot; /&gt;
+NSDictionary 타입으로 캐스팅 후 for문으로 출력해주었다. 아주 잘나왔다. 끝이 보인다.&lt;/p&gt;
+
+&lt;p&gt;각 데이터를 빼오자.
+&lt;img src=&quot;/assets/img/post/2018-07-21/img8.png&quot; alt=&quot;&quot; /&gt;
+각각 전화번호/이름/나이 데이터를 비강제 해제 (unwrapping) 해주었다.&lt;/p&gt;
+
+&lt;p&gt;어려운말이다. 써보고 싶었다. 그치만 하도 안썼더니 나도 어색하다. 쉽게 말해 if문을 써서 안전빵으로 데이터를 가져오고 설정해줬다.&lt;/p&gt;
+
+&lt;p&gt;다운캐스팅 할때 &lt;code class=&quot;highlighter-rouge&quot;&gt;as?&lt;/code&gt;을 써줌으로써 실패시 nil로 바뀌게 될것이고 따라서, 각 if문의 조건은 nil로 떨어짐으로 이 경우엔 swift에선 해당 라인을 실행 안한다고한다! 훌륭해.&lt;/p&gt;
+
+&lt;p&gt;우선, 통신 하기전 화면을 보자
+&lt;img src=&quot;/assets/img/post/2018-07-21/img9.png&quot; alt=&quot;&quot; /&gt;
+못생겼다.&lt;/p&gt;
+
+&lt;p&gt;그럼 통신 후!
+&lt;img src=&quot;/assets/img/post/2018-07-21/img10.png&quot; alt=&quot;&quot; /&gt;
+번호/이름은 잘들어갔다. 그치만 나이는 적용이 안되었다.&lt;/p&gt;
+
+&lt;p&gt;해당부분 값을 출력해보자.
+&lt;img src=&quot;/assets/img/post/2018-07-21/img11.png&quot; alt=&quot;&quot; /&gt;
+새로 배운 기술이다. 브레이크 포인트에 lldb(Low Lebel Debugger) 명령어를 입력해주면, 해당 부분 가서 알아서 해당 명령어를 실행해준다. 해당 명령어 입력부분 아래에 옵션 체크를 해주면 원래는 break 걸면 해당 라인에서 멈춰야하지만 명령어 실행 후 자동으로 다시 진행한다.&lt;/p&gt;
+
+&lt;p&gt;아직 print 찍는게 편하지만 자주 쓰는곳에 걸어두면 편하다. disable 했다가 On/Off해주기만 하면 되니깐!&lt;/p&gt;
+
+&lt;p&gt;그게 중요한게 아니고, 콘솔창에 nil이 찍혔다.&lt;/p&gt;
+
+&lt;p&gt;캐스팅이 실패한것이다. response 사진을 다시 보자
+&lt;img src=&quot;/assets/img/post/2018-07-21/img1.png&quot; alt=&quot;&quot; /&gt;
+자세히보면 휴대폰 번호에는 쌍따옴표(“ “)가 있지만, 나이 부분엔 없다. 문자가 아니라 숫자이다.
+옵셔널 강제해제 였으면 앱이 크래쉬 났을 것이다.&lt;/p&gt;
+
+&lt;p&gt;당연한거아니야? 할수 있겠지만, 소소하게 실수할때가 있었었다…. 심지어 스펠링 틀릴경우도 빈번하게 있다!
+하지만 Codable를 알게된 후론 세상 편해졌다. 궁금해지지 않는가 Codable? 나만 궁금한가.&lt;/p&gt;
+
+&lt;p&gt;이유는 알았으니 일단 고치고
+&lt;img src=&quot;/assets/img/post/2018-07-21/img12.png&quot; alt=&quot;&quot; /&gt;
+실행!
+&lt;img src=&quot;/assets/img/post/2018-07-21/img13.png&quot; alt=&quot;&quot; /&gt;
+완성!!&lt;/p&gt;
+
+&lt;p&gt;데이터가 아무리 많아도 이젠 할 수 있다.
+&lt;img src=&quot;/assets/img/post/2018-07-21/img14.png&quot; alt=&quot;&quot; /&gt;
+데이터가 훨~씬 많다. 이것도 해보자.&lt;/p&gt;
+
+&lt;p&gt;우선 UI부터 만들고,
+&lt;img src=&quot;/assets/img/post/2018-07-21/img15.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;슬슬 재앙이 일어날 것 같은 예감이 드는가?&lt;/p&gt;
+
+&lt;p&gt;코드로 가보자.
+&lt;img src=&quot;/assets/img/post/2018-07-21/img16.png&quot; alt=&quot;&quot; /&gt;
+위에서 했던 방식대로 진행하면 이렇다. 하는건 쉽다. 하는 것만 쉽다.&lt;/p&gt;
+
+&lt;p&gt;데이터는 잘왔나?
+&lt;img src=&quot;/assets/img/post/2018-07-21/img17.png&quot; alt=&quot;&quot; /&gt;
+잘왔다. 그런데 힘들다. 예시로 쓰는것도 힘들었다. 이 방식은 쓰지말자
+&lt;img src=&quot;/assets/img/post/2018-07-21/img18.png&quot; alt=&quot;&quot; /&gt;
+하지만, 실제 업무상 데이터가 많이 올때도 있다. 그러므로 우린 방법을 찾아야한다.&lt;/p&gt;
+
+&lt;p&gt;이때 아주 훌륭한 Codable을 쓰면 된다.&lt;/p&gt;
+
+&lt;h1 id=&quot;codable&quot;&gt;Codable&lt;/h1&gt;
+&lt;p&gt;Codable은 Swift4에서 추가된것이다. 이것 사용하기전엔 위에처럼 비효율적이지만 어쩔수없이 사용을 했을것이다!(추측), 이것을 알게된건 let’s Swift라는 컨퍼런스? 에서였다. 카카오톡, 라인, 토스 등등 개발자들이 짧게 20~30분씩 강연들을 했었던 것이었고, 난 학생이었기 때문에 반값? 수준으로 갔었던것 같다. 이때 옆자리분이 여기 슬랙따로 있나요? 했을때, 당시 나는 슬랙을 한번도 안써봐서 못알아 들었던 기억이 난다.
+마지막 강연에는 아주아주 스페셜한분이 강연을 했었는데 보안상? 비밀이었기 때문에 나도 비밀을 유지하겠다.&lt;/p&gt;
+
+&lt;p&gt;아무튼 그때, 첫번째 강연하신분께서 Swift4의 새 기능에 대해서 소개를 하셨고, 그때 졸작으로 한창 통신에 관해서 시작하며 삽질하던 나에게 단비같은 Codable을 소개해주셨다. 덕분에 아주 잘쓰고 있다.&lt;/p&gt;
+
+&lt;p&gt;하지만, 나도 기능의 전체를 사용하진 못하고 있다. 간단하게 말하자면 JSON 데이터를 미리 생성해둔 Struct 혹은 Class의 인스턴스로 만들어주며, 심지어 데이터를 이름에 맞게 넣어준다! 아주 훌륭하다. 살펴보자&lt;/p&gt;
+
+&lt;p&gt;순서는 다음과 같다&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Class or Struct 생성&lt;/li&gt;
+  &lt;li&gt;response받은 데이터를 JSON으로 변경&lt;/li&gt;
+  &lt;li&gt;Codable 이용하여 인스턴스 생성&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;인스턴스란?
+Class와 Struct는 실질적으로 사용하는 데이터가 아니다. 구조를 알려주는 것이다. 그래서 설계도, 주틀 등등으로 설명을 해준다.
+설계도로 설명해보자면, 가정집 설계도(클래스or구조체)가 있다 가정하자. 화장실, 방이 그려져있다.
+내가 이 설계도의 화장실에 들어가는 행위는 불가능하다. 왜냐? 이건 설계도지 진짜 무엇이 아니기 때문이다.
+내가 이 설계도로 A 아파트를 지었다. 이 A아파트가 인스턴스다! 이 A아파트에 내가 화장실을 들어가거나 방에 들어가는 행위 모두 가능하다!  이것이 인스턴스.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;class-or-struct-생성&quot;&gt;Class or Struct 생성&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img19.png&quot; alt=&quot;&quot; /&gt;
+구조체를 사용하기로 했다 참조에 의한 사용은 필요없으니깐! (다른 이유도 더찾아봐야하는데..)&lt;/p&gt;
+
+&lt;p&gt;일반적인것들과 차이는 없지만, 하나 있다면 Codable!&lt;/p&gt;
+
+&lt;p&gt;Codable을 좀더 들어가보자
+&lt;img src=&quot;/assets/img/post/2018-07-21/img20.png&quot; alt=&quot;&quot; /&gt;
+조금 생소한 &lt;code class=&quot;highlighter-rouge&quot;&gt;typealias&lt;/code&gt;가 나타났다. 알기만하고 아직 적절한곳을 못찾아서 필자도 써본적이 없지만, 타입의 이름을 다르게 만들어주는것이다. 사람 이름으로 치면 개명정도? 다만 본명, 개명 둘다 사용가능하다.
+위의 사진을 보면 Encodable 과 Decodable을 묶은 것의 명칭을 Codable이라고 해준다는 의미다. 이렇게보니
+쓸만한 사용법을 찾은것 같다. 두가지 프로토콜을 합쳐주다니! 더 확인 해봐야겠다.&lt;/p&gt;
+
+&lt;p&gt;그렇담 새로나온 &lt;strong&gt;Decodable&lt;/strong&gt;과 &lt;strong&gt;Encodable&lt;/strong&gt;이란?&lt;/p&gt;
+
+&lt;p&gt;두가지 기능이 반대이니 한개만 보자 우리가 사용할 &lt;strong&gt;Decodable&lt;/strong&gt;
+&lt;img src=&quot;/assets/img/post/2018-07-21/img21.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;설명이 아주 친절하다&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;디코딩해서 새로운 인스턴스를 생성해준다!
+디코더가 읽기를 실패하거나, 데이터가 손상 혹은 유효하지 않을경우 에러를 던진다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;알아서 에러 처리도 해준다 좋다!&lt;/p&gt;
+
+&lt;h3 id=&quot;response받은-데이터를-json으로-변경&quot;&gt;response받은 데이터를 JSON으로 변경&lt;/h3&gt;
+&lt;p&gt;처음에 사용할때 여기서 삽질을 많이 했다. 사진을 보자.
+&lt;img src=&quot;/assets/img/post/2018-07-21/img22.png&quot; alt=&quot;&quot; /&gt;
+do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯이 Decodable은 실패시 에러를 던져주기 때문에!&lt;/p&gt;
+
+&lt;p&gt;Swift는 읽기도 참 좋다!&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;JSONDecoder()를 사용할거고, 데이터(from 인자)로부터 정한 타입(type 인자)으로 디코딩한다&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;읽기 쉽다. 여기서 타입은 아까 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;Class or Struct&lt;/code&gt;정보가 들어가게 되고, data는 통신해서 받은 데이터다!&lt;/p&gt;
+
+&lt;p&gt;채워보자&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;getInstanceData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;JSONDecoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;UserData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;이렇게 하면 될까?
+&lt;img src=&quot;/assets/img/post/2018-07-21/img23.png&quot; alt=&quot;&quot; /&gt;
+안된다. 타입이 안맞다고 한다. 왜냐? 아까도 확인 했지만 obj는 타입이 Any 이기 때문이다.&lt;/p&gt;
+
+</description>
+            <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
+        </item>
         
         <item>
             <title>UIButton과 클래스</title>
