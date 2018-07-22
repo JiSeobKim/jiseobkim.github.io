@@ -40,6 +40,7 @@ class ViewController: UIViewController {
         var data8: String?
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 2. URL 정의
@@ -48,23 +49,35 @@ class ViewController: UIViewController {
         // 3. 전송
         let doNetwork = Alamofire.request(url)
         
-        // 4. 응답 처리`
+        // 4. 응답 처리
         doNetwork.responseJSON { (response) in
             // 5. 결과에 따른 switch문
             switch response.result {
             case .success(let obj):
                 // 5-1. 통신 성공
-                if let nsDictionary = obj as? NSDictionary {
+                do {
                     
-                    do {
-                        let getInstanceData = try JSONDecoder().decode(UserData.self, from: obj)
-                        print(getInstanceData)
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+                    // obj(Any)를 JSON으로 변경
+                    let dataJSON = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
+                    // JSON Decoder 사용 (Codable)
+                    let getInstanceData = try JSONDecoder().decode(UserData.self, from: dataJSON)
+                    
+                    // 데이터 적용
+                    self.lbHp.text = getInstanceData.hp
+                    self.lbName.text = getInstanceData.name
+                    self.lbAge.text = (getInstanceData.age ?? 0).description
+                    self.data1.text = getInstanceData.data1
+                    self.data2.text = getInstanceData.data2
+                    self.data3.text = getInstanceData.data3
+                    self.data4.text = getInstanceData.data4
+                    self.data5.text = getInstanceData.data5
+                    self.data6.text = getInstanceData.data6
+                    self.data7.text = getInstanceData.data7
+                    self.data8.text = getInstanceData.data8
                     
                     
-                    
+                } catch {
+                    print(error.localizedDescription)
                 }
                 
             case .failure(let e):
