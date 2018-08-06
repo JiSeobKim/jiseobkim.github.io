@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 서버 연동 기본과 Encodable
+title: 서버 연동 기본과 Encodable
 tags: [swift, Alamofire, Network, Server, 서버연동, Codable, Encodable]
 excerpt_separator: <!--more-->
 
@@ -349,7 +349,7 @@ do {
 
 **do**는 **"내가 무언가 할건데, 이안에서 오류가 날수있어!!"** 하는 부분입니다
 
-do 안에 **try**는 **"이 코드가 오류 날수 있는부분이야!!"**
+**try**는 **"do 안에서 이 코드가 오류 날수 있는부분이야!!"**
 
 **catch**는 **"오류 났을땐 이렇게 처리해줘!"** 입니다.
 
@@ -373,9 +373,9 @@ do 안에 **try**는 **"이 코드가 오류 날수 있는부분이야!!"**
 
 
 
-Any 타입입니다! 전에 쓰던 이미지를 가져왔습니다.
+Any 타입입니다! Alamofire에서 response의 성공시 가져온 값에 타입 기억이 나시나요?
 
-
+전에 쓰던 이미지를 가져왔습니다.
 
 ![]({{ site.baseurl }}/assets/img/post/2018-08-05/img3.png)
 
