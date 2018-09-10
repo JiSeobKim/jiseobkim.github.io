@@ -13,7 +13,7 @@ theme_settings:
   gravatar: # Email MD5 hash
   # Header and footer text
   header_text: > #two or three lines to describe your site
-     <p> <h1> Why & How </h1> <h2> Welcome </h2></p>
+     <p> <h1> Welcome to my blog </h1> <h2> Developer story who love Swift </h2></p>
   header_text_feature_image: assets/img/pexels/desk-messy.jpeg
   footer_text: >
        <div style = "text-align:center">
