@@ -44,7 +44,7 @@
         margin-bottom: 0;
         display: inline-block;
         background-size: $feature-image-size;
-        border-bottom: 2px solid $border-color;
+        border-bottom: 1.2px solid $border-color;
         p a {
             @extend .body-link;
         }
@@ -86,7 +86,8 @@
         }
     }
     .excerpt {
-        margin-top: 0.7em;
+        margin-top: 0.2em;
+        font-size: 1em;
     }
 }
 
