@@ -69,7 +69,7 @@
 <meta property="og:site_name" content="Personal Blog Of KJS" />
 <link rel="next" href="http://localhost:4000/blog/page2" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/","description":"Personal Space","name":"Personal Blog Of KJS","@type":"WebSite","headline":"Personal Blog Of KJS","@context":"http://schema.org"}</script>
+{"name":"Personal Blog Of KJS","description":"Personal Space","@type":"WebSite","url":"http://localhost:4000/","headline":"Personal Blog Of KJS","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <!-- Manual seo tags -->
@@ -213,13 +213,62 @@
       
       <span>
           <header>
-            <h3>
+            <h2>
+              <a class="post-link" href="/2018/09/16/swift-DelegatePattern2.html">
+                화면간 데이터 전달. 2편
+                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
+              </a>
+
+            </h2>
+            <p class="meta">
+              September 16, 2018
+            </p>
+          </header>
+          <div class="excerpt">
+              프로토콜을 이용해보자
+
+
+            <!--프로토콜을 이용해보자
+
+
+이전글 보기 : 데이터 전달 1편
+
+이전 글에 이어서 프로토콜을 통해 VC2 -&gt; VC1으로 데이터를 전달해보겠습니다!
+
+이전글 Summary
+
+
+
+VC2의 코드중 핵심은 위 이미지 중 아래 코드와 같습니다.
+
+var delegate: VC1
+
+
+타입이 VC1클래스 였고, 여기서 꼭! 해줘야하는건 아래 그림처럼 특정 클래스와 연결을 시켜줘야 했습니다.
+
+
+
+연결 방법은 간단했죠
+
+vc2.delegate = ...-->
+            <!--<a class="button" href="/2018/09/16/swift-DelegatePattern2.html">
+              Continue reading
+            </a>-->
+          </div>
+      </span>
+    </div>
+    
+    <div class="post-teaser">
+      
+      <span>
+          <header>
+            <h2>
               <a class="post-link" href="/2018/09/02/swift-DelegatePattern.html">
                 화면간 데이터 전달. 1편
                 <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
               </a>
 
-            </h3>
+            </h2>
             <p class="meta">
               September 2, 2018
             </p>
@@ -255,13 +304,13 @@
       
       <span>
           <header>
-            <h3>
+            <h2>
               <a class="post-link" href="/2018/08/19/swift-Generic-&-Codable.html">
                 Generic & Codable
                 <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
               </a>
 
-            </h3>
+            </h2>
             <p class="meta">
               August 19, 2018
             </p>
@@ -294,13 +343,13 @@
       
       <span>
           <header>
-            <h3>
+            <h2>
               <a class="post-link" href="/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
                 서버 연동 기본과 Encodable
                 <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
               </a>
 
-            </h3>
+            </h2>
             <p class="meta">
               August 5, 2018
             </p>
@@ -331,13 +380,13 @@
       
       <span>
           <header>
-            <h3>
+            <h2>
               <a class="post-link" href="/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html">
                 Alamofire와 Escaping
                 <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
               </a>
 
-            </h3>
+            </h2>
             <p class="meta">
               July 29, 2018
             </p>
@@ -366,41 +415,6 @@ Alamofire라는 좋은 라이브러리를 쓰다가 보면 새로운 swift파일
 
   Alamofire를 사용하기 위해 ...-->
             <!--<a class="button" href="/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html">
-              Continue reading
-            </a>-->
-          </div>
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-      
-      <span>
-          <header>
-            <h3>
-              <a class="post-link" href="/2018/07/21/swift-Alamofire%EC%99%80-Codable.html">
-                Alamofire와 Codable
-                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
-              </a>
-
-            </h3>
-            <p class="meta">
-              July 21, 2018
-            </p>
-          </header>
-          <div class="excerpt">
-              통신 위한 Alamofire와 그 효율성을 높혀주는 Codable
-
-
-            <!--통신 위한 Alamofire와 그 효율성을 높혀주는 Codable
-
-
-요즘 시대엔 앱을 사용하면서 통신은 필수인듯 하다. 
-여러 기기간의 동기화, 결제, 등등 통신을 통해 데이터를 다루는 분야가 훨씬 많다.
-
-필자도 맨처음 시작했던 Swift 스터디에서 로컬 앱을 만들었으나 통신의 필요성을 느껴서 졸업 작품때 통신을 하는 앱을 시도 했었으며, 취업에 많은 도움이 되었던 것 같다.
-
-여담으로 아무것도 모르는 상태서 html, php, Mar...-->
-            <!--<a class="button" href="/2018/07/21/swift-Alamofire%EC%99%80-Codable.html">
               Continue reading
             </a>-->
           </div>
