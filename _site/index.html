@@ -1,529 +1,378 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Developer story who love Swift</title>
+	<meta name="description" content="Developer story who love Swift">
+	
+	<link rel="canonical" href="http://localhost:4000/">
+	<link rel="alternate" type="application/rss+xml" title="Developer story who love Swift" href="http://localhost:4000/feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
     
-    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
-    <script defer=true src="/assets/js/main.min.js"></script>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/monokai_sublime.min.css">
+	<script type="text/javascript" src="/static/js/highlight.min.js"></script>
 
-    <!--Favicon-->
-    <link rel="shortcut icon" href="/assets/favi.ico" type="image/x-icon">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="http://localhost:4000/">
-
-    <!-- RSS -->
-    <link rel="alternate" type="application/atom+xml" title="Personal Blog Of KJS" href="http://localhost:4000///feed.xml"/>
-
-    <!-- Font Awesome -->
-    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/font-awesome.min.css">
-
-    <!-- Google Fonts -->
-    
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css"> 
-    
-
-    <!-- KaTeX 0.8.3 -->
-    
-    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/katex.min.css">
-    <script src="/assets/js/vendor/katex.min.js">
-    </script>
-    
-
-    <!-- Google Analytics -->
-    
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-121626260-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-    
-    
-    <!-- seo tags -->
-    <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Personal Blog Of KJS | Personal Space</title>
-<meta name="generator" content="Jekyll v3.8.3" />
-<meta property="og:title" content="Personal Blog Of KJS" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Personal Space" />
-<meta property="og:description" content="Personal Space" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Personal Blog Of KJS" />
-<link rel="next" href="http://localhost:4000/blog/page2" />
-<script type="application/ld+json">
-{"name":"Personal Blog Of KJS","description":"Personal Space","@type":"WebSite","url":"http://localhost:4000/","headline":"Personal Blog Of KJS","@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
-    <!-- Manual seo tags -->
     <!--
-    <title> Personal Blog Of KJS</title>
-    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
     -->
+    
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
   <body>
-    <header class="site-header">
-    
-    <!-- Logo and title -->
-	<div class="branding">
-		<a href="/">
-			<img class="avatar" src="/assets/img/swift_icon.png" alt=""/>
-		</a>
 
-		<h1 class="site-title">
-			<a href="/">Personal Blog Of KJS</a>
-		</h1>
-	</div>
-    
-    <!-- Toggle menu -->
-    <nav class="clear">
-    <a id="pull" class="toggle" href="#">
-    <i class="fa fa-bars fa-lg"></i>
-    </a>
-    
-    <!-- Menu -->
-    <ul class="hide">
-        <!-- Auto Generation of NORMAL pages in the navbar -->
+    <header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Developer story who love Swift</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
         
+          <li>
         
-        
-        
-        
-        
-        
-        <li class="separator"> | </li>
-        <li>
-            <a class="clear" href="/">
-                Home
-            </a>
-        </li>
-        
-        
-        
-        
-        
-        
-        <li class="separator"> | </li>
-        <li>
-            <a class="clear" href="/about/">
-                About
-            </a>
-        </li>
-        
-        
-        
-        
-        
-        
-        
-        
-        <li class="separator"> | </li>
-        <li>
-            <a class="clear" href="/gallery/">
-                Gallery
-            </a>
-        </li>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <li class="separator"> | </li>
-        <li>
-            <a class="clear" href="/portfolio/">
-                Portfolio
-            </a>
-        </li>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-         
-        
-        <!-- Auto Generation of SPECIAL pages in the navbar -->
+        <a href="/">Home</a></li>
+
         
           
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" href="http://localhost:4000/search">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </a>
-            </li>
+            
+              <li>
+            
+            <a href="/projects/"><span class="glyphicon "></span> Projects</a></li>
           
         
           
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" href="http://localhost:4000/tags">
-                    <i class="fa fa-tags" aria-hidden="true"></i>
-                </a>
-            </li>
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon "></span> About</a></li>
           
         
-    </ul>
+          
         
-	</nav>
+          
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 </header>
 
-    <div class="content">
-      <div class="home">
-  
-  <div id="main" class="call-out"
-  style="background-image: url('/assets/img/pexels/desk-messy.jpeg')">
-    <p> <h3>Developer Story<br>Who love Swift</h3></p>
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <article>
+        <h2 id="개인의-소소한-일상을-담는-공간">개인의 소소한 일상을 담는 공간!</h2>
 
+<p>꾸준히 달려가면 좋은 일은 따라오겠지?</p>
+
+      </article>
+    </div>
   </div>
-  
-
-  <div class="posts">
-    
-    <div class="post-teaser">
-      
-      <span>
-          <header>
-            <h2>
-              <a class="post-link" href="/2018/09/16/swift-DelegatePattern2.html">
-                화면간 데이터 전달. 2편
-                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
-              </a>
-
-            </h2>
-            <p class="meta">
-              September 16, 2018
-            </p>
-          </header>
-          <div class="excerpt">
-              프로토콜을 이용해보자
-
-
-            <!--프로토콜을 이용해보자
-
-
-이전글 보기 : 데이터 전달 1편
-
-이전 글에 이어서 프로토콜을 통해 VC2 -&gt; VC1으로 데이터를 전달해보겠습니다!
-
-이전글 Summary
-
-
-
-VC2의 코드중 핵심은 위 이미지 중 아래 코드와 같습니다.
-
-var delegate: VC1
-
-
-타입이 VC1클래스 였고, 여기서 꼭! 해줘야하는건 아래 그림처럼 특정 클래스와 연결을 시켜줘야 했습니다.
-
-
-
-연결 방법은 간단했죠
-
-vc2.delegate = ...-->
-            <!--<a class="button" href="/2018/09/16/swift-DelegatePattern2.html">
-              Continue reading
-            </a>-->
-          </div>
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-      
-      <span>
-          <header>
-            <h2>
-              <a class="post-link" href="/2018/09/02/swift-DelegatePattern.html">
-                화면간 데이터 전달. 1편
-                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
-              </a>
-
-            </h2>
-            <p class="meta">
-              September 2, 2018
-            </p>
-          </header>
-          <div class="excerpt">
-              델리게이트 패턴을 이용해보자
-
-
-            <!--델리게이트 패턴을 이용해보자
-
-
-이번 포스팅부터는 아이패드로 그림을 그리면서 설명을 진행 해보고자합니다~!
-
-(그림엔 소질이 없지만 집에서 동영상 머신으로 쓰이는 비싼 아이패드 활용을 어떻게든 하고 싶어서……….)
-
-어플을 만들다보면 데이터를 전달하는 빈도수는 상당히 높을것 입니다.
-
-예를 몇가지 들어볼까요? (실제는 다르겠지만 이해를 위해 최대한 간결하게 설명을 진행을…!)
-
-
-
-크게는 2가지로 볼수 있을겁니다!
-
-아래 삐뚤삐둘한 그림...-->
-            <!--<a class="button" href="/2018/09/02/swift-DelegatePattern.html">
-              Continue reading
-            </a>-->
-          </div>
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-      
-      <span>
-          <header>
-            <h2>
-              <a class="post-link" href="/2018/08/19/swift-Generic-&-Codable.html">
-                Generic & Codable
-                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
-              </a>
-
-            </h2>
-            <p class="meta">
-              August 19, 2018
-            </p>
-          </header>
-          <div class="excerpt">
-              앞선 포스팅글들의 종합판!!
-
-
-            <!--앞선 포스팅글들의 종합판!!
-
-
-앞서 포스팅한것들을 나열해보면
-
-
-  Alamofire: 통신을 쉽게 해주는 라이브러리
-  Codable: Swift4부터 생긴것으로 JSON 데이터를 구조체로 만들어주는 굉장히 좋은 프로토콜
-  Escaping: 비동기식 함수(ex: Alamofire)라 불가능했던 return값 처리를 가능하게 하는 방법
-
-
-크게 이렇게 3가지의 주제로 진행 되었다고 볼 수 있습니다.
-이번에 하게될 것은 이것들의 종합판이...-->
-            <!--<a class="button" href="/2018/08/19/swift-Generic-&-Codable.html">
-              Continue reading
-            </a>-->
-          </div>
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-      
-      <span>
-          <header>
-            <h2>
-              <a class="post-link" href="/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
-                서버 연동 기본과 Encodable
-                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
-              </a>
-
-            </h2>
-            <p class="meta">
-              August 5, 2018
-            </p>
-          </header>
-          <div class="excerpt">
-              라이브러리(Almofire) 없이 통신하기!
-
-
-            <!--라이브러리(Almofire) 없이 통신하기!
-
-
-이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 &lt; Encodable&amp;Decodable &gt;로 이루어져있었습니다.
-
-참고: Alamofire와 Codable
-참고: Alamofire와 Escaping
-
-위 내용중 Decodable을 이용하여, 별도의 비강제 해제처리 없이 응답값으로 만든 새 인스턴스를 얻는건 완소기능이었죠.
-
-하지만,...-->
-            <!--<a class="button" href="/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
-              Continue reading
-            </a>-->
-          </div>
-      </span>
-    </div>
-    
-    <div class="post-teaser">
-      
-      <span>
-          <header>
-            <h2>
-              <a class="post-link" href="/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html">
-                Alamofire와 Escaping
-                <script id="dsq-count-scr" src="//https-jiseobkim-github-io.disqus.com/count.js" async></script>
-              </a>
-
-            </h2>
-            <p class="meta">
-              July 29, 2018
-            </p>
-          </header>
-          <div class="excerpt">
-              자주 반복되는 Alamofire를 함수로 만들자. feat.Escaping
-
-
-            <!--자주 반복되는 Alamofire를 함수로 만들자. feat.Escaping
-
-
-Alamofire라는 좋은 라이브러리를 쓰다가 보면 새로운 swift파일을 만들때마다 반복적으로 쓴다는 생각이 든다.
-
-그래서 함수로 만들면 좋겠다! 라고 생각했다가, 졸업작품 당시 포기했다.
-
-포기한 과정을 보기전에 오늘의 구조 먼저, 첨부
-
-
-
-스토리보드도 심플, 코드도 심플, 화면도 심플한 상태이다
-
-
-
-코드 구성
-
-
-  Alamofire를 사용하기 위해 ...-->
-            <!--<a class="button" href="/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html">
-              Continue reading
-            </a>-->
-          </div>
-      </span>
-    </div>
-    
-  </div>
-
-
-  
-  <div class="pagination">
-    
-    
-    <a href="/blog/page2" class="button" >
-      Next
-      <i class="fa fa-chevron-right"></i>
-    </a>
-    
-  </div>
-  
 </div>
-
-    </div>
-    
-<footer class="site-footer">
-    <p class="text"><div style = "text-align:center"> Contact me, Anytime! </div>
-</p>
-            <div class="footer-icons">
-                <ul>
-                <!-- Social icons from Font Awesome, if enabled -->
+<p><br/></p>
+<div id="index" class="row">
+  <div class="col-sm-9">
+    <div class="post-area ">
+	  <div class="post-list-header">
+	  Posts
+	  </div>
+      <div class="post-list-body">
+        <div class="all-posts" post-cate="All">
+          
+            <a class="post-list-item" href="/2018/09/16/swift-DelegatePattern2/">
+              <h2>
+              Swift - 화면간 데이터 전달. 2편
+              </h2>
+              <span class="">Sep 16, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/09/02/swift-DelegatePattern/">
+              <h2>
+              Swift - 화면간 데이터 전달. 1편
+              </h2>
+              <span class="">Sep 2, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/08/19/swift-Generic-&-Codable/">
+              <h2>
+              Swift - Generic & Codable
+              </h2>
+              <span class="">Aug 19, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire)/">
+              <h2>
+              Swift - 서버 연동 기본과 Encodable
+              </h2>
+              <span class="">Aug 5, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping/">
+              <h2>
+              Swift - Alamofire와 Escaping
+              </h2>
+              <span class="">Jul 29, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable/">
+              <h2>
+              Swift - Alamofire와 Codable
+              </h2>
+              <span class="">Jul 21, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/">
+              <h2>
+              Swift - UIButton과 클래스
+              </h2>
+              <span class="">Jul 15, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5/">
+              <h2>
+              Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?
+              </h2>
+              <span class="">Jul 8, 2018</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/02/11/welcome-to-jekyll/">
+              <h2>
+              hello jekyll!
+              </h2>
+              <span class="">Feb 11, 2015</span>
+            </a>
+          
+        </div>
+        <!-- <div class="posts-in-categories"> -->
+        
+          <div post-cate="jekyll">
+            
+              
                 
-<li>
-	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
-		<span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-        </span>
-	</a>
-</li>
+              
+            
+              
+                
+                  <a href="/2015/02/11/welcome-to-jekyll/" class="post-list-item">
+                    <h2>
+                    hello jekyll!
+                    </h2>
+                    <span class="">Feb 11, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="swift">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2018/09/16/swift-DelegatePattern2/" class="post-list-item">
+                    <h2>
+                    Swift - 화면간 데이터 전달. 2편
+                    </h2>
+                    <span class="">Sep 16, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/09/02/swift-DelegatePattern/" class="post-list-item">
+                    <h2>
+                    Swift - 화면간 데이터 전달. 1편
+                    </h2>
+                    <span class="">Sep 2, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/08/19/swift-Generic-&-Codable/" class="post-list-item">
+                    <h2>
+                    Swift - Generic & Codable
+                    </h2>
+                    <span class="">Aug 19, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire)/" class="post-list-item">
+                    <h2>
+                    Swift - 서버 연동 기본과 Encodable
+                    </h2>
+                    <span class="">Aug 5, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping/" class="post-list-item">
+                    <h2>
+                    Swift - Alamofire와 Escaping
+                    </h2>
+                    <span class="">Jul 29, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable/" class="post-list-item">
+                    <h2>
+                    Swift - Alamofire와 Codable
+                    </h2>
+                    <span class="">Jul 21, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/" class="post-list-item">
+                    <h2>
+                    Swift - UIButton과 클래스
+                    </h2>
+                    <span class="">Jul 15, 2018</span>
+                  </a>
+                
+              
+                
+                  <a href="/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5/" class="post-list-item">
+                    <h2>
+                    Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?
+                    </h2>
+                    <span class="">Jul 8, 2018</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="shadow-corner-curl hidden-xs">
+      <div class="categories-list-header">
+        Categories
+      </div>
+      
+      <a href="javascript:;" class="categories-list-item" cate="All">
+        All<span class="my-badge"> 9</span>
+      </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="jekyll">
+          jekyll <span class="my-badge">1</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="swift">
+          swift <span class="my-badge">8</span>
+        </a>
+      
+    </div>
+  </div>
+</div>
+    </div>
 
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
 
-
-<li>
-	<a href="mailto:jiseob812@gmail.com" title="Email">
-		<span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-        </span>
-	</a>
-</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<li>
-	<a href="https://github.com/JiSeobKim" title="Follow on GitHub">
-		<span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-        </span>
-	</a>
-</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </ul>
-            </div>
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:jiseob812@gmail.com"><span class="glyphicon glyphicon-envelope"></span> jiseob812@gmail.com</a>
+        <span class="point"> · </span>
+        
+          <a href="https://github.com/JiSeobKim">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>JiSeobKim</span> -->
+          </a>
+          
+          <span class="point"> · </span>
+          <span><a href="https://github.com/JiSeobKim/JiSeobKim.github.io/blob/master/index.md">View source</a></span>
+          <span class="point"> · </span>
+          <span><a class="newpost" href="javascript:;">New post</a></span>
+		  <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>&copy; 2018 JiseobKim</span>
+      </div>
+    </div>
+  </div>
 </footer>
 
 
-
-
+    <script type="text/javascript">
+    function OnClickNewPost()
+    {
+        var title = prompt("Please enter title of your post");
+        if (title!=null){
+            title = title.replace(" ", "-");
+            var currentdate = new Date();
+            var urlNewPage = "https://github.com/JiSeobKim/JiSeobKim.github.io/new/master?filename=_posts/" 
+                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
+                
+            var defaultText =  [
+                '---',
+                'layout: post',
+                'comments: true',
+                'categories: diary',
+                '---',
+                '## Title',
+                'text'
+                ].join('\n');
+            urlNewPage += "&value=" + encodeURIComponent(defaultText);
+            window.open(urlNewPage);
+        }
+    }
+    
+    $(function() {
+      // CreateNewPostLinks
+      $('.newpost').each(function(){
+          $(this).click(OnClickNewPost);
+      });
+    });
+</script>
+  
   </body>
 </html>

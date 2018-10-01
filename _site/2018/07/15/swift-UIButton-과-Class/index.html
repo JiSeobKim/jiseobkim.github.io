@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Swift - UIButton과 클래스</title>
+	<meta name="description" content="이번의 주제는 클래스를 좀 더 잘써보기 위한 글이다디자인적 요소에서 class를 효율적으로 사용해보자">
+	
+	<link rel="canonical" href="http://localhost:4000/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/">
+	<link rel="alternate" type="application/rss+xml" title="Developer story who love Swift" href="http://localhost:4000/feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
+    
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/monokai_sublime.min.css">
+	<script type="text/javascript" src="/static/js/highlight.min.js"></script>
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+    -->
+    
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Developer story who love Swift</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        
+          <li>
+        
+        <a href="/">Home</a></li>
+
+        
+          
+            
+              <li>
+            
+            <a href="/projects/"><span class="glyphicon "></span> Projects</a></li>
+          
+        
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon "></span> About</a></li>
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</header>
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>Swift - UIButton과 클래스</h1>
+        <p>Jul 15, 2018</p>
+      </header>
+      <hr>
+      <article>
+        <p>이번의 주제는 클래스를 좀 더 잘써보기 위한 글이다디자인적 요소에서 class를 효율적으로 사용해보자</p>
+
+<p><br /></p>
+
+<p>지금하는 프로젝트도 그렇고 어디서든  디자이너는 있다. 개인 프로젝트도 본인이 디자이너인것이다. 물론 퀄리티 차이는 어마어마하다.</p>
+
+<p>그런데 디자이너건 개인프로젝트건 사용하는 것중에 반복 되는 요소는 있기마련이다.
+예를 들자면 <code class="highlighter-rouge">저장</code> 같은 버튼?
+통일성도 있을 뿐더러 시간 절약도 되는 것 같다.</p>
+
+<p>이번에도 이전글과 같이 <strong>아!! 이렇게 쓰면 좋겠네!</strong> 하는 경우이다<br /><a href="https://jiseobkim.github.io/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html">이전글: Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?</a></p>
+
+<p>다루게 내용은 다음과 같다</p>
+<ol>
+  <li>Class 없이 구현</li>
+  <li>Class 사용하여 구현</li>
+  <li>Class의 상속 이용</li>
+</ol>
+
+<p>오늘은 Play Grounds 말고 Xcode가 사용된다.</p>
+
+<p>우선 화면을 보자,
+<img src="/assets/img/post/2018-07-15/img1.png" alt="" />
+(왼쪽부터)</p>
+<ol>
+  <li>네비게이션바</li>
+  <li>메인 화면 - 버튼 선택 -&gt; 입력화면으로 이동</li>
+  <li>입력 화면 - 텍스트 필드 입력 후 저장 -&gt; 메인으로 이동</li>
+</ol>
+
+<p>구성은 오늘도 심플하다.</p>
+
+<p>여담으로 Xcode가 다크모드인것은 WWDC 2018에서 발표한 새로운 macOS인 Mojave에서 지원하는 다크모드이다! 다크모드 발표때 개발자들 환호성이 제일 크게 들렸던 것 같다. 현재 베타에서만 사용 가능하다.</p>
+
+<p>여기서 추가적으로 Xcode beta 10버전에서 오브젝트 라이브러리의 위치가 바뀌었다!</p>
+
+<p>(Xcode9)
+<img src="/assets/img/post/2018-07-15/img2.png" alt="" />
+기존의 위치는 위 사진 처럼 빨간색 영역이 오브젝트 라이브러리 이다.</p>
+
+<p>바뀐 위치를 보자
+(Xcode10 베타)
+<img src="/assets/img/post/2018-07-15/img3.png" alt="" />
+다음과 같다. 기존의 영역은 비어있고. 저렇게 새로운 창으로 영역이 바뀌었다.<br />
+(단축키 : <code class="highlighter-rouge">Shift - option - L</code>)<br />
+(* bear 글쓰기 프로그램에 Xcode 10 베타 코드 복붙하면 이상해서 다시 9로 사용 .. ㅠㅠ)</p>
+
+<p>다시 본론으로 돌아가서</p>
+
+<p>주목해야할 부분은 <code class="highlighter-rouge">저장</code> 버튼이다.</p>
+
+<h2 id="기획자-textfield가-글자-있는지-없는지에-따라저장-버튼-비활성화활성화로-해주세요">기획자: TextField가 글자 있는지 없는지에 따라,<br />저장 버튼 비활성화/활성화로 해주세요.</h2>
+
+<p>이런 경우는 많고 많은 앱들에서도 보인다.</p>
+
+<p>여기서 추가 조건</p>
+
+<h2 id="디자이너-비활성화-색은-회색-활성화-색은-기본-파란색이요">디자이너: 비활성화 색은 회색, 활성화 색은 기본 파란색이요</h2>
+<p>디자이너의 요구사항이라 가정하자.</p>
+
+<p>그럼 요약하자면</p>
+<ol>
+  <li>글자 입력됨 - 기본색, 활성화</li>
+  <li>글자 입력 안됨 - 회색, 비활성화</li>
+</ol>
+
+<p>(기본 화면)
+<img src="/assets/img/post/2018-07-15/img4.png" alt="" /></p>
+
+<h2 id="1-class-없이-구현">1. Class 없이 구현</h2>
+<p>어디서 또는 어떻게 처리할지 부터 보면,</p>
+<ol>
+  <li>화면 진입시, 비활성화 상태 - viewDidLoad()</li>
+  <li>글자 입력시 - (TextField의 Editing Changed 사용)</li>
+</ol>
+
+<p>1을 코드로 하면 다음과 같다</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">btnSave</span><span class="p">:</span>
+<span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+        <span class="o">*//</span> <span class="mi">1</span><span class="o">.</span> <span class="n">반응</span> <span class="n">없게</span> <span class="n">비활성화</span><span class="o">*</span>
+        <span class="n">btnSave</span><span class="o">.</span><span class="n">isUserInteractionEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="o">*//</span> <span class="mi">2</span><span class="o">.</span> <span class="n">회색으로</span> <span class="n">변경</span><span class="o">*</span>
+        <span class="n">btnSave</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/post/2018-07-15/img5.png" alt="" /></p>
+
+<p>아주 아주 간단하다. 그럼 바로 이어서 2번째 조건</p>
+
+<p>Conection Inspector 에서</p>
+
+<p>연결은 먼저 하고
+<img src="/assets/img/post/2018-07-15/img6.png" alt="" /></p>
+
+<p>코드</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">editChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UITextField</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 조건: 글자가 비어있는가??</span>
+        <span class="k">if</span> <span class="n">sender</span><span class="o">.</span><span class="n">text</span><span class="p">?</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">==</span> <span class="kc">true</span> <span class="p">{</span>
+            <span class="c1">// 글자</span>
+            <span class="c1">// 1. 반응 없게 비활성화</span>
+            <span class="n">btnSave</span><span class="o">.</span><span class="n">isUserInteractionEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+            <span class="c1">// 2. 회색으로 변경</span>
+            <span class="n">btnSave</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 글자 o</span>
+            <span class="c1">// 1. 활성화</span>
+            <span class="n">btnSave</span><span class="o">.</span><span class="n">isUserInteractionEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="c1">// 2. 기본 색으로 변경</span>
+            <span class="n">btnSave</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="o">**</span><span class="k">self</span><span class="o">**.</span><span class="n">view</span><span class="o">.</span><span class="n">tintColor</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이것도 아주 간단하다.</p>
+
+<p>그렇지만 같은 코드가 계속 반복 된다.</p>
+
+<p>마음에 안드니 함수로 빼주자.</p>
+
+<p><img src="/assets/img/post/2018-07-15/img7.png" alt="" /></p>
+
+<p>훨씬 깔끔하다.</p>
+
+<p>솔직히 이렇게만 끝내면 Class가 왜필요해? 라고 할 수 있다.
+그런데 위의 활성,비활성화를 함수로 만든 이유를 다시 생각해보자.</p>
+<ul>
+  <li>같은 코드가  반복된다</li>
+  <li>정리 안하면 코드가 지저분해 보인다.</li>
+  <li>만약 1개라도 변경하면 모든 부분을 찾아 바꿔야한다</li>
+</ul>
+
+<p>여기서 솔직하게 2번째 부분은 뭐 그러려니 할수있다. 그치만 1,3번 문제가 정말 크다
+1번 때문에 3번이 발생하는 것인데, 지금이 화면이 1개라 그렇지 많다고 하면 끔찍하다</p>
+
+<h2 id="화면이-1개가-아니라면">화면이 1개가 아니라면?</h2>
+<p>만약에 입력해야할 화면이 1개가 아니고</p>
+<ol>
+  <li>이름 입력</li>
+  <li>이메일 입력</li>
+  <li>전화번호 입력
+<img src="/assets/img/post/2018-07-15/img8.png" alt="" /></li>
+</ol>
+
+<p>위처럼 입력 화면이 여러개일 경우 어떻게 할 것인가?</p>
+
+<p>각 UIVIewController 클래스 마다 함수를 만들것인가??
+그럼 다시 똑같은 문제가 발생한다.</p>
+<ul>
+  <li>같은 코드가  반복된다</li>
+  <li>정리 안하면 코드가 지저분해 보인다.</li>
+  <li>만약 1개라도 변경하면 모든 부분을 찾아 바꿔야한다</li>
+</ul>
+
+<p>그렇다면 어떻게 할까?
+방법은 2가지 정도 생각이 난다</p>
+<ol>
+  <li>Util 클래스를 만들어서 그안에 함수를 만들고 공통적으로 호출한다. (관리하기 편하게 Util에 모음)</li>
+  <li>UIButton을 상속한 클래스를 만들어서 사용한다.</li>
+</ol>
+
+<p>둘은 비슷하다.  차이가 있다면 기능은 같지만 <strong>약간의 차이점이 있는 버튼</strong> 을 만들어야한다면 차이가 발생한다.</p>
+
+<p>예를 들어 아래 사진을 보자
+<img src="/assets/img/post/2018-07-15/img9.png" alt="" />
+새로운 버튼이 생겼다. 저장 후 메인으로 돌아가는 버튼이다.
+기능은 동일하다고 했을때 차이점이 있다.</p>
+<ul>
+  <li>배경색</li>
+  <li>cornerRadius가 있다.</li>
+</ul>
+
+<p>기존 문제였던 바뀌었을 경우 어떻게 할것인가? 와는 다른 문제다.
+왜냐면 함수 내에것을 바꾸면 모두 바뀌지만 이건 성격이 좀 다른애가 생긴거니깐,</p>
+
+<p>물론 인자를 받아서 다르게 처리 할수는 있다!
+그렇지만 클래스의 상속을 이용한다면 더 편하게 할 수 있다.</p>
+
+<h1 id="class-사용하여-구현">Class 사용하여 구현</h1>
+<p>우선 가장 기본이 되는 버튼의 클래스를 만들어보자</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">DefaultBtn</span><span class="p">:</span> <span class="kt">UIButton</span> <span class="p">{</span>
+    <span class="c1">// 1. 스토리보드로 버튼 구현시</span>
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// 2. 코드로 버튼을 구현시</span>
+    <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">UIButton</code>을 상속 받은 클래스이다.
+2가지 초기화 구문이 있다.
+위에 주석을 달아 놓은듯이
+<br />1은 스토리보드에서 버튼을 추가할경우 사용될 init 구문
+<br />2는 코드로 구현할시 사용</p>
+
+<p>1을 이용해서도 코드로 짤수는 있지만 해당부분은 아직 필자도 잘모르는 영역</p>
+
+<p>우리가 이용할 상태를 enum을 이용해서 표현해보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">DefaultBtn</span><span class="p">:</span> <span class="kt">UIButton</span> <span class="p">{</span>
+
+    <span class="c1">// 버튼 상태 종류</span>
+    <span class="kd">enum</span> <span class="n">btnState</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="kt">On</span>
+        <span class="k">case</span> <span class="kt">Off</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 기본 값 = off 상태</span>
+    <span class="k">var</span> <span class="nv">isOn</span><span class="p">:</span> <span class="n">btnState</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Off</span>
+
+    <span class="c1">// on 컬러</span>
+    <span class="k">var</span> <span class="nv">onTintColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">122</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// off 컬러</span>
+    <span class="k">var</span> <span class="nv">offTintColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">gray</span>
+
+<span class="c1">// ----------- 기존 코드</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>기존 클래스에서 추가되었다. enum을 요즘 자주 이용하는데, 딱 필요한 케이스들만 나열하여, 다른 값을 방지할 수 있으며, switch문과 같이 쓰면 굉장히 좋다. 추가적으로 컬러값도 지정해놓았다.</p>
+
+<p>그럼 이제  셋팅을 해보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">DefaultBtn</span><span class="p">:</span> <span class="kt">UIButton</span> <span class="p">{</span>
+
+    <span class="c1">// 버튼 상태 종류</span>
+    <span class="kd">enum</span> <span class="n">btnState</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="kt">On</span>
+        <span class="k">case</span> <span class="kt">Off</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 기본 값 = off 상태</span>
+    <span class="k">var</span> <span class="nv">isOn</span><span class="p">:</span> <span class="n">btnState</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Off</span> <span class="p">{</span>
+        <span class="k">didSet</span> <span class="p">{</span>
+            <span class="nf">setting</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+	  <span class="c1">//.. 컬러변수 생략</span>
+    <span class="c1">// 1. 스토리보드로 버튼 구현시</span>
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+        <span class="c1">// 기본 셋팅</span>
+        <span class="nf">setting</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="c1">// 2. 코드로 버튼을 구현시</span>
+    <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+        <span class="c1">// 기본 셋팅</span>
+        <span class="nf">setting</span><span class="p">()</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">func</span> <span class="nf">setting</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// on 컬러 (기본색)</span>
+
+        <span class="k">switch</span> <span class="n">isOn</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="kt">On</span><span class="p">:</span>
+            <span class="k">self</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="n">onTintColor</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">isUserInteractionEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Off</span><span class="p">:</span>
+            <span class="k">self</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="n">offTintColor</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">isUserInteractionEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>차이점은 세가지가 있다</p>
+<ol>
+  <li>setting() 함수가 생긴것</li>
+  <li>setting 함수가 init구문에 적용된것</li>
+  <li>isOn 변수에 didSet을 추가</li>
+</ol>
+
+<p>설명이 필요한건 3번만 설명하면 될 것 같다, 3번 didSet의 경우 해당 변수기 초기화 되었을때,  호출되는 내용이다. 이것도 잘 활용하면 장점이 많다.</p>
+
+<p>뭔가 보기엔 <strong>뭐야? 오히려 더 힘든데?</strong> 할수 있다, 그렇지만 처음에 셋팅만 어렵지 사용은 아주 간단하다.</p>
+
+<p>우선 버튼에 클래스를 넣어주고
+<img src="/assets/img/post/2018-07-15/img10.png" alt="" />
+IBOutlet도 변경</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//@IBOutlet var btnSave: UIButton!</span>
+<span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">btnSave</span><span class="p">:</span> <span class="kt">AnotherBUtton</span><span class="o">!</span>
+</code></pre></div></div>
+
+<p>그럼 이제 사용해보자</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">AddNameViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">btnSave</span><span class="p">:</span> <span class="kt">DefaultBtn</span><span class="o">!</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+        <span class="c1">// 버튼 비활성화</span>
+        <span class="n">btnSave</span><span class="o">.</span><span class="n">isOn</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Off</span>
+    <span class="p">}</span>
+
+    <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">editChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UITextField</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 조건: 글자가 비어있는가??</span>
+        <span class="k">if</span> <span class="n">sender</span><span class="o">.</span><span class="n">text</span><span class="p">?</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">==</span> <span class="kc">true</span> <span class="p">{</span>
+            <span class="c1">// 버튼 비활성화</span>
+            <span class="n">btnSave</span><span class="o">.</span><span class="n">isOn</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Off</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 버튼 활성화</span>
+            <span class="n">btnSave</span><span class="o">.</span><span class="n">isOn</span> <span class="o">=</span> <span class="o">.</span><span class="kt">On</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>심플의 끝이다. 마음에 평화가 찾아온다….</p>
+
+<p>물론 전역 함수로해도 한줄로 하면 끝이긴 하지만 위에 말했듯이 차이점이 있다.
+그리고 enum을 써서 가독성도 훨씬 좋다. 사용성도 좋다, 아래 사진처럼 .을 누르면 알아서 나오니깐 다른곳에서도 적절히 잘 사용하자.
+<img src="/assets/img/post/2018-07-15/img11.png" alt="" /></p>
+
+<p>그렇담 아까 문제가 되었던 활성/ 비활성은 같으나 특성이 다른것은 어떻게 구현을 할까?</p>
+
+<h1 id="class-상속을-사용하여-구현">Class 상속을 사용하여 구현</h1>
+<p>아까 만들어둔 클래스를 상속하는 클래스를 만들고 override를 이용하는 것이 결론이다.</p>
+
+<p>만약 전역 함수나 Util 클래스를 생성해서 거기다가 함수를 만들어서 사용한다면</p>
+<ol>
+  <li>오버로드를 이용해서 같은 이름의 함수를 여러개 만든다</li>
+  <li>인자값에 따라 다르게 처리되게 한다
+라던가, 뭐 방식은 있다. 그렇지만 가독성도 안좋다!</li>
+</ol>
+
+<p>배경색과 cornerRadius이 첨가된 활성/비활성 버튼 클래스를 만들어보자</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">BtnWithBackGroundColor</span><span class="p">:</span> <span class="kt">DefaultBtn</span> <span class="p">{</span>
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+        <span class="c1">// 새로운 조건</span>
+        <span class="nf">addSomeThing</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+        <span class="c1">// 새로운 조건</span>
+        <span class="nf">addSomeThing</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">addSomeThing</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">green</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>처음에 만든 클래스보다 굉장히 간단하다. 내가 새로 필요한것만 override 해주고
+기존것은 그대로 가져다 쓴다.</p>
+
+<p>사용법은? 같다</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">AddNameViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+    <span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">btnSave</span><span class="p">:</span> <span class="kt">DefaultBtn</span><span class="o">!</span>
+    <span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">btnSave2</span><span class="p">:</span> <span class="kt">BtnWithBackGroundColor</span><span class="o">!</span>
+
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+        <span class="c1">// 버튼 비활성화</span>
+        <span class="n">btnSave</span><span class="o">.</span><span class="n">isOn</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Off</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">editChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UITextField</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// 기존 생략..</span>
+
+        <span class="c1">// 배경색 있는 버튼</span>
+        <span class="k">if</span> <span class="n">sender</span><span class="o">.</span><span class="n">text</span><span class="p">?</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">==</span> <span class="kc">true</span> <span class="p">{</span>
+            <span class="n">btnSave2</span><span class="o">.</span><span class="n">isOn</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Off</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">btnSave2</span><span class="o">.</span><span class="n">isOn</span> <span class="o">=</span> <span class="o">.</span><span class="kt">On</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>실행 사진은? 잘나온다
+<img src="/assets/img/post/2018-07-15/img12.png" alt="" /></p>
+
+<h2 id="디자이너-저장후-메인-가는-버튼-글자-크기는-볼드17로-글자색은-비활성흰색-활성-빨간색으로-변경해주세요">디자이너: 저장후 메인 가는 버튼 글자 크기는 볼드17로, 글자색은 비활성:흰색, 활성: 빨간색으로 변경해주세요</h2>
+
+<p>이럴 경우 어떻게 하면 되는가!</p>
+
+<p><code class="highlighter-rouge">BtnWithBackGroundColor</code> 클래스의 <code class="highlighter-rouge">addSomeThing()</code> 만 손보면 된다</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">addSomeThing</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">green</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="c1">// 추가 요청</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">titleLabel</span><span class="p">?</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">boldSystemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">17</span><span class="p">)</span> <span class="c1">// 폰트 볼드 및 사이즈 17</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">offTintColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">white</span> <span class="c1">// off 컬러 흰색</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">onTintColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">red</span> <span class="c1">// on 컬러 레드</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">setting</span><span class="p">()</span> <span class="c1">// 바뀐것으로 셋팅 !</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>저렇게만 추가해주면 아래 사진처럼 바뀐게 나오게 된다!
+저기만 손보고 여러곳의 버튼들을 한꺼번에 수정이 된다니 너무좋다.</p>
+
+<p>다만 이해 안될 소지가 있는건  <code class="highlighter-rouge">self.setting()</code>인데, 저것을 안해주면 컬러값이 안변한다. 저 변수들은 setting()에서 사용이 되는데, init 구문에서 부모클래스가 사용을 하고 바뀐 값으론 사용이 안되었기 때문이다!</p>
+
+<p><img src="/assets/img/post/2018-07-15/img13.png" alt="" /></p>
+
+<p>만약 여러가지 복합 적으로 추가할 경우에도 크게 다르지 않지만 만들기 편함과 유지보수 면에서도 굉장히 편리하게 진행할 수 있다.</p>
+
+<p>이렇게 해두면, 요청으로 인해서 변경할때도 한꺼번에 변경 및 수정이 가능하니
+필요한곳에 잘사용하면 좋을 것 같다!</p>
+
+<p>정말 심플한 예제로 시작을 하였고, 아직 복잡한 곳엔 많이 이용안해봤지만
+좀더 쓸곳을 찾아봐야겠다.</p>
+
+      </article>
+      <!-- <hr>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+            <a href="#" class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+            <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+        </div>
+        <script>
+            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script> -->
+    </div>
+	
+    <!-- duoshuo.com javascript include code. -->    
+    
+    <!-- disqus.com javascript include code. -->
+	
+    <div class="post-area post comment">
+        <div id="disqus_thread"></div>
+    </div>
+	<script>
+		var disqus_config = function () {
+			this.page.url = "https://jiseobkim.github.io/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/"; 
+			this.page.identifier = "/2018/07/15/swift- UIButton 과 Class"; 
+		};
+		(function() {
+			var d = document, s = d.createElement('script');
+			s.src = '//https-jiseobkim-github-io.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	
+    
+  </div>
+
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+
+</div>
+
+    </div>
+
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:jiseob812@gmail.com"><span class="glyphicon glyphicon-envelope"></span> jiseob812@gmail.com</a>
+        <span class="point"> · </span>
+        
+          <a href="https://github.com/JiSeobKim">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>JiSeobKim</span> -->
+          </a>
+          
+          <span class="point"> · </span>
+          <span><a href="https://github.com/JiSeobKim/JiSeobKim.github.io/blob/master/_posts/swift/2018-07-15-swift- UIButton 과 Class.md">View source</a></span>
+          <span class="point"> · </span>
+          <span><a class="newpost" href="javascript:;">New post</a></span>
+		  <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>&copy; 2018 JiseobKim</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script type="text/javascript">
+    function OnClickNewPost()
+    {
+        var title = prompt("Please enter title of your post");
+        if (title!=null){
+            title = title.replace(" ", "-");
+            var currentdate = new Date();
+            var urlNewPage = "https://github.com/JiSeobKim/JiSeobKim.github.io/new/master?filename=_posts/" 
+                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
+                
+            var defaultText =  [
+                '---',
+                'layout: post',
+                'comments: true',
+                'categories: diary',
+                '---',
+                '## Title',
+                'text'
+                ].join('\n');
+            urlNewPage += "&value=" + encodeURIComponent(defaultText);
+            window.open(urlNewPage);
+        }
+    }
+    
+    $(function() {
+      // CreateNewPostLinks
+      $('.newpost').each(function(){
+          $(this).click(OnClickNewPost);
+      });
+    });
+</script>
+  
+  </body>
+</html>
