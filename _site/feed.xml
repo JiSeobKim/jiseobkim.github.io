@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Personal Blog Of KJS</title>
-        <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-        <link>http://localhost:4000/</link>
-        <description></description>
-        <pubDate>Sun, 16 Sep 2018 22:13:38 +0900</pubDate>
-        
-        <item>
-            <title>화면간 데이터 전달. 2편</title>
-            <link>/2018/09/16/swift-DelegatePattern2.html</link>
-            <guid isPermaLink="true">/2018/09/16/swift-DelegatePattern2.html</guid>
-            <description>&lt;h3 id=&quot;프로토콜을-이용해보자&quot;&gt;프로토콜을 이용해보자&lt;/h3&gt;
-&lt;!--more--&gt;
+  <channel>
+    <title>Developer story who love Swift</title>
+    <description>Developer story who love Swift</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 01 Oct 2018 23:22:20 +0900</pubDate>
+    <lastBuildDate>Mon, 01 Oct 2018 23:22:20 +0900</lastBuildDate>
+    <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>Swift - 화면간 데이터 전달. 2편</title>
+        <description>&lt;p&gt;프로토콜을 이용해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://jiseobkim.github.io/2018/09/02/swift-DelegatePattern.html&quot;&gt;이전글 보기 : 데이터 전달 1편&lt;/a&gt;&lt;/p&gt;
 
@@ -105,23 +106,31 @@
 
 &lt;p&gt;이동 수단은 좀 상위 개념이죠, 하위 개념엔 자동차, 자전거, 버스, 택시, 기차 등등이 있을겁니다.&lt;/p&gt;
 
-&lt;p&gt;근데, 이것들이 가져야할 개념이 있죠,&lt;/p&gt;
+&lt;p&gt;근데, 이것들이 공통적으로 가져야할 개념이 있죠,&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;빵빵이&lt;/strong&gt; 기능입니다, 클락션이라고도 하죠?&lt;/p&gt;
 
 &lt;p&gt;이동 수단이라 하면, 타인에게 자신의 의사를 표현할 방법이 필요하죠! 위험해라던가 뭐라 표현을 해야하니깐요!&lt;/p&gt;
 
-&lt;p&gt;이 빵빵이 기능을 &lt;strong&gt;빵빵이 프로토콜&lt;/strong&gt; 이라고 합시다, 클락션 프로토콜이라 하면 이름 생각하다 중요한걸 잊을테니,,&lt;/p&gt;
+&lt;p&gt;이 빵빵이 기능을 탑재 해야하는 시스템을 &lt;strong&gt;빵빵이 프로토콜&lt;/strong&gt; 이라고 합시다, 클락션 프로토콜이라 하면 이름 생각하다 중요한걸 잊을테니,,&lt;/p&gt;
 
 &lt;p&gt;그럼, 이제 자동차를 만들어 봅시다,&lt;/p&gt;
 
-&lt;p&gt;윗사람이 지시를 내립니다, &lt;strong&gt;“자동차를 만들땐 빵빵이 프로토콜을 적용해.”&lt;/strong&gt;라고&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;윗사람이 지시&lt;/strong&gt;를 내립니다, &lt;strong&gt;“자동차를 만들땐 빵빵이 프로토콜을 적용해.”&lt;/strong&gt;라고&lt;/p&gt;
 
 &lt;p&gt;그렇담, &lt;strong&gt;윗사람의 지시 -&amp;gt; 무조건 넣어라&lt;/strong&gt; 겠죠?&lt;/p&gt;
 
 &lt;p&gt;대신 빵빵 소리는 상황에 따라 바꿉니다, 지하철, 버스, 자전거 등등 서로 다르게요.&lt;/p&gt;
 
 &lt;p&gt;이러면 좀 감이 오시나요? 위의 드라마 얘기도 이해 되실겁니다!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;프로토콜을 실행하자 각자 해야할 일들을 수행해나간다&lt;/p&gt;
+
+  &lt;p&gt;=&lt;/p&gt;
+
+  &lt;p&gt;프로토콜을 실행하면 각자 할일들도 있지만 무조건 해야할 것들이 생긴다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;그럼 좀더 프로그래밍틱하게 설명을 해볼게요.&lt;/p&gt;
 
@@ -359,15 +368,22 @@
 
 &lt;p&gt;수고하세요~!&lt;/p&gt;
 </description>
-            <pubDate>Sun, 16 Sep 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 16 Sep 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/09/16/swift-DelegatePattern2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/16/swift-DelegatePattern2/</guid>
         
-        <item>
-            <title>화면간 데이터 전달. 1편</title>
-            <link>/2018/09/02/swift-DelegatePattern.html</link>
-            <guid isPermaLink="true">/2018/09/02/swift-DelegatePattern.html</guid>
-            <description>&lt;h3 id=&quot;델리게이트-패턴을-이용해보자&quot;&gt;델리게이트 패턴을 이용해보자&lt;/h3&gt;
-&lt;!--more--&gt;
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - 화면간 데이터 전달. 1편</title>
+        <description>&lt;p&gt;델리게이트 패턴을 이용해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이번 포스팅부터는 아이패드로 그림을 그리면서 설명을 진행 해보고자합니다~!&lt;/p&gt;
 
@@ -564,15 +580,22 @@
 
 &lt;p&gt;다음번엔 Protocol로 데이터 넘기는 방식을 써보겠습니다.&lt;/p&gt;
 </description>
-            <pubDate>Sun, 02 Sep 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 02 Sep 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/09/02/swift-DelegatePattern/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/02/swift-DelegatePattern/</guid>
         
-        <item>
-            <title>Generic &amp; Codable</title>
-            <link>/2018/08/19/swift-Generic-&-Codable.html</link>
-            <guid isPermaLink="true">/2018/08/19/swift-Generic-&-Codable.html</guid>
-            <description>&lt;h3 id=&quot;앞선-포스팅글들의-종합판&quot;&gt;앞선 포스팅글들의 종합판!!&lt;/h3&gt;
-&lt;!--more--&gt;
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - Generic &amp; Codable</title>
+        <description>&lt;p&gt;앞선 포스팅글들의 종합판!!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;앞서 포스팅한것들을 나열해보면&lt;/p&gt;
 
@@ -968,15 +991,21 @@
 
 &lt;p&gt;이로써 Alamofire, Codable, Escaping, Generic을 모두 사용한 이번 포스팅을 마칩니다!&lt;/p&gt;
 </description>
-            <pubDate>Sun, 19 Aug 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 19 Aug 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/08/19/swift-Generic-&-Codable/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/19/swift-Generic-&-Codable/</guid>
         
-        <item>
-            <title>서버 연동 기본과 Encodable</title>
-            <link>/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html</link>
-            <guid isPermaLink="true">/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html</guid>
-            <description>&lt;p&gt;라이브러리(Almofire) 없이 통신하기!
-&lt;!--more--&gt;&lt;/p&gt;
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - 서버 연동 기본과 Encodable</title>
+        <description>&lt;p&gt;라이브러리(Almofire) 없이 통신하기!
+&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 &amp;lt; Encodable&amp;amp;Decodable &amp;gt;로 이루어져있었습니다.&lt;/p&gt;
 
@@ -1397,15 +1426,21 @@
 &lt;p&gt;글 쓰다보니 네트워크 기본쪽이 많이 빈약한걸 느끼네요, 리스트에 적어놓고 더 공부해야겠습니다. 이만!&lt;/p&gt;
 
 </description>
-            <pubDate>Sun, 05 Aug 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 05 Aug 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire)/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire)/</guid>
         
-        <item>
-            <title>Alamofire와 Escaping</title>
-            <link>/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</link>
-            <guid isPermaLink="true">/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</guid>
-            <description>&lt;p&gt;자주 반복되는 Alamofire를 함수로 만들자. feat.Escaping
-&lt;!--more--&gt;&lt;/p&gt;
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - Alamofire와 Escaping</title>
+        <description>&lt;p&gt;자주 반복되는 Alamofire를 함수로 만들자. feat.Escaping
+&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Alamofire라는 좋은 라이브러리를 쓰다가 보면 새로운 swift파일을 만들때마다 반복적으로 쓴다는 생각이 든다.&lt;/p&gt;
 
@@ -1759,17 +1794,20 @@
 &lt;p&gt;escaping은  알면 알수록 유용하게 쓰이는 것 같다. 좀 더 활용할 곳을 찾아봐야겠다.&lt;/p&gt;
 
 </description>
-            <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping/</guid>
         
-        <item>
-            <title>Alamofire와 Codable</title>
-            <link>/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</link>
-            <guid isPermaLink="true">/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</guid>
-            <description>&lt;p&gt;통신 위한 Alamofire와 그 효율성을 높혀주는 Codable
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;요즘 시대엔 앱을 사용하면서 통신은 필수인듯 하다. 
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - Alamofire와 Codable</title>
+        <description>&lt;p&gt;요즘 시대엔 앱을 사용하면서 통신은 필수인듯 하다. 
 여러 기기간의 동기화, 결제, 등등 통신을 통해 데이터를 다루는 분야가 훨씬 많다.&lt;/p&gt;
 
 &lt;p&gt;필자도 맨처음 시작했던 Swift 스터디에서 로컬 앱을 만들었으나 통신의 필요성을 느껴서 졸업 작품때 통신을 하는 앱을 시도 했었으며, 취업에 많은 도움이 되었던 것 같다.&lt;/p&gt;
@@ -2101,16 +2139,22 @@ do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯
 &lt;p&gt;얘기가 생각보다 길어졌다, Part1,2로 나눌것 그랬나?&lt;/p&gt;
 
 </description>
-            <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable/</guid>
         
-        <item>
-            <title>UIButton과 클래스</title>
-            <link>/2018/07/15/swift-UIButton-%EA%B3%BC-Class.html</link>
-            <guid isPermaLink="true">/2018/07/15/swift-UIButton-%EA%B3%BC-Class.html</guid>
-            <description>&lt;p&gt;이번의 주제는 클래스를 좀 더 잘써보기 위한 글이다
-&lt;!--more--&gt;
-디자인적 요소에서 class를 효율적으로 사용해보자&lt;/p&gt;
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - UIButton과 클래스</title>
+        <description>&lt;p&gt;이번의 주제는 클래스를 좀 더 잘써보기 위한 글이다디자인적 요소에서 class를 효율적으로 사용해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;지금하는 프로젝트도 그렇고 어디서든  디자이너는 있다. 개인 프로젝트도 본인이 디자이너인것이다. 물론 퀄리티 차이는 어마어마하다.&lt;/p&gt;
 
@@ -2525,19 +2569,23 @@ IBOutlet도 변경&lt;/p&gt;
 &lt;p&gt;정말 심플한 예제로 시작을 하였고, 아직 복잡한 곳엔 많이 이용안해봤지만
 좀더 쓸곳을 찾아봐야겠다.&lt;/p&gt;
 </description>
-            <pubDate>Sun, 15 Jul 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 15 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/</guid>
         
-        <item>
-            <title>Class, Struct 값 전달 방식이 &lt;br&gt; 다른건 알지만 언제쓰지?</title>
-            <link>/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html</link>
-            <guid isPermaLink="true">/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html</guid>
-            <description>&lt;h3 id=&quot;swift---값에-의한-전달-그리고-참조에-의한-전달&quot;&gt;Swift - 값에 의한 전달 그리고 참조에 의한 전달&lt;/h3&gt;
-
-&lt;!--more--&gt;
+        <category>swift</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?</title>
+        <description>&lt;p&gt;차이가 있다는건 나도 안다! 그치만 쓰임새가 어떻게 다를지 모르겠다!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;차이가-있다는건-나도-안다-그치만-언제-쓸모가-다를지-모르겠다&quot;&gt;차이가 있다는건 나도 안다! 그치만 언제 쓸모가 다를지 모르겠다.&lt;/h2&gt;
+
 &lt;p&gt;마치 고등학교때 배운 미적분 마냥, 배우긴 했지만 어떻게 써먹어야할지 애매했다.&lt;/p&gt;
 
 &lt;p&gt;많은 책에서 중요하게 다루는 구조체와 클래스,&lt;/p&gt;
@@ -2885,9 +2933,59 @@ but. value += 1 이런 방식이면 더 깔끔
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Peace!&lt;/p&gt;
+
 </description>
-            <pubDate>Sun, 08 Jul 2018 00:00:00 +0900</pubDate>
-        </item>
+        <pubDate>Sun, 08 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5/</guid>
         
-    </channel>
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>hello jekyll!</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#hi&quot; id=&quot;markdown-toc-hi&quot;&gt;hi&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#iii&quot; id=&quot;markdown-toc-iii&quot;&gt;iii&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#hi-1&quot; id=&quot;markdown-toc-hi-1&quot;&gt;hi&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;hi&quot;&gt;hi&lt;/h1&gt;
+
+&lt;h2 id=&quot;iii&quot;&gt;iii&lt;/h2&gt;
+
+&lt;h3 id=&quot;hi-1&quot;&gt;hi&lt;/h3&gt;
+
+&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def print_hi(name)
+  puts &quot;Hi, #{name}&quot;
+end
+print_hi('Tom')
+#=&amp;gt; prints 'Hi, Tom' to STDOUT.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 11 Feb 2015 00:14:54 +0900</pubDate>
+        <link>http://localhost:4000/2015/02/11/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">http://localhost:4000/2015/02/11/welcome-to-jekyll/</guid>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+  </channel>
 </rss>
