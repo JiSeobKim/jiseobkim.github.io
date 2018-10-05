@@ -5,9 +5,282 @@
     <description>Developer story who love Swift</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 01 Oct 2018 23:22:20 +0900</pubDate>
-    <lastBuildDate>Mon, 01 Oct 2018 23:22:20 +0900</lastBuildDate>
+    <pubDate>Sat, 06 Oct 2018 00:34:56 +0900</pubDate>
+    <lastBuildDate>Sat, 06 Oct 2018 00:34:56 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>Swift_Basic - 타입 메소드 &amp; 인스턴스 메소드</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#메소드의-종류&quot; id=&quot;markdown-toc-메소드의-종류&quot;&gt;메소드의 종류&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#인스턴스-메소드&quot; id=&quot;markdown-toc-인스턴스-메소드&quot;&gt;인스턴스 메소드&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#타입-메소드&quot; id=&quot;markdown-toc-타입-메소드&quot;&gt;타입 메소드&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#키워드--class&quot; id=&quot;markdown-toc-키워드--class&quot;&gt;키워드 : class&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#키워드-class의-장점&quot; id=&quot;markdown-toc-키워드-class의-장점&quot;&gt;키워드 class의 장점&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#키워드-class의-단점&quot; id=&quot;markdown-toc-키워드-class의-단점&quot;&gt;키워드 class의 단점&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#키워드--class-1&quot; id=&quot;markdown-toc-키워드--class-1&quot;&gt;키워드 : class&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ps&quot; id=&quot;markdown-toc-ps&quot;&gt;PS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Swift 코드를 보다 그런적이 있었다.&lt;/p&gt;
+
+&lt;p&gt;“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”&lt;/p&gt;
+
+&lt;p&gt;오늘 나오는 메소드의 종류 다음과 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;인스턴스 메소드&lt;/li&gt;
+  &lt;li&gt;타입 메소드&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;메소드의-종류&quot;&gt;메소드의 종류&lt;/h1&gt;
+&lt;p&gt;아래의 이미지를 보자!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img1.png&quot; alt=&quot;&quot; /&gt;
+(App: Scapple)&lt;/p&gt;
+
+&lt;p&gt;오늘의 추천앱! Scapple이란 앱이에요!!&lt;/p&gt;
+
+&lt;p&gt;블로그도 리뉴얼 했으니 추천 카테고리도 만들어야지 ㅎㅎ&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+다시 본론으로 넘어가서!&lt;/p&gt;
+
+&lt;p&gt;구성은 다음과 같다&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;함수&lt;/li&gt;
+  &lt;li&gt;클래스1
+    &lt;ul&gt;
+      &lt;li&gt;함수1&lt;/li&gt;
+      &lt;li&gt;함수2&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클래스2
+    &lt;ul&gt;
+      &lt;li&gt;함수3&lt;/li&gt;
+      &lt;li&gt;함수4&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;여기서, &lt;strong&gt;함수는 전역 함수다&lt;/strong&gt;. 즉, 어디서든 접근이 가능하다는 의미이다!&lt;/p&gt;
+
+&lt;p&gt;만약 지금 클래스1의 내부에 코드를 작성하고 있다면,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;클래스1이 2를 상속하고 하고 있다&lt;/strong&gt;거나 &lt;strong&gt;클래스2의 인스턴스를 만들었다면&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;클래스2 내부의 함수3,4를 접근할 수 있지만 &lt;strong&gt;그 외엔 불가&lt;/strong&gt;하다. 하지만 우리의 &lt;u&gt;전역 함수님에겐 언제든 접근이 가능&lt;/u&gt;하다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그렇담 일반적 접근인 &lt;strong&gt;인스턴스 메소드&lt;/strong&gt;를 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;인스턴스-메소드&quot;&gt;인스턴스 메소드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;useInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Instance!!&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위처럼 만들고 사용은 어떻게?&lt;/p&gt;
+
+&lt;p&gt;이렇게&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.&lt;/p&gt;
+
+&lt;p&gt;중요한건, &lt;strong&gt;&lt;u&gt;인스턴스를 만들고 내부함수 호출&lt;/u&gt;&lt;/strong&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;그렇담!! 인스턴스를 안만들고 호출을 하는 방법은?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;타입-메소드&quot;&gt;타입 메소드&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;타입 메소드란 타입(여기선 some클래스를 의미) 자체에서 호출을 할 수 있는 메소드이다.
+그건 케바케이겠지만? 우선, 책에서 본건 이런게 있었다&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;사각형 면 숫자 return 하기&lt;/li&gt;
+  &lt;li&gt;괴물 울음 소리&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;다소 어이없는 예들이지만 공통점은 있다. 당연한 값들이란것 !
+코드적으로 본다면 인자값 넣고 그&lt;/p&gt;
+
+&lt;p&gt;말이 낯설어서 이해가 안될수도 있다. 필자도 이번기회에 외움! 이 맛에 포스팅한다.&lt;/p&gt;
+
+&lt;p&gt;내용만 알아도 된다. 이름이야뭐… 일단 이해하는게 중요하니 설명부터!&lt;/p&gt;
+
+&lt;p&gt;일반 내부 함수랑 차이가 거의 없다 있다면 &lt;strong&gt;키워드&lt;/strong&gt; 하나가 더붙는다는것?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;  또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;일반 책에서 잘나오지 않아서 굉장히 낯설었다… 나의 함수들은 func으로만 시작하였고,&lt;/p&gt;
+
+&lt;p&gt;그 앞에 뭐가 붙는다는건 상상도 못해봤다. 심지어 한개도 아니고 두개다(사실 하나 더 있다.)(내가모르는게 더있을수도?)&lt;/p&gt;
+
+&lt;p&gt;우선, &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 부터 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;키워드--class&quot;&gt;키워드 : class&lt;/h3&gt;
+
+&lt;p&gt;일단 코드부터 보자&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 인스턴스 메소드&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;useInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Instance!!&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 타입 메소드&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSomething&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Type!!&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;처음 저것을 보았을때, 신선한 충격이었다. 클래스는 클래스고 함수는 함수지 왜 한줄에 다있는걸까? 라고…&lt;/p&gt;
+
+&lt;p&gt;우선 일반적인 클래스랑 쓰임새가 다른건 확실하다!&lt;/p&gt;
+
+&lt;p&gt;그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;없다. 완소 기능인 자동 완성 기능에 없다…&lt;/p&gt;
+
+&lt;p&gt;그렇다, 타입 메소드로 지정한것은 인스턴스 메소드처럼 사용이 불가능하다.&lt;/p&gt;
+
+&lt;p&gt;그럼, 이제 사용해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
+그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;괴물 울음소리 String받기&lt;/li&gt;
+  &lt;li&gt;사각형 면수 받기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;귀여움이 가득한 예제들이었다. 
+1의 경우 괴물의 울음소리를 언제 어디서든 인스턴스 없이 가져왔고
+2의 경우는 사각형 면수인 4를 가져오는 것이었다.&lt;/p&gt;
+
+&lt;p&gt;공통점으론 당연한 것이었다. 어떻게 쓰냐에 달렸다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;키워드-class의-장점&quot;&gt;키워드 class의 장점&lt;/h4&gt;
+
+&lt;p&gt;필자는 이런 경우도 보았다. 통신, UIView가져오기 등등
+따로 인스턴스를 만들지 않고 바로 바로 처리를 한 것들을 보았다.&lt;/p&gt;
+
+&lt;p&gt;특정 반복되는 뷰라던가, 인자값으로 받아서 통신을 하고 델리게이트 패턴을 이용해 반복적으로 일어나는것을 처리하였다.&lt;/p&gt;
+
+&lt;p&gt;그런점들이 좋았던거 같다. 인스턴스를 생성하면 이게 해제가 될지도 걱정을 안해도되고 (평소에도 잘안하긴했다..) 고로 ARC 걱정이 없을것 같다.&lt;/p&gt;
+
+&lt;p&gt;다른 것들은 기억이 안난다, 단점으로 가자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;키워드-class의-단점&quot;&gt;키워드 class의 단점&lt;/h4&gt;
+
+&lt;p&gt;음 확장성이 안좋았다. 아니 없었다.
+당연한 값들로만 리턴을 한다? 근데 초기화가 안되어있어서 변수를 쓰지도 못한다.
+내부의 변수를 사용할 수 없단건 정말 확장성에서 힘들었던거 같다. 다른 사람이 해둔 코드에 내가 변수 하나 추가해서 작업하고 싶은데, 그게 안된다;;;
+파라미터를 하나 추가한다? 그럼 모든 그 함수에 추가 시켜버려야한다…&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;키워드--class-1&quot;&gt;키워드 : class&lt;/h3&gt;
+
+&lt;p&gt;무엇이 다른걸까?&lt;/p&gt;
+
+&lt;p&gt;우선! 위에 타입메소드의 특징?들은 똑같다. 그런데&lt;/p&gt;
+
+&lt;p&gt;오버라이드가 가능, 불가능이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SubClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSomething&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;wow&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;이걸 먼저 보자, &lt;code class=&quot;highlighter-rouge&quot;&gt;class func&lt;/code&gt; 앞에 &lt;code class=&quot;highlighter-rouge&quot;&gt;override&lt;/code&gt;가 붙었다!
+키워드가 굉장히 길다.. 그렇지만 오버라이드 개념만 안다면 쉽게 이해할거라 생각한다.&lt;/p&gt;
+
+&lt;p&gt;결과도 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;굉장히 잘 덮어썼다.&lt;/p&gt;
+
+&lt;p&gt;그럼, 이제 살짝 바꿔서 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;을 써보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;오오 빨간색이다. &lt;strong&gt;스태틱 메소드라고 오버라이드가 안된다한다&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+그렇다, 큰 차이는 없지만 차이는 분명한 두가지 키워드였다!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;class 키워드를 써도 오버라이드를 막을수 있다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; 키워드를 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 키워드 앞에 붙이면 된다!!
+키워드 많은건 내 취향이 아니니 나는 static을 쓰겠다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;ps&quot;&gt;PS&lt;/h1&gt;
+&lt;p&gt;처음엔 참 낯선 용어들이었는데, 블로그를 쓰니 머리에 더 들어오는 것 같아서 좋다.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 05 Oct 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/10/05/Swift_Basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/05/Swift_Basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C/</guid>
+        
+        
+        <category>swift_basic</category>
+        
+      </item>
+    
+      <item>
+        <title>Diary_블로그 테마변경</title>
+        <description>&lt;h2 id=&quot;블로그-테마를-바꿔봤다&quot;&gt;블로그 테마를 바꿔봤다!&lt;/h2&gt;
+
+&lt;p&gt;전에 했던 테마는 카테고리 부분이 너무 약하다는 점이 있었다&lt;/p&gt;
+
+&lt;p&gt;그래서 그 점을 보완하는 테마로 바꾸게 되었다.&lt;/p&gt;
+
+&lt;p&gt;근데, 구글 아날리틱스가 없……&lt;/p&gt;
+
+&lt;p&gt;다음에 달아봐야지.&lt;/p&gt;
+
+&lt;p&gt;세벌식 너무 어려워서 여기까지!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 02 Oct 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/10/02/Diary_%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88%EB%B3%80%EA%B2%BD/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/02/Diary_%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88%EB%B3%80%EA%B2%BD/</guid>
+        
+        
+        <category>diary</category>
+        
+      </item>
     
       <item>
         <title>Swift - 화면간 데이터 전달. 2편</title>
@@ -1427,8 +1700,8 @@
 
 </description>
         <pubDate>Sun, 05 Aug 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire)/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire)/</guid>
+        <link>http://localhost:4000/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire)/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire)/</guid>
         
         <category>swift</category>
         
@@ -1795,8 +2068,8 @@
 
 </description>
         <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping/</guid>
+        <link>http://localhost:4000/2018/07/29/swift-Alamofire%EC%99%80-Escaping/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/29/swift-Alamofire%EC%99%80-Escaping/</guid>
         
         <category>swift</category>
         
@@ -2140,8 +2413,8 @@ do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯
 
 </description>
         <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable/</guid>
+        <link>http://localhost:4000/2018/07/21/swift-Alamofire%EC%99%80-Codable/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/21/swift-Alamofire%EC%99%80-Codable/</guid>
         
         <category>swift</category>
         
@@ -2570,8 +2843,8 @@ IBOutlet도 변경&lt;/p&gt;
 좀더 쓸곳을 찾아봐야겠다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 15 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class/</guid>
+        <link>http://localhost:4000/2018/07/15/swift-UIButton-%EA%B3%BC-Class/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/15/swift-UIButton-%EA%B3%BC-Class/</guid>
         
         <category>swift</category>
         
@@ -2936,54 +3209,11 @@ but. value += 1 이런 방식이면 더 깔끔
 
 </description>
         <pubDate>Sun, 08 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5/</guid>
+        <link>http://localhost:4000/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4/</guid>
         
         
         <category>swift</category>
-        
-      </item>
-    
-      <item>
-        <title>hello jekyll!</title>
-        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#hi&quot; id=&quot;markdown-toc-hi&quot;&gt;hi&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#iii&quot; id=&quot;markdown-toc-iii&quot;&gt;iii&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#hi-1&quot; id=&quot;markdown-toc-hi-1&quot;&gt;hi&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;hi&quot;&gt;hi&lt;/h1&gt;
-
-&lt;h2 id=&quot;iii&quot;&gt;iii&lt;/h2&gt;
-
-&lt;h3 id=&quot;hi-1&quot;&gt;hi&lt;/h3&gt;
-
-&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def print_hi(name)
-  puts &quot;Hi, #{name}&quot;
-end
-print_hi('Tom')
-#=&amp;gt; prints 'Hi, Tom' to STDOUT.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 11 Feb 2015 00:14:54 +0900</pubDate>
-        <link>http://localhost:4000/2015/02/11/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/2015/02/11/welcome-to-jekyll/</guid>
-        
-        
-        <category>jekyll</category>
         
       </item>
     
