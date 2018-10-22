@@ -5,8 +5,8 @@
     <description>Freshman21 is a Jekyll blog theme.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Oct 2018 22:48:45 +0900</pubDate>
-    <lastBuildDate>Mon, 22 Oct 2018 22:48:45 +0900</lastBuildDate>
+    <pubDate>Mon, 22 Oct 2018 23:02:34 +0900</pubDate>
+    <lastBuildDate>Mon, 22 Oct 2018 23:02:34 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -234,8 +234,8 @@
 
 </description>
         <pubDate>Fri, 05 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html</guid>
+        <link>http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</guid>
         
         <category>Swift</category>
         
@@ -1676,8 +1676,8 @@
 
 </description>
         <pubDate>Sun, 05 Aug 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html</guid>
+        <link>http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html</guid>
         
         <category>Swift</category>
         
@@ -2048,8 +2048,8 @@
 
 </description>
         <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping.html</guid>
+        <link>http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</guid>
         
         <category>Swift</category>
         
@@ -2397,8 +2397,8 @@ do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯
 
 </description>
         <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable.html</guid>
+        <link>http://localhost:4000/articles/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</guid>
         
         <category>Swift</category>
         
@@ -2831,8 +2831,8 @@ IBOutlet도 변경&lt;/p&gt;
 좀더 쓸곳을 찾아봐야겠다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 15 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class.html</guid>
+        <link>http://localhost:4000/articles/2018/07/15/swift-UIButton-%EA%B3%BC-Class.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/15/swift-UIButton-%EA%B3%BC-Class.html</guid>
         
         <category>Swift</category>
         
@@ -3201,8 +3201,8 @@ but. value += 1 이런 방식이면 더 깔끔
 
 </description>
         <pubDate>Sun, 08 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5.html</guid>
+        <link>http://localhost:4000/articles/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html</guid>
         
         <category>Swift</category>
         
