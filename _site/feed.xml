@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Developer story who love Swift</title>
-    <description>Developer story who love Swift</description>
+    <title>JS Blog</title>
+    <description>Freshman21 is a Jekyll blog theme.</description>
     <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 06 Oct 2018 00:34:56 +0900</pubDate>
-    <lastBuildDate>Sat, 06 Oct 2018 00:34:56 +0900</lastBuildDate>
+    <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 22 Oct 2018 22:48:45 +0900</pubDate>
+    <lastBuildDate>Mon, 22 Oct 2018 22:48:45 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
         <title>Swift_Basic - 타입 메소드 &amp; 인스턴스 메소드</title>
-        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#메소드의-종류&quot; id=&quot;markdown-toc-메소드의-종류&quot;&gt;메소드의 종류&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#인스턴스-메소드&quot; id=&quot;markdown-toc-인스턴스-메소드&quot;&gt;인스턴스 메소드&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#타입-메소드&quot; id=&quot;markdown-toc-타입-메소드&quot;&gt;타입 메소드&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#키워드--class&quot; id=&quot;markdown-toc-키워드--class&quot;&gt;키워드 : class&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#키워드-class의-장점&quot; id=&quot;markdown-toc-키워드-class의-장점&quot;&gt;키워드 class의 장점&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#키워드-class의-단점&quot; id=&quot;markdown-toc-키워드-class의-단점&quot;&gt;키워드 class의 단점&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#키워드--class-1&quot; id=&quot;markdown-toc-키워드--class-1&quot;&gt;키워드 : class&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ps&quot; id=&quot;markdown-toc-ps&quot;&gt;PS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Swift 코드를 보다 그런적이 있었다.&lt;/p&gt;
+        <description>&lt;p&gt;Swift 코드를 보다 그런적이 있었다.&lt;/p&gt;
 
 &lt;p&gt;“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”&lt;/p&gt;
 
@@ -208,7 +191,7 @@
 파라미터를 하나 추가한다? 그럼 모든 그 함수에 추가 시켜버려야한다…&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;키워드--class-1&quot;&gt;키워드 : class&lt;/h3&gt;
+&lt;h3 id=&quot;키워드--static&quot;&gt;키워드 : static&lt;/h3&gt;
 
 &lt;p&gt;무엇이 다른걸까?&lt;/p&gt;
 
@@ -251,34 +234,19 @@
 
 </description>
         <pubDate>Fri, 05 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/10/05/Swift_Basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/10/05/Swift_Basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C/</guid>
+        <link>http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html</guid>
+        
+        <category>Swift</category>
+        
+        <category>Method</category>
+        
+        <category>Type Method</category>
+        
+        <category>Instance Method</category>
         
         
-        <category>swift_basic</category>
-        
-      </item>
-    
-      <item>
-        <title>Diary_블로그 테마변경</title>
-        <description>&lt;h2 id=&quot;블로그-테마를-바꿔봤다&quot;&gt;블로그 테마를 바꿔봤다!&lt;/h2&gt;
-
-&lt;p&gt;전에 했던 테마는 카테고리 부분이 너무 약하다는 점이 있었다&lt;/p&gt;
-
-&lt;p&gt;그래서 그 점을 보완하는 테마로 바꾸게 되었다.&lt;/p&gt;
-
-&lt;p&gt;근데, 구글 아날리틱스가 없……&lt;/p&gt;
-
-&lt;p&gt;다음에 달아봐야지.&lt;/p&gt;
-
-&lt;p&gt;세벌식 너무 어려워서 여기까지!&lt;/p&gt;
-</description>
-        <pubDate>Tue, 02 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/10/02/Diary_%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88%EB%B3%80%EA%B2%BD/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/10/02/Diary_%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88%EB%B3%80%EA%B2%BD/</guid>
-        
-        
-        <category>diary</category>
+        <category>articles</category>
         
       </item>
     
@@ -642,13 +610,15 @@
 &lt;p&gt;수고하세요~!&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Sep 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/16/swift-DelegatePattern2/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/16/swift-DelegatePattern2/</guid>
+        <link>http://localhost:4000/articles/2018/09/16/swift-DelegatePattern2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/09/16/swift-DelegatePattern2.html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Protocol</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -854,13 +824,15 @@
 &lt;p&gt;다음번엔 Protocol로 데이터 넘기는 방식을 써보겠습니다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Sep 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/02/swift-DelegatePattern/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/02/swift-DelegatePattern/</guid>
+        <link>http://localhost:4000/articles/2018/09/02/swift-DelegatePattern.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/09/02/swift-DelegatePattern.html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Delegate Pattern</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -1265,13 +1237,17 @@
 &lt;p&gt;이로써 Alamofire, Codable, Escaping, Generic을 모두 사용한 이번 포스팅을 마칩니다!&lt;/p&gt;
 </description>
         <pubDate>Sun, 19 Aug 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/08/19/swift-Generic-&-Codable/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/08/19/swift-Generic-&-Codable/</guid>
+        <link>http://localhost:4000/articles/2018/08/19/swift-Generic-&-Codable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/19/swift-Generic-&-Codable.html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Generic</category>
+        
+        <category>Codable</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -1700,13 +1676,17 @@
 
 </description>
         <pubDate>Sun, 05 Aug 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire)/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire)/</guid>
+        <link>http://localhost:4000/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Network</category>
+        
+        <category>Encodable</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -2068,13 +2048,17 @@
 
 </description>
         <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/29/swift-Alamofire%EC%99%80-Escaping/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/29/swift-Alamofire%EC%99%80-Escaping/</guid>
+        <link>http://localhost:4000/articles/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping.html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Alamofire</category>
+        
+        <category>Escaping</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -2413,13 +2397,17 @@ do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯
 
 </description>
         <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/21/swift-Alamofire%EC%99%80-Codable/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/21/swift-Alamofire%EC%99%80-Codable/</guid>
+        <link>http://localhost:4000/articles/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable.html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Alamofire</category>
+        
+        <category>Codable</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -2843,13 +2831,17 @@ IBOutlet도 변경&lt;/p&gt;
 좀더 쓸곳을 찾아봐야겠다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 15 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/15/swift-UIButton-%EA%B3%BC-Class/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/15/swift-UIButton-%EA%B3%BC-Class/</guid>
+        <link>http://localhost:4000/articles/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class.html</guid>
         
-        <category>swift</category>
+        <category>Swift</category>
+        
+        <category>Class</category>
+        
+        <category>Inherite</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     
@@ -3209,11 +3201,19 @@ but. value += 1 이런 방식이면 더 깔끔
 
 </description>
         <pubDate>Sun, 08 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4/</guid>
+        <link>http://localhost:4000/articles/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/08/swift-class,struct-%E1%84%80%E1%85%A1%E1%86%B9-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AF-%E1%84%87%E1%85%A1%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%B5.html</guid>
+        
+        <category>Swift</category>
+        
+        <category>Class</category>
+        
+        <category>Struct</category>
+        
+        <category>값전달</category>
         
         
-        <category>swift</category>
+        <category>articles</category>
         
       </item>
     

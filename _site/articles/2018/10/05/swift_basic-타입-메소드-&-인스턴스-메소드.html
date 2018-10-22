@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Swift_Basic - 타입 메소드 & 인스턴스 메소드">
+<title>Swift_Basic - 타입 메소드 & 인스턴스 메소드</title>
+<meta property="og:description" content="Swift 코드를 보다 그런적이 있었다.“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”오늘 나오는 메소드의 종류 다음과 같다.  인스턴스 메소드  타입 메소드메소드의 종류아래의 이미지를 보자!(App: Scapple)오늘의 추천앱! Scapple이란 앱이에요!!블로그...">
+<meta property="og:url" content="http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html">
+<meta property="og:site_name" content="JS Blog">
+<meta property="og:locale" content="kr">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@">
+<meta name="twitter:creator" content="@">
+<meta name="twitter:title" content="Swift_Basic - 타입 메소드 & 인스턴스 메소드">
+<meta name="twitter:description" content="Swift 코드를 보다 그런적이 있었다.“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”오늘 나오는 메소드의 종류 다음과 같다.  인스턴스 메소드  타입 메소드메소드의 종류아래의 이미지를 보자!(App: Scapple)오늘의 추천앱! Scapple이란 앱이에요!!블로그...">
+<meta name="twitter:url" content="http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html">
+
+<meta name="keywords" content="Swift, ObjectiveC, iOS">
+
+<link rel="icon" href="/assets/favi.ico">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html">
+<link rel="alternate" type="application/atom+xml" title="JS Blog" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</head>
+
+
+
+
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+
+  <div class="wrapper">
+
+    <h1 class="site-title"><a href="/">JS Blog</a></h1>
+    <h3 class="site-meta">Developer story who love Swift</h3>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+        
+        
+        <a class="page-link" href="/">홈</a>
+        
+        
+        
+        <a class="page-link" href="/about/">소개</a>
+        
+        
+        
+        <a class="page-link" href="/archives/">모든 게시물</a>
+        
+        
+        
+        <a class="page-link" href="/categories/">카테고리</a>
+        
+        
+        
+        <a class="page-link" href="/tags/">태그</a>
+        
+        
+        
+        <a class="page-link" href="/guestbook/">방명록</a>
+        
+        
+        
+        <a class="page-link" href="/feed.xml">구독하기</a>
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    
+
+  <div class="page-content col-sm-8">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title">Swift_Basic - 타입 메소드 & 인스턴스 메소드</h1>
+    <meta itemprop="keywords" content="Swift,Method,Type Method,Instance Method" />
+    <p class="post-meta">
+    카테고리: 
+    
+    <a href="/categories/#articles">articles</a>
+    
+    <br>
+    
+    태그: 
+    
+    <a href="/tags/#Swift" title="Swift">Swift</a>, 
+    
+    <a href="/tags/#Method" title="Method">Method</a>, 
+    
+    <a href="/tags/#Type Method" title="Type Method">Type Method</a>, 
+    
+    <a href="/tags/#Instance Method" title="Instance Method">Instance Method</a>
+    
+    <br>
+    
+    <time itemprop="datePublished" datetime="2018-10-05">
+    작성일: Oct 5, 2018
+    </time>
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>Swift 코드를 보다 그런적이 있었다.</p>
+
+<p>“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”</p>
+
+<p>오늘 나오는 메소드의 종류 다음과 같다.</p>
+
+<ol>
+  <li>인스턴스 메소드</li>
+  <li>타입 메소드</li>
+</ol>
+
+<p><br /></p>
+
+<h1 id="메소드의-종류">메소드의 종류</h1>
+<p>아래의 이미지를 보자!</p>
+
+<p><img src="/assets/img/post/2018-10-05/img1.png" alt="" />
+(App: Scapple)</p>
+
+<p>오늘의 추천앱! Scapple이란 앱이에요!!</p>
+
+<p>블로그도 리뉴얼 했으니 추천 카테고리도 만들어야지 ㅎㅎ</p>
+
+<p><br />
+다시 본론으로 넘어가서!</p>
+
+<p>구성은 다음과 같다</p>
+<ul>
+  <li>함수</li>
+  <li>클래스1
+    <ul>
+      <li>함수1</li>
+      <li>함수2</li>
+    </ul>
+  </li>
+  <li>클래스2
+    <ul>
+      <li>함수3</li>
+      <li>함수4</li>
+    </ul>
+  </li>
+</ul>
+
+<p>여기서, <strong>함수는 전역 함수다</strong>. 즉, 어디서든 접근이 가능하다는 의미이다!</p>
+
+<p>만약 지금 클래스1의 내부에 코드를 작성하고 있다면,</p>
+
+<p><strong>클래스1이 2를 상속하고 하고 있다</strong>거나 <strong>클래스2의 인스턴스를 만들었다면</strong></p>
+
+<p>클래스2 내부의 함수3,4를 접근할 수 있지만 <strong>그 외엔 불가</strong>하다. 하지만 우리의 <u>전역 함수님에겐 언제든 접근이 가능</u>하다!</p>
+
+<p><br /></p>
+
+<p>그렇담 일반적 접근인 <strong>인스턴스 메소드</strong>를 보자.</p>
+
+<p><br /></p>
+
+<h2 id="인스턴스-메소드">인스턴스 메소드</h2>
+
+<hr />
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">something</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+
+    <span class="kd">func</span> <span class="nf">useInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Instance!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위처럼 만들고 사용은 어떻게?</p>
+
+<p>이렇게</p>
+
+<p><img src="/assets/img/post/2018-10-05/img2.png" alt="" /></p>
+
+<p>‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.</p>
+
+<p>중요한건, <strong><u>인스턴스를 만들고 내부함수 호출</u></strong>이다.</p>
+
+<p>그렇담!! 인스턴스를 안만들고 호출을 하는 방법은?</p>
+
+<p><br /></p>
+
+<h2 id="타입-메소드">타입 메소드</h2>
+
+<hr />
+
+<p>타입 메소드란 타입(여기선 some클래스를 의미) 자체에서 호출을 할 수 있는 메소드이다.
+그건 케바케이겠지만? 우선, 책에서 본건 이런게 있었다</p>
+<ol>
+  <li>사각형 면 숫자 return 하기</li>
+  <li>괴물 울음 소리</li>
+</ol>
+
+<p>다소 어이없는 예들이지만 공통점은 있다. 당연한 값들이란것 !
+코드적으로 본다면 인자값 넣고 그</p>
+
+<p>말이 낯설어서 이해가 안될수도 있다. 필자도 이번기회에 외움! 이 맛에 포스팅한다.</p>
+
+<p>내용만 알아도 된다. 이름이야뭐… 일단 이해하는게 중요하니 설명부터!</p>
+
+<p>일반 내부 함수랑 차이가 거의 없다 있다면 <strong>키워드</strong> 하나가 더붙는다는것?</p>
+
+<p><code class="highlighter-rouge">static</code>  또는 <code class="highlighter-rouge">class</code> 이다.</p>
+
+<p>일반 책에서 잘나오지 않아서 굉장히 낯설었다… 나의 함수들은 func으로만 시작하였고,</p>
+
+<p>그 앞에 뭐가 붙는다는건 상상도 못해봤다. 심지어 한개도 아니고 두개다(사실 하나 더 있다.)(내가모르는게 더있을수도?)</p>
+
+<p>우선, <code class="highlighter-rouge">class</code> 부터 보자</p>
+
+<p><br /></p>
+<h3 id="키워드--class">키워드 : class</h3>
+
+<p>일단 코드부터 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+    <span class="c1">// 인스턴스 메소드</span>
+    <span class="kd">func</span> <span class="nf">useInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Instance!!"</span>
+    <span class="p">}</span>
+    <span class="c1">// 타입 메소드</span>
+    <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getSomething</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Type!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>처음 저것을 보았을때, 신선한 충격이었다. 클래스는 클래스고 함수는 함수지 왜 한줄에 다있는걸까? 라고…</p>
+
+<p>우선 일반적인 클래스랑 쓰임새가 다른건 확실하다!</p>
+
+<p>그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)</p>
+
+<p><img src="/assets/img/post/2018-10-05/img3.png" alt="" /></p>
+
+<p>없다. 완소 기능인 자동 완성 기능에 없다…</p>
+
+<p>그렇다, 타입 메소드로 지정한것은 인스턴스 메소드처럼 사용이 불가능하다.</p>
+
+<p>그럼, 이제 사용해보자.</p>
+
+<p><img src="/assets/img/post/2018-10-05/img4.png" alt="" /></p>
+
+<p>됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
+그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.</p>
+<ol>
+  <li>괴물 울음소리 String받기</li>
+  <li>사각형 면수 받기</li>
+</ol>
+
+<p>귀여움이 가득한 예제들이었다. 
+1의 경우 괴물의 울음소리를 언제 어디서든 인스턴스 없이 가져왔고
+2의 경우는 사각형 면수인 4를 가져오는 것이었다.</p>
+
+<p>공통점으론 당연한 것이었다. 어떻게 쓰냐에 달렸다.</p>
+
+<p><br /></p>
+<h4 id="키워드-class의-장점">키워드 class의 장점</h4>
+
+<p>필자는 이런 경우도 보았다. 통신, UIView가져오기 등등
+따로 인스턴스를 만들지 않고 바로 바로 처리를 한 것들을 보았다.</p>
+
+<p>특정 반복되는 뷰라던가, 인자값으로 받아서 통신을 하고 델리게이트 패턴을 이용해 반복적으로 일어나는것을 처리하였다.</p>
+
+<p>그런점들이 좋았던거 같다. 인스턴스를 생성하면 이게 해제가 될지도 걱정을 안해도되고 (평소에도 잘안하긴했다..) 고로 ARC 걱정이 없을것 같다.</p>
+
+<p>다른 것들은 기억이 안난다, 단점으로 가자.</p>
+
+<p><br /></p>
+<h4 id="키워드-class의-단점">키워드 class의 단점</h4>
+
+<p>음 확장성이 안좋았다. 아니 없었다.
+당연한 값들로만 리턴을 한다? 근데 초기화가 안되어있어서 변수를 쓰지도 못한다.
+내부의 변수를 사용할 수 없단건 정말 확장성에서 힘들었던거 같다. 다른 사람이 해둔 코드에 내가 변수 하나 추가해서 작업하고 싶은데, 그게 안된다;;;
+파라미터를 하나 추가한다? 그럼 모든 그 함수에 추가 시켜버려야한다…</p>
+
+<p><br /></p>
+<h3 id="키워드--static">키워드 : static</h3>
+
+<p>무엇이 다른걸까?</p>
+
+<p>우선! 위에 타입메소드의 특징?들은 똑같다. 그런데</p>
+
+<p>오버라이드가 가능, 불가능이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SubClass</span><span class="p">:</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getSomething</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">{</span>
+        <span class="k">return</span> <span class="s">"wow"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>이걸 먼저 보자, <code class="highlighter-rouge">class func</code> 앞에 <code class="highlighter-rouge">override</code>가 붙었다!
+키워드가 굉장히 길다.. 그렇지만 오버라이드 개념만 안다면 쉽게 이해할거라 생각한다.</p>
+
+<p>결과도 보자</p>
+
+<p><img src="/assets/img/post/2018-10-05/img5.png" alt="" /></p>
+
+<p>굉장히 잘 덮어썼다.</p>
+
+<p>그럼, 이제 살짝 바꿔서 <code class="highlighter-rouge">class</code>대신 <code class="highlighter-rouge">static</code>을 써보자</p>
+
+<p><img src="/assets/img/post/2018-10-05/img6.png" alt="" /></p>
+
+<p>오오 빨간색이다. <strong>스태틱 메소드라고 오버라이드가 안된다한다</strong></p>
+
+<p><br />
+그렇다, 큰 차이는 없지만 차이는 분명한 두가지 키워드였다!</p>
+
+<blockquote>
+  <p>class 키워드를 써도 오버라이드를 막을수 있다.
+<code class="highlighter-rouge">final</code> 키워드를 <code class="highlighter-rouge">class</code> 키워드 앞에 붙이면 된다!!
+키워드 많은건 내 취향이 아니니 나는 static을 쓰겠다.</p>
+</blockquote>
+
+<h1 id="ps">PS</h1>
+<p>처음엔 참 낯선 용어들이었는데, 블로그를 쓰니 머리에 더 들어오는 것 같아서 좋다.</p>
+
+
+  </article>
+  <hr />
+</div>
+
+
+<section class="pager">
+  <ul>
+    
+    <li class="previous"><a href="/articles/2018/09/16/swift-DelegatePattern2.html" title="Swift - 화면간 데이터 전달. 2편">&larr; 이전 게시물</a></li>
+    
+    
+    <li class="disabled"><a>다음 게시물 &rarr;</a></li>
+    
+  </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='Jiseob Kim';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    <section class="pager">
+  
+  
+</section>
+
+
+  </div>
+  <div class="col-sm-2">
+<div class="sidebar-module about">
+  <h4>저자 소개</h4>
+  <img title="Kim Ji Seob" src="/assets/ItsMe.jpeg" alt="Kim Ji Seob"/>
+  <span>iOS 개발이 즐거운 개발자입니다!!</span>
+  <br />
+
+  
+
+  Contact:
+
+  
+  <a href="mailto:jiseob812@gmail.com" title="mailto: jiseob812@gmail.com">Email</a> /
+  
+  
+  <a href="https://github.com/JiSeobKim" title="GithubID: JiSeobKim">Github</a> /
+  
+  
+  <a href="https://twitter.com/" title="TwitterID: ">Twitter</a>
+  
+
+  
+
+</div>
+
+<div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>저작권</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
+
+  
+
+</div>
+
+
+<div class="sidebar-module">
+  <h4>최근 게시물</h4>
+  
+  <li>
+  <a href="/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/09/16/swift-DelegatePattern2.html" title="Swift - 화면간 데이터 전달. 2편" rel="bookmark">Swift - 화면간 데이터 전달. 2편</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/09/02/swift-DelegatePattern.html" title="Swift - 화면간 데이터 전달. 1편" rel="bookmark">Swift - 화면간 데이터 전달. 1편</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/08/19/swift-Generic-&-Codable.html" title="Swift - Generic & Codable" rel="bookmark">Swift - Generic & Codable</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html" title="Swift - 서버 연동 기본과 Encodable" rel="bookmark">Swift - 서버 연동 기본과 Encodable</a>
+  </li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>카테고리</h4>
+  
+  <li><a href="/categories/#articles" title="articles" rel="9">articles (9)</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>태그</h4>
+  
+    <a href="/tags/#Swift" title="Swift" rel="9">Swift</a> &nbsp;
+  
+    <a href="/tags/#Class" title="Class" rel="2">Class</a> &nbsp;
+  
+    <a href="/tags/#Struct" title="Struct" rel="1">Struct</a> &nbsp;
+  
+    <a href="/tags/#값전달" title="값전달" rel="1">값전달</a> &nbsp;
+  
+    <a href="/tags/#Inherite" title="Inherite" rel="1">Inherite</a> &nbsp;
+  
+    <a href="/tags/#Alamofire" title="Alamofire" rel="2">Alamofire</a> &nbsp;
+  
+    <a href="/tags/#Codable" title="Codable" rel="2">Codable</a> &nbsp;
+  
+    <a href="/tags/#Escaping" title="Escaping" rel="1">Escaping</a> &nbsp;
+  
+    <a href="/tags/#Network" title="Network" rel="1">Network</a> &nbsp;
+  
+    <a href="/tags/#Encodable" title="Encodable" rel="1">Encodable</a> &nbsp;
+  
+    <a href="/tags/#Generic" title="Generic" rel="1">Generic</a> &nbsp;
+  
+    <a href="/tags/#Delegate Pattern" title="Delegate Pattern" rel="1">Delegate Pattern</a> &nbsp;
+  
+    <a href="/tags/#Protocol" title="Protocol" rel="1">Protocol</a> &nbsp;
+  
+    <a href="/tags/#Method" title="Method" rel="1">Method</a> &nbsp;
+  
+    <a href="/tags/#Type Method" title="Type Method" rel="1">Type Method</a> &nbsp;
+  
+    <a href="/tags/#Instance Method" title="Instance Method" rel="1">Instance Method</a> &nbsp;
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>참조 링크</h4>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>모든 게시물</h4>
+
+  
+  
+  
+  
+  
+  <li id="2018" > <a href="/archives/#2018">2018</a></li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>
+
+
+</div>
+
+
+
+  
+
+  <footer class="site-footer">
+
+  <p>Copyright &copy; <a href="/">JS Blog</a></p>
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
+  on 
+  <a href="https://github.com/">Github</a>
+  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>
