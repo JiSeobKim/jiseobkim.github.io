@@ -1,438 +1,2061 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Developer story who love Swift</title>
-	<meta name="description" content="Developer story who love Swift">
-	
-	<link rel="canonical" href="http://localhost:4000/">
-	<link rel="alternate" type="application/rss+xml" title="Developer story who love Swift" href="http://localhost:4000/feed.xml" />
-	
-	<!-- <link rel="stylesheet" href="/css/main.css"> -->
-    
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
-	<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/monokai_sublime.min.css">
-	<script type="text/javascript" src="/static/js/highlight.min.js"></script>
+<head>
 
-    <!--
-    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
-	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
-	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
-    -->
-    
-	<script type="text/javascript" src="/static/js/index.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="JS Blog">
+<title>JS Blog</title>
+<meta property="og:description" content="Freshman21 is a Jekyll blog theme.">
+<meta property="og:url" content="http://localhost:4000/">
+<meta property="og:site_name" content="JS Blog">
+<meta property="og:locale" content="kr">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@">
+<meta name="twitter:creator" content="@">
+<meta name="twitter:title" content="JS Blog">
+<meta name="twitter:description" content="Freshman21 is a Jekyll blog theme.">
+<meta name="twitter:url" content="http://localhost:4000/">
+
+<meta name="keywords" content="Swift, ObjectiveC, iOS">
+
+<link rel="icon" href="/assets/favi.ico">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/atom+xml" title="JS Blog" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
 </head>
 
- <!--  <body data-spy="scroll" data-target="#myAffix"> -->
-  <body>
 
-    <header>
 
-<!-- navbar -->
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Developer story who love Swift</a>
-      <p class="navbar-text"></p>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
 
-        
-          <li>
-        
-        <a href="/">Home</a></li>
+<body>
 
+<div class="container">
+
+  <header class="site-header">
+
+  <div class="wrapper">
+
+    <h1 class="site-title"><a href="/">JS Blog</a></h1>
+    <h3 class="site-meta">Developer story who love Swift</h3>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
         
-          
-            
-              <li>
-            
-            <a href="/projects/"><span class="glyphicon "></span> Projects</a></li>
-          
         
-          
-            
-              <li>
-            
-            <a href="/about/"><span class="glyphicon "></span> About</a></li>
-          
+        <a class="page-link" href="/">홈</a>
         
-          
         
-          
         
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <a class="page-link" href="/about/">소개</a>
+        
+        
+        
+        <a class="page-link" href="/archives/">모든 게시물</a>
+        
+        
+        
+        <a class="page-link" href="/categories/">카테고리</a>
+        
+        
+        
+        <a class="page-link" href="/tags/">태그</a>
+        
+        
+        
+        <a class="page-link" href="/guestbook/">방명록</a>
+        
+        
+        
+        <a class="page-link" href="/feed.xml">구독하기</a>
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </nav>
+
+  </div>
 
 </header>
 
-    <div id="main" class="container main">
-      <div class="row">
-  <div id="myArticle" class="col-sm-9">
-    <div class="post-area post">
-      <article>
-        <h2 id="개인의-소소한-일상을-담는-공간">개인의 소소한 일상을 담는 공간!</h2>
-
-<p>꾸준히 달려가면 좋은 일은 따라오겠지?</p>
-
-      </article>
-    </div>
-  </div>
-</div>
-<p><br/></p>
-<div id="index" class="row">
-  <div class="col-sm-9">
-    <div class="post-area ">
-	  <div class="post-list-header">
-	  Posts
-	  </div>
-      <div class="post-list-body">
-        <div class="all-posts" post-cate="All">
-          
-            <a class="post-list-item" href="/2018/10/05/Swift_Basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C/">
-              <h2>
-              Swift_Basic - 타입 메소드 & 인스턴스 메소드
-              </h2>
-              <span class="">Oct 5, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/10/02/Diary_%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88%EB%B3%80%EA%B2%BD/">
-              <h2>
-              Diary_블로그 테마변경
-              </h2>
-              <span class="">Oct 2, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/09/16/swift-DelegatePattern2/">
-              <h2>
-              Swift - 화면간 데이터 전달. 2편
-              </h2>
-              <span class="">Sep 16, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/09/02/swift-DelegatePattern/">
-              <h2>
-              Swift - 화면간 데이터 전달. 1편
-              </h2>
-              <span class="">Sep 2, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/08/19/swift-Generic-&-Codable/">
-              <h2>
-              Swift - Generic & Codable
-              </h2>
-              <span class="">Aug 19, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire)/">
-              <h2>
-              Swift - 서버 연동 기본과 Encodable
-              </h2>
-              <span class="">Aug 5, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/07/29/swift-Alamofire%EC%99%80-Escaping/">
-              <h2>
-              Swift - Alamofire와 Escaping
-              </h2>
-              <span class="">Jul 29, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/07/21/swift-Alamofire%EC%99%80-Codable/">
-              <h2>
-              Swift - Alamofire와 Codable
-              </h2>
-              <span class="">Jul 21, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/07/15/swift-UIButton-%EA%B3%BC-Class/">
-              <h2>
-              Swift - UIButton과 클래스
-              </h2>
-              <span class="">Jul 15, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4/">
-              <h2>
-              Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?
-              </h2>
-              <span class="">Jul 8, 2018</span>
-            </a>
-          
-            <a class="post-list-item" href="/2015/02/11/welcome-to-jekyll/">
-              <h2>
-              hello jekyll!
-              </h2>
-              <span class="">Feb 11, 2015</span>
-            </a>
-          
-        </div>
-        <!-- <div class="posts-in-categories"> -->
-        
-          <div post-cate="jekyll">
-            
-              
-                
-              
-            
-              
-                
-                  <a href="/2015/02/11/welcome-to-jekyll/" class="post-list-item">
-                    <h2>
-                    hello jekyll!
-                    </h2>
-                    <span class="">Feb 11, 2015</span>
-                  </a>
-                
-              
-            
-          </div>
-        
-          <div post-cate="swift">
-            
-              
-                
-              
-            
-              
-                
-                  <a href="/2018/09/16/swift-DelegatePattern2/" class="post-list-item">
-                    <h2>
-                    Swift - 화면간 데이터 전달. 2편
-                    </h2>
-                    <span class="">Sep 16, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/09/02/swift-DelegatePattern/" class="post-list-item">
-                    <h2>
-                    Swift - 화면간 데이터 전달. 1편
-                    </h2>
-                    <span class="">Sep 2, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/08/19/swift-Generic-&-Codable/" class="post-list-item">
-                    <h2>
-                    Swift - Generic & Codable
-                    </h2>
-                    <span class="">Aug 19, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire)/" class="post-list-item">
-                    <h2>
-                    Swift - 서버 연동 기본과 Encodable
-                    </h2>
-                    <span class="">Aug 5, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/07/29/swift-Alamofire%EC%99%80-Escaping/" class="post-list-item">
-                    <h2>
-                    Swift - Alamofire와 Escaping
-                    </h2>
-                    <span class="">Jul 29, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/07/21/swift-Alamofire%EC%99%80-Codable/" class="post-list-item">
-                    <h2>
-                    Swift - Alamofire와 Codable
-                    </h2>
-                    <span class="">Jul 21, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/07/15/swift-UIButton-%EA%B3%BC-Class/" class="post-list-item">
-                    <h2>
-                    Swift - UIButton과 클래스
-                    </h2>
-                    <span class="">Jul 15, 2018</span>
-                  </a>
-                
-              
-                
-                  <a href="/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4/" class="post-list-item">
-                    <h2>
-                    Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?
-                    </h2>
-                    <span class="">Jul 8, 2018</span>
-                  </a>
-                
-              
-            
-          </div>
-        
-          <div post-cate="diary">
-            
-              
-                
-              
-            
-              
-                
-                  <a href="/2018/10/02/Diary_%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88%EB%B3%80%EA%B2%BD/" class="post-list-item">
-                    <h2>
-                    Diary_블로그 테마변경
-                    </h2>
-                    <span class="">Oct 2, 2018</span>
-                  </a>
-                
-              
-            
-          </div>
-        
-          <div post-cate="swift_basic">
-            
-              
-                
-              
-            
-              
-                
-                  <a href="/2018/10/05/Swift_Basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C/" class="post-list-item">
-                    <h2>
-                    Swift_Basic - 타입 메소드 & 인스턴스 메소드
-                    </h2>
-                    <span class="">Oct 5, 2018</span>
-                  </a>
-                
-              
-            
-          </div>
-        
-        <!-- </div> -->
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="shadow-corner-curl hidden-xs">
-      <div class="categories-list-header">
-        Categories
-      </div>
-      
-      <a href="javascript:;" class="categories-list-item" cate="All">
-        All<span class="my-badge"> 11</span>
-      </a>
-      
-        <a href="javascript:;" class="categories-list-item" cate="jekyll">
-          jekyll <span class="my-badge">1</span>
-        </a>
-      
-        <a href="javascript:;" class="categories-list-item" cate="swift">
-          swift <span class="my-badge">8</span>
-        </a>
-      
-        <a href="javascript:;" class="categories-list-item" cate="diary">
-          diary <span class="my-badge">1</span>
-        </a>
-      
-        <a href="javascript:;" class="categories-list-item" cate="swift_basic">
-          swift_basic <span class="my-badge">1</span>
-        </a>
-      
-    </div>
-  </div>
-</div>
-    </div>
 
     
-    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
-      <a href="javascript:;">
-        <div class="arrow"></div>
-        <div class="stick"></div>
-      </a>
-    </div>
 
-    <footer class="">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <a href="mailto:jiseob812@gmail.com"><span class="glyphicon glyphicon-envelope"></span> jiseob812@gmail.com</a>
-        <span class="point"> · </span>
+  <div class="page-content col-sm-8">
+    <div class="home">
+  <div class="post" itemscope itemtype="http://schema.org/BlogPosting" >
+
+    
+
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
+      </h1>
+      <meta itemprop="keywords" content="Swift,Method,Type Method,Instance Method" />
+      <p class="post-meta">
+      카테고리: 
+      
+      <a href="/categories/#articles">articles</a>
+      
+      <br>
+      
+      태그: 
+      
+      <a href="/tags/#Swift" title="Swift">Swift</a>, 
+      
+      <a href="/tags/#Method" title="Method">Method</a>, 
+      
+      <a href="/tags/#Type Method" title="Type Method">Type Method</a>, 
+      
+      <a href="/tags/#Instance Method" title="Instance Method">Instance Method</a>
+      
+      <br>
+      
+      <time itemprop="datePublished" datetime="2018-10-05">
+      작성일: Oct 5, 2018
+      </time>
+      </p>
+    </header>
+
+    <article class="post-content" itemprop="articleBody">
+      <p>Swift 코드를 보다 그런적이 있었다.</p>
+
+<p>“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”</p>
+
+<p>오늘 나오는 메소드의 종류 다음과 같다.</p>
+
+<ol>
+  <li>인스턴스 메소드</li>
+  <li>타입 메소드</li>
+</ol>
+
+<p><br /></p>
+
+<h1 id="메소드의-종류">메소드의 종류</h1>
+<p>아래의 이미지를 보자!</p>
+
+<p><img src="/assets/img/post/2018-10-05/img1.png" alt="" />
+(App: Scapple)</p>
+
+<p>오늘의 추천앱! Scapple이란 앱이에요!!</p>
+
+<p>블로그도 리뉴얼 했으니 추천 카테고리도 만들어야지 ㅎㅎ</p>
+
+<p><br />
+다시 본론으로 넘어가서!</p>
+
+<p>구성은 다음과 같다</p>
+<ul>
+  <li>함수</li>
+  <li>클래스1
+    <ul>
+      <li>함수1</li>
+      <li>함수2</li>
+    </ul>
+  </li>
+  <li>클래스2
+    <ul>
+      <li>함수3</li>
+      <li>함수4</li>
+    </ul>
+  </li>
+</ul>
+
+<p>여기서, <strong>함수는 전역 함수다</strong>. 즉, 어디서든 접근이 가능하다는 의미이다!</p>
+
+<p>만약 지금 클래스1의 내부에 코드를 작성하고 있다면,</p>
+
+<p><strong>클래스1이 2를 상속하고 하고 있다</strong>거나 <strong>클래스2의 인스턴스를 만들었다면</strong></p>
+
+<p>클래스2 내부의 함수3,4를 접근할 수 있지만 <strong>그 외엔 불가</strong>하다. 하지만 우리의 <u>전역 함수님에겐 언제든 접근이 가능</u>하다!</p>
+
+<p><br /></p>
+
+<p>그렇담 일반적 접근인 <strong>인스턴스 메소드</strong>를 보자.</p>
+
+<p><br /></p>
+
+<h2 id="인스턴스-메소드">인스턴스 메소드</h2>
+
+<hr />
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">something</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+
+    <span class="kd">func</span> <span class="nf">useInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Instance!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위처럼 만들고 사용은 어떻게?</p>
+
+<p>이렇게</p>
+
+<p><img src="/assets/img/post/2018-10-05/img2.png" alt="" /></p>
+
+<p>‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.</p>
+
+<p>중요한건, <strong><u>인스턴스를 만들고 내부함수 호출</u></strong>이다.</p>
+
+<p>그렇담!! 인스턴스를 안만들고 호출을 하는 방법은?</p>
+
+<p><br /></p>
+
+<h2 id="타입-메소드">타입 메소드</h2>
+
+<hr />
+
+<p>타입 메소드란 타입(여기선 some클래스를 의미) 자체에서 호출을 할 수 있는 메소드이다.
+그건 케바케이겠지만? 우선, 책에서 본건 이런게 있었다</p>
+<ol>
+  <li>사각형 면 숫자 return 하기</li>
+  <li>괴물 울음 소리</li>
+</ol>
+
+<p>다소 어이없는 예들이지만 공통점은 있다. 당연한 값들이란것 !
+코드적으로 본다면 인자값 넣고 그</p>
+
+<p>말이 낯설어서 이해가 안될수도 있다. 필자도 이번기회에 외움! 이 맛에 포스팅한다.</p>
+
+<p>내용만 알아도 된다. 이름이야뭐… 일단 이해하는게 중요하니 설명부터!</p>
+
+<p>일반 내부 함수랑 차이가 거의 없다 있다면 <strong>키워드</strong> 하나가 더붙는다는것?</p>
+
+<p><code class="highlighter-rouge">static</code>  또는 <code class="highlighter-rouge">class</code> 이다.</p>
+
+<p>일반 책에서 잘나오지 않아서 굉장히 낯설었다… 나의 함수들은 func으로만 시작하였고,</p>
+
+<p>그 앞에 뭐가 붙는다는건 상상도 못해봤다. 심지어 한개도 아니고 두개다(사실 하나 더 있다.)(내가모르는게 더있을수도?)</p>
+
+<p>우선, <code class="highlighter-rouge">class</code> 부터 보자</p>
+
+<p><br /></p>
+<h3 id="키워드--class">키워드 : class</h3>
+
+<p>일단 코드부터 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+    <span class="c1">// 인스턴스 메소드</span>
+    <span class="kd">func</span> <span class="nf">useInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Instance!!"</span>
+    <span class="p">}</span>
+    <span class="c1">// 타입 메소드</span>
+    <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getSomething</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Type!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>처음 저것을 보았을때, 신선한 충격이었다. 클래스는 클래스고 함수는 함수지 왜 한줄에 다있는걸까? 라고…</p>
+
+<p>우선 일반적인 클래스랑 쓰임새가 다른건 확실하다!</p>
+
+<p>그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)</p>
+
+<p><img src="/assets/img/post/2018-10-05/img3.png" alt="" /></p>
+
+<p>없다. 완소 기능인 자동 완성 기능에 없다…</p>
+
+<p>그렇다, 타입 메소드로 지정한것은 인스턴스 메소드처럼 사용이 불가능하다.</p>
+
+<p>그럼, 이제 사용해보자.</p>
+
+<p><img src="/assets/img/post/2018-10-05/img4.png" alt="" /></p>
+
+<p>됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
+그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.</p>
+<ol>
+  <li>괴물 울음소리 String받기</li>
+  <li>사각형 면수 받기</li>
+</ol>
+
+<p>귀여움이 가득한 예제들이었다. 
+1의 경우 괴물의 울음소리를 언제 어디서든 인스턴스 없이 가져왔고
+2의 경우는 사각형 면수인 4를 가져오는 것이었다.</p>
+
+<p>공통점으론 당연한 것이었다. 어떻게 쓰냐에 달렸다.</p>
+
+<p><br /></p>
+<h4 id="키워드-class의-장점">키워드 class의 장점</h4>
+
+<p>필자는 이런 경우도 보았다. 통신, UIView가져오기 등등
+따로 인스턴스를 만들지 않고 바로 바로 처리를 한 것들을 보았다.</p>
+
+<p>특정 반복되는 뷰라던가, 인자값으로 받아서 통신을 하고 델리게이트 패턴을 이용해 반복적으로 일어나는것을 처리하였다.</p>
+
+<p>그런점들이 좋았던거 같다. 인스턴스를 생성하면 이게 해제가 될지도 걱정을 안해도되고 (평소에도 잘안하긴했다..) 고로 ARC 걱정이 없을것 같다.</p>
+
+<p>다른 것들은 기억이 안난다, 단점으로 가자.</p>
+
+<p><br /></p>
+<h4 id="키워드-class의-단점">키워드 class의 단점</h4>
+
+<p>음 확장성이 안좋았다. 아니 없었다.
+당연한 값들로만 리턴을 한다? 근데 초기화가 안되어있어서 변수를 쓰지도 못한다.
+내부의 변수를 사용할 수 없단건 정말 확장성에서 힘들었던거 같다. 다른 사람이 해둔 코드에 내가 변수 하나 추가해서 작업하고 싶은데, 그게 안된다;;;
+파라미터를 하나 추가한다? 그럼 모든 그 함수에 추가 시켜버려야한다…</p>
+
+<p><br /></p>
+<h3 id="키워드--static">키워드 : static</h3>
+
+<p>무엇이 다른걸까?</p>
+
+<p>우선! 위에 타입메소드의 특징?들은 똑같다. 그런데</p>
+
+<p>오버라이드가 가능, 불가능이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SubClass</span><span class="p">:</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getSomething</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">{</span>
+        <span class="k">return</span> <span class="s">"wow"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>이걸 먼저 보자, <code class="highlighter-rouge">class func</code> 앞에 <code class="highlighter-rouge">override</code>가 붙었다!
+키워드가 굉장히 길다.. 그렇지만 오버라이드 개념만 안다면 쉽게 이해할거라 생각한다.</p>
+
+<p>결과도 보자</p>
+
+<p><img src="/assets/img/post/2018-10-05/img5.png" alt="" /></p>
+
+<p>굉장히 잘 덮어썼다.</p>
+
+<p>그럼, 이제 살짝 바꿔서 <code class="highlighter-rouge">class</code>대신 <code class="highlighter-rouge">static</code>을 써보자</p>
+
+<p><img src="/assets/img/post/2018-10-05/img6.png" alt="" /></p>
+
+<p>오오 빨간색이다. <strong>스태틱 메소드라고 오버라이드가 안된다한다</strong></p>
+
+<p><br />
+그렇다, 큰 차이는 없지만 차이는 분명한 두가지 키워드였다!</p>
+
+<blockquote>
+  <p>class 키워드를 써도 오버라이드를 막을수 있다.
+<code class="highlighter-rouge">final</code> 키워드를 <code class="highlighter-rouge">class</code> 키워드 앞에 붙이면 된다!!
+키워드 많은건 내 취향이 아니니 나는 static을 쓰겠다.</p>
+</blockquote>
+
+<h1 id="ps">PS</h1>
+<p>처음엔 참 낯선 용어들이었는데, 블로그를 쓰니 머리에 더 들어오는 것 같아서 좋다.</p>
+
+
+    </article> <hr />
+
+    
+
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/articles/2018/09/16/swift-DelegatePattern2.html">Swift - 화면간 데이터 전달. 2편</a>
+      </h1>
+      <meta itemprop="keywords" content="Swift,Protocol" />
+      <p class="post-meta">
+      카테고리: 
+      
+      <a href="/categories/#articles">articles</a>
+      
+      <br>
+      
+      태그: 
+      
+      <a href="/tags/#Swift" title="Swift">Swift</a>, 
+      
+      <a href="/tags/#Protocol" title="Protocol">Protocol</a>
+      
+      <br>
+      
+      <time itemprop="datePublished" datetime="2018-09-16">
+      작성일: Sep 16, 2018
+      </time>
+      </p>
+    </header>
+
+    <article class="post-content" itemprop="articleBody">
+      <p>프로토콜을 이용해보자</p>
+
+<p><br /></p>
+
+<p><a href="https://jiseobkim.github.io/2018/09/02/swift-DelegatePattern.html">이전글 보기 : 데이터 전달 1편</a></p>
+
+<p>이전 글에 이어서 프로토콜을 통해 VC2 -&gt; VC1으로 데이터를 전달해보겠습니다!</p>
+
+<h1 id="이전글-summary">이전글 Summary</h1>
+
+<p><img src="/assets/img/post/2018-09-16/img1.png" alt="" /></p>
+
+<p>VC2의 코드중 핵심은 위 이미지 중 아래 코드와 같습니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">VC1</span>
+</code></pre></div></div>
+
+<p>타입이 VC1클래스 였고, 여기서 꼭! 해줘야하는건 아래 그림처럼 특정 클래스와 연결을 시켜줘야 했습니다.</p>
+
+<p><img src="/assets/img/post/2018-09-16/img1.png" alt="" /></p>
+
+<p>연결 방법은 간단했죠</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vc2</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+</code></pre></div></div>
+
+<p>이런식으로 “그 delegate는 나야”를 정해주면 데이터 전달이 가능하다는것이 저번 내용이었습니다.</p>
+
+<p><strong><u>하지만, 이 방법도 좋지만 단점도 있습니다.</u></strong></p>
+
+<p><br /></p>
+
+<h1 id="이전-방식의-단점">이전 방식의 단점</h1>
+
+<p>결론부터 말하자면,  **VC1 타입만 이전 방식이 가능하다 ** 입니다.</p>
+
+<p>이게 무슨말인지 감이 안오신다면! 이렇게 생각해보세요.</p>
+
+<p>VC2 -&gt; VC1에 이름 값을 전달 해주는 화면이었죠, 그런데</p>
+
+<p>이름을 전달받는게 저화면뿐만 아니라면 어떻게 될까요?</p>
+
+<p>다르게 표현 해볼까요? 이번엔 멋진 그림으로</p>
+
+<p>우선 기존 방식입니다.</p>
+
+<p><img src="/assets/img/post/2018-09-16/img2.png" alt="" /></p>
+
+<p>VC2가 VC1의 내부 함수를 호출하는 방식이었죠,</p>
+
+<p>그렇담 아래 같이 새로운 VC3라는 클래스가 나타난다면 문제가 생깁니다.</p>
+
+<p><img src="/assets/img/post/2018-09-16/img3.png" alt="" /></p>
+
+<p>그렇담 여기서 VC2의 아래 코드는 어떻게 변경되어야할까요?</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">VC1</span>
+<span class="c1">// 추가</span>
+<span class="k">var</span> <span class="nv">delegate2</span><span class="p">:</span> <span class="kt">VC3</span>
+</code></pre></div></div>
+
+<p>이름을 delegate2라곤 안하겠지만! 개념상 그건 중요치 않으니 패스,</p>
+
+<p>중요한건 VC3 클래스 타입을 가진 변수가 추가된다는 점입니다.</p>
+
+<p>크게 문제 될건 없지만,,,,  <strong><u>프로토콜</u></strong>을 이용한다면 장점이 더 많습니다!</p>
+
+<p><br /></p>
+
+<h1 id="프로토콜">프로토콜</h1>
+
+<p>그렇담 프로토콜은 무엇일까요?</p>
+
+<p>넷플릭스에 나오던 미국 드라마중 ‘지정생존자’란 드라마에서</p>
+
+<p>무슨 위급한 상황이 생기자,</p>
+
+<p>“OOO 프로토콜을 발동하지”</p>
+
+<p>이런 표현을 쓰는게 나오더군요!!</p>
+
+<p>그러자, 정해진 역할들을 수행해 나가더라구요</p>
+
+<p>네, 그래도 감이 안오는 경우가 많을거라 생각합니다, 저도 그랬거든요.</p>
+
+<p>그렇담, 또 다른 표현!</p>
+
+<p><br /></p>
+
+<p>이번엔 책에서 주로 나오는 내용을 좀더 쉽게 설명해볼게요.</p>
+
+<p>‘이동 수단’에 대해 얘기해볼까요?</p>
+
+<p>이동 수단은 좀 상위 개념이죠, 하위 개념엔 자동차, 자전거, 버스, 택시, 기차 등등이 있을겁니다.</p>
+
+<p>근데, 이것들이 공통적으로 가져야할 개념이 있죠,</p>
+
+<p><strong>빵빵이</strong> 기능입니다, 클락션이라고도 하죠?</p>
+
+<p>이동 수단이라 하면, 타인에게 자신의 의사를 표현할 방법이 필요하죠! 위험해라던가 뭐라 표현을 해야하니깐요!</p>
+
+<p>이 빵빵이 기능을 탑재 해야하는 시스템을 <strong>빵빵이 프로토콜</strong> 이라고 합시다, 클락션 프로토콜이라 하면 이름 생각하다 중요한걸 잊을테니,,</p>
+
+<p>그럼, 이제 자동차를 만들어 봅시다,</p>
+
+<p><strong>윗사람이 지시</strong>를 내립니다, <strong>“자동차를 만들땐 빵빵이 프로토콜을 적용해.”</strong>라고</p>
+
+<p>그렇담, <strong>윗사람의 지시 -&gt; 무조건 넣어라</strong> 겠죠?</p>
+
+<p>대신 빵빵 소리는 상황에 따라 바꿉니다, 지하철, 버스, 자전거 등등 서로 다르게요.</p>
+
+<p>이러면 좀 감이 오시나요? 위의 드라마 얘기도 이해 되실겁니다!</p>
+
+<blockquote>
+  <p>프로토콜을 실행하자 각자 해야할 일들을 수행해나간다</p>
+
+  <p>=</p>
+
+  <p>프로토콜을 실행하면 각자 할일들도 있지만 무조건 해야할 것들이 생긴다.</p>
+</blockquote>
+
+<p>그럼 좀더 프로그래밍틱하게 설명을 해볼게요.</p>
+
+<p><br /></p>
+
+<h3 id="프로토콜-선언">프로토콜 선언</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Bbang</span> <span class="p">{</span>
+   <span class="kd">func</span> <span class="nf">warning</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span><span class="kt">String</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위의 코드가 프로토콜을 선언하는 것입니다.</p>
+
+<p>Bbang(빵-빵빵이의 빵)이라는 이름을 가지고 있고</p>
+
+<p>함수를 하나 가지고 있습니다.</p>
+
+<p><br /></p>
+
+<p>그런데 뭔가좀 허젼하죠?</p>
+
+<p>함수명, 인자값등이 있지만 함수 내용이 없습니다.</p>
+
+<blockquote>
+  <p>반환값도 있다고 보시면 됩니다! 지금은 상황상 표현을 안했지만 Void로 리턴하고있을테고</p>
+
+  <p>다른 리턴값이 필요하시면 리턴형을 일반 함수때처럼 적어주시면 됩니다.</p>
+</blockquote>
+
+<p><strong>자세한 내용은 프로토콜 사용되는곳에서 기술 해주면 됩니다.</strong></p>
+
+<p><br /></p>
+
+<p>마치 이런거죠,</p>
+
+<p>빵빵이 프로토콜을 택시, 자전거에 적용해!</p>
+
+<p>했을때, 자전거 만들땐 경적소리를 “띵띵” 할거야, 택시는 “빠앙” 할거야 등은 자기가 맘대로지만</p>
+
+<p><strong>중요한건 “경적소리 울리는 함수가 들어가야한다는 점입니다.”</strong></p>
+
+<blockquote>
+  <p>함수만 선언 가능한것은 아닙니다! 변수도 선언 가능해요</p>
+
+  <p>하지만, 마찬가지 값을 넣어주지 않습니다만</p>
+
+  <p>get,set 은 기입해줘야합니다. 아래처럼요!</p>
+
+  <p>var text: String {get}</p>
+
+  <p>var text: String {get set}</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>자 그럼 어떻게 사용하는지 볼까요?</p>
+
+<p><img src="/assets/img/post/2018-09-16/img4.png" alt="" /></p>
+
+<p>변경된 라인은 42,54 쪽입니다. 프로토콜은 33번에 선언 되어있구요</p>
+
+<p>기존에 43번 라인의 변경점은 타입이 VC1에서 Bbang으로 바뀌었단 점입니다.</p>
+
+<p>이건 무슨의미일까요?</p>
+
+<p>단순하게 타입이 바뀌었다고 볼수 있지만,</p>
+
+<p>좀더 좋은점을 위의 VC3애기로 들자면, VC1이든  VC3이든, 저 delegate 변수 하나로 사용이 가능하단점이죠!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">VC1</span>
+<span class="c1">// 추가</span>
+<span class="k">var</span> <span class="nv">delegate2</span><span class="p">:</span> <span class="kt">VC3</span>
+</code></pre></div></div>
+
+<p>이런건 안해도 됩니다!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">Bbang</span>
+</code></pre></div></div>
+
+<p>이것으로 다 해결 했거든요.</p>
+
+<p>그리고 변경점2(line:54)의 경우엔</p>
+
+<p>VC1의 함수를 호출은 이제 못하고(당연하죠?), Bbang안에 있던 waring(name:)을 호출해주었습니다!</p>
+
+<p>그럼 VC1쪽에 바뀐점은 무엇일까요?</p>
+
+<p>바꾸기전에 아무것도 안하고 나오는 오류를 봅시다.</p>
+
+<p><img src="/assets/img/post/2018-09-16/img5.png" alt="" /></p>
+
+<p><strong>“Cannot assign value of type ‘VC1’ to type ‘Bbang?’“</strong></p>
+
+<p><strong>“(VC1)은 Bbang 타입이 없음 / Bbang에 VC1 넣을 수 없음”</strong>  이런 의미의 경고가 뜹니다</p>
+
+<p>그럼 저 빨간점을 누르고 싶겠죠? 하시면 안돼요.</p>
+
+<p><br /></p>
+
+<h3 id="프로토콜-추가">프로토콜 추가</h3>
+
+<p>빨간점눌러서 자동 해결 기능을 쓰면</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vc</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span> <span class="k">as!</span> <span class="kt">Bbang</span>
+</code></pre></div></div>
+
+<p>이런식으로 타입을 맞춰서 얼렁뚱땅 넘어가려합니다.</p>
+
+<p>된다하더라도 우리에게 중요한건 <strong><u>아직 빵빵이의 상세 기능을 추가안했죠.</u></strong></p>
+
+<p>택시일땐 무슨빵빵, 자전거는 무슨빵빵 할지 정해줄겁니다.</p>
+
+<p>그렇담, 프로토콜 추가는 어떻게 해줄까요?</p>
+
+<p>클래스 상속 받듯이 하면됩니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">VC</span><span class="o">!</span><span class="p">:</span> <span class="kt">UIVIewController</span><span class="p">,</span> <span class="kt">BBang</span> <span class="p">{</span>
+    <span class="c1">// 내용 생략</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이런식으로요!</p>
+
+<p><br /></p>
+
+<p><u>여기서, 특이한점이 하나 있습니다.</u></p>
+
+<p>다른 언어 중 일부에선 다중상속이 가능하죠, 그렇지만 Swift에선 하나만 상속이 가능합니다, 그래서 UIVIewController를 상속 받았으면 이젠 다른건 못받습니다.  이유가 있어서 애플에서 막았겠죠? 그렇지만 일부 기능은 아쉬운 기능입니다.</p>
+
+<p>따라서 애플에선 프로토콜을 이용해 이를 어느정도 해결했다고 합니다!! (좀더 찾아봐야겠어요)</p>
+
+<p>프로토콜의 경우 클래스 상속과는 다르게 제한이 없습니다, 그래서 한개든 두개든 가능하죠</p>
+
+<p>그럼 코드를 봐볼까요</p>
+
+<p><img src="/assets/img/post/2018-09-16/img6.png" alt="" /></p>
+
+<p>오류가 납니다.</p>
+
+<p><strong>“Type ‘VC1’ does not conform to protocol ‘Bbang’“</strong></p>
+
+<p><strong>“VC1 타입은 Bbang 프로토콜을 따르지 않았다”</strong></p>
+
+<p><strong>“VC1 타입은 Bbang 프로토콜을 준수하지않았다</strong></p>
+
+<p>이런 의미가 나옵니다.</p>
+
+<p>즉, 위의 예시에서 <u>**빵빵이 프로토콜 적용하라는 윗사람 말을 듣지않았다!!**</u>가 됩니다.</p>
+
+<p>프로토콜에 있던 warning 함수를 적용해줘야합니다. 내용까지 채워서요(line:17)</p>
+
+<p>(여기선 빨간점 눌러서 자동 해결해도됩니다. 좋은 기능)</p>
+
+<p><img src="/assets/img/post/2018-09-16/img7.png" alt="" /></p>
+
+<p>여기서 함수 내부 내용은 insert(name:_)과 같은 것을 사용했습니다.</p>
+
+<p>그리고 동작도 똑같이 될것이구요! 이렇게하면 해당 내용은 모두 끝나게 됩니다.</p>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>사실 다른 장점들도 있습니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">VC1</span>
+<span class="c1">// 추가</span>
+<span class="k">var</span> <span class="nv">delegate2</span><span class="p">:</span> <span class="kt">VC3</span>
+</code></pre></div></div>
+
+<p>위의 코드같은 문제가</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">Bbang</span>
+</code></pre></div></div>
+
+<p>이렇게 사용하여 여러 VC들에서 사용 가능하단점들 말고도 좋은점은</p>
+
+<ol>
+  <li>
+    <p>협업 하는사람들이 알아보기 쉽다.</p>
+  </li>
+  <li>
+    <p>추가 해야할 것이 명확하다.</p>
+  </li>
+</ol>
+
+<p>같은 것들이 있습니다, 물론 더 있습니다! 이런 방식 말고도 다른 방식으로도 사용가능합니다.</p>
+
+<p>그리고, 윗사람이 시켰으니깐 무조건 따라야한다 « 라고 표현 하긴했지만,</p>
+
+<p>필수가 아닌 함수, 변수들도 선언이 가능해요.</p>
+
+<p><br /></p>
+
+<p>1의 경우 무슨말이냐, 다른 사람이 내 코드를 볼때 프로토콜 사용하기전에</p>
+
+<p>insert(name:_) 이 함수를 봤다면 무슨 생각을 할까요?</p>
+
+<p><strong>“이건 이 클래스내에서 호출이 안되는데 왜있어?”</strong> 라고 생각 할 수 있겠죠,</p>
+
+<p>검색해도 안나오니깐요, (헉 이때, privite을 쓰면 알 수 있겠네요!!! 구분용으로 써줄수도 있겠네요 ㅜㅜ</p>
+
+<p>글쓰다 깨닳음,,, 도대체 언제 왜 써야했는데,,, 이게 전부는 아니겠지만 용도 하나는 찾았습니다. 블로그 소재써야지 )</p>
+
+<p>위에 깨닳음을 통해 말하자면, private인데 검색해서 안나오면 지워도 되겠네요,</p>
+
+<p>그렇지만 전 안썼고 누가 제 코드를 보고 저 함수를 봤다면, “뭐야 이건 왜안지웠어?” 했을겁니다.</p>
+
+<p>하지만 프로토콜을 썼다면 다른 사람이 보고, 아 여기엔 이런 함수들이 들어가있겠구만</p>
+
+<p>그렇다면 다른 화면에서 데이터를 받아오겠네, 라고 생각을 할 것 입니다!</p>
+
+<p><br /></p>
+
+<p>프로토콜은 swift에서 많이 사용되고있습니다.</p>
+
+<p>테이블뷰를 써보셨다면, cellForRow와 numberOfSection 등등 함수를 적용 안하면 오류 난다고 경고를 뿜죠</p>
+
+<p>그래서 해당 함수들을 자동완성 기능으로 넣어보면, 내부는 깔끔하게 비어있죠!</p>
+
+<p>이것도 마찬가지로 해야할 것들을 알려줬을뿐 내용은 자기맘대로 하란것입니다. 리턴 규격도 지켜야하구요!</p>
+
+<p><img src="/assets/img/post/2018-09-16/img8.png" alt="" /></p>
+
+<p>위에 보시는 바와 같이, 프로토콜입니다! 이외에도 UIScrollViewDelegate, UITableViewDelegate등등</p>
+
+<p>프로토콜로 이루어져있습니다!</p>
+
+<p><br /></p>
+
+<p>더 코드를 좋게 하려면 프로토콜 추가 별로 Extension 쓰는게 좋더라구요~</p>
+
+<p>그래서 다음 주제는 Extension 입니다.</p>
+
+<p>수고하세요~!</p>
+
+    </article> <hr />
+
+    
+
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/articles/2018/09/02/swift-DelegatePattern.html">Swift - 화면간 데이터 전달. 1편</a>
+      </h1>
+      <meta itemprop="keywords" content="Swift,Delegate Pattern" />
+      <p class="post-meta">
+      카테고리: 
+      
+      <a href="/categories/#articles">articles</a>
+      
+      <br>
+      
+      태그: 
+      
+      <a href="/tags/#Swift" title="Swift">Swift</a>, 
+      
+      <a href="/tags/#Delegate Pattern" title="Delegate Pattern">Delegate Pattern</a>
+      
+      <br>
+      
+      <time itemprop="datePublished" datetime="2018-09-02">
+      작성일: Sep 2, 2018
+      </time>
+      </p>
+    </header>
+
+    <article class="post-content" itemprop="articleBody">
+      <p>델리게이트 패턴을 이용해보자</p>
+
+<p><br /></p>
+
+<p>이번 포스팅부터는 아이패드로 그림을 그리면서 설명을 진행 해보고자합니다~!</p>
+
+<p>(그림엔 소질이 없지만 집에서 동영상 머신으로 쓰이는 비싼 아이패드 활용을 어떻게든 하고 싶어서……….)</p>
+
+<p>어플을 만들다보면 데이터를 전달하는 빈도수는 상당히 높을것 입니다.</p>
+
+<p>예를 몇가지 들어볼까요? (실제는 다르겠지만 이해를 위해 최대한 간결하게 설명을 진행을…!)</p>
+
+<p></p>
+
+<p>크게는 2가지로 볼수 있을겁니다!</p>
+
+<p>아래 삐뚤삐둘한 그림을 보면서 설명을 하죠</p>
+
+<p><img src="/assets/img/post/2018-09-02/img1.png" alt="" /></p>
+
+<p>그림이 예술입니다.</p>
+
+<p>연락처 화면  - 문자 화면 - 사진 전송을 위한 사진첩</p>
+
+<p>이렇게 화면이 이루어져있습니다!</p>
+
+<p>어떻게 2가지냐! 우선 이경우는 뷰는 스택 형식으로 쌓입니다</p>
+
+<p>목록에서 친구 누군가를 탭할경우 그 화면이 목록 화면 위로 올라오게 되죠,</p>
+
+<p>마찬가지로 문자 화면에서 사진 전송을 위해 사진 목록 화면을 띄우면 그화면은 문자 화면 위에 떠있게 됩니다!</p>
+
+<p>그래서 하나씩 제거하면서 앞 화면으로 돌아가죠! 이렇게 되면 굳이 똑같은 화면을 다시 띄울 필요도 없고, 별도 처리 하지 않는 이상 데이터도 남아있으니깐요!</p>
+
+<p><br /></p>
+
+<h3 id="연락처-목록-to-문자-화면">연락처 목록 to 문자 화면</h3>
+
+<p>이 경우에 리스트에서 친구1,2,3 중 한명을 탭하게 되면 문자 화면엔 누군가 친구x라고 뜨게 될것입니다.</p>
+
+<p>그렇다는건 어떤 정보를 받아 왔으니깐 그 친구에 대한 정보를 통해 화면을 뿌려주고 연락을 주고 받겠죠!</p>
+
+<p>이건 책에서도 많이 나오죠,  문자View 클래스의 인스턴스를 만들어주고 데이터를 넣어준뒤  present나 네비게이션바를 사용한다면 push 형식으로 띄워주겠죠! 일반적인 방법으로 소개하는 segue도 있을 수 있구요!</p>
+
+<p><br /></p>
+
+<h3 id="사진첩-to-문자-화면">사진첩 to 문자 화면</h3>
+
+<p>이경우는 어떤 경우일까요? 사진 첨부를 위해 사진 추가버튼을 누르면 사진첩이 뜨게 되고, 이때, 사진을 누르게 되면 문자View에</p>
+
+<p>첨부가 됩니다! 그렇다는 말은 사진첩의 사진 데이터가 문자view로 전달이 된거죠</p>
+
+<p>이 케이스는 책에선 많이 없었던거 같네요.</p>
+
+<p>그래서 이 케이스를 다루고자 합니다.</p>
+
+<p>델리게이트 패턴을 이용하는것이죠, 프로토콜을 이용하기도 할것이고 인스턴스를 만들어서 사용하기도 할것입니다!</p>
+
+<blockquote>
+  <p>윗 말이 낯설고 어려울수도 있겠지만 결론적으로 궁극적인 목표는 VC2의 데이터를 VC1으로 보내는게 목표입니다!</p>
+</blockquote>
+
+<p><br /></p>
+
+<h1 id="델리게이트">델리게이트</h1>
+
+<p>델리게이트는 한국어 의미론 대리자 그러한 의미인데, 처음엔 이게 무슨 말인지 참 어렵더군요</p>
+
+<p>쉽게 말하면</p>
+
+<blockquote>
+  <p>“내가 다 만들어 놨어, 넌 가져다써”</p>
+</blockquote>
+
+<p>정도로 지금은 생각하고 있습니다.</p>
+
+<p>VC2에서 VC1으로 데이터를 수정해봅시다.</p>
+
+<p>우선 VC1의 구성은 다음과 같습니다.</p>
+
+<p><img src="/assets/img/post/2018-09-02/img2.png" alt="" /></p>
+
+<p><img src="/assets/img/post/2018-09-02/img3.png" alt="" /></p>
+
+<p>아주 심플하죠? ‘이름 써질곳’ Label이 있고, 그 Label에 텍스트를 넣는 함수가 있습니다.</p>
+
+<p>이제 이 코드를 VC2에서 실행시킬것입니다.</p>
+
+<p>VC2 구성은 다음과 같습니다.</p>
+
+<p><img src="/assets/img/post/2018-09-02/img4.png" alt="" /></p>
+
+<p><img src="/assets/img/post/2018-09-02/img5.png" alt="" /></p>
+
+<p>여기또한 아주 심플하죠</p>
+
+<p>눈여겨 봐야할 것은</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">VC1</span><span class="p">?</span>
+</code></pre></div></div>
+
+<p>이 부분 입니다. 타입이 VC1입니다.</p>
+
+<p>그리고 버튼 실행 내용쪽에 보면</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">delegate</span><span class="p">?</span><span class="o">.</span><span class="nf">insert</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">text</span><span class="o">!</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>여기 입니다! VC2에는 저런 함수가 없죠. 타입이 VC1인 delegate의 내부 함수이니깐요.</p>
+
+<blockquote>
+  <p>VC1에 다 만들어져있습니다. 가져다 쓰세요</p>
+</blockquote>
+
+<p>실행해볼까요?</p>
+
+<p>안될겁니다.</p>
+
+<p>왜냐! VC1 타입을 선언해줬지만 어떤 VC1인지 모릅니다.</p>
+
+<p>이게 무슨 해괴한 소리냐면</p>
+
+<p>해괴한 그림과 함께 설명들어갑니다.</p>
+
+<p><img src="/assets/img/post/2018-09-02/img6.png" alt="" /></p>
+
+<p>(직선 깔끔히 그리는 방법 찾았어요)</p>
+
+<p>이 그림을 보면 많은분들이 이렇게 생각하실겁니다.</p>
+
+<p>“VC1꺼 불러왔잔아!!”</p>
+
+<p>네 VC1꺼 부른것 맞습니다. 그치만 누군지 모릅니다</p>
+
+<p>또 해괴한 소리였죠.</p>
+
+<p>만약 VC1화면이 3개가 있고, insert(name:_)를 호출 하면 어떻게 될까요?</p>
+
+<p>이해가 안되신분들이라면 이렇게 생각하실 겁니다.</p>
+
+<p><img src="/assets/img/post/2018-09-02/img7.png" alt="" /></p>
+
+<p>그렇지 않나요?</p>
+
+<p>개념적으로 생각의 변화가 필요합니다!</p>
+
+<p>VC2에서 delegate는 단순히 타입을 VC1인 변수를 선언한거고 각 VC1들과는 별개입니다.</p>
+
+<p>그럼 어떻게 하냐</p>
+
+<p>VC1에서 아래 코드를 추가해줍니다. (segue 사용했습니다.)</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">prepare</span><span class="p">(</span><span class="k">for</span> <span class="nv">segue</span><span class="p">:</span> <span class="kt">UIStoryboardSegue</span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">vc2</span> <span class="o">=</span> <span class="n">segue</span><span class="o">.</span><span class="n">destination</span> <span class="k">as?</span> <span class="kt">VC2</span> <span class="p">{</span>
+            <span class="n">vc2</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>우선! override니깐 상속 받은 UIViewController에 기본적으로 들어있던 함수고 내용을 살짝 바꾼겁니다</p>
+
+<p>함수 내부를 보면,</p>
+
+<p>vc라는 변수를 안전하게 만들어줍니다, let과 if를 사용해서 vc라는 상수를 만들지만 nil일 경우 if문은 실패 처리되어 앱이 죽지 않고 단순히 다음코드로 넘어가게 됩니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">segue</span><span class="o">.</span><span class="n">destination</span> <span class="k">as?</span> <span class="kt">VC2</span>
+</code></pre></div></div>
+
+<p>이 코드를 보면, segue의 목적지를 VC2로 캐스팅을 합니다! 즉, 화면 이동하려는곳이 VC2가 맞는지 확인 하는겁니다.</p>
+
+<p>if문에 문제가 없다는 가정하에 vc를 하죠</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vc2</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+</code></pre></div></div>
+
+<p>여기가 포인트 입니다.</p>
+
+<blockquote>
+  <p>vc2에 delegate의 VC1이 나야!!</p>
+</blockquote>
+
+<p>이런 의미입니다. 그 타입의 대상자가 누군지 말해주는거죠.</p>
+
+<p>아래 이미지처럼 대상자를 지목 하는거라고 보면 됩니다.</p>
+
+<p><img src="/assets/img/post/2018-09-02/img8.png" alt="" /></p>
+
+<p>그럼 결과를 볼까요?</p>
+
+<p><img src="/assets/img/post/2018-09-02/img9.png" alt="" /></p>
+
+<p><img src="/assets/img/post/2018-09-02/img10.png" alt="" /></p>
+
+<p>잘 넘어왔네요~ 스탠포드 교수님께선 이런 방식을 델리게이트 패턴이라 칭하더군요! (유투브 공개강의) (아직 용어가 어려워요)</p>
+
+<p>못난 아이패드 그림이었지만! 핵심이었으니 꼭 그린 부분을 중점으로 봐야 이해가 수월 할것 같네요</p>
+
+<p>다음번엔 Protocol로 데이터 넘기는 방식을 써보겠습니다.</p>
+
+    </article> <hr />
+
+    
+
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/articles/2018/08/19/swift-Generic-&-Codable.html">Swift - Generic & Codable</a>
+      </h1>
+      <meta itemprop="keywords" content="Swift,Generic,Codable" />
+      <p class="post-meta">
+      카테고리: 
+      
+      <a href="/categories/#articles">articles</a>
+      
+      <br>
+      
+      태그: 
+      
+      <a href="/tags/#Swift" title="Swift">Swift</a>, 
+      
+      <a href="/tags/#Generic" title="Generic">Generic</a>, 
+      
+      <a href="/tags/#Codable" title="Codable">Codable</a>
+      
+      <br>
+      
+      <time itemprop="datePublished" datetime="2018-08-19">
+      작성일: Aug 19, 2018
+      </time>
+      </p>
+    </header>
+
+    <article class="post-content" itemprop="articleBody">
+      <p>앞선 포스팅글들의 종합판!!</p>
+
+<p><br /></p>
+
+<p>앞서 포스팅한것들을 나열해보면</p>
+
+<ol>
+  <li>Alamofire: 통신을 쉽게 해주는 라이브러리</li>
+  <li>Codable: Swift4부터 생긴것으로 JSON 데이터를 구조체로 만들어주는 굉장히 좋은 프로토콜</li>
+  <li>Escaping: 비동기식 함수(ex: Alamofire)라 불가능했던 return값 처리를 가능하게 하는 방법</li>
+</ol>
+
+<p>크게 이렇게 3가지의 주제로 진행 되었다고 볼 수 있습니다.
+이번에 하게될 것은 이것들의 종합판이라 생각하면 될 것 같습니다.</p>
+
+<p>여기까지 오게된 이유는 개발을 하면서 느낀것이지만, 통신이 굉장히 많은데 이것들을 알기 전까진 굉장히 반복적인 코드를 계속 사용해왔다는 것을 느꼈습니다.</p>
+
+<p>그래서 어떻게하면 반복을 줄일까?로 시작해서 Codable, Escaping, Generic 등등을 익혀가면서 적용하게 되었습니다.</p>
+
+<p>최종적 목표는 <strong>반복을 줄여 불필요한 코드 줄이고 사용하기 쉽게 만들기</strong> 이것이 목표입니다</p>
+
+<h1 id="q-가정">Q. 가정</h1>
+
+<p>여태껏 했던것으로도 충분히 시간과 코드를 줄일 수 있습니다. 그렇지만! Codable을 사용할 형태가 많아진다면? 복잡해질것입니다.</p>
+
+<p>우선 구조체 1개가 있습니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">StructA</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">hp</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>총 3개의 구조인데요, 앞서 포스팅 했던 Codable과 Escaping을 이용한다면  Alamofire를 통해 얻은 응답값을 쉽게 해당 구조체의 객체를 얻어낼 수 있습니다.</p>
+
+<p>다른 가정을 보겠습니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">StructA</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">hp</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">StructB</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">country</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">address</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">StructC</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">data1</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">data2</span><span class="p">:</span> <span class="kt">StructB</span><span class="p">?</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이번엔 구조체가 3개 입니다. URL도 3개를 사용할 것 입니다! 그렇담 여기서 Codable / Escaping / Alamofire를 똑같이 이용하려면  3가지의 Decodable 함수가 있어야 할까요?</p>
+
+<p>네 있어야합니다.</p>
+
+<p>Generic을 사용하지 않는다면 말이죠.</p>
+
+<h1 id="generic">Generic</h1>
+
+<blockquote>
+  <p>영어 사전 generic</p>
+
+  <ol>
+    <li>일반적인</li>
+    <li>포괄적인</li>
+    <li>총칭적인</li>
+  </ol>
+</blockquote>
+
+<p>제네릭은 다소 낯설수도 있습니다. 저도 책에서 봤지만 책에서 비중도 크지 않았고, 예시는 있었으나 어떻게 사용할지 몰랐습니다.</p>
+
+<p>영어사전에서 1번의 의미와 같이 일반적인 경우로 만들어줄 수 있습니다.</p>
+
+<p>이정도 말로는 이해가 힘들기에 코드로 설명을 하겠습니다. 아래는 애플에서 제공하는 예시입니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 두 숫자 변경</span>
+<span class="kd">func</span> <span class="nf">swapTwoInts</span><span class="p">(</span><span class="n">_</span> <span class="nv">v1</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">_</span> <span class="nv">v2</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">temp</span> <span class="o">=</span> <span class="n">v1</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">v2</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="n">temp</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="nv">value1</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">var</span> <span class="nv">value2</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"value1 = </span><span class="se">\(</span><span class="n">value1</span><span class="se">)</span><span class="s">, value2 = </span><span class="se">\(</span><span class="n">value2</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1">// 함수 호출</span>
+<span class="nf">swapTwoInts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">value1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"value1 = </span><span class="se">\(</span><span class="n">value1</span><span class="se">)</span><span class="s">, value2 = </span><span class="se">\(</span><span class="n">value2</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>어렵지 않은 코드입니다. 두가지 인자를 넣고 서로 값을 바꿔주는 것이고,</p>
+
+<p>함수인자 타입에 <strong>inout</strong>이 붙은 이유는 외부의 변수값을 바꿔주기 위해서 입니다. <strong>보통의 경우 값이 복사</strong>해서 들어가기 때문에 함수내에서 inout이 없다면 v1과 v2에 값을 할당할 수 없습니다.</p>
+
+<p><strong>inout</strong>을 적용해준다면 이를 가능캐합니다. 함수 호출 코드보면 &amp;가 있습니다.</p>
+
+<p>c언어를 배우셨다면 포인터 부분에서 &amp;를 이용하여 주소값을 사용할 수 있었습니다. 그와 마찬가지로 생각이 되며</p>
+
+<p>실제 value1과 value2가 있는 <strong>주소 값을 함수에 넣기 때문에</strong> 함수에서 값 변경시 <strong>실제로 변경</strong>이 됩니다.</p>
+
+<p>그런데, Int형만 해당이 되기때문에 String이나 Double일 경우 사용이 불가능한 함수입니다.</p>
+
+<p>오버라이드를 사용해서 모든 타입에 해야할까요? 그러면 굉장히 불편할것입니다.</p>
+
+<p><strong>이런 문제가 있을 때, Generic이 사용됩니다.</strong></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 두 변수값 교환</span>
+<span class="kd">func</span> <span class="n">swapTwoInts</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">v1</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">T</span><span class="p">,</span> <span class="n">_</span> <span class="nv">v2</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">temp</span> <span class="o">=</span> <span class="n">v1</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">v2</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="n">temp</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>여기서 <strong>T</strong>가 추가되었는데요, 낯설수 있지만 간단합니다. T는 제가 임의로 적어서 만든 제네릭 타입명입니다.</p>
+
+<p>그렇다는건 T가 아니라 V가 될수도 있고 Test가 될수도 있고 마음대로 입니다. 일반적으로 T를 쓰는것 같더군요.</p>
+
+<p>String형과 Int형을 제네릭을 이용한 함수 하나로 사용한 결과 입니다.</p>
+
+<p><img src="/assets/img/post/2018-08-17/img1.png" alt="" /></p>
+
+<p>함수 하나를 일반적인 형태로 사용하게 되었습니다! ‘일반적인 형태로’ « ‘일반적’ « ‘Generic!!’ 훗</p>
+
+<p>그렇다면 초반으로 돌아가 가정이었던, 3가지 다른 구조체를 Codable을 이용하여 객체로 만들어주는 함수를</p>
+
+<p>3개 만드는게 아니라 <strong>일반적으로 쓰일 함수</strong>를 적용하는게 이 글의 최종 목적입니다.</p>
+
+<h1 id="enum">Enum</h1>
+
+<p>우선 enum을 이용해 url들을 정의하고 이를 이용하는 함수도 만들었습니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">ListURL</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">url1</span> <span class="o">=</span> <span class="s">"http://localhost/Generic1.php"</span>
+        <span class="k">case</span> <span class="n">url2</span> <span class="o">=</span> <span class="s">"http://localhost/Generic2.php"</span>
+        <span class="k">case</span> <span class="n">url3</span> <span class="o">=</span> <span class="s">"http://localhost/Generic3.php"</span>
         
-          <a href="https://github.com/JiSeobKim">
-            <span class="icon">
-              <svg viewBox="0 0 16 16">
-                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
-              </svg>
-            </span>
-            Github
-            <!-- <span>JiSeobKim</span> -->
-          </a>
-          
-          <span class="point"> · </span>
-          <span><a href="https://github.com/JiSeobKim/JiSeobKim.github.io/blob/master/index.md">View source</a></span>
-          <span class="point"> · </span>
-          <span><a class="newpost" href="javascript:;">New post</a></span>
-		  <span class="point"> · </span>
-          <span><a href="/feed.xml">RSS</a></span>
-          <span class="point"> · </span>
-          <span>&copy; 2018 JiseobKim</span>
-      </div>
-    </div>
+        <span class="kd">func</span> <span class="nf">alamofireDefault</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NSDictionary</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// url 정의</span>
+            <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="k">self</span>
+            <span class="c1">// 통신 진행</span>
+            <span class="k">let</span> <span class="nv">network</span> <span class="o">=</span> <span class="kt">Alamofire</span><span class="o">.</span><span class="nf">request</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">rawValue</span><span class="p">)</span>
+            <span class="c1">// 통신 응답</span>
+            <span class="n">network</span><span class="o">.</span><span class="n">responseJSON</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+                
+                <span class="k">switch</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">object</span><span class="p">):</span>
+                    <span class="c1">// NSDictionary 형태로 변경</span>
+                    <span class="k">guard</span> <span class="k">let</span> <span class="nv">nsDic</span> <span class="o">=</span> <span class="n">object</span> <span class="k">as?</span> <span class="kt">NSDictionary</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="c1">// 캐스팅 실패</span>
+                        <span class="nf">handler</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+                        <span class="k">return</span>
+                    <span class="p">}</span>
+                    <span class="c1">// 캐스팅 성공 &amp; 반환</span>
+                    <span class="nf">handler</span><span class="p">(</span><span class="n">nsDic</span><span class="p">)</span>
+                    <span class="k">break</span>
+                    
+                <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">e</span><span class="p">):</span>
+                    <span class="c1">// 통신 실패</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+                    <span class="nf">handler</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>앞선 포스팅의 대부분이 저기에 들어가있습니다. enum, Alamofire, Escaping!</p>
+
+<blockquote>
+  <p>Enum(열거형)의 장점</p>
+
+  <p>선언한 케이스 외에는 적용 불가능 -&gt; 오류 가능성 낮춤</p>
+</blockquote>
+
+<p>열거형 안에 관련 함수도 만들어줬습니다. 사용은 어떻게 할까요?</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 선언</span>
+<span class="k">let</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">ListURL</span> <span class="o">=</span> <span class="o">.</span><span class="n">url1</span>
+<span class="c1">// ListURL 안의 함수 호출</span>
+<span class="n">url</span><span class="o">.</span><span class="nf">alamofireDefault</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">())</span> <span class="p">{</span> <span class="p">(</span><span class="n">nsDic</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="n">nsDic</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>결과값을 보기전에 각 url의 JSON 형태의 응답값들은 다음과 같습니다</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//url1
+{"hp":"01012341234","name":"KJS","age":27}
+
+//url2
+{"country":"Korea","address":"Seoul"}
+
+//url3
+{"data1":{"hp":"01012341234","name":"KJS","age":27},"data2":{"country":"Korea","address":"Seoul"}}
+</code></pre></div></div>
+
+<p>url3의 경우 data1에는 url1의 응답과 같은 값, data2의 경우는 url2의 응답값과 같은 값입니다.</p>
+
+<p><img src="/assets/img/post/2018-08-17/img2.png" alt="" /></p>
+
+<p>url1만 결과는 쉽게 나왔구요!</p>
+
+<p>근데 여기서 Codable은 쓰지 않고 NSDictionary 형태로만 캐스팅후 돌려줬습니다.</p>
+
+<p>그럼 이때 상황에 따라 Codable을 이용할것입니다.</p>
+
+<p>변경전</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 선언</span>
+<span class="k">let</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">ListURL</span> <span class="o">=</span> <span class="o">.</span><span class="n">url1</span>
+<span class="c1">// ListURL 안의 함수 호출</span>
+<span class="n">url</span><span class="o">.</span><span class="nf">alamofireDefault</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">())</span> <span class="p">{</span> <span class="p">(</span><span class="n">nsDic</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="n">nsDic</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>변경후</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">ListURL</span> <span class="o">=</span> <span class="o">.</span><span class="n">url1</span>
+        
+        
+<span class="n">url</span><span class="o">.</span><span class="nf">alamofireDefault</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">())</span> <span class="p">{</span> <span class="p">(</span><span class="n">nsDic</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="n">nsDic</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="c1">// JSON으로 변환</span>
+            <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="n">prettyPrinted</span><span class="p">)</span>
+			<span class="c1">// Decodable 사용</span>
+            <span class="k">let</span> <span class="nv">codableObject</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">StructA</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"""
+                hp : </span><span class="se">\(</span><span class="n">codableObject</span><span class="o">.</span><span class="n">hp</span><span class="o">!</span><span class="se">)</span><span class="s">
+                name : </span><span class="se">\(</span><span class="n">codableObject</span><span class="o">.</span><span class="n">name</span><span class="o">!</span><span class="se">)</span><span class="s">
+                age : </span><span class="se">\(</span><span class="n">codableObject</span><span class="o">.</span><span class="n">age</span><span class="o">!</span><span class="se">)</span><span class="s">
+                """</span><span class="p">)</span>
+
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이해가 안된다면 아래 링크를 참고해주세요</p>
+
+<p><a href="https://jiseobkim.github.io/2018/07/21/swift-Alamofire와-Codable.html">참고 : Alamofire와 Codable</a></p>
+
+<p>이해가 됐단 가정하에 포인트는 Decodable 사용 부분입니다</p>
+
+<p><img src="/assets/img/post/2018-08-17/img3.png" alt="" /></p>
+
+<p>decode함수의 인자가 2가지 입니다. Decodable프로토콜과 데이타</p>
+
+<p>여기서 from부분은 JSON변환된 데이터니 공통 사용이 되지만, 첫번째 인자의 경우는 사용이 안됩니다.</p>
+
+<p>이를 함수로 바꿔도 굉장히 난감할것입니다.</p>
+
+<p>위 Generic파트 처럼 여러개가 사용이 될 것입니다.</p>
+
+<p>Generic파트에서 해당 문제를 해결한것처럼 <strong>여기서도 Generic을 이용해봅시다.</strong></p>
+
+<p>함수를 하나 만듭니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="n">useDecodable</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">nsDic</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span> <span class="p">{</span>
+    <span class="c1">// JSON 변환</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="c1">// JSON 변환</span>
+        <span class="k">let</span> <span class="nv">JSONData</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">nsDic</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="n">prettyPrinted</span><span class="p">)</span>
+        <span class="c1">// Decodable을 이용해 객체를 얻음</span>
+        <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">JSONData</span><span class="p">)</span>
+        <span class="c1">// data 돌려주기</span>
+        <span class="k">return</span> <span class="n">data</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+        <span class="c1">// 에러시 출력</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+        <span class="c1">// nil돌려주기</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>T라는 타입을 제네릭 타입을 만들었고 문제가 되었던 decode쪽을 보면 아래와 같습니다</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 일반적인 타입을 넣음 T.self</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">JSONData</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>위와 같이 일반적인 타입이 들어가게 됩니다.</p>
+
+<p>( 주의 !! <strong>이 방식의 단점은 type이라는 인자는 타입만 주기위해 가져올뿐 실제로 사용이 되지 않는다</strong>는 단점이 있습니다. )</p>
+
+<p>실행이 될까요?</p>
+
+<p><img src="/assets/img/post/2018-08-17/img4.png" alt="" /></p>
+
+<p>네 안됩니다. 그 이유는 뭘까요? 결론을 얘기하면 <strong>제네릭 타입인 T는 Decodable 프로토콜이 없다</strong>는 것 입니다.</p>
+
+<p>제네릭 T에 프로토콜을 추가해주면 됩니다. 이렇게</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="n">useDecodable</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">nsDic</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p>함수명 옆에 있던 T 화살표괄호 안에 위와 같이 정의해주면 됩니다.</p>
+
+<p>복붙을 할 누군가 있을진 모르겠지만 편의를 위해 풀코드!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="n">useDecodable</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">nsDic</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span> <span class="p">{</span>
+    <span class="c1">// JSON 변환</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="c1">// JSON 변환</span>
+        <span class="k">let</span> <span class="nv">JSONData</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">nsDic</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="n">prettyPrinted</span><span class="p">)</span>
+        <span class="c1">// Decodable을 이용해 객체를 얻음</span>
+        <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">JSONData</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>에러는 사라졌습니다.</p>
+
+<p><img src="/assets/img/post/2018-08-17/img5.png" alt="" /></p>
+
+<p>그럼 사용법쪽으로 가서</p>
+
+<p>변경전</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 선언</span>
+<span class="k">let</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">ListURL</span> <span class="o">=</span> <span class="o">.</span><span class="n">url1</span>
+<span class="c1">// ListURL 안의 함수 호출</span>
+<span class="n">url</span><span class="o">.</span><span class="nf">alamofireDefault</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">())</span> <span class="p">{</span> <span class="p">(</span><span class="n">nsDic</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="n">nsDic</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>변경후</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">ListURL</span> <span class="o">=</span> <span class="o">.</span><span class="n">url1</span>
+        
+<span class="n">url</span><span class="o">.</span><span class="nf">alamofireDefault</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">())</span> <span class="p">{</span> <span class="p">(</span><span class="n">nsDic</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="n">nsDic</span> <span class="p">{</span>
+
+        <span class="k">switch</span> <span class="n">url</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">url1</span><span class="p">:</span>
+            <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="nf">useDecodable</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructA</span><span class="p">(),</span> <span class="nv">nsDic</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">object</span><span class="o">!</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">url2</span><span class="p">:</span>
+            <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="nf">useDecodable</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructB</span><span class="p">(),</span> <span class="nv">nsDic</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">object</span><span class="o">!</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">url3</span><span class="p">:</span>
+            <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="nf">useDecodable</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">StructC</span><span class="p">(),</span> <span class="nv">nsDic</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">object</span><span class="o">!</span><span class="p">)</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>switch를 이용해 경우를 나누었고, 이는 보여주기 위해 다 썼습니다. 다르게 유동적으로 활용하면 좋을것입니다!</p>
+
+<p>지금 저 상태는 단순히 보여주기 위함입니다~!</p>
+
+<p>포인트는!! <strong>함수 한가지를 가지고 서로 다른 구조체일지라도 Codable을 이용할 수 있다는 점</strong>입니다. 실제로는 저 함수만 필요할때 따로 사용을 하겠죠?</p>
+
+<p>결과를 보면</p>
+
+<p>URL 1의 경우</p>
+
+<p><img src="/assets/img/post/2018-08-17/img6.png" alt="" /></p>
+
+<p>URL 2의 경우</p>
+
+<p><img src="/assets/img/post/2018-08-17/img7.png" alt="" /></p>
+
+<p>URL 3의 경우</p>
+
+<p><img src="/assets/img/post/2018-08-17/img8.png" alt="" /></p>
+
+<p>모두 잘나왔죠???</p>
+
+<p>저 같은 경우 이런것을 이용해서 좀 더 편하게 실제 사용하고 있습니다! 좀더 편한 방법을 찾아 발견하면 포스팅 해야겠습니다.</p>
+
+<p>이로써 Alamofire, Codable, Escaping, Generic을 모두 사용한 이번 포스팅을 마칩니다!</p>
+
+    </article> <hr />
+
+    
+
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html">Swift - 서버 연동 기본과 Encodable</a>
+      </h1>
+      <meta itemprop="keywords" content="Swift,Network,Encodable" />
+      <p class="post-meta">
+      카테고리: 
+      
+      <a href="/categories/#articles">articles</a>
+      
+      <br>
+      
+      태그: 
+      
+      <a href="/tags/#Swift" title="Swift">Swift</a>, 
+      
+      <a href="/tags/#Network" title="Network">Network</a>, 
+      
+      <a href="/tags/#Encodable" title="Encodable">Encodable</a>
+      
+      <br>
+      
+      <time itemprop="datePublished" datetime="2018-08-05">
+      작성일: Aug 5, 2018
+      </time>
+      </p>
+    </header>
+
+    <article class="post-content" itemprop="articleBody">
+      <p>라이브러리(Almofire) 없이 통신하기!
+<br /></p>
+
+<p>이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 &lt; Encodable&amp;Decodable &gt;로 이루어져있었습니다.</p>
+
+<p><a href="https://jiseobkim.github.io/2018/07/21/swift-Alamofire와-Codable.html">참고: Alamofire와 Codable</a>
+<a href="https://jiseobkim.github.io/2018/07/29/swift-Alamofire와-Escaping.html">참고: Alamofire와 Escaping</a></p>
+
+<p>위 내용중 Decodable을 이용하여, 별도의 비강제 해제처리 없이 응답값으로 만든 새 인스턴스를 얻는건 완소기능이었죠.</p>
+
+<p>하지만, Encodable을 사용하진 못했습니다. 실제로 사용할때 Alamofire의 파라미터를 넣을때 형식은 아래와 같습니다</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">param</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nv">value1</span> <span class="p">:</span> <span class="n">a1</span><span class="p">,</span>
+  <span class="nv">value2</span> <span class="p">:</span> <span class="n">a2</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>딕셔너리 형태이며 키는 String 값은 Any 타입입니다. 하지만 Encodable을 이용한다면, JSON 형태의 데이터로 들어가게 됨으로 사용이 불가능 했죠
+(Alamofire Codable 이라 검색하면 관련 라이브러리는 많이 있습니다.)</p>
+
+<p>솔직히 개인적으론 라이브러리가 많이 추가되는건 좋지 않다고 생각합니다, 훌륭한 라이브러리들이 많지만 내가 원하는 기능 외에도 차지하는것들이 많을 수도 있기에
+자신이 비교적 쉽게 구현을 할 수 있다면, 필요한 정도로만 만들어 쓰는게 좋다고 <strong>개인적으로 생각합니다!</strong></p>
+
+<p>이번엔 Encodable을 이용하기 위해 라이브러리 없이 통신을 구현해보고자 합니다!</p>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="서버-연동-기본">서버 연동 기본</h1>
+
+<h2 id="restful-api">RESTFul API</h2>
+
+<p>RESTFul API의 자세한건 나중에 알아보고 쉽게 통신을 하기 위해 생긴 구조적 약속? 정도로 생각을 합시다!</p>
+
+<p>RESTFull API를 찾다보면 CRUD라 용어가 나옵니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">CRUD</th>
+      <th style="text-align: center">의미</th>
+      <th style="text-align: center">Http Method</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">C</td>
+      <td style="text-align: center">Create</td>
+      <td style="text-align: center">POST</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">R</td>
+      <td style="text-align: center">Read</td>
+      <td style="text-align: center">GET</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">U</td>
+      <td style="text-align: center">Update</td>
+      <td style="text-align: center">PUT</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">D</td>
+      <td style="text-align: center">Delete</td>
+      <td style="text-align: center">DELETE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이러한 용어들의 약어이며, 만들고, 읽고, 수정하고, 삭제할때 각각 기능을 쓰게 되는것입니다.</p>
+
+<p>이글에선 CRUD 이런건 모르더라도 해당 메소드들이 사용되기에 (POST / GET / PUT / DELETE) 4가지가 있다는걸 숙지하고,</p>
+
+<p>이 4가지 외엔 사용이 안되기에, 이럴 경우엔 열거형(enum)이 제격입니다</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">HttpMethod</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">post</span> <span class="o">=</span> <span class="s">"POST"</span>
+        <span class="k">case</span> <span class="k">get</span> <span class="o">=</span> <span class="s">"GET"</span>
+        <span class="k">case</span> <span class="n">put</span> <span class="o">=</span> <span class="s">"PUT"</span>
+        <span class="k">case</span> <span class="n">delete</span> <span class="o">=</span> <span class="s">"DELETE"</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>이제 해당 필요한 자리엔 <strong><code class="highlighter-rouge">HTTPMethod</code></strong> 를 쓰면 됩니다.</p>
+
+<p><br /></p>
+
+<h2 id="구조">구조</h2>
+
+<p>오늘 필요한 함수를 미리 한번 훑어 보면 아래와 같습니다</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">requestTest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">HttpMethod</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+    
+    <span class="c1">// 1. 요청 객체 생성</span>
+    <span class="k">var</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+    <span class="c1">// 2. 요청 방식</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">httpMethod</span> <span class="o">=</span> <span class="n">type</span><span class="o">.</span><span class="n">rawValue</span>
+    <span class="c1">// 3. 헤더</span>
+    <span class="n">request</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="nv">forHTTPHeaderField</span><span class="p">:</span> <span class="s">"Content-Type"</span><span class="p">)</span>
+    <span class="c1">// 4. 바디</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">httpBody</span> <span class="o">=</span> <span class="n">body</span>
+    <span class="c1">// 5. Session</span>
+    <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span>
+    <span class="k">let</span> <span class="nv">task</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+        <span class="k">guard</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">!.</span><span class="n">localizedDescription</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">anyData</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">data</span><span class="o">!</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">anyData</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+    <span class="p">}</span>
+    <span class="c1">// 6. 실행</span>
+    <span class="n">task</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="1-요청-객체-생성">1. 요청 객체 생성</h3>
+
+<p>통신을 요청할때 사용되는 <strong>URLRequest</strong> 라는 Swift 기본 제공 구조체가 있습니다. 여기에 인자 값으로는 URL만 넣어주면 객체가 생성됩니다. 쉽죠?</p>
+
+<p><br /></p>
+
+<h3 id="2-요청-방식">2. 요청 방식</h3>
+
+<p>위에서 만든 열거형이 사용될때가 왔습니다. 함수를 내용없이 다시 보면</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">requestTest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">HttpMethod</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p>2번째 인자값인  <strong><code class="highlighter-rouge">type</code></strong> 이 위에 만든 열거형입니다!</p>
+
+<p>실제 사용될땐 이렇게 됩니다</p>
+
+<p><img src="/assets/img/post/2018-08-05/img1.png" alt="" /></p>
+
+<p>빨간색 오류 없을때 캡쳐 실패해서 아쉽지만, 중요한건 입력 목록에 (delete / get / post / put) 만 뜨는 점이 매력적이죠</p>
+
+<p>다른 값은 입력이 불가능합니다. 즉, 오타나 다른 값을 넣어서 실수하는것이 방지 되는것이죠.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 2. 요청 방식</span>
+<span class="n">request</span><span class="o">.</span><span class="n">httpMethod</span> <span class="o">=</span> <span class="n">type</span><span class="o">.</span><span class="n">rawValue</span>
+</code></pre></div></div>
+
+<p>위의 코드에 보면 request라는 구조체에는 httpMethod라는 <strong>String 타입</strong>인 저장 프로퍼티가 있습니다. (저에겐 저장 프로퍼티는 잘 안쓰는 말이라 어색하지만 블로그이기에 사용해야할것 같아서 사용했습니다! Struct 내의 선언된 변수로 생각하시면 됩니다.)</p>
+
+<p>근데 보면 <strong>type.rawValue</strong> 라는것이 써있는데 이건 간단합니다. type이라고 안쓰는 이유는 type은 자료형이 HttpMethod입니다. 즉 String이 아니죠, 그렇지만 각각 case의 String값이 부여 되어있었죠. 그 값들을 사용하기 위해 위와 같은 방법으로 값을 꺼내올 수 있습니다.</p>
+
+<p><br /></p>
+
+<h3 id="3-헤더-header">3. 헤더 (Header)</h3>
+
+<p>여기서 통신에 필요한 개념이 나옵니다. 바로 <strong>헤더</strong>와 <strong>바디</strong> 입니다. 좀 더 쉽게 표현하자면, 통신의 정보(Header)와 전달할 내용(Body)라고 생각하고 있습니다. <strong>(통신에 대해 지식이 짧기때문에 조금더 찾아보시는걸 권장합니다)</strong></p>
+
+<p>여긴 헤더 파트이니 헤더만 보면!</p>
+
+<p>적힌곳에 컨텐츠 타입이란 것이 있습니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 3. 헤더</span>
+    <span class="n">request</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="nv">forHTTPHeaderField</span><span class="p">:</span> <span class="s">"Content-Type"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>즉, 내가 무언가 정보를 전달할껀데 이건 JSON으로 되어있어! 이런 정보입니다. (틀리다면 말씀해주세요!)</p>
+
+<blockquote>
+  <p>이 통신의 타입(“Content-Type”)은 JSON(“application/json”) 이야! 정도??</p>
+</blockquote>
+
+<p>여기엔 컨텐츠 타입말고도 다른것도 들어갈수 있습니다. 정보를 비밀스럽게 담고있는 토큰(Token)같은 것들?? 자세한건 나중에!</p>
+
+<p><br /></p>
+
+<h3 id="4-바디body">4. 바디(Body)</h3>
+
+<p>그럼 이제 바디를 설명하기전에 로그인 절차를 생각해봅시다</p>
+
+<ol>
+  <li>아이디 입력</li>
+  <li>비밀번호 입력</li>
+  <li>로그인 버튼 클릭</li>
+</ol>
+
+<p>이런 과정이 있겠죠. 여기서 3은 기능이고 1,2번은 정보입니다. 즉 파라미터죠 이게 바디입니다.</p>
+
+<p>(Alamofire에선 [String:Any]에 해당되고 해당 값들은 라이브러리내에선 JSON 데이터로 형변환하게됩니다!)</p>
+
+<p>우리가 로그인을 요청할때 이런 파라미터는 꼭 필요합니다.</p>
+
+<p>하지만 정보를 얻어오기만 한다면? 예를들어 음, 현재 시간을 가져오는 API일 경우 필요가 없죠 그래서</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">requestTest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">HttpMethod</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p>위와 같이 body에 해당 되는 데이터는 없을수도 있기에 옵셔널 처리 하고 default는 nil로 해놨기에 함수 사용할땐 없애도 되는 부분입니다. 이렇게</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 바디없이 사용</span>
+<span class="nf">requestTest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">post</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="5-세션-session">5. 세션 (Session)</h3>
+
+<p>세션은 코드가 위것들보단 조금 어려워보입니다. 일단 코드를 보면</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Session</span>
+	<span class="c1">// 1. 객체 생성</span>
+    <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span>
+	<span class="c1">// 2. 이 객체가 할일 (with: 요청값)</span>
+    <span class="k">let</span> <span class="nv">task</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+		<span class="c1">// 2-1. error가 발생여부</span>
+        <span class="k">guard</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 2-2. error 출력</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">!.</span><span class="n">localizedDescription</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="c1">// 2-3. 받은 Data을 Any 형태로 변환</span>
+            <span class="k">let</span> <span class="nv">anyData</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">data</span><span class="o">!</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span>
+            <span class="c1">// 2-4. 결과값 출력</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">anyData</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+        <span class="p">}</span>
+    
+    <span class="p">}</span>
+	<span class="c1">// 3. 실행    </span>
+	<span class="n">task</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ol>
+  <li>통신하게될 객체 생성</li>
+  <li>요청값(위에서 만든 URLRequest)를 가지고 통신 및 응답값 처리(클로져)를 구성</li>
+  <li>2번 실행</li>
+</ol>
+
+<p>이렇게 됩니다. 1과 3은 단순하고 2를 좀더 보면</p>
+
+<p>통신을 위한 셋팅이라고 생각하면 됩니다! 뒤에 클로져의 경우 응답이 왔을 경우 처리이며, 그 값들을보면</p>
+
+<ol>
+  <li>data: JSON Data</li>
+  <li>response: 페이지의 응답</li>
+  <li>error: 에러났을 경우 정보</li>
+</ol>
+
+<p>2의 경우엔 여러가지 정보가 있습니다. 인터넷중에 404 에러 페이지라는 오류 보신적있나요?</p>
+
+<p>이는 상태 코드중 하나입니다. 페이지가 없다는 것이고, 200의 경우 이상없이 성공 했을 경우입니다!</p>
+
+<p>여기선 Status Code라고 값을 돌려줍니다. 그리고 “Content-Type” 등등 오는데, 지금은 이값을 이용하여 따로 사용하는건 없습니다!</p>
+
+<p>이건 데이터를 받은게 아니라 이 통신 응답의 정보를 받은 겁니다!</p>
+
+<p>해당 값 출력하면 아래와 같아요</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="kt">NSHTTPURLResponse</span><span class="p">:</span> <span class="mh">0x604000036ec0</span><span class="o">&gt;</span> <span class="p">{</span> <span class="kt">URL</span><span class="p">:</span> <span class="p">(</span><span class="n">주소값이</span> <span class="n">나와요</span><span class="p">)</span> <span class="p">}</span> <span class="p">{</span> <span class="kt">Status</span> <span class="kt">Code</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="kt">Headers</span> <span class="p">{</span>
+    <span class="kt">Connection</span> <span class="o">=</span>     <span class="p">(</span>
+        <span class="s">"Keep-Alive"</span>
+    <span class="p">);</span>
+    <span class="s">"Content-Type"</span> <span class="o">=</span>     <span class="p">(</span>
+        <span class="s">"application/json;charset=UTF-8"</span>
+    <span class="p">);</span>
+    <span class="kt">Date</span> <span class="o">=</span>     <span class="p">(</span>
+        <span class="s">"Sun, 05 Aug 2018 11:57:54 GMT"</span>
+    <span class="p">);</span>
+    <span class="s">"Keep-Alive"</span> <span class="o">=</span>     <span class="p">(</span>
+        <span class="s">"timeout=5, max=100"</span>
+    <span class="p">);</span>
+<span class="p">}</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>data == Body</p>
+
+  <p>response == Header</p>
+
+  <p>라고 생각하면 편해요</p>
+
+</blockquote>
+
+<p>2-1,2는 에러났을 땐 출력, 아니면 코드진행 이니 심플하게 패스</p>
+
+<p><br /></p>
+
+<p>이제 여기가 핵심입니다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// 2-3. 받은 Data을 Any 형태로 변환</span>
+    <span class="k">let</span> <span class="nv">anyData</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">data</span><span class="o">!</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span>
+    <span class="c1">// 2-4. 결과값 출력</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">anyData</span><span class="p">)</span>
+    <span class="c1">// + 추가 확인</span>
+    <span class="k">if</span> <span class="n">anyData</span> <span class="k">is</span> <span class="kt">Any</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"It's Any"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>do ~ try ~ catch</strong>를 짧게 설명하자면</p>
+
+<p><strong>do</strong>는 <strong>“내가 무언가 할건데, 이안에서 오류가 날수있어!!”</strong> 하는 부분입니다</p>
+
+<p><strong>try</strong>는 <strong>“do 안에서 이 코드가 오류 날수 있는부분이야!!”</strong></p>
+
+<p><strong>catch</strong>는 <strong>“오류 났을땐 이렇게 처리해줘!”</strong> 입니다.</p>
+
+<blockquote>
+  <p>try 부분에서 error가 났을 경우 에러를 던진다고 표현합니다. 던졌으면 누가 받아야겠죠?</p>
+
+  <p>그 누군가가 catch 입니다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>위 코드에서 에러가 발생할수 있는 부분은 JSON 데이터를 형변환 하다가 오류가 날 수 있습니다.</p>
+
+<p>그래서 try를 써줘서 대응을 하게 됩니다. 그럼 위에 코드에만 추가로 적은 (+ 추가확인)부분은 저번편에서도 나왔지만</p>
+
+<p>“저 객체의 타입 is Any” 이며 결과 값은 Boolean 형입니다. 타입을 확인 하는 용도입니다! 콘솔창 결과는 아래와 같습니다</p>
+
+<p><img src="/assets/img/post/2018-08-05/img2.png" alt="" /></p>
+
+<p>Any 타입입니다! Alamofire에서 response의 성공시 가져온 값에 타입 기억이 나시나요?</p>
+
+<p>전에 쓰던 이미지를 가져왔습니다.</p>
+
+<p><img src="/assets/img/post/2018-08-05/img3.png" alt="" /></p>
+
+<p>response라는 응답값을 가지고 통신 성공하였을시 obj로 받았는데 이게 Any 형이었죠.</p>
+
+<p>이게 위에서 anyData에 해당되는겁니다!</p>
+
+<p>그럼 이값을 돌려주고 싶다면 지난편에 썼던 <strong>escaping</strong>을 사용하면 되겠죠? 하지만 여기선 패스</p>
+
+<p><br /></p>
+
+<p>기본 통신이 이렇게 끝났습니다!</p>
+
+<p>그럼 이제 이 함수를 사용해야겠죠</p>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="encodable">Encodable</h1>
+
+<p>글초반에 말했듯이  <strong><u>기본적인 Alamofire에선 Ecodable을 사용을 못했습니다.</u></strong></p>
+
+<p>여기서 <strong>포인트는</strong> 위의 함수의 바디값에 들어갈 구조체값을 <strong>Encodable을</strong> 이용하여 <strong>JSON 데이터 형식으로</strong> 바꿔주는것입니다.</p>
+
+<p>일단 구조체 부터 만들고.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">LoginData</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">pass</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>인스턴스를 만들고!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">info</span> <span class="o">=</span> <span class="kt">LoginData</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"KJS"</span><span class="p">,</span> <span class="nv">pass</span><span class="p">:</span> <span class="s">"1234"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>이제 형변환을!!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// 1. JSON 데이터로 변환</span>
+    <span class="k">let</span> <span class="nv">JSONData</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+    <span class="c1">// 2. 위에 만든 함수 실행</span>
+    <span class="nf">requestTest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">JSONData</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// 3. 오류 났을 경우</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>1의 경우 <strong>JSONEncoder</strong>라는 것을 사용하게 됩니다. 이것을 <strong>try</strong> 하게 되고 실패시 <strong>catch</strong> 로 오류를 던지겠죠?</p>
+
+<p>성공적으로 JSONData 객체가 만들어졌을 경우 2를 실행하여 우리가 만든 함수를 실행하게 됩니다! 결과를 볼까요?</p>
+
+<p><strong>( 보안상 URL은 숨김 처리! )</strong></p>
+
+<p><img src="/assets/img/post/2018-08-05/img4.png" alt="" /></p>
+
+<p>네 오류 났습니다. 이유는 Encodable 프로토콜을 구조체에서 빼먹었기때문입니다! 강조를 위해 뺐습니다. 프로토콜을 추가해줍시다.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">LoginData</span><span class="p">:</span> <span class="kt">Encodable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">pass</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그리고 실행!</p>
+
+<p><img src="/assets/img/post/2018-08-05/img5.png" alt="" /></p>
+
+<p>네 오류가 없습니다!! 결과창은 보안상 숨겼습니다 ㅎㅎ 그래도 플레이 그라운드에서 빨간줄 안떴으니 JSON 형변환 무사히 마쳤단걸 볼수 있었습니다!!</p>
+
+<p>ps.</p>
+
+<p>글 쓰다보니 네트워크 기본쪽이 많이 빈약한걸 느끼네요, 리스트에 적어놓고 더 공부해야겠습니다. 이만!</p>
+
+
+    </article> <hr />
+
+    
+
   </div>
+</div>
+
+    <section class="pager">
+  
+  
+  <li class="next"><a href="/page2/" title="이전 게시물">이전 게시물 &rarr;</a></li>
+  
+</section>
+
+
+  </div>
+  <div class="col-sm-2">
+<div class="sidebar-module about">
+  <h4>저자 소개</h4>
+  <img title="Kim Ji Seob" src="/assets/ItsMe.jpeg" alt="Kim Ji Seob"/>
+  <span>iOS 개발이 즐거운 개발자입니다!!</span>
+  <br />
+
+  
+
+  Contact:
+
+  
+  <a href="mailto:jiseob812@gmail.com" title="mailto: jiseob812@gmail.com">Email</a> /
+  
+  
+  <a href="https://github.com/JiSeobKim" title="GithubID: JiSeobKim">Github</a> /
+  
+  
+  <a href="https://twitter.com/" title="TwitterID: ">Twitter</a>
+  
+
+  
+
+</div>
+
+<div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>저작권</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
+
+  
+
+</div>
+
+
+<div class="sidebar-module">
+  <h4>최근 게시물</h4>
+  
+  <li>
+  <a href="/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/09/16/swift-DelegatePattern2.html" title="Swift - 화면간 데이터 전달. 2편" rel="bookmark">Swift - 화면간 데이터 전달. 2편</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/09/02/swift-DelegatePattern.html" title="Swift - 화면간 데이터 전달. 1편" rel="bookmark">Swift - 화면간 데이터 전달. 1편</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/08/19/swift-Generic-&-Codable.html" title="Swift - Generic & Codable" rel="bookmark">Swift - Generic & Codable</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html" title="Swift - 서버 연동 기본과 Encodable" rel="bookmark">Swift - 서버 연동 기본과 Encodable</a>
+  </li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>카테고리</h4>
+  
+  <li><a href="/categories/#articles" title="articles" rel="9">articles (9)</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>태그</h4>
+  
+    <a href="/tags/#Swift" title="Swift" rel="9">Swift</a> &nbsp;
+  
+    <a href="/tags/#Class" title="Class" rel="2">Class</a> &nbsp;
+  
+    <a href="/tags/#Struct" title="Struct" rel="1">Struct</a> &nbsp;
+  
+    <a href="/tags/#값전달" title="값전달" rel="1">값전달</a> &nbsp;
+  
+    <a href="/tags/#Inherite" title="Inherite" rel="1">Inherite</a> &nbsp;
+  
+    <a href="/tags/#Alamofire" title="Alamofire" rel="2">Alamofire</a> &nbsp;
+  
+    <a href="/tags/#Codable" title="Codable" rel="2">Codable</a> &nbsp;
+  
+    <a href="/tags/#Escaping" title="Escaping" rel="1">Escaping</a> &nbsp;
+  
+    <a href="/tags/#Network" title="Network" rel="1">Network</a> &nbsp;
+  
+    <a href="/tags/#Encodable" title="Encodable" rel="1">Encodable</a> &nbsp;
+  
+    <a href="/tags/#Generic" title="Generic" rel="1">Generic</a> &nbsp;
+  
+    <a href="/tags/#Delegate Pattern" title="Delegate Pattern" rel="1">Delegate Pattern</a> &nbsp;
+  
+    <a href="/tags/#Protocol" title="Protocol" rel="1">Protocol</a> &nbsp;
+  
+    <a href="/tags/#Method" title="Method" rel="1">Method</a> &nbsp;
+  
+    <a href="/tags/#Type Method" title="Type Method" rel="1">Type Method</a> &nbsp;
+  
+    <a href="/tags/#Instance Method" title="Instance Method" rel="1">Instance Method</a> &nbsp;
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>참조 링크</h4>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>모든 게시물</h4>
+
+  
+  
+  
+  
+  
+  <li id="2018" > <a href="/archives/#2018">2018</a></li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>
+
+
+</div>
+
+
+
+  
+
+  <footer class="site-footer">
+
+  <p>Copyright &copy; <a href="/">JS Blog</a></p>
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
+  on 
+  <a href="https://github.com/">Github</a>
+  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
+
 </footer>
 
 
-    <script type="text/javascript">
-    function OnClickNewPost()
-    {
-        var title = prompt("Please enter title of your post");
-        if (title!=null){
-            title = title.replace(" ", "-");
-            var currentdate = new Date();
-            var urlNewPage = "https://github.com/JiSeobKim/JiSeobKim.github.io/new/master?filename=_posts/" 
-                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
-                
-            var defaultText =  [
-                '---',
-                'layout: post',
-                'comments: true',
-                'categories: diary',
-                '---',
-                '## Title',
-                'text'
-                ].join('\n');
-            urlNewPage += "&value=" + encodeURIComponent(defaultText);
-            window.open(urlNewPage);
-        }
-    }
-    
-    $(function() {
-      // CreateNewPostLinks
-      $('.newpost').each(function(){
-          $(this).click(OnClickNewPost);
-      });
-    });
-</script>
-  
-  </body>
+</div>
+
+</body>
+
 </html>
