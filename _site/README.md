@@ -1,71 +1,16 @@
-Freshman21
+개인 블로그입니다!
 ==========
 
-Freshman21 is a Jekyll blog theme, base on theme [Freshman](http://github.com/yulijia/freshman). 
+Apple 제품의 단순 호기심으로 시작하여 iOS 개발자가 되었습니다.
 
-A tribute to WordPress Theme Twenty-Twelve and Twenty-eleven.
+첫 입사일은 **2017.12.26**,
 
-Enjoy.
+지금 이 순간까지 후회한적이 없네요.
 
+제가 좋아하는 일을 할 수 있다는 것에 항상 감사하고 있습니다.
 
-![Screen](http://i.imgur.com/oSp7kacl.png)
-
-### Version 2.1 update 2016.06.06
-
-- master branch: the simplest template, original version with
-	* Open Graph META Tags
-	* Microdata(schema.org)
-
-- gh-pages branch: master branch with 
-
-	* [google analytics js template](https://github.com/yulijia/freshman21/blob/gh-pages/_includes/google_analytics.js)
-        * [BackToTop js script](https://github.com/yulijia/freshman21/tree/gh-pages/js)
-        * <q>readmore</q> module
-        * [keyboard shortcuts for pagination](http://yulijia.net/freshman21/news/2016/05/24/new-features.html)
-	* font awesome icon
-	* [Google search](https://github.com/yulijia/freshman21/blob/gh-pages/_includes/google_search.js)
-
-Clone master branch: 
-
-` git clone https://github.com/yulijia/freshman21.git -b master --single-branch`
-
-Clone gh-pages branch: 
-
-`git clone https://github.com/yulijia/freshman21.git -b gh-pages --single-branch`
+<u>훌륭한 iOS 개발자가 될 수 있게 블로그를 꾸려가려합니다.</u>
 
 
-### A Summary of Features
 
-- Provide single column and two columns layout
-- Powerful configure file
-- Comments by Disqus
-- Support LaTeX (by MathJax)
-- Syntax highlighting
-- Multiple Languages support 
-    * English
-    * Chinese
-    * Japanese (Contributed by [kokeiro001](https://github.com/kokeiro001))
-    * Polish (Contributed by [Derson5](https://github.com/Derson5))
-    * Korean (Contributed by [Clifford Choi](https://github.com/ulgoon))
-    * Russian (Contributed by [Anton Alekseev](https://github.com/alexeyev))
-    * Turkish (Contributed by [Muhammet Kara](https://github.com/mrkara))
-    * Indonesian (Contributed by [Samsul Ma'arif](https://github.com/samsulmaarif))
-
-### How to install this theme?
-
-```
-# please make sure you have already installed git tools and ruby tools(gem)
-$ gem install sass
-$ gem install jekyll
-$ git clone https://github.com/yulijia/freshman21.git
-$ mv freshman21/ yourblogname.github.io/
-
-```
-
-### Demo
-
-Single column, please see [my own blog](http://yulijia.net/en/)
-
-Two columns, please see the [theme website](http://yulijia.net/freshman21/)
-
-
+지적과 충고는 좋은 자극제가 되죠, 언제든 연락주세요.
