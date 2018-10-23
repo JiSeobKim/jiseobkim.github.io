@@ -7,7 +7,7 @@ permalink: /categories/
 <ul class="tags-box">
 {% if site.posts != empty %}
 {% for cat in site.categories %}
-<a href="#{{ cat[0] }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}">{{ cat[0] | join: "/"}}<span class="size"> {{ cat[1].size }}</span></a>
+<a href="#{{ cat[0] }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}">{{ cat[0] | join: "/"}}<span class="size"> {{ cat[1].size }}</span></a>&nbsp;
 {% endfor %}
 </ul>
 
@@ -23,4 +23,3 @@ permalink: /categories/
 <span>No posts</span>
 {% endif %}
 </ul>
-

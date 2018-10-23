@@ -14,7 +14,7 @@ twitter_username:
 github_username:  JiSeobKim
 disqus_shortname: Jiseob Kim
 favicon:     "/assets/favi.ico"
-aboutme: iOS 개발이 즐거운 개발자입니다!! # these are shown on aboutme-sidebar.
+aboutme: 파릇파릇한 iOS 개발자! # these are shown on aboutme-sidebar.
 aboutme_photo: "/assets/ItsMe.jpeg"
 google_analytics_key: UA-121626260-1 # put YOUR key here to enable tracking! (blank to disable)
 

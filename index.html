@@ -26,14 +26,20 @@ layout: default
       <br>
       {% endif %}
       <time itemprop="datePublished" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-      {{ site.locales[site.default_locale].PostDate }}{{ post.date | date: "%b %-d, %Y" }}
+        {{ site.locales[site.default_locale].PostDate }}{{ post.date | date: "%b %-d, %Y" }}
       </time>
       </p>
     </header>
 
     <article class="post-content" itemprop="articleBody">
+      {% if post.content contains site.excerpt_separator %}
+      {{ post.excerpt }}
+      <p style="text-align: right"><a href="{{ post.url | prepend: site.baseurl }}">Read more</a></p>
+      {% else %}
       {{ post.content }}
-    </article> <hr />
+      {% endif %}
+    </article>
+    <hr />
 
     {% endfor %}
 
