@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Swift - Notification Center">
+<title>Swift - Notification Center</title>
+<meta property="og:description" content="**주의 : 혹시 읽지만 끝까지 안보시는 분들은 적용하고 `옵저버 제거`  검색해서 꼭 제거해주세요.**오늘 포스팅 주제는 Notification Center.Swift를 사용하면서 사용한적이 없었던것 같아서 배우는김에 글로 포스팅으로!!!하지만, 아직도 정말 이때 써야해!! 라는...">
+<meta property="og:url" content="http://localhost:4000/articles/2018/10/27/swift-NotificationCenter.html">
+<meta property="og:site_name" content="JS Blog">
+<meta property="og:locale" content="kr">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@">
+<meta name="twitter:creator" content="@">
+<meta name="twitter:title" content="Swift - Notification Center">
+<meta name="twitter:description" content="**주의 : 혹시 읽지만 끝까지 안보시는 분들은 적용하고 `옵저버 제거`  검색해서 꼭 제거해주세요.**오늘 포스팅 주제는 Notification Center.Swift를 사용하면서 사용한적이 없었던것 같아서 배우는김에 글로 포스팅으로!!!하지만, 아직도 정말 이때 써야해!! 라는...">
+<meta name="twitter:url" content="http://localhost:4000/articles/2018/10/27/swift-NotificationCenter.html">
+
+<meta name="keywords" content="Swift, ObjectiveC, iOS">
+
+<link rel="icon" href="/assets/favi.ico">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://localhost:4000/articles/2018/10/27/swift-NotificationCenter.html">
+<link rel="alternate" type="application/atom+xml" title="JS Blog" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script language="Javascript" type="text/javascript">
+function search_google()
+{
+  var query = document.getElementById("google-search").value;
+  window.open("http://google.com/search?q=" + query
+      + "%20site:" + "http://localhost:4000");
+}
+</script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-121626260-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+<script type='text/javascript'>
+var blocklink = ['http://humanorightswatch.org','http://o-o-6-o-o.com','http://darodar.com','http://blackhatworth.com','http://hulfingtonpost.com','http://bestwebsitesawards.com','http://darodar.com','http://buttons-for-website.com','http://ilovevitaly.co','http://semalt.com','http://priceg.com','http://simple-share-buttons.com','http://googlsucks.com','http://4webmasters.org','http://aliexpress.com','http://addons.mozilla.org/en-US/firefox/addon/ilovevitaly/','http://free-share-buttons.com','http://buttons-for-your-website.com','http://theguardlan.com','http://buy-cheap-online.info','http://best-seo-offer.com','http://4webmasters.org','http://trafficmonetize.org','http://howtostopreferralspam.eu','http://ilovevitaly.com','http://sanjosestartups.com','http://free-social-buttons.com','http://best-seo-offer.com','http://guardlink.org','http://www.event-tracking.com','http://www3.free-social-buttons.com','http://www1.free-social-buttons.com','http://www2.free-social-buttons.com','http://websites-reviews.com','http://floating-share-buttons.com','http://satellite.maps.ilovevitaly.com','http://free-social-buttons.com','http://www.event-tracking.com','http://erot.co'];
+for (var b = blocklink.length; b--;) {
+  if (document.referrer.match(blocklink[b]))
+    window.location = "http://www.google.com";
+}
+</script>
+
+
+
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+
+  <div class="wrapper">
+
+    <h1 class="site-title"><a href="/">JS Blog</a></h1>
+    <h3 class="site-meta">Developer story who love Swift</h3>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+        
+        
+        <a class="page-link" href="/">홈</a>
+        
+        
+        
+        <a class="page-link" href="/about/">소개</a>
+        
+        
+        
+        <a class="page-link" href="/archives/">모든 게시물</a>
+        
+        
+        
+        <a class="page-link" href="/categories/">카테고리</a>
+        
+        
+        
+        <a class="page-link" href="/tags/">태그</a>
+        
+        
+        
+        <a class="page-link" href="/guestbook/">방명록</a>
+        
+        
+        
+        <a class="page-link" href="/feed.xml">구독하기</a>
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    
+
+  <div class="page-content col-sm-8">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title">Swift - Notification Center</h1>
+    <meta itemprop="keywords" content="Swift,Notification Center" />
+    <p class="post-meta">
+    카테고리: 
+    
+    <a href="/categories/#articles">articles</a>
+     
+    
+    태그: 
+    
+    <a href="/tags/#Swift" title="Swift">Swift</a>, 
+    
+    <a href="/tags/#Notification Center" title="Notification Center">Notification Center</a>
+    
+    
+    <time itemprop="datePublished" datetime="2018-10-27">
+    작성일: Oct 27, 2018
+    </time>
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p><u>**주의 : 혹시 읽지만 끝까지 안보시는 분들은 적용하고 `옵저버 제거`  검색해서 꼭 제거해주세요.</u>**</p>
+
+<p>오늘 포스팅 주제는 <strong>Notification Center</strong>.</p>
+
+<p>Swift를 사용하면서 사용한적이 없었던것 같아서 배우는김에 글로 포스팅으로!!!</p>
+
+<p>하지만, 아직도 정말 이때 써야해!! 라는건 잘모르겠다… 이런 경우에 이걸 쓸수있겠다 정도 느낌…?</p>
+
+<p>마치 if문 배운상태서 guard문을 알게된 느낌…</p>
+
+<p>간단한 개념적부터 접근을 하자면</p>
+
+<p><br /><br /></p>
+
+<h2 id="배우고난-느낌">배우고난 느낌</h2>
+<hr />
+<p>느낌은 이랬다
+<br /></p>
+
+<p><q> &lt;무언가 액션이 있었을 때,&gt;이 액션이 진행되었으니 담당자들은 처리바람.</q></p>
+
+<p><q> 담당자 수신 완료, 처리하겠음 </q></p>
+
+<p><br />
+이런 느낌??</p>
+
+<p>앱에서 예를 들면 다음과 같은 가능할것 같았다</p>
+
+<p><br /></p>
+
+<p><q>화면이 백그라운드에 들어갔을때, VC에 어떠한 처리를 하고 싶다.</q></p>
+
+<p><q>여러 VC에 영향을 주고 싶다.</q></p>
+
+<p><br />
+보통의 경우 같은 클래스 내의 메소드나 프로퍼티들이 아니면 접근하기가 까탈스러웠던것 같다.</p>
+
+<p>델리게이트 패턴을 쓴다거나 프로토콜을 사용해서 접근을 하게되지만 <code class="highlighter-rouge">Notification Center</code>로도 가능하단걸 알게 되었다.</p>
+
+<blockquote>
+  <p>하지만, 단순 값전달이라던가, 델리게이트 패턴, 프로토콜이 사용하기 난감한 상황이 아닌이상 Noti Center는 안쓸듯하다.</p>
+</blockquote>
+
+<p>좀더 여러곳에 동시다발적으로 알리는게 가능하겠다란 생각이 들면서</p>
+
+<p>책들이 왜 방송국에 예시를 드는지 조금 이해가 됐다.</p>
+
+<p><br /><br /></p>
+
+<h2 id="사용법">사용법</h2>
+<hr />
+
+<p>방송국이다 뭐다해도 첨엔 난 이해가 안됐었기에 그런 설명은 생략</p>
+
+<p><q> &lt;무언가 액션이 있었을 때,&gt;이 액션이 진행되었으니 담당자들은 처리바람.</q></p>
+
+<p><q> 담당자 수신 완료, 처리하겠음 </q></p>
+
+<p>이렇게 쓴 이유가 있다. 코드 동작을 풀어쓴것이었다.</p>
+
+<p><br /><br /></p>
+
+<h3 id="post---이-액션이-진행되었으니-담당자들은-처리바람">Post - “이 액션이 진행되었으니 담당자들은 처리바람”</h3>
+
+<p>우선 <q> &lt;무언가 액션이 있었을 때,&gt;이 액션이 진행되었으니 담당자들은 처리바람.</q>는 다음과 같다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// doItSomeThing에 해당 되는 것들은 처리 바람</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">doItSomeThing</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>중요 - <code class="highlighter-rouge">post</code></p>
+
+<p>나중 설명 - <code class="highlighter-rouge">.doItSomeTing</code>, <code class="highlighter-rouge">object</code></p>
+
+<blockquote>
+  <p>참고로 <code class="highlighter-rouge">.doItSomeThing</code>은 원래 존재하는게 아니고 내가 생성한 프로퍼티,</p>
+
+  <p>아래에서 설명!</p>
+</blockquote>
+
+<p>포스트라는 단어가 중요하다.뭔가 보내는 그런 의미니, 여기선 <code class="highlighter-rouge">name</code>에 해당자들에게 각자 일을 수행하라고 실행시키는 것이라 생각하는게 맞는것 같다.</p>
+
+<p>그럼 실행하라 명령했으니 명령 받을 애들이 필요하다.</p>
+
+<p>다소 특이한 개념이 나온다. <code class="highlighter-rouge">doItSomeThing</code>은 정말 name에 해당된다. 무슨 동작하란게 아니다.</p>
+
+<p><code class="highlighter-rouge">name</code>을 일 처리하는 스텝의 이름이라 생각해야한다.</p>
+
+<p>스텝마다 각자의 일거리는 다르다.</p>
+
+<p>그렇담, 일거리와 이름을 셋팅을 하자.</p>
+
+<p>일단 일거리 하나 만든다. ( = 동작할 함수 생성 )</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">func</span> <span class="nf">printSomeThing</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"do it something"</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>간단하다. 하는일은 그저 print 한번 해주는것뿐.</p>
+
+<p>눈여겨볼거라면 파라미터 타입이 <code class="highlighter-rouge">Notification</code>이라는 정도???</p>
+
+<blockquote>
+  <p>@objc 붙은 이유는 NotificationCenter가 원래는 NSNotificationCenter다. Swift 몇인지 기억은 안나지만 이름이 바뀌었다. Objective-c 에서 쓰이는거니 붙여주자</p>
+</blockquote>
+
+<p><br /><br /></p>
+
+<h3 id="observer---담당자-수신-완료-처리하겠음">Observer - “담당자 수신 완료, 처리하겠음”</h3>
+
+<p>observer = 관찰자, 여기선 일하는 스텝(담당자)이라 생각하자, 스텝들 업무 지정정도?</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 담당자 인적사항 및 업무 추가</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">printSomeThing(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">doItSomeThing</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>중요 - <code class="highlighter-rouge">addObserver</code>, <code class="highlighter-rouge">selector</code> , <code class="highlighter-rouge">name</code></p>
+
+<p><code class="highlighter-rouge">addObserver</code> - 관찰자를 대기시키겠다는 것,</p>
+
+<p><code class="highlighter-rouge">selector</code> - 스테프 업무</p>
+
+<p><code class="highlighter-rouge">name</code> - 스테프 이름</p>
+
+<p><br /></p>
+
+<p>여기서 가장 중요한건 이름이라 생각한다. Post 메소드가 <code class="highlighter-rouge">name</code>에 “누구씨 일해!!” 라고 한다면, 그 이름에 해당 되는 스텝들이 각자 등록된 업무 (= <code class="highlighter-rouge">selector</code>) 수행하게 된다. 이 코드에선 <code class="highlighter-rouge">.doItSomeTing</code>을 부르면 아까 만든 함수(print 한줄짜리)를 실행하게 된다.</p>
+
+<blockquote>
+  <p>스텝 이름은 중복가능하다, 다른 addObserver를 작성해도 이미 사용한 이름을 쓸수있다.</p>
+
+  <p>이럴경우 마지막만이 아닌 해당 이름 모두 실행됨.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h3 id="name-등록-방식">name 등록 방식</h3>
+
+<p>그럼 슬슬 이름 추가방법에 대해 쓰는게 맞는것 같다.</p>
+
+<p>2가지 정도가 있다.</p>
+
+<p>1) addObserver할때 한번에</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Post</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"doItSomeThing"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="c1">// Add Observer</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">printSomeThing(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"doItSomeThing"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이렇게 “doItSomeThing” 이라는 Notification.Name 데이터 타입을 만들수도 있지만</p>
+
+<p>별로 추천하고 싶지 않다. 재사용도 힘들고 코드도 안깔끔</p>
+
+<p><br /></p>
+
+<p>2) Extension으로 프로퍼티 추가</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">let</span> <span class="nv">doItSomeThing</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"doItSomeThing"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 <code class="highlighter-rouge">Notification.Name</code>에 프로퍼티를 추가해주면,</p>
+
+<p>위 코드들에 나오듯 <code class="highlighter-rouge">name</code>자리에 있던 <code class="highlighter-rouge">.doItSomeThing</code>을 쓸수 있기에</p>
+
+<p>깔끔하고 사용하기도 수월해진다.</p>
+
+<p><br /><br /></p>
+
+<h2 id="예시">예시</h2>
+<hr />
+
+<p>이런식으로 사용가능하다</p>
+
+<p>ex) 화면이 VC1 -&gt; VC2 -&gt; VC3 이렇게 있다고 치자, 그리고 각각 Label을 1개씩 가지고 있다.</p>
+
+<p>네비게이션을 이용할것이며, 화면 이동도 위와 같다. 그림으로 이해돕자면 이정도?</p>
+
+<p>그리고 그 3에는 버튼이 하나 있고, 이것을 누르면 Post를 한다.</p>
+
+<p><img src="/assets/img/post/2018-10-27/img1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>우선 이름부터 추가</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">let</span> <span class="nv">changeLabel</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"changeLabel"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그리고,</p>
+
+<p>ViewController 3개가 있고</p>
+
+<p>각 ViewDidLoad에 addObserver해준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/////////////////VC1</span>
+<span class="c1">// ViewDidLoad</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">change1</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="c1">// change1 함수 내용</span>
+<span class="k">self</span><span class="o">.</span><span class="n">label1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Change Label1!!!"</span>
+
+<span class="c1">/////////////////VC2</span>
+<span class="c1">// ViewDidLoad</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">change2</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="c1">// change2 함수 내용</span>
+<span class="k">self</span><span class="o">.</span><span class="n">label2</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Change Label2!!!"</span>
+
+<span class="c1">/////////////////VC3</span>
+<span class="c1">// ViewDidLoad</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">change3</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="c1">// change3 함수 내용</span>
+<span class="k">self</span><span class="o">.</span><span class="n">label3</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Change Label3!!!"</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>마지막으로 Bnt 버튼 메소드 정의</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h2 id="결과">결과</h2>
+<hr />
+
+<p><del>그럼 gif는 할줄 모르니</del> (방금 배움. 단축어 짱짱)</p>
+
+<p><img src="/assets/img/post/2018-10-27/img2.gif" alt="" /></p>
+
+<p>위 Gif에 나온것처럼, 직전 VC2뿐만 아니라 현재 스택에 있는 VC1까지 모두 작동했다.</p>
+
+<p><br /><br /></p>
+
+<h2 id="옵저버-제거">옵저버 제거</h2>
+<hr />
+
+<p>다른 의미로 여기서 잘 생각해봐야하는게, observer가 계속 살아있다는 것이다.</p>
+
+<p>그렇담 제거는 따로 해줘야한다는것이다. 불필요한데 계속 남아있어서 좋을것은 1도 없으니깐!</p>
+
+<p>제거는 간단.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">removeObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h2 id="추가--post할때-값도-전달">추가 : Post할때 값도 전달</h2>
+<hr />
+
+<p>Post메소드 파라미터에 <code class="highlighter-rouge">object</code>도 있었다. 위에선 <code class="highlighter-rouge">nil</code>을 넣었지만, 이 부분을 통해 값을 보낼수 있다.</p>
+
+<p>기존 selector에 들어가던 함수를 변경해주자(VC2랑 VC3도 변경!)</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존</span>
+<span class="kd">@objc</span> <span class="kd">func</span> <span class="nf">change1</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">label1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Change Label1!!!"</span>
+    <span class="p">}</span>
+
+<span class="c1">// 변경</span>
+<span class="kd">@objc</span> <span class="kd">func</span> <span class="nf">change1</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">getValue</span> <span class="o">=</span> <span class="n">notification</span><span class="o">.</span><span class="n">object</span> <span class="k">as!</span> <span class="kt">String</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">label1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Change </span><span class="se">\(</span><span class="n">getValue</span><span class="se">)</span><span class="s">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>여기선 String으로만 보낼것이기 때문에 강제 다운 캐스팅! (as!)</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>btn의 Post도 이렇게 변경</p>
+
+<p>타입이 <code class="highlighter-rouge">Notification</code>인 파라미터 <code class="highlighter-rouge">notification</code>에 <code class="highlighter-rouge">object</code>가 Post에 있던 <code class="highlighter-rouge">object</code>다.</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존</span>
+<span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">doPost</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="c1">// 변경</span>
+<span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">doPost</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"Object"</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="결과-1">결과</h2>
+<hr />
+
+<p><img src="/assets/img/post/2018-10-27/img3.gif" alt="" /></p>
+
+<hr />
+
+<p>PS. 더 적절한 예시를 아신다면 댓글 부탁 드립니다!! 같이 공부해요!</p>
+
+  </article>
+  <hr />
+</div>
+
+
+<section class="pager">
+  <ul>
+    
+    <li class="previous"><a href="/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드">&larr; 이전 게시물</a></li>
+    
+    
+    <li class="disabled"><a>다음 게시물 &rarr;</a></li>
+    
+  </ul>
+</section>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='Jiseob Kim';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    <section class="pager">
+  
+  
+</section>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+
+  </div>
+  <div class="col-sm-2">
+<div class="sidebar-module about">
+  <h2>저자 소개</h2>
+  <img title="Kim Ji Seob" src="/assets/ItsMe.jpeg" alt="Kim Ji Seob"/>
+  <br>
+  <span>파릇파릇한 iOS 개발자!</span>
+  <br />
+
+  
+
+  Contact Me Via: <br />
+
+  
+  <a href="mailto:jiseob812@gmail.com" title="mailto: jiseob812@gmail.com"><i class="fa fa-envelope-square fa-3x"></i></a>&nbsp;
+  
+  
+  <a href="https://github.com/JiSeobKim" title="GithubID: JiSeobKim"><i class="fa fa-github-square fa-3x"></i></a>&nbsp;
+  
+
+
+  
+
+</div>
+
+<div class="sidebar-module">
+  <h4>게시물 검색</h4>
+  <form onsubmit="search_google()" >
+    <input type="text" id="google-search" placeholder="Google search" />
+    <input type="submit" name="sa" value="Go" />
+  </form>
+</div>
+
+
+
+<div class="sidebar-module">
+  <h4>최근 게시물</h4>
+  
+  <li>
+  <a href="/articles/2018/10/27/swift-NotificationCenter.html" title="Swift - Notification Center" rel="bookmark">Swift - Notification Center</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/09/16/swift-DelegatePattern2.html" title="Swift - 화면간 데이터 전달. 2편" rel="bookmark">Swift - 화면간 데이터 전달. 2편</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/09/02/swift-DelegatePattern.html" title="Swift - 화면간 데이터 전달. 1편" rel="bookmark">Swift - 화면간 데이터 전달. 1편</a>
+  </li>
+  
+  <li>
+  <a href="/articles/2018/08/19/swift-Generic-&-Codable.html" title="Swift - Generic & Codable" rel="bookmark">Swift - Generic & Codable</a>
+  </li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>카테고리</h4>
+  
+  <li><a href="/categories/#articles" title="articles" rel="10">articles (10)</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>태그</h4>
+  
+    <a href="/tags/#Swift" title="Swift" rel="10">Swift</a> &nbsp;
+  
+    <a href="/tags/#Class" title="Class" rel="2">Class</a> &nbsp;
+  
+    <a href="/tags/#Struct" title="Struct" rel="1">Struct</a> &nbsp;
+  
+    <a href="/tags/#값전달" title="값전달" rel="1">값전달</a> &nbsp;
+  
+    <a href="/tags/#Inherite" title="Inherite" rel="1">Inherite</a> &nbsp;
+  
+    <a href="/tags/#Alamofire" title="Alamofire" rel="2">Alamofire</a> &nbsp;
+  
+    <a href="/tags/#Codable" title="Codable" rel="2">Codable</a> &nbsp;
+  
+    <a href="/tags/#Escaping" title="Escaping" rel="1">Escaping</a> &nbsp;
+  
+    <a href="/tags/#Network" title="Network" rel="1">Network</a> &nbsp;
+  
+    <a href="/tags/#Encodable" title="Encodable" rel="1">Encodable</a> &nbsp;
+  
+    <a href="/tags/#Generic" title="Generic" rel="1">Generic</a> &nbsp;
+  
+    <a href="/tags/#Delegate Pattern" title="Delegate Pattern" rel="1">Delegate Pattern</a> &nbsp;
+  
+    <a href="/tags/#Protocol" title="Protocol" rel="1">Protocol</a> &nbsp;
+  
+    <a href="/tags/#Method" title="Method" rel="1">Method</a> &nbsp;
+  
+    <a href="/tags/#Type Method" title="Type Method" rel="1">Type Method</a> &nbsp;
+  
+    <a href="/tags/#Instance Method" title="Instance Method" rel="1">Instance Method</a> &nbsp;
+  
+    <a href="/tags/#Notification Center" title="Notification Center" rel="1">Notification Center</a> &nbsp;
+  
+</div>
+
+
+
+<div class="sidebar-module">
+  <h4>모든 게시물</h4>
+
+  
+  
+  
+  
+  
+  <li id="2018" > <a href="/archives/#2018">2018</a></li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>
+
+
+<div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>저작권</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
+
+  
+
+</div>
+
+
+</div>
+
+
+  
+
+  <footer class="site-footer">
+
+  <p>Copyright &copy; <a href="/">JS Blog</a></p>
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
+  on 
+  <a href="https://github.com/">Github</a>
+  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
+
+
+  <div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+    <a title="Back To Top"><img src="/images/topbutton.png"/></a>
+  </div>
+
+  <script src="/js/jquery-1.9.1.min.js"></script>
+  <script src="/js/totop.js"></script>  
+
+
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>
