@@ -183,6 +183,8 @@ for (var b = blocklink.length; b--;) {
 
 <p><br /></p>
 
+<p><br /></p>
+
 <h1 id="이해하기">이해하기</h1>
 <p>사용 방법은 굉장히 단순하다.</p>
 
@@ -207,7 +209,9 @@ for (var b = blocklink.length; b--;) {
 
 <p><br /></p>
 
-<h2 id="시나리오">시나리오</h2>
+<h1 id="사용법">사용법</h1>
+
+<p><br /></p>
 
 <blockquote>
   <ol>
@@ -248,7 +252,11 @@ for (var b = blocklink.length; b--;) {
 
 <p><br /></p>
 
+<p><br /></p>
+
 <h3 id="2-button-을-storyboard에-추가-및-연결">2. Button 을 StoryBoard에 추가 및 연결</h3>
+
+<p><br /></p>
 
 <p>버튼 생성은 간단하니 코드부터 보이자면</p>
 
@@ -264,19 +272,27 @@ for (var b = blocklink.length; b--;) {
 
 <p>Tag 지정해주는 곳이 가장 중요하다!</p>
 
-<p>self의 view가 가진 서브뷰들 중에서 <code class="highlighter-rouge">1번 </code> 태그를 가진 뷰를 가지고 온다.</p>
+<p>self의 view가 가진 서브뷰들 중에서 <code class="highlighter-rouge">1번</code> 태그를 가진 뷰를 가지고 온다.</p>
 
 <p>그리고 <code class="highlighter-rouge">UILabel</code>로 다운 캐스팅을 해주고 사용하면 끝이다.</p>
 
 <p>아주 심플하다.</p>
 
+<p><br /><br /></p>
+
 <h3 id="결과-화면">결과 화면</h3>
 
 <p><img src="/assets/img/post/2018-11-04/img2.gif" alt="" /></p>
 
+<p><br /><br /><br /></p>
+
 <h1 id="실험---헷갈리는-개념-바로-잡기">실험 - 헷갈리는 개념 바로 잡기</h1>
 
+<hr />
+
 <p>몇가지 실험을 하여, 헷갈리는 개념을 잡아보자</p>
+
+<p><br /></p>
 
 <h3 id="q1-없는-tag-번호를-호출하면">Q1. 없는 tag 번호를 호출하면???</h3>
 
@@ -295,8 +311,6 @@ for (var b = blocklink.length; b--;) {
 <p><img src="/assets/img/post/2018-11-04/img3.png" alt="" /></p>
 
 <p>이러면 조금 더 전달이 잘된것 같다.</p>
-
-<p>###</p>
 
 <p>실험을 위해 UI를 다시 셋팅했다.</p>
 
@@ -323,7 +337,9 @@ for (var b = blocklink.length; b--;) {
 
 <p><code class="highlighter-rouge">subView</code>의 있는 <code class="highlighter-rouge">label</code>의 태그 번호를 더 상위뷰인 <code class="highlighter-rouge">mainView</code>에서 사용이 될까?</p>
 
-<p>Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다.</p>
+<p>Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다. 그렇담 이 경우엔? 결과를 보자</p>
+
+<p><img src="/assets/img/post/2018-11-04/img5.gif" alt="" /></p>
 
 <p><br /></p>
 
@@ -333,7 +349,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>그런데;;;; 아니네?? 충격적이다.</p>
 
-<p><img src="/assets/img/post/2018-11-04/img5.gif" alt="" /></p>
+<p><br /></p>
 
 <p>Q2. MainView에서 tag 1번을 가지고 오면 성공할까?</p>
 
@@ -341,7 +357,11 @@ for (var b = blocklink.length; b--;) {
 
 <hr />
 
+<p><br /><br /></p>
+
 <h3 id="q3-같은-tag값들이-여러개면">Q3. 같은 Tag값들이 여러개면?</h3>
+
+<p><br /></p>
 
 <p>만약, 1의 태그 번호를 가진것이 여러개일 경우</p>
 
@@ -364,13 +384,15 @@ for (var b = blocklink.length; b--;) {
 <span class="n">label</span><span class="o">.</span><span class="nf">sizeToFit</span><span class="p">()</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p>label 만드는건 생략하고 중요 부분만 가지고 왔다.</p>
 
 <p>그럼 결과를 보자</p>
 
 <p><img src="/assets/img/post/2018-11-04/img6.gif" alt="" /></p>
 
-<p>예상대로 먼저 지정한게 변했다.</p>
+<p><br />예상대로 먼저 지정한게 변했다.</p>
 
 <p>그럼 당연히 지정 순서를 바꾸면 2가 변하겠지?</p>
 
@@ -384,7 +406,11 @@ for (var b = blocklink.length; b--;) {
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label2</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img6.gif" alt="" /></p>
+
+<p><br /></p>
 
 <p>?</p>
 
@@ -398,6 +424,8 @@ for (var b = blocklink.length; b--;) {
 
 <p>그럼 추가할때인가?</p>
 
+<p><br /></p>
+
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 태그 지정</span>
 <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">label2</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
@@ -408,11 +436,17 @@ for (var b = blocklink.length; b--;) {
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label1</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img7.gif" alt="" /></p>
 
 <p>오… 호…. 이것도 정말 예상 못했다.</p>
 
+<p><u>**지정 시점보다 중요한건 추가한 시점이다.**</u></p>
+
 <p>그렇담, 태그 지정을 나중에 해주면 다를까?</p>
+
+<p><br /></p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 화면 추가</span>
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label1</span><span class="p">)</span>
@@ -424,6 +458,8 @@ for (var b = blocklink.length; b--;) {
 <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img6.gif" alt="" /></p>
 
 <p>그대로다</p>
@@ -433,6 +469,8 @@ for (var b = blocklink.length; b--;) {
 <p>지정 시점 &lt; 화면 추가 시점</p>
 
 <p>이라는것이 확인 되었다.</p>
+
+<p><br /></p>
 
 <p>그렇담</p>
 
@@ -444,6 +482,8 @@ for (var b = blocklink.length; b--;) {
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label2</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p>이 상태에서 버튼 선택시  <code class="highlighter-rouge">label1</code>의 태그를 지정한다면???</p>
 
 <p>( 해당 태그번호가 사용된 후에도 ‘지정시점 &lt; 화면 추가’ 시점 인지 확인을 위함)</p>
@@ -451,6 +491,8 @@ for (var b = blocklink.length; b--;) {
 <p>이번엔 조금 방식이 바뀌어야 한다.</p>
 
 <p>label 두개를 viewDidLoad안에서 말고 클래스 내부에 선언해준다.</p>
+
+<p><br /></p>
 
 <p>이렇게!</p>
 
@@ -472,6 +514,8 @@ for (var b = blocklink.length; b--;) {
 <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span> 
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img8.gif" alt="" /></p>
 
 <p>사용이 되건 말건 상관이없었다. 오직 중요한건</p>
@@ -484,7 +528,11 @@ for (var b = blocklink.length; b--;) {
 
 <hr />
 
-<h3 id="q3-q2-vs-q3">Q3. Q2 VS Q3</h3>
+<p><br /><br /></p>
+
+<h3 id="q4-q2-vs-q3">Q4. Q2 VS Q3</h3>
+
+<p><br /></p>
 
 <p>그렇담 나에게 충격을 줬던 Q2와</p>
 
@@ -493,6 +541,8 @@ for (var b = blocklink.length; b--;) {
 </blockquote>
 
 <p>Q3을 섞어서 실험 해보자</p>
+
+<p><br /></p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
@@ -514,6 +564,8 @@ for (var b = blocklink.length; b--;) {
   <p>label의 경우 StoryBoard에 추가된 오브젝트 임을 생각하고 예상해보자.</p>
 </blockquote>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img9.gif" alt="" /></p>
 
 <p>‘A3. Tag 셋팅 시점보다, 먼저 화면 추가된 오브젝트가  갑이다.’ 는 변화가 없었다.</p>
@@ -528,7 +580,13 @@ for (var b = blocklink.length; b--;) {
   <p>(정확한 시점 공부할겸 더 알아봐야겠다.)</p>
 </blockquote>
 
+<p><br /><br /></p>
+
 <h1 id="마무리">마무리</h1>
+
+<hr />
+
+<p><br /></p>
 
 <p>가장 중요한것은</p>
 
@@ -541,6 +599,8 @@ for (var b = blocklink.length; b--;) {
 <p>실험중 예상이 틀린게 나와서 당황스러웠다.</p>
 
 <p>당황스러웠던 만큼! 다음에 사용할땐 좀더 잘 사용할 수 있을 것 같다.</p>
+
+<p><br /></p>
 
 <p>끝!</p>
 
@@ -905,7 +965,7 @@ for (var b = blocklink.length; b--;) {
 
     <header class="post-header">
       <h1 itemprop="name" class="post-title">
-        <a itemprop="url" class="post-link" href="/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
+        <a itemprop="url" class="post-link" href="/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
       </h1>
       <meta itemprop="keywords" content="Swift,Method,Type Method,Instance Method" />
       <p class="post-meta">
@@ -1876,7 +1936,7 @@ $(function(){
   </li>
   
   <li>
-  <a href="/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
+  <a href="/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
   </li>
   
   <li>
