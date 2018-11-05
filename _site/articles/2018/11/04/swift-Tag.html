@@ -1,163 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width initial-scale=1">
-
-<meta property="og:title" content="Swift_Basic - Tag 알아보기">
-<title>Swift_Basic - Tag 알아보기</title>
-<meta property="og:description" content="이번에 주제는 Tag에 관하여 써볼까 한다.태그도 참 좋은 기능인데, 책에선 잘 못보다 보니간과하던 기능이었다.그러다 막상 쓰려니 개념이 헷갈려서잠깐 써볼까 하다가 뭐야 하고 나중에 찾아봐야지 하다가나중에 병이라도 걸렸나, 결국 안찾음그래서 쓰다 서서히 감이 와서 블로그로 써보면서...">
-<meta property="og:url" content="http://localhost:4000/articles/2018/11/04/swift-Tag.html">
-<meta property="og:site_name" content="JS Blog">
-<meta property="og:locale" content="kr">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@">
-<meta name="twitter:creator" content="@">
-<meta name="twitter:title" content="Swift_Basic - Tag 알아보기">
-<meta name="twitter:description" content="이번에 주제는 Tag에 관하여 써볼까 한다.태그도 참 좋은 기능인데, 책에선 잘 못보다 보니간과하던 기능이었다.그러다 막상 쓰려니 개념이 헷갈려서잠깐 써볼까 하다가 뭐야 하고 나중에 찾아봐야지 하다가나중에 병이라도 걸렸나, 결국 안찾음그래서 쓰다 서서히 감이 와서 블로그로 써보면서...">
-<meta name="twitter:url" content="http://localhost:4000/articles/2018/11/04/swift-Tag.html">
-
-<meta name="keywords" content="Swift, ObjectiveC, iOS">
-
-<link rel="icon" href="/assets/favi.ico">
-<link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://localhost:4000/articles/2018/11/04/swift-Tag.html">
-<link rel="alternate" type="application/atom+xml" title="JS Blog" href="http://localhost:4000/feed.xml" />
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script language="Javascript" type="text/javascript">
-function search_google()
-{
-  var query = document.getElementById("google-search").value;
-  window.open("http://google.com/search?q=" + query
-      + "%20site:" + "http://localhost:4000");
-}
-</script>
-
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-121626260-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-
-
-<script type='text/javascript'>
-var blocklink = ['http://humanorightswatch.org','http://o-o-6-o-o.com','http://darodar.com','http://blackhatworth.com','http://hulfingtonpost.com','http://bestwebsitesawards.com','http://darodar.com','http://buttons-for-website.com','http://ilovevitaly.co','http://semalt.com','http://priceg.com','http://simple-share-buttons.com','http://googlsucks.com','http://4webmasters.org','http://aliexpress.com','http://addons.mozilla.org/en-US/firefox/addon/ilovevitaly/','http://free-share-buttons.com','http://buttons-for-your-website.com','http://theguardlan.com','http://buy-cheap-online.info','http://best-seo-offer.com','http://4webmasters.org','http://trafficmonetize.org','http://howtostopreferralspam.eu','http://ilovevitaly.com','http://sanjosestartups.com','http://free-social-buttons.com','http://best-seo-offer.com','http://guardlink.org','http://www.event-tracking.com','http://www3.free-social-buttons.com','http://www1.free-social-buttons.com','http://www2.free-social-buttons.com','http://websites-reviews.com','http://floating-share-buttons.com','http://satellite.maps.ilovevitaly.com','http://free-social-buttons.com','http://www.event-tracking.com','http://erot.co'];
-for (var b = blocklink.length; b--;) {
-  if (document.referrer.match(blocklink[b]))
-    window.location = "http://www.google.com";
-}
-</script>
-
-
-
-
-</head>
-
-
-<body>
-
-<div class="container">
-
-  <header class="site-header">
-
-  <div class="wrapper">
-
-    <h1 class="site-title"><a href="/">JS Blog</a></h1>
-    <h3 class="site-meta">Developer story who love Swift</h3>
-
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
-      <div class="trigger">
-        
-        
-        <a class="page-link" href="/">홈</a>
-        
-        
-        
-        <a class="page-link" href="/about/">소개</a>
-        
-        
-        
-        <a class="page-link" href="/archives/">모든 게시물</a>
-        
-        
-        
-        <a class="page-link" href="/categories/">카테고리</a>
-        
-        
-        
-        <a class="page-link" href="/tags/">태그</a>
-        
-        
-        
-        <a class="page-link" href="/guestbook/">방명록</a>
-        
-        
-        
-        <a class="page-link" href="/feed.xml">구독하기</a>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      </div>
-    </nav>
-
-  </div>
-
-</header>
-
-
-    
-
-  <div class="page-content col-sm-8">
-    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 itemprop="name" class="post-title">Swift_Basic - Tag 알아보기</h1>
-    <meta itemprop="keywords" content="Swift,Tag" />
-    <p class="post-meta">
-    카테고리: 
-    
-    <a href="/categories/#articles">articles</a>
-     
-    
-    태그: 
-    
-    <a href="/tags/#Swift" title="Swift">Swift</a>, 
-    
-    <a href="/tags/#Tag" title="Tag">Tag</a>
-    
-    
-    <time itemprop="datePublished" datetime="2018-11-04">
-    작성일: Nov 4, 2018
-    </time>
-    </p>
-  </header>
-
-  <article class="post-content" itemprop="articleBody">
-    <p>이번에 주제는 Tag에 관하여 써볼까 한다.</p>
+<p>이번에 주제는 Tag에 관하여 써볼까 한다.</p>
 
 <p>태그도 참 좋은 기능인데, 책에선 잘 못보다 보니</p>
 
@@ -172,6 +13,8 @@ for (var b = blocklink.length; b--;) {
 <p>그래서 쓰다 서서히 감이 와서 블로그로 써보면서</p>
 
 <p>정리를 하고자 한다.</p>
+
+<p><br /></p>
 
 <p><br /></p>
 
@@ -199,7 +42,9 @@ for (var b = blocklink.length; b--;) {
 
 <p><br /></p>
 
-<h2 id="시나리오">시나리오</h2>
+<h1 id="사용법">사용법</h1>
+
+<p><br /></p>
 
 <blockquote>
   <ol>
@@ -240,7 +85,11 @@ for (var b = blocklink.length; b--;) {
 
 <p><br /></p>
 
+<p><br /></p>
+
 <h3 id="2-button-을-storyboard에-추가-및-연결">2. Button 을 StoryBoard에 추가 및 연결</h3>
+
+<p><br /></p>
 
 <p>버튼 생성은 간단하니 코드부터 보이자면</p>
 
@@ -256,19 +105,27 @@ for (var b = blocklink.length; b--;) {
 
 <p>Tag 지정해주는 곳이 가장 중요하다!</p>
 
-<p>self의 view가 가진 서브뷰들 중에서 <code class="highlighter-rouge">1번 </code> 태그를 가진 뷰를 가지고 온다.</p>
+<p>self의 view가 가진 서브뷰들 중에서 <code class="highlighter-rouge">1번</code> 태그를 가진 뷰를 가지고 온다.</p>
 
 <p>그리고 <code class="highlighter-rouge">UILabel</code>로 다운 캐스팅을 해주고 사용하면 끝이다.</p>
 
 <p>아주 심플하다.</p>
 
+<p><br /><br /></p>
+
 <h3 id="결과-화면">결과 화면</h3>
 
 <p><img src="/assets/img/post/2018-11-04/img2.gif" alt="" /></p>
 
+<p><br /><br /><br /></p>
+
 <h1 id="실험---헷갈리는-개념-바로-잡기">실험 - 헷갈리는 개념 바로 잡기</h1>
 
+<hr />
+
 <p>몇가지 실험을 하여, 헷갈리는 개념을 잡아보자</p>
+
+<p><br /></p>
 
 <h3 id="q1-없는-tag-번호를-호출하면">Q1. 없는 tag 번호를 호출하면???</h3>
 
@@ -287,8 +144,6 @@ for (var b = blocklink.length; b--;) {
 <p><img src="/assets/img/post/2018-11-04/img3.png" alt="" /></p>
 
 <p>이러면 조금 더 전달이 잘된것 같다.</p>
-
-<p>###</p>
 
 <p>실험을 위해 UI를 다시 셋팅했다.</p>
 
@@ -315,7 +170,9 @@ for (var b = blocklink.length; b--;) {
 
 <p><code class="highlighter-rouge">subView</code>의 있는 <code class="highlighter-rouge">label</code>의 태그 번호를 더 상위뷰인 <code class="highlighter-rouge">mainView</code>에서 사용이 될까?</p>
 
-<p>Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다.</p>
+<p>Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다. 그렇담 이 경우엔? 결과를 보자</p>
+
+<p><img src="/assets/img/post/2018-11-04/img5.gif" alt="" /></p>
 
 <p><br /></p>
 
@@ -325,7 +182,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>그런데;;;; 아니네?? 충격적이다.</p>
 
-<p><img src="/assets/img/post/2018-11-04/img5.gif" alt="" /></p>
+<p><br /></p>
 
 <p>Q2. MainView에서 tag 1번을 가지고 오면 성공할까?</p>
 
@@ -333,7 +190,11 @@ for (var b = blocklink.length; b--;) {
 
 <hr />
 
+<p><br /><br /></p>
+
 <h3 id="q3-같은-tag값들이-여러개면">Q3. 같은 Tag값들이 여러개면?</h3>
+
+<p><br /></p>
 
 <p>만약, 1의 태그 번호를 가진것이 여러개일 경우</p>
 
@@ -356,13 +217,15 @@ for (var b = blocklink.length; b--;) {
 <span class="n">label</span><span class="o">.</span><span class="nf">sizeToFit</span><span class="p">()</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p>label 만드는건 생략하고 중요 부분만 가지고 왔다.</p>
 
 <p>그럼 결과를 보자</p>
 
 <p><img src="/assets/img/post/2018-11-04/img6.gif" alt="" /></p>
 
-<p>예상대로 먼저 지정한게 변했다.</p>
+<p><br />예상대로 먼저 지정한게 변했다.</p>
 
 <p>그럼 당연히 지정 순서를 바꾸면 2가 변하겠지?</p>
 
@@ -376,7 +239,11 @@ for (var b = blocklink.length; b--;) {
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label2</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img6.gif" alt="" /></p>
+
+<p><br /></p>
 
 <p>?</p>
 
@@ -390,6 +257,8 @@ for (var b = blocklink.length; b--;) {
 
 <p>그럼 추가할때인가?</p>
 
+<p><br /></p>
+
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 태그 지정</span>
 <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">label2</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
@@ -400,11 +269,17 @@ for (var b = blocklink.length; b--;) {
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label1</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img7.gif" alt="" /></p>
 
 <p>오… 호…. 이것도 정말 예상 못했다.</p>
 
+<p><u>**지정 시점보다 중요한건 추가한 시점이다.**</u></p>
+
 <p>그렇담, 태그 지정을 나중에 해주면 다를까?</p>
+
+<p><br /></p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 화면 추가</span>
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label1</span><span class="p">)</span>
@@ -416,6 +291,8 @@ for (var b = blocklink.length; b--;) {
 <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img6.gif" alt="" /></p>
 
 <p>그대로다</p>
@@ -425,6 +302,8 @@ for (var b = blocklink.length; b--;) {
 <p>지정 시점 &lt; 화면 추가 시점</p>
 
 <p>이라는것이 확인 되었다.</p>
+
+<p><br /></p>
 
 <p>그렇담</p>
 
@@ -436,6 +315,8 @@ for (var b = blocklink.length; b--;) {
 <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">label2</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p>이 상태에서 버튼 선택시  <code class="highlighter-rouge">label1</code>의 태그를 지정한다면???</p>
 
 <p>( 해당 태그번호가 사용된 후에도 ‘지정시점 &lt; 화면 추가’ 시점 인지 확인을 위함)</p>
@@ -443,6 +324,8 @@ for (var b = blocklink.length; b--;) {
 <p>이번엔 조금 방식이 바뀌어야 한다.</p>
 
 <p>label 두개를 viewDidLoad안에서 말고 클래스 내부에 선언해준다.</p>
+
+<p><br /></p>
 
 <p>이렇게!</p>
 
@@ -464,6 +347,8 @@ for (var b = blocklink.length; b--;) {
 <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span> 
 </code></pre></div></div>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img8.gif" alt="" /></p>
 
 <p>사용이 되건 말건 상관이없었다. 오직 중요한건</p>
@@ -476,7 +361,11 @@ for (var b = blocklink.length; b--;) {
 
 <hr />
 
-<h3 id="q3-q2-vs-q3">Q3. Q2 VS Q3</h3>
+<p><br /><br /></p>
+
+<h3 id="q4-q2-vs-q3">Q4. Q2 VS Q3</h3>
+
+<p><br /></p>
 
 <p>그렇담 나에게 충격을 줬던 Q2와</p>
 
@@ -485,6 +374,8 @@ for (var b = blocklink.length; b--;) {
 </blockquote>
 
 <p>Q3을 섞어서 실험 해보자</p>
+
+<p><br /></p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">label1</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">1</span>
@@ -506,6 +397,8 @@ for (var b = blocklink.length; b--;) {
   <p>label의 경우 StoryBoard에 추가된 오브젝트 임을 생각하고 예상해보자.</p>
 </blockquote>
 
+<p><br /></p>
+
 <p><img src="/assets/img/post/2018-11-04/img9.gif" alt="" /></p>
 
 <p>‘A3. Tag 셋팅 시점보다, 먼저 화면 추가된 오브젝트가  갑이다.’ 는 변화가 없었다.</p>
@@ -520,7 +413,13 @@ for (var b = blocklink.length; b--;) {
   <p>(정확한 시점 공부할겸 더 알아봐야겠다.)</p>
 </blockquote>
 
+<p><br /><br /></p>
+
 <h1 id="마무리">마무리</h1>
+
+<hr />
+
+<p><br /></p>
 
 <p>가장 중요한것은</p>
 
@@ -534,294 +433,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>당황스러웠던 만큼! 다음에 사용할땐 좀더 잘 사용할 수 있을 것 같다.</p>
 
+<p><br /></p>
+
 <p>끝!</p>
 
-
-  </article>
-  <hr />
-</div>
-
-
-<section class="pager">
-  <ul>
-    
-    <li class="previous"><a href="/articles/2018/10/27/swift-NotificationCenter.html" title="Swift - Notification Center">&larr; 이전 게시물</a></li>
-    
-    
-    <li class="disabled"><a>다음 게시물 &rarr;</a></li>
-    
-  </ul>
-</section>
-
-<script src="/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-  $(document).keydown(function(e) {
-    if (e.target.nodeName.toUpperCase() != 'BODY') return;
-    var url = false;
-        if (e.which == 37 || e.which == 74) {  // Left arrow and J
-            
-        url = 'http://localhost:4000/articles/2018/10/27/swift-NotificationCenter.html';
-        
-        }
-        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
-            
-        }
-        if (url) {
-            window.location = url;
-        }
-  });
-})
-</script>
-
-
-
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='Jiseob Kim';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-    <section class="pager">
-  
-  
-</section>
-
-<script src="/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-  $(document).keydown(function(e) {
-    if (e.target.nodeName.toUpperCase() != 'BODY') return;
-    var url = false;
-        if (e.which == 37 || e.which == 74) {  // Left arrow and J
-        
-        }
-        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
-            
-        }
-        if (url) {
-            window.location = url;
-        }
-  });
-})
-</script>
-
-
-
-  </div>
-  <div class="col-sm-2">
-<div class="sidebar-module about">
-  <h2>저자 소개</h2>
-  <img title="Kim Ji Seob" src="/assets/ItsMe.jpeg" alt="Kim Ji Seob"/>
-  <br>
-  <span>파릇파릇한 iOS 개발자!</span>
-  <br />
-
-  
-
-  Contact Me Via: <br />
-
-  
-  <a href="mailto:jiseob812@gmail.com" title="mailto: jiseob812@gmail.com"><i class="fa fa-envelope-square fa-3x"></i></a>&nbsp;
-  
-  
-  <a href="https://github.com/JiSeobKim" title="GithubID: JiSeobKim"><i class="fa fa-github-square fa-3x"></i></a>&nbsp;
-  
-
-
-  
-
-</div>
-
-<div class="sidebar-module">
-  <h4>게시물 검색</h4>
-  <form onsubmit="search_google()" >
-    <input type="text" id="google-search" placeholder="Google search" />
-    <input type="submit" name="sa" value="Go" />
-  </form>
-</div>
-
-
-
-<div class="sidebar-module">
-  <h4>최근 게시물</h4>
-  
-  <li>
-  <a href="/articles/2018/11/04/swift-Tag.html" title="Swift_Basic - Tag 알아보기" rel="bookmark">Swift_Basic - Tag 알아보기</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/10/27/swift-NotificationCenter.html" title="Swift - Notification Center" rel="bookmark">Swift - Notification Center</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/09/16/swift-DelegatePattern2.html" title="Swift - 화면간 데이터 전달. 2편" rel="bookmark">Swift - 화면간 데이터 전달. 2편</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/09/02/swift-DelegatePattern.html" title="Swift - 화면간 데이터 전달. 1편" rel="bookmark">Swift - 화면간 데이터 전달. 1편</a>
-  </li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>카테고리</h4>
-  
-  <li><a href="/categories/#articles" title="articles" rel="11">articles (11)</a></li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>태그</h4>
-  
-    <a href="/tags/#Swift" title="Swift" rel="11">Swift</a> &nbsp;
-  
-    <a href="/tags/#Class" title="Class" rel="2">Class</a> &nbsp;
-  
-    <a href="/tags/#Struct" title="Struct" rel="1">Struct</a> &nbsp;
-  
-    <a href="/tags/#값전달" title="값전달" rel="1">값전달</a> &nbsp;
-  
-    <a href="/tags/#Inherite" title="Inherite" rel="1">Inherite</a> &nbsp;
-  
-    <a href="/tags/#Alamofire" title="Alamofire" rel="2">Alamofire</a> &nbsp;
-  
-    <a href="/tags/#Codable" title="Codable" rel="2">Codable</a> &nbsp;
-  
-    <a href="/tags/#Escaping" title="Escaping" rel="1">Escaping</a> &nbsp;
-  
-    <a href="/tags/#Network" title="Network" rel="1">Network</a> &nbsp;
-  
-    <a href="/tags/#Encodable" title="Encodable" rel="1">Encodable</a> &nbsp;
-  
-    <a href="/tags/#Generic" title="Generic" rel="1">Generic</a> &nbsp;
-  
-    <a href="/tags/#Delegate Pattern" title="Delegate Pattern" rel="1">Delegate Pattern</a> &nbsp;
-  
-    <a href="/tags/#Protocol" title="Protocol" rel="1">Protocol</a> &nbsp;
-  
-    <a href="/tags/#Method" title="Method" rel="1">Method</a> &nbsp;
-  
-    <a href="/tags/#Type Method" title="Type Method" rel="1">Type Method</a> &nbsp;
-  
-    <a href="/tags/#Instance Method" title="Instance Method" rel="1">Instance Method</a> &nbsp;
-  
-    <a href="/tags/#Notification Center" title="Notification Center" rel="1">Notification Center</a> &nbsp;
-  
-    <a href="/tags/#Tag" title="Tag" rel="1">Tag</a> &nbsp;
-  
-</div>
-
-
-
-<div class="sidebar-module">
-  <h4>모든 게시물</h4>
-
-  
-  
-  
-  
-  
-  <li id="2018" > <a href="/archives/#2018">2018</a></li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-</div>
-
-
-<div class="sidebar-module"> <!-- sidebar-module-inset">-->
-  <h4>저작권</h4>
-
-  
-
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
-    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
-  </a>
-  <br />
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
-
-  
-
-</div>
-
-
-</div>
-
-
-  
-
-  <footer class="site-footer">
-
-  <p>Copyright &copy; <a href="/">JS Blog</a></p>
-  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
-  on 
-  <a href="https://github.com/">Github</a>
-  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
-
-
-  <div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
-    <a title="Back To Top"><img src="/images/topbutton.png"/></a>
-  </div>
-
-  <script src="/js/jquery-1.9.1.min.js"></script>
-  <script src="/js/totop.js"></script>  
-
-
-
-</footer>
-
-
-</div>
-
-</body>
-
-</html>

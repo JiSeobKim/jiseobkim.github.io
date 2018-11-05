@@ -5,8 +5,8 @@
     <description>Freshman21 is a Jekyll blog theme.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 04 Nov 2018 23:24:49 +0900</pubDate>
-    <lastBuildDate>Sun, 04 Nov 2018 23:24:49 +0900</lastBuildDate>
+    <pubDate>Mon, 05 Nov 2018 09:33:37 +0900</pubDate>
+    <lastBuildDate>Mon, 05 Nov 2018 09:33:37 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -26,6 +26,8 @@
 &lt;p&gt;그래서 쓰다 서서히 감이 와서 블로그로 써보면서&lt;/p&gt;
 
 &lt;p&gt;정리를 하고자 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -53,7 +55,9 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;시나리오&quot;&gt;시나리오&lt;/h2&gt;
+&lt;h1 id=&quot;사용법&quot;&gt;사용법&lt;/h1&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;ol&gt;
@@ -94,7 +98,11 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;2-button-을-storyboard에-추가-및-연결&quot;&gt;2. Button 을 StoryBoard에 추가 및 연결&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;버튼 생성은 간단하니 코드부터 보이자면&lt;/p&gt;
 
@@ -110,19 +118,27 @@
 
 &lt;p&gt;Tag 지정해주는 곳이 가장 중요하다!&lt;/p&gt;
 
-&lt;p&gt;self의 view가 가진 서브뷰들 중에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;1번 &lt;/code&gt; 태그를 가진 뷰를 가지고 온다.&lt;/p&gt;
+&lt;p&gt;self의 view가 가진 서브뷰들 중에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;1번&lt;/code&gt; 태그를 가진 뷰를 가지고 온다.&lt;/p&gt;
 
 &lt;p&gt;그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;UILabel&lt;/code&gt;로 다운 캐스팅을 해주고 사용하면 끝이다.&lt;/p&gt;
 
 &lt;p&gt;아주 심플하다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;결과-화면&quot;&gt;결과 화면&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h1 id=&quot;실험---헷갈리는-개념-바로-잡기&quot;&gt;실험 - 헷갈리는 개념 바로 잡기&lt;/h1&gt;
 
+&lt;hr /&gt;
+
 &lt;p&gt;몇가지 실험을 하여, 헷갈리는 개념을 잡아보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;q1-없는-tag-번호를-호출하면&quot;&gt;Q1. 없는 tag 번호를 호출하면???&lt;/h3&gt;
 
@@ -141,8 +157,6 @@
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이러면 조금 더 전달이 잘된것 같다.&lt;/p&gt;
-
-&lt;p&gt;###&lt;/p&gt;
 
 &lt;p&gt;실험을 위해 UI를 다시 셋팅했다.&lt;/p&gt;
 
@@ -169,7 +183,9 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;subView&lt;/code&gt;의 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;label&lt;/code&gt;의 태그 번호를 더 상위뷰인 &lt;code class=&quot;highlighter-rouge&quot;&gt;mainView&lt;/code&gt;에서 사용이 될까?&lt;/p&gt;
 
-&lt;p&gt;Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다.&lt;/p&gt;
+&lt;p&gt;Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다. 그렇담 이 경우엔? 결과를 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -179,7 +195,7 @@
 
 &lt;p&gt;그런데;;;; 아니네?? 충격적이다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Q2. MainView에서 tag 1번을 가지고 오면 성공할까?&lt;/p&gt;
 
@@ -187,7 +203,11 @@
 
 &lt;hr /&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;q3-같은-tag값들이-여러개면&quot;&gt;Q3. 같은 Tag값들이 여러개면?&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;만약, 1의 태그 번호를 가진것이 여러개일 경우&lt;/p&gt;
 
@@ -210,13 +230,15 @@
 &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sizeToFit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;label 만드는건 생략하고 중요 부분만 가지고 왔다.&lt;/p&gt;
 
 &lt;p&gt;그럼 결과를 보자&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;예상대로 먼저 지정한게 변했다.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;예상대로 먼저 지정한게 변했다.&lt;/p&gt;
 
 &lt;p&gt;그럼 당연히 지정 순서를 바꾸면 2가 변하겠지?&lt;/p&gt;
 
@@ -230,7 +252,11 @@
 &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;?&lt;/p&gt;
 
@@ -244,6 +270,8 @@
 
 &lt;p&gt;그럼 추가할때인가?&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 태그 지정&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;label2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
@@ -254,11 +282,17 @@
 &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img7.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오… 호…. 이것도 정말 예상 못했다.&lt;/p&gt;
 
+&lt;p&gt;&lt;u&gt;**지정 시점보다 중요한건 추가한 시점이다.**&lt;/u&gt;&lt;/p&gt;
+
 &lt;p&gt;그렇담, 태그 지정을 나중에 해주면 다를까?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 화면 추가&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -270,6 +304,8 @@
 &lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그대로다&lt;/p&gt;
@@ -279,6 +315,8 @@
 &lt;p&gt;지정 시점 &amp;lt; 화면 추가 시점&lt;/p&gt;
 
 &lt;p&gt;이라는것이 확인 되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇담&lt;/p&gt;
 
@@ -290,6 +328,8 @@
 &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;이 상태에서 버튼 선택시  &lt;code class=&quot;highlighter-rouge&quot;&gt;label1&lt;/code&gt;의 태그를 지정한다면???&lt;/p&gt;
 
 &lt;p&gt;( 해당 태그번호가 사용된 후에도 ‘지정시점 &amp;lt; 화면 추가’ 시점 인지 확인을 위함)&lt;/p&gt;
@@ -297,6 +337,8 @@
 &lt;p&gt;이번엔 조금 방식이 바뀌어야 한다.&lt;/p&gt;
 
 &lt;p&gt;label 두개를 viewDidLoad안에서 말고 클래스 내부에 선언해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이렇게!&lt;/p&gt;
 
@@ -318,6 +360,8 @@
 &lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;사용이 되건 말건 상관이없었다. 오직 중요한건&lt;/p&gt;
@@ -330,7 +374,11 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;q3-q2-vs-q3&quot;&gt;Q3. Q2 VS Q3&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;q4-q2-vs-q3&quot;&gt;Q4. Q2 VS Q3&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇담 나에게 충격을 줬던 Q2와&lt;/p&gt;
 
@@ -339,6 +387,8 @@
 &lt;/blockquote&gt;
 
 &lt;p&gt;Q3을 섞어서 실험 해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;viewDidLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
@@ -360,6 +410,8 @@
   &lt;p&gt;label의 경우 StoryBoard에 추가된 오브젝트 임을 생각하고 예상해보자.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img9.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;‘A3. Tag 셋팅 시점보다, 먼저 화면 추가된 오브젝트가  갑이다.’ 는 변화가 없었다.&lt;/p&gt;
@@ -374,7 +426,13 @@
   &lt;p&gt;(정확한 시점 공부할겸 더 알아봐야겠다.)&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;가장 중요한것은&lt;/p&gt;
 
@@ -387,6 +445,8 @@
 &lt;p&gt;실험중 예상이 틀린게 나와서 당황스러웠다.&lt;/p&gt;
 
 &lt;p&gt;당황스러웠던 만큼! 다음에 사용할땐 좀더 잘 사용할 수 있을 것 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;끝!&lt;/p&gt;
 
@@ -956,8 +1016,8 @@
 
 </description>
         <pubDate>Fri, 05 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</guid>
+        <link>http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/05/swift_basic-%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3-&-%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3.html</guid>
         
         <category>Swift</category>
         
@@ -2398,8 +2458,8 @@
 
 </description>
         <pubDate>Sun, 05 Aug 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html</guid>
+        <link>http://localhost:4000/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/05/swift-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA-Encodable-(Without-Alamofire).html</guid>
         
         <category>Swift</category>
         
@@ -2770,8 +2830,8 @@
 
 </description>
         <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</guid>
+        <link>http://localhost:4000/articles/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/29/swift-Alamofire%E1%84%8B%E1%85%AA-Escaping.html</guid>
         
         <category>Swift</category>
         
@@ -3119,8 +3179,8 @@ do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯
 
 </description>
         <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</guid>
+        <link>http://localhost:4000/articles/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/21/swift-Alamofire%E1%84%8B%E1%85%AA-Codable.html</guid>
         
         <category>Swift</category>
         
@@ -3553,8 +3613,8 @@ IBOutlet도 변경&lt;/p&gt;
 좀더 쓸곳을 찾아봐야겠다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 15 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/15/swift-UIButton-%EA%B3%BC-Class.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/15/swift-UIButton-%EA%B3%BC-Class.html</guid>
+        <link>http://localhost:4000/articles/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class.html</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/15/swift-UIButton-%E1%84%80%E1%85%AA-Class.html</guid>
         
         <category>Swift</category>
         
