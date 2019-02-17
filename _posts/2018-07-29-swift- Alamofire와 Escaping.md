@@ -16,7 +16,7 @@ Alamofire라는 좋은 라이브러리를 쓰다가 보면 새로운 swift파일
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img1.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img1.png)
 
 
 
@@ -83,7 +83,7 @@ switch response.result {
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img2.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img2.png)
 
 
 
@@ -161,7 +161,7 @@ returnValue = nsDic // 이때, 이미 return은 진행된 상태. 즉, 넣어봤
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img3.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img3.png)
 
 
 
@@ -183,7 +183,7 @@ returnValue = nsDic // 이때, 이미 return은 진행된 상태. 즉, 넣어봤
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img4.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img4.png)
 
 
 
@@ -222,7 +222,7 @@ func useEscaping(url: String, handler: (NSDictionary) -> Void) {}
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img5.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img5.png)
 
 
 
@@ -267,7 +267,7 @@ UIView.animate(withDuration: 2, animations: {
 
 자신이 정한 시간(여기선 2초)동안 **animations** 의 내용을 수행하게 된다, 그리고 그 작업이 끝난뒤에 할일은 **completion내용이** 된다. 저기서 뒤에 물음표가 붙어있는데, **nil이** 될수 있다는 것이다. 즉 효과만 주고 그뒤에 다른 작업은 안해도 된다는것! 그렇기에 **animation에** 더 들어가보면 default값으로 **nil이** 들어가있다.
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img6.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img6.png)
 
 
 
@@ -297,7 +297,7 @@ Generic도 나중에 다루기로하고, 함수나 클래스 구조체 등등 �
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img7.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img7.png)
 
 
 
@@ -435,7 +435,7 @@ func useEscaping(url: String, whenIfFailed: @escaping () -> Void, handler: @esca
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-29/img8.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img8.png)
 
 
 

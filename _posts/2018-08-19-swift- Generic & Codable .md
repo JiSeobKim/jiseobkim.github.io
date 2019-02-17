@@ -175,7 +175,7 @@ String형과 Int형을 제네릭을 이용한 함수 하나로 사용한 결과 
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img1.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img1.png)
 
 
 
@@ -274,7 +274,7 @@ url3의 경우 data1에는 url1의 응답과 같은 값, data2의 경우는 url2
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img2.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img2.png)
 
 
 
@@ -338,7 +338,7 @@ url.alamofireDefault(type: StructA()) { (nsDic) in
 
 이해가 됐단 가정하에 포인트는 Decodable 사용 부분입니다
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img3.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img3.png)
 
 
 
@@ -408,7 +408,7 @@ let data = try JSONDecoder().decode(T.self, from: JSONData)
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img4.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img4.png)
 
 
 
@@ -452,7 +452,7 @@ func useDecodable<T: Codable>(type: T, nsDic: NSDictionary) -> T? {
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img5.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img5.png)
 
 
 
@@ -517,19 +517,19 @@ switch를 이용해 경우를 나누었고, 이는 보여주기 위해 다 썼�
 
 URL 1의 경우
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img6.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img6.png)
 
 
 
 URL 2의 경우
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img7.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img7.png)
 
 
 
 URL 3의 경우
 
-![](https://jiseobkim.github.io/static/img/_post/2018-08-17/img8.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img8.png)
 
 
 

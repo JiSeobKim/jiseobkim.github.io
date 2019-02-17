@@ -17,7 +17,7 @@ CocoaPod을 이용해서 설치했으며, 설치법은 시간이 된다면 나�
 
 로컬 서버를 이용한 응답값을 먼저 보자.
 (응답값)
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img1.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img1.png)
 JSON 형태이며, 값은 간단하게 3개가 온다.
 
 1. hp (String)
@@ -32,7 +32,7 @@ Alamofire만 있다면 아주아주 간단하게 할 수 있다. 라이브러리
 * 주의: Alamofire를 설치했다는 가정하부터 진행
 
 (앱화면)
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img2.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img2.png)
 처음 이미지에 보았던 전화번호, 이름, 나이를 서버로부터 받아서 위의 이미지에 알맞게 데이터를 넣어줄 것이다.
 
 순서는 다음과 같다
@@ -51,7 +51,7 @@ Alamofire만 있다면 아주아주 간단하게 할 수 있다. 라이브러리
 ## 1. 통신을 통해 값 받아오기
 우선 데이터를 받아오자, 코드는 아주 간단하다. 사진으로 첨부!
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img3.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img3.png)
 
 
 주석에 따라 설명을 진행!
@@ -71,7 +71,7 @@ Alamofire만 있다면 아주아주 간단하게 할 수 있다. 라이브러리
 
 ### 4. 응답(response) 처리
 응답이란 3에서 말한 URL을 입력했다가 전송(request)이라면, 입력했을때 반응(response)한것이 응답값이다. 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img1.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img1.png)
 > 이해가 잘안된다면, "내가 주소창에 URL을 입력(요청)했더니 위와 같은 화면(응답)이 나왔다" 정도로?? 생각하자.
 
 
@@ -96,7 +96,7 @@ Alamofire만 있다면 아주아주 간단하게 할 수 있다. 라이브러리
 
 response.result 에 대해 좀 더 깊숙히 들어가보면 아래와 같다.
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img4.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img4.png)
 
 우선 타입은 enum이다, 그리고 그 케이스는 2가지다 
 
@@ -116,19 +116,19 @@ response.result 에 대해 좀 더 깊숙히 들어가보면 아래와 같다.
 
 ### 5-1. 통신 성공
 타입을 먼저보자.
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img5.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img5.png)
 Any 형태이다. 왜 Any일진 생각해보면 간단하다.
 
 그럼 실행을 해보자
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img6.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img6.png)
 콘솔창에 보면 성공적으로 가져왔다. 위에서 말했듯이 이 값의 타입은 Any이다. NSDictionary로 캐스팅을 먼저해야하자.
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img7.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img7.png)
 NSDictionary 타입으로 캐스팅 후 for문으로 출력해주었다. 아주 잘나왔다. 끝이 보인다.
 
 
 각 데이터를 빼오자.
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img8.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img8.png)
 각각 전화번호/이름/나이 데이터를 비강제 해제 (unwrapping) 해주었다.
 
 어려운말이다. 써보고 싶었다. 그치만 하도 안썼더니 나도 어색하다. 쉽게 말해 if문을 써서 안전빵으로 데이터를 가져오고 설정해줬다.
@@ -136,16 +136,16 @@ NSDictionary 타입으로 캐스팅 후 for문으로 출력해주었다. 아주 
 다운캐스팅 할때 `as?`을 써줌으로써 실패시 nil로 바뀌게 될것이고, 이 경우엔 swift에선 해당 라인을 실행 안한다고한다! 훌륭해.
 
 우선, 통신 하기전 화면을 보자
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img9.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img9.png)
 못생겼다.
 
 그럼 통신 후!
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img10.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img10.png)
 번호/이름은 잘들어갔다. 그치만 나이는 적용이 안되었다.
 
 해당부분 값을 출력해보자.
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img11.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img11.png)
 새로 배운 기술이다. 브레이크 포인트에 lldb(Low Level Debugger) 명령어를 입력해주면, 해당 부분 가서 알아서 해당 명령어를 실행해준다. 해당 명령어 입력부분 아래에 옵션 체크를 해주면 원래는 break 걸면 해당 라인에서 멈춰야하지만 명령어 실행 후 자동으로 다시 진행한다. 
 
 아직 print 찍는게 편하지만 자주 쓰는곳에 걸어두면 편하다. disable 했다가 On/Off해주기만 하면 되니깐!
@@ -154,7 +154,7 @@ NSDictionary 타입으로 캐스팅 후 for문으로 출력해주었다. 아주 
 그게 중요한게 아니고, 콘솔창에 nil이 찍혔다. 
 
 캐스팅이 실패한것이다. response 사진을 다시 보자
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img1.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img1.png)
 자세히보면 휴대폰 번호에는 쌍따옴표(" ")가 있지만, 나이 부분엔 없다. 문자가 아니라 숫자이다.
 옵셔널 강제해제 였으면 앱이 크래쉬 났을 것이다.
 
@@ -163,35 +163,35 @@ NSDictionary 타입으로 캐스팅 후 for문으로 출력해주었다. 아주 
 하지만 Codable를 알게된 후론 세상 편해졌다. 궁금해지지 않는가 Codable? 나만 궁금한가.
 
 이유는 알았으니 일단 고치고
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img12.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img12.png)
 
 실행!
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img13.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img13.png)
 
 완성!!
 
 
 데이터가 아무리 많아도 이젠 할 수 있다.
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img14.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img14.png)
 데이터가 훨~씬 많다. 이것도 해보자.
 
 우선 UI부터 만들고,
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img15.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img15.png)
 
 슬슬 재앙이 일어날 것 같은 예감이 드는가?
 
 코드를 보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img16.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img16.png)
 
 위에서 했던 방식대로 진행하면 이렇다. 하는건 쉽다. 하는 것만 쉽다. 굉장히 반복적이다. 별로다.
 
 데이터는 잘왔나?
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img17.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img17.png)
 
 잘왔다. 그런데 힘들다. 예시로 쓰는것도 힘들었다. 이 방식은 쓰지말자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img18.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img18.png)
 
 하지만, 실제 업무상 데이터가 많이 올때도 있다. 그러므로 우린 방법을 찾아야한다.
 
@@ -222,7 +222,7 @@ Codable은 Swift4에서 추가된것이다. 이것 사용하기전엔 위에처�
 > 내가 이 설계도로 A 아파트를 지었다. 이 A아파트가 인스턴스다! 이 A아파트에 내가 화장실을 들어가거나 방에 들어가는 행위 모두 가능하다!  이것이 인스턴스.
 
 ### 1. Class or Struct 생성
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img19.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img19.png)
 
 구조체를 사용하기로 했다 참조에 의한 사용은 필요없으니깐! (다른 이유도 더찾아봐야하는데..)
 
@@ -230,7 +230,7 @@ Codable은 Swift4에서 추가된것이다. 이것 사용하기전엔 위에처�
 
 Codable을 좀더 들어가보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img20.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img20.png)
 
 조금 생소한 **typealias**가 나타났다. 알기만하고 아직 적절한곳을 못찾아서 필자도 써본적이 없지만, 타입의 이름을 다르게 만들어주는것이다. 사람 이름으로 치면 개명정도? 다만 본명, 개명 둘다 사용가능하다.
 위의 사진을 보면 Encodable 과 Decodable을 묶은 것의 명칭을 Codable이라고 해준다는 의미다. 이렇게보니
@@ -239,7 +239,7 @@ Codable을 좀더 들어가보자
 그렇담 새로나온 **Decodable**과 **Encodable**이란?
 
 두가지 기능이 반대이니 한개만 보자 우리가 사용할 **Decodable**
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img21.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img21.png)
 
 
 
@@ -255,7 +255,7 @@ Codable을 좀더 들어가보자
 
 ### response받은 데이터를 JSON으로 변경
 처음에 사용할때 여기서 삽질을 많이 했다. 사진을 보자.
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img22.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img22.png)
 do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯이 Decodable은 실패시 에러를 던져주기 때문에!
 
 
@@ -271,7 +271,7 @@ let getInstanceData = try JSONDecoder().decode(UserData.self, from: obj)
 ```
 이렇게 하면 될까?
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img23.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img23.png)
 
 안된다. 타입이 안맞다고 한다. 왜냐? 아까도 확인 했지만 obj는 타입이 Any 이기 때문이다.
 
@@ -289,7 +289,7 @@ try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
 
 간단하다! 그렇다면 실제로 사용하고 출력까지 해보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img24.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img24.png)
 
 
 
@@ -305,7 +305,7 @@ try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
 
 ### 변수 이름 같지만 타입이 틀렸을 경우
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img25.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img25.png)
 
 
 
@@ -315,7 +315,7 @@ try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
 
 ### 데이터가 비어있을 경우
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img26.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img26.png)
 
 구조체에 test라는 변수를 추가했다. 하지만 웹 응답값에는 존재하지 않는다. 
 
@@ -329,7 +329,7 @@ try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
 
 우선 구조체 정보와 웹 정보가 일치할 경우를 보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img27.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img27.png)
 
 사용할때 !나 ? 붙여주지 않는다는 점 외엔 보다싶히 결과는 똑같다
 
@@ -352,7 +352,7 @@ try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
 
 마무리로 결과를 보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-07-21/img28.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-21/img28.png)
 
 
 
