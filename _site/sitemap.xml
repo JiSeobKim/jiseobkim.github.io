@@ -5,9 +5,39 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Feb 2019 21:33:28 +0900</pubDate>
-    <lastBuildDate>Sun, 17 Feb 2019 21:33:28 +0900</lastBuildDate>
+    <pubDate>Sun, 17 Feb 2019 21:41:55 +0900</pubDate>
+    <lastBuildDate>Sun, 17 Feb 2019 21:41:55 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
+    
+      <item>
+        <title>(Gossip) 블로그 테마 변경</title>
+        <description>&lt;p&gt;블로그가 생각보다 너무 어렵다,&lt;/p&gt;
+
+&lt;p&gt;마지막 테마 변경일줄 알았더니만&lt;/p&gt;
+
+&lt;p&gt;2019년 글이 포스팅이 안되는 문제가 있어서&lt;/p&gt;
+
+&lt;p&gt;19년 되자마자 글썼었지만 올라가지 않아서&lt;/p&gt;
+
+&lt;p&gt;그걸 핑계 삼아 귀차니즘이 살아났다.&lt;/p&gt;
+
+&lt;p&gt;에버노트를 시작하면서 티스토리와 연동이 된다해서&lt;/p&gt;
+
+&lt;p&gt;티스토리도 갔다가 MarkDown로 글쓰는 재미가 떨어져서&lt;/p&gt;
+
+&lt;p&gt;결국 jekyll로 복귀!&lt;/p&gt;
+
+&lt;p&gt;심플 이즈 베스트!&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 17 Feb 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/gossip/2019/02/17/Gossip-%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3-%E1%84%90%E1%85%A6%E1%84%86%E1%85%A1-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC.html</link>
+        <guid isPermaLink="true">http://localhost:4000/gossip/2019/02/17/Gossip-%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3-%E1%84%90%E1%85%A6%E1%84%86%E1%85%A1-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC.html</guid>
+        
+        
+        <category>Gossip</category>
+        
+      </item>
     
       <item>
         <title>(Xcode) Carthage 설치</title>
