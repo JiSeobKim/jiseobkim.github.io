@@ -1,12 +1,7 @@
 ---
-layout: post
-title: Swift - 화면간 데이터 전달. 1편
-published: true
-author: Kim Ji Seob
-category: articles
-tags: 
-- Swift
-- Delegate Pattern
+layout: post                       
+title: "(Swift) 화면간 데이터 전달. 1편"
+categories: [Swift]
 ---
 
 델리게이트 패턴을 이용해보자
@@ -33,7 +28,7 @@ tags:
 
 아래 삐뚤삐둘한 그림을 보면서 설명을 하죠
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img1.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img1.png)
 
 
 
@@ -117,11 +112,11 @@ VC2에서 VC1으로 데이터를 수정해봅시다.
 
 우선 VC1의 구성은 다음과 같습니다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img2.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img2.png)
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img3.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img3.png)
 
 
 
@@ -135,9 +130,9 @@ VC2에서 VC1으로 데이터를 수정해봅시다.
 
 VC2 구성은 다음과 같습니다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img4.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img4.png)
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img5.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img5.png)
 
 
 
@@ -187,7 +182,7 @@ delegate?.insert(name: text!)
 
 해괴한 그림과 함께 설명들어갑니다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img6.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img6.png)
 
 
 
@@ -205,7 +200,7 @@ delegate?.insert(name: text!)
 
 이해가 안되신분들이라면 이렇게 생각하실 겁니다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img7.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img7.png)
 
 
 
@@ -269,7 +264,7 @@ vc2.delegate = self
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img8.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img8.png)
 
 
 
@@ -277,9 +272,9 @@ vc2.delegate = self
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img9.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img9.png)
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-02/img10.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-02/img10.png)
 
 
 

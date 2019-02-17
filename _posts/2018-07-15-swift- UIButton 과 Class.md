@@ -1,13 +1,7 @@
 ---
-layout: post
-title: Swift - UIButton과 클래스
-published: true
-author: Kim Ji Seob
-category: articles
-tags: 
-- Swift
-- Class
-- Inherite
+layout: post                       
+title: "(Swift) UIButton과 클래스"
+categories: [Swift]
 ---
 
 이번의 주제는 클래스를 좀 더 잘써보기 위한 글이다디자인적 요소에서 class를 효율적으로 사용해보자
@@ -32,7 +26,7 @@ tags:
 
 
 우선 화면을 보자,
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img1.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img1.png)
 (왼쪽부터)
 1. 네비게이션바
 2. 메인 화면 - 버튼 선택 -> 입력화면으로 이동
@@ -46,12 +40,12 @@ tags:
 여기서 추가적으로 Xcode beta 10버전에서 오브젝트 라이브러리의 위치가 바뀌었다!
 
 (Xcode9)
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img2.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img2.png)
 기존의 위치는 위 사진 처럼 빨간색 영역이 오브젝트 라이브러리 이다.
 
 바뀐 위치를 보자
 (Xcode10 베타)
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img3.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img3.png)
 다음과 같다. 기존의 영역은 비어있고. 저렇게 새로운 창으로 영역이 바뀌었다.<br>
 (단축키 : `Shift - option - L`)<br>
 (* bear 글쓰기 프로그램에 Xcode 10 베타 코드 복붙하면 이상해서 다시 9로 사용 .. ㅠㅠ)
@@ -75,7 +69,7 @@ tags:
 
 
 (기본 화면)
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img4.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img4.png)
 
 
 ## 1. Class 없이 구현
@@ -96,14 +90,14 @@ override func viewDidLoad() {
 ```
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img5.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img5.png)
 
 아주 아주 간단하다. 그럼 바로 이어서 2번째 조건
 
 Conection Inspector 에서
 
 연결은 먼저 하고
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img6.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img6.png)
 
 코드
 
@@ -132,7 +126,7 @@ Conection Inspector 에서
 
 마음에 안드니 함수로 빼주자.
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img7.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img7.png)
 
 훨씬 깔끔하다.
 
@@ -150,7 +144,7 @@ Conection Inspector 에서
 1. 이름 입력
 2. 이메일 입력
 3. 전화번호 입력
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img8.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img8.png)
 
 위처럼 입력 화면이 여러개일 경우 어떻게 할 것인가?
 
@@ -168,7 +162,7 @@ Conection Inspector 에서
 둘은 비슷하다.  차이가 있다면 기능은 같지만 **약간의 차이점이 있는 버튼** 을 만들어야한다면 차이가 발생한다.
 
 예를 들어 아래 사진을 보자
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img9.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img9.png)
 새로운 버튼이 생겼다. 저장 후 메인으로 돌아가는 버튼이다.
 기능은 동일하다고 했을때 차이점이 있다.
 - 배경색
@@ -287,7 +281,7 @@ class DefaultBtn: UIButton {
 뭔가 보기엔 **뭐야? 오히려 더 힘든데?** 할수 있다, 그렇지만 처음에 셋팅만 어렵지 사용은 아주 간단하다.
 
 우선 버튼에 클래스를 넣어주고
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img10.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img10.png)
 IBOutlet도 변경
 ``` swift
 //@IBOutlet var btnSave: UIButton!
@@ -322,7 +316,7 @@ class AddNameViewController: UIViewController {
 
 물론 전역 함수로해도 한줄로 하면 끝이긴 하지만 위에 말했듯이 차이점이 있다.
 그리고 enum을 써서 가독성도 훨씬 좋다. 사용성도 좋다, 아래 사진처럼 .을 누르면 알아서 나오니깐 다른곳에서도 적절히 잘 사용하자.
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img11.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img11.png)
 
 그렇담 아까 문제가 되었던 활성/ 비활성은 같으나 특성이 다른것은 어떻게 구현을 할까?
 
@@ -389,7 +383,7 @@ class AddNameViewController: UIViewController {
 ```
 
 실행 사진은? 잘나온다
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img12.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img12.png)
 
 
 
@@ -416,7 +410,7 @@ func addSomeThing() {
 다만 이해 안될 소지가 있는건  `self.setting()`인데, 저것을 안해주면 컬러값이 안변한다. 저 변수들은 setting()에서 사용이 되는데, init 구문에서 부모클래스가 사용을 하고 바뀐 값으론 사용이 안되었기 때문이다!
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-15/img13.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-15/img13.png)
 
 
 만약 여러가지 복합 적으로 추가할 경우에도 크게 다르지 않지만 만들기 편함과 유지보수 면에서도 굉장히 편리하게 진행할 수 있다.

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(Swift) 타입 메소드 & 인스턴스 메소드 - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(Swift) 타입 메소드 & 인스턴스 메소드" />
+    <meta name="keywords" content="(Swift) 타입 메소드 & 인스턴스 메소드, 😀😍😉 JS의 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(Swift) 타입 메소드 & 인스턴스 메소드" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" property="og:url">
+    
+
+    
+      <meta content="2018-10-05T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(Swift) 타입 메소드 & 인스턴스 메소드">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/jekyll">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(Swift) 타입 메소드 & 인스턴스 메소드</h1>
+</header>
+
+<span class="time">05 Oct 2018</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>Swift 코드를 보다 그런적이 있었다.</p>
+
+<p>“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”</p>
+
+<p>오늘 나오는 메소드의 종류 다음과 같다.</p>
+
+<ol>
+  <li>인스턴스 메소드</li>
+  <li>타입 메소드</li>
+</ol>
+
+<p><br /></p>
+
+<h1 id="메소드의-종류">메소드의 종류</h1>
+<p>아래의 이미지를 보자!</p>
+
+<p><img src="https://jiseobkim.github.io/static/img/_post/2018-10-05/img1.png" alt="" />
+(App: Scapple)</p>
+
+<p>오늘의 추천앱! Scapple이란 앱이에요!!</p>
+
+<p>블로그도 리뉴얼 했으니 추천 카테고리도 만들어야지 ㅎㅎ</p>
+
+<p><br />
+다시 본론으로 넘어가서!</p>
+
+<p>구성은 다음과 같다</p>
+<ul>
+  <li>함수</li>
+  <li>클래스1
+    <ul>
+      <li>함수1</li>
+      <li>함수2</li>
+    </ul>
+  </li>
+  <li>클래스2
+    <ul>
+      <li>함수3</li>
+      <li>함수4</li>
+    </ul>
+  </li>
+</ul>
+
+<p>여기서, <strong>함수는 전역 함수다</strong>. 즉, 어디서든 접근이 가능하다는 의미이다!</p>
+
+<p>만약 지금 클래스1의 내부에 코드를 작성하고 있다면,</p>
+
+<p><strong>클래스1이 2를 상속하고 하고 있다</strong>거나 <strong>클래스2의 인스턴스를 만들었다면</strong></p>
+
+<p>클래스2 내부의 함수3,4를 접근할 수 있지만 <strong>그 외엔 불가</strong>하다. 하지만 우리의 <u>전역 함수님에겐 언제든 접근이 가능</u>하다!</p>
+
+<p><br /></p>
+
+<p>그렇담 일반적 접근인 <strong>인스턴스 메소드</strong>를 보자.</p>
+
+<p><br /></p>
+
+<h2 id="인스턴스-메소드">인스턴스 메소드</h2>
+
+<hr />
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">something</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+
+    <span class="kd">func</span> <span class="nf">useInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Instance!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위처럼 만들고 사용은 어떻게?</p>
+
+<p>이렇게</p>
+
+<p><img src="https://jiseobkim.github.io/static/img/_post/2018-10-05/img2.png" alt="" /></p>
+
+<p>‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.</p>
+
+<p>중요한건, <strong><u>인스턴스를 만들고 내부함수 호출</u></strong>이다.</p>
+
+<p>그렇담!! 인스턴스를 안만들고 호출을 하는 방법은?</p>
+
+<p><br /></p>
+
+<h2 id="타입-메소드">타입 메소드</h2>
+
+<hr />
+
+<p>타입 메소드란 타입(여기선 some클래스를 의미) 자체에서 호출을 할 수 있는 메소드이다.
+그건 케바케이겠지만? 우선, 책에서 본건 이런게 있었다</p>
+<ol>
+  <li>사각형 면 숫자 return 하기</li>
+  <li>괴물 울음 소리</li>
+</ol>
+
+<p>다소 어이없는 예들이지만 공통점은 있다. 당연한 값들이란것 !
+코드적으로 본다면 인자값 넣고 그</p>
+
+<p>말이 낯설어서 이해가 안될수도 있다. 필자도 이번기회에 외움! 이 맛에 포스팅한다.</p>
+
+<p>내용만 알아도 된다. 이름이야뭐… 일단 이해하는게 중요하니 설명부터!</p>
+
+<p>일반 내부 함수랑 차이가 거의 없다 있다면 <strong>키워드</strong> 하나가 더붙는다는것?</p>
+
+<p><code class="highlighter-rouge">static</code>  또는 <code class="highlighter-rouge">class</code> 이다.</p>
+
+<p>일반 책에서 잘나오지 않아서 굉장히 낯설었다… 나의 함수들은 func으로만 시작하였고,</p>
+
+<p>그 앞에 뭐가 붙는다는건 상상도 못해봤다. 심지어 한개도 아니고 두개다(사실 하나 더 있다.)(내가모르는게 더있을수도?)</p>
+
+<p>우선, <code class="highlighter-rouge">class</code> 부터 보자</p>
+
+<p><br /></p>
+<h3 id="키워드--class">키워드 : class</h3>
+
+<p>일단 코드부터 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+    <span class="c1">// 인스턴스 메소드</span>
+    <span class="kd">func</span> <span class="nf">useInstance</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Instance!!"</span>
+    <span class="p">}</span>
+    <span class="c1">// 타입 메소드</span>
+    <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getSomething</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Type!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>처음 저것을 보았을때, 신선한 충격이었다. 클래스는 클래스고 함수는 함수지 왜 한줄에 다있는걸까? 라고…</p>
+
+<p>우선 일반적인 클래스랑 쓰임새가 다른건 확실하다!</p>
+
+<p>그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)</p>
+
+<p><img src="https://jiseobkim.github.io/static/img/_post/2018-10-05/img3.png" alt="" /></p>
+
+<p>없다. 완소 기능인 자동 완성 기능에 없다…</p>
+
+<p>그렇다, 타입 메소드로 지정한것은 인스턴스 메소드처럼 사용이 불가능하다.</p>
+
+<p>그럼, 이제 사용해보자.</p>
+
+<p><img src="https://jiseobkim.github.io/static/img/_post/2018-10-05/img4.png" alt="" /></p>
+
+<p>됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
+그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.</p>
+<ol>
+  <li>괴물 울음소리 String받기</li>
+  <li>사각형 면수 받기</li>
+</ol>
+
+<p>귀여움이 가득한 예제들이었다. 
+1의 경우 괴물의 울음소리를 언제 어디서든 인스턴스 없이 가져왔고
+2의 경우는 사각형 면수인 4를 가져오는 것이었다.</p>
+
+<p>공통점으론 당연한 것이었다. 어떻게 쓰냐에 달렸다.</p>
+
+<p><br /></p>
+<h4 id="키워드-class의-장점">키워드 class의 장점</h4>
+
+<p>필자는 이런 경우도 보았다. 통신, UIView가져오기 등등
+따로 인스턴스를 만들지 않고 바로 바로 처리를 한 것들을 보았다.</p>
+
+<p>특정 반복되는 뷰라던가, 인자값으로 받아서 통신을 하고 델리게이트 패턴을 이용해 반복적으로 일어나는것을 처리하였다.</p>
+
+<p>그런점들이 좋았던거 같다. 인스턴스를 생성하면 이게 해제가 될지도 걱정을 안해도되고 (평소에도 잘안하긴했다..) 고로 ARC 걱정이 없을것 같다.</p>
+
+<p>다른 것들은 기억이 안난다, 단점으로 가자.</p>
+
+<p><br /></p>
+<h4 id="키워드-class의-단점">키워드 class의 단점</h4>
+
+<p>음 확장성이 안좋았다. 아니 없었다.
+당연한 값들로만 리턴을 한다? 근데 초기화가 안되어있어서 변수를 쓰지도 못한다.
+내부의 변수를 사용할 수 없단건 정말 확장성에서 힘들었던거 같다. 다른 사람이 해둔 코드에 내가 변수 하나 추가해서 작업하고 싶은데, 그게 안된다;;;
+파라미터를 하나 추가한다? 그럼 모든 그 함수에 추가 시켜버려야한다…</p>
+
+<p><br /></p>
+<h3 id="키워드--static">키워드 : static</h3>
+
+<p>무엇이 다른걸까?</p>
+
+<p>우선! 위에 타입메소드의 특징?들은 똑같다. 그런데</p>
+
+<p>오버라이드가 가능, 불가능이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SubClass</span><span class="p">:</span> <span class="kt">SomeClass</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getSomething</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">{</span>
+        <span class="k">return</span> <span class="s">"wow"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>이걸 먼저 보자, <code class="highlighter-rouge">class func</code> 앞에 <code class="highlighter-rouge">override</code>가 붙었다!
+키워드가 굉장히 길다.. 그렇지만 오버라이드 개념만 안다면 쉽게 이해할거라 생각한다.</p>
+
+<p>결과도 보자</p>
+
+<p><img src="https://jiseobkim.github.io/static/img/_post/2018-10-05/img5.png" alt="" /></p>
+
+<p>굉장히 잘 덮어썼다.</p>
+
+<p>그럼, 이제 살짝 바꿔서 <code class="highlighter-rouge">class</code>대신 <code class="highlighter-rouge">static</code>을 써보자</p>
+
+<p><img src="https://jiseobkim.github.io/static/img/_post/2018-10-05/img6.png" alt="" /></p>
+
+<p>오오 빨간색이다. <strong>스태틱 메소드라고 오버라이드가 안된다한다</strong></p>
+
+<p><br />
+그렇다, 큰 차이는 없지만 차이는 분명한 두가지 키워드였다!</p>
+
+<blockquote>
+  <p>class 키워드를 써도 오버라이드를 막을수 있다.
+<code class="highlighter-rouge">final</code> 키워드를 <code class="highlighter-rouge">class</code> 키워드 앞에 붙이면 된다!!
+키워드 많은건 내 취향이 아니니 나는 static을 쓰겠다.</p>
+</blockquote>
+
+<h1 id="ps">PS</h1>
+<p>처음엔 참 낯선 용어들이었는데, 블로그를 쓰니 머리에 더 들어오는 것 같아서 좋다.</p>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/11/04/swift-Tag.html">(Swift) Tag 알아보기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html">(Swift) Notification Center</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/09/16/swift-DelegatePattern2.html">(Swift) 화면간 데이터 전달. 2편</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/09/02/swift-DelegatePattern.html">(Swift) 화면간 데이터 전달. 1편</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/08/19/swift-Generic-&-Codable.html">(Swift) Generic & Codable</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html">(Swift) Alamofire와 Escaping</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2018/09/16/swift-DelegatePattern2.html">&laquo; (Swift) 화면간 데이터 전달. 2편</a>
+  
+  
+    <a class="next" href="/swift/2018/10/27/swift-NotificationCenter.html">(Swift) Notification Center &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(Swift) 타입 메소드 & 인스턴스 메소드";
+    var disqus_title = "(Swift) 타입 메소드 & 인스턴스 메소드";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

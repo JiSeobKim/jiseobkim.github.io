@@ -1,12 +1,7 @@
 ---
-layout: post
-title: Swift - 화면간 데이터 전달. 2편
-published: true
-author: Kim Ji Seob
-category: articles
-tags: 
-- Swift
-- Protocol
+layout: post                       
+title: "(Swift) 화면간 데이터 전달. 2편"
+categories: [Swift]
 ---
 
 프로토콜을 이용해보자
@@ -21,7 +16,7 @@ tags:
 
 # 이전글 Summary
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img1.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img1.png)
 
 
 
@@ -41,7 +36,7 @@ var delegate: VC1
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img1.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img1.png)
 
 
 
@@ -87,7 +82,7 @@ VC2 -> VC1에 이름 값을 전달 해주는 화면이었죠, 그런데
 
 우선 기존 방식입니다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img2.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img2.png)
 
 
 
@@ -101,7 +96,7 @@ VC2가 VC1의 내부 함수를 호출하는 방식이었죠,
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img3.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img3.png)
 
 
 
@@ -279,7 +274,7 @@ Bbang(빵-빵빵이의 빵)이라는 이름을 가지고 있고
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img4.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img4.png)
 
 
 
@@ -333,7 +328,7 @@ VC1의 함수를 호출은 이제 못하고(당연하죠?), Bbang안에 있던 w
 
 바꾸기전에 아무것도 안하고 나오는 오류를 봅시다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img5.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img5.png)
 
 
 
@@ -401,7 +396,7 @@ class VC!: UIVIewController, BBang {
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img6.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img6.png)
 
 
 
@@ -429,7 +424,7 @@ class VC!: UIVIewController, BBang {
 
 
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img7.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img7.png)
 
 
 
@@ -517,7 +512,7 @@ insert(name:_) 이 함수를 봤다면 무슨 생각을 할까요?
 
 이것도 마찬가지로 해야할 것들을 알려줬을뿐 내용은 자기맘대로 하란것입니다. 리턴 규격도 지켜야하구요!
 
-![]({{ site.baseurl }}/assets/img/post/2018-09-16/img8.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-09-16/img8.png)
 
 위에 보시는 바와 같이, 프로토콜입니다! 이외에도 UIScrollViewDelegate, UITableViewDelegate등등 
 

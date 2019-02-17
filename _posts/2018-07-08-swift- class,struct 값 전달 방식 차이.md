@@ -1,15 +1,9 @@
 ---
-title: Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?
-published: true
-layout: post
-author: Kim Ji Seob
-category: articles
-tags: 
-- Swift
-- Class
-- Struct
-- 값전달
+layout: post                       
+title: "(Swift) Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?"
+categories: [Swift]
 ---
+
 차이가 있다는건 나도 안다! 그치만 쓰임새가 어떻게 다를지 모르겠다!
 
 <br>
@@ -130,7 +124,7 @@ for row1 in school1.gradeList {
 2중에 3중까지,,, 심플해서 다행이다.
 일단 결과값을 보자.
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-08/image 1.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-08/image 1.png)
 
 학생1과 학생2가 잘들어갔다.
 
@@ -206,7 +200,7 @@ row3에서 해당을 순서에서 row3.number 값을 +1만 해주면 될까?
 
 결과를 보자
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-08/image 2.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-08/image 2.png)
 
 세상에나.. Play Grounds에선 친절하게 한글로 나온다.
 
@@ -229,7 +223,7 @@ for row1 in 0...school1.gradeList.count - 1 {
 
 아아아... 끔찍하다. 최악이다. 너무 싫다.
 결과는 제대로 나왔나???
-![]({{ site.baseurl }}/assets/img/post/2018-07-08/image 3.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-08/image 3.png)
 제대로 나왔다.
 위의 사진에서 프린트 문을 실행한 결과 박스를 보자
 값이 다르다
@@ -322,7 +316,7 @@ for row1 in school1.gradeList {
 
 이 문법의 결과는???
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-08/image 4.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-08/image 4.png)
 
 짜잔~ 오른쪽에 2x가 보인다. 학생은 2명이니깐 2번 돌았다는 것이다.
 
@@ -330,7 +324,7 @@ for row1 in school1.gradeList {
 
 그럼 결과를 보자
 
-![]({{ site.baseurl }}/assets/img/post/2018-07-08/image 5.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-07-08/image 5.png)
 
 차이점이 보인다.
 아까의 결과는 1,2번줄 결과는 분명 초기 값인 0과 1이었다.

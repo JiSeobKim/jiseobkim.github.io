@@ -1,192 +1,55 @@
-### Site info:
-title: JS Blog
-tagline: Developer story who love Swift
-author: Kim Ji Seob
-email: jiseob812@gmail.com
-description: "Freshman21 is a Jekyll blog theme." # You can edit this line in _config.yml. It will appear in your document head meta and in your feed.xml site description
-keywords: "Swift, ObjectiveC, iOS"
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://jiseobkim.github.io" # the base hostname & protocol for your site
-locale: kr
+title: 😀😍😉 JS의 개발 블로그 😁😆😄
+description: 나만의 공간
+author: Jiseob Kim
+github: https://github.com/JiSeobKim
+about: iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+disqus_shortname: https-jiseobkim-github-io
+google_analytics: UA-121626260-1
+avatar_url: /static/img/mainIcon2.png
 
-### Personal info and site tools info:
-twitter_username:
-github_username:  JiSeobKim
-disqus_shortname: Jiseob Kim
-favicon:     "/assets/favi.ico"
-aboutme: 파릇파릇한 iOS 개발자! # these are shown on aboutme-sidebar.
-aboutme_photo: "/assets/ItsMe.jpeg"
-google_analytics_key: UA-121626260-1 # put YOUR key here to enable tracking! (blank to disable)
+enableTags: true
+tagarray: [Swift]
 
+collections:
+  project:
+    output: true
+    permalink: /project/:path/
 
-### Site setting:
-ShowContactInfo: "True" # Personal Info (twitter,github,email) can be seen on aboutme-sidebar, those info only shown where ShowContactInfo == True
-default_column: "two" # blog style: two columns, if default_column != "two", you will see a one column blog.
-default_locale: "kr" # blog sidebar language set, only include: English (en), Chinese (cn), Japanese (jp), Polish (pl), Korean (kr),  Russian (ru), Turkish (tr), and Indonesian (id).
+social:
+    - icon: fa-facebook
+      link: "#"
+    - icon: fa-twitter
+      link: "Jiseob812"
+    - icon: fa-github
+      link: "https://github.com/JiSeobKim"
 
-locales:
-    en:
-      Aboutme: "About Me"
-      Archives: "Archives"
-      Blogroll: "Blogroll"
-      Categories: "Categories"
-      Copyright_Notice: "Copyright Notice"
-      Recent_Posts: "Recent Posts"
-      Tags: "Tags"
-      Previous: "Older"
-      Next: "Newer"
-      PostedInCategories: "Posted in"
-      Taggedwith: "and tagged"
-      PostDate: "on "
-      Google_search: "Site Search"
-      Home: "Home"
-      About: "About"
-      Guestbook: "Guestbook"
-      Subscribe: "Subscribe"
-    cn:
-      Aboutme: "关于我"
-      Archives: "存档"
-      Blogroll: "良师益友"
-      Categories: "分类目录"
-      Copyright_Notice: "版权声明"
-      Recent_Posts: "近期文章"
-      Tags: "标签"
-      Previous: "前一页"
-      Next: "后一页"
-      PostedInCategories: "目录:"
-      Taggedwith: "| 标签:"
-      PostDate: "| 发表时间: "
-      Google_search: "站内搜索"
-      Home: "首页"
-      About: "关于"
-      Guestbook: "留言"
-      Subscribe: "订阅"
-    jp:
-      Aboutme: "著者"
-      Archives: "アーカイブ"
-      Blogroll: "ブログロール"
-      Categories: "カテゴリー"
-      Copyright_Notice: "著作権表示"
-      Recent_Posts: "最近の投稿"
-      Tags: "タグ"
-      Previous: "前の記事"
-      Next: "次の記事"
-      PostedInCategories: "カテゴリー："
-      Taggedwith: "| タグ："
-      PostDate: "| 投稿日時: "
-      Google_search: "サイト内検索"
-      Home: "ホーム"
-      About: "このブログについて"
-      Guestbook: "メッセージ"
-      Subscribe: "購読"
-    pl:
-      Aboutme: "O mnie"
-      Archives: "Archiwum"
-      Blogroll: "Odnośniki"
-      Categories: "Kategorie"
-      Copyright_Notice: "Prawa autorskie"
-      Recent_Posts: "Najnowsze wpisy"
-      Tags: "Tagi"
-      Previous: "Starsze"
-      Next: "Nowsze"
-      PostedInCategories: "Kategoria"
-      Taggedwith: "tagi"
-      PostDate: "on "
-      Google_search: "Wyszukiwarka"
-      Home: "Strona główna"
-      About: "O mnie"
-      Guestbook: "Księga gości"
-      Subscribe: "Subskrypcja"
-    kr:
-      Aboutme: "저자 소개"
-      Archives: "모든 게시물"
-      Blogroll: "참조 링크"
-      Categories: "카테고리"
-      Copyright_Notice: "저작권"
-      Recent_Posts: "최근 게시물"
-      Tags: "태그"
-      Previous: "이전 게시물"
-      Next: "다음 게시물"
-      PostedInCategories: "카테고리: "
-      Taggedwith: "태그: "
-      PostDate: "작성일: "
-      Google_search: "게시물 검색"
-      Home: "홈"
-      About: "소개"
-      Guestbook: "방명록"
-      Subscribe: "구독하기"
-    ru:
-      Aboutme: "Обо мне" # = 'About me'
-      Archives: "Архив"
-      Blogroll: "Ссылки" # = 'Links'
-      Categories: "Разделы"
-      Copyright_Notice: "Авторские права"
-      Recent_Posts: "Свежие посты"
-      Tags: "Теги"
-      Previous: "Предыдущий пост"          # = 'Previous post'
-      Next: "Следующий пост"               # = 'Next post'
-      PostedInCategories: "Опубликовано в" # = 'Posted in'
-      Taggedwith: "с тегами"
-      PostDate: ""
-      Google_search: "Поиск на Google"
-      Home: "Домой"
-      About: "О блоге"            # = 'About blog'
-      Guestbook: "Гостевая книга"
-      Subscribe: "Подписаться"
-    tr:
-      Aboutme: "Hakkımda"
-      Archives: "Arşivler"
-      Blogroll: "Bağlantılar"
-      Categories: "Kategoriler"
-      Copyright_Notice: "Telif Hakkı Bildirimi"
-      Recent_Posts: "Son Yazılar"
-      Tags: "Etiketler"
-      Previous: "Daha Eski"
-      Next: "Daha Yeni"
-      PostedInCategories: "Şuraya gönderildi:"
-      Taggedwith: "ve şöyle etiketlendi:"
-      PostDate: "şu tarihte:"
-      Google_search: "Sitede Ara"
-      Home: "Anasayfa"
-      About: "Hakkında"
-      Guestbook: "Konuk Defteri"
-      Subscribe: "Abone Ol"
-    id:
-      Aboutme: "Tentang Saya"
-      Archives: "Arsip"
-      Blogroll: "Blog teman"
-      Categories: "Kategori"
-      Copyright_Notice: "Legal Formal"
-      Recent_Posts: "Post Terkini"
-      Tags: "Tag"
-      Previous: "Lebih lama"
-      Next: "Lebih baru"
-      PostedInCategories: "Diposting di"
-      Taggedwith: "dan ditag"
-      PostDate: "pada "
-      Google_search: "Pencarian Situs"
-      Home: "Beranda"
-      About: "Tentang"
-      Guestbook: "Buku tamu"
-      Subscribe: "Langganan"
+share:
+  twitter_username: github.io
+  fb_appid:
 
-### your Blogroll info, only name can shown on the page.
+urls:
+    - text: Category
+      url: /category/jekyll
+    - text: About Me
+      url: /about/
+    - text: My Projects
+      url: /projects/
+    - text: XML Feed
+      url: /feed.xml
 
-# Blogroll:
-#       - name: Freshman
-#         href: http://yulijia.net/freshman
-#         title: Another Jekyll blog theme
-#       - name: author's website
-#         href: http://yulijia.net/
-#         title: Lijia Yu's website
-
-
-### Build settings
+url: "https://jiseobkim.github.io"
+baseurl: ""
+paginate: 20
+per_page: 20
+paginate_path: "/page/:num/"
 markdown: kramdown
-#highlighter: pygments
-kramdown:
-        input: GFM
-        syntax_highlighter: rouge
-plugins: [jekyll-paginate]
-paginate: 5
-excerpt_separator: <!-- more -->
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: ['development']

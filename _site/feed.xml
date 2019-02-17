@@ -1,16 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JS Blog</title>
-    <description>Freshman21 is a Jekyll blog theme.</description>
+    <title>😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Dec 2018 23:14:58 +0900</pubDate>
-    <lastBuildDate>Wed, 26 Dec 2018 23:14:58 +0900</lastBuildDate>
-    <generator>Jekyll v3.8.4</generator>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 17 Feb 2019 20:36:16 +0900</pubDate>
+    <lastBuildDate>Sun, 17 Feb 2019 20:36:16 +0900</lastBuildDate>
+    <generator>Jekyll v3.7.4</generator>
     
       <item>
-        <title>Xcode_Carthage (서론)</title>
+        <title>(Xcode) Carthage (설치)</title>
+        <description>&lt;p&gt;Hello! 2019!&lt;/p&gt;
+
+&lt;p&gt;이전편에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carthage&lt;/code&gt;이란 무엇인지 그리고 Cocoapods보다 장점은 무엇인지 글을 써봤다.&lt;/p&gt;
+
+&lt;p&gt;이전글: [Carthage-서론][https://jiseobkim.github.io/articles/2018/12/26/Xcode-Cartage.html]&lt;/p&gt;
+
+&lt;p&gt;오늘도 짧게! 설치법만 적어야겠다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;요약&quot;&gt;요약&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Homebrew 설치&lt;/li&gt;
+  &lt;li&gt;Homebrew를 이용한 Carthage 설치&lt;/li&gt;
+  &lt;li&gt;Carthage를 통한 라이브러리 설치( Alamofire 로 설치 예정! )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;homebrew-설치&quot;&gt;Homebrew 설치&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Homebrew&lt;/em&gt;란? 쉽게 생각하자면 Cocoapods과 Carthage 처럼 Package Manager 같은 것이라 생각하면 될 것 같다!&lt;/p&gt;
+
+&lt;p&gt;그럼 우린 무엇을 할것인가!&lt;/p&gt;
+
+&lt;p&gt;Carthage 란것을 설치해야 하므로 일단 &lt;em&gt;Homebrew&lt;/em&gt;가 설치되어 있다면 Pass&lt;/p&gt;
+
+&lt;p&gt;[Homebrew 사이트][https://brew.sh]가 공식 사이트다. 자세히 보고 싶다면 한번쯤 보면 좋을듯하다.&lt;/p&gt;
+
+&lt;p&gt;하지만 귀찮다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;을 실행하고  아래 명령어 입력 후 Enter!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;기다리면 끝.&lt;/p&gt;
+
+&lt;h3 id=&quot;carthage-설치&quot;&gt;Carthage 설치&lt;/h3&gt;
+
+&lt;p&gt;[Carthage 공식 Github 사이트][https://github.com/Carthage/Carthage]에 굉장히 자세히 나와있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;을 열고&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chown -R $(whoami) /usr/local
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;입력하고&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;chown 은 소유자나 소유 그룹을 변경하는것이고,&lt;/p&gt;
+
+  &lt;p&gt;옵션 -R은 해당 경로와 하위 파일들 다 바꾼다는것,&lt;/p&gt;
+
+  &lt;p&gt;$(whoami)는 말그대로 내가 누군지를 나타낸다. 아마 Terminal 명령어 입력하는 곳 앞부분이랑 같을 것이다!&lt;/p&gt;
+
+  &lt;p&gt;뒤에 /usr/local 설정하고자 하는 파일이다.&lt;/p&gt;
+
+  &lt;p&gt;즉, /usr/local 경로와 그하위 목록들의 소유자를 나로 바꿔라! 라는 의미로 해석할 수 있다.&lt;/p&gt;
+
+  &lt;p&gt;안해도 되는 경우가 있지만 iTerm2를 쓰면서 oh-my-zip을 써서 그런가? 안해주면 안되었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install carthage
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;입력하면 끝.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;carthage를-통한-라이브러리-설치&quot;&gt;Carthage를 통한 라이브러리 설치&lt;/h3&gt;
+
+&lt;p&gt;Cocoapods 사용자라면 &lt;code class=&quot;highlighter-rouge&quot;&gt;pod init&lt;/code&gt;을 해서 Podfile을 만들었을 것이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Podfile은 설치할 라이브러리 이름을 적는곳 (추가 정보도 입력가능)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Carthage 사용자라면 Cartfile이란것을 만들어 줘야한다. (Terminal 입력)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi Cartfile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;편집기가 열리면 설치하고자 하는 라이브러리 주소 정보 및 버젼 정보를 적으면 된다. (Terminal 입력)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;github &quot;Alamofire/Alamofire&quot; ~&amp;gt; 4.7.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-&amp;gt; 4.7.2&lt;/code&gt; 는 생략 가능&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Podfile에 비해 Cartfile은 파일 내용이 심플해서 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;pod install 같이 설치가 필요하다. (Terminal 입력)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;carthage update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만, 심플한만큼 후자업이 조금 있다…&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Framework 수동 추가&lt;/li&gt;
+  &lt;li&gt;Run Script 생성&lt;/li&gt;
+  &lt;li&gt;shell script 작성 (이 표현이 맞는지 모르겠…..)&lt;/li&gt;
+  &lt;li&gt;Input Files에 루트 추가&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;졸리므로-나머진-내일-작성&quot;&gt;졸리므로 나머진 내일 작성.&lt;/h1&gt;
+
+</description>
+        <pubDate>Wed, 02 Jan 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/xcode/2019/01/02/Xcode-Cartage%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/xcode/2019/01/02/Xcode-Cartage%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5.html</guid>
+        
+        
+        <category>Xcode</category>
+        
+      </item>
+    
+      <item>
+        <title>(Xcode) Carthage</title>
         <description>&lt;p&gt;게으름 때문에 오랜만에 글을 쓰는 기분!&lt;/p&gt;
 
 &lt;p&gt;그 동안 귀차니즘에 빠져 나만의 시간을 가졌던것 같다! 다시 열심히!&lt;/p&gt;
@@ -47,7 +176,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;개인적으로 편한 이유&lt;/p&gt;
+&lt;p&gt;개인적으로 CocoaPods이 편한 이유&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;라이브러리 관리 및 새로 추가가 쉽다.&lt;/li&gt;
@@ -115,20 +244,16 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;p&gt;다음 편에선 간단하게 사용법에 대하여 적어보려한다!&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 Dec 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/12/26/Xcode-Cartage.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/12/26/Xcode-Cartage.html</guid>
+        <link>http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html</link>
+        <guid isPermaLink="true">http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html</guid>
         
-        <category>Carthage</category>
         
         <category>Xcode</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
       <item>
-        <title>Swift_Basic - Tag 알아보기</title>
+        <title>(Swift) Tag 알아보기</title>
         <description>&lt;p&gt;이번에 주제는 Tag에 관하여 써볼까 한다.&lt;/p&gt;
 
 &lt;p&gt;태그도 참 좋은 기능인데, 책에선 잘 못보다 보니&lt;/p&gt;
@@ -212,7 +337,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼 이미지는 아래와 같다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -246,7 +371,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;h3 id=&quot;결과-화면&quot;&gt;결과 화면&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -272,13 +397,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이건 말로하기 어려워서, 화려하게 그렸다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이러면 조금 더 전달이 잘된것 같다.&lt;/p&gt;
 
 &lt;p&gt;실험을 위해 UI를 다시 셋팅했다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;@IBOutlet&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;weak&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;mainView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;@IBOutlet&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;weak&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;subView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
@@ -303,7 +428,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다. 그렇담 이 경우엔? 결과를 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -354,7 +479,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼 결과를 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;예상대로 먼저 지정한게 변했다.&lt;/p&gt;
 
@@ -372,7 +497,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -402,7 +527,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img7.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img7.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오… 호…. 이것도 정말 예상 못했다.&lt;/p&gt;
 
@@ -424,7 +549,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그대로다&lt;/p&gt;
 
@@ -480,7 +605,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;사용이 되건 말건 상관이없었다. 오직 중요한건&lt;/p&gt;
 
@@ -530,7 +655,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-11-04/img9.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img9.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;‘A3. Tag 셋팅 시점보다, 먼저 화면 추가된 오브젝트가  갑이다.’ 는 변화가 없었다.&lt;/p&gt;
 
@@ -570,20 +695,16 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 </description>
         <pubDate>Sun, 04 Nov 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/11/04/swift-Tag.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/11/04/swift-Tag.html</guid>
+        <link>http://localhost:4000/swift/2018/11/04/swift-Tag.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/11/04/swift-Tag.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Tag</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
       <item>
-        <title>Swift - Notification Center</title>
+        <title>(Swift) Notification Center</title>
         <description>&lt;p&gt;&lt;u&gt;**주의 : 혹시 읽지만 끝까지 안보시는 분들은 적용하고 `옵저버 제거`  검색해서 꼭 제거해주세요.&lt;/u&gt;**&lt;/p&gt;
 
 &lt;p&gt;오늘 포스팅 주제는 &lt;strong&gt;Notification Center&lt;/strong&gt;.&lt;/p&gt;
@@ -769,7 +890,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그리고 그 3에는 버튼이 하나 있고, 이것을 누르면 Post를 한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-27/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-27/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -826,7 +947,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;del&gt;그럼 gif는 할줄 모르니&lt;/del&gt; (방금 배움. 단축어 짱짱)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-27/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-27/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위 Gif에 나온것처럼, 직전 VC2뿐만 아니라 현재 스택에 있는 VC1까지 모두 작동했다.&lt;/p&gt;
 
@@ -890,27 +1011,23 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;h2 id=&quot;결과-1&quot;&gt;결과&lt;/h2&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-27/img3.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-27/img3.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;PS. 더 적절한 예시를 아신다면 댓글 부탁 드립니다!! 같이 공부해요!&lt;/p&gt;
 </description>
         <pubDate>Sat, 27 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/10/27/swift-NotificationCenter.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/27/swift-NotificationCenter.html</guid>
+        <link>http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Notification Center</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
       <item>
-        <title>Swift_Basic - 타입 메소드 &amp; 인스턴스 메소드</title>
+        <title>(Swift) 타입 메소드 &amp; 인스턴스 메소드</title>
         <description>&lt;p&gt;Swift 코드를 보다 그런적이 있었다.&lt;/p&gt;
 
 &lt;p&gt;“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”&lt;/p&gt;
@@ -927,7 +1044,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;h1 id=&quot;메소드의-종류&quot;&gt;메소드의 종류&lt;/h1&gt;
 &lt;p&gt;아래의 이미지를 보자!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img1.png&quot; alt=&quot;&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img1.png&quot; alt=&quot;&quot; /&gt;
 (App: Scapple)&lt;/p&gt;
 
 &lt;p&gt;오늘의 추천앱! Scapple이란 앱이에요!!&lt;/p&gt;
@@ -986,7 +1103,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이렇게&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.&lt;/p&gt;
 
@@ -1047,7 +1164,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;없다. 완소 기능인 자동 완성 기능에 없다…&lt;/p&gt;
 
@@ -1055,7 +1172,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼, 이제 사용해보자.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
 그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.&lt;/p&gt;
@@ -1110,13 +1227,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;결과도 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;굉장히 잘 덮어썼다.&lt;/p&gt;
 
 &lt;p&gt;그럼, 이제 살짝 바꿔서 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;을 써보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-10-05/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오오 빨간색이다. &lt;strong&gt;스태틱 메소드라고 오버라이드가 안된다한다&lt;/strong&gt;&lt;/p&gt;
 
@@ -1134,24 +1251,16 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 </description>
         <pubDate>Fri, 05 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</guid>
+        <link>http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Method</category>
-        
-        <category>Type Method</category>
-        
-        <category>Instance Method</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
       <item>
-        <title>Swift - 화면간 데이터 전달. 2편</title>
+        <title>(Swift) 화면간 데이터 전달. 2편</title>
         <description>&lt;p&gt;프로토콜을 이용해보자&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -1162,7 +1271,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;h1 id=&quot;이전글-summary&quot;&gt;이전글 Summary&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;VC2의 코드중 핵심은 위 이미지 중 아래 코드와 같습니다.&lt;/p&gt;
 
@@ -1171,7 +1280,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;타입이 VC1클래스 였고, 여기서 꼭! 해줘야하는건 아래 그림처럼 특정 클래스와 연결을 시켜줘야 했습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;연결 방법은 간단했죠&lt;/p&gt;
 
@@ -1198,13 +1307,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;우선 기존 방식입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;VC2가 VC1의 내부 함수를 호출하는 방식이었죠,&lt;/p&gt;
 
 &lt;p&gt;그렇담 아래 같이 새로운 VC3라는 클래스가 나타난다면 문제가 생깁니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇담 여기서 VC2의 아래 코드는 어떻게 변경되어야할까요?&lt;/p&gt;
 
@@ -1330,7 +1439,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;자 그럼 어떻게 사용하는지 볼까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;변경된 라인은 42,54 쪽입니다. 프로토콜은 33번에 선언 되어있구요&lt;/p&gt;
 
@@ -1362,7 +1471,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;바꾸기전에 아무것도 안하고 나오는 오류를 봅시다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;“Cannot assign value of type ‘VC1’ to type ‘Bbang?’“&lt;/strong&gt;&lt;/p&gt;
 
@@ -1408,7 +1517,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼 코드를 봐볼까요&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오류가 납니다.&lt;/p&gt;
 
@@ -1426,7 +1535,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;(여기선 빨간점 눌러서 자동 해결해도됩니다. 좋은 기능)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;여기서 함수 내부 내용은 insert(name:_)과 같은 것을 사용했습니다.&lt;/p&gt;
 
@@ -1495,7 +1604,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이것도 마찬가지로 해야할 것들을 알려줬을뿐 내용은 자기맘대로 하란것입니다. 리턴 규격도 지켜야하구요!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-16/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위에 보시는 바와 같이, 프로토콜입니다! 이외에도 UIScrollViewDelegate, UITableViewDelegate등등&lt;/p&gt;
 
@@ -1510,20 +1619,16 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;p&gt;수고하세요~!&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Sep 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/09/16/swift-DelegatePattern2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/09/16/swift-DelegatePattern2.html</guid>
+        <link>http://localhost:4000/swift/2018/09/16/swift-DelegatePattern2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/09/16/swift-DelegatePattern2.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Protocol</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
       <item>
-        <title>Swift - 화면간 데이터 전달. 1편</title>
+        <title>(Swift) 화면간 데이터 전달. 1편</title>
         <description>&lt;p&gt;델리게이트 패턴을 이용해보자&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -1542,7 +1647,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;아래 삐뚤삐둘한 그림을 보면서 설명을 하죠&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그림이 예술입니다.&lt;/p&gt;
 
@@ -1604,9 +1709,9 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;우선 VC1의 구성은 다음과 같습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;아주 심플하죠? ‘이름 써질곳’ Label이 있고, 그 Label에 텍스트를 넣는 함수가 있습니다.&lt;/p&gt;
 
@@ -1614,9 +1719,9 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;VC2 구성은 다음과 같습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;여기또한 아주 심플하죠&lt;/p&gt;
 
@@ -1648,7 +1753,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;해괴한 그림과 함께 설명들어갑니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;(직선 깔끔히 그리는 방법 찾았어요)&lt;/p&gt;
 
@@ -1664,7 +1769,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이해가 안되신분들이라면 이렇게 생각하실 겁니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇지 않나요?&lt;/p&gt;
 
@@ -1709,13 +1814,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;아래 이미지처럼 대상자를 지목 하는거라고 보면 됩니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그럼 결과를 볼까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-09-02/img10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;잘 넘어왔네요~ 스탠포드 교수님께선 이런 방식을 델리게이트 패턴이라 칭하더군요! (유투브 공개강의) (아직 용어가 어려워요)&lt;/p&gt;
 
@@ -1724,20 +1829,16 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;p&gt;다음번엔 Protocol로 데이터 넘기는 방식을 써보겠습니다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Sep 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/09/02/swift-DelegatePattern.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/09/02/swift-DelegatePattern.html</guid>
+        <link>http://localhost:4000/swift/2018/09/02/swift-DelegatePattern.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/09/02/swift-DelegatePattern.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Delegate Pattern</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
       <item>
-        <title>Swift - Generic &amp; Codable</title>
+        <title>(Swift) Generic &amp; Codable</title>
         <description>&lt;p&gt;앞선 포스팅글들의 종합판!!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -1863,7 +1964,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;String형과 Int형을 제네릭을 이용한 함수 하나로 사용한 결과 입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;함수 하나를 일반적인 형태로 사용하게 되었습니다! ‘일반적인 형태로’ « ‘일반적’ « ‘Generic!!’ 훗&lt;/p&gt;
 
@@ -1945,7 +2046,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;url3의 경우 data1에는 url1의 응답과 같은 값, data2의 경우는 url2의 응답값과 같은 값입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;url1만 결과는 쉽게 나왔구요!&lt;/p&gt;
 
@@ -1997,7 +2098,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이해가 됐단 가정하에 포인트는 Decodable 사용 부분입니다&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;decode함수의 인자가 2가지 입니다. Decodable프로토콜과 데이타&lt;/p&gt;
 
@@ -2041,7 +2142,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;실행이 될까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;네 안됩니다. 그 이유는 뭘까요? 결론을 얘기하면 &lt;strong&gt;제네릭 타입인 T는 Decodable 프로토콜이 없다&lt;/strong&gt;는 것 입니다.&lt;/p&gt;
 
@@ -2071,7 +2172,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;에러는 사라졌습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그럼 사용법쪽으로 가서&lt;/p&gt;
 
@@ -2120,15 +2221,15 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;URL 1의 경우&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;URL 2의 경우&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;URL 3의 경우&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-08-17/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;모두 잘나왔죠???&lt;/p&gt;
 
@@ -2137,17 +2238,11 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;p&gt;이로써 Alamofire, Codable, Escaping, Generic을 모두 사용한 이번 포스팅을 마칩니다!&lt;/p&gt;
 </description>
         <pubDate>Sun, 19 Aug 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/08/19/swift-Generic-&-Codable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/08/19/swift-Generic-&-Codable.html</guid>
+        <link>http://localhost:4000/swift/2018/08/19/swift-Generic-&-Codable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/08/19/swift-Generic-&-Codable.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Generic</category>
-        
-        <category>Codable</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
@@ -2591,7 +2686,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
       </item>
     
       <item>
-        <title>Swift - Alamofire와 Escaping</title>
+        <title>(Swift) Alamofire와 Escaping</title>
         <description>&lt;p&gt;자주 반복되는 Alamofire를 함수로 만들자. feat.Escaping
 &lt;br /&gt;&lt;/p&gt;
 
@@ -2601,7 +2696,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;포기한 과정을 보기전에 오늘의 구조 먼저, 첨부&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;스토리보드도 심플, 코드도 심플, 화면도 심플한 상태이다&lt;/p&gt;
 
@@ -2663,7 +2758,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;(&lt;strong&gt;주의: 안되는 코드임&lt;/strong&gt;)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;1번을 보면 어떤 클래스라도 접근할수 있는 전역함수가 있다.&lt;/p&gt;
 
@@ -2723,7 +2818,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그렇다면 nsDic을 return 값으로 정해주는게 아니라 nsDic을 return 해준다면?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;안된다. 다른 방식이 필요하다.&lt;/p&gt;
 
@@ -2737,7 +2832,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;일단 코드를 보자.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;특별히 0번이라 썼다. 책으로만 공부했다면, 정말 정말 생소할 모습일것이다.&lt;/p&gt;
 
@@ -2769,7 +2864,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;쓰는 방식은 이미 많이들 접했을 것이다. 비슷한 문법을 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;1번의 경우는 애니메이션 효과를 사용할때 자주 사용하는 문법이다.&lt;/p&gt;
 
@@ -2806,7 +2901,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;자신이 정한 시간(여기선 2초)동안 &lt;strong&gt;animations&lt;/strong&gt; 의 내용을 수행하게 된다, 그리고 그 작업이 끝난뒤에 할일은 &lt;strong&gt;completion내용이&lt;/strong&gt; 된다. 저기서 뒤에 물음표가 붙어있는데, &lt;strong&gt;nil이&lt;/strong&gt; 될수 있다는 것이다. 즉 효과만 주고 그뒤에 다른 작업은 안해도 된다는것! 그렇기에 &lt;strong&gt;animation에&lt;/strong&gt; 더 들어가보면 default값으로 &lt;strong&gt;nil이&lt;/strong&gt; 들어가있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2826,7 +2921,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;사용법은 위의 Alamofire보다 훨씬 간단하다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;2-2 부분이 전부이다. 받아온 &lt;strong&gt;NSDictionary&lt;/strong&gt; 타입을 가진 데이터 이름을 &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nsDic&lt;/code&gt;&lt;/strong&gt; 이라 이름을 붙여주고 정말 딕셔너리 사용하듯 사용하면 끝이다.&lt;/p&gt;
 
@@ -2930,7 +3025,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;여기서도 &lt;strong&gt;escaping&lt;/strong&gt;을 사용했다. 그럼 사용 코드에선?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-29/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;마치 UIView Animation 같다.&lt;/p&gt;
 
@@ -2948,366 +3043,11 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 </description>
         <pubDate>Sun, 29 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</guid>
+        <link>http://localhost:4000/swift/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html</guid>
+        
         
         <category>Swift</category>
-        
-        <category>Alamofire</category>
-        
-        <category>Escaping</category>
-        
-        
-        <category>articles</category>
-        
-      </item>
-    
-      <item>
-        <title>Swift - Alamofire와 Codable</title>
-        <description>&lt;p&gt;요즘 시대엔 앱을 사용하면서 통신은 필수인듯 하다. 
-여러 기기간의 동기화, 결제, 등등 통신을 통해 데이터를 다루는 분야가 훨씬 많다.&lt;/p&gt;
-
-&lt;p&gt;필자도 맨처음 시작했던 Swift 스터디에서 로컬 앱을 만들었으나 통신의 필요성을 느껴서 졸업 작품때 통신을 하는 앱을 시도 했었으며, 취업에 많은 도움이 되었던 것 같다.&lt;/p&gt;
-
-&lt;p&gt;여담으로 아무것도 모르는 상태서 html, php, MariaDB, 포트포워딩 등등 배우려니 너무 힘들었던 기억이 있다. 서버는 집에 있던 NAS를 조금이나마 돈값하게 이용했었다.&lt;/p&gt;
-
-&lt;p&gt;그때 Alamofire 라는 훌륭한 라이브러리를 알게 되었다.&lt;/p&gt;
-
-&lt;p&gt;CocoaPod을 이용해서 설치했으며, 설치법은 시간이 된다면 나중에 다뤄보기로…..&lt;/p&gt;
-
-&lt;p&gt;로컬 서버를 이용한 응답값을 먼저 보자.
-(응답값)
-&lt;img src=&quot;/assets/img/post/2018-07-21/img1.png&quot; alt=&quot;&quot; /&gt;
-JSON 형태이며, 값은 간단하게 3개가 온다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;hp (String)&lt;/li&gt;
-  &lt;li&gt;name (String)&lt;/li&gt;
-  &lt;li&gt;age (Int)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;간단하지만, 이것을 앱에서 받으려면 처음 사용자는 엄청난 혼란이 온다.
-내가 그랬다.&lt;/p&gt;
-
-&lt;p&gt;Alamofire만 있다면 아주아주 간단하게 할 수 있다. 라이브러리를 안쓰고 통신도 가능하지만, 라이브러리를 쓴다면 편해지는건 사실! 아직 사용을 안해봤다면 한번쯤 써보게 된다면 아~ 이렇게 쓰는거군! 하게 될것이다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주의: Alamofire를 설치했다는 가정하부터 진행&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;(앱화면)
-&lt;img src=&quot;/assets/img/post/2018-07-21/img2.png&quot; alt=&quot;&quot; /&gt;
-처음 이미지에 보았던 전화번호, 이름, 나이를 서버로부터 받아서 위의 이미지에 알맞게 데이터를 넣어줄 것이다.&lt;/p&gt;
-
-&lt;p&gt;순서는 다음과 같다&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;통신을 통해 값 받아오기&lt;/li&gt;
-  &lt;li&gt;가져온 값에서 필요한값 빼내오기&lt;/li&gt;
-  &lt;li&gt;빼내온값 표출하기&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;** * 주의사항 (아래서 추가 설명) **&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Alamofire 통신시 &lt;strong&gt;비동기&lt;/strong&gt;로 진행됨을 잊으면 안된다.&lt;/li&gt;
-  &lt;li&gt;UI 관련 작업은 메인쓰레드에서만 가능하다, Alamofire 통신하여 UI 관련 작업이 제대로 안된다면 DispatchQueue.main.async를 이용해서 &lt;strong&gt;메인 쓰레드에서 비동기로&lt;/strong&gt; 진행 시켜보자.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;1-통신을-통해-값-받아오기&quot;&gt;1. 통신을 통해 값 받아오기&lt;/h2&gt;
-&lt;p&gt;우선 데이터를 받아오자, 코드는 아주 간단하다. 사진으로 첨부!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;주석에 따라 설명을 진행!&lt;/p&gt;
-&lt;h3 id=&quot;1-alamofire-import하기&quot;&gt;1. Alamofire import하기&lt;/h3&gt;
-&lt;p&gt;가장 중요한 설정인 Alamofire를 import 해줘야한다! 잊지말기&lt;/p&gt;
-
-&lt;h3 id=&quot;2-url-정의&quot;&gt;2. URL 정의&lt;/h3&gt;
-&lt;p&gt;이건 별다른 설명이 필요하지 않을듯 싶다. 통신을 하기위해선 누구에게 요청을 할것인가는 당연히 필요하기에 URL을 정의해야한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;3-전송request&quot;&gt;3. 전송(request)&lt;/h3&gt;
-&lt;p&gt;비록 한줄이지만 이번에 글의 가장 중요한 부분이다. Alamofire 라이브러리를 이용해주면 저렇게 단 한줄에 요청(request)을 할 수있다. 여기서 요청이란 주소창에다가 해당 URL을 입력했다. 정도로 생각하면 된다.&lt;/p&gt;
-
-&lt;p&gt;(RESTFull API의 경우 추후 별도 포스팅 예정)&lt;/p&gt;
-
-&lt;h3 id=&quot;4-응답response-처리&quot;&gt;4. 응답(response) 처리&lt;/h3&gt;
-&lt;p&gt;응답이란 3에서 말한 URL을 입력했다가 전송(request)이라면, 입력했을때 반응(response)한것이 응답값이다. 
-&lt;img src=&quot;/assets/img/post/2018-07-21/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;이해가 잘안된다면, “내가 주소창에 URL을 입력(요청)했더니 위와 같은 화면(응답)이 나왔다” 정도로?? 생각하자.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;그렇담 여기서 doNetwork 뒤의 responseJSON이란 ??&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;위의 이미지는 JSON 형태로 응답을 하고 있다. 그렇기에 responseJSON을 써주는 것이다.&lt;/p&gt;
-
-&lt;p&gt;바로뒤에 중괄호가 있다. 이건 클로져 구문이다. 일반적인 함수에는 소괄호’()’안에 인자값들이 있다. ‘&lt;strong&gt;in&lt;/strong&gt;’ 앞에 부분이 인자값이다. 다시말해 응답한 값은 response라는 변수에 담아주는 것이다. ‘&lt;strong&gt;in&lt;/strong&gt;‘이후에 나오는 것은 일반적인 함수에서  중괄호’{}’ 에 해당되는 부분이다.   &lt;em&gt;**&lt;/em&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;이 부분은 엄밀히 따지면 response  데이터가 저 JSON만을 의미하는게 아니다.&lt;/p&gt;
-
-  &lt;p&gt;아 그런거구나 정도만 일단 생각하고, 아래서 추가 설명&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;5-결과에-따른-switch문&quot;&gt;5. 결과에 따른 switch문&lt;/h3&gt;
-&lt;p&gt;명확히 얘기하면 &lt;strong&gt;response&lt;/strong&gt;는 JSON 문구를 의미하는게 아니다. 우리가 그다음 판별 해야할것은 내가 요청한 통신이 성공 or 실패를 먼저 따져야한다. 실패의 경우 여러가지가 있다, 정확하지않은 URL, 인터넷 끊김 등등?&lt;/p&gt;
-
-&lt;p&gt;성공에 의미는 위의 JSON 데이터를 성공적으로 가져왔다는 것이다. 즉, 우리가 사용할 수가 있다는 것이다. 
-쓸 수 있는 값을 못가져 온경우를 모두 실패로 생각하자!&lt;/p&gt;
-
-&lt;p&gt;response.result 에 대해 좀 더 깊숙히 들어가보면 아래와 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;우선 타입은 enum이다, 그리고 그 케이스는 2가지다&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;success&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;failure&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;그래서 위에서 switch문을 썼을때 2가지만 써도 &lt;strong&gt;“default일 경우에 대비하세요”&lt;/strong&gt;라는 경고를 안띄운다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;isSuccess는 성공 여부&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;isFailur는 실패 여부&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;value는 받아온 값&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;error는 Error 타입&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이 둘중 한가지는  nil이기 때문에 옵셔널으로 감싸져있다.&lt;/p&gt;
-
-&lt;p&gt;필요할때 알맞게 사용하도록 하자. 여기서 우리가 필요한건 success의 value이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;5-1-통신-성공&quot;&gt;5-1. 통신 성공&lt;/h3&gt;
-&lt;p&gt;타입을 먼저보자.
-&lt;img src=&quot;/assets/img/post/2018-07-21/img5.png&quot; alt=&quot;&quot; /&gt;
-Any 형태이다. 왜 Any일진 생각해보면 간단하다.&lt;/p&gt;
-
-&lt;p&gt;그럼 실행을 해보자
-&lt;img src=&quot;/assets/img/post/2018-07-21/img6.png&quot; alt=&quot;&quot; /&gt;
-콘솔창에 보면 성공적으로 가져왔다. 위에서 말했듯이 이 값의 타입은 Any이다. NSDictionary로 캐스팅을 먼저해야하자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img7.png&quot; alt=&quot;&quot; /&gt;
-NSDictionary 타입으로 캐스팅 후 for문으로 출력해주었다. 아주 잘나왔다. 끝이 보인다.&lt;/p&gt;
-
-&lt;p&gt;각 데이터를 빼오자.
-&lt;img src=&quot;/assets/img/post/2018-07-21/img8.png&quot; alt=&quot;&quot; /&gt;
-각각 전화번호/이름/나이 데이터를 비강제 해제 (unwrapping) 해주었다.&lt;/p&gt;
-
-&lt;p&gt;어려운말이다. 써보고 싶었다. 그치만 하도 안썼더니 나도 어색하다. 쉽게 말해 if문을 써서 안전빵으로 데이터를 가져오고 설정해줬다.&lt;/p&gt;
-
-&lt;p&gt;다운캐스팅 할때 &lt;code class=&quot;highlighter-rouge&quot;&gt;as?&lt;/code&gt;을 써줌으로써 실패시 nil로 바뀌게 될것이고, 이 경우엔 swift에선 해당 라인을 실행 안한다고한다! 훌륭해.&lt;/p&gt;
-
-&lt;p&gt;우선, 통신 하기전 화면을 보자
-&lt;img src=&quot;/assets/img/post/2018-07-21/img9.png&quot; alt=&quot;&quot; /&gt;
-못생겼다.&lt;/p&gt;
-
-&lt;p&gt;그럼 통신 후!
-&lt;img src=&quot;/assets/img/post/2018-07-21/img10.png&quot; alt=&quot;&quot; /&gt;
-번호/이름은 잘들어갔다. 그치만 나이는 적용이 안되었다.&lt;/p&gt;
-
-&lt;p&gt;해당부분 값을 출력해보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img11.png&quot; alt=&quot;&quot; /&gt;
-새로 배운 기술이다. 브레이크 포인트에 lldb(Low Level Debugger) 명령어를 입력해주면, 해당 부분 가서 알아서 해당 명령어를 실행해준다. 해당 명령어 입력부분 아래에 옵션 체크를 해주면 원래는 break 걸면 해당 라인에서 멈춰야하지만 명령어 실행 후 자동으로 다시 진행한다.&lt;/p&gt;
-
-&lt;p&gt;아직 print 찍는게 편하지만 자주 쓰는곳에 걸어두면 편하다. disable 했다가 On/Off해주기만 하면 되니깐!&lt;/p&gt;
-
-&lt;p&gt;그게 중요한게 아니고, 콘솔창에 nil이 찍혔다.&lt;/p&gt;
-
-&lt;p&gt;캐스팅이 실패한것이다. response 사진을 다시 보자
-&lt;img src=&quot;/assets/img/post/2018-07-21/img1.png&quot; alt=&quot;&quot; /&gt;
-자세히보면 휴대폰 번호에는 쌍따옴표(“ “)가 있지만, 나이 부분엔 없다. 문자가 아니라 숫자이다.
-옵셔널 강제해제 였으면 앱이 크래쉬 났을 것이다.&lt;/p&gt;
-
-&lt;p&gt;당연한거아니야? 할수 있겠지만, 소소하게 실수할때가 있었었다…. 심지어 스펠링 틀릴경우도 빈번하게 있다!
-하지만 Codable를 알게된 후론 세상 편해졌다. 궁금해지지 않는가 Codable? 나만 궁금한가.&lt;/p&gt;
-
-&lt;p&gt;이유는 알았으니 일단 고치고
-&lt;img src=&quot;/assets/img/post/2018-07-21/img12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;실행!
-&lt;img src=&quot;/assets/img/post/2018-07-21/img13.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;완성!!&lt;/p&gt;
-
-&lt;p&gt;데이터가 아무리 많아도 이젠 할 수 있다.
-&lt;img src=&quot;/assets/img/post/2018-07-21/img14.png&quot; alt=&quot;&quot; /&gt;
-데이터가 훨~씬 많다. 이것도 해보자.&lt;/p&gt;
-
-&lt;p&gt;우선 UI부터 만들고,
-&lt;img src=&quot;/assets/img/post/2018-07-21/img15.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;슬슬 재앙이 일어날 것 같은 예감이 드는가?&lt;/p&gt;
-
-&lt;p&gt;코드를 보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img16.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위에서 했던 방식대로 진행하면 이렇다. 하는건 쉽다. 하는 것만 쉽다. 굉장히 반복적이다. 별로다.&lt;/p&gt;
-
-&lt;p&gt;데이터는 잘왔나?
-&lt;img src=&quot;/assets/img/post/2018-07-21/img17.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;잘왔다. 그런데 힘들다. 예시로 쓰는것도 힘들었다. 이 방식은 쓰지말자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img18.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;하지만, 실제 업무상 데이터가 많이 올때도 있다. 그러므로 우린 방법을 찾아야한다.&lt;/p&gt;
-
-&lt;p&gt;이때 아주 훌륭한 Codable을 쓰면 된다.&lt;/p&gt;
-
-&lt;h1 id=&quot;codable&quot;&gt;Codable&lt;/h1&gt;
-&lt;p&gt;Codable은 Swift4에서 추가된것이다. 이것 사용하기전엔 위에처럼 비효율적이지만 어쩔수없이 사용을 했을것이다!(추측), 이것을 알게된건 let’s Swift라는 컨퍼런스? 에서였다. 카카오톡, 라인, 토스 등등 개발자들이 짧게 20~30분씩 강연들을 했었던 것이었고, 난 학생이었기 때문에 반값? 수준으로 갔었던것 같다. 이때 옆자리분이 여기 슬랙따로 있나요? 했을때, 당시 나는 슬랙을 한번도 안써봐서 못알아 들었던 기억이 난다. 또한, 토스트는 맛있었고, 옷도 받고, 뱃지도 받았다, 스위프트 뱃지는 내 가방에 달려있다.&lt;/p&gt;
-
-&lt;p&gt;마지막 강연에는 아주아주 스페셜한분이 강연을 했었는데 보안상? 비밀이었기 때문에 나도 비밀을 유지하겠다.&lt;/p&gt;
-
-&lt;p&gt;아무튼 그때, 첫번째 강연하신분께서 Swift4의 새 기능에 대해서 소개를 하셨고, 그때 졸작으로 한창 통신에 관해서 시작하며 삽질하던 나에게 단비같은 Codable을 소개해주셨다. 덕분에 아주 잘쓰고 있다.&lt;/p&gt;
-
-&lt;p&gt;하지만, 나도 기능의 전체를 사용하진 못하고 있다. 간단하게 말하자면 JSON 데이터를 미리 생성해둔 Struct 혹은 Class의 인스턴스로 만들어주며, 심지어 데이터를 이름에 맞게 넣어준다! 아주 훌륭하다. 살펴보자&lt;/p&gt;
-
-&lt;p&gt;순서는 다음과 같다&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Class or Struct 생성&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;response받은 데이터를 JSON으로 변경&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Codable 이용하여 인스턴스 생성&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;인스턴스란?
-Class와 Struct는 실질적으로 사용하는 데이터가 아니다. 구조를 알려주는 것이다. 그래서 설계도, 주틀 등등으로 설명을 해준다.
-설계도로 설명해보자면, 가정집 설계도(클래스or구조체)가 있다 가정하자. 화장실, 방이 그려져있다.
-내가 이 설계도의 화장실에 들어가는 행위는 불가능하다. 왜냐? 이건 설계도지 진짜 무엇이 아니기 때문이다.
-내가 이 설계도로 A 아파트를 지었다. 이 A아파트가 인스턴스다! 이 A아파트에 내가 화장실을 들어가거나 방에 들어가는 행위 모두 가능하다!  이것이 인스턴스.&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;1-class-or-struct-생성&quot;&gt;1. Class or Struct 생성&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img19.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;구조체를 사용하기로 했다 참조에 의한 사용은 필요없으니깐! (다른 이유도 더찾아봐야하는데..)&lt;/p&gt;
-
-&lt;p&gt;일반적인것들과 차이는 없지만, 하나 있다면 Codable!&lt;/p&gt;
-
-&lt;p&gt;Codable을 좀더 들어가보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img20.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;조금 생소한 &lt;strong&gt;typealias&lt;/strong&gt;가 나타났다. 알기만하고 아직 적절한곳을 못찾아서 필자도 써본적이 없지만, 타입의 이름을 다르게 만들어주는것이다. 사람 이름으로 치면 개명정도? 다만 본명, 개명 둘다 사용가능하다.
-위의 사진을 보면 Encodable 과 Decodable을 묶은 것의 명칭을 Codable이라고 해준다는 의미다. 이렇게보니
-쓸만한 사용법을 찾은것 같다. 두가지 프로토콜을 합쳐주다니! 더 확인 해봐야겠다.&lt;/p&gt;
-
-&lt;p&gt;그렇담 새로나온 &lt;strong&gt;Decodable&lt;/strong&gt;과 &lt;strong&gt;Encodable&lt;/strong&gt;이란?&lt;/p&gt;
-
-&lt;p&gt;두가지 기능이 반대이니 한개만 보자 우리가 사용할 &lt;strong&gt;Decodable&lt;/strong&gt;
-&lt;img src=&quot;/assets/img/post/2018-07-21/img21.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;설명이 아주 친절하다&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;디코딩해서 새로운 인스턴스를 생성해준다!
-디코더가 읽기를 실패하거나, 데이터가 손상 혹은 유효하지 않을경우 에러를 던진다.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;알아서 에러 처리도 해준다 좋다!&lt;/p&gt;
-
-&lt;h3 id=&quot;response받은-데이터를-json으로-변경&quot;&gt;response받은 데이터를 JSON으로 변경&lt;/h3&gt;
-&lt;p&gt;처음에 사용할때 여기서 삽질을 많이 했다. 사진을 보자.
-&lt;img src=&quot;/assets/img/post/2018-07-21/img22.png&quot; alt=&quot;&quot; /&gt;
-do,catch 구문을 써서 오류에 대비를 해주자 왜냐? 위에 말했듯이 Decodable은 실패시 에러를 던져주기 때문에!&lt;/p&gt;
-
-&lt;p&gt;Swift는 읽기도 참 좋다! 회색 채워야할 부분을 보자&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;JSONDecoder()를 사용할거고, 데이터(from 인자)를 특정 타입(type 인자)으로 디코딩한다&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;읽기 쉽다. 여기서 타입은 아까 만든 &lt;strong&gt;Class or Struct&lt;/strong&gt;정보가 들어가게 되고, data는 통신해서 받은 데이터다!&lt;/p&gt;
-
-&lt;p&gt;채워보자&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;getInstanceData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;JSONDecoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;UserData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;이렇게 하면 될까?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img23.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;안된다. 타입이 안맞다고 한다. 왜냐? 아까도 확인 했지만 obj는 타입이 Any 이기 때문이다.&lt;/p&gt;
-
-&lt;p&gt;그렇다면 Data 타입으로 바꿔주면될까? 아니다,&lt;/p&gt;
-
-&lt;p&gt;try 뒤에 써있듯 JSON을 디코더 해야하므로 우리는 JSON 데이터가 필요하다&lt;/p&gt;
-
-&lt;p&gt;obj를 JSON으로 변경해보자&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;JSONSerialization&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;withJSONObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prettyPrinted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;간단하다! 그렇다면 실제로 사용하고 출력까지 해보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img24.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;실질적으로 do, catch 부분 빼면 단 2줄만에 JSON 데이터의 정보를 가진 인스턴스를 얻어냈다. 비강제해제 같은 작업들이 전혀 필요없었다. 그럼 다음과 같은 경우 궁금할수가 있다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;변수 이름은 같지만 타입이 틀렸을 경우&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;데이터가 비어있을 경우&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;옵셔널이 아닐경우?&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;변수-이름-같지만-타입이-틀렸을-경우&quot;&gt;변수 이름 같지만 타입이 틀렸을 경우&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img25.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;콘솔창에보면 타입이 맞지 않아 읽어 올 수 없다고 한다&lt;/p&gt;
-
-&lt;h3 id=&quot;데이터가-비어있을-경우&quot;&gt;데이터가 비어있을 경우&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img26.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;구조체에 test라는 변수를 추가했다. 하지만 웹 응답값에는 존재하지 않는다.&lt;/p&gt;
-
-&lt;p&gt;결과창을 보면 nil로 들어가있다. 타입이 옵셔널 스트링이기때문에 가능하다!&lt;/p&gt;
-
-&lt;h3 id=&quot;옵셔널이-아닐경우&quot;&gt;옵셔널이 아닐경우&lt;/h3&gt;
-
-&lt;p&gt;우선 구조체 정보와 웹 정보가 일치할 경우를 보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img27.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;사용할때 !나 ? 붙여주지 않는다는 점 외엔 보다싶히 결과는 똑같다&lt;/p&gt;
-
-&lt;p&gt;하지만, 데이터가 없거나 타입이 틀렸을 경우엔?&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 데이터가 없을 경우 (옵셔널x)
-- The data couldn’t be read because it is missing.
-2. 타입이 틀릴 경우 (옵셔널x)
-- The data couldn’t be read because it isn’t in the correct format.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이와 같이 콘솔창에 찍히게 된다. 1번의 경우 옵셔널이었을땐 nil로 찍혔다. 따라서, 옵셔널로 가는게 여러모로 장점이 더 있는 것 같다.&lt;/p&gt;
-
-&lt;p&gt;마무리로 결과를 보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/post/2018-07-21/img28.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ps.&lt;/p&gt;
-
-&lt;p&gt;얘기가 생각보다 길어졌다, Part1,2로 나눌것 그랬나?&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 21 Jul 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/articles/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2018/07/21/swift-Alamofire%EC%99%80-Codable.html</guid>
-        
-        <category>Swift</category>
-        
-        <category>Alamofire</category>
-        
-        <category>Codable</category>
-        
-        
-        <category>articles</category>
         
       </item>
     
