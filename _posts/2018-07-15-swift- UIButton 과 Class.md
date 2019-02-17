@@ -14,7 +14,7 @@ categories: [Swift]
 예를 들자면 `저장` 같은 버튼?
 통일성도 있을 뿐더러 시간 절약도 되는 것 같다.
 
-이번에도 이전글과 같이 **아!! 이렇게 쓰면 좋겠네!** 하는 경우이다<br>[이전글: Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?](https://jiseobkim.github.io/2018/07/08/swift-class,struct-%EA%B0%92-%EC%A0%84%EB%8B%AC-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4.html)
+이번에도 이전글과 같이 **아!! 이렇게 쓰면 좋겠네!** 하는 경우이다<br>[이전글: Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?](https://jiseobkim.github.io/2018/07/08/swift-class,struct-값-전달-방식-차이.html)
 
 다루게 내용은 다음과 같다
 1. Class 없이 구현

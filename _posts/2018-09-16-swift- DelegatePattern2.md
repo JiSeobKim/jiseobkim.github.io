@@ -8,7 +8,7 @@ categories: [Swift]
 
 <br>
 
-[이전글 보기 : 데이터 전달 1편](https://jiseobkim.github.io/2018/09/02/swift-DelegatePattern.html)
+[이전글 보기 : 데이터 전달 1편](https://jiseobkim.github.io/swift/2018/09/02/swift-DelegatePattern.html)
 
 이전 글에 이어서 프로토콜을 통해 VC2 -> VC1으로 데이터를 전달해보겠습니다!
 

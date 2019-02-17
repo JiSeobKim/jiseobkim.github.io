@@ -334,7 +334,7 @@ url.alamofireDefault(type: StructA()) { (nsDic) in
 
 이해가 안된다면 아래 링크를 참고해주세요
 
-[참고 : Alamofire와 Codable](https://jiseobkim.github.io/2018/07/21/swift-Alamofire와-Codable.html)
+[참고 : Alamofire와 Codable](https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html)
 
 이해가 됐단 가정하에 포인트는 Decodable 사용 부분입니다
 
