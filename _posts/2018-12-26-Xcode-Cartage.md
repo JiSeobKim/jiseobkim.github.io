@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Xcode) Carthage"
+title: "(Xcode) Carthage 서론"
 categories: [Xcode]
 ---
 

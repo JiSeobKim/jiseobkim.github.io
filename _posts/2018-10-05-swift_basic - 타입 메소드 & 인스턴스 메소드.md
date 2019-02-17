@@ -20,7 +20,7 @@ Swift 코드를 보다 그런적이 있었다.
 # 메소드의 종류
 아래의 이미지를 보자!
 
-![](https://jiseobkim.github.io/static/img/_post/2018-10-05/img1.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img1.png)
 (App: Scapple)
 
 오늘의 추천앱! Scapple이란 앱이에요!!
@@ -76,7 +76,7 @@ class SomeClass {
 
 이렇게
 
-![](https://jiseobkim.github.io/static/img/_post/2018-10-05/img2.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img2.png)
 
 
 
@@ -159,7 +159,7 @@ class SomeClass {
 
 
 
-![](https://jiseobkim.github.io/static/img/_post/2018-10-05/img3.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img3.png)
 
 
 
@@ -169,7 +169,7 @@ class SomeClass {
 
 그럼, 이제 사용해보자.
 
-![](https://jiseobkim.github.io/static/img/_post/2018-10-05/img4.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img4.png)
 
 
 
@@ -227,13 +227,13 @@ class SubClass: SomeClass {
 
 결과도 보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-10-05/img5.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img5.png)
 
 굉장히 잘 덮어썼다.
 
 그럼, 이제 살짝 바꿔서 `class`대신 `static`을 써보자
 
-![](https://jiseobkim.github.io/static/img/_post/2018-10-05/img6.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img6.png)
 
 
 오오 빨간색이다. **스태틱 메소드라고 오버라이드가 안된다한다**

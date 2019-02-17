@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Feb 2019 20:36:16 +0900</pubDate>
-    <lastBuildDate>Sun, 17 Feb 2019 20:36:16 +0900</lastBuildDate>
+    <pubDate>Sun, 17 Feb 2019 21:25:21 +0900</pubDate>
+    <lastBuildDate>Sun, 17 Feb 2019 21:25:21 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -139,7 +139,7 @@
       </item>
     
       <item>
-        <title>(Xcode) Carthage</title>
+        <title>(Xcode) Carthage 서론</title>
         <description>&lt;p&gt;게으름 때문에 오랜만에 글을 쓰는 기분!&lt;/p&gt;
 
 &lt;p&gt;그 동안 귀차니즘에 빠져 나만의 시간을 가졌던것 같다! 다시 열심히!&lt;/p&gt;
@@ -337,7 +337,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼 이미지는 아래와 같다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -371,7 +371,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;h3 id=&quot;결과-화면&quot;&gt;결과 화면&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -397,13 +397,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이건 말로하기 어려워서, 화려하게 그렸다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이러면 조금 더 전달이 잘된것 같다.&lt;/p&gt;
 
 &lt;p&gt;실험을 위해 UI를 다시 셋팅했다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;@IBOutlet&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;weak&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;mainView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;@IBOutlet&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;weak&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;subView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
@@ -428,7 +428,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;Q1에 따르면, 1 태그를 가진 오브젝트가 없으면 nil을 반환했다. 그렇담 이 경우엔? 결과를 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img5.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -479,7 +479,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼 결과를 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;예상대로 먼저 지정한게 변했다.&lt;/p&gt;
 
@@ -497,7 +497,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -527,7 +527,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img7.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img7.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오… 호…. 이것도 정말 예상 못했다.&lt;/p&gt;
 
@@ -549,7 +549,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img6.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그대로다&lt;/p&gt;
 
@@ -605,7 +605,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img8.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;사용이 되건 말건 상관이없었다. 오직 중요한건&lt;/p&gt;
 
@@ -655,7 +655,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-11-04/img9.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-11-04/img9.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;‘A3. Tag 셋팅 시점보다, 먼저 화면 추가된 오브젝트가  갑이다.’ 는 변화가 없었다.&lt;/p&gt;
 
@@ -890,7 +890,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그리고 그 3에는 버튼이 하나 있고, 이것을 누르면 Post를 한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-27/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-27/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -947,7 +947,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;&lt;del&gt;그럼 gif는 할줄 모르니&lt;/del&gt; (방금 배움. 단축어 짱짱)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-27/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-27/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위 Gif에 나온것처럼, 직전 VC2뿐만 아니라 현재 스택에 있는 VC1까지 모두 작동했다.&lt;/p&gt;
 
@@ -1011,7 +1011,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;h2 id=&quot;결과-1&quot;&gt;결과&lt;/h2&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-27/img3.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-27/img3.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -1044,7 +1044,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 &lt;h1 id=&quot;메소드의-종류&quot;&gt;메소드의 종류&lt;/h1&gt;
 &lt;p&gt;아래의 이미지를 보자!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img1.png&quot; alt=&quot;&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img1.png&quot; alt=&quot;&quot; /&gt;
 (App: Scapple)&lt;/p&gt;
 
 &lt;p&gt;오늘의 추천앱! Scapple이란 앱이에요!!&lt;/p&gt;
@@ -1103,7 +1103,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이렇게&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.&lt;/p&gt;
 
@@ -1164,7 +1164,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;없다. 완소 기능인 자동 완성 기능에 없다…&lt;/p&gt;
 
@@ -1172,7 +1172,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼, 이제 사용해보자.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
 그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.&lt;/p&gt;
@@ -1227,13 +1227,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;결과도 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;굉장히 잘 덮어썼다.&lt;/p&gt;
 
 &lt;p&gt;그럼, 이제 살짝 바꿔서 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;을 써보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-10-05/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오오 빨간색이다. &lt;strong&gt;스태틱 메소드라고 오버라이드가 안된다한다&lt;/strong&gt;&lt;/p&gt;
 
@@ -1271,7 +1271,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;h1 id=&quot;이전글-summary&quot;&gt;이전글 Summary&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;VC2의 코드중 핵심은 위 이미지 중 아래 코드와 같습니다.&lt;/p&gt;
 
@@ -1280,7 +1280,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;타입이 VC1클래스 였고, 여기서 꼭! 해줘야하는건 아래 그림처럼 특정 클래스와 연결을 시켜줘야 했습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;연결 방법은 간단했죠&lt;/p&gt;
 
@@ -1307,13 +1307,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;우선 기존 방식입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;VC2가 VC1의 내부 함수를 호출하는 방식이었죠,&lt;/p&gt;
 
 &lt;p&gt;그렇담 아래 같이 새로운 VC3라는 클래스가 나타난다면 문제가 생깁니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇담 여기서 VC2의 아래 코드는 어떻게 변경되어야할까요?&lt;/p&gt;
 
@@ -1439,7 +1439,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;자 그럼 어떻게 사용하는지 볼까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;변경된 라인은 42,54 쪽입니다. 프로토콜은 33번에 선언 되어있구요&lt;/p&gt;
 
@@ -1471,7 +1471,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;바꾸기전에 아무것도 안하고 나오는 오류를 봅시다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;“Cannot assign value of type ‘VC1’ to type ‘Bbang?’“&lt;/strong&gt;&lt;/p&gt;
 
@@ -1517,7 +1517,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그럼 코드를 봐볼까요&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;오류가 납니다.&lt;/p&gt;
 
@@ -1535,7 +1535,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;(여기선 빨간점 눌러서 자동 해결해도됩니다. 좋은 기능)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;여기서 함수 내부 내용은 insert(name:_)과 같은 것을 사용했습니다.&lt;/p&gt;
 
@@ -1604,7 +1604,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이것도 마찬가지로 해야할 것들을 알려줬을뿐 내용은 자기맘대로 하란것입니다. 리턴 규격도 지켜야하구요!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-16/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-16/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위에 보시는 바와 같이, 프로토콜입니다! 이외에도 UIScrollViewDelegate, UITableViewDelegate등등&lt;/p&gt;
 
@@ -1647,7 +1647,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;아래 삐뚤삐둘한 그림을 보면서 설명을 하죠&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그림이 예술입니다.&lt;/p&gt;
 
@@ -1709,9 +1709,9 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;우선 VC1의 구성은 다음과 같습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;아주 심플하죠? ‘이름 써질곳’ Label이 있고, 그 Label에 텍스트를 넣는 함수가 있습니다.&lt;/p&gt;
 
@@ -1719,9 +1719,9 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;VC2 구성은 다음과 같습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;여기또한 아주 심플하죠&lt;/p&gt;
 
@@ -1753,7 +1753,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;해괴한 그림과 함께 설명들어갑니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;(직선 깔끔히 그리는 방법 찾았어요)&lt;/p&gt;
 
@@ -1769,7 +1769,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이해가 안되신분들이라면 이렇게 생각하실 겁니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇지 않나요?&lt;/p&gt;
 
@@ -1814,13 +1814,13 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;아래 이미지처럼 대상자를 지목 하는거라고 보면 됩니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그럼 결과를 볼까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-09-02/img10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-09-02/img10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;잘 넘어왔네요~ 스탠포드 교수님께선 이런 방식을 델리게이트 패턴이라 칭하더군요! (유투브 공개강의) (아직 용어가 어려워요)&lt;/p&gt;
 
@@ -1964,7 +1964,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;String형과 Int형을 제네릭을 이용한 함수 하나로 사용한 결과 입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;함수 하나를 일반적인 형태로 사용하게 되었습니다! ‘일반적인 형태로’ « ‘일반적’ « ‘Generic!!’ 훗&lt;/p&gt;
 
@@ -2046,7 +2046,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;url3의 경우 data1에는 url1의 응답과 같은 값, data2의 경우는 url2의 응답값과 같은 값입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;url1만 결과는 쉽게 나왔구요!&lt;/p&gt;
 
@@ -2098,7 +2098,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;이해가 됐단 가정하에 포인트는 Decodable 사용 부분입니다&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;decode함수의 인자가 2가지 입니다. Decodable프로토콜과 데이타&lt;/p&gt;
 
@@ -2142,7 +2142,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;실행이 될까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;네 안됩니다. 그 이유는 뭘까요? 결론을 얘기하면 &lt;strong&gt;제네릭 타입인 T는 Decodable 프로토콜이 없다&lt;/strong&gt;는 것 입니다.&lt;/p&gt;
 
@@ -2172,7 +2172,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;에러는 사라졌습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그럼 사용법쪽으로 가서&lt;/p&gt;
 
@@ -2221,15 +2221,15 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;URL 1의 경우&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;URL 2의 경우&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;URL 3의 경우&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-08-17/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-08-17/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;모두 잘나왔죠???&lt;/p&gt;
 
@@ -2696,7 +2696,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;포기한 과정을 보기전에 오늘의 구조 먼저, 첨부&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;스토리보드도 심플, 코드도 심플, 화면도 심플한 상태이다&lt;/p&gt;
 
@@ -2758,7 +2758,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;(&lt;strong&gt;주의: 안되는 코드임&lt;/strong&gt;)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;1번을 보면 어떤 클래스라도 접근할수 있는 전역함수가 있다.&lt;/p&gt;
 
@@ -2818,7 +2818,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;그렇다면 nsDic을 return 값으로 정해주는게 아니라 nsDic을 return 해준다면?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;안된다. 다른 방식이 필요하다.&lt;/p&gt;
 
@@ -2832,7 +2832,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;일단 코드를 보자.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;특별히 0번이라 썼다. 책으로만 공부했다면, 정말 정말 생소할 모습일것이다.&lt;/p&gt;
 
@@ -2864,7 +2864,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;쓰는 방식은 이미 많이들 접했을 것이다. 비슷한 문법을 보자&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;1번의 경우는 애니메이션 효과를 사용할때 자주 사용하는 문법이다.&lt;/p&gt;
 
@@ -2901,7 +2901,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;자신이 정한 시간(여기선 2초)동안 &lt;strong&gt;animations&lt;/strong&gt; 의 내용을 수행하게 된다, 그리고 그 작업이 끝난뒤에 할일은 &lt;strong&gt;completion내용이&lt;/strong&gt; 된다. 저기서 뒤에 물음표가 붙어있는데, &lt;strong&gt;nil이&lt;/strong&gt; 될수 있다는 것이다. 즉 효과만 주고 그뒤에 다른 작업은 안해도 된다는것! 그렇기에 &lt;strong&gt;animation에&lt;/strong&gt; 더 들어가보면 default값으로 &lt;strong&gt;nil이&lt;/strong&gt; 들어가있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2921,7 +2921,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;사용법은 위의 Alamofire보다 훨씬 간단하다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;2-2 부분이 전부이다. 받아온 &lt;strong&gt;NSDictionary&lt;/strong&gt; 타입을 가진 데이터 이름을 &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nsDic&lt;/code&gt;&lt;/strong&gt; 이라 이름을 붙여주고 정말 딕셔너리 사용하듯 사용하면 끝이다.&lt;/p&gt;
 
@@ -3025,7 +3025,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 &lt;p&gt;여기서도 &lt;strong&gt;escaping&lt;/strong&gt;을 사용했다. 그럼 사용 코드에선?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://jiseobkim.github.io/static/img/_post/2018-07-29/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;마치 UIView Animation 같다.&lt;/p&gt;
 

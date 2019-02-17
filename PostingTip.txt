@@ -1,0 +1,11 @@
+
+포스팅 기본 양식
+---
+layout: post                       
+title: "(Swift) Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?"
+categories: [Swift]
+---
+
+
+이미지 기본 양식
+https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-08/image 2.png
