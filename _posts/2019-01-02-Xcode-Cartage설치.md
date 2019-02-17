@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Xcode) Carthage (설치)"
+title: "(Xcode) Carthage 설치"
 categories: [Xcode]
 ---
 
@@ -10,7 +10,7 @@ Hello! 2019!
 
 이전편에서 `Carthage`이란 무엇인지 그리고 Cocoapods보다 장점은 무엇인지 글을 써봤다.
 
-이전글: [Carthage-서론][https://jiseobkim.github.io/articles/2018/12/26/Xcode-Cartage.html]
+이전글: [Carthage-서론][https://jiseobkim.github.io/xcode/2018/12/26/Xcode-Cartage.html]
 
 오늘도 짧게! 설치법만 적어야겠다.
 

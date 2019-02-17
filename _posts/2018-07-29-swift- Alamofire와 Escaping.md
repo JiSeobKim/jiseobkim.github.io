@@ -40,7 +40,7 @@ Alamofire라는 좋은 라이브러리를 쓰다가 보면 새로운 swift파일
 
 저번편에 간단하게 설명을 참고하면 아주 간단한 코드.
 
-[참고: Alamofire와 Codable](https://jiseobkim.github.io/2018/07/21/swift-Alamofire와-Codable.html)
+[참고: Alamofire와 Codable](https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html)
 
 
 

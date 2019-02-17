@@ -16,8 +16,8 @@ tags:
 
 이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 < Encodable&Decodable >로 이루어져있었습니다.
 
-[참고: Alamofire와 Codable](https://jiseobkim.github.io/2018/07/21/swift-Alamofire와-Codable.html)
-[참고: Alamofire와 Escaping](https://jiseobkim.github.io/2018/07/29/swift-Alamofire와-Escaping.html)
+[참고: Alamofire와 Codable](https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html)
+[참고: Alamofire와 Escaping](https://jiseobkim.github.io/swift/2018/07/29/swift-Alamofire와-Escaping.html)
 
 위 내용중 Decodable을 이용하여, 별도의 비강제 해제처리 없이 응답값으로 만든 새 인스턴스를 얻는건 완소기능이었죠.
 
