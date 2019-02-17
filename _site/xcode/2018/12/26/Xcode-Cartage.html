@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(Xcode) Carthage - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(Xcode) Carthage" />
+    <meta name="keywords" content="(Xcode) Carthage, 😀😍😉 JS의 개발 블로그 😁😆😄, Xcode" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(Xcode) Carthage" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html" property="og:url">
+    
+
+    
+      <meta content="2018-12-26T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Xcode" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(Xcode) Carthage">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/jekyll">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(Xcode) Carthage</h1>
+</header>
+
+<span class="time">26 Dec 2018</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Xcode">Xcode</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>게으름 때문에 오랜만에 글을 쓰는 기분!</p>
+
+<p>그 동안 귀차니즘에 빠져 나만의 시간을 가졌던것 같다! 다시 열심히!</p>
+
+<p>우선 기존에는 너무 시간이 많이 소요가되어서 평일에 쓰기가 더욱 힘들었던거 같기에</p>
+
+<p>분량을 조금 줄이면서 도전!</p>
+
+<p>(세벌식 도전중)</p>
+
+<p>오늘 쓰려는 주제는 Carthage에 관한것이며,</p>
+
+<p>기존 앱에 적용하다 충돌을 일으켜 이를 해결하면서 굉장히 이상했던점도 있었던거 같다.</p>
+
+<p>오늘은 서론정도만!</p>
+
+<p><br /></p>
+
+<h1 id="swift-package-manager란">Swift Package Manager란?</h1>
+
+<hr />
+
+<p>우선 주제인 Carthage 라는것은 <code class="highlighter-rouge">Swift Package Manager</code>의 일종이다.</p>
+
+<p><br /></p>
+
+<p><strong><u>Swift Package Manager? 어렵다.</u></strong></p>
+
+<p><br /></p>
+
+<p>이에 속하는것은 CocoaPods! 라이브러리들을 좀 더 쉽게 관리하는 것!</p>
+
+<p>자세한 내용들은 나중에보는것으로 하고,</p>
+
+<p><br /></p>
+
+<p>개인적으로 CocoaPods이 편한 이유</p>
+
+<ol>
+  <li>라이브러리 관리 및 새로 추가가 쉽다.</li>
+  <li>구글등 큰 회사에서 Cocoapods으로 라이브러리를 제공하는것이 많다.</li>
+</ol>
+
+<p><br /></p>
+
+<p>아마 1의 이유 때문에 2가 생긴게 아닐까?</p>
+
+<p>이번에 회사에서 추가한 Google CloudSpeechAPI도 Cocoapods으로 제공해서 쉽게 설치가 가능했다.</p>
+
+<blockquote>
+  <p>설치는 쉬웠으나 담당하던 앱 셋팅이 꼬일때로 꼬여서
+Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는줄… 성공하고 소리지를뻔..</p>
+</blockquote>
+
+<p><br />
+아무튼! 그런데 단점이 있으니 이 글을 포스팅하게 되었다.</p>
+
+<p><br /></p>
+
+<p>내가 생각하는 단점</p>
+<ol>
+  <li>빌드를 할때 프레임워크도 빌드를 한다.</li>
+</ol>
+
+<p><br /></p>
+
+<p>이것의 같은 말은 프레임워크 사이즈가 쫌 된다면, 빌드시간이 길어질텐데 (gRPC 프레임워크가 내가 본것중 가장 어마무시)</p>
+
+<p>그렇다면! 하루에도 수십번 빌드를 하는데 시간 낭비가 그만큼 심해진다는것이다!</p>
+
+<p>그런데 Carthage 라는걸 알게 되었는데, 이 점을 커버한다고 한다!</p>
+
+<p><br /></p>
+
+<h1 id="carthage">Carthage</h1>
+
+<hr />
+
+<p>(발음: 카르타고, 영어 발음은 카르타지)</p>
+
+<p><u>CocoaPods의 단점을 커버하는 이유는 간단하다.</u>
+<u>미리 빌드가 되어있고, 다시 빌드를 안한다는것?</u></p>
+
+<p>깔끔하게 상쇄한다. 이 점이 굉장히 매력적이었다.</p>
+
+<p>실제로 스터디에서 만들었던 MemCoo(홍보)라는 앱에 TesseractOCR 라이브러리에 적용 해봤더니 빌드할때 700 몇개던 것이 4~500대로 떨어졌던것 같았고, RxSwift도 빼봤더니 100대로 떨어진거 같다.  맥북이 회사에 있어서 정확한 수치는 다음글에!!</p>
+
+<p><br /></p>
+
+<p>또 하나의 장점이 있다.</p>
+
+<p>Workspace를 안쓰고 프로젝트 단위로만 가능하다는것?</p>
+
+<p>Cocoapods을 쓰면 처음 생성되는 프로젝트에 들어갈일이 없었다. 코코아팟을 쓰게되면 Workspace를 써야 라이브러리를 쓸 수 있으니깐! 근데 안써도 된다니 참 좋군!</p>
+
+<p><br /></p>
+
+<p>다른 장점들도 있지만 단점을 얘기하자면</p>
+
+<p>CocoaPods보다 라이브러리가 적다는것? 하지만 다른 블로그들에 의하면 빠르게 늘어나고 있다고 한다!</p>
+
+<p>다음 편에선 간단하게 사용법에 대하여 적어보려한다!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/xcode/2019/01/02/Xcode-Cartage%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5.html">(Xcode) Carthage (설치)</a>
+                  
+                    (Categories: <a href="/category/Xcode">Xcode</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2018/11/04/swift-Tag.html">&laquo; (Swift) Tag 알아보기</a>
+  
+  
+    <a class="next" href="/xcode/2019/01/02/Xcode-Cartage%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5.html">(Xcode) Carthage (설치) &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(Xcode) Carthage";
+    var disqus_title = "(Xcode) Carthage";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

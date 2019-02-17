@@ -1,12 +1,7 @@
 ---
-layout: post
-title: Xcode_Carthage (설치)
-published: true
-author: Kim Ji Seob
-category: articles
-tags:
-- Carthage
-- Xcode
+layout: post                       
+title: "(Xcode) Carthage (설치)"
+categories: [Xcode]
 ---
 
 

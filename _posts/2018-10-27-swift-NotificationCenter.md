@@ -1,13 +1,7 @@
 ---
-layout: post
-title: Swift - Notification Center
-published: true
-author: Kim Ji Seob
-category: articles
-tags:
-- Swift
-- Notification Center
-
+layout: post                       
+title: "(Swift) Notification Center"
+categories: [Swift]
 ---
 
  <u>**주의 : 혹시 읽지만 끝까지 안보시는 분들은 적용하고 `옵저버 제거`  검색해서 꼭 제거해주세요.</u>**
@@ -215,7 +209,7 @@ ex) 화면이 VC1 -> VC2 -> VC3 이렇게 있다고 치자, 그리고 각각 Lab
 
 그리고 그 3에는 버튼이 하나 있고, 이것을 누르면 Post를 한다.
 
-![]({{ site.baseurl }}/assets/img/post/2018-10-27/img1.png)
+![](https://jiseobkim.github.io/static/img/_post/2018-10-27/img1.png)
 
 
 
@@ -277,7 +271,7 @@ NotificationCenter.default.post(name: .changeLabel, object: nil)
 
 ~~그럼 gif는 할줄 모르니~~ (방금 배움. 단축어 짱짱)
 
-![]({{ site.baseurl }}/assets/img/post/2018-10-27/img2.gif)
+![](https://jiseobkim.github.io/static/img/_post/2018-10-27/img2.gif)
 
 
 
@@ -352,7 +346,7 @@ btn의 Post도 이렇게 변경
 ## 결과
 ----
 
-![]({{ site.baseurl }}/assets/img/post/2018-10-27/img3.gif)
+![](https://jiseobkim.github.io/static/img/_post/2018-10-27/img3.gif)
 
 
 

@@ -1,165 +1,149 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - 서버 연동 기본과 Encodable - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - 서버 연동 기본과 Encodable" />
+    <meta name="keywords" content="Swift - 서버 연동 기본과 Encodable, 😀😍😉 JS의 개발 블로그 😁😆😄, articles" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
 
-<head>
+    
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width initial-scale=1">
+    
+      <meta content="Swift - 서버 연동 기본과 Encodable" property="og:title">
+      <meta content="article" property="og:type">
+    
 
-<meta property="og:title" content="Swift - 서버 연동 기본과 Encodable">
-<title>Swift - 서버 연동 기본과 Encodable</title>
-<meta property="og:description" content="라이브러리(Almofire) 없이 통신하기!이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 &lt; Encodable&amp;Decodable &gt;로 이루어져있었습니다.참고: Alamofire와 Codable참고: Alamofire와 ...">
-<meta property="og:url" content="http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
-<meta property="og:site_name" content="JS Blog">
-<meta property="og:locale" content="kr">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@">
-<meta name="twitter:creator" content="@">
-<meta name="twitter:title" content="Swift - 서버 연동 기본과 Encodable">
-<meta name="twitter:description" content="라이브러리(Almofire) 없이 통신하기!이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 &lt; Encodable&amp;Decodable &gt;로 이루어져있었습니다.참고: Alamofire와 Codable참고: Alamofire와 ...">
-<meta name="twitter:url" content="http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
+    
+      <meta content="나만의 공간" property="og:description">
+    
 
-<meta name="keywords" content="Swift, ObjectiveC, iOS">
+    
+      <meta content="http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html" property="og:url">
+    
 
-<link rel="icon" href="/assets/favi.ico">
-<link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
-<link rel="alternate" type="application/atom+xml" title="JS Blog" href="http://localhost:4000/feed.xml" />
+    
+      <meta content="2018-08-05T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
 
-<script language="Javascript" type="text/javascript">
-function search_google()
-{
-  var query = document.getElementById("google-search").value;
-  window.open("http://google.com/search?q=" + query
-      + "%20site:" + "http://localhost:4000");
-}
-</script>
+    
+      
+        <meta content="articles" property="article:section">
+      
+    
 
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      
+        <meta content="Swift" property="article:tag">
+      
+        <meta content="Network" property="article:tag">
+      
+        <meta content="Encodable" property="article:tag">
+      
+    
 
-ga('create', 'UA-121626260-1', 'auto');
-ga('send', 'pageview');
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
 
-</script>
+    
+      <meta name="twitter:title" content="Swift - 서버 연동 기본과 Encodable">
+    
 
+    
+      <meta name="twitter:url" content="http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html">
+    
 
-<script type='text/javascript'>
-var blocklink = ['http://humanorightswatch.org','http://o-o-6-o-o.com','http://darodar.com','http://blackhatworth.com','http://hulfingtonpost.com','http://bestwebsitesawards.com','http://darodar.com','http://buttons-for-website.com','http://ilovevitaly.co','http://semalt.com','http://priceg.com','http://simple-share-buttons.com','http://googlsucks.com','http://4webmasters.org','http://aliexpress.com','http://addons.mozilla.org/en-US/firefox/addon/ilovevitaly/','http://free-share-buttons.com','http://buttons-for-your-website.com','http://theguardlan.com','http://buy-cheap-online.info','http://best-seo-offer.com','http://4webmasters.org','http://trafficmonetize.org','http://howtostopreferralspam.eu','http://ilovevitaly.com','http://sanjosestartups.com','http://free-social-buttons.com','http://best-seo-offer.com','http://guardlink.org','http://www.event-tracking.com','http://www3.free-social-buttons.com','http://www1.free-social-buttons.com','http://www2.free-social-buttons.com','http://websites-reviews.com','http://floating-share-buttons.com','http://satellite.maps.ilovevitaly.com','http://free-social-buttons.com','http://www.event-tracking.com','http://erot.co'];
-for (var b = blocklink.length; b--;) {
-  if (document.referrer.match(blocklink[b]))
-    window.location = "http://www.google.com";
-}
-</script>
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
 
+    
 
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
 
-
-</head>
-
-
-<body>
-
-<div class="container">
-
-  <header class="site-header">
-
-  <div class="wrapper">
-
-    <h1 class="site-title"><a href="/">JS Blog</a></h1>
-    <h3 class="site-meta">Developer story who love Swift</h3>
-
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
-      <div class="trigger">
-        
-        
-        <a class="page-link" href="/">홈</a>
-        
-        
-        
-        <a class="page-link" href="/about/">소개</a>
-        
-        
-        
-        <a class="page-link" href="/archives/">모든 게시물</a>
-        
-        
-        
-        <a class="page-link" href="/categories/">카테고리</a>
-        
-        
-        
-        <a class="page-link" href="/tags/">태그</a>
-        
-        
-        
-        <a class="page-link" href="/guestbook/">방명록</a>
-        
-        
-        
-        <a class="page-link" href="/feed.xml">구독하기</a>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/jekyll">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
       </div>
-    </nav>
-
-  </div>
-
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - 서버 연동 기본과 Encodable</h1>
 </header>
 
+<span class="time">05 Aug 2018</span>
 
-    
+  <span class="categories">
+    &raquo; <a href="/category/articles">articles</a>
+  </span>
 
-  <div class="page-content col-sm-8">
-    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header">
-    <h1 itemprop="name" class="post-title">Swift - 서버 연동 기본과 Encodable</h1>
-    <meta itemprop="keywords" content="Swift,Network,Encodable" />
-    <p class="post-meta">
-    카테고리: 
-    
-    <a href="/categories/#articles">articles</a>
-     
-    
-    태그: 
-    
-    <a href="/tags/#Swift" title="Swift">Swift</a>, 
-    
-    <a href="/tags/#Network" title="Network">Network</a>, 
-    
-    <a href="/tags/#Encodable" title="Encodable">Encodable</a>
-    
-    
-    <time itemprop="datePublished" datetime="2018-08-05">
-    작성일: Aug 5, 2018
-    </time>
-    </p>
-  </header>
-
-  <article class="post-content" itemprop="articleBody">
-    <p>라이브러리(Almofire) 없이 통신하기!
+<div class="content">
+  <div class="post"><p>라이브러리(Almofire) 없이 통신하기!
 <br /></p>
 
 <p>이전편에선 Alamofire를 가지고 통신을 연습했고. 그리고 같이 나왔던 Codable은 &lt; Encodable&amp;Decodable &gt;로 이루어져있었습니다.</p>
@@ -580,301 +564,174 @@ for (var b = blocklink.length; b--;) {
 
 <p>글 쓰다보니 네트워크 기본쪽이 많이 빈약한걸 느끼네요, 리스트에 적어놓고 더 공부해야겠습니다. 이만!</p>
 
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
 
-  </article>
-  <hr />
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/articles/2018/08/05/swift-%EC%84%9C%EB%B2%84-%EC%97%B0%EB%8F%99-%EA%B8%B0%EB%B3%B8%EA%B3%BC-Encodable-(Without-Alamofire).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 </div>
 
 
-<section class="pager">
-  <ul>
+  
     
-    <li class="previous"><a href="/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html" title="Swift - Alamofire와 Escaping">&larr; 이전 게시물</a></li>
-    
-    
-    <li class="next"><a href="/articles/2018/08/19/swift-Generic-&-Codable.html" title="Swift - Generic & Codable">다음 게시물 &rarr;</a></li>
-    
-  </ul>
-</section>
-
-<script src="/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-  $(document).keydown(function(e) {
-    if (e.target.nodeName.toUpperCase() != 'BODY') return;
-    var url = false;
-        if (e.which == 37 || e.which == 74) {  // Left arrow and J
-            
-        url = 'http://localhost:4000/articles/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html';
+      
         
-        }
-        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
-            
-        url = 'http://localhost:4000/articles/2018/08/19/swift-Generic-&-Codable.html';
+          
+      
+    
+  
+    
+      
         
-        }
-        if (url) {
-            window.location = url;
-        }
-  });
-})
-</script>
-
-
-
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='Jiseob Kim';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-    <section class="pager">
+          
+      
+    
   
-  
-</section>
-
-<script src="/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-  $(document).keydown(function(e) {
-    if (e.target.nodeName.toUpperCase() != 'BODY') return;
-    var url = false;
-        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+    
+      
         
-        }
-        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
-            
-        }
-        if (url) {
-            window.location = url;
-        }
-  });
-})
-</script>
-
-
-
-  </div>
-  <div class="col-sm-2">
-<div class="sidebar-module about">
-  <h2>저자 소개</h2>
-  <img title="Kim Ji Seob" src="/assets/ItsMe.jpeg" alt="Kim Ji Seob"/>
-  <br>
-  <span>파릇파릇한 iOS 개발자!</span>
-  <br />
-
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
   
 
-  Contact Me Via: <br />
-
+<div class="PageNavigation">
   
-  <a href="mailto:jiseob812@gmail.com" title="mailto: jiseob812@gmail.com"><i class="fa fa-envelope-square fa-3x"></i></a>&nbsp;
+    <a class="prev" href="/swift/2018/07/29/swift-Alamofire%EC%99%80-Escaping.html">&laquo; (Swift) Alamofire와 Escaping</a>
   
   
-  <a href="https://github.com/JiSeobKim" title="GithubID: JiSeobKim"><i class="fa fa-github-square fa-3x"></i></a>&nbsp;
-  
-
-
-  
-
-</div>
-
-<div class="sidebar-module">
-  <h4>게시물 검색</h4>
-  <form onsubmit="search_google()" >
-    <input type="text" id="google-search" placeholder="Google search" />
-    <input type="submit" name="sa" value="Go" />
-  </form>
-</div>
-
-
-
-<div class="sidebar-module">
-  <h4>최근 게시물</h4>
-  
-  <li>
-  <a href="/articles/2018/12/26/Xcode-Cartage.html" title="Xcode_Carthage (서론)" rel="bookmark">Xcode_Carthage (서론)</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/11/04/swift-Tag.html" title="Swift_Basic - Tag 알아보기" rel="bookmark">Swift_Basic - Tag 알아보기</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/10/27/swift-NotificationCenter.html" title="Swift - Notification Center" rel="bookmark">Swift - Notification Center</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html" title="Swift_Basic - 타입 메소드 & 인스턴스 메소드" rel="bookmark">Swift_Basic - 타입 메소드 & 인스턴스 메소드</a>
-  </li>
-  
-  <li>
-  <a href="/articles/2018/09/16/swift-DelegatePattern2.html" title="Swift - 화면간 데이터 전달. 2편" rel="bookmark">Swift - 화면간 데이터 전달. 2편</a>
-  </li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>카테고리</h4>
-  
-  <li><a href="/categories/#articles" title="articles" rel="12">articles (12)</a></li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>태그</h4>
-  
-    <a href="/tags/#Swift" title="Swift" rel="11">Swift</a> &nbsp;
-  
-    <a href="/tags/#Class" title="Class" rel="2">Class</a> &nbsp;
-  
-    <a href="/tags/#Struct" title="Struct" rel="1">Struct</a> &nbsp;
-  
-    <a href="/tags/#값전달" title="값전달" rel="1">값전달</a> &nbsp;
-  
-    <a href="/tags/#Inherite" title="Inherite" rel="1">Inherite</a> &nbsp;
-  
-    <a href="/tags/#Alamofire" title="Alamofire" rel="2">Alamofire</a> &nbsp;
-  
-    <a href="/tags/#Codable" title="Codable" rel="2">Codable</a> &nbsp;
-  
-    <a href="/tags/#Escaping" title="Escaping" rel="1">Escaping</a> &nbsp;
-  
-    <a href="/tags/#Network" title="Network" rel="1">Network</a> &nbsp;
-  
-    <a href="/tags/#Encodable" title="Encodable" rel="1">Encodable</a> &nbsp;
-  
-    <a href="/tags/#Generic" title="Generic" rel="1">Generic</a> &nbsp;
-  
-    <a href="/tags/#Delegate Pattern" title="Delegate Pattern" rel="1">Delegate Pattern</a> &nbsp;
-  
-    <a href="/tags/#Protocol" title="Protocol" rel="1">Protocol</a> &nbsp;
-  
-    <a href="/tags/#Method" title="Method" rel="1">Method</a> &nbsp;
-  
-    <a href="/tags/#Type Method" title="Type Method" rel="1">Type Method</a> &nbsp;
-  
-    <a href="/tags/#Instance Method" title="Instance Method" rel="1">Instance Method</a> &nbsp;
-  
-    <a href="/tags/#Notification Center" title="Notification Center" rel="1">Notification Center</a> &nbsp;
-  
-    <a href="/tags/#Tag" title="Tag" rel="1">Tag</a> &nbsp;
-  
-    <a href="/tags/#Carthage" title="Carthage" rel="1">Carthage</a> &nbsp;
-  
-    <a href="/tags/#Xcode" title="Xcode" rel="1">Xcode</a> &nbsp;
+    <a class="next" href="/swift/2018/08/19/swift-Generic-&-Codable.html">(Swift) Generic & Codable &raquo;</a>
   
 </div>
 
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - 서버 연동 기본과 Encodable";
+    var disqus_title = "Swift - 서버 연동 기본과 Encodable";
 
-
-<div class="sidebar-module">
-  <h4>모든 게시물</h4>
-
-  
-  
-  
-  
-  
-  <li id="2018" > <a href="/archives/#2018">2018</a></li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
 </div>
 
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
 
-<div class="sidebar-module"> <!-- sidebar-module-inset">-->
-  <h4>저작권</h4>
-
-  
-
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
-    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
-  </a>
-  <br />
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
-
-  
-
-</div>
-
-
-</div>
-
-
-  
-
-  <footer class="site-footer">
-
-  <p>Copyright &copy; <a href="/">JS Blog</a></p>
-  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
-  on 
-  <a href="https://github.com/">Github</a>
-  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
-
-
-  <div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
-    <a title="Back To Top"><img src="/images/topbutton.png"/></a>
-  </div>
-
-  <script src="/js/jquery-1.9.1.min.js"></script>
-  <script src="/js/totop.js"></script>  
-
-
-
-</footer>
-
-
-</div>
-
-</body>
-
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
 </html>
+
