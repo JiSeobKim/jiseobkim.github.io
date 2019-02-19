@@ -29,7 +29,7 @@ share:
 
 urls:
     - text: Category
-      url: /category/jekyll
+      url: /category/Swift
     - text: About Me
       url: /about/
     - text: My Projects
