@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 20 Feb 2019 00:07:10 +0900</pubDate>
-    <lastBuildDate>Wed, 20 Feb 2019 00:07:10 +0900</lastBuildDate>
+    <pubDate>Wed, 20 Feb 2019 00:08:49 +0900</pubDate>
+    <lastBuildDate>Wed, 20 Feb 2019 00:08:49 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -283,6 +283,13 @@ UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 2, 44)];
 &lt;p&gt;저 버전들이 문제다, 지금 시뮬레이터가 10,11이 없어서 그런데&lt;/p&gt;
 
 &lt;p&gt;쟤들도 그랬다. 12만 고정폭이 들어갔나보다. 빡침,,&lt;/p&gt;
+
+&lt;p&gt;다해놨더니!!!!!!!!!!!! 하 딥빡이었다 정말,&lt;/p&gt;
+
+&lt;p&gt;근데 더화나는건 Swift에선 안그런다는거…
+Objc 넘나 힘든것&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;오 근데 블로그 쓰다 30이 최소인걸 알았는데,&lt;/p&gt;
 
