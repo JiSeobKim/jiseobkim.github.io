@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(Tool) Fastlane Lane 사용법 - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(Tool) Fastlane Lane 사용법" />
+    <meta name="keywords" content="(Tool) Fastlane Lane 사용법, 😀😍😉 JS의 개발 블로그 😁😆😄, Tool" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(Tool) Fastlane Lane 사용법" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%87%E1%85%A5%E1%86%B8.html" property="og:url">
+    
+
+    
+      <meta content="2019-04-28T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Tool" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(Tool) Fastlane Lane 사용법">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%87%E1%85%A5%E1%86%B8.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(Tool) Fastlane Lane 사용법</h1>
+</header>
+
+<span class="time">28 Apr 2019</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Tool">Tool</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><blockquote>
+  <p>이전 포스팅</p>
+  <ul>
+    <li><a href="https://jiseobkim.github.io/tool/2019/03/30/Tool-Fastlane을-알아보자.html">Fastlane 개념</a></li>
+    <li><a href="https://jiseobkim.github.io/swift/2019/04/21/Tool-Fastlane-설치-방법.html">Fastlane 설치 방법과 1개월 사용 후기</a></li>
+  </ul>
+</blockquote>
+
+<p>포스팅 할건 많은데, 느낌이 왔을때 새로 쓰는게 나을지, 아니면 이것처럼 시작한것은 끝내고 쓰는게 좋을지 모르겠다.
+뭔가 읽을때는 순차적인게 좋을듯 한데, 느낌이 왔을때 바로 못쓰니 김새는 느낌이 있다.
+잡담 끝.</p>
+
+<hr />
+
+<p><br /></p>
+<h1 id="lane에-대하여">Lane에 대하여</h1>
+
+<p>FastLane의 꽃은 Lane이 아닐까 하는 생각이 든다.
+FastLane의 장점은 Xcode에서 여러번 클릭을 여러번 해야하는 부분들을 명령어 하나로 해결해주는 점인듯 했다.</p>
+
+<p>그리고, 그 단순화 과정 마저도 한번에 묶어주는 <code class="highlighter-rouge">Lane</code>, 그래서 꽃이라 칭해보았다.</p>
+
+<p><br />
+명령어 몇가지를 보자</p>
+<ul>
+  <li><strong>Derived 파일 제거</strong>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane action clear_derived_data
+</code></pre></div>    </div>
+  </li>
+  <li><strong>IPA 추출하기</strong>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane gym
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><code class="highlighter-rouge">Derived 제거</code> 관련의 경우, 가끔 빌드시 문제가 생길시 여기 파일을 지워주면 해결되는 경우가 많다. 빌드시 계속 생성되기 때문에 언제든 지워도 되는 파일!
+<code class="highlighter-rouge">IPA 추출</code>은 TestFlight를 안쓴다면 사내 테스트용으로 필요로 뽑아두는 분들이 많을거라 생각된다. 명령어 하나로 손쉽게 추출!
+(IPA 추출의 경우 dSYM 파일도 같이 나온다.)</p>
+
+<p><br /></p>
+
+<p>두 명령어다 아주 좋은 명령어이다. 그렇지만 사람은 언제나 귀찮은 작업 하나라도 줄이려는게 분명하다.
+위와 같이 <code class="highlighter-rouge">IPA 추출</code>을 했을 경우 <code class="highlighter-rouge">Clean</code>과 <code class="highlighter-rouge">Derived 제거</code>를 같이 할 경우가 많다.
+한줄 한줄 입력하는것도 귀찮았나보다. 그래서 여러가지 명령어를 한번에 실행하고 싶었던걸까?</p>
+
+<p>그래서 <code class="highlighter-rouge">Lane</code>이라는 것이 나온듯 하다.</p>
+
+<p><br /><br /></p>
+<h1 id="lane-생성하기">Lane 생성하기</h1>
+<p>이전 포스팅 내용해 <code class="highlighter-rouge">fastlane init</code>을 했다면, 해당 프로젝트 폴더내에 <code class="highlighter-rouge">fastlane</code> 이라는 폴더가 있으며, 그안에 <code class="highlighter-rouge">Fastfile</code>이란 파일이 존재한다. 
+내용은 아래와 같다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+    # add actions here: https://docs.fastlane.tools/actions
+  end
+end
+</code></pre></div></div>
+
+<p>(#) 부분은 한번쯤 읽어보면 되고,
+<br />
+중요한 부분은 여기다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>desc "Description of what the lane does"
+lane :custom_lane do
+    # add actions here: https://docs.fastlane.tools/actions
+end
+</code></pre></div></div>
+
+<p>이것이 <code class="highlighter-rouge">lane</code>의 기본 틀이라 보면 되고, 각 설명은 아래와 같다.</p>
+<ul>
+  <li><strong>desc</strong>: lane에 대한 설명.</li>
+  <li><strong>custom_lane</strong>: lane를 실행시킬 명령어.</li>
+  <li><strong>do ~ end</strong>: 이 lane으로 인해 실행될 명령어들을 정의.</li>
+</ul>
+
+<p><br /> 
+<br />
+위에 예를 들었던 명령어 두개를 이용하여 <code class="highlighter-rouge">lane</code>을 생성해보자</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>desc "Test Lane"
+lane :test_lane do
+    clear_derived_data
+    gym
+end
+</code></pre></div></div>
+
+<p>이렇게하면 생성완료!
+<br />
+그 후에 아래 명령어를 실행하면 된다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane test_lane
+</code></pre></div></div>
+<p>그럼 위 <code class="highlighter-rouge">test_lane</code>내의 명령어들이 순차적으로 진행되는 것을 볼 수 있다.</p>
+
+<p>그런데, 여기서 끝나면 아쉬울것이다. gym(아카이브) 명령어를 실행할때 옵션을 주는 경우가 필요하다.</p>
+
+<p>예를 들면 인증서를 선택(Distribution/Adhoc/Development)해야하는 경우도 필요하며, 아카이브 전에 빌드 클린은 필요하기에
+이러한 명령어들에 대한 옵션들이 필요하다.</p>
+
+<p><br /><br /></p>
+
+<h1 id="lane-명령어에-옵션주기">Lane 명령어에 옵션주기</h1>
+
+<p>옵션 주는것은 간단하다. 해당 명령어 뒤에 괄호()를 열어 주고 적으면 된다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>desc "Test Lane"
+lane :test_lane do
+    clear_derived_data
+    gym(
+        scheme: "Foo",
+        export_method: "ad-hoc",
+        clean: true,
+        output_directory: "path/to/dir"
+    )
+end
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">gym</code>뒤에 괄호를 열어줬고, 그 안에 옵션들을 나열했다.</p>
+<ul>
+  <li><strong>scheme</strong>: 해당 프로젝트의 타겟을 설정해준다. (한 workspace안에 여러 앱이 있을 경우 필요하다.)</li>
+  <li><strong>export_method</strong>: 인증서 옵션 주는 부분이다. (종류: app-store, ad-hoc, package, enterprise, development, developer-id)</li>
+  <li><strong>clean</strong>: 빌드 클린 여부이다, true or false 주면 된다.</li>
+  <li><strong>output_directory</strong>: 결과물들을 저정할 위치를 셋팅해주는 값이다. (안적으면 해당 프로젝트 폴더)</li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="ps">PS.</h1>
+<p>마지막 부분처럼 옵션이 생기면, 생각보다? 줄이 길어진다. 외우기도 힘들며, 하나가 아니라 여러게 생길수 있다. 
+하지만 <code class="highlighter-rouge">lane</code>덕에 미리 셋팅만 해둔다면, 단 1줄의 명령어로 끝낼 수 있다.</p>
+
+<p>슬랙으로 알림도 줄 수 있고, 알아서 스크린샷도 찍어주고, 추출도 해주고, 업로드도 해주고, 인증서 관리부터 생성까지 해주니
+알아두면 좋은 도구임은 확실한듯하다. 나중에 고급편도 포스팅 해야겠다.</p>
+
+<p>이걸로 <em>fastlane</em>은 일단 끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%87%E1%85%A5%E1%86%B8.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/tool/2019/04/21/Tool-Fastlane-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95.html">(Tool) Fastlane 기본 설치 방법과 1달 사용후기</a>
+                  
+                    (Categories: <a href="/category/Tool">Tool</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/tool/2019/03/30/Tool-Fastlane%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1.html">(Tool) Fastlane을 알아보자 (개념)</a>
+                  
+                    (Categories: <a href="/category/Tool">Tool</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/tool/2019/04/21/Tool-Fastlane-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95.html">&laquo; (Tool) Fastlane 기본 설치 방법과 1달 사용후기</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(Tool) Fastlane Lane 사용법";
+    var disqus_title = "(Tool) Fastlane Lane 사용법";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

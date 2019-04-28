@@ -1,7 +1,7 @@
 ---
 layout: post                       
 title: (Tool) Fastlane 기본 설치 방법과 1달 사용후기
-categories: [Swift]
+categories: [Tool]
 ---
 
 설치는 글내용이 별로 없을듯 하니 짧게 나마 사용 후기를 같이 써보고자 한다.
