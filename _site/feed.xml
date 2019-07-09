@@ -5,9 +5,225 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Apr 2019 21:18:01 +0900</pubDate>
-    <lastBuildDate>Sun, 28 Apr 2019 21:18:01 +0900</lastBuildDate>
+    <pubDate>Tue, 09 Jul 2019 18:14:36 +0900</pubDate>
+    <lastBuildDate>Tue, 09 Jul 2019 18:14:36 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
+    
+      <item>
+        <title>(Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</title>
+        <description>&lt;p&gt;참고:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zeddios.tistory.com/359?category=682195&quot;&gt;zedd님 블로그&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.iosinsight.com/setneedslayout-vs-layoutifneeded-explained&quot;&gt;어느 사이트&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;막연하게 layoutIfNeeded() 를 써왔었는데, 볼때마다 유사해 보이는 setNeedsLayout()은 뭘까 싶었다,&lt;/p&gt;
+
+&lt;p&gt;updateConstraints()도 궁금하고, 비슷한 다른것들도 궁금하지만, 자료좀 찾아보니 저둘이 비교하는게 많았기에 정리!&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님 블로그가 너무 정리가 잘되어있어서 기본적인건 간단하게 설명하고, 이해력이 딸려 살짝 갸우뚱 했던 부분들을 적어야겠다&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;들어가기전-먼저-알아야-이해가-되는것&quot;&gt;들어가기전 먼저 알아야 이해가 되는것!&lt;/h1&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Life cycle&lt;/code&gt;중 view layout을 &lt;code class=&quot;highlighter-rouge&quot;&gt;update&lt;/code&gt; 해주는 부분이 있다고 한다! 글들을 보니 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutSubviews()&lt;/code&gt;가 그 역할인가보다. (Zedd님 감사합니다)&lt;/p&gt;
+
+&lt;p&gt;근데 말 그대로, Cycle이다, 한번 지나가면 나중에 오는 그런것! 요게 포인트다.&lt;/p&gt;
+
+&lt;p&gt;또한 해당 싸이클이 왔어도 그 view의 layout이 무효화 되있어야 새로 짜는것 같다&lt;/p&gt;
+
+&lt;p&gt;그래서, Constraint를 수정해도 바로 적용이 안되고,&lt;/p&gt;
+
+&lt;p&gt;SetNeedsLayout() 또는 LayoutIfNeeded() 를 해서 적용을 해줘야 했나보다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;setneedslayout&quot;&gt;setNeedsLayout()&lt;/h1&gt;
+
+&lt;h3 id=&quot;point&quot;&gt;Point&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Async&lt;/li&gt;
+  &lt;li&gt;대기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위에서 무효화가 돼있어야 한다고 적었는데, 무효화 하는 방법은 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;을 써주는 것이다.&lt;/p&gt;
+
+&lt;p&gt;“해당 view 다음 사이클때 업데이트 해줘” 라는 의미며, &lt;a href=&quot;http://www.iosinsight.com/setneedslayout-vs-layoutifneeded-explained&quot;&gt;참고 2번 사이트&lt;/a&gt;에 의하면, 그 &lt;code class=&quot;highlighter-rouge&quot;&gt;subviews&lt;/code&gt;도 업데이트가 된다.&lt;/p&gt;
+
+&lt;p&gt;바로 바뀌지 않으며 대기 상태이고, 비동기로 진행된다, 그리고 &lt;strong&gt;이 cycle은 언제오는지 알기 힘들다고 한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;–2번 사이트 표현–&lt;br /&gt;
+“please update but you can wait until the next update cycle”&lt;br /&gt;
+업데이트 해줘, 근데 다음 업데이트까지 기다릴게&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;layoutifneeded&quot;&gt;layoutIfNeeded()&lt;/h1&gt;
+&lt;h3 id=&quot;point-1&quot;&gt;point&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Sync&lt;/li&gt;
+  &lt;li&gt;즉시&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;차이점이라면 동기로 진행되고, 다음 cycle이 될때까지 기다리지 않고 바로 업데이트 시킬때 쓸 수 있다&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;–2번 사이트 표현–&lt;br /&gt;
+“update immediately please”&lt;br /&gt;
+업데이트 해줘, 당장!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;예시를-통한-이해&quot;&gt;예시를 통한 이해&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님께서 이 &lt;a href=&quot;https://github.com/lmacfadyen/UIViewLifecycleLayoutDisplay&quot;&gt;링크&lt;/a&gt;를 추천해주셨다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 다음 업데이트때 기다릴게!&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;은 지금 당장 업데이트 해줘!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;결론은 “둘다 새 값으로 업데이트 해줘!” 로 이해를 했다. 근데 이렇게 생각하니 잘 이해가 안됐다,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.blueHeight.constant = 100
+
+UIView.animate(withDuration: 2.0, animations: {
+    self.view.setNeedsLayout()
+    // 또는
+    self.view.layoutIfNeeded()
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예제에서 이게 이해가 안된다. &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 높이값 &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 변경 되었을때, 애니메이션 효과가 보이면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 바뀐다.&lt;/p&gt;
+
+&lt;p&gt;반면, &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 애니메이션 효과없이 바로 새로운 &lt;code class=&quot;highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 적용된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;기존값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;, 새값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;이라 해보자, 둘다 &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 100으로 됐다는 의미다.&lt;/p&gt;
+
+&lt;p&gt;그럼 위에 서술한 내용들을 붙여보자&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt; : 100으로 바꿨어, 다음 업데이트때 적용해줘&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;: 100으로 바꿨어, 당장 바꿔줘&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이렇게 생각을 해서 이해가 안됐다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜 이해가 안됐는지 적어보면,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;결국엔 이미 애니메이션 호출전 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 선언해줬으니  애니메이션 시작할때면, 이미 100아닌가?? 그럼 cycle돌다가 업데이트할때 이미 100인거 같아! 근데 애니메이션 주면 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 효과가 있다? 그럼 애니메이션동안 cycle이 적용 안된건가? 그럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 2초 뒤에 값이 바뀌어야하는것 아닌가?!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이상한점: &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 2초뒤가 아닌 시작하자마자 값이 바뀜??? 잉 아예 틀려버림&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;1번이 이상했다, 시작과 동시에 cycle이 돈거라면 height는 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 이미 박혀있는거고 적용이 된거다? 근데! 이미 100이면 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt; 도 cycle 시작시 이미 100이니깐, 점점 100이 되는게 아니라, 이미 100이겠네?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이상한점: 왜 애니메이션 효과가 적용된거지? 바로 100으로 되야하는거 아닌가?!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;strong&gt;바보였다. 글쓸때까지도 잘 못 이해하고 있었다…&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;원인-파악&quot;&gt;원인 파악&lt;/h1&gt;
+
+&lt;h3 id=&quot;point_a&quot;&gt;Point_A&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;update cycle&lt;/code&gt;은 돌고 돈다, 유저는 알 수 없다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;그렇다, 나는 알 수 없었다…&lt;/p&gt;
+
+&lt;p&gt;이걸 빼먹고 생각하니 이상한 추론만 했다.&lt;/p&gt;
+
+&lt;p&gt;중점은 이거다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;point_b&quot;&gt;Point_B&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;animations 블록 안에 내용이 animation 효과가 적용된다,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;point_c&quot;&gt;Point_C&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;는 다음 update cycle때.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+포인트 B와 C를 섞어서 보자&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout&lt;/code&gt;은 다음번에 update cycle 때 해달라고 요청한다. &lt;strong&gt;즉, 지금 한것은 요청만함.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시 update를 요청한다, 블럭 내에서! &lt;strong&gt;즉, 지금 요청과 동시에 변화가 시작된다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+포인트는 블럭내에서 요청만 했느냐, 요청 + 적용이 되었느냐 였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;현재 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 0&lt;/code&gt; 이었고 신규값 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;은 요청 사항이었다. &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 그 값이 animation때 적용했기에 &lt;code class=&quot;highlighter-rouge&quot;&gt;0~100&lt;/code&gt;이 되는 과정이 animation으로 보였다.&lt;/p&gt;
+
+&lt;p&gt;그런데, &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;의 경우  animations 블럭에선 요청만 했기에 별다른 UI적으로 변경 요소가 없었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+그렇다면, 한번에 바뀐건 어떻게 생각할까? &lt;strong&gt;Point_A&lt;/strong&gt;가 해답이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animations 블럭&lt;/code&gt;이 지난후 cycle이 돌다가 update cycle이 된것이라 본다.&lt;/p&gt;
+
+&lt;p&gt;그렇기에 해당사이클은 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 요청한 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;을 적용한것이며,&lt;/p&gt;
+
+&lt;p&gt;이는 애니메이션과 관련이 없기에 한번에 적용된것이다.&lt;/p&gt;
+
+&lt;p&gt;사람 눈이 착각한 느낌이랄까? 시각적으론 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;이 적용되고 애니메이션이 시작된것 같지만&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;animations 블럭&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;update&lt;/code&gt; 요청&lt;/li&gt;
+  &lt;li&gt;이후 &lt;code class=&quot;highlighter-rouge&quot;&gt;update cycle&lt;/code&gt; 적용 &amp;amp; &lt;code class=&quot;highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중…&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중 … 끝&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이렇게 되는게 맞다고 본다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;cycle을 내가 컨트롤하지 않아서 생각을 못했다. 완전 바보였다….&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 09 Jul 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/tool/2019/07/09/Swift-setLayouts.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tool/2019/07/09/Swift-setLayouts.html</guid>
+        
+        
+        <category>Tool</category>
+        
+      </item>
     
       <item>
         <title>(Tool) Fastlane Lane 사용법</title>
@@ -1946,239 +2162,6 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
         <pubDate>Sat, 27 Oct 2018 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html</link>
         <guid isPermaLink="true">http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html</guid>
-        
-        
-        <category>Swift</category>
-        
-      </item>
-    
-      <item>
-        <title>(Swift) 타입 메소드 &amp; 인스턴스 메소드</title>
-        <description>&lt;p&gt;Swift 코드를 보다 그런적이 있었다.&lt;/p&gt;
-
-&lt;p&gt;“이건 분명 클래스인데, 인스턴스를 안만들고 함수를 쓰네??”&lt;/p&gt;
-
-&lt;p&gt;오늘 나오는 메소드의 종류 다음과 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;인스턴스 메소드&lt;/li&gt;
-  &lt;li&gt;타입 메소드&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;메소드의-종류&quot;&gt;메소드의 종류&lt;/h1&gt;
-&lt;p&gt;아래의 이미지를 보자!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img1.png&quot; alt=&quot;&quot; /&gt;
-(App: Scapple)&lt;/p&gt;
-
-&lt;p&gt;오늘의 추천앱! Scapple이란 앱이에요!!&lt;/p&gt;
-
-&lt;p&gt;블로그도 리뉴얼 했으니 추천 카테고리도 만들어야지 ㅎㅎ&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-다시 본론으로 넘어가서!&lt;/p&gt;
-
-&lt;p&gt;구성은 다음과 같다&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;함수&lt;/li&gt;
-  &lt;li&gt;클래스1
-    &lt;ul&gt;
-      &lt;li&gt;함수1&lt;/li&gt;
-      &lt;li&gt;함수2&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;클래스2
-    &lt;ul&gt;
-      &lt;li&gt;함수3&lt;/li&gt;
-      &lt;li&gt;함수4&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;여기서, &lt;strong&gt;함수는 전역 함수다&lt;/strong&gt;. 즉, 어디서든 접근이 가능하다는 의미이다!&lt;/p&gt;
-
-&lt;p&gt;만약 지금 클래스1의 내부에 코드를 작성하고 있다면,&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;클래스1이 2를 상속하고 하고 있다&lt;/strong&gt;거나 &lt;strong&gt;클래스2의 인스턴스를 만들었다면&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;클래스2 내부의 함수3,4를 접근할 수 있지만 &lt;strong&gt;그 외엔 불가&lt;/strong&gt;하다. 하지만 우리의 &lt;u&gt;전역 함수님에겐 언제든 접근이 가능&lt;/u&gt;하다!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그렇담 일반적 접근인 &lt;strong&gt;인스턴스 메소드&lt;/strong&gt;를 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;인스턴스-메소드&quot;&gt;인스턴스 메소드&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;useInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Instance!!&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위처럼 만들고 사용은 어떻게?&lt;/p&gt;
-
-&lt;p&gt;이렇게&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;‘some’이란 인스턴스를 만들어주고, some의 내부함수인 useInstance()를 호출하여 값을 받아냈다.&lt;/p&gt;
-
-&lt;p&gt;중요한건, &lt;strong&gt;&lt;u&gt;인스턴스를 만들고 내부함수 호출&lt;/u&gt;&lt;/strong&gt;이다.&lt;/p&gt;
-
-&lt;p&gt;그렇담!! 인스턴스를 안만들고 호출을 하는 방법은?&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;타입-메소드&quot;&gt;타입 메소드&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;타입 메소드란 타입(여기선 some클래스를 의미) 자체에서 호출을 할 수 있는 메소드이다.
-그건 케바케이겠지만? 우선, 책에서 본건 이런게 있었다&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;사각형 면 숫자 return 하기&lt;/li&gt;
-  &lt;li&gt;괴물 울음 소리&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;다소 어이없는 예들이지만 공통점은 있다. 당연한 값들이란것 !
-코드적으로 본다면 인자값 넣고 그&lt;/p&gt;
-
-&lt;p&gt;말이 낯설어서 이해가 안될수도 있다. 필자도 이번기회에 외움! 이 맛에 포스팅한다.&lt;/p&gt;
-
-&lt;p&gt;내용만 알아도 된다. 이름이야뭐… 일단 이해하는게 중요하니 설명부터!&lt;/p&gt;
-
-&lt;p&gt;일반 내부 함수랑 차이가 거의 없다 있다면 &lt;strong&gt;키워드&lt;/strong&gt; 하나가 더붙는다는것?&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;  또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 이다.&lt;/p&gt;
-
-&lt;p&gt;일반 책에서 잘나오지 않아서 굉장히 낯설었다… 나의 함수들은 func으로만 시작하였고,&lt;/p&gt;
-
-&lt;p&gt;그 앞에 뭐가 붙는다는건 상상도 못해봤다. 심지어 한개도 아니고 두개다(사실 하나 더 있다.)(내가모르는게 더있을수도?)&lt;/p&gt;
-
-&lt;p&gt;우선, &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 부터 보자&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;키워드--class&quot;&gt;키워드 : class&lt;/h3&gt;
-
-&lt;p&gt;일단 코드부터 보자&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 인스턴스 메소드&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;useInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Instance!!&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 타입 메소드&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSomething&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Type!!&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;처음 저것을 보았을때, 신선한 충격이었다. 클래스는 클래스고 함수는 함수지 왜 한줄에 다있는걸까? 라고…&lt;/p&gt;
-
-&lt;p&gt;우선 일반적인 클래스랑 쓰임새가 다른건 확실하다!&lt;/p&gt;
-
-&lt;p&gt;그럼, 메인에서 일반적으로 사용을 해보자 (인스턴스 메소드 사용!)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;없다. 완소 기능인 자동 완성 기능에 없다…&lt;/p&gt;
-
-&lt;p&gt;그렇다, 타입 메소드로 지정한것은 인스턴스 메소드처럼 사용이 불가능하다.&lt;/p&gt;
-
-&lt;p&gt;그럼, 이제 사용해보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;됐다. 인스턴스를 안만들었음에도 불구하고, 사용이 가능하였다!!
-그럼 이제 이걸 언제쓰냐가 궁금해질것이다. 책에서 본것들은 이런게 있었다.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;괴물 울음소리 String받기&lt;/li&gt;
-  &lt;li&gt;사각형 면수 받기&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;귀여움이 가득한 예제들이었다. 
-1의 경우 괴물의 울음소리를 언제 어디서든 인스턴스 없이 가져왔고
-2의 경우는 사각형 면수인 4를 가져오는 것이었다.&lt;/p&gt;
-
-&lt;p&gt;공통점으론 당연한 것이었다. 어떻게 쓰냐에 달렸다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;키워드-class의-장점&quot;&gt;키워드 class의 장점&lt;/h4&gt;
-
-&lt;p&gt;필자는 이런 경우도 보았다. 통신, UIView가져오기 등등
-따로 인스턴스를 만들지 않고 바로 바로 처리를 한 것들을 보았다.&lt;/p&gt;
-
-&lt;p&gt;특정 반복되는 뷰라던가, 인자값으로 받아서 통신을 하고 델리게이트 패턴을 이용해 반복적으로 일어나는것을 처리하였다.&lt;/p&gt;
-
-&lt;p&gt;그런점들이 좋았던거 같다. 인스턴스를 생성하면 이게 해제가 될지도 걱정을 안해도되고 (평소에도 잘안하긴했다..) 고로 ARC 걱정이 없을것 같다.&lt;/p&gt;
-
-&lt;p&gt;다른 것들은 기억이 안난다, 단점으로 가자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;키워드-class의-단점&quot;&gt;키워드 class의 단점&lt;/h4&gt;
-
-&lt;p&gt;음 확장성이 안좋았다. 아니 없었다.
-당연한 값들로만 리턴을 한다? 근데 초기화가 안되어있어서 변수를 쓰지도 못한다.
-내부의 변수를 사용할 수 없단건 정말 확장성에서 힘들었던거 같다. 다른 사람이 해둔 코드에 내가 변수 하나 추가해서 작업하고 싶은데, 그게 안된다;;;
-파라미터를 하나 추가한다? 그럼 모든 그 함수에 추가 시켜버려야한다…&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;키워드--static&quot;&gt;키워드 : static&lt;/h3&gt;
-
-&lt;p&gt;무엇이 다른걸까?&lt;/p&gt;
-
-&lt;p&gt;우선! 위에 타입메소드의 특징?들은 똑같다. 그런데&lt;/p&gt;
-
-&lt;p&gt;오버라이드가 가능, 불가능이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SubClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSomething&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;wow&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;이걸 먼저 보자, &lt;code class=&quot;highlighter-rouge&quot;&gt;class func&lt;/code&gt; 앞에 &lt;code class=&quot;highlighter-rouge&quot;&gt;override&lt;/code&gt;가 붙었다!
-키워드가 굉장히 길다.. 그렇지만 오버라이드 개념만 안다면 쉽게 이해할거라 생각한다.&lt;/p&gt;
-
-&lt;p&gt;결과도 보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;굉장히 잘 덮어썼다.&lt;/p&gt;
-
-&lt;p&gt;그럼, 이제 살짝 바꿔서 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;을 써보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-05/img6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;오오 빨간색이다. &lt;strong&gt;스태틱 메소드라고 오버라이드가 안된다한다&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-그렇다, 큰 차이는 없지만 차이는 분명한 두가지 키워드였다!&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;class 키워드를 써도 오버라이드를 막을수 있다.
-&lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; 키워드를 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 키워드 앞에 붙이면 된다!!
-키워드 많은건 내 취향이 아니니 나는 static을 쓰겠다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;ps&quot;&gt;PS&lt;/h1&gt;
-&lt;p&gt;처음엔 참 낯선 용어들이었는데, 블로그를 쓰니 머리에 더 들어오는 것 같아서 좋다.&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 05 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html</guid>
         
         
         <category>Swift</category>
