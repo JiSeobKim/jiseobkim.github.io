@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(swift) FileManager - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(swift) FileManager" />
+    <meta name="keywords" content="(swift) FileManager, 😀😍😉 JS의 개발 블로그 😁😆😄, swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(swift) FileManager" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2019/07/11/swift-File-Manager.html" property="og:url">
+    
+
+    
+      <meta content="2019-07-11T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(swift) FileManager">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2019/07/11/swift-File-Manager.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(swift) FileManager</h1>
+</header>
+
+<span class="time">11 Jul 2019</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/swift">swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>오늘의 주제는 <code class="highlighter-rouge">FileManager</code></p>
+
+<p>쓰게된 이유는 다음과 같다,</p>
+
+<p>사이드 프로젝트를 하고 있는데, Photo kit 관련 해본 경험이 없어서, 이 부분을 직접 써볼려고 앨범 라이브러리를 안쓰는데,</p>
+
+<p>영상, 이미지, 라이브포토를 앱내에 저장하는 방법이 필요했다.</p>
+
+<p>NSData로 캐스팅해서 Core Data에 넣으려했는데, 이건 좀 아닌거 같아서 여기저기 물어본 결과</p>
+
+<p><strong>바이너리 파일(이미지, 영상 등등)</strong>은 <strong>파일</strong>에 저장하고,</p>
+
+<p><strong>메타데이터(사진 정보, 관련 정보)</strong>만 <strong>Core data</strong>에 저장시키는 방식이 가장 많이 쓰인다고 해서 써보게 됐다.</p>
+
+<h1 id="순서">순서</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">File Manager</code>란?</li>
+  <li>폴더 추가 방법은?</li>
+  <li>파일 추가 방법은?</li>
+  <li>파일 불러오는 방법은?</li>
+  <li>파일 삭제하는 방법은?</li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<h1 id="file-manager란"><code class="highlighter-rouge">File Manager</code>란?</h1>
+
+<p>아이폰 앱마다 자기만의 공간을 가지고 있는데, 이 공간을 관리하는 매니저라 생각하면 될 것 같다.</p>
+
+<p>이 공간은 일반 맥, 윈도우처럼 Document 폴더, Download폴더 등등 다양한 종류의 폴더가 있다!</p>
+
+<p>이 글에선 Document폴더를 사용하여 이것 저것 해보려한다.</p>
+
+<h1 id="경로-접근">경로 접근</h1>
+
+<p>다른 작업들 하기전 공통 사항인 해당 폴더로 접근 하는 방법을 먼저 알아보자</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let fileManager = FileManager.default
+</code></pre></div></div>
+<p><code class="highlighter-rouge">fileManager</code>라는 인스턴스를 만들어준다. (default를 해줌으로써 싱글톤 인스턴스!)</p>
+
+<p><br />
+<br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">for</code>는 폴더를 정해주는 요소입니다. Download 폴더 혹은 Document 폴더 등등</p>
+
+<p><code class="highlighter-rouge">in</code>은 제한을 걸어주는 요소입니다. 그 이상은 못가게 하는!</p>
+<blockquote>
+  <p><strong>About - Mask</strong><br />
+view.layer.masksToBounds = true 많이 보셨을 겁니다.  <br />
+그렇게 하면 Bound 밖의 UI들은 안보이는!!<br />
+<code class="highlighter-rouge">in</code>의 인자들 이름에 붙은 <strong>Mask</strong>는 이런 의미라 생각하면 좋을 것 같다.</p>
+</blockquote>
+
+<p><br />
+애플이 주석을 굉장히 잘써놨으므로 좀더 디테일하게 보자,</p>
+
+<h3 id="for-enum-값들-objective-c-enum"><code class="highlighter-rouge">for</code> enum 값들 (Objective C Enum)</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>documentDirectory   // documents (Documents)
+developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
+desktopDirectory    // location of user's desktop
+downloadsDirectory  // location of the user's "Downloads" directory
+musicDirectory      // location of user's Music directory (~/Music)
+...
+</code></pre></div></div>
+<p>굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.</p>
+
+<p><br /></p>
+
+<h3 id="in-enum-값들-swift-enum"><code class="highlighter-rouge">in</code> enum 값들 (Swift Enum)</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
+// user's home directory --- place to install user's personal items (~)
+
+public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
+// local to the current machine --- place to install items available to everyone on this machine (/Library)
+
+public static var networkDomainMask: FileManager.SearchPathDomainMask { get } 
+// publically available location in the local area network --- place to install items available on the network (/Network)
+
+public static var systemDomainMask: FileManager.SearchPathDomainMask { get } 
+// provided by Apple, unmodifiable (/System)
+
+public static var allDomainsMask: FileManager.SearchPathDomainMask { get } 
+// all domains: all of the above and future items
+</code></pre></div></div>
+
+<p>터미널을 조금이라도 써봤다면 뒤에 괄호만 봐도 쉽게 이해할 수 있을 것 같다.</p>
+
+<p>센스있게 저렇게 표현해주니 좋다.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="경로-추가">경로 추가</h1>
+
+<p>키워드:  <code class="highlighter-rouge">appendingPathComponent</code></p>
+
+<p>아주 간단하다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let newURL = documentsURL.appendingPathComponent("App Photos")
+</code></pre></div></div>
+
+<p>간단한 예를 써보면</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let oldURL = URL(string: "~/Document")
+let newURL = documentsURL.appendingPathComponent("Hello")
+print(newURL) // ~/Document/Hello
+</code></pre></div></div>
+
+<p>아주 간단!</p>
+
+<h1 id="폴더-추가-방법은">폴더 추가 방법은?</h1>
+
+<p>키워드: <code class="highlighter-rouge">createDirectory</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 인스턴스 생성
+let fileManager = FileManager.default
+// 2. 도큐먼트 URL 가져오기
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+// 3. 생성할 폴더 이름 추가해주기
+let directoryURL = documentsURL.appendingPathComponent("NewDirectory")
+// 4. 생성하기
+do {
+    try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
+} catch let e {
+    print(e.localizedDescription)
+}
+</code></pre></div></div>
+
+<p>이것도 아주 간단!</p>
+
+<ul>
+  <li><code class="highlighter-rouge">at</code> : 경로 및 폴더명, 위에서 만든 <code class="highlighter-rouge">URL</code> 사용</li>
+  <li><code class="highlighter-rouge">withIntermediateDirectories</code> : “중간 디렉토리들도 만들꺼야?” 이런 의미.</li>
+  <li><code class="highlighter-rouge">attributes</code> : 파일 접근 권한, 그룹 등등 폴더 속성 정의</li>
+</ul>
+
+<p><br /></p>
+
+<p>다시 말해, 현재 존재하는 폴더가 <code class="highlighter-rouge">~/Document</code>만 있는 상태에서 <code class="highlighter-rouge">appendingPathComponent</code>를 여러번해서 <code class="highlighter-rouge">~/Document/path1/path2/path3</code>로 만들었다고 가정하면, 각 <code class="highlighter-rouge">Bool</code>값에 따라 성공, 실패가 나뉜다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">withIntermediateDirectories: true</code> - 중간 디렉토리인 <code class="highlighter-rouge">path1/path2</code>도 만들고 <code class="highlighter-rouge">path3</code>까지 만든다.</li>
+  <li><code class="highlighter-rouge">withIntermediateDirectories: false</code> - 중간 디렉토리가 존재하지 않으면 <code class="highlighter-rouge">catch</code>로 빠진다.</li>
+</ul>
+
+<h1 id="파일-추가-방법은">파일 추가 방법은?</h1>
+
+<p>키워드: <code class="highlighter-rouge">write(to:_, atomically:_, encoding:_)</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 인스턴스 생성 - 동일
+let fileManager = FileManager.default
+
+// 2. 도큐먼트 URL 가져오기 - 동일
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+// 3. 파일 저장할 Directory 설정
+let directoryURL = documentsURL.appendingPathComponent("NewDirectory")
+
+// 4. File 이름 설정
+let fileURL = directoryURL.appendingPathComponent("test.txt")
+
+// 5. File 내용
+let text = NSString(string: "Hello world")
+
+do {
+    // 6-1. 파일 생성
+    try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+} catch let e {
+    // 6-2. 오류 처리
+    print(e.localizedDescription)
+}
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">NSString</code>에 내부 함수로 <code class="highlighter-rouge">write</code>가 존재하며, 이를 이용해서 <strong>쓰기</strong>를 한다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">to</code>: 위에 만든 <code class="highlighter-rouge">URL</code>을 써주면 그대로 생성.</li>
+  <li><code class="highlighter-rouge">atomically</code>: 이거 뭔지 모르겠,,, 읽어도 모르겠,,, 다만, <code class="highlighter-rouge">true</code>면 URL이 존재 안해도 시스템상 손상이 없단 뉘앙스를 풍기므로 <code class="highlighter-rouge">true</code>만,,</li>
+  <li><code class="highlighter-rouge">encoding</code>: 인코딩 종류!</li>
+</ul>
+
+<p>여기서 에러가 났던게 파일 경로가 미존재시 “The file “test.txt” doesn’t exist.” 라고 catch로 간다.</p>
+
+<p>test.txt는 파일 이름인데 왜 폴더가 없데,,? 라고 한참 생각했는데, 다른 테스트하느라 경로를 잘못 셋팅했었다.</p>
+
+<p>허허,, 중간에 다른 경로가 없는건데, 저렇게 설명을 하다니…</p>
+
+<p>기</p>
+
+<p>// TODO: - 이어서 작성하기</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2019/07/11/swift-File-Manager.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html">(swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</a>
+                  
+                    (Categories: <a href="/category/swift">swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html">&laquo; (swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(swift) FileManager";
+    var disqus_title = "(swift) FileManager";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
