@@ -5,12 +5,220 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Jul 2019 18:14:36 +0900</pubDate>
-    <lastBuildDate>Tue, 09 Jul 2019 18:14:36 +0900</lastBuildDate>
+    <pubDate>Thu, 11 Jul 2019 18:31:21 +0900</pubDate>
+    <lastBuildDate>Thu, 11 Jul 2019 18:31:21 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
-        <title>(Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</title>
+        <title>(swift) FileManager</title>
+        <description>&lt;p&gt;오늘의 주제는 &lt;code class=&quot;highlighter-rouge&quot;&gt;FileManager&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;쓰게된 이유는 다음과 같다,&lt;/p&gt;
+
+&lt;p&gt;사이드 프로젝트를 하고 있는데, Photo kit 관련 해본 경험이 없어서, 이 부분을 직접 써볼려고 앨범 라이브러리를 안쓰는데,&lt;/p&gt;
+
+&lt;p&gt;영상, 이미지, 라이브포토를 앱내에 저장하는 방법이 필요했다.&lt;/p&gt;
+
+&lt;p&gt;NSData로 캐스팅해서 Core Data에 넣으려했는데, 이건 좀 아닌거 같아서 여기저기 물어본 결과&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;바이너리 파일(이미지, 영상 등등)&lt;/strong&gt;은 &lt;strong&gt;파일&lt;/strong&gt;에 저장하고,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;메타데이터(사진 정보, 관련 정보)&lt;/strong&gt;만 &lt;strong&gt;Core data&lt;/strong&gt;에 저장시키는 방식이 가장 많이 쓰인다고 해서 써보게 됐다.&lt;/p&gt;
+
+&lt;h1 id=&quot;순서&quot;&gt;순서&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/li&gt;
+  &lt;li&gt;폴더 추가 방법은?&lt;/li&gt;
+  &lt;li&gt;파일 추가 방법은?&lt;/li&gt;
+  &lt;li&gt;파일 불러오는 방법은?&lt;/li&gt;
+  &lt;li&gt;파일 삭제하는 방법은?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;file-manager란&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/h1&gt;
+
+&lt;p&gt;아이폰 앱마다 자기만의 공간을 가지고 있는데, 이 공간을 관리하는 매니저라 생각하면 될 것 같다.&lt;/p&gt;
+
+&lt;p&gt;이 공간은 일반 맥, 윈도우처럼 Document 폴더, Download폴더 등등 다양한 종류의 폴더가 있다!&lt;/p&gt;
+
+&lt;p&gt;이 글에선 Document폴더를 사용하여 이것 저것 해보려한다.&lt;/p&gt;
+
+&lt;h1 id=&quot;경로-접근&quot;&gt;경로 접근&lt;/h1&gt;
+
+&lt;p&gt;다른 작업들 하기전 공통 사항인 해당 폴더로 접근 하는 방법을 먼저 알아보자&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let fileManager = FileManager.default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;라는 인스턴스를 만들어준다. (default를 해줌으로써 싱글톤 인스턴스!)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;는 폴더를 정해주는 요소입니다. Download 폴더 혹은 Document 폴더 등등&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;은 제한을 걸어주는 요소입니다. 그 이상은 못가게 하는!&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;About - Mask&lt;/strong&gt;&lt;br /&gt;
+view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
+그렇게 하면 Bound 밖의 UI들은 안보이는!!&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;의 인자들 이름에 붙은 &lt;strong&gt;Mask&lt;/strong&gt;는 이런 의미라 생각하면 좋을 것 같다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;
+애플이 주석을 굉장히 잘써놨으므로 좀더 디테일하게 보자,&lt;/p&gt;
+
+&lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
+developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
+desktopDirectory    // location of user's desktop
+downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
+musicDirectory      // location of user's Music directory (~/Music)
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
+// user's home directory --- place to install user's personal items (~)
+
+public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
+// local to the current machine --- place to install items available to everyone on this machine (/Library)
+
+public static var networkDomainMask: FileManager.SearchPathDomainMask { get } 
+// publically available location in the local area network --- place to install items available on the network (/Network)
+
+public static var systemDomainMask: FileManager.SearchPathDomainMask { get } 
+// provided by Apple, unmodifiable (/System)
+
+public static var allDomainsMask: FileManager.SearchPathDomainMask { get } 
+// all domains: all of the above and future items
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;터미널을 조금이라도 써봤다면 뒤에 괄호만 봐도 쉽게 이해할 수 있을 것 같다.&lt;/p&gt;
+
+&lt;p&gt;센스있게 저렇게 표현해주니 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;경로-추가&quot;&gt;경로 추가&lt;/h1&gt;
+
+&lt;p&gt;키워드:  &lt;code class=&quot;highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;아주 간단하다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let newURL = documentsURL.appendingPathComponent(&quot;App Photos&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;간단한 예를 써보면&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let oldURL = URL(string: &quot;~/Document&quot;)
+let newURL = documentsURL.appendingPathComponent(&quot;Hello&quot;)
+print(newURL) // ~/Document/Hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아주 간단!&lt;/p&gt;
+
+&lt;h1 id=&quot;폴더-추가-방법은&quot;&gt;폴더 추가 방법은?&lt;/h1&gt;
+
+&lt;p&gt;키워드: &lt;code class=&quot;highlighter-rouge&quot;&gt;createDirectory&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성
+let fileManager = FileManager.default
+// 2. 도큐먼트 URL 가져오기
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+// 3. 생성할 폴더 이름 추가해주기
+let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
+// 4. 생성하기
+do {
+    try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
+} catch let e {
+    print(e.localizedDescription)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이것도 아주 간단!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;at&lt;/code&gt; : 경로 및 폴더명, 위에서 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt; 사용&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories&lt;/code&gt; : “중간 디렉토리들도 만들꺼야?” 이런 의미.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;attributes&lt;/code&gt; : 파일 접근 권한, 그룹 등등 폴더 속성 정의&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 말해, 현재 존재하는 폴더가 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Document&lt;/code&gt;만 있는 상태에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;를 여러번해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Document/path1/path2/path3&lt;/code&gt;로 만들었다고 가정하면, 각 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bool&lt;/code&gt;값에 따라 성공, 실패가 나뉜다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories: true&lt;/code&gt; - 중간 디렉토리인 &lt;code class=&quot;highlighter-rouge&quot;&gt;path1/path2&lt;/code&gt;도 만들고 &lt;code class=&quot;highlighter-rouge&quot;&gt;path3&lt;/code&gt;까지 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories: false&lt;/code&gt; - 중간 디렉토리가 존재하지 않으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt;로 빠진다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;파일-추가-방법은&quot;&gt;파일 추가 방법은?&lt;/h1&gt;
+
+&lt;p&gt;키워드: &lt;code class=&quot;highlighter-rouge&quot;&gt;write(to:_, atomically:_, encoding:_)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
+let fileManager = FileManager.default
+
+// 2. 도큐먼트 URL 가져오기 - 동일
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+// 3. 파일 저장할 Directory 설정
+let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
+
+// 4. File 이름 설정
+let fileURL = directoryURL.appendingPathComponent(&quot;test.txt&quot;)
+
+// 5. File 내용
+let text = NSString(string: &quot;Hello world&quot;)
+
+do {
+    // 6-1. 파일 생성
+    try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+} catch let e {
+    // 6-2. 오류 처리
+    print(e.localizedDescription)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt;에 내부 함수로 &lt;code class=&quot;highlighter-rouge&quot;&gt;write&lt;/code&gt;가 존재하며, 이를 이용해서 &lt;strong&gt;쓰기&lt;/strong&gt;를 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;to&lt;/code&gt;: 위에 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt;을 써주면 그대로 생성.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;atomically&lt;/code&gt;: 이거 뭔지 모르겠,,, 읽어도 모르겠,,, 다만, &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;면 URL이 존재 안해도 시스템상 손상이 없단 뉘앙스를 풍기므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;만,,&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;encoding&lt;/code&gt;: 인코딩 종류!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;여기서 에러가 났던게 파일 경로가 미존재시 “The file “test.txt” doesn’t exist.” 라고 catch로 간다.&lt;/p&gt;
+
+&lt;p&gt;test.txt는 파일 이름인데 왜 폴더가 없데,,? 라고 한참 생각했는데, 다른 테스트하느라 경로를 잘못 셋팅했었다.&lt;/p&gt;
+
+&lt;p&gt;허허,, 중간에 다른 경로가 없는건데, 저렇게 설명을 하다니…&lt;/p&gt;
+
+&lt;p&gt;기&lt;/p&gt;
+
+&lt;p&gt;// TODO: - 이어서 작성하기&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Jul 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</guid>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>(swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</title>
         <description>&lt;p&gt;참고:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://zeddios.tistory.com/359?category=682195&quot;&gt;zedd님 블로그&lt;/a&gt;&lt;/li&gt;
@@ -217,11 +425,11 @@ UIView.animate(withDuration: 2.0, animations: {
 
 </description>
         <pubDate>Tue, 09 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/tool/2019/07/09/Swift-setLayouts.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tool/2019/07/09/Swift-setLayouts.html</guid>
+        <link>http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html</guid>
         
         
-        <category>Tool</category>
+        <category>swift</category>
         
       </item>
     
@@ -1839,329 +2047,6 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
         <pubDate>Sun, 04 Nov 2018 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/swift/2018/11/04/swift-Tag.html</link>
         <guid isPermaLink="true">http://localhost:4000/swift/2018/11/04/swift-Tag.html</guid>
-        
-        
-        <category>Swift</category>
-        
-      </item>
-    
-      <item>
-        <title>(Swift) Notification Center</title>
-        <description>&lt;p&gt;&lt;u&gt;**주의 : 혹시 읽지만 끝까지 안보시는 분들은 적용하고 `옵저버 제거`  검색해서 꼭 제거해주세요.&lt;/u&gt;**&lt;/p&gt;
-
-&lt;p&gt;오늘 포스팅 주제는 &lt;strong&gt;Notification Center&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Swift를 사용하면서 사용한적이 없었던것 같아서 배우는김에 글로 포스팅으로!!!&lt;/p&gt;
-
-&lt;p&gt;하지만, 아직도 정말 이때 써야해!! 라는건 잘모르겠다… 이런 경우에 이걸 쓸수있겠다 정도 느낌…?&lt;/p&gt;
-
-&lt;p&gt;마치 if문 배운상태서 guard문을 알게된 느낌…&lt;/p&gt;
-
-&lt;p&gt;간단한 개념적부터 접근을 하자면&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;배우고난-느낌&quot;&gt;배우고난 느낌&lt;/h2&gt;
-&lt;hr /&gt;
-&lt;p&gt;느낌은 이랬다
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;q&gt; &amp;lt;무언가 액션이 있었을 때,&amp;gt;이 액션이 진행되었으니 담당자들은 처리바람.&lt;/q&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;q&gt; 담당자 수신 완료, 처리하겠음 &lt;/q&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-이런 느낌??&lt;/p&gt;
-
-&lt;p&gt;앱에서 예를 들면 다음과 같은 가능할것 같았다&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;q&gt;화면이 백그라운드에 들어갔을때, VC에 어떠한 처리를 하고 싶다.&lt;/q&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;q&gt;여러 VC에 영향을 주고 싶다.&lt;/q&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-보통의 경우 같은 클래스 내의 메소드나 프로퍼티들이 아니면 접근하기가 까탈스러웠던것 같다.&lt;/p&gt;
-
-&lt;p&gt;델리게이트 패턴을 쓴다거나 프로토콜을 사용해서 접근을 하게되지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;Notification Center&lt;/code&gt;로도 가능하단걸 알게 되었다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;하지만, 단순 값전달이라던가, 델리게이트 패턴, 프로토콜이 사용하기 난감한 상황이 아닌이상 Noti Center는 안쓸듯하다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;좀더 여러곳에 동시다발적으로 알리는게 가능하겠다란 생각이 들면서&lt;/p&gt;
-
-&lt;p&gt;책들이 왜 방송국에 예시를 드는지 조금 이해가 됐다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;사용법&quot;&gt;사용법&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;방송국이다 뭐다해도 첨엔 난 이해가 안됐었기에 그런 설명은 생략&lt;/p&gt;
-
-&lt;p&gt;&lt;q&gt; &amp;lt;무언가 액션이 있었을 때,&amp;gt;이 액션이 진행되었으니 담당자들은 처리바람.&lt;/q&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;q&gt; 담당자 수신 완료, 처리하겠음 &lt;/q&gt;&lt;/p&gt;
-
-&lt;p&gt;이렇게 쓴 이유가 있다. 코드 동작을 풀어쓴것이었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;post---이-액션이-진행되었으니-담당자들은-처리바람&quot;&gt;Post - “이 액션이 진행되었으니 담당자들은 처리바람”&lt;/h3&gt;
-
-&lt;p&gt;우선 &lt;q&gt; &amp;lt;무언가 액션이 있었을 때,&amp;gt;이 액션이 진행되었으니 담당자들은 처리바람.&lt;/q&gt;는 다음과 같다.&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// doItSomeThing에 해당 되는 것들은 처리 바람&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doItSomeThing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;중요 - &lt;code class=&quot;highlighter-rouge&quot;&gt;post&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;나중 설명 - &lt;code class=&quot;highlighter-rouge&quot;&gt;.doItSomeTing&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;참고로 &lt;code class=&quot;highlighter-rouge&quot;&gt;.doItSomeThing&lt;/code&gt;은 원래 존재하는게 아니고 내가 생성한 프로퍼티,&lt;/p&gt;
-
-  &lt;p&gt;아래에서 설명!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;포스트라는 단어가 중요하다.뭔가 보내는 그런 의미니, 여기선 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt;에 해당자들에게 각자 일을 수행하라고 실행시키는 것이라 생각하는게 맞는것 같다.&lt;/p&gt;
-
-&lt;p&gt;그럼 실행하라 명령했으니 명령 받을 애들이 필요하다.&lt;/p&gt;
-
-&lt;p&gt;다소 특이한 개념이 나온다. &lt;code class=&quot;highlighter-rouge&quot;&gt;doItSomeThing&lt;/code&gt;은 정말 name에 해당된다. 무슨 동작하란게 아니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt;을 일 처리하는 스텝의 이름이라 생각해야한다.&lt;/p&gt;
-
-&lt;p&gt;스텝마다 각자의 일거리는 다르다.&lt;/p&gt;
-
-&lt;p&gt;그렇담, 일거리와 이름을 셋팅을 하자.&lt;/p&gt;
-
-&lt;p&gt;일단 일거리 하나 만든다. ( = 동작할 함수 생성 )&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;@objc&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;printSomeThing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;do it something&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;간단하다. 하는일은 그저 print 한번 해주는것뿐.&lt;/p&gt;
-
-&lt;p&gt;눈여겨볼거라면 파라미터 타입이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Notification&lt;/code&gt;이라는 정도???&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;@objc 붙은 이유는 NotificationCenter가 원래는 NSNotificationCenter다. Swift 몇인지 기억은 안나지만 이름이 바뀌었다. Objective-c 에서 쓰이는거니 붙여주자&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;observer---담당자-수신-완료-처리하겠음&quot;&gt;Observer - “담당자 수신 완료, 처리하겠음”&lt;/h3&gt;
-
-&lt;p&gt;observer = 관찰자, 여기선 일하는 스텝(담당자)이라 생각하자, 스텝들 업무 지정정도?&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 담당자 인적사항 및 업무 추가&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;#selector(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;printSomeThing(_:)&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doItSomeThing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;중요 - &lt;code class=&quot;highlighter-rouge&quot;&gt;addObserver&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;selector&lt;/code&gt; , &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addObserver&lt;/code&gt; - 관찰자를 대기시키겠다는 것,&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selector&lt;/code&gt; - 스테프 업무&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; - 스테프 이름&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 가장 중요한건 이름이라 생각한다. Post 메소드가 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt;에 “누구씨 일해!!” 라고 한다면, 그 이름에 해당 되는 스텝들이 각자 등록된 업무 (= &lt;code class=&quot;highlighter-rouge&quot;&gt;selector&lt;/code&gt;) 수행하게 된다. 이 코드에선 &lt;code class=&quot;highlighter-rouge&quot;&gt;.doItSomeTing&lt;/code&gt;을 부르면 아까 만든 함수(print 한줄짜리)를 실행하게 된다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;스텝 이름은 중복가능하다, 다른 addObserver를 작성해도 이미 사용한 이름을 쓸수있다.&lt;/p&gt;
-
-  &lt;p&gt;이럴경우 마지막만이 아닌 해당 이름 모두 실행됨.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;name-등록-방식&quot;&gt;name 등록 방식&lt;/h3&gt;
-
-&lt;p&gt;그럼 슬슬 이름 추가방법에 대해 쓰는게 맞는것 같다.&lt;/p&gt;
-
-&lt;p&gt;2가지 정도가 있다.&lt;/p&gt;
-
-&lt;p&gt;1) addObserver할때 한번에&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Post&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;doItSomeThing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Add Observer&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;#selector(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;printSomeThing(_:)&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;doItSomeThing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이렇게 “doItSomeThing” 이라는 Notification.Name 데이터 타입을 만들수도 있지만&lt;/p&gt;
-
-&lt;p&gt;별로 추천하고 싶지 않다. 재사용도 힘들고 코드도 안깔끔&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;2) Extension으로 프로퍼티 추가&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;doItSomeThing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;doItSomeThing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이렇게 &lt;code class=&quot;highlighter-rouge&quot;&gt;Notification.Name&lt;/code&gt;에 프로퍼티를 추가해주면,&lt;/p&gt;
-
-&lt;p&gt;위 코드들에 나오듯 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt;자리에 있던 &lt;code class=&quot;highlighter-rouge&quot;&gt;.doItSomeThing&lt;/code&gt;을 쓸수 있기에&lt;/p&gt;
-
-&lt;p&gt;깔끔하고 사용하기도 수월해진다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;이런식으로 사용가능하다&lt;/p&gt;
-
-&lt;p&gt;ex) 화면이 VC1 -&amp;gt; VC2 -&amp;gt; VC3 이렇게 있다고 치자, 그리고 각각 Label을 1개씩 가지고 있다.&lt;/p&gt;
-
-&lt;p&gt;네비게이션을 이용할것이며, 화면 이동도 위와 같다. 그림으로 이해돕자면 이정도?&lt;/p&gt;
-
-&lt;p&gt;그리고 그 3에는 버튼이 하나 있고, 이것을 누르면 Post를 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-27/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;우선 이름부터 추가&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;changeLabel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;changeLabel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그리고,&lt;/p&gt;
-
-&lt;p&gt;ViewController 3개가 있고&lt;/p&gt;
-
-&lt;p&gt;각 ViewDidLoad에 addObserver해준다.&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/////////////////VC1&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// ViewDidLoad&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;#selector(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;change1&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// change1 함수 내용&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Change Label1!!!&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;/////////////////VC2&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// ViewDidLoad&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;#selector(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;change2&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// change2 함수 내용&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Change Label2!!!&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;/////////////////VC3&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// ViewDidLoad&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;#selector(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;change3&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// change3 함수 내용&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Change Label3!!!&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;마지막으로 Bnt 버튼 메소드 정의&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;결과&quot;&gt;결과&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;del&gt;그럼 gif는 할줄 모르니&lt;/del&gt; (방금 배움. 단축어 짱짱)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-27/img2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 Gif에 나온것처럼, 직전 VC2뿐만 아니라 현재 스택에 있는 VC1까지 모두 작동했다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;옵저버-제거&quot;&gt;옵저버 제거&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;다른 의미로 여기서 잘 생각해봐야하는게, observer가 계속 살아있다는 것이다.&lt;/p&gt;
-
-&lt;p&gt;그렇담 제거는 따로 해줘야한다는것이다. 불필요한데 계속 남아있어서 좋을것은 1도 없으니깐!&lt;/p&gt;
-
-&lt;p&gt;제거는 간단.&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;removeObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;추가--post할때-값도-전달&quot;&gt;추가 : Post할때 값도 전달&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;Post메소드 파라미터에 &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt;도 있었다. 위에선 &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;을 넣었지만, 이 부분을 통해 값을 보낼수 있다.&lt;/p&gt;
-
-&lt;p&gt;기존 selector에 들어가던 함수를 변경해주자(VC2랑 VC3도 변경!)&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 기존&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;@objc&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Change Label1!!!&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 변경&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;@objc&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;getValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Change &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getValue&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;여기선 String으로만 보낼것이기 때문에 강제 다운 캐스팅! (as!)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;btn의 Post도 이렇게 변경&lt;/p&gt;
-
-&lt;p&gt;타입이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Notification&lt;/code&gt;인 파라미터 &lt;code class=&quot;highlighter-rouge&quot;&gt;notification&lt;/code&gt;에 &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt;가 Post에 있던 &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt;다.&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 기존&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;@IBAction&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doPost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIButton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 변경&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;@IBAction&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doPost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIButton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;NotificationCenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changeLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;결과-1&quot;&gt;결과&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-10-27/img3.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;PS. 더 적절한 예시를 아신다면 댓글 부탁 드립니다!! 같이 공부해요!&lt;/p&gt;
-</description>
-        <pubDate>Sat, 27 Oct 2018 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html</guid>
         
         
         <category>Swift</category>

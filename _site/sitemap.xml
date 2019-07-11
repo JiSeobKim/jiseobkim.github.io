@@ -5,12 +5,220 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Jul 2019 18:14:36 +0900</pubDate>
-    <lastBuildDate>Tue, 09 Jul 2019 18:14:36 +0900</lastBuildDate>
+    <pubDate>Thu, 11 Jul 2019 18:31:21 +0900</pubDate>
+    <lastBuildDate>Thu, 11 Jul 2019 18:31:21 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
-        <title>(Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</title>
+        <title>(swift) FileManager</title>
+        <description>&lt;p&gt;오늘의 주제는 &lt;code class=&quot;highlighter-rouge&quot;&gt;FileManager&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;쓰게된 이유는 다음과 같다,&lt;/p&gt;
+
+&lt;p&gt;사이드 프로젝트를 하고 있는데, Photo kit 관련 해본 경험이 없어서, 이 부분을 직접 써볼려고 앨범 라이브러리를 안쓰는데,&lt;/p&gt;
+
+&lt;p&gt;영상, 이미지, 라이브포토를 앱내에 저장하는 방법이 필요했다.&lt;/p&gt;
+
+&lt;p&gt;NSData로 캐스팅해서 Core Data에 넣으려했는데, 이건 좀 아닌거 같아서 여기저기 물어본 결과&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;바이너리 파일(이미지, 영상 등등)&lt;/strong&gt;은 &lt;strong&gt;파일&lt;/strong&gt;에 저장하고,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;메타데이터(사진 정보, 관련 정보)&lt;/strong&gt;만 &lt;strong&gt;Core data&lt;/strong&gt;에 저장시키는 방식이 가장 많이 쓰인다고 해서 써보게 됐다.&lt;/p&gt;
+
+&lt;h1 id=&quot;순서&quot;&gt;순서&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/li&gt;
+  &lt;li&gt;폴더 추가 방법은?&lt;/li&gt;
+  &lt;li&gt;파일 추가 방법은?&lt;/li&gt;
+  &lt;li&gt;파일 불러오는 방법은?&lt;/li&gt;
+  &lt;li&gt;파일 삭제하는 방법은?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;file-manager란&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/h1&gt;
+
+&lt;p&gt;아이폰 앱마다 자기만의 공간을 가지고 있는데, 이 공간을 관리하는 매니저라 생각하면 될 것 같다.&lt;/p&gt;
+
+&lt;p&gt;이 공간은 일반 맥, 윈도우처럼 Document 폴더, Download폴더 등등 다양한 종류의 폴더가 있다!&lt;/p&gt;
+
+&lt;p&gt;이 글에선 Document폴더를 사용하여 이것 저것 해보려한다.&lt;/p&gt;
+
+&lt;h1 id=&quot;경로-접근&quot;&gt;경로 접근&lt;/h1&gt;
+
+&lt;p&gt;다른 작업들 하기전 공통 사항인 해당 폴더로 접근 하는 방법을 먼저 알아보자&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let fileManager = FileManager.default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;라는 인스턴스를 만들어준다. (default를 해줌으로써 싱글톤 인스턴스!)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;는 폴더를 정해주는 요소입니다. Download 폴더 혹은 Document 폴더 등등&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;은 제한을 걸어주는 요소입니다. 그 이상은 못가게 하는!&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;About - Mask&lt;/strong&gt;&lt;br /&gt;
+view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
+그렇게 하면 Bound 밖의 UI들은 안보이는!!&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;의 인자들 이름에 붙은 &lt;strong&gt;Mask&lt;/strong&gt;는 이런 의미라 생각하면 좋을 것 같다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;
+애플이 주석을 굉장히 잘써놨으므로 좀더 디테일하게 보자,&lt;/p&gt;
+
+&lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
+developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
+desktopDirectory    // location of user's desktop
+downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
+musicDirectory      // location of user's Music directory (~/Music)
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
+// user's home directory --- place to install user's personal items (~)
+
+public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
+// local to the current machine --- place to install items available to everyone on this machine (/Library)
+
+public static var networkDomainMask: FileManager.SearchPathDomainMask { get } 
+// publically available location in the local area network --- place to install items available on the network (/Network)
+
+public static var systemDomainMask: FileManager.SearchPathDomainMask { get } 
+// provided by Apple, unmodifiable (/System)
+
+public static var allDomainsMask: FileManager.SearchPathDomainMask { get } 
+// all domains: all of the above and future items
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;터미널을 조금이라도 써봤다면 뒤에 괄호만 봐도 쉽게 이해할 수 있을 것 같다.&lt;/p&gt;
+
+&lt;p&gt;센스있게 저렇게 표현해주니 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;경로-추가&quot;&gt;경로 추가&lt;/h1&gt;
+
+&lt;p&gt;키워드:  &lt;code class=&quot;highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;아주 간단하다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let newURL = documentsURL.appendingPathComponent(&quot;App Photos&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;간단한 예를 써보면&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let oldURL = URL(string: &quot;~/Document&quot;)
+let newURL = documentsURL.appendingPathComponent(&quot;Hello&quot;)
+print(newURL) // ~/Document/Hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아주 간단!&lt;/p&gt;
+
+&lt;h1 id=&quot;폴더-추가-방법은&quot;&gt;폴더 추가 방법은?&lt;/h1&gt;
+
+&lt;p&gt;키워드: &lt;code class=&quot;highlighter-rouge&quot;&gt;createDirectory&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성
+let fileManager = FileManager.default
+// 2. 도큐먼트 URL 가져오기
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+// 3. 생성할 폴더 이름 추가해주기
+let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
+// 4. 생성하기
+do {
+    try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
+} catch let e {
+    print(e.localizedDescription)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이것도 아주 간단!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;at&lt;/code&gt; : 경로 및 폴더명, 위에서 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt; 사용&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories&lt;/code&gt; : “중간 디렉토리들도 만들꺼야?” 이런 의미.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;attributes&lt;/code&gt; : 파일 접근 권한, 그룹 등등 폴더 속성 정의&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 말해, 현재 존재하는 폴더가 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Document&lt;/code&gt;만 있는 상태에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;를 여러번해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Document/path1/path2/path3&lt;/code&gt;로 만들었다고 가정하면, 각 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bool&lt;/code&gt;값에 따라 성공, 실패가 나뉜다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories: true&lt;/code&gt; - 중간 디렉토리인 &lt;code class=&quot;highlighter-rouge&quot;&gt;path1/path2&lt;/code&gt;도 만들고 &lt;code class=&quot;highlighter-rouge&quot;&gt;path3&lt;/code&gt;까지 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories: false&lt;/code&gt; - 중간 디렉토리가 존재하지 않으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt;로 빠진다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;파일-추가-방법은&quot;&gt;파일 추가 방법은?&lt;/h1&gt;
+
+&lt;p&gt;키워드: &lt;code class=&quot;highlighter-rouge&quot;&gt;write(to:_, atomically:_, encoding:_)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
+let fileManager = FileManager.default
+
+// 2. 도큐먼트 URL 가져오기 - 동일
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+// 3. 파일 저장할 Directory 설정
+let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
+
+// 4. File 이름 설정
+let fileURL = directoryURL.appendingPathComponent(&quot;test.txt&quot;)
+
+// 5. File 내용
+let text = NSString(string: &quot;Hello world&quot;)
+
+do {
+    // 6-1. 파일 생성
+    try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+} catch let e {
+    // 6-2. 오류 처리
+    print(e.localizedDescription)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt;에 내부 함수로 &lt;code class=&quot;highlighter-rouge&quot;&gt;write&lt;/code&gt;가 존재하며, 이를 이용해서 &lt;strong&gt;쓰기&lt;/strong&gt;를 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;to&lt;/code&gt;: 위에 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt;을 써주면 그대로 생성.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;atomically&lt;/code&gt;: 이거 뭔지 모르겠,,, 읽어도 모르겠,,, 다만, &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;면 URL이 존재 안해도 시스템상 손상이 없단 뉘앙스를 풍기므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;만,,&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;encoding&lt;/code&gt;: 인코딩 종류!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;여기서 에러가 났던게 파일 경로가 미존재시 “The file “test.txt” doesn’t exist.” 라고 catch로 간다.&lt;/p&gt;
+
+&lt;p&gt;test.txt는 파일 이름인데 왜 폴더가 없데,,? 라고 한참 생각했는데, 다른 테스트하느라 경로를 잘못 셋팅했었다.&lt;/p&gt;
+
+&lt;p&gt;허허,, 중간에 다른 경로가 없는건데, 저렇게 설명을 하다니…&lt;/p&gt;
+
+&lt;p&gt;기&lt;/p&gt;
+
+&lt;p&gt;// TODO: - 이어서 작성하기&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Jul 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</guid>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>(swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</title>
         <description>&lt;p&gt;참고:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://zeddios.tistory.com/359?category=682195&quot;&gt;zedd님 블로그&lt;/a&gt;&lt;/li&gt;
@@ -217,11 +425,11 @@ UIView.animate(withDuration: 2.0, animations: {
 
 </description>
         <pubDate>Tue, 09 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/tool/2019/07/09/Swift-setLayouts.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tool/2019/07/09/Swift-setLayouts.html</guid>
+        <link>http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html</guid>
         
         
-        <category>Tool</category>
+        <category>swift</category>
         
       </item>
     
