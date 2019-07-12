@@ -213,4 +213,84 @@ test.txt는 파일을 이제 만들라는건데 왜 없다고 그래,,? 라고 �
 
 
 
-// TODO: - 이어서 작성하기, 내용 달리해서 다시 쓰기 해보기
+
+# 파일 불러오는 방법은?
+```
+// 1. 인스턴스 생성 - 동일
+let fileManager = FileManager.default
+
+// 2. 도큐먼트 URL 가져오기 - 동일
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+// 3. 파일이 있는 Directory 설정
+let directoryURL = documentsURL.appendingPathComponent("NewDirectory")
+
+// 4. 불러올 파일 설정
+let helloPath = directoryURL.appendingPathComponent("test.txt")
+
+// Try Catch
+do {
+    // 5-1. 불러오기
+    let text = try String(contentsOf: helloPath, encoding: .utf8)
+    print(text) // Hello world
+} catch let e {
+    // 5-2. 에러처리
+    print(e.localizedDescription)
+}
+```
+
+이건 쓰기보다 간단! 
+
+# 파일 삭제하는 방법은?
+```
+// 1. 인스턴스 생성 - 동일
+let fileManager = FileManager.default
+
+// 2. 도큐먼트 URL 가져오기 - 동일
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+// 3. 파일이 있는 Directory 설정
+let directoryURL = documentsURL.appendingPathComponent("NewDirectory")
+
+// 4. 삭제할 파일 설정
+let helloPath = directoryURL.appendingPathComponent("test.txt")
+
+// Try Catch
+do {
+    // 5-1. 삭제하기
+    try fileManager.removeItem(at: fileURL)
+} catch let e {
+    // 5-2. 에러처리
+    print(e.localizedDescription)
+}
+```
+
+관리를 담당하는 `fileManager`에게 시켜서 삭제를 시키면 깔끔.
+
+이후 그 파일을 불러오면 아래와 같이 `Error`가 발생한다.
+
+```
+The file “test.txt” couldn’t be opened because there is no such file.
+```
+
+
+# Q&A
+
+### Q . 텍스트 말고 이미지나 GIF 등등 다른건 어떻게??
+A. NSData 형식으로!
+
+아래처럼하면 어떤것이든 `Data`형으로 손쉽게 변경가능!
+```
+// Archive Data
+let archivedData = NSKeyedArchiver.archivedData(withRootObject: file)
+
+// Unarchive Data
+let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
+```
+
+### Q. 애플 내장 앱중 `File App` 이랑 관련이 있나?
+A. Yes, 프로젝트내에 설정을 하면,  `File App`이 해당 어플에 접근할 수 있게 된다!
+
+
+
+
