@@ -1,7 +1,7 @@
 ---
 layout: post                       
-title: (swift) FileManager
-categories: [swift]
+title: (Swift) FileManager
+categories: [Swift]
 ---
 
 오늘의 주제는 `FileManager`
