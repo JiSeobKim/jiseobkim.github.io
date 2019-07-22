@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Jul 2019 18:09:04 +0900</pubDate>
-    <lastBuildDate>Mon, 22 Jul 2019 18:09:04 +0900</lastBuildDate>
+    <pubDate>Mon, 22 Jul 2019 18:20:00 +0900</pubDate>
+    <lastBuildDate>Mon, 22 Jul 2019 18:20:00 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -261,7 +261,7 @@
 
 &lt;p&gt;&lt;strong&gt;!!!!! 핵심임 !!!!!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Target은 $(inherited)&lt;/li&gt;

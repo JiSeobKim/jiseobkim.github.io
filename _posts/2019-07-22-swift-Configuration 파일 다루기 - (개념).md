@@ -228,7 +228,7 @@ TARGET이 아닌 PROJECT의 Build Setting을 `Level` 형태로 보면  **Configu
 
 **!!!!! 핵심임 !!!!!**
 
-![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img4.png)
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img5.png)
 
 1. Target은 $(inherited)
 2. Config를 A 혹은 B로 변경해줌으로써 서버와 앱이름등등을 바꿔준다.
