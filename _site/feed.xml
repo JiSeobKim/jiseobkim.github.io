@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Jul 2019 17:32:07 +0900</pubDate>
-    <lastBuildDate>Mon, 29 Jul 2019 17:32:07 +0900</lastBuildDate>
+    <pubDate>Mon, 29 Jul 2019 17:55:01 +0900</pubDate>
+    <lastBuildDate>Mon, 29 Jul 2019 17:55:01 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -448,6 +448,12 @@
 
 &lt;p&gt;위와 같은 경우 앱 이름은 &lt;strong&gt;C&lt;/strong&gt;라고 표출이 된다.&lt;/p&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;수정&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;제일 하단이 비어있을 경우 그 전값 불러옴&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;여기서 클래스 상속과 같은 상속이 존재하며, $(inherited) 라고 써주면 바로 전단계가 적용된다.&lt;/p&gt;
@@ -465,7 +471,7 @@
   &lt;li&gt;앱 이름 없음 (in Target)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;-&amp;gt; 이름 비어있음&lt;/p&gt;
+&lt;p&gt;-&amp;gt; &lt;del&gt;이름 비어있음&lt;/del&gt; 수정: B&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -515,7 +521,7 @@
   &lt;li&gt;앱 이름 $(inherited) (in Target)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;-&amp;gt; 이름 비어있음&lt;/p&gt;
+&lt;p&gt;-&amp;gt; &lt;del&gt;이름 비어있음&lt;/del&gt; 재검토 필요&lt;/p&gt;
 
 &lt;hr /&gt;
 
