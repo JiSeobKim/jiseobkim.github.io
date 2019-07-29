@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(Xcode) Configuration 파일 다루기 - (적용) - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(Xcode) Configuration 파일 다루기 - (적용)" />
+    <meta name="keywords" content="(Xcode) Configuration 파일 다루기 - (적용), 😀😍😉 JS의 개발 블로그 😁😆😄, Xcode" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(Xcode) Configuration 파일 다루기 - (적용)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/xcode/2019/07/29/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EC%A0%81%EC%9A%A9).html" property="og:url">
+    
+
+    
+      <meta content="2019-07-29T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Xcode" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(Xcode) Configuration 파일 다루기 - (적용)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/xcode/2019/07/29/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EC%A0%81%EC%9A%A9).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS를 좋아하는 개발자에요, Swift 짱짱, Objc,,,,😅
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(Xcode) Configuration 파일 다루기 - (적용)</h1>
+</header>
+
+<span class="time">29 Jul 2019</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Xcode">Xcode</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>처음으로 vi를 이용해 글쓰다가 iterm이 죽음,, 다날라감….. 이 포스팅 절반은 쓴거 같은데……….</p>
+
+<p>안그래도 아파서 힘든데………. 부들부들</p>
+
+<p>허허허,, 다시 쓰는거니 좀더 깔끔하게 글이 나올려나?</p>
+
+<p>최대한 간결하게 해야겠다</p>
+
+<p>다시 처음 쓰는것 마냥 고고</p>
+
+<hr />
+
+<p><br /></p>
+
+<p>이번엔 Config 파일을 만들고 적용하는것을 포스팅 할 것이다! <a href="https://jiseobkim.github.io/xcode/2019/07/22/swift-Configuration-파일-다루기-(개념).html">이전편 보러가기</a></p>
+
+<p>새 파일을 만든다. Command + n</p>
+
+<p>거기서 <code class="highlighter-rouge">Configuration Settings File</code> 라는 파일을 찾고, 만약 찾기 힘들다면</p>
+
+<p>검색 기능을 이용해서 찾자</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img1.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>총 2개를 만들어 준다.</p>
+
+<ol>
+  <li>개발</li>
+  <li>상용</li>
+</ol>
+
+<p>이 포스팅에서 Config 파일에 적어둘 내용은 다음과 같다.</p>
+
+<ol>
+  <li>앱 이름</li>
+  <li>Bundle Identifier</li>
+  <li>서버 URL (개발 서버 or 상용 서버)</li>
+</ol>
+
+<p><br /></p>
+
+<p>간략하게 설명하면, 이 글을 시작한 이유가 개발자인 내가 식권앱을 쓰다가, 개발용을 설치하면 실사용 하기 위해</p>
+
+<p>재설치를 해야하는 귀차니즘이 있기 생기기 때문에 시작한 포스팅.</p>
+
+<p>그렇기에 위의 3가지를 예를 들려한다.</p>
+
+<p><br /></p>
+
+<h3 id="앱이름">앱이름</h3>
+
+<p>앱이 2개 설치될 예정인데, 앱 이름이 동일하면, 구분이 안되니깐!</p>
+
+<p><br /></p>
+
+<h3 id="bundle-identifier">Bundle Identifier</h3>
+
+<p>앱을 2개 설치하기 위해!</p>
+
+<p><br /></p>
+
+<h3 id="서버-url">서버 URL</h3>
+
+<p>코드내에 상용서버, 개발 서버 선언할필요 없이 Config 설정에 따라 바뀌게 설치</p>
+
+<p>ex) 상용 config 셋팅시 URL은 상용 URL을 불러오게 끔 (개발은 개발 URL)</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p><br /></p>
+
+<p>어디를 건들여야하는지 알아보자.</p>
+
+<p>우선 만든 Config를 설정하는곳은 여기다.</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img2.jpg" alt="" /></p>
+
+<p>보통 Target 안에 부분은 손은 댓었어도 이곳은 손대본적이 없었다.</p>
+
+<p>근데 이제와서 생각해보니 어차피 Target한테 밀리는 설정들이라서 그랬나보다.</p>
+
+<p><br /></p>
+
+<p>사진에 보면, Project(파란색)과 Target(빨간색)이 존재한다.</p>
+
+<p>우린 각각 Target의 Config를 손볼 예정이다.</p>
+
+<p>Target의 Config에 <strong>Config_Dis</strong>를 넣어주자</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img3.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>Target의 BuildSetting 부분을 보자, 기존에는 없던 Level이 추가된다.</p>
+
+<ul>
+  <li>Config.File (Config_dev.xcconfig. None)</li>
+</ul>
+
+<p>이젠 활용만 하면 된다.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="bundle-id-적용">Bundle ID 적용</h1>
+
+<p>Target의 Build Setting에서 Bundle 이라고 검색하면 <code class="highlighter-rouge">Product BUndle Identifier</code>라는 항목이 보인다.</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img4.jpg" alt="" /></p>
+
+<p>현재는 고정값이 들어가있지만, 이 부분이 Config에 따라 다르게 적용되게 해야한다.</p>
+
+<p>(사진엔 Config를 넣기 전이라 Config.File 이라는 레벨이 안보임!)</p>
+
+<p><br /></p>
+
+<p>그럼 여기는 <code class="highlighter-rouge">$(inherited)</code>를 넣어줌으로써 Config따라 값이 바뀌게 해준다.</p>
+
+<blockquote>
+  <p>이 부분이 가장 중요. 나머진 응용 &amp; 반복!</p>
+</blockquote>
+
+<p>아래처럼 바꿔주기만 하자</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img5.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>그리고 Build setting 말고 General 보면 나오는 Bundle ID는 깔끔하게 결과값만 나온다! 아마 <code class="highlighter-rouge">Resolved</code>값을 표출하는것 아닌가 싶다.</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img6.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>그럼 Bundle ID 셋팅이 끝났다.</p>
+
+<p>Config만 바꿔줘도 Bundle ID가 바뀐다. 이말을 다시 말하면 앱에서는 Config에 따라 서로 다른 앱으로 인식한다는 것이다.</p>
+
+<p>그렇단건 앱이 2개가 설치가 된다는 것이다!</p>
+
+<p><br /></p>
+
+<p>실행해보면 다음과 같이 2개가 설치 될것이다.</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img7.jpg" alt="" /></p>
+
+<p><br />
+<br /></p>
+
+<h1 id="앱-이름-바꾸기">앱 이름 바꾸기</h1>
+
+<p>두개 설치까진 됐으나, 뭐가 뭔지 알기가 힘들다.</p>
+
+<p>그러니 앱이름을 Config에 따라 달리 셋팅을 해주자</p>
+
+<p><br /></p>
+
+<p>이건 간단하지만 살짝 다르다.</p>
+
+<p>BuildSetting 부분에 보면 <code class="highlighter-rouge">Product Name</code>이란 부분이 있는데, 이 부분을 수정하고 빌드하면 2개가 설치 되긴하는데,</p>
+
+<p>두번째꺼 설치후 다시 빌드하면 오류를 뿜는다. 쓰지말자,</p>
+
+<p><br /></p>
+
+<p>Config파일에 <code class="highlighter-rouge">DISPLAY_NAME</code>이라는 항목을 넣어줬으며, 이것을 검색하면 보인다.</p>
+
+<p>보면 DISPLAY_NAME 위에 User-Defined 라는 항목이 보이며, 이 부분 아래는 전부</p>
+
+<p>기존 Build Setting이 아닌 추가된 부분이다. Level 옆에 + 버튼을 눌러서 추가도 가능하다.</p>
+
+<p><br /></p>
+
+<p>그럼, 이 부분을 가져다 쓰기만 하면 된다.</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img8.jpg" alt="" /></p>
+
+<p>위와 같이 Display 부분에 <code class="highlighter-rouge">$(DISPLAY_NAME)</code> 이라고 적어주면 끝!</p>
+
+<p><br /></p>
+
+<p>아래는 결과</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img9.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>가장 마지막단의 값이 <code class="highlighter-rouge">Resolved</code>되니 Config에 정의한 그 값이 곧 그 값!</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="서버-url-변경">서버 URL 변경</h1>
+
+<p>위에 간략하게 설명한 바와 같이 많은 현업에서 상용 서버, 개발 서버 나눠서 쓰고 있을것이다.</p>
+
+<p>근데, 지금 회사에선</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="k">var</span> <span class="nv">isReal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="kd">static</span> <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Class</span><span class="p">)</span><span class="o">.</span><span class="n">isReal</span> <span class="p">?</span> <span class="s">"realServer.com"</span> <span class="p">:</span> <span class="s">"devServer.com"</span>
+</code></pre></div></div>
+
+<p>이런식으로 코드를 수정하는 방식을 쓰고있었다.</p>
+
+<p>간편한 방법이긴 하지만, 배포전 신경을 항상 써줘야했다.</p>
+
+<p>하지만! Config를 이용하여 셋팅만 잘 해둔다면, 배포시 별다른 걱정을 하지않아도 된다!</p>
+
+<p><br /></p>
+
+<p>그렇담 이것을 앱에서 어찌 가져다 쓸까?</p>
+
+<p><br /></p>
+
+<p><strong><code class="highlighter-rouge">Info.plist</code>를 이용!</strong></p>
+
+<p><br /></p>
+
+<p>Info.plist 파일에서 오른쪽 클릭을하면 아래와 같이 <code class="highlighter-rouge">Add Row</code>가 보일것이다! 클릭</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img10.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>이름은 <code class="highlighter-rouge">Server URL</code>이 적당하려나? (다른값 보고 따라함)</p>
+
+<p>아무튼 그렇게 해주고 타입은 <code class="highlighter-rouge">String</code>  값은 <code class="highlighter-rouge">$(SERVER_URL)</code>! 아래처럼 적용</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img11.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>그럼 이제 가져다 써보자</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if let url = Bundle.main.object(forInfoDictionaryKey: "Server URL") as? String {
+    print("plist에서 받은 값은 \(url)")
+}
+</code></pre></div></div>
+
+<p>이런식으로 <code class="highlighter-rouge">plist</code>에 접근해서 값을 가지고 올 수 있다.</p>
+
+<blockquote>
+  <p>object 함수 Summary 부분 발췌</p>
+
+  <p>Returns the value associated with the specified key in the receiver’s information property list</p>
+
+  <p>해석: plist꺼 값 꺼내옴</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>아래 이미지는  출력 코드는 동일하지만 Config 파일만 교체하고 결과 값이 다른 것을 보여준다.</p>
+
+<p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img12.jpg" alt="" /></p>
+
+<p>이렇게 나온다면, 충분히 응용 가능할것으로 보인다.</p>
+
+<p>길어진 관계로 고급편을 만들어야겠다. (vi 쓰다 날아가서 나누는거 암튼 아님)</p>
+
+<p>크큭크크크ㅡ크ㅋ</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/xcode/2019/07/29/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EC%A0%81%EC%9A%A9).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/xcode/2019/07/22/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EA%B0%9C%EB%85%90).html">(Xcode) Configuration 파일 다루기 - (개념)</a>
+                  
+                    (Categories: <a href="/category/Xcode">Xcode</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/xcode/2019/01/02/Xcode-Cartage%EC%84%A4%EC%B9%98.html">(Xcode) Carthage 설치</a>
+                  
+                    (Categories: <a href="/category/Xcode">Xcode</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html">(Xcode) Carthage 서론</a>
+                  
+                    (Categories: <a href="/category/Xcode">Xcode</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/xcode/2019/07/22/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EA%B0%9C%EB%85%90).html">&laquo; (Xcode) Configuration 파일 다루기 - (개념)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(Xcode) Configuration 파일 다루기 - (적용)";
+    var disqus_title = "(Xcode) Configuration 파일 다루기 - (적용)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

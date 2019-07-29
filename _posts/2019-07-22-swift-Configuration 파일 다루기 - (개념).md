@@ -108,13 +108,19 @@ var address: String = ""
 이런것들이 들어가기 딱인 느낌이었고, 앱에도 그런 파일이 존재했다.
 
 <br>
-<br>
 
 ### Where?
 
 ![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img3.png)
 
-TARGET이 아닌 PROJECT의 Build Setting을 `Level` 형태로 보면  **Configurations**라는곳이 존재하고 여기에 셋팅을 해주게 된다.
+여기서 Config파일을 설정
+<br>
+<br>
+
+
+![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img4.png)
+
+그리고 TARGET이 아닌 PROJECT의 Build Setting을 `Level` 형태로 보면  **Configurations**라는곳이 존재하고 여기에 셋팅을 해주게 된다.
 
 
 여기서 눈여겨봐야 할 점은 다음과 같다. 
