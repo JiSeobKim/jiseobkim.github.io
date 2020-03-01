@@ -5,7 +5,7 @@ categories: [Swift, UI]
 
 ---
 
-![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2020-03-01/img1.jpg)
+
 
 오랫만에 포스팅............. 여러모로 힘든 시기였다 ㅠ 기운내자
 
@@ -38,4 +38,11 @@ categories: [Swift, UI]
 
 무엇을 만들게 될지 결과물부터 보고 이야기를 진행하는게 좋을 것 같다.
 
-![](https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2020-03-01/gif1.gif)
+![](/assets/images/2020-03-01/gif1.gif)
+
+
+<br>
+아아... 테마 바꾸고 이미지를 로컬에서 못불러서 푸시하고 확인하는것 반복하다 이건 아니다 싶어서
+로컬로 불러오게끔 하는데, 삽질을 너무 많이 했다.....
+그건 성공했는데, 이미지 왜케 크니?....
+내일 이어서 적어야겠다.
