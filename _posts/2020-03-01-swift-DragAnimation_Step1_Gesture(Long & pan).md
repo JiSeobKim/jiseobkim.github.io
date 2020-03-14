@@ -35,7 +35,7 @@ categories: [Swift, UI]
 이번 편은 3편으로 이루어질것이고, 순서는 다음과 같다.
 
 1. Gesture - Long Press
-2. Transition
+2. Transform
 3. 응용하기 (1 + 2)
 
 <br>
