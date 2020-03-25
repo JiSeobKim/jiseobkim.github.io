@@ -5,9 +5,139 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Mar 2020 22:09:55 +0900</pubDate>
-    <lastBuildDate>Tue, 03 Mar 2020 22:09:55 +0900</lastBuildDate>
+    <pubDate>Wed, 25 Mar 2020 22:15:11 +0900</pubDate>
+    <lastBuildDate>Wed, 25 Mar 2020 22:15:11 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
+    
+      <item>
+        <title>(swift) UI 도전! - DragAnimation_Step2_Tranform</title>
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. 준비도 생각보다 오래걸림
+귀찮아서 안올린거 아님..&lt;/p&gt;
+
+&lt;p&gt;아무튼, &lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 녀석을 배워보자. 단어부터 보자&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Transform&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;바꾸어 놓다 2. 변화시키다 3. 만들다 4. 변모시키다 5. 변형시키다&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;전부 변화에 관한 얘기다&lt;/p&gt;
+
+&lt;p&gt;다음과 같은 코드가 많이 나온다.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;view.transform = 블라블라
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;= 뒷부분은 뒤에서 설명하고 그 앞만 보면 “&lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt;를 변화,변경,변모 시키다.” 로 되겠지? 영어권은 코딩이 참 쉬울거 같다. 부럽&lt;/p&gt;
+
+&lt;p&gt;대충 뭘 하겠단건 알겠고, 무엇을 할 수 있는지 보자.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;크기 (Scale)&lt;/li&gt;
+  &lt;li&gt;회전 (Rotate)&lt;/li&gt;
+  &lt;li&gt;좌표, 위치 (translation)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;단어뜻과 아주 잘 맞는 역할들을 한다.
+시각적인 효과를 먼저 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/gif1.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;차례대로 크기, 회전, 위치 변경이다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;제일 아래 스위치는 크기와 위치 두가지를 동시에 효과를 주는 스위치로 뒤에 나온다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;근데, 크기를  바꾸는것을 유심히 보면 특이한 점이 있다. 안에 하얀색 작은 사각형이 있는데, 이 녀석도 같이 커진다.
+그럼 텍스트를 넣고 이번엔 스위치를 키면 &lt;strong&gt;가로 사이즈는 작아지게&lt;/strong&gt; 하였고 세로는 동일하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/gif2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 텍스트 세로로 늘어나고, 가로는 쭐어 들었다.&lt;/p&gt;
+
+&lt;p&gt;마치 저 자체가 &lt;strong&gt;이미지&lt;/strong&gt;였던것처럼 변화하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 녀석에 타입은 &lt;code class=&quot;highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;그럼 이 녀석에 대한 문서를 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;음.. 자세한건 각자 보도록 하자…. &lt;a href=&quot;https://developer.apple.com/documentation/coregraphics/cgaffinetransform?language=objc&quot;&gt;링크는 여기..&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;이란 단어 아래 문구는 다음과 같다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An affine transformation matrix for use in drawing 2D graphics
+기
+아핀 행렬이 뭔지는 모르겠다만 뒤에 2D graphics를 보니 &lt;strong&gt;Frame&lt;/strong&gt;을 바꾸고 그런게 아니라 &lt;strong&gt;그래픽적&lt;/strong&gt;으로 처리를 하는 방식인가보다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이러한 방식이다보니, 단순 도형이 아니라면 효과를 줄때 주의를 해야할 것 같다.&lt;/p&gt;
+
+&lt;p&gt;그렇담 이제 사용법에 대해 알아보자&lt;/p&gt;
+
+&lt;p&gt;스위치 4개를 모두 하나의 &lt;code class=&quot;highlighter-rouge&quot;&gt;IBAction&lt;/code&gt; 함수에 연결 시켰고 그 함수의 내용은 다음과 같다&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 선언
+var transform: CGAffineTransform?
+
+// sender = 스위치 / 스위치 종류에 따른 Switch문
+switch sender {
+case scaleSwitch:
+    // 2-1. 초기화(크기)
+    transform = CGAffineTransform(scaleX: 0.5, y: 2)
+case rotateSwitch:
+    // 2-2. 초기화(회전)
+    transform = CGAffineTransform(rotationAngle: .pi)
+case translationSwitch:
+    // 2-3. 초기화(위치)
+    transform = CGAffineTransform(translationX: 0, y: -100)
+case complexSwitch:
+    // 2-4. 초기화(크기 &amp;amp; 위치)
+    transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
+default:
+    return
+}
+
+// 애니메이션 효과
+UIView.animate(withDuration: 0.3) {
+    // 3. 적용
+    self.justView.transform = transform!
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;굉장히 단순 하다&lt;/p&gt;
+
+&lt;p&gt;하나씩 봅시다. (인자들은 모두 &lt;code class=&quot;highlighter-rouge&quot;&gt;CGFloat&lt;/code&gt; 타입)&lt;/p&gt;
+
+&lt;h2 id=&quot;크기&quot;&gt;크기&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(scaleX: 2, y: 2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;원하는 배율을 적어주면 된다. 가로로 몇배, 세로로 몇배. 쉽다.&lt;/p&gt;
+
+&lt;h2 id=&quot;회전&quot;&gt;회전&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(rotationAngle: .pi)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;원하는 회전 각을 적어주면 된다. &lt;code class=&quot;highlighter-rouge&quot;&gt;.pi&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;.pi / 4&lt;/code&gt;  등등 원하는대로!&lt;/p&gt;
+
+&lt;h2 id=&quot;위치&quot;&gt;위치&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(translationX: 0, y: -100)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;translation&lt;/code&gt;은 변환인거 같은데,, 솔직히 다른것처럼 확 와닿진 않는다. 넣는 x,y 값만큼 기존 값에 더해지게 된다. &lt;br /&gt;
+여기선 x는 0, y는 -100 했기 때문에, 가로축 이동은 없고 세로축은 위쪽으로 100만큼 이동하였다.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 25 Mar 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html</guid>
+        
+        
+        <category>Swift</category>
+        
+        <category>UI</category>
+        
+      </item>
     
       <item>
         <title>(swift) UI 도전! - DragAnimation_Step1_Gesture(Long &amp;pan)</title>
@@ -40,7 +170,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;Gesture - Long Press&lt;/li&gt;
-  &lt;li&gt;Transition&lt;/li&gt;
+  &lt;li&gt;Transform&lt;/li&gt;
   &lt;li&gt;응용하기 (1 + 2)&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -2244,36 +2374,6 @@ Objc 넘나 힘든것&lt;/p&gt;
         
         
         <category>Objective-C</category>
-        
-      </item>
-    
-      <item>
-        <title>(Gossip) 블로그 테마 변경</title>
-        <description>&lt;p&gt;블로그가 생각보다 너무 어렵다,&lt;/p&gt;
-
-&lt;p&gt;마지막 테마 변경일줄 알았더니만&lt;/p&gt;
-
-&lt;p&gt;2019년 글이 포스팅이 안되는 문제가 있어서&lt;/p&gt;
-
-&lt;p&gt;19년 되자마자 글썼었지만 올라가지 않아서&lt;/p&gt;
-
-&lt;p&gt;그걸 핑계 삼아 귀차니즘이 살아났다.&lt;/p&gt;
-
-&lt;p&gt;에버노트를 시작하면서 티스토리와 연동이 된다해서&lt;/p&gt;
-
-&lt;p&gt;티스토리도 갔다가 MarkDown로 글쓰는 재미가 떨어져서&lt;/p&gt;
-
-&lt;p&gt;결국 jekyll로 복귀!&lt;/p&gt;
-
-&lt;p&gt;심플 이즈 베스트!&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 17 Feb 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/gossip/2019/02/17/Gossip-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD.html</link>
-        <guid isPermaLink="true">http://localhost:4000/gossip/2019/02/17/Gossip-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD.html</guid>
-        
-        
-        <category>Gossip</category>
         
       </item>
     

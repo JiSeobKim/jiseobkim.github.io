@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(swift) UI 도전! - DragAnimation_Step2_Tranform - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(swift) UI 도전! - DragAnimation_Step2_Tranform" />
+    <meta name="keywords" content="(swift) UI 도전! - DragAnimation_Step2_Tranform, 😀😍😉 JS의 개발 블로그 😁😆😄, Swift, UI" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(swift) UI 도전! - DragAnimation_Step2_Tranform" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html" property="og:url">
+    
+
+    
+      <meta content="2020-03-25T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(swift) UI 도전! - DragAnimation_Step2_Tranform">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              매끄러운 iOS 만들자, 뿌셔
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(swift) UI 도전! - DragAnimation_Step2_Tranform</h1>
+</header>
+
+<span class="time">25 Mar 2020</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><code class="highlighter-rouge">Transform</code> 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. 준비도 생각보다 오래걸림
+귀찮아서 안올린거 아님..</p>
+
+<p>아무튼, <code class="highlighter-rouge">Transform</code>이란 녀석을 배워보자. 단어부터 보자</p>
+<blockquote>
+  <p>Transform</p>
+  <ol>
+    <li>바꾸어 놓다 2. 변화시키다 3. 만들다 4. 변모시키다 5. 변형시키다</li>
+  </ol>
+</blockquote>
+
+<p>전부 변화에 관한 얘기다</p>
+
+<p>다음과 같은 코드가 많이 나온다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>view.transform = 블라블라
+</code></pre></div></div>
+<p>= 뒷부분은 뒤에서 설명하고 그 앞만 보면 “<code class="highlighter-rouge">view</code>를 변화,변경,변모 시키다.” 로 되겠지? 영어권은 코딩이 참 쉬울거 같다. 부럽</p>
+
+<p>대충 뭘 하겠단건 알겠고, 무엇을 할 수 있는지 보자.</p>
+<ol>
+  <li>크기 (Scale)</li>
+  <li>회전 (Rotate)</li>
+  <li>좌표, 위치 (translation)</li>
+</ol>
+
+<p>단어뜻과 아주 잘 맞는 역할들을 한다.
+시각적인 효과를 먼저 보자</p>
+
+<p><img src="/assets/images/2020-03-25/gif1.gif" alt="" /></p>
+
+<p>차례대로 크기, 회전, 위치 변경이다.</p>
+<blockquote>
+  <p>제일 아래 스위치는 크기와 위치 두가지를 동시에 효과를 주는 스위치로 뒤에 나온다.</p>
+</blockquote>
+
+<p>근데, 크기를  바꾸는것을 유심히 보면 특이한 점이 있다. 안에 하얀색 작은 사각형이 있는데, 이 녀석도 같이 커진다.
+그럼 텍스트를 넣고 이번엔 스위치를 키면 <strong>가로 사이즈는 작아지게</strong> 하였고 세로는 동일하다.</p>
+
+<p><img src="/assets/images/2020-03-25/gif2.gif" alt="" /></p>
+
+<p>위와 같이 텍스트 세로로 늘어나고, 가로는 쭐어 들었다.</p>
+
+<p>마치 저 자체가 <strong>이미지</strong>였던것처럼 변화하였다.</p>
+
+<p><code class="highlighter-rouge">Transform</code>이란 녀석에 타입은 <code class="highlighter-rouge">CGAffineTransform</code>이다.</p>
+
+<p>그럼 이 녀석에 대한 문서를 보자</p>
+
+<p><img src="/assets/images/2020-03-25/img1.png" alt="" /></p>
+
+<p>음.. 자세한건 각자 보도록 하자…. <a href="https://developer.apple.com/documentation/coregraphics/cgaffinetransform?language=objc">링크는 여기..</a></p>
+
+<p>여기서 <code class="highlighter-rouge">CGAffineTransform</code>이란 단어 아래 문구는 다음과 같다.</p>
+
+<blockquote>
+  <p>An affine transformation matrix for use in drawing 2D graphics
+기
+아핀 행렬이 뭔지는 모르겠다만 뒤에 2D graphics를 보니 <strong>Frame</strong>을 바꾸고 그런게 아니라 <strong>그래픽적</strong>으로 처리를 하는 방식인가보다.</p>
+</blockquote>
+
+<p>이러한 방식이다보니, 단순 도형이 아니라면 효과를 줄때 주의를 해야할 것 같다.</p>
+
+<p>그렇담 이제 사용법에 대해 알아보자</p>
+
+<p>스위치 4개를 모두 하나의 <code class="highlighter-rouge">IBAction</code> 함수에 연결 시켰고 그 함수의 내용은 다음과 같다</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 선언
+var transform: CGAffineTransform?
+
+// sender = 스위치 / 스위치 종류에 따른 Switch문
+switch sender {
+case scaleSwitch:
+    // 2-1. 초기화(크기)
+    transform = CGAffineTransform(scaleX: 0.5, y: 2)
+case rotateSwitch:
+    // 2-2. 초기화(회전)
+    transform = CGAffineTransform(rotationAngle: .pi)
+case translationSwitch:
+    // 2-3. 초기화(위치)
+    transform = CGAffineTransform(translationX: 0, y: -100)
+case complexSwitch:
+    // 2-4. 초기화(크기 &amp; 위치)
+    transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
+default:
+    return
+}
+
+// 애니메이션 효과
+UIView.animate(withDuration: 0.3) {
+    // 3. 적용
+    self.justView.transform = transform!
+}
+</code></pre></div></div>
+
+<p>굉장히 단순 하다</p>
+
+<p>하나씩 봅시다. (인자들은 모두 <code class="highlighter-rouge">CGFloat</code> 타입)</p>
+
+<h2 id="크기">크기</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(scaleX: 2, y: 2)
+</code></pre></div></div>
+<p>원하는 배율을 적어주면 된다. 가로로 몇배, 세로로 몇배. 쉽다.</p>
+
+<h2 id="회전">회전</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(rotationAngle: .pi)
+</code></pre></div></div>
+
+<p>원하는 회전 각을 적어주면 된다. <code class="highlighter-rouge">.pi</code>,  <code class="highlighter-rouge">.pi / 4</code>  등등 원하는대로!</p>
+
+<h2 id="위치">위치</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(translationX: 0, y: -100)
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">translation</code>은 변환인거 같은데,, 솔직히 다른것처럼 확 와닿진 않는다. 넣는 x,y 값만큼 기존 값에 더해지게 된다. <br />
+여기선 x는 0, y는 -100 했기 때문에, 가로축 이동은 없고 세로축은 위쪽으로 100만큼 이동하였다.</p>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2020/03/01/swift-DragAnimation_Step1_Gesture(Long-&-pan).html">(swift) UI 도전! - DragAnimation_Step1_Gesture(Long &pan)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2019/07/11/swift-File-Manager.html">(Swift) FileManager</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html">(Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/11/04/swift-Tag.html">(Swift) Tag 알아보기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html">(Swift) Notification Center</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/10/05/swift_basic-%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-&-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A9%94%EC%86%8C%EB%93%9C.html">(Swift) 타입 메소드 & 인스턴스 메소드</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/ui/2020/03/01/swift-DragAnimation_Step1_Gesture(Long-&-pan).html">&laquo; (swift) UI 도전! - DragAnimation_Step1_Gesture(Long &pan)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(swift) UI 도전! - DragAnimation_Step2_Tranform";
+    var disqus_title = "(swift) UI 도전! - DragAnimation_Step2_Tranform";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
