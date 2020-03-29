@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (swift) UI 도전! - DragAnimation_Step1_Gesture(Long &pan)
+title: (swift) DragAnimation(1/3) - Gesture(Long &pan)
 categories: [Swift, UI]
 
 ---

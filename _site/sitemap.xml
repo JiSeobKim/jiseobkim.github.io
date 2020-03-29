@@ -5,12 +5,157 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Mar 2020 22:46:55 +0900</pubDate>
-    <lastBuildDate>Fri, 27 Mar 2020 22:46:55 +0900</lastBuildDate>
+    <pubDate>Sun, 29 Mar 2020 19:29:02 +0900</pubDate>
+    <lastBuildDate>Sun, 29 Mar 2020 19:29:02 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
-        <title>(swift) UI 도전! - DragAnimation &lt;br&gt; Step2_Tranform</title>
+        <title>(xcode) 반성글 - 다크모드 적용 안하기</title>
+        <description>&lt;p&gt;원래는 DragAnimation 글을 이어 가야하나, &lt;br /&gt;
+반성과 다시는 같은 실수 안하자는 의미로 글을 적는다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;최근 배포를 위해 빌드를 올리다보면 &lt;br /&gt;
+4월부터 Xcode11을 강제로 적용해야 업뎃이 가능하다고  &lt;br /&gt;
+경고문을 띄워주었다. &lt;br /&gt;
+그래서 회사 앱중 하나를 Xcode11로 적용하기로 했었다. &lt;br /&gt;
+근데 회사 앱들이 오래전에 만들어져 &lt;br /&gt;
+라이브러리도 업뎃한지 오래전이고, 스위프트 버젼도 4.1이었다. &lt;br /&gt;
+이것도 내가 3버젼대에서 올려둔거였었다.  &lt;br /&gt;
+이 이상은 올리면 오류가 많이 터졌었어서 어찌보면 방치되었었다. &lt;br /&gt; 
+이참에 버젼도 5대로 올려야겠다 싶어서 올렸었지만 라이브러리들이 오류 뿜뿜해서 &lt;br /&gt;
+4.2갔다가 여기서 일부 업뎃하고, 5로 가서 나머지 충돌들을 해결했다.  &lt;br /&gt;
+사용자들이야 버젼이 어찌되고 라이브러리가 어찌되고 모르겠지만,  &lt;br /&gt;
+나름 미루었던 큰일을 해내서 기뻐하고 있었다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만, 기쁨은 오래가지 않았다. &lt;br /&gt;
+배포후에 오류 문의가 하나 들어왔는데, 화면이 이상하다고 한다.&lt;br /&gt; 
+이유를 찾아보니 다크모드가 문제였다. 보고 정말 충격이었다. &lt;br /&gt;
+앱이 완전 개판이 되었다.&lt;br /&gt;
+세상 끔찍했다. 앱스토어 리뷰를 보니 관련 댓글들도 읽고 충격이었다. &lt;br /&gt;
+사용자 입장에선 많이 불편했을거란&lt;br /&gt;
+심정을 느낄 수 있는 글들이었다. &lt;br /&gt; 
+연예인들이 악플에 고생 많을거 같단걸 직접 체험했달까.&lt;br /&gt;
+후,, 그거는 심정들을 이해하니 그럴수 있다고 생각해서 금방 이겨냈지만, &lt;br /&gt;
+가장 안타까웠던건 내가 그런걸 배포했다는게 아직도 충격이다. &lt;br /&gt;
+나름 테스트 꼼꼼하게 했다 생각했지만, &lt;br /&gt; 
+언어, 라이브러리, 요청사항에 대한 것들만 해당되었고,&lt;br /&gt;
+툴 업데이트에 대한 것을 찾아보지않은 점을 다시 한번 반성한다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;나름 회사 입사 후에 배포 사고 한번 안쳤고, 잘 해왔다고 생각했지만, &lt;br /&gt;
+경력 3년차인 지금 입사 이후 가장 큰 사고를 쳤다.&lt;br /&gt;
+이로 인해, 영업과 운영측 분들이 &lt;br /&gt;
+처리해야할 사항들이 생겼던 점을 죄송스럽게 생각하며,&lt;br /&gt;
+큰 사고라 생각됨에도 한마디도 타박하지않은 부장님과 &lt;br /&gt;
+그런걸 다 할 수 있으면 여기 있었겠냐며 말을 해주신 영업 팀장님과 &lt;br /&gt;
+위로의 말을 해준 다른 부서분들에게 감사함을 느끼고 있다. &lt;br /&gt;
+정말 좋은 사람들이 많은 회사다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 일을 계기로, &lt;br /&gt;
+툴 업데이트에 대한건 함부로 하면 안된다는 점을 알게 되었고, &lt;br /&gt;
+또 내가 모르는 사항들이 있을 수 있으니 &lt;br /&gt;
+배포전 전체적으로 테스트 할 수 있는 &lt;br /&gt; 
+그런 프로세스를 구축해두어야겠다 느꼈다.&lt;br /&gt; 
+UnitTest가 앱 셋팅이 문제인지 &lt;br /&gt;
+Test Run 조차 되지 않는 문제가 있어서 포기했었는데,&lt;br /&gt; 
+이거도 손봐야겠다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;다크모드-적용-안하기&quot;&gt;다크모드 적용 안하기&lt;/h1&gt;
+
+&lt;p&gt;Xcode11로 앱을 빌드할 경우, 시스템의 다크 or 라이트 모드를 따라서 자동으로 셋팅이 되버린다.&lt;br /&gt;
+다크 모드에 대한 셋팅을 하는 방법은 2가지가 있다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;plist 파일에 선언&lt;/li&gt;
+  &lt;li&gt;코드 적용 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;plist-파일에-선언&quot;&gt;plist 파일에 선언&lt;/h2&gt;
+
+&lt;p&gt;현재 다크 모드를 준비하기 여건이 마땅치 않다면, &lt;br /&gt;
+Xcode11로 올리고 강제로 라이트 모드처럼만 보이고 싶을것이다. 나처럼.&lt;br /&gt;
+위의 반성껀도 해결을 plist에 선언 해줌으로써 우선 해결을 하였다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;plist에 아래와 같이 두가지 보기 방식이 있으니 둘다 적어보자. 난 반성해야하니깐&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img1.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;property-list&quot;&gt;Property List&lt;/h3&gt;
+
+&lt;p&gt;우선, 기본 상태인 Property List에서 오른쪽 클릭을 하면 다음과 같은 메뉴가 나오며,&lt;br /&gt;
+이 상태에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Add Row&lt;/code&gt;를 누르면 한 줄이 추가가 된다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img2.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 새로운 Key와 Value를 적을 수 있는데,&lt;br /&gt; 
+key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;정도 까지만 적어도 아래 이미지와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;User Interface Style&lt;/code&gt;이라는 항목이 보일 것이다. &lt;br /&gt;
+이것을 선택 or 입력해준다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img3.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;타입은 &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;으로 기본 셋팅이 될것이고, &lt;code class=&quot;highlighter-rouge&quot;&gt;Value&lt;/code&gt; 부분에 올 수 있는것은 2가지다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Light&lt;/li&gt;
+  &lt;li&gt;Dark &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;대소문자 신경쓰자. 스펠링 틀리거나 대문자로 시작 안할 경우 디폴트 값인 &lt;code class=&quot;highlighter-rouge&quot;&gt;Light&lt;/code&gt;로 적용이 된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img4.jpg&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;source-code&quot;&gt;Source Code&lt;/h3&gt;
+
+&lt;p&gt;위에 보면 Key, Value 값으로 들어간다는건 Dictionary 형태라는걸 알 수 있었고,&lt;br /&gt;
+소스코드 상으로 보면 아래 이미지와 같고, 
+시작을 알리는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;dict&amp;gt;&lt;/code&gt;와 끝을 적어주는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;/dict&amp;gt;&lt;/code&gt;인 빨간 부분이 보일것이다.&lt;br /&gt;
+그 사이에 노란 부분처럼 다음코드를 적당한 위치에 아무곳에 적어주면 적용이 된다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img5.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;코드로-적용&quot;&gt;코드로 적용&lt;/h2&gt;
+
+&lt;p&gt;코드로 적용할때도 2가지 정도로 나누어 진다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;AppDelegate Or SceneDelegate 적용&lt;/li&gt;
+  &lt;li&gt;ViewController 적용 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;둘다 기본적으로 방식은 동일하다. 스타일을 override 해주면 된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;AppDelegate or SceneDelegate &lt;br /&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;window?.overrideUserInterfaceStyle = .light
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ViewController &lt;br /&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.overrideUserInterfaceStyle = .light
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;두가지의 차이라 함은 &lt;br /&gt;
+1은 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;에 적용하다보니 모든 화면에 적용되는 반면,&lt;br /&gt;
+2는 해당 &lt;code class=&quot;highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;에서만 적용이 된다는 점이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ps-시뮬레이터에-다크모드-키는-방법&quot;&gt;ps. 시뮬레이터에 다크모드 키는 방법&lt;/h2&gt;
+
+&lt;p&gt;홈 - 설정 - 개발자 - Dark Appearance - On &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시는 이런 실수 하지말자.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 29 Mar 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/xcode/2020/03/29/xcode-PreventDarkMode.html</link>
+        <guid isPermaLink="true">http://localhost:4000/xcode/2020/03/29/xcode-PreventDarkMode.html</guid>
+        
+        
+        <category>Xcode</category>
+        
+      </item>
+    
+      <item>
+        <title>(swift) DragAnimation(2/3) - Tranform</title>
         <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. &lt;br /&gt; 
 그러다보니 여기서 생각보다 오래걸렸다 &lt;br /&gt;&lt;/p&gt;
 
@@ -304,7 +449,7 @@ B * A는 다음과 같다. &lt;br /&gt;&lt;/p&gt;
       </item>
     
       <item>
-        <title>(swift) UI 도전! - DragAnimation_Step1_Gesture(Long &amp;pan)</title>
+        <title>(swift) DragAnimation(1/3) - Gesture(Long &amp;pan)</title>
         <description>&lt;p&gt;오랫만에 포스팅…………. 여러모로 힘든 시기였다 ㅠ 기운내자&lt;/p&gt;
 
 &lt;p&gt;개인적으로는 iOS의 장점중 하나가 부드러운 동작이라 생각한다.&lt;/p&gt;

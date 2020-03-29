@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (swift) UI 도전! - DragAnimation <br> Step2_Tranform
+title: (swift) DragAnimation(2/3) - Tranform
 categories: [Swift, UI]
 
 ---
