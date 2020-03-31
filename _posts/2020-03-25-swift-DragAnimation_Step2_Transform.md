@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (swift) UI 도전! - DragAnimation <br> Step2_Transform
+title: (swift) DragAnimation(2/3) - Transform
 categories: [Swift, UI]
 
 ---
@@ -159,7 +159,7 @@ transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
 
 
 > Q.이미 Scale이 있는데, Scale을 한번더 붙이면 어떻게 되나? <br>
-> A. scale이 둘다 안먹힐때도 있고 마지막만 먹힐때도 있고 중구 난방이었다.
+> A. scale이 둘다 안먹힐때도 있고 마지막만 먹힐때도 있고 중구 난방이었다. <br><br>
 
 ## 주의!!
 쓰다가 발견했는데, 아래 심화 부분글 쓰다보니 잘못 이해한게 있었다. <br>
