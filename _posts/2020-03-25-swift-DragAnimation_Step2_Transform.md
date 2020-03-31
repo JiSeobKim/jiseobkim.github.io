@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (swift) DragAnimation(2/3) - Tranform
+title: (swift) UI 도전! - DragAnimation <br> Step2_Transform
 categories: [Swift, UI]
 
 ---
@@ -213,7 +213,7 @@ print(transform!)
 ```
 <br>
 
-3에 보면 tranform이란 것에 대해 출력이 추가 되었다.( 이쁘게 출력하기 위해 강제해제`!` )
+3에 보면 transform이란 것에 대해 출력이 추가 되었다.( 이쁘게 출력하기 위해 강제해제`!` )
 ```
 // 1. 크기
 CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: 0.0)
@@ -234,7 +234,7 @@ CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 `Transform` 그래픽적으로 표현하는구나 하였었고, 이는 3x3 행렬로 보여주는 형식이었다. <br> 
 근데 아랫줄에 보면 다음과 같이 적혀있다. <br>
 
-> 3번째 컬럼은 항상 (0,0,1)이다. 고로 CGAffineTranform은 1열과 2열에 대한 값을 가지고 있다. <br>
+> 3번째 컬럼은 항상 (0,0,1)이다. 고로 CGAffineTransform은 1열과 2열에 대한 값을 가지고 있다. <br>
 
 그렇다 한다. <br> 
 그렇지만 아핀행렬에 대해서 공부하기엔,,, ㅎ <br>
