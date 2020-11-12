@@ -296,12 +296,12 @@
   <li>반환 값으로 함수를 전달할 수 있다.</li>
 </ol>
 
-<p>두가지 정도? 저기서 <strong>handler</strong> 라는 인자는 타입이 <strong>NSDictionary</strong>만 받는게 아니라 <strong>return</strong>이 있다. 이건 누가봐도 함수다. 이런식으로 인자값으로 함수를 받았다. 반환값으로도 가능하고! 일급함수란 표현도 중요하지만 그 내용인 함수를 받았다는게 중요하다. 그렇다면 <strong><code class="highlighter-rouge">@escaping</code></strong> 이 의미하는것은 무엇일까</p>
+<p>두가지 정도? 저기서 <strong>handler</strong> 라는 인자는 타입이 <strong>NSDictionary</strong>만 받는게 아니라 <strong>return</strong>이 있다. 이건 누가봐도 함수다. 이런식으로 인자값으로 함수를 받았다. 반환값으로도 가능하고! 일급함수란 표현도 중요하지만 그 내용인 함수를 받았다는게 중요하다. 그렇다면 <strong><code class="language-plaintext highlighter-rouge">@escaping</code></strong> 이 의미하는것은 무엇일까</p>
 
 <blockquote>
   <p>handler 라는 표현은 보통 ‘다루다’로 사용되고 stackOverFlow 같은 곳에서 보면</p>
 
-  <p>관련 자료에서 종종 인자값에 <strong><code class="highlighter-rouge">completionHandler</code></strong> , <strong><code class="highlighter-rouge">completion</code></strong>라는 단어를 많이 쓰는데,</p>
+  <p>관련 자료에서 종종 인자값에 <strong><code class="language-plaintext highlighter-rouge">completionHandler</code></strong> , <strong><code class="language-plaintext highlighter-rouge">completion</code></strong>라는 단어를 많이 쓰는데,</p>
 
   <p>이는 완료후 처리할 작업, 완료후 다룰것 이라고 생각하면 좀더 편했던것 같다.</p>
 </blockquote>
@@ -373,7 +373,7 @@
 
 <p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-29/img7.png" alt="" /></p>
 
-<p>2-2 부분이 전부이다. 받아온 <strong>NSDictionary</strong> 타입을 가진 데이터 이름을 <strong><code class="highlighter-rouge">nsDic</code></strong> 이라 이름을 붙여주고 정말 딕셔너리 사용하듯 사용하면 끝이다.</p>
+<p>2-2 부분이 전부이다. 받아온 <strong>NSDictionary</strong> 타입을 가진 데이터 이름을 <strong><code class="language-plaintext highlighter-rouge">nsDic</code></strong> 이라 이름을 붙여주고 정말 딕셔너리 사용하듯 사용하면 끝이다.</p>
 
 <p>그 아래에 쓴것은 위에서 실패했던 방식인 NSDictionary를 return 해주는 방식의 함수를 다시 사용 한것이다.</p>
 
@@ -408,9 +408,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>위와 같이 적어 주자. 하나가 추가 되었다. <strong><code class="highlighter-rouge">whenIfFailed</code></strong>  라는 함수 타입의 인자이다. 그리고 주석 부분에 보면 통신 실패시 작동하게 되어 있다.</p>
+<p>위와 같이 적어 주자. 하나가 추가 되었다. <strong><code class="language-plaintext highlighter-rouge">whenIfFailed</code></strong>  라는 함수 타입의 인자이다. 그리고 주석 부분에 보면 통신 실패시 작동하게 되어 있다.</p>
 
-<p>하지만, 항상 실패에 대응 할필요가 없을 수도 있다. 위 함수안에 동일하게 대응되게 짜둔다면 굳이 그럴 필요 없다. 그러나! 필요한 경우도 있다! 그렇다면 어떻하면 좋을까?  <strong><code class="highlighter-rouge">whenIfFailed</code></strong> 를 옵셔널로 해주고 기본값을 <strong>nil</strong>로 해주자</p>
+<p>하지만, 항상 실패에 대응 할필요가 없을 수도 있다. 위 함수안에 동일하게 대응되게 짜둔다면 굳이 그럴 필요 없다. 그러나! 필요한 경우도 있다! 그렇다면 어떻하면 좋을까?  <strong><code class="language-plaintext highlighter-rouge">whenIfFailed</code></strong> 를 옵셔널로 해주고 기본값을 <strong>nil</strong>로 해주자</p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">useEscaping</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">whenIfFailed</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">NSDictionary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
     
@@ -433,9 +433,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">whenIfFailed</code></strong> 부분이 좀 달라졌다. <strong>(() -&gt; Void)</strong> 는 같은것이다. 하지만 뒤에 물음표가 붙어 있고, 기본 값이 <strong>nil</strong> 로 되어있다.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">whenIfFailed</code></strong> 부분이 좀 달라졌다. <strong>(() -&gt; Void)</strong> 는 같은것이다. 하지만 뒤에 물음표가 붙어 있고, 기본 값이 <strong>nil</strong> 로 되어있다.</p>
 
-<p>즉, 필요 없으면 안써두 된다는 것이다. 그 결과 아래쪽에 보면 <strong><code class="highlighter-rouge">whenIfFailed</code></strong> 에 물음표가 붙어있고, 이는 nil이면 자동으로 실행 않고 지나가게 된다!</p>
+<p>즉, 필요 없으면 안써두 된다는 것이다. 그 결과 아래쪽에 보면 <strong><code class="language-plaintext highlighter-rouge">whenIfFailed</code></strong> 에 물음표가 붙어있고, 이는 nil이면 자동으로 실행 않고 지나가게 된다!</p>
 
 <p>사용은 아래와 같다</p>
 
@@ -527,13 +527,20 @@
       
         
           
+      
+    
+  
+    
+      
+        
+          
             
             <div class="panel-body">
               <h4>Related Posts</h4>
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">(swift) DragAnimation(2/3) - Tranform</a>
+                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">(swift) DragAnimation(2/3) - Transform</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
                   

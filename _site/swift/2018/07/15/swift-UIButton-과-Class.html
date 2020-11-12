@@ -144,7 +144,7 @@
 <p>지금하는 프로젝트도 그렇고 어디서든  디자이너는 있다. 개인 프로젝트도 본인이 디자이너인것이다. 물론 퀄리티 차이는 어마어마하다.</p>
 
 <p>그런데 디자이너건 개인프로젝트건 사용하는 것중에 반복 되는 요소는 있기마련이다.
-예를 들자면 <code class="highlighter-rouge">저장</code> 같은 버튼?
+예를 들자면 <code class="language-plaintext highlighter-rouge">저장</code> 같은 버튼?
 통일성도 있을 뿐더러 시간 절약도 되는 것 같다.</p>
 
 <p>이번에도 이전글과 같이 <strong>아!! 이렇게 쓰면 좋겠네!</strong> 하는 경우이다<br /><a href="https://jiseobkim.github.io/2018/07/08/swift-class,struct-값-전달-방식-차이.html">이전글: Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?</a></p>
@@ -181,12 +181,12 @@
 (Xcode10 베타)
 <img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-15/img3.png" alt="" />
 다음과 같다. 기존의 영역은 비어있고. 저렇게 새로운 창으로 영역이 바뀌었다.<br />
-(단축키 : <code class="highlighter-rouge">Shift - option - L</code>)<br />
+(단축키 : <code class="language-plaintext highlighter-rouge">Shift - option - L</code>)<br />
 (* bear 글쓰기 프로그램에 Xcode 10 베타 코드 복붙하면 이상해서 다시 9로 사용 .. ㅠㅠ)</p>
 
 <p>다시 본론으로 돌아가서</p>
 
-<p>주목해야할 부분은 <code class="highlighter-rouge">저장</code> 버튼이다.</p>
+<p>주목해야할 부분은 <code class="language-plaintext highlighter-rouge">저장</code> 버튼이다.</p>
 
 <h2 id="기획자-textfield가-글자-있는지-없는지에-따라저장-버튼-비활성화활성화로-해주세요">기획자: TextField가 글자 있는지 없는지에 따라,<br />저장 버튼 비활성화/활성화로 해주세요.</h2>
 
@@ -331,7 +331,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">UIButton</code>을 상속 받은 클래스이다.
+<p><code class="language-plaintext highlighter-rouge">UIButton</code>을 상속 받은 클래스이다.
 2가지 초기화 구문이 있다.
 위에 주석을 달아 놓은듯이
 <br />1은 스토리보드에서 버튼을 추가할경우 사용될 init 구문
@@ -527,7 +527,7 @@ IBOutlet도 변경</p>
 
 <p>이럴 경우 어떻게 하면 되는가!</p>
 
-<p><code class="highlighter-rouge">BtnWithBackGroundColor</code> 클래스의 <code class="highlighter-rouge">addSomeThing()</code> 만 손보면 된다</p>
+<p><code class="language-plaintext highlighter-rouge">BtnWithBackGroundColor</code> 클래스의 <code class="language-plaintext highlighter-rouge">addSomeThing()</code> 만 손보면 된다</p>
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">addSomeThing</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">self</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">green</span>
         <span class="k">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span>
@@ -542,7 +542,7 @@ IBOutlet도 변경</p>
 <p>저렇게만 추가해주면 아래 사진처럼 바뀐게 나오게 된다!
 저기만 손보고 여러곳의 버튼들을 한꺼번에 수정이 된다니 너무좋다.</p>
 
-<p>다만 이해 안될 소지가 있는건  <code class="highlighter-rouge">self.setting()</code>인데, 저것을 안해주면 컬러값이 안변한다. 저 변수들은 setting()에서 사용이 되는데, init 구문에서 부모클래스가 사용을 하고 바뀐 값으론 사용이 안되었기 때문이다!</p>
+<p>다만 이해 안될 소지가 있는건  <code class="language-plaintext highlighter-rouge">self.setting()</code>인데, 저것을 안해주면 컬러값이 안변한다. 저 변수들은 setting()에서 사용이 되는데, init 구문에서 부모클래스가 사용을 하고 바뀐 값으론 사용이 안되었기 때문이다!</p>
 
 <p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2018-07-15/img13.png" alt="" /></p>
 
@@ -589,13 +589,20 @@ IBOutlet도 변경</p>
       
         
           
+      
+    
+  
+    
+      
+        
+          
             
             <div class="panel-body">
               <h4>Related Posts</h4>
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">(swift) DragAnimation(2/3) - Tranform</a>
+                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">(swift) DragAnimation(2/3) - Transform</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
                   

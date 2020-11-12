@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>(swift) DragAnimation(2/3) - Tranform - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <title>(swift) DragAnimation(2/3) - Transform - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="(swift) DragAnimation(2/3) - Tranform" />
-    <meta name="keywords" content="(swift) DragAnimation(2/3) - Tranform, 😀😍😉 JS의 개발 블로그 😁😆😄, Swift, UI" />
+    <meta name="description" content="(swift) DragAnimation(2/3) - Transform" />
+    <meta name="keywords" content="(swift) DragAnimation(2/3) - Transform, 😀😍😉 JS의 개발 블로그 😁😆😄, Swift, UI" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="(swift) DragAnimation(2/3) - Tranform" property="og:title">
+      <meta content="(swift) DragAnimation(2/3) - Transform" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -25,7 +25,7 @@
     
 
     
-      <meta content="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html" property="og:url">
+      <meta content="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html" property="og:url">
     
 
     
@@ -52,11 +52,11 @@
     <meta name="twitter:creator" content="@github.io">
 
     
-      <meta name="twitter:title" content="(swift) DragAnimation(2/3) - Tranform">
+      <meta name="twitter:title" content="(swift) DragAnimation(2/3) - Transform">
     
 
     
-      <meta name="twitter:url" content="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">
+      <meta name="twitter:url" content="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">
     
 
     
@@ -126,7 +126,7 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">(swift) DragAnimation(2/3) - Tranform</h1>
+  <h1 class="post-title">(swift) DragAnimation(2/3) - Transform</h1>
 </header>
 
 <span class="time">25 Mar 2020</span>
@@ -137,10 +137,10 @@
 
 
 <div class="content">
-  <div class="post"><p><code class="highlighter-rouge">Transform</code> 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. <br /> 
+  <div class="post"><p><code class="language-plaintext highlighter-rouge">Transform</code> 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. <br /> 
 그러다보니 여기서 생각보다 오래걸렸다 <br /></p>
 
-<p>아무튼, <code class="highlighter-rouge">Transform</code>이란 녀석을 배워보자. 단어부터 보자</p>
+<p>아무튼, <code class="language-plaintext highlighter-rouge">Transform</code>이란 녀석을 배워보자. 단어부터 보자</p>
 <blockquote>
   <p>Transform</p>
   <ol>
@@ -151,10 +151,10 @@
 <p>전부 변화에 관한 얘기다. <br /><br /></p>
 
 <p>이후에 다음과 같은 코드가 많이 나온다.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>view.transform = 블라블라
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>view.transform = 블라블라
 </code></pre></div></div>
 <p>블라블라 부분은 뒤에서 설명하고 그 앞만 보면 <br />
-“<code class="highlighter-rouge">view</code>를 변화,변경,변모 시키다.” 로 되겠지? <br /> 
+“<code class="language-plaintext highlighter-rouge">view</code>를 변화,변경,변모 시키다.” 로 되겠지? <br /> 
 영어권은 코딩이 참 쉬울거 같다. 부럽다 <br /><br /></p>
 
 <p>대충 뭘 하겠단건 알겠고, 무엇을 할 수 있는지 보자.</p>
@@ -181,7 +181,7 @@
 
 <p>위와 같이 텍스트 세로로 늘어나고, 가로는 줄어 들었다. <br />
 마치 저 자체가 <strong>이미지</strong>였던것처럼 변화하였다. <br />
-<code class="highlighter-rouge">Transform</code>이란 녀석에 타입은 <code class="highlighter-rouge">CGAffineTransform</code>이다. <br /> <br /></p>
+<code class="language-plaintext highlighter-rouge">Transform</code>이란 녀석에 타입은 <code class="language-plaintext highlighter-rouge">CGAffineTransform</code>이다. <br /> <br /></p>
 
 <p>그럼 이 녀석에 대한 문서를 보자</p>
 
@@ -189,7 +189,7 @@
 
 <p>음.. 자세한건 각자 보도록 하자…. 링크는 <a href="https://developer.apple.com/documentation/coregraphics/cgaffinetransform?language=objc">여기..</a> <br /><br /></p>
 
-<p>여기서 <code class="highlighter-rouge">CGAffineTransform</code>이란 단어 아래 문구는 다음과 같다.</p>
+<p>여기서 <code class="language-plaintext highlighter-rouge">CGAffineTransform</code>이란 단어 아래 문구는 다음과 같다.</p>
 
 <blockquote>
   <p>An affine transformation matrix for use in drawing 2D graphics <br /></p>
@@ -200,9 +200,9 @@
 이러한 방식이다보니, 단순 도형이 아니라면 효과를 줄때 주의를 해야할 것 같다. <br /><br /></p>
 
 <p>그렇담 이제 사용법에 대해 알아보자 <br /> 
-(스위치 4개를 모두 하나의 <code class="highlighter-rouge">IBAction</code> 함수에 연결 시켰고 그 함수의 내용은 다음과 같다)</p>
+(스위치 4개를 모두 하나의 <code class="language-plaintext highlighter-rouge">IBAction</code> 함수에 연결 시켰고 그 함수의 내용은 다음과 같다)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 선언
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 선언
 var transform: CGAffineTransform?
 
 // sender = 스위치 / 스위치 종류에 따른 Switch문
@@ -231,36 +231,36 @@ UIView.animate(withDuration: 0.3) {
 </code></pre></div></div>
 
 <p>굉장히 단순 하다. <br />
-하나씩 봅시다. (인자들은 모두 <code class="highlighter-rouge">CGFloat</code> 타입) <br /></p>
+하나씩 봅시다. (인자들은 모두 <code class="language-plaintext highlighter-rouge">CGFloat</code> 타입) <br /></p>
 
 <h2 id="크기">크기</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(scaleX: 2, y: 2)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(scaleX: 2, y: 2)
 </code></pre></div></div>
 <p>원하는 배율을 적어주면 된다. 가로로 몇배, 세로로 몇배. 쉽다.</p>
 
 <h2 id="회전">회전</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(rotationAngle: .pi)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(rotationAngle: .pi)
 </code></pre></div></div>
 
-<p>원하는 회전 각을 적어주면 된다. <code class="highlighter-rouge">.pi</code>,  <code class="highlighter-rouge">.pi / 4</code>  등등 원하는대로!</p>
+<p>원하는 회전 각을 적어주면 된다. <code class="language-plaintext highlighter-rouge">.pi</code>,  <code class="language-plaintext highlighter-rouge">.pi / 4</code>  등등 원하는대로!</p>
 
 <h2 id="위치">위치</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(translationX: 0, y: -100)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform = CGAffineTransform(translationX: 0, y: -100)
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">translation</code>은 변환인거 같은데,, <br /> 
+<p><code class="language-plaintext highlighter-rouge">translation</code>은 변환인거 같은데,, <br /> 
 솔직히 다른것처럼 확 와닿진 않는다. <br /> 
 넣는 x,y 값만큼 기존 값에 더해지게 된다. <br />
 여기선 x는 0, y는 -100 했기 때문에, 가로축 이동은 없고 세로축은 위쪽으로 100만큼 이동하였다. <br /></p>
 
-<p>그리고 해당 뷰의 <code class="highlighter-rouge">transform</code>에 적용해 주면 된다.</p>
+<p>그리고 해당 뷰의 <code class="language-plaintext highlighter-rouge">transform</code>에 적용해 주면 된다.</p>
 
 <h2 id="원상-복구">원상 복구</h2>
 
 <p>적용했으니 되돌리는것도 필요한건 당연 <br />
 아주 간단하다. <br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.justView.transform = CGAffineTransform.identity
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.justView.transform = CGAffineTransform.identity
 // or 
 self.justView.transform = .identity
 </code></pre></div></div>
@@ -274,21 +274,21 @@ self.justView.transform = .identity
 
 <p>그럼 위의 코드 2-4 부분에 보면 다음과 같은 코드가 있었다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 2-4. 초기화(크기 &amp; 위치)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 2-4. 초기화(크기 &amp; 위치)
 transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
 </code></pre></div></div>
 
-<p>딱보면 누가 봐도 <code class="highlighter-rouge">크기</code>에 대해 변화도 주고, <code class="highlighter-rouge">위치</code>값도 조절하게 생겼다. <br />
+<p>딱보면 누가 봐도 <code class="language-plaintext highlighter-rouge">크기</code>에 대해 변화도 주고, <code class="language-plaintext highlighter-rouge">위치</code>값도 조절하게 생겼다. <br />
  위에 gif에 생략된 마지막 4번째 스위치에 대한 동작을 보자. <br /></p>
 
 <p><img src="/assets/images/2020-03-25/gif3.gif" alt="" /></p>
 
-<p>위의 짤과 같이 크기(<code class="highlighter-rouge">scale</code>)변화가 있으면서 위치(<code class="highlighter-rouge">translate</code>)에 대한 변화도 있다.<br />
+<p>위의 짤과 같이 크기(<code class="language-plaintext highlighter-rouge">scale</code>)변화가 있으면서 위치(<code class="language-plaintext highlighter-rouge">translate</code>)에 대한 변화도 있다.<br />
 저기서 끝이아니라 회전도 가져다 붙여줄 수 있다. <br /></p>
 
 <blockquote>
   <p>Q.이미 Scale이 있는데, Scale을 한번더 붙이면 어떻게 되나? <br />
-A. scale이 둘다 안먹힐때도 있고 마지막만 먹힐때도 있고 중구 난방이었다.</p>
+A. scale이 둘다 안먹힐때도 있고 마지막만 먹힐때도 있고 중구 난방이었다. <br /><br /></p>
 </blockquote>
 
 <h2 id="주의">주의!!</h2>
@@ -302,18 +302,18 @@ A * B와,,, B * A는 다르다…..  더 자세한건 아래에. <br /><br /></p
 
 <p>(기본적인 사용법은 위가 전부. 아래는 아주 아주 살짝 심화랄까? ..) <br /><br /></p>
 
-<p>저 <code class="highlighter-rouge">Transform</code>이란 아이를 콘솔에 찍어보면 어떻게 나올까? <br /></p>
+<p>저 <code class="language-plaintext highlighter-rouge">Transform</code>이란 아이를 콘솔에 찍어보면 어떻게 나올까? <br /></p>
 
-<p>먼저 원상 복구 값인 <code class="highlighter-rouge">.identity</code> 출력 값을 보자 <br /></p>
+<p>먼저 원상 복구 값인 <code class="language-plaintext highlighter-rouge">.identity</code> 출력 값을 보자 <br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CGAffineTransform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, tx: 0.0, ty: 0.0)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CGAffineTransform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, tx: 0.0, ty: 0.0)
 </code></pre></div></div>
 
-<p>음 <code class="highlighter-rouge">a</code>,<code class="highlighter-rouge">b</code>는 1이고 나머진 0이 기본이란걸 알 수 있다.</p>
+<p>음 <code class="language-plaintext highlighter-rouge">a</code>,<code class="language-plaintext highlighter-rouge">b</code>는 1이고 나머진 0이 기본이란걸 알 수 있다.</p>
 
-<p>위에 <code class="highlighter-rouge">switch</code>문에 있던 애들을 각각 찍어보자. 아래 코드처럼.</p>
+<p>위에 <code class="language-plaintext highlighter-rouge">switch</code>문에 있던 애들을 각각 찍어보자. 아래 코드처럼.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 선언
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 선언
 var transform: CGAffineTransform?
 
 switch sender {
@@ -338,8 +338,8 @@ print(transform!)
 </code></pre></div></div>
 <p><br /></p>
 
-<p>3에 보면 tranform이란 것에 대해 출력이 추가 되었다.( 이쁘게 출력하기 위해 강제해제<code class="highlighter-rouge">!</code> )</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 크기
+<p>3에 보면 transform이란 것에 대해 출력이 추가 되었다.( 이쁘게 출력하기 위해 강제해제<code class="language-plaintext highlighter-rouge">!</code> )</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 크기
 CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: 0.0)
 // 2. 회전
 CGAffineTransform(a: -1.0, b: 1.2246467991473532e-16, c: -1.2246467991473532e-16, d: -1.0, tx: 0.0, ty: 0.0)
@@ -350,16 +350,16 @@ CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 </code></pre></div></div>
 <p><br /></p>
 
-<p><code class="highlighter-rouge">a</code>,<code class="highlighter-rouge">b</code>,<code class="highlighter-rouge">c</code>,<code class="highlighter-rouge">d</code>,<code class="highlighter-rouge">tx</code>,<code class="highlighter-rouge">ty</code> <br />
+<p><code class="language-plaintext highlighter-rouge">a</code>,<code class="language-plaintext highlighter-rouge">b</code>,<code class="language-plaintext highlighter-rouge">c</code>,<code class="language-plaintext highlighter-rouge">d</code>,<code class="language-plaintext highlighter-rouge">tx</code>,<code class="language-plaintext highlighter-rouge">ty</code> <br />
 문서에서 얼핏 본듯 하여 문서를 다시 보았다. <br /></p>
 
 <p><img src="/assets/images/2020-03-25/img2.png" alt="" /> <br /><br /></p>
 
-<p><code class="highlighter-rouge">Transform</code> 그래픽적으로 표현하는구나 하였었고, 이는 3x3 행렬로 보여주는 형식이었다. <br /> 
+<p><code class="language-plaintext highlighter-rouge">Transform</code> 그래픽적으로 표현하는구나 하였었고, 이는 3x3 행렬로 보여주는 형식이었다. <br /> 
 근데 아랫줄에 보면 다음과 같이 적혀있다. <br /></p>
 
 <blockquote>
-  <p>3번째 컬럼은 항상 (0,0,1)이다. 고로 CGAffineTranform은 1열과 2열에 대한 값을 가지고 있다. <br /></p>
+  <p>3번째 컬럼은 항상 (0,0,1)이다. 고로 CGAffineTransform은 1열과 2열에 대한 값을 가지고 있다. <br /></p>
 </blockquote>
 
 <p>그렇다 한다. <br /> 
@@ -369,26 +369,26 @@ CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 <p><img src="/assets/images/2020-03-25/img3.png" alt="" /></p>
 
 <p>위와 같이 이미지 같은 형식으로 각각 초기화하게 된다. <br /> 
-가장 기본은 위에 나온것 처럼 <code class="highlighter-rouge">a</code>,<code class="highlighter-rouge">b</code>,<code class="highlighter-rouge">c</code>,<code class="highlighter-rouge">d</code>,<code class="highlighter-rouge">tx</code>,<code class="highlighter-rouge">ty</code> 이며, <br /> 
+가장 기본은 위에 나온것 처럼 <code class="language-plaintext highlighter-rouge">a</code>,<code class="language-plaintext highlighter-rouge">b</code>,<code class="language-plaintext highlighter-rouge">c</code>,<code class="language-plaintext highlighter-rouge">d</code>,<code class="language-plaintext highlighter-rouge">tx</code>,<code class="language-plaintext highlighter-rouge">ty</code> 이며, <br /> 
 이건 필자처럼 어렵게 생각하니 쉽게 쓰라고 <br />
-<code class="highlighter-rouge">scale</code>, <code class="highlighter-rouge">rotationAngle</code>, <code class="highlighter-rouge">translation</code>을 이용하여 사용성을 높힌듯 하다. <br /><br /></p>
+<code class="language-plaintext highlighter-rouge">scale</code>, <code class="language-plaintext highlighter-rouge">rotationAngle</code>, <code class="language-plaintext highlighter-rouge">translation</code>을 이용하여 사용성을 높힌듯 하다. <br /><br /></p>
 
 <p>그리고 두가지를 이용한 4를 보면, 저 값은 (위치 행렬 x 크기 행렬)과 같다. <br /></p>
 
 <p>하.. 잘봐야한다.. <br />
-2-4의 순서가 <code class="highlighter-rouge">scale</code>, <code class="highlighter-rouge">translate</code>라서 <br />
-당연히  <code class="highlighter-rouge">scale</code> x <code class="highlighter-rouge">translate</code>인줄 알았더만 <br />
-<code class="highlighter-rouge">translate</code> x <code class="highlighter-rouge">scale</code> 이었다…. <br /><br /></p>
+2-4의 순서가 <code class="language-plaintext highlighter-rouge">scale</code>, <code class="language-plaintext highlighter-rouge">translate</code>라서 <br />
+당연히  <code class="language-plaintext highlighter-rouge">scale</code> x <code class="language-plaintext highlighter-rouge">translate</code>인줄 알았더만 <br />
+<code class="language-plaintext highlighter-rouge">translate</code> x <code class="language-plaintext highlighter-rouge">scale</code> 이었다…. <br /><br /></p>
 
 <p>A * B와 B * A는 다르니….. 사용에 굉장히 주의바람 <br /></p>
 
 <p><img src="/assets/images/2020-03-25/img5.png" alt="" /> <br /></p>
 
-<p>(A: <code class="highlighter-rouge">scale</code> B: <code class="highlighter-rouge">translation</code>)<br />
+<p>(A: <code class="language-plaintext highlighter-rouge">scale</code> B: <code class="language-plaintext highlighter-rouge">translation</code>)<br />
 의도는 -100 이었지만 -200에 해당되는 이동을 하게된다. 조심바람…. <br />
 -100 만큼 이동하고 2배로 키우고 싶었다면 아래 O 부분처럼 해야한다. <br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// X
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// X
 transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
 
 // O
@@ -407,7 +407,7 @@ B * A는 다음과 같다. <br /></p>
   <li>ty = -100 x 2</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 </code></pre></div></div>
 
 <p>이렇게 정의가 된다. 위에 4번과 일치 <br /></p>
@@ -426,7 +426,7 @@ B * A는 다음과 같다. <br /></p>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   <!-- Facebook -->
-  <div class="fb-share-button" data-href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 
 <div id="fb-root"></div>
@@ -441,6 +441,15 @@ B * A는 다음과 같다. <br /></p>
 </div>
 
 
+  
+    
+      
+        
+          
+      
+          
+      
+    
   
     
       
@@ -762,8 +771,8 @@ B * A는 다음과 같다. <br /></p>
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_(swift) DragAnimation(2/3) - Tranform";
-    var disqus_title = "(swift) DragAnimation(2/3) - Tranform";
+    var disqus_identifier = "http://localhost:4000_(swift) DragAnimation(2/3) - Transform";
+    var disqus_title = "(swift) DragAnimation(2/3) - Transform";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

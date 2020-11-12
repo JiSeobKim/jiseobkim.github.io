@@ -208,24 +208,24 @@ Xcode11로 올리고 강제로 라이트 모드처럼만 보이고 싶을것이�
 <h3 id="property-list">Property List</h3>
 
 <p>우선, 기본 상태인 Property List에서 오른쪽 클릭을 하면 다음과 같은 메뉴가 나오며,<br />
-이 상태에서 <code class="highlighter-rouge">Add Row</code>를 누르면 한 줄이 추가가 된다.<br /></p>
+이 상태에서 <code class="language-plaintext highlighter-rouge">Add Row</code>를 누르면 한 줄이 추가가 된다.<br /></p>
 
 <p><img src="/assets/images/2020-03-29/img2.jpg" alt="" /><br /></p>
 
 <p>그럼 새로운 Key와 Value를 적을 수 있는데,<br /> 
-key 부분에 <code class="highlighter-rouge">User</code>정도 까지만 적어도 아래 이미지와 같이 <code class="highlighter-rouge">User Interface Style</code>이라는 항목이 보일 것이다. <br />
+key 부분에 <code class="language-plaintext highlighter-rouge">User</code>정도 까지만 적어도 아래 이미지와 같이 <code class="language-plaintext highlighter-rouge">User Interface Style</code>이라는 항목이 보일 것이다. <br />
 이것을 선택 or 입력해준다.<br /></p>
 
 <p><img src="/assets/images/2020-03-29/img3.jpg" alt="" /><br /></p>
 
-<p>타입은 <code class="highlighter-rouge">String</code>으로 기본 셋팅이 될것이고, <code class="highlighter-rouge">Value</code> 부분에 올 수 있는것은 2가지다.<br /></p>
+<p>타입은 <code class="language-plaintext highlighter-rouge">String</code>으로 기본 셋팅이 될것이고, <code class="language-plaintext highlighter-rouge">Value</code> 부분에 올 수 있는것은 2가지다.<br /></p>
 
 <ul>
   <li>Light</li>
   <li>Dark <br /></li>
 </ul>
 
-<p>대소문자 신경쓰자. 스펠링 틀리거나 대문자로 시작 안할 경우 디폴트 값인 <code class="highlighter-rouge">Light</code>로 적용이 된다. <br /></p>
+<p>대소문자 신경쓰자. 스펠링 틀리거나 대문자로 시작 안할 경우 디폴트 값인 <code class="language-plaintext highlighter-rouge">Light</code>로 적용이 된다. <br /></p>
 
 <p><img src="/assets/images/2020-03-29/img4.jpg" alt="" /> <br /><br /></p>
 
@@ -233,7 +233,7 @@ key 부분에 <code class="highlighter-rouge">User</code>정도 까지만 적어
 
 <p>위에 보면 Key, Value 값으로 들어간다는건 Dictionary 형태라는걸 알 수 있었고,<br />
 소스코드 상으로 보면 아래 이미지와 같고, 
-시작을 알리는 <code class="highlighter-rouge">&lt;dict&gt;</code>와 끝을 적어주는 <code class="highlighter-rouge">&lt;/dict&gt;</code>인 빨간 부분이 보일것이다.<br />
+시작을 알리는 <code class="language-plaintext highlighter-rouge">&lt;dict&gt;</code>와 끝을 적어주는 <code class="language-plaintext highlighter-rouge">&lt;/dict&gt;</code>인 빨간 부분이 보일것이다.<br />
 그 사이에 노란 부분처럼 다음코드를 적당한 위치에 아무곳에 적어주면 적용이 된다.<br /></p>
 
 <p><img src="/assets/images/2020-03-29/img5.png" alt="" /><br /><br /></p>
@@ -251,19 +251,19 @@ key 부분에 <code class="highlighter-rouge">User</code>정도 까지만 적어
 
 <ul>
   <li>AppDelegate or SceneDelegate <br />
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>window?.overrideUserInterfaceStyle = .light
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>window?.overrideUserInterfaceStyle = .light
 </code></pre></div>    </div>
   </li>
   <li>ViewController <br />
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.overrideUserInterfaceStyle = .light
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.overrideUserInterfaceStyle = .light
 </code></pre></div>    </div>
     <p><br /></p>
   </li>
 </ul>
 
 <p>두가지의 차이라 함은 <br />
-1은 <code class="highlighter-rouge">window</code>에 적용하다보니 모든 화면에 적용되는 반면,<br />
-2는 해당 <code class="highlighter-rouge">ViewController</code>에서만 적용이 된다는 점이다. <br /><br /></p>
+1은 <code class="language-plaintext highlighter-rouge">window</code>에 적용하다보니 모든 화면에 적용되는 반면,<br />
+2는 해당 <code class="language-plaintext highlighter-rouge">ViewController</code>에서만 적용이 된다는 점이다. <br /><br /></p>
 
 <h2 id="ps-시뮬레이터에-다크모드-키는-방법">ps. 시뮬레이터에 다크모드 키는 방법</h2>
 
@@ -294,6 +294,13 @@ key 부분에 <code class="highlighter-rouge">User</code>정도 까지만 적어
 </div>
 
 
+  
+    
+      
+        
+          
+      
+    
   
     
       
@@ -529,8 +536,10 @@ key 부분에 <code class="highlighter-rouge">User</code>정도 까지만 적어
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">&laquo; (swift) DragAnimation(2/3) - Tranform</a>
+    <a class="prev" href="/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">&laquo; (swift) DragAnimation(2/3) - Transform</a>
   
+  
+    <a class="next" href="/designpattern/2020/11/12/designPattern-DesignPattern-Builder.html">(DesignPattern) builder &raquo;</a>
   
 </div>
 

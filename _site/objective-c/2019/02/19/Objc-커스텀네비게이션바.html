@@ -200,13 +200,13 @@
 
 <p><br />그런데, 간혹 앱들보면 가운데 검색창이 있는게 있다.</p>
 
-<p>보통 검색이라하면 <code class="highlighter-rouge">UISearchBar</code> 라는 좋은것도 있지만, 기획자는 많고 세상은 넓으니</p>
+<p>보통 검색이라하면 <code class="language-plaintext highlighter-rouge">UISearchBar</code> 라는 좋은것도 있지만, 기획자는 많고 세상은 넓으니</p>
 
 <p>가운데에 특이한것을 넣고 싶을수 있을것이고 그것이 가능하다.</p>
 
 <p><br /></p>
 
-<p>가운데 부분을 View 라고 생각해보면, view라는 것은 <code class="highlighter-rouge">Image</code> 도 들어갈수 있고, <code class="highlighter-rouge">Label</code>이 들어 갈수도 있다.</p>
+<p>가운데 부분을 View 라고 생각해보면, view라는 것은 <code class="language-plaintext highlighter-rouge">Image</code> 도 들어갈수 있고, <code class="language-plaintext highlighter-rouge">Label</code>이 들어 갈수도 있다.</p>
 
 <blockquote>
   <p>즉, 자유성로운 낙서장.</p>
@@ -214,7 +214,7 @@
 
 <p><br /></p>
 
-<p>그럼 <code class="highlighter-rouge">view</code>를 넣어보자.</p>
+<p>그럼 <code class="language-plaintext highlighter-rouge">view</code>를 넣어보자.</p>
 
 <p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-02-19/img3.png" alt="" /></p>
 
@@ -252,10 +252,10 @@ self.navigationItem.rightBarButtonItem = right;
 
 <p><br /></p>
 
-<p>아주 간단하고 심플, 하지만 조금 특이하다면 <code class="highlighter-rouge">UIBarButtonItem</code>을 바로 안만들고 초기화 방식이 <code class="highlighter-rouge">initWithCustomView</code>를 사용했으며, <code class="highlighter-rouge">UIButton</code>을 이용했다는 점?</p>
+<p>아주 간단하고 심플, 하지만 조금 특이하다면 <code class="language-plaintext highlighter-rouge">UIBarButtonItem</code>을 바로 안만들고 초기화 방식이 <code class="language-plaintext highlighter-rouge">initWithCustomView</code>를 사용했으며, <code class="language-plaintext highlighter-rouge">UIButton</code>을 이용했다는 점?</p>
 
 <blockquote>
-  <p>솔직히 바로 <code class="highlighter-rouge">UIBarButtonItem</code>에 초기화 할때 이미지 넣고 액션 넣고 할수 있다.</p>
+  <p>솔직히 바로 <code class="language-plaintext highlighter-rouge">UIBarButtonItem</code>에 초기화 할때 이미지 넣고 액션 넣고 할수 있다.</p>
 
   <p>그런데, 백그라운드 컬러값이 안들어간다 ㅠ 보여줄방법이 음슴체</p>
 </blockquote>
@@ -271,15 +271,15 @@ self.navigationItem.rightBarButtonItem = right;
 <p>여러가지 실험을 해보자</p>
 
 <ol>
-  <li><code class="highlighter-rouge">TitleView</code>의 최대값은 어느정도?</li>
-  <li><code class="highlighter-rouge">UIBarButtonItem</code>의 최대값은 어느정도?</li>
+  <li><code class="language-plaintext highlighter-rouge">TitleView</code>의 최대값은 어느정도?</li>
+  <li><code class="language-plaintext highlighter-rouge">UIBarButtonItem</code>의 최대값은 어느정도?</li>
   <li>왼쪽 오른쪽 버튼 둘다크면? 어떤일이 발생???</li>
   <li>왼쪽,오른쪽 버튼 그리고 타이틀뷰도 크면?</li>
 </ol>
 
 <p><br /><br /></p>
 
-<h3 id="1-titleview의-최대값은-어느정도">1. <code class="highlighter-rouge">TitleView</code>의 최대값은 어느정도?</h3>
+<h3 id="1-titleview의-최대값은-어느정도">1. <code class="language-plaintext highlighter-rouge">TitleView</code>의 최대값은 어느정도?</h3>
 
 <p>1부터 알아보자, 왼쪽, 오른쪽 버튼들 제거하고 버튼만 최대 크기로 해보자</p>
 
@@ -291,7 +291,7 @@ self.navigationItem.rightBarButtonItem = right;
 
 <p><br /><br /></p>
 
-<h3 id="2-uibarbuttonitem의-최대값은-어느정도">2. <code class="highlighter-rouge">UIBarButtonItem</code>의 최대값은 어느정도?</h3>
+<h3 id="2-uibarbuttonitem의-최대값은-어느정도">2. <code class="language-plaintext highlighter-rouge">UIBarButtonItem</code>의 최대값은 어느정도?</h3>
 
 <p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-02-19/img6.png" alt="" /></p>
 
@@ -359,7 +359,7 @@ self.navigationItem.rightBarButtonItem = right;
 
 <p>버튼 최소사이즈는 몇일까?</p>
 
-<p>각각 가로 폭을<code class="highlighter-rouge">10</code>으로 줘봤다</p>
+<p>각각 가로 폭을<code class="language-plaintext highlighter-rouge">10</code>으로 줘봤다</p>
 
 <p><img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-02-19/img10.png" alt="" /></p>
 
@@ -367,7 +367,7 @@ self.navigationItem.rightBarButtonItem = right;
 
 <p><br /></p>
 
-<p>그렇담 가로 폭을 <code class="highlighter-rouge">2</code>로 줘보자</p>
+<p>그렇담 가로 폭을 <code class="language-plaintext highlighter-rouge">2</code>로 줘보자</p>
 
 <pre><code class="language-objective-c">UIButton *leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 2, 44)];
 UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 2, 44)];
@@ -379,16 +379,16 @@ UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 2, 44)];
 
 <p>최소값은 저정도가 최소다 그럼 저정도는 몇일까?</p>
 
-<p>계층 보기로해서 찍어봤더니 <code class="highlighter-rouge">30</code>이라네?</p>
+<p>계층 보기로해서 찍어봤더니 <code class="language-plaintext highlighter-rouge">30</code>이라네?</p>
 
 <p>아래는 디스크립션 부분에서 긁어왔다. 30이란다</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;UIButton: 0x7fb8f2c03030; frame = (0 0; 30 44); opaque = NO; layer = &lt;CALayer: 0x60000205e4a0&gt;&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;UIButton: 0x7fb8f2c03030; frame = (0 0; 30 44); opaque = NO; layer = &lt;CALayer: 0x60000205e4a0&gt;&gt;
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="uibarbuttonitem의-최소-width는-30"><code class="highlighter-rouge">UIBarButtonItem</code>의 최소 <code class="highlighter-rouge">Width</code>는 30!</h3>
+<h3 id="uibarbuttonitem의-최소-width는-30"><code class="language-plaintext highlighter-rouge">UIBarButtonItem</code>의 최소 <code class="language-plaintext highlighter-rouge">Width</code>는 30!</h3>
 
 <hr />
 
@@ -450,6 +450,13 @@ Objc 넘나 힘든것</p>
 </div>
 
 
+  
+    
+      
+        
+          
+      
+    
   
     
       

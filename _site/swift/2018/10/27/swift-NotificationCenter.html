@@ -174,7 +174,7 @@
 <p><br />
 보통의 경우 같은 클래스 내의 메소드나 프로퍼티들이 아니면 접근하기가 까탈스러웠던것 같다.</p>
 
-<p>델리게이트 패턴을 쓴다거나 프로토콜을 사용해서 접근을 하게되지만 <code class="highlighter-rouge">Notification Center</code>로도 가능하단걸 알게 되었다.</p>
+<p>델리게이트 패턴을 쓴다거나 프로토콜을 사용해서 접근을 하게되지만 <code class="language-plaintext highlighter-rouge">Notification Center</code>로도 가능하단걸 알게 되었다.</p>
 
 <blockquote>
   <p>하지만, 단순 값전달이라던가, 델리게이트 패턴, 프로토콜이 사용하기 난감한 상황이 아닌이상 Noti Center는 안쓸듯하다.</p>
@@ -207,23 +207,23 @@
 <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">doItSomeThing</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>중요 - <code class="highlighter-rouge">post</code></p>
+<p>중요 - <code class="language-plaintext highlighter-rouge">post</code></p>
 
-<p>나중 설명 - <code class="highlighter-rouge">.doItSomeTing</code>, <code class="highlighter-rouge">object</code></p>
+<p>나중 설명 - <code class="language-plaintext highlighter-rouge">.doItSomeTing</code>, <code class="language-plaintext highlighter-rouge">object</code></p>
 
 <blockquote>
-  <p>참고로 <code class="highlighter-rouge">.doItSomeThing</code>은 원래 존재하는게 아니고 내가 생성한 프로퍼티,</p>
+  <p>참고로 <code class="language-plaintext highlighter-rouge">.doItSomeThing</code>은 원래 존재하는게 아니고 내가 생성한 프로퍼티,</p>
 
   <p>아래에서 설명!</p>
 </blockquote>
 
-<p>포스트라는 단어가 중요하다.뭔가 보내는 그런 의미니, 여기선 <code class="highlighter-rouge">name</code>에 해당자들에게 각자 일을 수행하라고 실행시키는 것이라 생각하는게 맞는것 같다.</p>
+<p>포스트라는 단어가 중요하다.뭔가 보내는 그런 의미니, 여기선 <code class="language-plaintext highlighter-rouge">name</code>에 해당자들에게 각자 일을 수행하라고 실행시키는 것이라 생각하는게 맞는것 같다.</p>
 
 <p>그럼 실행하라 명령했으니 명령 받을 애들이 필요하다.</p>
 
-<p>다소 특이한 개념이 나온다. <code class="highlighter-rouge">doItSomeThing</code>은 정말 name에 해당된다. 무슨 동작하란게 아니다.</p>
+<p>다소 특이한 개념이 나온다. <code class="language-plaintext highlighter-rouge">doItSomeThing</code>은 정말 name에 해당된다. 무슨 동작하란게 아니다.</p>
 
-<p><code class="highlighter-rouge">name</code>을 일 처리하는 스텝의 이름이라 생각해야한다.</p>
+<p><code class="language-plaintext highlighter-rouge">name</code>을 일 처리하는 스텝의 이름이라 생각해야한다.</p>
 
 <p>스텝마다 각자의 일거리는 다르다.</p>
 
@@ -238,7 +238,7 @@
 
 <p>간단하다. 하는일은 그저 print 한번 해주는것뿐.</p>
 
-<p>눈여겨볼거라면 파라미터 타입이 <code class="highlighter-rouge">Notification</code>이라는 정도???</p>
+<p>눈여겨볼거라면 파라미터 타입이 <code class="language-plaintext highlighter-rouge">Notification</code>이라는 정도???</p>
 
 <blockquote>
   <p>@objc 붙은 이유는 NotificationCenter가 원래는 NSNotificationCenter다. Swift 몇인지 기억은 안나지만 이름이 바뀌었다. Objective-c 에서 쓰이는거니 붙여주자</p>
@@ -254,17 +254,17 @@
 <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">printSomeThing(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">doItSomeThing</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>중요 - <code class="highlighter-rouge">addObserver</code>, <code class="highlighter-rouge">selector</code> , <code class="highlighter-rouge">name</code></p>
+<p>중요 - <code class="language-plaintext highlighter-rouge">addObserver</code>, <code class="language-plaintext highlighter-rouge">selector</code> , <code class="language-plaintext highlighter-rouge">name</code></p>
 
-<p><code class="highlighter-rouge">addObserver</code> - 관찰자를 대기시키겠다는 것,</p>
+<p><code class="language-plaintext highlighter-rouge">addObserver</code> - 관찰자를 대기시키겠다는 것,</p>
 
-<p><code class="highlighter-rouge">selector</code> - 스테프 업무</p>
+<p><code class="language-plaintext highlighter-rouge">selector</code> - 스테프 업무</p>
 
-<p><code class="highlighter-rouge">name</code> - 스테프 이름</p>
+<p><code class="language-plaintext highlighter-rouge">name</code> - 스테프 이름</p>
 
 <p><br /></p>
 
-<p>여기서 가장 중요한건 이름이라 생각한다. Post 메소드가 <code class="highlighter-rouge">name</code>에 “누구씨 일해!!” 라고 한다면, 그 이름에 해당 되는 스텝들이 각자 등록된 업무 (= <code class="highlighter-rouge">selector</code>) 수행하게 된다. 이 코드에선 <code class="highlighter-rouge">.doItSomeTing</code>을 부르면 아까 만든 함수(print 한줄짜리)를 실행하게 된다.</p>
+<p>여기서 가장 중요한건 이름이라 생각한다. Post 메소드가 <code class="language-plaintext highlighter-rouge">name</code>에 “누구씨 일해!!” 라고 한다면, 그 이름에 해당 되는 스텝들이 각자 등록된 업무 (= <code class="language-plaintext highlighter-rouge">selector</code>) 수행하게 된다. 이 코드에선 <code class="language-plaintext highlighter-rouge">.doItSomeTing</code>을 부르면 아까 만든 함수(print 한줄짜리)를 실행하게 된다.</p>
 
 <blockquote>
   <p>스텝 이름은 중복가능하다, 다른 addObserver를 작성해도 이미 사용한 이름을 쓸수있다.</p>
@@ -303,9 +303,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>이렇게 <code class="highlighter-rouge">Notification.Name</code>에 프로퍼티를 추가해주면,</p>
+<p>이렇게 <code class="language-plaintext highlighter-rouge">Notification.Name</code>에 프로퍼티를 추가해주면,</p>
 
-<p>위 코드들에 나오듯 <code class="highlighter-rouge">name</code>자리에 있던 <code class="highlighter-rouge">.doItSomeThing</code>을 쓸수 있기에</p>
+<p>위 코드들에 나오듯 <code class="language-plaintext highlighter-rouge">name</code>자리에 있던 <code class="language-plaintext highlighter-rouge">.doItSomeThing</code>을 쓸수 있기에</p>
 
 <p>깔끔하고 사용하기도 수월해진다.</p>
 
@@ -402,7 +402,7 @@
 <h2 id="추가--post할때-값도-전달">추가 : Post할때 값도 전달</h2>
 <hr />
 
-<p>Post메소드 파라미터에 <code class="highlighter-rouge">object</code>도 있었다. 위에선 <code class="highlighter-rouge">nil</code>을 넣었지만, 이 부분을 통해 값을 보낼수 있다.</p>
+<p>Post메소드 파라미터에 <code class="language-plaintext highlighter-rouge">object</code>도 있었다. 위에선 <code class="language-plaintext highlighter-rouge">nil</code>을 넣었지만, 이 부분을 통해 값을 보낼수 있다.</p>
 
 <p>기존 selector에 들어가던 함수를 변경해주자(VC2랑 VC3도 변경!)</p>
 
@@ -426,7 +426,7 @@
 
 <p>btn의 Post도 이렇게 변경</p>
 
-<p>타입이 <code class="highlighter-rouge">Notification</code>인 파라미터 <code class="highlighter-rouge">notification</code>에 <code class="highlighter-rouge">object</code>가 Post에 있던 <code class="highlighter-rouge">object</code>다.</p>
+<p>타입이 <code class="language-plaintext highlighter-rouge">Notification</code>인 파라미터 <code class="language-plaintext highlighter-rouge">notification</code>에 <code class="language-plaintext highlighter-rouge">object</code>가 Post에 있던 <code class="language-plaintext highlighter-rouge">object</code>다.</p>
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존</span>
 <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">doPost</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">changeLabel</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
@@ -484,13 +484,20 @@
       
         
           
+      
+    
+  
+    
+      
+        
+          
             
             <div class="panel-body">
               <h4>Related Posts</h4>
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">(swift) DragAnimation(2/3) - Tranform</a>
+                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">(swift) DragAnimation(2/3) - Transform</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
                   

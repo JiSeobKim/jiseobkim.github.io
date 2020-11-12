@@ -272,7 +272,7 @@
 
 <p>일단 적용하는 코드부터 보자</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Long Press Gesture - 선언
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Long Press Gesture - 선언
 let longTouchGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTouchAction(_:)))
 </code></pre></div></div>
 
@@ -287,47 +287,47 @@ let longTouchGesture = UILongPressGestureRecognizer(target: self, action: #selec
 
 <p>이건 제스쳐에 대한 정의만 된 것이다. 그렇담 이 제스쳐를 어딘가에 적용을 시켜줘야겠지?</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Long Press Gesture - 적용
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Long Press Gesture - 적용
 view.addGestureRecognizer(panGestrue)
 </code></pre></div></div>
 
 <p>다시말해 의미는 다음과 같다. <br />
-<code class="highlighter-rouge">view</code>를 롱터치 했을 때, <code class="highlighter-rouge">self</code>에 있는 <code class="highlighter-rouge">longTouchAction(_:)</code> 라는 함수를 실행하자~</p>
+<code class="language-plaintext highlighter-rouge">view</code>를 롱터치 했을 때, <code class="language-plaintext highlighter-rouge">self</code>에 있는 <code class="language-plaintext highlighter-rouge">longTouchAction(_:)</code> 라는 함수를 실행하자~</p>
 
 <p><br /></p>
 
 <p>근데 여기서 longTouchAction이라는 함수를 보면 다음과 같다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@objc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@objc
 func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
     print(recognizer.state.rawValue)
 }
 </code></pre></div></div>
-<p><code class="highlighter-rouge">@objc</code>는 <code class="highlighter-rouge">selector</code>에다 써주려면 써야하고, <br />
-<code class="highlighter-rouge">recognizer</code>라는 애가 제스쳐에 대한 정보를 가지고 있다</p>
+<p><code class="language-plaintext highlighter-rouge">@objc</code>는 <code class="language-plaintext highlighter-rouge">selector</code>에다 써주려면 써야하고, <br />
+<code class="language-plaintext highlighter-rouge">recognizer</code>라는 애가 제스쳐에 대한 정보를 가지고 있다</p>
 
 <p><br /></p>
 
-<p>이를 통해 많은 것을 알 수 있지만 여기서는 <code class="highlighter-rouge">.state</code>에 대해서 알아보자.
+<p>이를 통해 많은 것을 알 수 있지만 여기서는 <code class="language-plaintext highlighter-rouge">.state</code>에 대해서 알아보자.
 <img src="/assets/images/2020-03-01/img1.png" alt="" /></p>
 
-<p>그렇다 <code class="highlighter-rouge">enum</code>이고 자료형은 <code class="highlighter-rouge">Int</code>이다. 그렇단건 <code class="highlighter-rouge">switch</code>랑 궁합이 잘 맞겠다는 말~</p>
+<p>그렇다 <code class="language-plaintext highlighter-rouge">enum</code>이고 자료형은 <code class="language-plaintext highlighter-rouge">Int</code>이다. 그렇단건 <code class="language-plaintext highlighter-rouge">switch</code>랑 궁합이 잘 맞겠다는 말~</p>
 
 <p><br /></p>
 
-<p>그럼 <code class="highlighter-rouge">enum</code>이니 종류를 한번 보자.
+<p>그럼 <code class="language-plaintext highlighter-rouge">enum</code>이니 종류를 한번 보자.
 <img src="/assets/images/2020-03-01/img2.png" alt="" /></p>
 
 <p>뭐가 많다. 세분화해서 사용 가능하다.</p>
 
 <p>근데 이 글에선 롱터치의 시작, 종료, 변화에 대해서 알면 된다.</p>
 
-<p>다시말해 <code class="highlighter-rouge">.began</code>과 <code class="highlighter-rouge">.ended</code> 그리고 <code class="highlighter-rouge">.changed</code>만 알면 된다.</p>
+<p>다시말해 <code class="language-plaintext highlighter-rouge">.began</code>과 <code class="language-plaintext highlighter-rouge">.ended</code> 그리고 <code class="language-plaintext highlighter-rouge">.changed</code>만 알면 된다.</p>
 
 <p><br /></p>
 
 <p>아래의 코드를 보자.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@objc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@objc
 func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
     switch recognizer.state {
     case .began:
@@ -349,18 +349,18 @@ func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
 }
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">.began</code> <br />
+<p><code class="language-plaintext highlighter-rouge">.began</code> <br />
 롱프레스가 시작 됐다를 알려준다.</p>
 
-<p><code class="highlighter-rouge">.ended</code> <br />
+<p><code class="language-plaintext highlighter-rouge">.ended</code> <br />
 롱프레스가 끝났다를 알려준다.</p>
 
-<p><code class="highlighter-rouge">.changed</code> <br />
+<p><code class="language-plaintext highlighter-rouge">.changed</code> <br />
 얘를 주목하자,</p>
 
 <p><br /></p>
 
-<p>저 <code class="highlighter-rouge">location(in:_)</code>이 무엇이냐 하면, 문서상 이렇게 써있다.</p>
+<p>저 <code class="language-plaintext highlighter-rouge">location(in:_)</code>이 무엇이냐 하면, 문서상 이렇게 써있다.</p>
 
 <blockquote>
   <p>Summary<br />
@@ -381,32 +381,32 @@ A point in the local coordinate system of view that identifies the location of t
 <p>어렵다, 쉽게 말해 다음과 같다.</p>
 
 <blockquote>
-  <p>당신이 터치한 위치 정보(좌표)를 알려 줄게! 어느 <code class="highlighter-rouge">view</code>를 기준으로 할지 알려줘</p>
+  <p>당신이 터치한 위치 정보(좌표)를 알려 줄게! 어느 <code class="language-plaintext highlighter-rouge">view</code>를 기준으로 할지 알려줘</p>
 </blockquote>
 
 <p>즉, 전체 화면상 x,y가 몇인지 알면 좋긴 하겠지만, <br />
-특정 <code class="highlighter-rouge">view</code>위에서 x,y가 몇인지 계산하기 귀찮으니 기준점을 알려주면 알아서 계산된 값을 알려준다.</p>
+특정 <code class="language-plaintext highlighter-rouge">view</code>위에서 x,y가 몇인지 계산하기 귀찮으니 기준점을 알려주면 알아서 계산된 값을 알려준다.</p>
 
 <p><br /></p>
 
 <p>다시 말해, <br />
-위에 주석 <code class="highlighter-rouge">1</code>은 <code class="highlighter-rouge">self.view</code> 기준으로 x,y를 알려주는 값이고 <br />
-위에 주석 <code class="highlighter-rouge">2</code>는 <code class="highlighter-rouge">self.panGetstureView</code> 기준으로 x,y를 알려주는 값이다. <br />
+위에 주석 <code class="language-plaintext highlighter-rouge">1</code>은 <code class="language-plaintext highlighter-rouge">self.view</code> 기준으로 x,y를 알려주는 값이고 <br />
+위에 주석 <code class="language-plaintext highlighter-rouge">2</code>는 <code class="language-plaintext highlighter-rouge">self.panGetstureView</code> 기준으로 x,y를 알려주는 값이다. <br />
 (마치 view의 frame과 bound 차이 그런 느낌…?)</p>
 
 <p><br /></p>
 
-<p>그럼 여기서 <code class="highlighter-rouge">point</code>와 <code class="highlighter-rouge">.changed</code>를 잘 생각해보자, <br />
-<code class="highlighter-rouge">.began</code>과 <code class="highlighter-rouge">.ended</code>는 한번만 호출되지만 <code class="highlighter-rouge">.changed</code>는 바뀔때마다 호출이 된다.</p>
+<p>그럼 여기서 <code class="language-plaintext highlighter-rouge">point</code>와 <code class="language-plaintext highlighter-rouge">.changed</code>를 잘 생각해보자, <br />
+<code class="language-plaintext highlighter-rouge">.began</code>과 <code class="language-plaintext highlighter-rouge">.ended</code>는 한번만 호출되지만 <code class="language-plaintext highlighter-rouge">.changed</code>는 바뀔때마다 호출이 된다.</p>
 
 <p><br /></p>
 
 <p>한마디로 롱터치 시작 후 <strong>변화</strong>되는 <strong>위치값</strong>을 알 수 있다.<br />
-이를 이용하면, 위에 GIF와 같이 롱터치후 변화 되는 값에 따라 <code class="highlighter-rouge">view</code>를 이동시켜줄 수 있다는 말이 된다!</p>
+이를 이용하면, 위에 GIF와 같이 롱터치후 변화 되는 값에 따라 <code class="language-plaintext highlighter-rouge">view</code>를 이동시켜줄 수 있다는 말이 된다!</p>
 
 <p><br /></p>
 
-<p>(잘 이해가 안된다면 위 코드에서 <code class="highlighter-rouge">point</code>와 <code class="highlighter-rouge">point2</code>를 주석걸고 <code class="highlighter-rouge">print</code>해서 x, y값에 대해 보면 이해에 도움이 될 것 같다.)</p>
+<p>(잘 이해가 안된다면 위 코드에서 <code class="language-plaintext highlighter-rouge">point</code>와 <code class="language-plaintext highlighter-rouge">point2</code>를 주석걸고 <code class="language-plaintext highlighter-rouge">print</code>해서 x, y값에 대해 보면 이해에 도움이 될 것 같다.)</p>
 
 </div>
   <div class="share-page">
@@ -446,13 +446,22 @@ A point in the local coordinate system of view that identifies the location of t
       
         
           
+      
+          
+      
+    
+  
+    
+      
+        
+          
             
             <div class="panel-body">
               <h4>Related Posts</h4>
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">(swift) DragAnimation(2/3) - Tranform</a>
+                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">(swift) DragAnimation(2/3) - Transform</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
                   
@@ -744,7 +753,7 @@ A point in the local coordinate system of view that identifies the location of t
     <a class="prev" href="/xcode/2019/07/29/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EC%A0%81%EC%9A%A9).html">&laquo; (Xcode) Configuration 파일 다루기 - (적용)</a>
   
   
-    <a class="next" href="/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html">(swift) DragAnimation(2/3) - Tranform &raquo;</a>
+    <a class="next" href="/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">(swift) DragAnimation(2/3) - Transform &raquo;</a>
   
 </div>
 

@@ -186,7 +186,7 @@
 <h3 id="fastlane을-이용한-ipa-추출-과정">Fastlane을 이용한 IPA 추출 과정</h3>
 <ol>
   <li>터미널 열기</li>
-  <li>명령어 입력 <code class="highlighter-rouge">fastlane gym</code></li>
+  <li>명령어 입력 <code class="language-plaintext highlighter-rouge">fastlane gym</code></li>
   <li>기다리기</li>
 </ol>
 
@@ -273,7 +273,7 @@
 <p>이렇게 여러가지 섞인 미션을 방송 1편이라 생각한다면
 우리는 이 미션 시작!을 외치면 알아서 스크린샷을 찍고 인증서 최신것으로 매칭한담에 앱스토어 빌드 제출한뒤 슬랙으로 알림을 날리고 완료! 라고 하겠지?</p>
 
-<p>위의 4가지 과정을  해야하는게 미션이고 이 미션이 곧 <code class="highlighter-rouge">lane</code>을 의미한다.</p>
+<p>위의 4가지 과정을  해야하는게 미션이고 이 미션이 곧 <code class="language-plaintext highlighter-rouge">lane</code>을 의미한다.</p>
 
 <p>난 굉장히 좋은 예시같다 생각하는데, 다른사람한테도 그래야할텐데~~</p>
 
@@ -287,11 +287,11 @@
 
 <p>이거 진짜다. 내가 맡은 앱중 하나가 이렇다..</p>
 
-<p><code class="highlighter-rouge">gym</code>이라는 명령어를 사용하면 아주 쉽게 IPA를 만드는 작업이 된다.
-근데, 별다른 셋팅을 안하고 <code class="highlighter-rouge">fastlane gym</code>이라는 명령어를 입력하면 첫번째 타겟(앱)을  IPA 추출해버렸다…</p>
+<p><code class="language-plaintext highlighter-rouge">gym</code>이라는 명령어를 사용하면 아주 쉽게 IPA를 만드는 작업이 된다.
+근데, 별다른 셋팅을 안하고 <code class="language-plaintext highlighter-rouge">fastlane gym</code>이라는 명령어를 입력하면 첫번째 타겟(앱)을  IPA 추출해버렸다…</p>
 
 <p>그래서 별다른 셋팅을 해줬다.
-<code class="highlighter-rouge">fastlane gym(scheme:”AppName”)</code>
+<code class="language-plaintext highlighter-rouge">fastlane gym(scheme:”AppName”)</code>
 이렇게~ 그랬더니 해당 앱으로 잘 IPA추출을 했다!!</p>
 
 <p>이런식으로 세세한 설정이 가능하단걸 전달하고 싶었다.</p>
@@ -303,7 +303,7 @@
 <p>회사에서 압축할때 AdHoc으로 추출할때가 많았지만, 위의 명령어를 쓰면 배포용이 나온다, 기본값이 앱스토어용인가보다.</p>
 
 <p>이 점은 옵션을 주면된다!</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane gym —-export_method ad-hoc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane gym —-export_method ad-hoc
 </code></pre></div></div>
 <p>그럼 adhoc으로 잘뽑아준다</p>
 
@@ -322,7 +322,7 @@
 빌드하면서 warning들을 다 뿌린다.  그러다가 오류가 마지막에 난다
 대충 읽어보면, 오류났는데! 정확히 몰라!! 아래 명렁어써서 다시 해봐!
 이런다. 
-<code class="highlighter-rouge">—verbose</code>
+<code class="language-plaintext highlighter-rouge">—verbose</code>
 그럼 로그에 상세히 남나보다. 근데, 로그 잘보면 되겠지만 서툴러서 잘 보지도 못하겠다.. 그래서 Xcode에서 아카이브 해봤더니, 착하게도
 빨간 느낌표를 보여주면서 뭐가 문제다라고 잘 얘기해준다.</p>
 
@@ -364,6 +364,13 @@
 </div>
 
 
+  
+    
+      
+        
+          
+      
+    
   
     
       

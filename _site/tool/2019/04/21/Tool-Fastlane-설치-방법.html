@@ -177,7 +177,7 @@
 </ul>
 
 <p>위와 같이 사소하지만 은근~히 신경이 쓰이는 것들이 필요한데, 이미 모든 작업을 어떻게 진행 할지 셋팅을 했기 때문에
-IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">fastlane IPA_Adhoc</code> (IPA_Adhoc은 미리 작성한 Lane)만 입력해주면, 손쉽게 파일 추출이 끝난다. 신경 쓸것은 Adhoc, Development, Distribution 등등 미리 작성해둔 <code class="highlighter-rouge">Lane</code> 이름만 생각 해내면 된다.</p>
+IPA로 추출을 할때 터미널에 명령어 <code class="language-plaintext highlighter-rouge">fastlane IPA_Adhoc</code> (IPA_Adhoc은 미리 작성한 Lane)만 입력해주면, 손쉽게 파일 추출이 끝난다. 신경 쓸것은 Adhoc, Development, Distribution 등등 미리 작성해둔 <code class="language-plaintext highlighter-rouge">Lane</code> 이름만 생각 해내면 된다.</p>
 
 <p><br /></p>
 <blockquote>
@@ -185,7 +185,7 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 </blockquote>
 
 <p>2의 경우는 1의 연장선이라고도 볼수있다. 아카이브 하고 추출까지 프로젝트 사이즈에 따라 다르지만, 3분~5분 정도였던것 같다. 그렇지만, 1에서 본것과 같이 중간 중간 버튼을 누른다던가 인증서를 선택 등등 할일이 있다, 그래서 짧다면 짧지만, 길다고 볼수도 있는 시간동안 맥북 앞에서 기다리고 있어야 한다.
-그치만 이 귀찮은 행동은 <code class="highlighter-rouge">Fastlane</code>을 사용함으로써 해결이 되었다. 명령어 치고 화장실도 다녀오고, 물도 마시고 돌아오면 추출이 끝나있다.</p>
+그치만 이 귀찮은 행동은 <code class="language-plaintext highlighter-rouge">Fastlane</code>을 사용함으로써 해결이 되었다. 명령어 치고 화장실도 다녀오고, 물도 마시고 돌아오면 추출이 끝나있다.</p>
 
 <p><br /> 
 <br /></p>
@@ -195,7 +195,7 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
   <p>단점 1. 생각보다 사용할 일이 적어서 익숙해지기 힘들다.</p>
 </blockquote>
 
-<p><code class="highlighter-rouge">Fastlane</code>은 배포, 추출, 인증서 관리 등등 도와주는 편리한 도구이다, 하지만 그것들을 할일이 자주 있는편이 아니다.
+<p><code class="language-plaintext highlighter-rouge">Fastlane</code>은 배포, 추출, 인증서 관리 등등 도와주는 편리한 도구이다, 하지만 그것들을 할일이 자주 있는편이 아니다.
 자주 써야 익숙해지던가 할텐데, 한 3번 정도 썼나,,,? 그러다보니 한달가량 썼지만 아직도 친숙함이 안느껴진다.</p>
 
 <blockquote>
@@ -224,34 +224,34 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 
 <p><strong>순서 1 커맨드 라인 툴 설치</strong></p>
 <ul>
-  <li>이것을 안하면 터미널에 <code class="highlighter-rouge">fastlane</code> 명령어 사용시 오류 발생할 수도 있다.</li>
+  <li>이것을 안하면 터미널에 <code class="language-plaintext highlighter-rouge">fastlane</code> 명령어 사용시 오류 발생할 수도 있다.</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select --install
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select --install
 </code></pre></div></div>
 
 <p><br /> 
-<strong>순서 2 Ruby Gem을 이용해 <code class="highlighter-rouge">Fastlane</code> 설치</strong></p>
+<strong>순서 2 Ruby Gem을 이용해 <code class="language-plaintext highlighter-rouge">Fastlane</code> 설치</strong></p>
 <ul>
   <li>sudo : 높은 권한으로 설치하기 위해!</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gem install fastlane -NV
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gem install fastlane -NV
 </code></pre></div></div>
 
 <p><br /> 
-<strong>순서 3 프로젝트에 <code class="highlighter-rouge">fastlane</code> 적용(초기화)하기</strong></p>
+<strong>순서 3 프로젝트에 <code class="language-plaintext highlighter-rouge">fastlane</code> 적용(초기화)하기</strong></p>
 <ul>
-  <li>Cocoapod을 사용해보았다면 <code class="highlighter-rouge">pod init</code>이랑 같은 개념</li>
+  <li>Cocoapod을 사용해보았다면 <code class="language-plaintext highlighter-rouge">pod init</code>이랑 같은 개념</li>
   <li>꼭 적용하려는 폴더로 이동후 명령어 입력하기</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane init
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane init
 </code></pre></div></div>
 <p><br /><br /></p>
 
 <h2 id="init-과정">init 과정</h2>
-<p><code class="highlighter-rouge">init</code>하게 되면 몇가지 셋팅을 과정이 있다. 아래 과정은 대부분 비슷하겠지만 프로젝트 셋팅 상태에 따라 뜰수도, 안뜰수도 있는 부분도 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">init</code>하게 되면 몇가지 셋팅을 과정이 있다. 아래 과정은 대부분 비슷하겠지만 프로젝트 셋팅 상태에 따라 뜰수도, 안뜰수도 있는 부분도 있다.</p>
 
 <p><strong>순서 1. 폴더내의 project 혹은 workspace가 여러개 존재한다면?</strong>
 <img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-04-21/image1.png" alt="" /></p>
@@ -277,7 +277,7 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 <p><strong>순서 3. 완료</strong>
 <img src="https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-04-21/image3.png" alt="" /></p>
 
-<p>위와 같이 하면 명령어들의 간단한 설명과 함께 <code class="highlighter-rouge">init</code>의 과정은 끝이난다.</p>
+<p>위와 같이 하면 명령어들의 간단한 설명과 함께 <code class="language-plaintext highlighter-rouge">init</code>의 과정은 끝이난다.</p>
 
 <p>그치만 위에 말했듯이 위와 다른 설명을 보았다면, 그곳엔 저 화면들이 아닌 애플 개발자 계정 셋팅 화면이 나왔을것이다. 하지만 바뀐후 달라진건지 애플 개발자 계정 넣는 부분이 안보였다.</p>
 
@@ -293,8 +293,8 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 
 <p><br /></p>
 
-<p>위에 <code class="highlighter-rouge">init</code> 과정이 끝난후 설치된 폴더내에 fastlane이란 폴더가 생겼을 것이다.
- 위2번 상황에서 4번을 택했으면 <code class="highlighter-rouge">Fastfile</code>과 <code class="highlighter-rouge">AppFile</code> 항목이 생겼을 것이다. (다른것을 선택했다면 더 있을 수 있다.)</p>
+<p>위에 <code class="language-plaintext highlighter-rouge">init</code> 과정이 끝난후 설치된 폴더내에 fastlane이란 폴더가 생겼을 것이다.
+ 위2번 상황에서 4번을 택했으면 <code class="language-plaintext highlighter-rouge">Fastfile</code>과 <code class="language-plaintext highlighter-rouge">AppFile</code> 항목이 생겼을 것이다. (다른것을 선택했다면 더 있을 수 있다.)</p>
 
 <p><br /></p>
 <ul>
@@ -304,9 +304,9 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 
 <p>위와 같은 역할들을 하며, Fastlane은 다음 포스팅때 하고 여기선 Appfile만!</p>
 
-<p><code class="highlighter-rouge">Appfile</code> 폴더의 내용은 다음과 같다.</p>
+<p><code class="language-plaintext highlighter-rouge">Appfile</code> 폴더의 내용은 다음과 같다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
  # apple_id("[[APPLE_ID]]") # Your Apple email address
  
  
@@ -317,16 +317,16 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 <p>여기서 설정해야할 부분은 처음 두줄.</p>
 
 <ul>
-  <li>1,2번줄 <code class="highlighter-rouge">#</code> 제거</li>
-  <li><code class="highlighter-rouge">[[APP_IDENTIFIER]]</code>에는 해당 프로젝트 BundleID 넣기.</li>
-  <li><code class="highlighter-rouge">[[APPLE_ID]]</code> 에는 개발자 계정 넣기.</li>
+  <li>1,2번줄 <code class="language-plaintext highlighter-rouge">#</code> 제거</li>
+  <li><code class="language-plaintext highlighter-rouge">[[APP_IDENTIFIER]]</code>에는 해당 프로젝트 BundleID 넣기.</li>
+  <li><code class="language-plaintext highlighter-rouge">[[APPLE_ID]]</code> 에는 개발자 계정 넣기.</li>
 </ul>
 
 <p><br /><br />
 그리고나서 인증서 받기(sign), 혹은 itunesConnect에 앱생성(produce) 명령어를 실행한다.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane produce
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastlane produce
 </code></pre></div></div>
-<p>그럼 <code class="highlighter-rouge">Appflie</code> 에 설정한 애플 계정의 패스워드를 요구한다.</p>
+<p>그럼 <code class="language-plaintext highlighter-rouge">Appflie</code> 에 설정한 애플 계정의 패스워드를 요구한다.</p>
 <blockquote>
   <p>애플 이중인증 사용중일시 appleid.apple.com 사이트에서 이중인증 비밀번호를 발급 받아서 입력!</p>
 </blockquote>
@@ -339,7 +339,7 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 <p>중요한건 <strong>애플 계정 연결</strong>이다.</p>
 
 <p><br /><br /> 
-여기까지 했다면 <code class="highlighter-rouge">Fastlane</code>의 기본적 사용을 위한 준비는 끝이나게 되고 다음 포스팅에선 <code class="highlighter-rouge">lane</code> 사용법에 대해서 포스팅할 예정이다.</p>
+여기까지 했다면 <code class="language-plaintext highlighter-rouge">Fastlane</code>의 기본적 사용을 위한 준비는 끝이나게 되고 다음 포스팅에선 <code class="language-plaintext highlighter-rouge">lane</code> 사용법에 대해서 포스팅할 예정이다.</p>
 
 </div>
   <div class="share-page">
@@ -365,6 +365,13 @@ IPA로 추출을 할때 터미널에 명령어 <code class="highlighter-rouge">f
 </div>
 
 
+  
+    
+      
+        
+          
+      
+    
   
     
       

@@ -5,9 +5,79 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 29 Mar 2020 19:29:02 +0900</pubDate>
-    <lastBuildDate>Sun, 29 Mar 2020 19:29:02 +0900</lastBuildDate>
-    <generator>Jekyll v3.7.4</generator>
+    <pubDate>Thu, 12 Nov 2020 20:31:02 +0900</pubDate>
+    <lastBuildDate>Thu, 12 Nov 2020 20:31:02 +0900</lastBuildDate>
+    <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>(DesignPattern) builder</title>
+        <description>&lt;p&gt;오랫만에 블로그 글 남기기.&lt;/p&gt;
+
+&lt;p&gt;참고 서적: gof의 디자인 패턴&lt;/p&gt;
+
+&lt;h1 id=&quot;학습-패턴-builder&quot;&gt;학습 패턴: Builder&lt;/h1&gt;
+
+&lt;h2 id=&quot;구성-요소&quot;&gt;구성 요소&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Builder&lt;/li&gt;
+  &lt;li&gt;Concrete Builder&lt;/li&gt;
+  &lt;li&gt;Director&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;builder&quot;&gt;Builder&lt;/h3&gt;
+
+&lt;p&gt;Protocol&lt;/p&gt;
+
+&lt;h3 id=&quot;concrete-builder&quot;&gt;Concrete Builder&lt;/h3&gt;
+
+&lt;p&gt;builder를 준수한 구현 클래스&lt;/p&gt;
+
+&lt;h3 id=&quot;director&quot;&gt;Director&lt;/h3&gt;
+
+&lt;p&gt;Concrete Builder를 이용하여 객체를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;return&lt;/code&gt; 해주는 구현 클래스&lt;/p&gt;
+
+&lt;h2 id=&quot;핵심은-builder&quot;&gt;핵심은 Builder&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Builder는 product를 속성 값을 셋팅하는 함수는 builder를 반환한다. (Chain을 쓰기 위함.)&lt;/li&gt;
+  &lt;li&gt;메소드 생성시 묶을 수 있는 부분은 같이 묶는다
+    &lt;ul&gt;
+      &lt;li&gt;ex) UIButton에 테두리를 만들때 보통 Color와 Width는 둘다 입력하게 되므로 인자값에 Color와 Width를 넣어 하나로 묶는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;product를 생성시 미리 받은 속성 값을 이용해 필수 값을 누락 했는지 안했는지 확인 가능.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;장점&quot;&gt;장점&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Rxswift때처럼 체인 기능을 이용하여, 객체 생성때 필요한 모든 것을 한 라인(줄바꿈은 당연!)으로 생성이 가능하여, 해당 코드 분산이 적다.&lt;/li&gt;
+  &lt;li&gt;위의 예시처럼 Bolder의 Width와 Color는 보통 묶어서 처리가 가능하므로 코드 라인이 더 적어진다.&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;그러면-director는&quot;&gt;그러면 Director는?&lt;/h3&gt;
+
+&lt;p&gt;배우면서 개인적인 생각으론, Builder와 Concrete Builder만으로 시작 했을 듯하다.&lt;/p&gt;
+
+&lt;p&gt;체인 기능을 쓰며, 자기가 Builder에 추상화한대로 명확하게 새로운 객체 생성이 가능해졌으며,&lt;/p&gt;
+
+&lt;p&gt;하단의 버튼들이라던가 특정 뷰들이 생성하다보면 분명 같은 코드가 나올것이다.&lt;/p&gt;
+
+&lt;p&gt;그럼, 이런 공통의 Concrete Builder들을 관리하는 것이 필요하다 느끼고 Builder를 Return하는 class를 만들고&lt;/p&gt;
+
+&lt;p&gt;이름을 Director라고 붙여준것 같다는 느낌을 받았다. 개인적으로 &amp;lt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 12 Nov 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/designpattern/2020/11/12/designPattern-DesignPattern-Builder.html</link>
+        <guid isPermaLink="true">http://localhost:4000/designpattern/2020/11/12/designPattern-DesignPattern-Builder.html</guid>
+        
+        
+        <category>DesignPattern</category>
+        
+      </item>
     
       <item>
         <title>(xcode) 반성글 - 다크모드 적용 안하기</title>
@@ -82,24 +152,24 @@ Xcode11로 올리고 강제로 라이트 모드처럼만 보이고 싶을것이�
 &lt;h3 id=&quot;property-list&quot;&gt;Property List&lt;/h3&gt;
 
 &lt;p&gt;우선, 기본 상태인 Property List에서 오른쪽 클릭을 하면 다음과 같은 메뉴가 나오며,&lt;br /&gt;
-이 상태에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Add Row&lt;/code&gt;를 누르면 한 줄이 추가가 된다.&lt;br /&gt;&lt;/p&gt;
+이 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add Row&lt;/code&gt;를 누르면 한 줄이 추가가 된다.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img2.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;그럼 새로운 Key와 Value를 적을 수 있는데,&lt;br /&gt; 
-key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;정도 까지만 적어도 아래 이미지와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;User Interface Style&lt;/code&gt;이라는 항목이 보일 것이다. &lt;br /&gt;
+key 부분에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt;정도 까지만 적어도 아래 이미지와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User Interface Style&lt;/code&gt;이라는 항목이 보일 것이다. &lt;br /&gt;
 이것을 선택 or 입력해준다.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img3.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;타입은 &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;으로 기본 셋팅이 될것이고, &lt;code class=&quot;highlighter-rouge&quot;&gt;Value&lt;/code&gt; 부분에 올 수 있는것은 2가지다.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;으로 기본 셋팅이 될것이고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Value&lt;/code&gt; 부분에 올 수 있는것은 2가지다.&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Light&lt;/li&gt;
   &lt;li&gt;Dark &lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;대소문자 신경쓰자. 스펠링 틀리거나 대문자로 시작 안할 경우 디폴트 값인 &lt;code class=&quot;highlighter-rouge&quot;&gt;Light&lt;/code&gt;로 적용이 된다. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;대소문자 신경쓰자. 스펠링 틀리거나 대문자로 시작 안할 경우 디폴트 값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Light&lt;/code&gt;로 적용이 된다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img4.jpg&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -107,7 +177,7 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
 
 &lt;p&gt;위에 보면 Key, Value 값으로 들어간다는건 Dictionary 형태라는걸 알 수 있었고,&lt;br /&gt;
 소스코드 상으로 보면 아래 이미지와 같고, 
-시작을 알리는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;dict&amp;gt;&lt;/code&gt;와 끝을 적어주는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;/dict&amp;gt;&lt;/code&gt;인 빨간 부분이 보일것이다.&lt;br /&gt;
+시작을 알리는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dict&amp;gt;&lt;/code&gt;와 끝을 적어주는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;/dict&amp;gt;&lt;/code&gt;인 빨간 부분이 보일것이다.&lt;br /&gt;
 그 사이에 노란 부분처럼 다음코드를 적당한 위치에 아무곳에 적어주면 적용이 된다.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-29/img5.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
@@ -125,19 +195,19 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
 
 &lt;ul&gt;
   &lt;li&gt;AppDelegate or SceneDelegate &lt;br /&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;window?.overrideUserInterfaceStyle = .light
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;window?.overrideUserInterfaceStyle = .light
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;ViewController &lt;br /&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.overrideUserInterfaceStyle = .light
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.overrideUserInterfaceStyle = .light
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;두가지의 차이라 함은 &lt;br /&gt;
-1은 &lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;에 적용하다보니 모든 화면에 적용되는 반면,&lt;br /&gt;
-2는 해당 &lt;code class=&quot;highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;에서만 적용이 된다는 점이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+1은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;window&lt;/code&gt;에 적용하다보니 모든 화면에 적용되는 반면,&lt;br /&gt;
+2는 해당 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;에서만 적용이 된다는 점이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;ps-시뮬레이터에-다크모드-키는-방법&quot;&gt;ps. 시뮬레이터에 다크모드 키는 방법&lt;/h2&gt;
 
@@ -155,11 +225,11 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
       </item>
     
       <item>
-        <title>(swift) DragAnimation(2/3) - Tranform</title>
-        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. &lt;br /&gt; 
+        <title>(swift) DragAnimation(2/3) - Transform</title>
+        <description>&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. &lt;br /&gt; 
 그러다보니 여기서 생각보다 오래걸렸다 &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;아무튼, &lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 녀석을 배워보자. 단어부터 보자&lt;/p&gt;
+&lt;p&gt;아무튼, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 녀석을 배워보자. 단어부터 보자&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Transform&lt;/p&gt;
   &lt;ol&gt;
@@ -170,10 +240,10 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
 &lt;p&gt;전부 변화에 관한 얘기다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이후에 다음과 같은 코드가 많이 나온다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;view.transform = 블라블라
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;view.transform = 블라블라
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;블라블라 부분은 뒤에서 설명하고 그 앞만 보면 &lt;br /&gt;
-“&lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt;를 변화,변경,변모 시키다.” 로 되겠지? &lt;br /&gt; 
+“&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 변화,변경,변모 시키다.” 로 되겠지? &lt;br /&gt; 
 영어권은 코딩이 참 쉬울거 같다. 부럽다 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;대충 뭘 하겠단건 알겠고, 무엇을 할 수 있는지 보자.&lt;/p&gt;
@@ -200,7 +270,7 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
 
 &lt;p&gt;위와 같이 텍스트 세로로 늘어나고, 가로는 줄어 들었다. &lt;br /&gt;
 마치 저 자체가 &lt;strong&gt;이미지&lt;/strong&gt;였던것처럼 변화하였다. &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 녀석에 타입은 &lt;code class=&quot;highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;이다. &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 녀석에 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;이다. &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;그럼 이 녀석에 대한 문서를 보자&lt;/p&gt;
 
@@ -208,7 +278,7 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
 
 &lt;p&gt;음.. 자세한건 각자 보도록 하자…. 링크는 &lt;a href=&quot;https://developer.apple.com/documentation/coregraphics/cgaffinetransform?language=objc&quot;&gt;여기..&lt;/a&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;이란 단어 아래 문구는 다음과 같다.&lt;/p&gt;
+&lt;p&gt;여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;이란 단어 아래 문구는 다음과 같다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;An affine transformation matrix for use in drawing 2D graphics &lt;br /&gt;&lt;/p&gt;
@@ -219,9 +289,9 @@ key 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;�
 이러한 방식이다보니, 단순 도형이 아니라면 효과를 줄때 주의를 해야할 것 같다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇담 이제 사용법에 대해 알아보자 &lt;br /&gt; 
-(스위치 4개를 모두 하나의 &lt;code class=&quot;highlighter-rouge&quot;&gt;IBAction&lt;/code&gt; 함수에 연결 시켰고 그 함수의 내용은 다음과 같다)&lt;/p&gt;
+(스위치 4개를 모두 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IBAction&lt;/code&gt; 함수에 연결 시켰고 그 함수의 내용은 다음과 같다)&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 선언
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 선언
 var transform: CGAffineTransform?
 
 // sender = 스위치 / 스위치 종류에 따른 Switch문
@@ -250,36 +320,36 @@ UIView.animate(withDuration: 0.3) {
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;굉장히 단순 하다. &lt;br /&gt;
-하나씩 봅시다. (인자들은 모두 &lt;code class=&quot;highlighter-rouge&quot;&gt;CGFloat&lt;/code&gt; 타입) &lt;br /&gt;&lt;/p&gt;
+하나씩 봅시다. (인자들은 모두 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGFloat&lt;/code&gt; 타입) &lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;크기&quot;&gt;크기&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(scaleX: 2, y: 2)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(scaleX: 2, y: 2)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;원하는 배율을 적어주면 된다. 가로로 몇배, 세로로 몇배. 쉽다.&lt;/p&gt;
 
 &lt;h2 id=&quot;회전&quot;&gt;회전&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(rotationAngle: .pi)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(rotationAngle: .pi)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;원하는 회전 각을 적어주면 된다. &lt;code class=&quot;highlighter-rouge&quot;&gt;.pi&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;.pi / 4&lt;/code&gt;  등등 원하는대로!&lt;/p&gt;
+&lt;p&gt;원하는 회전 각을 적어주면 된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pi&lt;/code&gt;,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pi / 4&lt;/code&gt;  등등 원하는대로!&lt;/p&gt;
 
 &lt;h2 id=&quot;위치&quot;&gt;위치&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(translationX: 0, y: -100)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;transform = CGAffineTransform(translationX: 0, y: -100)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;translation&lt;/code&gt;은 변환인거 같은데,, &lt;br /&gt; 
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translation&lt;/code&gt;은 변환인거 같은데,, &lt;br /&gt; 
 솔직히 다른것처럼 확 와닿진 않는다. &lt;br /&gt; 
 넣는 x,y 값만큼 기존 값에 더해지게 된다. &lt;br /&gt;
 여기선 x는 0, y는 -100 했기 때문에, 가로축 이동은 없고 세로축은 위쪽으로 100만큼 이동하였다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그리고 해당 뷰의 &lt;code class=&quot;highlighter-rouge&quot;&gt;transform&lt;/code&gt;에 적용해 주면 된다.&lt;/p&gt;
+&lt;p&gt;그리고 해당 뷰의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transform&lt;/code&gt;에 적용해 주면 된다.&lt;/p&gt;
 
 &lt;h2 id=&quot;원상-복구&quot;&gt;원상 복구&lt;/h2&gt;
 
 &lt;p&gt;적용했으니 되돌리는것도 필요한건 당연 &lt;br /&gt;
 아주 간단하다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.justView.transform = CGAffineTransform.identity
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.justView.transform = CGAffineTransform.identity
 // or 
 self.justView.transform = .identity
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -293,21 +363,21 @@ self.justView.transform = .identity
 
 &lt;p&gt;그럼 위의 코드 2-4 부분에 보면 다음과 같은 코드가 있었다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 2-4. 초기화(크기 &amp;amp; 위치)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 2-4. 초기화(크기 &amp;amp; 위치)
 transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;딱보면 누가 봐도 &lt;code class=&quot;highlighter-rouge&quot;&gt;크기&lt;/code&gt;에 대해 변화도 주고, &lt;code class=&quot;highlighter-rouge&quot;&gt;위치&lt;/code&gt;값도 조절하게 생겼다. &lt;br /&gt;
+&lt;p&gt;딱보면 누가 봐도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;크기&lt;/code&gt;에 대해 변화도 주고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;위치&lt;/code&gt;값도 조절하게 생겼다. &lt;br /&gt;
  위에 gif에 생략된 마지막 4번째 스위치에 대한 동작을 보자. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/gif3.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위의 짤과 같이 크기(&lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt;)변화가 있으면서 위치(&lt;code class=&quot;highlighter-rouge&quot;&gt;translate&lt;/code&gt;)에 대한 변화도 있다.&lt;br /&gt;
+&lt;p&gt;위의 짤과 같이 크기(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt;)변화가 있으면서 위치(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translate&lt;/code&gt;)에 대한 변화도 있다.&lt;br /&gt;
 저기서 끝이아니라 회전도 가져다 붙여줄 수 있다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Q.이미 Scale이 있는데, Scale을 한번더 붙이면 어떻게 되나? &lt;br /&gt;
-A. scale이 둘다 안먹힐때도 있고 마지막만 먹힐때도 있고 중구 난방이었다.&lt;/p&gt;
+A. scale이 둘다 안먹힐때도 있고 마지막만 먹힐때도 있고 중구 난방이었다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;주의&quot;&gt;주의!!&lt;/h2&gt;
@@ -321,18 +391,18 @@ A * B와,,, B * A는 다르다…..  더 자세한건 아래에. &lt;br /&gt;&lt
 
 &lt;p&gt;(기본적인 사용법은 위가 전부. 아래는 아주 아주 살짝 심화랄까? ..) &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;저 &lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 아이를 콘솔에 찍어보면 어떻게 나올까? &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transform&lt;/code&gt;이란 아이를 콘솔에 찍어보면 어떻게 나올까? &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;먼저 원상 복구 값인 &lt;code class=&quot;highlighter-rouge&quot;&gt;.identity&lt;/code&gt; 출력 값을 보자 &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;먼저 원상 복구 값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.identity&lt;/code&gt; 출력 값을 보자 &lt;br /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CGAffineTransform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, tx: 0.0, ty: 0.0)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CGAffineTransform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, tx: 0.0, ty: 0.0)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;음 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;는 1이고 나머진 0이 기본이란걸 알 수 있다.&lt;/p&gt;
+&lt;p&gt;음 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;는 1이고 나머진 0이 기본이란걸 알 수 있다.&lt;/p&gt;
 
-&lt;p&gt;위에 &lt;code class=&quot;highlighter-rouge&quot;&gt;switch&lt;/code&gt;문에 있던 애들을 각각 찍어보자. 아래 코드처럼.&lt;/p&gt;
+&lt;p&gt;위에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt;문에 있던 애들을 각각 찍어보자. 아래 코드처럼.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 선언
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 선언
 var transform: CGAffineTransform?
 
 switch sender {
@@ -357,8 +427,8 @@ print(transform!)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;3에 보면 tranform이란 것에 대해 출력이 추가 되었다.( 이쁘게 출력하기 위해 강제해제&lt;code class=&quot;highlighter-rouge&quot;&gt;!&lt;/code&gt; )&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 크기
+&lt;p&gt;3에 보면 transform이란 것에 대해 출력이 추가 되었다.( 이쁘게 출력하기 위해 강제해제&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!&lt;/code&gt; )&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 크기
 CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: 0.0)
 // 2. 회전
 CGAffineTransform(a: -1.0, b: 1.2246467991473532e-16, c: -1.2246467991473532e-16, d: -1.0, tx: 0.0, ty: 0.0)
@@ -369,16 +439,16 @@ CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;d&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;tx&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;ty&lt;/code&gt; &lt;br /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tx&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ty&lt;/code&gt; &lt;br /&gt;
 문서에서 얼핏 본듯 하여 문서를 다시 보았다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/img2.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 그래픽적으로 표현하는구나 하였었고, 이는 3x3 행렬로 보여주는 형식이었다. &lt;br /&gt; 
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 그래픽적으로 표현하는구나 하였었고, 이는 3x3 행렬로 보여주는 형식이었다. &lt;br /&gt; 
 근데 아랫줄에 보면 다음과 같이 적혀있다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;3번째 컬럼은 항상 (0,0,1)이다. 고로 CGAffineTranform은 1열과 2열에 대한 값을 가지고 있다. &lt;br /&gt;&lt;/p&gt;
+  &lt;p&gt;3번째 컬럼은 항상 (0,0,1)이다. 고로 CGAffineTransform은 1열과 2열에 대한 값을 가지고 있다. &lt;br /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;그렇다 한다. &lt;br /&gt; 
@@ -388,26 +458,26 @@ CGAffineTransform(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위와 같이 이미지 같은 형식으로 각각 초기화하게 된다. &lt;br /&gt; 
-가장 기본은 위에 나온것 처럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;d&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;tx&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;ty&lt;/code&gt; 이며, &lt;br /&gt; 
+가장 기본은 위에 나온것 처럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tx&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ty&lt;/code&gt; 이며, &lt;br /&gt; 
 이건 필자처럼 어렵게 생각하니 쉽게 쓰라고 &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;rotationAngle&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;translation&lt;/code&gt;을 이용하여 사용성을 높힌듯 하다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rotationAngle&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translation&lt;/code&gt;을 이용하여 사용성을 높힌듯 하다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;그리고 두가지를 이용한 4를 보면, 저 값은 (위치 행렬 x 크기 행렬)과 같다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;하.. 잘봐야한다.. &lt;br /&gt;
-2-4의 순서가 &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;translate&lt;/code&gt;라서 &lt;br /&gt;
-당연히  &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; x &lt;code class=&quot;highlighter-rouge&quot;&gt;translate&lt;/code&gt;인줄 알았더만 &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;translate&lt;/code&gt; x &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; 이었다…. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+2-4의 순서가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translate&lt;/code&gt;라서 &lt;br /&gt;
+당연히  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt; x &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translate&lt;/code&gt;인줄 알았더만 &lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translate&lt;/code&gt; x &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt; 이었다…. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;A * B와 B * A는 다르니….. 사용에 굉장히 주의바람 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-25/img5.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;(A: &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; B: &lt;code class=&quot;highlighter-rouge&quot;&gt;translation&lt;/code&gt;)&lt;br /&gt;
+&lt;p&gt;(A: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt; B: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translation&lt;/code&gt;)&lt;br /&gt;
 의도는 -100 이었지만 -200에 해당되는 이동을 하게된다. 조심바람…. &lt;br /&gt;
 -100 만큼 이동하고 2배로 키우고 싶었다면 아래 O 부분처럼 해야한다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// X
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// X
 transform = CGAffineTransform(scaleX: 2, y: 2).translatedBy(x: 0, y: -100)
 
 // O
@@ -426,7 +496,7 @@ B * A는 다음과 같다. &lt;br /&gt;&lt;/p&gt;
   &lt;li&gt;ty = -100 x 2&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(a: 2.0, b: 0.0, c: 0.0, d: 2.0, tx: 0.0, ty: -200.0)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;이렇게 정의가 된다. 위에 4번과 일치 &lt;br /&gt;&lt;/p&gt;
@@ -438,8 +508,8 @@ B * A는 다음과 같다. &lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&quot;끝&quot;&gt;끝.&lt;/h2&gt;
 </description>
         <pubDate>Wed, 25 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Tranform.html</guid>
+        <link>http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html</guid>
         
         
         <category>Swift</category>
@@ -585,7 +655,7 @@ B * A는 다음과 같다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;일단 적용하는 코드부터 보자&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Long Press Gesture - 선언
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Long Press Gesture - 선언
 let longTouchGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTouchAction(_:)))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -600,47 +670,47 @@ let longTouchGesture = UILongPressGestureRecognizer(target: self, action: #selec
 
 &lt;p&gt;이건 제스쳐에 대한 정의만 된 것이다. 그렇담 이 제스쳐를 어딘가에 적용을 시켜줘야겠지?&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Long Press Gesture - 적용
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Long Press Gesture - 적용
 view.addGestureRecognizer(panGestrue)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;다시말해 의미는 다음과 같다. &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt;를 롱터치 했을 때, &lt;code class=&quot;highlighter-rouge&quot;&gt;self&lt;/code&gt;에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;longTouchAction(_:)&lt;/code&gt; 라는 함수를 실행하자~&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 롱터치 했을 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self&lt;/code&gt;에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;longTouchAction(_:)&lt;/code&gt; 라는 함수를 실행하자~&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;근데 여기서 longTouchAction이라는 함수를 보면 다음과 같다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@objc
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@objc
 func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
     print(recognizer.state.rawValue)
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@objc&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;selector&lt;/code&gt;에다 써주려면 써야하고, &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;recognizer&lt;/code&gt;라는 애가 제스쳐에 대한 정보를 가지고 있다&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@objc&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;selector&lt;/code&gt;에다 써주려면 써야하고, &lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recognizer&lt;/code&gt;라는 애가 제스쳐에 대한 정보를 가지고 있다&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;이를 통해 많은 것을 알 수 있지만 여기서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.state&lt;/code&gt;에 대해서 알아보자.
+&lt;p&gt;이를 통해 많은 것을 알 수 있지만 여기서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.state&lt;/code&gt;에 대해서 알아보자.
 &lt;img src=&quot;/assets/images/2020-03-01/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;그렇다 &lt;code class=&quot;highlighter-rouge&quot;&gt;enum&lt;/code&gt;이고 자료형은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Int&lt;/code&gt;이다. 그렇단건 &lt;code class=&quot;highlighter-rouge&quot;&gt;switch&lt;/code&gt;랑 궁합이 잘 맞겠다는 말~&lt;/p&gt;
+&lt;p&gt;그렇다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;이고 자료형은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Int&lt;/code&gt;이다. 그렇단건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt;랑 궁합이 잘 맞겠다는 말~&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;enum&lt;/code&gt;이니 종류를 한번 보자.
+&lt;p&gt;그럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;이니 종류를 한번 보자.
 &lt;img src=&quot;/assets/images/2020-03-01/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;뭐가 많다. 세분화해서 사용 가능하다.&lt;/p&gt;
 
 &lt;p&gt;근데 이 글에선 롱터치의 시작, 종료, 변화에 대해서 알면 된다.&lt;/p&gt;
 
-&lt;p&gt;다시말해 &lt;code class=&quot;highlighter-rouge&quot;&gt;.began&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;.ended&lt;/code&gt; 그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;.changed&lt;/code&gt;만 알면 된다.&lt;/p&gt;
+&lt;p&gt;다시말해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.began&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ended&lt;/code&gt; 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt;만 알면 된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;아래의 코드를 보자.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@objc
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@objc
 func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
     switch recognizer.state {
     case .began:
@@ -662,18 +732,18 @@ func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.began&lt;/code&gt; &lt;br /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.began&lt;/code&gt; &lt;br /&gt;
 롱프레스가 시작 됐다를 알려준다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.ended&lt;/code&gt; &lt;br /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ended&lt;/code&gt; &lt;br /&gt;
 롱프레스가 끝났다를 알려준다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.changed&lt;/code&gt; &lt;br /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt; &lt;br /&gt;
 얘를 주목하자,&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;저 &lt;code class=&quot;highlighter-rouge&quot;&gt;location(in:_)&lt;/code&gt;이 무엇이냐 하면, 문서상 이렇게 써있다.&lt;/p&gt;
+&lt;p&gt;저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;location(in:_)&lt;/code&gt;이 무엇이냐 하면, 문서상 이렇게 써있다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Summary&lt;br /&gt;
@@ -694,32 +764,32 @@ A point in the local coordinate system of view that identifies the location of t
 &lt;p&gt;어렵다, 쉽게 말해 다음과 같다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;당신이 터치한 위치 정보(좌표)를 알려 줄게! 어느 &lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt;를 기준으로 할지 알려줘&lt;/p&gt;
+  &lt;p&gt;당신이 터치한 위치 정보(좌표)를 알려 줄게! 어느 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 기준으로 할지 알려줘&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;즉, 전체 화면상 x,y가 몇인지 알면 좋긴 하겠지만, &lt;br /&gt;
-특정 &lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt;위에서 x,y가 몇인지 계산하기 귀찮으니 기준점을 알려주면 알아서 계산된 값을 알려준다.&lt;/p&gt;
+특정 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;위에서 x,y가 몇인지 계산하기 귀찮으니 기준점을 알려주면 알아서 계산된 값을 알려준다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;다시 말해, &lt;br /&gt;
-위에 주석 &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;self.view&lt;/code&gt; 기준으로 x,y를 알려주는 값이고 &lt;br /&gt;
-위에 주석 &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;self.panGetstureView&lt;/code&gt; 기준으로 x,y를 알려주는 값이다. &lt;br /&gt;
+위에 주석 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self.view&lt;/code&gt; 기준으로 x,y를 알려주는 값이고 &lt;br /&gt;
+위에 주석 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self.panGetstureView&lt;/code&gt; 기준으로 x,y를 알려주는 값이다. &lt;br /&gt;
 (마치 view의 frame과 bound 차이 그런 느낌…?)&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그럼 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;point&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;.changed&lt;/code&gt;를 잘 생각해보자, &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;.began&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;.ended&lt;/code&gt;는 한번만 호출되지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;.changed&lt;/code&gt;는 바뀔때마다 호출이 된다.&lt;/p&gt;
+&lt;p&gt;그럼 여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;point&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt;를 잘 생각해보자, &lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.began&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ended&lt;/code&gt;는 한번만 호출되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt;는 바뀔때마다 호출이 된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;한마디로 롱터치 시작 후 &lt;strong&gt;변화&lt;/strong&gt;되는 &lt;strong&gt;위치값&lt;/strong&gt;을 알 수 있다.&lt;br /&gt;
-이를 이용하면, 위에 GIF와 같이 롱터치후 변화 되는 값에 따라 &lt;code class=&quot;highlighter-rouge&quot;&gt;view&lt;/code&gt;를 이동시켜줄 수 있다는 말이 된다!&lt;/p&gt;
+이를 이용하면, 위에 GIF와 같이 롱터치후 변화 되는 값에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 이동시켜줄 수 있다는 말이 된다!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;(잘 이해가 안된다면 위 코드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;point&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;point2&lt;/code&gt;를 주석걸고 &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;해서 x, y값에 대해 보면 이해에 도움이 될 것 같다.)&lt;/p&gt;
+&lt;p&gt;(잘 이해가 안된다면 위 코드에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;point&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;point2&lt;/code&gt;를 주석걸고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;print&lt;/code&gt;해서 x, y값에 대해 보면 이해에 도움이 될 것 같다.)&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 01 Mar 2020 00:00:00 +0900</pubDate>
@@ -753,7 +823,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;새 파일을 만든다. Command + n&lt;/p&gt;
 
-&lt;p&gt;거기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Configuration Settings File&lt;/code&gt; 라는 파일을 찾고, 만약 찾기 힘들다면&lt;/p&gt;
+&lt;p&gt;거기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuration Settings File&lt;/code&gt; 라는 파일을 찾고, 만약 찾기 힘들다면&lt;/p&gt;
 
 &lt;p&gt;검색 기능을 이용해서 찾자&lt;/p&gt;
 
@@ -847,7 +917,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;h1 id=&quot;bundle-id-적용&quot;&gt;Bundle ID 적용&lt;/h1&gt;
 
-&lt;p&gt;Target의 Build Setting에서 Bundle 이라고 검색하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Product BUndle Identifier&lt;/code&gt;라는 항목이 보인다.&lt;/p&gt;
+&lt;p&gt;Target의 Build Setting에서 Bundle 이라고 검색하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product BUndle Identifier&lt;/code&gt;라는 항목이 보인다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -857,7 +927,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그럼 여기는 &lt;code class=&quot;highlighter-rouge&quot;&gt;$(inherited)&lt;/code&gt;를 넣어줌으로써 Config따라 값이 바뀌게 해준다.&lt;/p&gt;
+&lt;p&gt;그럼 여기는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(inherited)&lt;/code&gt;를 넣어줌으로써 Config따라 값이 바뀌게 해준다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;이 부분이 가장 중요. 나머진 응용 &amp;amp; 반복!&lt;/p&gt;
@@ -869,7 +939,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그리고 Build setting 말고 General 보면 나오는 Bundle ID는 깔끔하게 결과값만 나온다! 아마 &lt;code class=&quot;highlighter-rouge&quot;&gt;Resolved&lt;/code&gt;값을 표출하는것 아닌가 싶다.&lt;/p&gt;
+&lt;p&gt;그리고 Build setting 말고 General 보면 나오는 Bundle ID는 깔끔하게 결과값만 나온다! 아마 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Resolved&lt;/code&gt;값을 표출하는것 아닌가 싶다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -900,13 +970,13 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;이건 간단하지만 살짝 다르다.&lt;/p&gt;
 
-&lt;p&gt;BuildSetting 부분에 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Product Name&lt;/code&gt;이란 부분이 있는데, 이 부분을 수정하고 빌드하면 2개가 설치 되긴하는데,&lt;/p&gt;
+&lt;p&gt;BuildSetting 부분에 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Name&lt;/code&gt;이란 부분이 있는데, 이 부분을 수정하고 빌드하면 2개가 설치 되긴하는데,&lt;/p&gt;
 
 &lt;p&gt;두번째꺼 설치후 다시 빌드하면 오류를 뿜는다. 쓰지말자,&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Config파일에 &lt;code class=&quot;highlighter-rouge&quot;&gt;DISPLAY_NAME&lt;/code&gt;이라는 항목을 넣어줬으며, 이것을 검색하면 보인다.&lt;/p&gt;
+&lt;p&gt;Config파일에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DISPLAY_NAME&lt;/code&gt;이라는 항목을 넣어줬으며, 이것을 검색하면 보인다.&lt;/p&gt;
 
 &lt;p&gt;보면 DISPLAY_NAME 위에 User-Defined 라는 항목이 보이며, 이 부분 아래는 전부&lt;/p&gt;
 
@@ -918,7 +988,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위와 같이 Display 부분에 &lt;code class=&quot;highlighter-rouge&quot;&gt;$(DISPLAY_NAME)&lt;/code&gt; 이라고 적어주면 끝!&lt;/p&gt;
+&lt;p&gt;위와 같이 Display 부분에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(DISPLAY_NAME)&lt;/code&gt; 이라고 적어주면 끝!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -928,7 +998,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;가장 마지막단의 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Resolved&lt;/code&gt;되니 Config에 정의한 그 값이 곧 그 값!&lt;/p&gt;
+&lt;p&gt;가장 마지막단의 값이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Resolved&lt;/code&gt;되니 Config에 정의한 그 값이 곧 그 값!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -955,19 +1025,19 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt;를 이용!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt;를 이용!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Info.plist 파일에서 오른쪽 클릭을하면 아래와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Add Row&lt;/code&gt;가 보일것이다! 클릭&lt;/p&gt;
+&lt;p&gt;Info.plist 파일에서 오른쪽 클릭을하면 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add Row&lt;/code&gt;가 보일것이다! 클릭&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;이름은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Server URL&lt;/code&gt;이 적당하려나? (다른값 보고 따라함)&lt;/p&gt;
+&lt;p&gt;이름은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Server URL&lt;/code&gt;이 적당하려나? (다른값 보고 따라함)&lt;/p&gt;
 
-&lt;p&gt;아무튼 그렇게 해주고 타입은 &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;  값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;$(SERVER_URL)&lt;/code&gt;! 아래처럼 적용&lt;/p&gt;
+&lt;p&gt;아무튼 그렇게 해주고 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;  값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(SERVER_URL)&lt;/code&gt;! 아래처럼 적용&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img11.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -975,12 +1045,12 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;그럼 이제 가져다 써보자&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if let url = Bundle.main.object(forInfoDictionaryKey: &quot;Server URL&quot;) as? String {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if let url = Bundle.main.object(forInfoDictionaryKey: &quot;Server URL&quot;) as? String {
     print(&quot;plist에서 받은 값은 \(url)&quot;)
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;이런식으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;plist&lt;/code&gt;에 접근해서 값을 가지고 올 수 있다.&lt;/p&gt;
+&lt;p&gt;이런식으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist&lt;/code&gt;에 접근해서 값을 가지고 올 수 있다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;object 함수 Summary 부분 발췌&lt;/p&gt;
@@ -1038,7 +1108,7 @@ A point in the local coordinate system of view that identifies the location of t
   &lt;li&gt;개발 서버 깔고 나갔다가, 결제 직전 알아차려서 앱스토어에서 다시 받아야하는 귀차니즘 발생&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;그래서, 예전에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Let's Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
+&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let's Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
 
 &lt;p&gt;(여러번 시도했었지만 실패,,, 하지만 성공했으니 포스팅을 아하하, 해당 세션 Toss개발자님 사랑합니다. 토스 가고싶어요)&lt;/p&gt;
 
@@ -1065,7 +1135,7 @@ A point in the local coordinate system of view that identifies the location of t
 &lt;h3 id=&quot;1-scheme&quot;&gt;1. Scheme&lt;/h3&gt;
 
 &lt;p&gt;이건 선택 가능 옵션이 Release? or Debug? 뿐이었다, 그렇단건 코드에서 아래와 같은 조건으로 주소 변경만 될뿐, 앱을 나눌수 없는거 같다&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var address: String = &quot;&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var address: String = &quot;&quot;
 #if DEBUG
     address = &quot;www.dev.com&quot;
 #else
@@ -1091,7 +1161,7 @@ A point in the local coordinate system of view that identifies the location of t
 &lt;p&gt;하지만 문제점 있음!&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;문제점1: Build Setting이 별도라는건, 수정해야할게 두가지라는 점.&lt;/li&gt;
-  &lt;li&gt;문제점2: 새로 파일을 만들경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;Target Memebership&lt;/code&gt;을 다 체크해줘야함&lt;/li&gt;
+  &lt;li&gt;문제점2: 새로 파일을 만들경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target Memebership&lt;/code&gt;을 다 체크해줘야함&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;(Target Membership 체크해야하는 화면)&lt;/p&gt;
@@ -1105,7 +1175,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;h1 id=&quot;configuration-파일이란&quot;&gt;Configuration 파일이란?&lt;/h1&gt;
 
-&lt;p&gt;깃블로그 하다보니  &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일에 주로 속성?값이라 해야하나 그런것들이 적혀있었다.&lt;/p&gt;
+&lt;p&gt;깃블로그 하다보니  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일에 주로 속성?값이라 해야하나 그런것들이 적혀있었다.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;블로그 타이틀&lt;/li&gt;
@@ -1136,7 +1206,7 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;그리고 TARGET이 아닌 PROJECT의 Build Setting을 &lt;code class=&quot;highlighter-rouge&quot;&gt;Level&lt;/code&gt; 형태로 보면  &lt;strong&gt;Configurations&lt;/strong&gt;라는곳이 존재하고 여기에 셋팅을 해주게 된다.&lt;/p&gt;
+&lt;p&gt;그리고 TARGET이 아닌 PROJECT의 Build Setting을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level&lt;/code&gt; 형태로 보면  &lt;strong&gt;Configurations&lt;/strong&gt;라는곳이 존재하고 여기에 셋팅을 해주게 된다.&lt;/p&gt;
 
 &lt;p&gt;여기서 눈여겨봐야 할 점은 다음과 같다.&lt;/p&gt;
 &lt;ul&gt;
@@ -1258,7 +1328,7 @@ A point in the local coordinate system of view that identifies the location of t
 &lt;p&gt;-&amp;gt; A&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-이정도면 예시는 됐으려나, 어찌 됐든 중요한건 &lt;code class=&quot;highlighter-rouge&quot;&gt;$(inherited)&lt;/code&gt;!&lt;/p&gt;
+이정도면 예시는 됐으려나, 어찌 됐든 중요한건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(inherited)&lt;/code&gt;!&lt;/p&gt;
 
 &lt;p&gt;그럼 이걸 이제 어떻게 써먹을지 보자&lt;/p&gt;
 
@@ -1297,7 +1367,7 @@ A point in the local coordinate system of view that identifies the location of t
     
       <item>
         <title>(Swift) FileManager</title>
-        <description>&lt;p&gt;오늘의 주제는 &lt;code class=&quot;highlighter-rouge&quot;&gt;FileManager&lt;/code&gt;&lt;/p&gt;
+        <description>&lt;p&gt;오늘의 주제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FileManager&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;쓰게된 이유는 다음과 같다,&lt;/p&gt;
 
@@ -1314,7 +1384,7 @@ A point in the local coordinate system of view that identifies the location of t
 &lt;h1 id=&quot;순서&quot;&gt;순서&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/li&gt;
   &lt;li&gt;폴더 추가 방법은?&lt;/li&gt;
   &lt;li&gt;파일 추가 방법은?&lt;/li&gt;
   &lt;li&gt;파일 불러오는 방법은?&lt;/li&gt;
@@ -1324,7 +1394,7 @@ A point in the local coordinate system of view that identifies the location of t
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;file-manager란&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/h1&gt;
+&lt;h1 id=&quot;file-manager란&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/h1&gt;
 
 &lt;p&gt;아이폰 앱마다 자기만의 공간을 가지고 있는데, 이 공간을 관리하는 매니저라 생각하면 될 것 같다.&lt;/p&gt;
 
@@ -1336,31 +1406,31 @@ A point in the local coordinate system of view that identifies the location of t
 
 &lt;p&gt;다른 작업들 하기전 공통 사항인 해당 폴더로 접근 하는 방법을 먼저 알아보자&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let fileManager = FileManager.default
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let fileManager = FileManager.default
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;라는 인스턴스를 만들어준다. (default를 해줌으로써 싱글톤 인스턴스!)&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;라는 인스턴스를 만들어준다. (default를 해줌으로써 싱글톤 인스턴스!)&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;는 폴더를 정해주는 요소입니다. Download 폴더 혹은 Document 폴더 등등&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt;는 폴더를 정해주는 요소입니다. Download 폴더 혹은 Document 폴더 등등&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;은 제한을 걸어주는 요소입니다. 그 이상은 못가게 하는!&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt;은 제한을 걸어주는 요소입니다. 그 이상은 못가게 하는!&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;About - Mask&lt;/strong&gt;&lt;br /&gt;
 view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
 그렇게 하면 Bound 밖의 UI들은 안보이는!!&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt;의 인자들 이름에 붙은 &lt;strong&gt;Mask&lt;/strong&gt;는 이런 의미라 생각하면 좋을 것 같다.&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt;의 인자들 이름에 붙은 &lt;strong&gt;Mask&lt;/strong&gt;는 이런 의미라 생각하면 좋을 것 같다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;
 애플이 주석을 굉장히 잘써놨으므로 좀더 디테일하게 보자,&lt;/p&gt;
 
-&lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
+&lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
 developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
 desktopDirectory    // location of user's desktop
 downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
@@ -1371,8 +1441,8 @@ musicDirectory      // location of user's Music directory (~/Music)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
+&lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
 // user's home directory --- place to install user's personal items (~)
 
 public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
@@ -1397,16 +1467,16 @@ public static var allDomainsMask: FileManager.SearchPathDomainMask { get }
 
 &lt;h1 id=&quot;경로-추가&quot;&gt;경로 추가&lt;/h1&gt;
 
-&lt;p&gt;키워드:  &lt;code class=&quot;highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;키워드:  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;아주 간단하다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let newURL = documentsURL.appendingPathComponent(&quot;App Photos&quot;)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let newURL = documentsURL.appendingPathComponent(&quot;App Photos&quot;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;간단한 예를 써보면&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let oldURL = URL(string: &quot;~/Document&quot;)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let oldURL = URL(string: &quot;~/Document&quot;)
 let newURL = documentsURL.appendingPathComponent(&quot;Hello&quot;)
 print(newURL) // ~/Document/Hello
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1415,9 +1485,9 @@ print(newURL) // ~/Document/Hello
 
 &lt;h1 id=&quot;폴더-추가-방법은&quot;&gt;폴더 추가 방법은?&lt;/h1&gt;
 
-&lt;p&gt;키워드: &lt;code class=&quot;highlighter-rouge&quot;&gt;createDirectory&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;키워드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createDirectory&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성
 let fileManager = FileManager.default
 // 2. 도큐먼트 URL 가져오기
 let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -1434,25 +1504,25 @@ do {
 &lt;p&gt;이것도 아주 간단!&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;at&lt;/code&gt; : 경로 및 폴더명, 위에서 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt; 사용&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories&lt;/code&gt; : “중간 디렉토리들도 만들꺼야?” 이런 의미.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;attributes&lt;/code&gt; : 파일 접근 권한, 그룹 등등 폴더 속성 정의&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;at&lt;/code&gt; : 경로 및 폴더명, 위에서 만든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URL&lt;/code&gt; 사용&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withIntermediateDirectories&lt;/code&gt; : “중간 디렉토리들도 만들꺼야?” 이런 의미.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attributes&lt;/code&gt; : 파일 접근 권한, 그룹 등등 폴더 속성 정의&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;다시 말해, 현재 존재하는 폴더가 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Document&lt;/code&gt;만 있는 상태에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;를 여러번해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Document/path1/path2/path3&lt;/code&gt;로 만들었다고 가정하면, 각 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bool&lt;/code&gt;값에 따라 성공, 실패가 나뉜다.&lt;/p&gt;
+&lt;p&gt;다시 말해, 현재 존재하는 폴더가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Document&lt;/code&gt;만 있는 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;를 여러번해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Document/path1/path2/path3&lt;/code&gt;로 만들었다고 가정하면, 각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt;값에 따라 성공, 실패가 나뉜다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories: true&lt;/code&gt; - 중간 디렉토리인 &lt;code class=&quot;highlighter-rouge&quot;&gt;path1/path2&lt;/code&gt;도 만들고 &lt;code class=&quot;highlighter-rouge&quot;&gt;path3&lt;/code&gt;까지 만든다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;withIntermediateDirectories: false&lt;/code&gt; - 중간 디렉토리가 존재하지 않으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt;로 빠진다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withIntermediateDirectories: true&lt;/code&gt; - 중간 디렉토리인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path1/path2&lt;/code&gt;도 만들고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path3&lt;/code&gt;까지 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withIntermediateDirectories: false&lt;/code&gt; - 중간 디렉토리가 존재하지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catch&lt;/code&gt;로 빠진다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;파일-추가-방법은&quot;&gt;파일 추가 방법은?&lt;/h1&gt;
 
-&lt;p&gt;키워드: &lt;code class=&quot;highlighter-rouge&quot;&gt;write(to:_, atomically:_, encoding:_)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;키워드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write(to:_, atomically:_, encoding:_)&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
 let fileManager = FileManager.default
 
 // 2. 도큐먼트 URL 가져오기 - 동일
@@ -1476,12 +1546,12 @@ do {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt;에 내부 함수로 &lt;code class=&quot;highlighter-rouge&quot;&gt;write&lt;/code&gt;가 존재하며, 이를 이용해서 &lt;strong&gt;쓰기&lt;/strong&gt;를 한다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSString&lt;/code&gt;에 내부 함수로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt;가 존재하며, 이를 이용해서 &lt;strong&gt;쓰기&lt;/strong&gt;를 한다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;to&lt;/code&gt;: 위에 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt;을 써주면 그대로 생성.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;atomically&lt;/code&gt;: 이거 뭔지 모르겠,,, 읽어도 모르겠,,, 다만, &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;면 URL이 존재 안해도 시스템상 손상이 없단 뉘앙스를 풍기므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;만,,&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;encoding&lt;/code&gt;: 인코딩 종류!&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to&lt;/code&gt;: 위에 만든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URL&lt;/code&gt;을 써주면 그대로 생성.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atomically&lt;/code&gt;: 이거 뭔지 모르겠,,, 읽어도 모르겠,,, 다만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;면 URL이 존재 안해도 시스템상 손상이 없단 뉘앙스를 풍기므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;만,,&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;encoding&lt;/code&gt;: 인코딩 종류!&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;여기서 에러가 났던게 파일 경로가 미존재시 “The file “test.txt” doesn’t exist.” 라고 catch로 간다.&lt;/p&gt;
@@ -1490,10 +1560,10 @@ do {
 
 &lt;p&gt;허허,, 중간에 다른 경로가 없는건데, 저렇게 설명을 하다니… 그래도 보면 간단하게 이루어진단걸 알 수 있다.&lt;/p&gt;
 
-&lt;p&gt;여기서 또 &lt;code class=&quot;highlighter-rouge&quot;&gt;write&lt;/code&gt; 할 경우엔, 덮어 씌웠었다.&lt;/p&gt;
+&lt;p&gt;여기서 또 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; 할 경우엔, 덮어 씌웠었다.&lt;/p&gt;
 
 &lt;h1 id=&quot;파일-불러오는-방법은&quot;&gt;파일 불러오는 방법은?&lt;/h1&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
 let fileManager = FileManager.default
 
 // 2. 도큐먼트 URL 가져오기 - 동일
@@ -1519,7 +1589,7 @@ do {
 &lt;p&gt;이건 쓰기보다 간단!&lt;/p&gt;
 
 &lt;h1 id=&quot;파일-삭제하는-방법은&quot;&gt;파일 삭제하는 방법은?&lt;/h1&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
 let fileManager = FileManager.default
 
 // 2. 도큐먼트 URL 가져오기 - 동일
@@ -1541,11 +1611,11 @@ do {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;관리를 담당하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;에게 시켜서 삭제를 시키면 깔끔.&lt;/p&gt;
+&lt;p&gt;관리를 담당하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;에게 시켜서 삭제를 시키면 깔끔.&lt;/p&gt;
 
-&lt;p&gt;이후 그 파일을 불러오면 아래와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Error&lt;/code&gt;가 발생한다.&lt;/p&gt;
+&lt;p&gt;이후 그 파일을 불러오면 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Error&lt;/code&gt;가 발생한다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The file “test.txt” couldn’t be opened because there is no such file.
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The file “test.txt” couldn’t be opened because there is no such file.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;qa&quot;&gt;Q&amp;amp;A&lt;/h1&gt;
@@ -1553,16 +1623,16 @@ do {
 &lt;h3 id=&quot;q--텍스트-말고-이미지나-gif-등등-다른건-어떻게&quot;&gt;Q . 텍스트 말고 이미지나 GIF 등등 다른건 어떻게??&lt;/h3&gt;
 &lt;p&gt;A. NSData 형식으로!&lt;/p&gt;
 
-&lt;p&gt;아래처럼하면 어떤것이든 &lt;code class=&quot;highlighter-rouge&quot;&gt;Data&lt;/code&gt;형으로 손쉽게 변경가능!&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Archive Data
+&lt;p&gt;아래처럼하면 어떤것이든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;형으로 손쉽게 변경가능!&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Archive Data
 let archivedData = NSKeyedArchiver.archivedData(withRootObject: file)
 
 // Unarchive Data
 let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;q-애플-내장-앱중-file-app-이랑-관련이-있나&quot;&gt;Q. 애플 내장 앱중 &lt;code class=&quot;highlighter-rouge&quot;&gt;File App&lt;/code&gt; 이랑 관련이 있나?&lt;/h3&gt;
-&lt;p&gt;A. Yes, 프로젝트내에 설정을 하면,  &lt;code class=&quot;highlighter-rouge&quot;&gt;File App&lt;/code&gt;이 해당 어플에 접근할 수 있게 된다!&lt;/p&gt;
+&lt;h3 id=&quot;q-애플-내장-앱중-file-app-이랑-관련이-있나&quot;&gt;Q. 애플 내장 앱중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File App&lt;/code&gt; 이랑 관련이 있나?&lt;/h3&gt;
+&lt;p&gt;A. Yes, 프로젝트내에 설정을 하면,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File App&lt;/code&gt;이 해당 어플에 접근할 수 있게 된다!&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 11 Jul 2019 00:00:00 +0900</pubDate>
@@ -1586,7 +1656,7 @@ let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
 
 &lt;p&gt;updateConstraints()도 궁금하고, 비슷한 다른것들도 궁금하지만, 자료좀 찾아보니 저둘이 비교하는게 많았기에 정리!&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님 블로그가 너무 정리가 잘되어있어서 기본적인건 간단하게 설명하고, 이해력이 딸려 살짝 갸우뚱 했던 부분들을 적어야겠다&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님 블로그가 너무 정리가 잘되어있어서 기본적인건 간단하게 설명하고, 이해력이 딸려 살짝 갸우뚱 했던 부분들을 적어야겠다&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -1594,7 +1664,7 @@ let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
 &lt;h1 id=&quot;들어가기전-먼저-알아야-이해가-되는것&quot;&gt;들어가기전 먼저 알아야 이해가 되는것!&lt;/h1&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Life cycle&lt;/code&gt;중 view layout을 &lt;code class=&quot;highlighter-rouge&quot;&gt;update&lt;/code&gt; 해주는 부분이 있다고 한다! 글들을 보니 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutSubviews()&lt;/code&gt;가 그 역할인가보다. (Zedd님 감사합니다)&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Life cycle&lt;/code&gt;중 view layout을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 해주는 부분이 있다고 한다! 글들을 보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutSubviews()&lt;/code&gt;가 그 역할인가보다. (Zedd님 감사합니다)&lt;/p&gt;
 
 &lt;p&gt;근데 말 그대로, Cycle이다, 한번 지나가면 나중에 오는 그런것! 요게 포인트다.&lt;/p&gt;
 
@@ -1617,9 +1687,9 @@ let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;위에서 무효화가 돼있어야 한다고 적었는데, 무효화 하는 방법은 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;을 써주는 것이다.&lt;/p&gt;
+&lt;p&gt;위에서 무효화가 돼있어야 한다고 적었는데, 무효화 하는 방법은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;을 써주는 것이다.&lt;/p&gt;
 
-&lt;p&gt;“해당 view 다음 사이클때 업데이트 해줘” 라는 의미며, &lt;a href=&quot;http://www.iosinsight.com/setneedslayout-vs-layoutifneeded-explained&quot;&gt;참고 2번 사이트&lt;/a&gt;에 의하면, 그 &lt;code class=&quot;highlighter-rouge&quot;&gt;subviews&lt;/code&gt;도 업데이트가 된다.&lt;/p&gt;
+&lt;p&gt;“해당 view 다음 사이클때 업데이트 해줘” 라는 의미며, &lt;a href=&quot;http://www.iosinsight.com/setneedslayout-vs-layoutifneeded-explained&quot;&gt;참고 2번 사이트&lt;/a&gt;에 의하면, 그 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subviews&lt;/code&gt;도 업데이트가 된다.&lt;/p&gt;
 
 &lt;p&gt;바로 바뀌지 않으며 대기 상태이고, 비동기로 진행된다, 그리고 &lt;strong&gt;이 cycle은 언제오는지 알기 힘들다고 한다.&lt;/strong&gt;&lt;/p&gt;
 
@@ -1653,18 +1723,18 @@ let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
 
 &lt;h1 id=&quot;예시를-통한-이해&quot;&gt;예시를 통한 이해&lt;/h1&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님께서 이 &lt;a href=&quot;https://github.com/lmacfadyen/UIViewLifecycleLayoutDisplay&quot;&gt;링크&lt;/a&gt;를 추천해주셨다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님께서 이 &lt;a href=&quot;https://github.com/lmacfadyen/UIViewLifecycleLayoutDisplay&quot;&gt;링크&lt;/a&gt;를 추천해주셨다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 다음 업데이트때 기다릴게!&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;은 지금 당장 업데이트 해줘!&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 다음 업데이트때 기다릴게!&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;은 지금 당장 업데이트 해줘!&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;결론은 “둘다 새 값으로 업데이트 해줘!” 로 이해를 했다. 근데 이렇게 생각하니 잘 이해가 안됐다,&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.blueHeight.constant = 100
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.blueHeight.constant = 100
 
 UIView.animate(withDuration: 2.0, animations: {
     self.view.setNeedsLayout()
@@ -1674,19 +1744,19 @@ UIView.animate(withDuration: 2.0, animations: {
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;예제에서 이게 이해가 안된다. &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 높이값 &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 변경 되었을때, 애니메이션 효과가 보이면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 바뀐다.&lt;/p&gt;
+&lt;p&gt;예제에서 이게 이해가 안된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 높이값 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 변경 되었을때, 애니메이션 효과가 보이면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 바뀐다.&lt;/p&gt;
 
-&lt;p&gt;반면, &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 애니메이션 효과없이 바로 새로운 &lt;code class=&quot;highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 적용된다.&lt;/p&gt;
+&lt;p&gt;반면, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 애니메이션 효과없이 바로 새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 적용된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;기존값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;, 새값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;이라 해보자, 둘다 &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 100으로 됐다는 의미다.&lt;/p&gt;
+&lt;p&gt;기존값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;, 새값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt;이라 해보자, 둘다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 100으로 됐다는 의미다.&lt;/p&gt;
 
 &lt;p&gt;그럼 위에 서술한 내용들을 붙여보자&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt; : 100으로 바꿨어, 다음 업데이트때 적용해줘&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;: 100으로 바꿨어, 당장 바꿔줘&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt; : 100으로 바꿨어, 다음 업데이트때 적용해줘&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;: 100으로 바꿨어, 당장 바꿔줘&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;이렇게 생각을 해서 이해가 안됐다.&lt;/p&gt;
@@ -1696,13 +1766,13 @@ UIView.animate(withDuration: 2.0, animations: {
 &lt;p&gt;왜 이해가 안됐는지 적어보면,&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;결국엔 이미 애니메이션 호출전 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 선언해줬으니  애니메이션 시작할때면, 이미 100아닌가?? 그럼 cycle돌다가 업데이트할때 이미 100인거 같아! 근데 애니메이션 주면 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 효과가 있다? 그럼 애니메이션동안 cycle이 적용 안된건가? 그럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 2초 뒤에 값이 바뀌어야하는것 아닌가?!&lt;/li&gt;
+  &lt;li&gt;결국엔 이미 애니메이션 호출전 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 선언해줬으니  애니메이션 시작할때면, 이미 100아닌가?? 그럼 cycle돌다가 업데이트할때 이미 100인거 같아! 근데 애니메이션 주면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 효과가 있다? 그럼 애니메이션동안 cycle이 적용 안된건가? 그럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 2초 뒤에 값이 바뀌어야하는것 아닌가?!&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;이상한점: &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 2초뒤가 아닌 시작하자마자 값이 바뀜??? 잉 아예 틀려버림&lt;/p&gt;
+&lt;p&gt;이상한점: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 2초뒤가 아닌 시작하자마자 값이 바뀜??? 잉 아예 틀려버림&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;1번이 이상했다, 시작과 동시에 cycle이 돈거라면 height는 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 이미 박혀있는거고 적용이 된거다? 근데! 이미 100이면 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt; 도 cycle 시작시 이미 100이니깐, 점점 100이 되는게 아니라, 이미 100이겠네?&lt;/li&gt;
+  &lt;li&gt;1번이 이상했다, 시작과 동시에 cycle이 돈거라면 height는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 이미 박혀있는거고 적용이 된거다? 근데! 이미 100이면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt; 도 cycle 시작시 이미 100이니깐, 점점 100이 되는게 아니라, 이미 100이겠네?&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;이상한점: 왜 애니메이션 효과가 적용된거지? 바로 100으로 되야하는거 아닌가?!&lt;/p&gt;
@@ -1716,7 +1786,7 @@ UIView.animate(withDuration: 2.0, animations: {
 
 &lt;h3 id=&quot;point_a&quot;&gt;Point_A&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;update cycle&lt;/code&gt;은 돌고 돈다, 유저는 알 수 없다&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update cycle&lt;/code&gt;은 돌고 돈다, 유저는 알 수 없다&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;그렇다, 나는 알 수 없었다…&lt;/p&gt;
@@ -1736,16 +1806,16 @@ UIView.animate(withDuration: 2.0, animations: {
 
 &lt;h3 id=&quot;point_c&quot;&gt;Point_C&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;는 다음 update cycle때.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;는 다음 update cycle때.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;
 포인트 B와 C를 섞어서 보자&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout&lt;/code&gt;은 다음번에 update cycle 때 해달라고 요청한다. &lt;strong&gt;즉, 지금 한것은 요청만함.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시 update를 요청한다, 블럭 내에서! &lt;strong&gt;즉, 지금 요청과 동시에 변화가 시작된다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout&lt;/code&gt;은 다음번에 update cycle 때 해달라고 요청한다. &lt;strong&gt;즉, 지금 한것은 요청만함.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시 update를 요청한다, 블럭 내에서! &lt;strong&gt;즉, 지금 요청과 동시에 변화가 시작된다.&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;
@@ -1753,25 +1823,25 @@ UIView.animate(withDuration: 2.0, animations: {
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;현재 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 0&lt;/code&gt; 이었고 신규값 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;은 요청 사항이었다. &lt;code class=&quot;highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 그 값이 animation때 적용했기에 &lt;code class=&quot;highlighter-rouge&quot;&gt;0~100&lt;/code&gt;이 되는 과정이 animation으로 보였다.&lt;/p&gt;
+&lt;p&gt;현재 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 0&lt;/code&gt; 이었고 신규값 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;은 요청 사항이었다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 그 값이 animation때 적용했기에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0~100&lt;/code&gt;이 되는 과정이 animation으로 보였다.&lt;/p&gt;
 
-&lt;p&gt;그런데, &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;의 경우  animations 블럭에선 요청만 했기에 별다른 UI적으로 변경 요소가 없었다.&lt;/p&gt;
+&lt;p&gt;그런데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;의 경우  animations 블럭에선 요청만 했기에 별다른 UI적으로 변경 요소가 없었다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 그렇다면, 한번에 바뀐건 어떻게 생각할까? &lt;strong&gt;Point_A&lt;/strong&gt;가 해답이다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animations 블럭&lt;/code&gt;이 지난후 cycle이 돌다가 update cycle이 된것이라 본다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Animations 블럭&lt;/code&gt;이 지난후 cycle이 돌다가 update cycle이 된것이라 본다.&lt;/p&gt;
 
-&lt;p&gt;그렇기에 해당사이클은 &lt;code class=&quot;highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 요청한 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;을 적용한것이며,&lt;/p&gt;
+&lt;p&gt;그렇기에 해당사이클은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 요청한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;을 적용한것이며,&lt;/p&gt;
 
 &lt;p&gt;이는 애니메이션과 관련이 없기에 한번에 적용된것이다.&lt;/p&gt;
 
-&lt;p&gt;사람 눈이 착각한 느낌이랄까? 시각적으론 &lt;code class=&quot;highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;이 적용되고 애니메이션이 시작된것 같지만&lt;/p&gt;
+&lt;p&gt;사람 눈이 착각한 느낌이랄까? 시각적으론 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;이 적용되고 애니메이션이 시작된것 같지만&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;animations 블럭&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;update&lt;/code&gt; 요청&lt;/li&gt;
-  &lt;li&gt;이후 &lt;code class=&quot;highlighter-rouge&quot;&gt;update cycle&lt;/code&gt; 적용 &amp;amp; &lt;code class=&quot;highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중…&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중 … 끝&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;animations 블럭&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 요청&lt;/li&gt;
+  &lt;li&gt;이후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update cycle&lt;/code&gt; 적용 &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중…&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중 … 끝&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;이렇게 되는게 맞다고 본다.&lt;/p&gt;
@@ -1812,38 +1882,38 @@ UIView.animate(withDuration: 2.0, animations: {
 &lt;p&gt;FastLane의 꽃은 Lane이 아닐까 하는 생각이 든다.
 FastLane의 장점은 Xcode에서 여러번 클릭을 여러번 해야하는 부분들을 명령어 하나로 해결해주는 점인듯 했다.&lt;/p&gt;
 
-&lt;p&gt;그리고, 그 단순화 과정 마저도 한번에 묶어주는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Lane&lt;/code&gt;, 그래서 꽃이라 칭해보았다.&lt;/p&gt;
+&lt;p&gt;그리고, 그 단순화 과정 마저도 한번에 묶어주는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lane&lt;/code&gt;, 그래서 꽃이라 칭해보았다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 명령어 몇가지를 보자&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Derived 파일 제거&lt;/strong&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane action clear_derived_data
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane action clear_derived_data
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;IPA 추출하기&lt;/strong&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane gym
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane gym
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Derived 제거&lt;/code&gt; 관련의 경우, 가끔 빌드시 문제가 생길시 여기 파일을 지워주면 해결되는 경우가 많다. 빌드시 계속 생성되기 때문에 언제든 지워도 되는 파일!
-&lt;code class=&quot;highlighter-rouge&quot;&gt;IPA 추출&lt;/code&gt;은 TestFlight를 안쓴다면 사내 테스트용으로 필요로 뽑아두는 분들이 많을거라 생각된다. 명령어 하나로 손쉽게 추출!
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Derived 제거&lt;/code&gt; 관련의 경우, 가끔 빌드시 문제가 생길시 여기 파일을 지워주면 해결되는 경우가 많다. 빌드시 계속 생성되기 때문에 언제든 지워도 되는 파일!
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IPA 추출&lt;/code&gt;은 TestFlight를 안쓴다면 사내 테스트용으로 필요로 뽑아두는 분들이 많을거라 생각된다. 명령어 하나로 손쉽게 추출!
 (IPA 추출의 경우 dSYM 파일도 같이 나온다.)&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;두 명령어다 아주 좋은 명령어이다. 그렇지만 사람은 언제나 귀찮은 작업 하나라도 줄이려는게 분명하다.
-위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;IPA 추출&lt;/code&gt;을 했을 경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;Clean&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;Derived 제거&lt;/code&gt;를 같이 할 경우가 많다.
+위와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IPA 추출&lt;/code&gt;을 했을 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Clean&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Derived 제거&lt;/code&gt;를 같이 할 경우가 많다.
 한줄 한줄 입력하는것도 귀찮았나보다. 그래서 여러가지 명령어를 한번에 실행하고 싶었던걸까?&lt;/p&gt;
 
-&lt;p&gt;그래서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Lane&lt;/code&gt;이라는 것이 나온듯 하다.&lt;/p&gt;
+&lt;p&gt;그래서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lane&lt;/code&gt;이라는 것이 나온듯 하다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;lane-생성하기&quot;&gt;Lane 생성하기&lt;/h1&gt;
-&lt;p&gt;이전 포스팅 내용해 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane init&lt;/code&gt;을 했다면, 해당 프로젝트 폴더내에 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane&lt;/code&gt; 이라는 폴더가 있으며, 그안에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fastfile&lt;/code&gt;이란 파일이 존재한다. 
+&lt;p&gt;이전 포스팅 내용해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fastlane init&lt;/code&gt;을 했다면, 해당 프로젝트 폴더내에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fastlane&lt;/code&gt; 이라는 폴더가 있으며, 그안에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fastfile&lt;/code&gt;이란 파일이 존재한다. 
 내용은 아래와 같다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# This file contains the fastlane.tools configuration
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# This file contains the fastlane.tools configuration
 # You can find the documentation at https://docs.fastlane.tools
 #
 # For a list of all available actions, check out
@@ -1872,13 +1942,13 @@ end
 &lt;br /&gt;
 중요한 부분은 여기다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Description of what the lane does&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Description of what the lane does&quot;
 lane :custom_lane do
     # add actions here: https://docs.fastlane.tools/actions
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;이것이 &lt;code class=&quot;highlighter-rouge&quot;&gt;lane&lt;/code&gt;의 기본 틀이라 보면 되고, 각 설명은 아래와 같다.&lt;/p&gt;
+&lt;p&gt;이것이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lane&lt;/code&gt;의 기본 틀이라 보면 되고, 각 설명은 아래와 같다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;desc&lt;/strong&gt;: lane에 대한 설명.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;custom_lane&lt;/strong&gt;: lane를 실행시킬 명령어.&lt;/li&gt;
@@ -1887,9 +1957,9 @@ end
 
 &lt;p&gt;&lt;br /&gt; 
 &lt;br /&gt;
-위에 예를 들었던 명령어 두개를 이용하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;lane&lt;/code&gt;을 생성해보자&lt;/p&gt;
+위에 예를 들었던 명령어 두개를 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lane&lt;/code&gt;을 생성해보자&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Test Lane&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Test Lane&quot;
 lane :test_lane do
     clear_derived_data
     gym
@@ -1899,9 +1969,9 @@ end
 &lt;p&gt;이렇게하면 생성완료!
 &lt;br /&gt;
 그 후에 아래 명령어를 실행하면 된다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane test_lane
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane test_lane
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;그럼 위 &lt;code class=&quot;highlighter-rouge&quot;&gt;test_lane&lt;/code&gt;내의 명령어들이 순차적으로 진행되는 것을 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;그럼 위 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_lane&lt;/code&gt;내의 명령어들이 순차적으로 진행되는 것을 볼 수 있다.&lt;/p&gt;
 
 &lt;p&gt;그런데, 여기서 끝나면 아쉬울것이다. gym(아카이브) 명령어를 실행할때 옵션을 주는 경우가 필요하다.&lt;/p&gt;
 
@@ -1914,7 +1984,7 @@ end
 
 &lt;p&gt;옵션 주는것은 간단하다. 해당 명령어 뒤에 괄호()를 열어 주고 적으면 된다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Test Lane&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &quot;Test Lane&quot;
 lane :test_lane do
     clear_derived_data
     gym(
@@ -1926,7 +1996,7 @@ lane :test_lane do
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gym&lt;/code&gt;뒤에 괄호를 열어줬고, 그 안에 옵션들을 나열했다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gym&lt;/code&gt;뒤에 괄호를 열어줬고, 그 안에 옵션들을 나열했다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;scheme&lt;/strong&gt;: 해당 프로젝트의 타겟을 설정해준다. (한 workspace안에 여러 앱이 있을 경우 필요하다.)&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;export_method&lt;/strong&gt;: 인증서 옵션 주는 부분이다. (종류: app-store, ad-hoc, package, enterprise, development, developer-id)&lt;/li&gt;
@@ -1938,7 +2008,7 @@ end
 
 &lt;h1 id=&quot;ps&quot;&gt;PS.&lt;/h1&gt;
 &lt;p&gt;마지막 부분처럼 옵션이 생기면, 생각보다? 줄이 길어진다. 외우기도 힘들며, 하나가 아니라 여러게 생길수 있다. 
-하지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;lane&lt;/code&gt;덕에 미리 셋팅만 해둔다면, 단 1줄의 명령어로 끝낼 수 있다.&lt;/p&gt;
+하지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lane&lt;/code&gt;덕에 미리 셋팅만 해둔다면, 단 1줄의 명령어로 끝낼 수 있다.&lt;/p&gt;
 
 &lt;p&gt;슬랙으로 알림도 줄 수 있고, 알아서 스크린샷도 찍어주고, 추출도 해주고, 업로드도 해주고, 인증서 관리부터 생성까지 해주니
 알아두면 좋은 도구임은 확실한듯하다. 나중에 고급편도 포스팅 해야겠다.&lt;/p&gt;
@@ -1996,7 +2066,7 @@ end
 &lt;/ul&gt;
 
 &lt;p&gt;위와 같이 사소하지만 은근~히 신경이 쓰이는 것들이 필요한데, 이미 모든 작업을 어떻게 진행 할지 셋팅을 했기 때문에
-IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane IPA_Adhoc&lt;/code&gt; (IPA_Adhoc은 미리 작성한 Lane)만 입력해주면, 손쉽게 파일 추출이 끝난다. 신경 쓸것은 Adhoc, Development, Distribution 등등 미리 작성해둔 &lt;code class=&quot;highlighter-rouge&quot;&gt;Lane&lt;/code&gt; 이름만 생각 해내면 된다.&lt;/p&gt;
+IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fastlane IPA_Adhoc&lt;/code&gt; (IPA_Adhoc은 미리 작성한 Lane)만 입력해주면, 손쉽게 파일 추출이 끝난다. 신경 쓸것은 Adhoc, Development, Distribution 등등 미리 작성해둔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lane&lt;/code&gt; 이름만 생각 해내면 된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2004,7 +2074,7 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 &lt;/blockquote&gt;
 
 &lt;p&gt;2의 경우는 1의 연장선이라고도 볼수있다. 아카이브 하고 추출까지 프로젝트 사이즈에 따라 다르지만, 3분~5분 정도였던것 같다. 그렇지만, 1에서 본것과 같이 중간 중간 버튼을 누른다던가 인증서를 선택 등등 할일이 있다, 그래서 짧다면 짧지만, 길다고 볼수도 있는 시간동안 맥북 앞에서 기다리고 있어야 한다.
-그치만 이 귀찮은 행동은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt;을 사용함으로써 해결이 되었다. 명령어 치고 화장실도 다녀오고, 물도 마시고 돌아오면 추출이 끝나있다.&lt;/p&gt;
+그치만 이 귀찮은 행동은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt;을 사용함으로써 해결이 되었다. 명령어 치고 화장실도 다녀오고, 물도 마시고 돌아오면 추출이 끝나있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt; 
 &lt;br /&gt;&lt;/p&gt;
@@ -2014,7 +2084,7 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
   &lt;p&gt;단점 1. 생각보다 사용할 일이 적어서 익숙해지기 힘들다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt;은 배포, 추출, 인증서 관리 등등 도와주는 편리한 도구이다, 하지만 그것들을 할일이 자주 있는편이 아니다.
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt;은 배포, 추출, 인증서 관리 등등 도와주는 편리한 도구이다, 하지만 그것들을 할일이 자주 있는편이 아니다.
 자주 써야 익숙해지던가 할텐데, 한 3번 정도 썼나,,,? 그러다보니 한달가량 썼지만 아직도 친숙함이 안느껴진다.&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -2043,34 +2113,34 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 
 &lt;p&gt;&lt;strong&gt;순서 1 커맨드 라인 툴 설치&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;이것을 안하면 터미널에 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane&lt;/code&gt; 명령어 사용시 오류 발생할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;이것을 안하면 터미널에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fastlane&lt;/code&gt; 명령어 사용시 오류 발생할 수도 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xcode-select --install
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xcode-select --install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt; 
-&lt;strong&gt;순서 2 Ruby Gem을 이용해 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt; 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;strong&gt;순서 2 Ruby Gem을 이용해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt; 설치&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;sudo : 높은 권한으로 설치하기 위해!&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gem install fastlane -NV
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gem install fastlane -NV
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt; 
-&lt;strong&gt;순서 3 프로젝트에 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane&lt;/code&gt; 적용(초기화)하기&lt;/strong&gt;&lt;/p&gt;
+&lt;strong&gt;순서 3 프로젝트에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fastlane&lt;/code&gt; 적용(초기화)하기&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Cocoapod을 사용해보았다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;pod init&lt;/code&gt;이랑 같은 개념&lt;/li&gt;
+  &lt;li&gt;Cocoapod을 사용해보았다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod init&lt;/code&gt;이랑 같은 개념&lt;/li&gt;
   &lt;li&gt;꼭 적용하려는 폴더로 이동후 명령어 입력하기&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane init
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane init
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;init-과정&quot;&gt;init 과정&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt;하게 되면 몇가지 셋팅을 과정이 있다. 아래 과정은 대부분 비슷하겠지만 프로젝트 셋팅 상태에 따라 뜰수도, 안뜰수도 있는 부분도 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;하게 되면 몇가지 셋팅을 과정이 있다. 아래 과정은 대부분 비슷하겠지만 프로젝트 셋팅 상태에 따라 뜰수도, 안뜰수도 있는 부분도 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;순서 1. 폴더내의 project 혹은 workspace가 여러개 존재한다면?&lt;/strong&gt;
 &lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-04-21/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -2096,7 +2166,7 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 &lt;p&gt;&lt;strong&gt;순서 3. 완료&lt;/strong&gt;
 &lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-04-21/image3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위와 같이 하면 명령어들의 간단한 설명과 함께 &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt;의 과정은 끝이난다.&lt;/p&gt;
+&lt;p&gt;위와 같이 하면 명령어들의 간단한 설명과 함께 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;의 과정은 끝이난다.&lt;/p&gt;
 
 &lt;p&gt;그치만 위에 말했듯이 위와 다른 설명을 보았다면, 그곳엔 저 화면들이 아닌 애플 개발자 계정 셋팅 화면이 나왔을것이다. 하지만 바뀐후 달라진건지 애플 개발자 계정 넣는 부분이 안보였다.&lt;/p&gt;
 
@@ -2112,8 +2182,8 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;위에 &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt; 과정이 끝난후 설치된 폴더내에 fastlane이란 폴더가 생겼을 것이다.
- 위2번 상황에서 4번을 택했으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fastfile&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;AppFile&lt;/code&gt; 항목이 생겼을 것이다. (다른것을 선택했다면 더 있을 수 있다.)&lt;/p&gt;
+&lt;p&gt;위에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt; 과정이 끝난후 설치된 폴더내에 fastlane이란 폴더가 생겼을 것이다.
+ 위2번 상황에서 4번을 택했으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fastfile&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AppFile&lt;/code&gt; 항목이 생겼을 것이다. (다른것을 선택했다면 더 있을 수 있다.)&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -2123,9 +2193,9 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 
 &lt;p&gt;위와 같은 역할들을 하며, Fastlane은 다음 포스팅때 하고 여기선 Appfile만!&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Appfile&lt;/code&gt; 폴더의 내용은 다음과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Appfile&lt;/code&gt; 폴더의 내용은 다음과 같다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; # app_identifier(&quot;[[APP_IDENTIFIER]]&quot;) # The bundle identifier of your app
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; # app_identifier(&quot;[[APP_IDENTIFIER]]&quot;) # The bundle identifier of your app
  # apple_id(&quot;[[APPLE_ID]]&quot;) # Your Apple email address
  
  
@@ -2136,16 +2206,16 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 &lt;p&gt;여기서 설정해야할 부분은 처음 두줄.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;1,2번줄 &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt; 제거&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[[APP_IDENTIFIER]]&lt;/code&gt;에는 해당 프로젝트 BundleID 넣기.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[[APPLE_ID]]&lt;/code&gt; 에는 개발자 계정 넣기.&lt;/li&gt;
+  &lt;li&gt;1,2번줄 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#&lt;/code&gt; 제거&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[[APP_IDENTIFIER]]&lt;/code&gt;에는 해당 프로젝트 BundleID 넣기.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[[APPLE_ID]]&lt;/code&gt; 에는 개발자 계정 넣기.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 그리고나서 인증서 받기(sign), 혹은 itunesConnect에 앱생성(produce) 명령어를 실행한다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane produce
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane produce
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;그럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;Appflie&lt;/code&gt; 에 설정한 애플 계정의 패스워드를 요구한다.&lt;/p&gt;
+&lt;p&gt;그럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Appflie&lt;/code&gt; 에 설정한 애플 계정의 패스워드를 요구한다.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;애플 이중인증 사용중일시 appleid.apple.com 사이트에서 이중인증 비밀번호를 발급 받아서 입력!&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2158,227 +2228,12 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;highlighter-
 &lt;p&gt;중요한건 &lt;strong&gt;애플 계정 연결&lt;/strong&gt;이다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt; 
-여기까지 했다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt;의 기본적 사용을 위한 준비는 끝이나게 되고 다음 포스팅에선 &lt;code class=&quot;highlighter-rouge&quot;&gt;lane&lt;/code&gt; 사용법에 대해서 포스팅할 예정이다.&lt;/p&gt;
+여기까지 했다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fastlane&lt;/code&gt;의 기본적 사용을 위한 준비는 끝이나게 되고 다음 포스팅에선 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lane&lt;/code&gt; 사용법에 대해서 포스팅할 예정이다.&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 21 Apr 2019 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/tool/2019/04/21/Tool-Fastlane-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95.html</link>
         <guid isPermaLink="true">http://localhost:4000/tool/2019/04/21/Tool-Fastlane-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95.html</guid>
-        
-        
-        <category>Tool</category>
-        
-      </item>
-    
-      <item>
-        <title>(Tool) Fastlane을 알아보자 (개념)</title>
-        <description>&lt;p&gt;오늘 포스팅 주제는 Fastlane&lt;/p&gt;
-
-&lt;p&gt;Fastlane은 자료도 굉장히 많고, 사용자도 많고, 많은 기업에서도 사용중으로 보인다
-그럼 이게 뭘까? 앱에 사용되는 라이브러리는 아니고, 배포를 도와주는 프로그램, 툴이라 생각하면 좋을것 같다.&lt;/p&gt;
-
-&lt;p&gt;아직 초짜라 기능 5%도 못쓰는것 같으니 더 배움이 쌓이면 추가 포스팅 예정!&lt;/p&gt;
-
-&lt;p&gt;이번껀 개념정도만!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;q-배포를-도와준다는-의미는&quot;&gt;Q. 배포를 도와준다는 의미는?&lt;/h2&gt;
-
-&lt;p&gt;많은 개발자들이 그렇듯, 귀찮고 반복적인 일은 자동화를 시키고 싶어한다,&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;함수도 계속 반복적으로 짜기 싫고 유지보수가 힘드니 나왔겠지?&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;포인트는 자동화&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;이해하기엔 예시만한게 없는듯하니 예를 들어보자,&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;ex-js님-테스트하게-ipa-말아서-서버에-올려주세요&quot;&gt;ex) JS님 테스트하게 IPA 말아서 서버에 올려주세요&lt;/h3&gt;
-
-&lt;p&gt;Fastlane을 찾게된 이유아닐까 싶다, AdHoc으로 말아서 서버에 올린뒤 테스터들에게 요청을 드리는 작업을할때 아카이브 하는것이 시간을 은근히 잡아먹어서 귀찮은점이 있었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;기존-ipa-추출-과정&quot;&gt;기존 IPA 추출 과정&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;타겟 설정&lt;/li&gt;
-  &lt;li&gt;빌드 클린&lt;/li&gt;
-  &lt;li&gt;빌드&lt;/li&gt;
-  &lt;li&gt;아카이브 선택&lt;/li&gt;
-  &lt;li&gt;인증서 선택&lt;/li&gt;
-  &lt;li&gt;기다리기&lt;/li&gt;
-  &lt;li&gt;폴더 선택&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;위의 과정이 나만그런진 모르겠지만 귀찮다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;fastlane을-이용한-ipa-추출-과정&quot;&gt;Fastlane을 이용한 IPA 추출 과정&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;터미널 열기&lt;/li&gt;
-  &lt;li&gt;명령어 입력 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane gym&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;기다리기&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;아주 심플하다 맘에든다, 뭣보다 귀찮은 과정이 코드한줄로 끝나며, 완료되면 프로젝트 폴더에 파일들이 이쁘게 나와있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;그게-기능이-끝인가&quot;&gt;그게 기능이 끝인가?&lt;/h2&gt;
-&lt;p&gt;아니다, 기능이 아주 많고, 디테일한 설정을 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;무엇을-더-할-수-있나&quot;&gt;무엇을 더 할 수 있나?&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;아이튠즈 컨넥트에 앱을 추가할 수 있다.&lt;/li&gt;
-  &lt;li&gt;인증서를 생성, 다운로드 할 수 있다.&lt;/li&gt;
-  &lt;li&gt;인증서 관리하는 Github가 있다면, 다른 맥에서도 쓸수 있게 해당 github를 통해 매칭시키는 기능이 있다. (협업시 인증서 전달을 따로 할필요 없다)&lt;/li&gt;
-  &lt;li&gt;앱 스크린샷을 자동으로 찍을 수 있다. - 아이튠즈컨넥트에 올리는 용도로 사용&lt;/li&gt;
-  &lt;li&gt;IPA 파일을 쉽게 만들수 있다.&lt;/li&gt;
-  &lt;li&gt;TestFlight에 빌드 제출을 할 수 있다.&lt;/li&gt;
-  &lt;li&gt;TestFlight에 구성원 추가, 제거 할 수 있다.&lt;/li&gt;
-  &lt;li&gt;특정 작업 완료 후 슬랙으로 알리기 가능&lt;/li&gt;
-  &lt;li&gt;앱스토어 빌드 제출 할 수 있다.&lt;/li&gt;
-  &lt;li&gt;Lane을 통해서 여러 기능을 묶을 수 있다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;아직 IPA 추출, 인증서 생성 다운밖에 못해봤다,,&lt;br /&gt;
-스토어 빌드 제출은 실패 단계,&lt;br /&gt;
-매칭 기능은 성공했으나 아직 이해가 더 필요&lt;/p&gt;
-
-  &lt;p&gt;아직 활용을 잘 못하지만, 못하는 나조차도 위와 같은 기능들을 알고 있고, 다양한걸 할 수 있단걸 알고 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;10번은 설명이 더 해야할듯하다&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;lane을-통해서-여러-기능을-묶다는-의미는-lane이-뭐길래&quot;&gt;Lane을 통해서 여러 기능을 묶다는 의미는? Lane이 뭐길래?&lt;/h2&gt;
-
-&lt;p&gt;우선 이 툴의 이름이 fastlane이니 유추를 해보자&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;fast : 빠른 속도를 의미&lt;/li&gt;
-  &lt;li&gt;lane : 차선, 통로를 의미&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;위의 기능들과 잘 생각해보면, 특정 기능을 빠르게 수행 해주는 것이라는 생각이 든다. 그렇담, 조금더 생각을 바꿔서&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;--예시1&quot;&gt;- 예시1&lt;/h3&gt;
-
-&lt;p&gt;위의  무엇을 할 수 있는지 나열한 것의 1~9 각 기능을 한개의 통로, 차선, lane이라 생각해보자,&lt;/p&gt;
-
-&lt;p&gt;1번 레인 출발을 내가 외치면 1번 주자,운전자가 열심히 뛰어서, 아이튠즈 컨넥트에 앱을 추가하는 작업들을 후다닥 처리해서 완료치는것이라 생각하면 좀더 쉬울듯 하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;--예시3&quot;&gt;- 예시3&lt;/h3&gt;
-
-&lt;p&gt;다른 예시!! 출발 드림팀으로 생각해보자
-달리면서 여러 미션 거리를 가지고 촬영을 하는 방송이다. 매회 방송마다 미션은 다르다.
-주자가 출발해서 여러가지 미션을 통과해서 마지막에 완료!! 라고 외치는게 목표다.&lt;/p&gt;
-
-&lt;p&gt;위의 장점들은 초급 미션들이다&lt;/p&gt;
-
-&lt;p&gt;한번 실행했을때 1가지 하고 완료!! 를 외치면 된다.&lt;/p&gt;
-
-&lt;p&gt;우리가 방송을 보고 더 기쁠때는 어려운 과정을 통과했을때, 기쁨을 느낀다.&lt;/p&gt;
-
-&lt;p&gt;그럼 여러가지를 섞어보자.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;배포전 스크린샷을 찍기,&lt;/li&gt;
-  &lt;li&gt;인증서 최신것 사용하기&lt;/li&gt;
-  &lt;li&gt;앱스토어에 빌드 제출하기&lt;/li&gt;
-  &lt;li&gt;완료후 슬랙으로 알려주기&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이렇게 여러가지 섞인 미션을 방송 1편이라 생각한다면
-우리는 이 미션 시작!을 외치면 알아서 스크린샷을 찍고 인증서 최신것으로 매칭한담에 앱스토어 빌드 제출한뒤 슬랙으로 알림을 날리고 완료! 라고 하겠지?&lt;/p&gt;
-
-&lt;p&gt;위의 4가지 과정을  해야하는게 미션이고 이 미션이 곧 &lt;code class=&quot;highlighter-rouge&quot;&gt;lane&lt;/code&gt;을 의미한다.&lt;/p&gt;
-
-&lt;p&gt;난 굉장히 좋은 예시같다 생각하는데, 다른사람한테도 그래야할텐데~~&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;그와중에 중요한건 fast 라는것~ 빠르게 귀찮지 않게 도와주는 도구&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;--q-내-회사앱은-한-프로젝트안에-앱이-여러갠데&quot;&gt;- Q. 내 회사앱은 한 프로젝트안에 앱이 여러갠데?&lt;/h3&gt;
-
-&lt;p&gt;이거 진짜다. 내가 맡은 앱중 하나가 이렇다..&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gym&lt;/code&gt;이라는 명령어를 사용하면 아주 쉽게 IPA를 만드는 작업이 된다.
-근데, 별다른 셋팅을 안하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane gym&lt;/code&gt;이라는 명령어를 입력하면 첫번째 타겟(앱)을  IPA 추출해버렸다…&lt;/p&gt;
-
-&lt;p&gt;그래서 별다른 셋팅을 해줬다.
-&lt;code class=&quot;highlighter-rouge&quot;&gt;fastlane gym(scheme:”AppName”)&lt;/code&gt;
-이렇게~ 그랬더니 해당 앱으로 잘 IPA추출을 했다!!&lt;/p&gt;
-
-&lt;p&gt;이런식으로 세세한 설정이 가능하단걸 전달하고 싶었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;--q-난-adhoc으로-추출하고-싶은데&quot;&gt;- Q. 난 AdHoc으로 추출하고 싶은데?&lt;/h3&gt;
-
-&lt;p&gt;회사에서 압축할때 AdHoc으로 추출할때가 많았지만, 위의 명령어를 쓰면 배포용이 나온다, 기본값이 앱스토어용인가보다.&lt;/p&gt;
-
-&lt;p&gt;이 점은 옵션을 주면된다!&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fastlane gym —-export_method ad-hoc
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;그럼 adhoc으로 잘뽑아준다&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;그래서-단점은&quot;&gt;그래서 단점은?&lt;/h2&gt;
-&lt;p&gt;단점도 분명 존재한다. 근데 아직 내가 잘몰라서 발생하는 이슈이기도 하지만, 초보자에겐 알기전까진 단점은 단점이니깐! 불편한점 정도?&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;--ipa-추출할때-오류가-났는데-잘모르겠다&quot;&gt;- IPA 추출할때 오류가 났는데 잘모르겠다&lt;/h3&gt;
-&lt;p&gt;뭔가 촤라라라락 터미널을 가득 채운다.
-빌드하면서 warning들을 다 뿌린다.  그러다가 오류가 마지막에 난다
-대충 읽어보면, 오류났는데! 정확히 몰라!! 아래 명렁어써서 다시 해봐!
-이런다. 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;—verbose&lt;/code&gt;
-그럼 로그에 상세히 남나보다. 근데, 로그 잘보면 되겠지만 서툴러서 잘 보지도 못하겠다.. 그래서 Xcode에서 아카이브 해봤더니, 착하게도
-빨간 느낌표를 보여주면서 뭐가 문제다라고 잘 얘기해준다.&lt;/p&gt;
-
-&lt;p&gt;물론 로그 잘보면 되겠지, 근데 Xcode보다 불친절하단건 사실!!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
-&lt;p&gt;다른 사람들이 많이 칭찬하고 많이 사용한다면, 이유는 분명있는 것은 진리인듯하다.&lt;/p&gt;
-
-&lt;p&gt;RxSwift도 더 해봐야지! 매력을 느낄때까지…&lt;/p&gt;
-
-&lt;p&gt;아무튼, Fastlane의 매력은 충분히 있는듯하고, 
-다음 편에서 설치랑 간단한 사용법을 다뤄봐야겠다.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 30 Mar 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/tool/2019/03/30/Tool-Fastlane%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tool/2019/03/30/Tool-Fastlane%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1.html</guid>
         
         
         <category>Tool</category>

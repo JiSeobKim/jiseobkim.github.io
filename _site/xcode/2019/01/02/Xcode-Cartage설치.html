@@ -139,7 +139,7 @@
 <div class="content">
   <div class="post"><p>Hello! 2019!</p>
 
-<p>이전편에서 <code class="highlighter-rouge">Carthage</code>이란 무엇인지 그리고 Cocoapods보다 장점은 무엇인지 글을 써봤다.</p>
+<p>이전편에서 <code class="language-plaintext highlighter-rouge">Carthage</code>이란 무엇인지 그리고 Cocoapods보다 장점은 무엇인지 글을 써봤다.</p>
 
 <p>이전글: [Carthage-서론][https://jiseobkim.github.io/xcode/2018/12/26/Xcode-Cartage.html]</p>
 
@@ -167,9 +167,9 @@
 
 <p>[Homebrew 사이트][https://brew.sh]가 공식 사이트다. 자세히 보고 싶다면 한번쯤 보면 좋을듯하다.</p>
 
-<p>하지만 귀찮다면, <code class="highlighter-rouge">Terminal</code>을 실행하고  아래 명령어 입력 후 Enter!</p>
+<p>하지만 귀찮다면, <code class="language-plaintext highlighter-rouge">Terminal</code>을 실행하고  아래 명령어 입력 후 Enter!</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 </code></pre></div></div>
 
 <p>기다리면 끝.</p>
@@ -178,9 +178,9 @@
 
 <p>[Carthage 공식 Github 사이트][https://github.com/Carthage/Carthage]에 굉장히 자세히 나와있다.</p>
 
-<p><code class="highlighter-rouge">Terminal</code>을 열고</p>
+<p><code class="language-plaintext highlighter-rouge">Terminal</code>을 열고</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chown -R $(whoami) /usr/local
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chown -R $(whoami) /usr/local
 </code></pre></div></div>
 
 <p>입력하고</p>
@@ -201,7 +201,7 @@
 
 <p><br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install carthage
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install carthage
 </code></pre></div></div>
 
 <p>입력하면 끝.</p>
@@ -212,7 +212,7 @@
 
 <h3 id="carthage를-통한-라이브러리-설치">Carthage를 통한 라이브러리 설치</h3>
 
-<p>Cocoapods 사용자라면 <code class="highlighter-rouge">pod init</code>을 해서 Podfile을 만들었을 것이다.</p>
+<p>Cocoapods 사용자라면 <code class="language-plaintext highlighter-rouge">pod init</code>을 해서 Podfile을 만들었을 것이다.</p>
 
 <blockquote>
   <p>Podfile은 설치할 라이브러리 이름을 적는곳 (추가 정보도 입력가능)</p>
@@ -220,16 +220,16 @@
 
 <p>Carthage 사용자라면 Cartfile이란것을 만들어 줘야한다. (Terminal 입력)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi Cartfile
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi Cartfile
 </code></pre></div></div>
 
 <p>편집기가 열리면 설치하고자 하는 라이브러리 주소 정보 및 버젼 정보를 적으면 된다. (Terminal 입력)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>github "Alamofire/Alamofire" ~&gt; 4.7.2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>github "Alamofire/Alamofire" ~&gt; 4.7.2
 </code></pre></div></div>
 
 <blockquote>
-  <p><code class="highlighter-rouge">-&gt; 4.7.2</code> 는 생략 가능</p>
+  <p><code class="language-plaintext highlighter-rouge">-&gt; 4.7.2</code> 는 생략 가능</p>
 </blockquote>
 
 <p>Podfile에 비해 Cartfile은 파일 내용이 심플해서 좋다.</p>
@@ -238,7 +238,7 @@
 
 <p>pod install 같이 설치가 필요하다. (Terminal 입력)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>carthage update
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>carthage update
 </code></pre></div></div>
 
 <p><br /></p>
@@ -278,6 +278,13 @@
 </div>
 
 
+  
+    
+      
+        
+          
+      
+    
   
     
       
