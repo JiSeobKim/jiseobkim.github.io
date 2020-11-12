@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>(DesignPattern) builder - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <title>(DesignPattern) Builder - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="(DesignPattern) builder" />
-    <meta name="keywords" content="(DesignPattern) builder, 😀😍😉 JS의 개발 블로그 😁😆😄, DesignPattern" />
+    <meta name="description" content="(DesignPattern) Builder" />
+    <meta name="keywords" content="(DesignPattern) Builder, 😀😍😉 JS의 개발 블로그 😁😆😄, DesignPattern" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="(DesignPattern) builder" property="og:title">
+      <meta content="(DesignPattern) Builder" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -52,7 +52,7 @@
     <meta name="twitter:creator" content="@github.io">
 
     
-      <meta name="twitter:title" content="(DesignPattern) builder">
+      <meta name="twitter:title" content="(DesignPattern) Builder">
     
 
     
@@ -126,7 +126,7 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">(DesignPattern) builder</h1>
+  <h1 class="post-title">(DesignPattern) Builder</h1>
 </header>
 
 <span class="time">12 Nov 2020</span>
@@ -137,13 +137,15 @@
 
 
 <div class="content">
-  <div class="post"><p>오랫만에 블로그 글 남기기.</p>
+  <div class="post"><p><br /></p>
+
+<p>오랫만에 블로그 글 남기기.</p>
 
 <p>참고 서적: gof의 디자인 패턴</p>
 
-<h1 id="학습-패턴-builder">학습 패턴: Builder</h1>
+<p><br /></p>
 
-<h2 id="구성-요소">구성 요소</h2>
+<h1 id="구성-요소">구성 요소</h1>
 
 <ul>
   <li>Builder</li>
@@ -151,39 +153,55 @@
   <li>Director</li>
 </ul>
 
+<p><br /></p>
+
 <h3 id="builder">Builder</h3>
 
 <p>Protocol</p>
+
+<p><br /></p>
 
 <h3 id="concrete-builder">Concrete Builder</h3>
 
 <p>builder를 준수한 구현 클래스</p>
 
+<p><br /></p>
+
 <h3 id="director">Director</h3>
 
 <p>Concrete Builder를 이용하여 객체를 <code class="language-plaintext highlighter-rouge">return</code> 해주는 구현 클래스</p>
 
-<h2 id="핵심은-builder">핵심은 Builder</h2>
+<p><br /></p>
+
+<p><br /></p>
+
+<p><strong>핵심 = Builder</strong></p>
 
 <ul>
-  <li>Builder는 product를 속성 값을 셋팅하는 함수는 builder를 반환한다. (Chain을 쓰기 위함.)</li>
-  <li>메소드 생성시 묶을 수 있는 부분은 같이 묶는다
+  <li>
+    <p>Builder는 product를 속성 값을 셋팅하는 함수는 builder를 반환한다. (Chain을 쓰기 위함.)</p>
+  </li>
+  <li>
+    <p>메소드 생성시 묶을 수 있는 부분은 같이 묶는다</p>
     <ul>
       <li>ex) UIButton에 테두리를 만들때 보통 Color와 Width는 둘다 입력하게 되므로 인자값에 Color와 Width를 넣어 하나로 묶는다.</li>
     </ul>
   </li>
-  <li>product를 생성시 미리 받은 속성 값을 이용해 필수 값을 누락 했는지 안했는지 확인 가능.</li>
 </ul>
 
-<h2 id="장점">장점</h2>
+<p><br /></p>
+
+<p><strong>장점</strong></p>
 
 <ul>
   <li>Rxswift때처럼 체인 기능을 이용하여, 객체 생성때 필요한 모든 것을 한 라인(줄바꿈은 당연!)으로 생성이 가능하여, 해당 코드 분산이 적다.</li>
   <li>위의 예시처럼 Bolder의 Width와 Color는 보통 묶어서 처리가 가능하므로 코드 라인이 더 적어진다.</li>
-  <li></li>
+  <li>product를 생성시 미리 받은 속성 값을 이용해 필수 값을 누락 했는지 안했는지 확인 가능.</li>
 </ul>
 
-<h3 id="그러면-director는">그러면 Director는?</h3>
+<p><br /></p>
+
+<p><strong>그러면 Director는?</strong></p>
 
 <p>배우면서 개인적인 생각으론, Builder와 Concrete Builder만으로 시작 했을 듯하다.</p>
 
@@ -194,6 +212,149 @@
 <p>그럼, 이런 공통의 Concrete Builder들을 관리하는 것이 필요하다 느끼고 Builder를 Return하는 class를 만들고</p>
 
 <p>이름을 Director라고 붙여준것 같다는 느낌을 받았다. 개인적으로 &lt;</p>
+
+<p><br /><br /></p>
+
+<h1 id="uml---class-diagram">UML - Class Diagram</h1>
+
+<p><img src="/assets/images/2020-11-12/img1.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>위와 같은 구조로 이루어져 있으며 눈여겨 볼 것은 다음과 같다</p>
+
+<ul>
+  <li>build를 통해 객체를 돌려준다.</li>
+  <li>테두리 적용시 <code class="language-plaintext highlighter-rouge">width</code>와 <code class="language-plaintext highlighter-rouge">color</code>를 같이 받는다</li>
+</ul>
+
+<p><br /></p>
+
+<p>그리고, Director는 미리 정의한 버튼의 Builder를 준수한 객체를 반환 해준다.</p>
+
+<p><br /><br /></p>
+
+<h1 id="code">CODE</h1>
+
+<p><br /></p>
+
+<h3 id="builder--concretebuilder">Builder &amp; ConcreteBuilder</h3>
+
+<p>메소드들중 일부만 코드로 보자</p>
+
+<p>(프로토콜은 위에 그림으로 충분하므로 코드 생략.)</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">ButtonConcreteBuilder</span><span class="p">:</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
+  	<span class="kd">private</span> <span class="k">var</span> <span class="nv">product</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">()</span>
+
+	  <span class="o">...</span> <span class="n">생략</span>
+ 		<span class="c1">// 텍스트 입력</span>
+  	<span class="kd">func</span> <span class="nf">setTitle</span><span class="p">(</span><span class="n">_</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="nf">setTitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">self</span>
+		<span class="p">}</span>
+  	<span class="c1">// 테두리 적용 (컬러와 폭을 한번에 받아 보다 쉽게 적용)</span>
+  	<span class="kd">func</span> <span class="nf">setBolder</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">cgColor</span>
+        <span class="k">return</span> <span class="k">self</span>
+		<span class="p">}</span>
+  	<span class="c1">// 객체 반환</span>
+  	<span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIButton</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">product</span>
+		<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>간단.</p>
+
+<p><br /></p>
+
+<h3 id="director-1">Director</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">ButtonDirector</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">makeBottomButton</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIButton</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">titleColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">192</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">highLightColor</span> <span class="o">=</span> <span class="n">titleColor</span><span class="o">.</span><span class="nf">withAlphaComponent</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">bgColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">51</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">59</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">67</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">font</span> <span class="o">=</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">boldSystemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">17</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">8</span>
+
+        <span class="k">let</span> <span class="nv">screenFrame</span> <span class="o">=</span> <span class="kt">UIScreen</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="k">let</span> <span class="nv">screenSize</span> <span class="o">=</span> <span class="n">screenFrame</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">let</span> <span class="nv">margin</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">12.0</span>
+        <span class="k">let</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">45.0</span>
+        <span class="k">let</span> <span class="nv">size</span> <span class="o">=</span> <span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="n">screenSize</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="p">(</span><span class="n">margin</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span> <span class="nv">height</span><span class="p">:</span> <span class="n">height</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">point</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">margin</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">screenSize</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">height</span> <span class="o">-</span> <span class="p">(</span><span class="n">margin</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">let</span> <span class="nv">frame</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">origin</span><span class="p">:</span> <span class="n">point</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="n">size</span><span class="p">)</span>
+
+
+      	<span class="c1">// 1. Chain을 이용하여 값 셋팅</span>
+        <span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">ButtonConcreteBuilder</span><span class="p">()</span>
+            <span class="o">.</span><span class="nf">setBGColor</span><span class="p">(</span><span class="n">bgColor</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="n">titleColor</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">setTitleHighlightedColor</span><span class="p">(</span><span class="n">highLightColor</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">setFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">setFrame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">setRadius</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">setTitle</span><span class="p">(</span><span class="s">"Bottom"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Director도 프로토콜을 생성하여 준수하게 만들면 좋겠지만? 얘는 일단 이렇게 합시다. 내가 필요한건 공통적으로 하단에서 쓰일 버튼이니깐!</p>
+
+<p><br /></p>
+
+<p>여기서 눈 여겨 보아야할 것은 주석 부분이다.</p>
+
+<p>체인을 이용하여 연달아서 값을 적용 할 수 있으며, 분산이 안됨을 느낄 수 있었다.</p>
+
+<p><br /></p>
+
+<p>그리고 마무리론 <code class="language-plaintext highlighter-rouge">build()</code>하여 버튼 객체 반환.</p>
+
+<p><br /><br /></p>
+
+<h1 id="사용">사용</h1>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+		<span class="o">...</span>
+  
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">addBottomButton</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">addBottomButton</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">bottomButton</span> <span class="o">=</span> <span class="kt">ButtonDirector</span><span class="o">.</span><span class="nf">makeBottomButton</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">bottomButton</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위와 같이 아주 간단하게 <code class="language-plaintext highlighter-rouge">Director</code>를 통해 화면에 버튼을 추가했다.</p>
+
+<p>결과는 아래와 같다.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2020-11-12/img2.png" alt="" /></p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="한줄평">한줄평</h1>
+
+<p><br /></p>
+
+<p>Builder 패턴은 명확하고 통일성 있게 객체를 생성할 수 있으며 간단한 컴포넌트에 적당한 느낌.</p>
 
 </div>
   <div class="share-page">
@@ -424,8 +585,8 @@
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_(DesignPattern) builder";
-    var disqus_title = "(DesignPattern) builder";
+    var disqus_identifier = "http://localhost:4000_(DesignPattern) Builder";
+    var disqus_title = "(DesignPattern) Builder";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
