@@ -11,7 +11,7 @@ categories: [Swift, UI]
 
 하 DragAnimation Final을 진행중이었는데,
 
-스크롤뷰 생성중에 새로 바뀐 Content Layout Guides을 또 아 이거뭐가 뭐였지? 해버려서
+스크롤뷰 생성중에 새로 바뀐 `Content Layout Guides`을 또 아 이거뭐가 뭐였지? 해버려서
 
 
 
@@ -35,7 +35,7 @@ categories: [Swift, UI]
 
 <br>
 
-새롭게 추가된 이것은 위에 말한것과 같이 기존에 필요했던 자체 사이즈, 내용물 사이즈를 명시한 느낌이다.
+새롭게 추가된 이것은 위에 말한것과 같이 기존에 필요했던 **자체 사이즈, 내용물 사이즈를 명시**한 느낌이다.
 
 <br><br>
 
@@ -55,7 +55,7 @@ categories: [Swift, UI]
 
 <br>
 
-**3. 오류 구경하기(컨텐츠 값을 모르겠다! 라는 대충 그런 의미)**
+**3. 오류 구경하기**(컨텐츠 값을 모르겠다! 라는 대충 그런 의미)
 
 <img src="/assets/images/2021-03-17/img-4.png" style="zoom:40%;" />
 
@@ -95,7 +95,7 @@ categories: [Swift, UI]
 
 <img src="/assets/images/2021-03-17/img-9.png" style="zoom:40%;" />
 
-컨텐츠의 사이즈가 모호해! 는 사라졌다. 대신에 위와 같이 X,Width 값 잡고 Y, Height도 필요하다고 나온다. 
+컨텐츠의 사이즈가 모호해! 는 사라졌다. 대신에 위와 같이 X || Width 값 잡고 Y || Height도 필요하다고 나온다. 
 
 <br>
 
@@ -107,7 +107,8 @@ categories: [Swift, UI]
 
 이때, 우리는 생각을 해야한다. 컨텐츠 레이아웃을 잡았고 필요한건 프레임의 사이즈다. 
 
-따라서, 높이는 수동으로 잡아주고 폭은 스크롤뷰의 `프레임`과 같게! 걸어주며, 이때 초반에 나온 Frame Layout Guide를 사용한다.
+따라서, 높이는 수동으로 잡아주고 폭은 스크롤뷰의 `프레임`과 같게! 걸어주며, 
+이때 초반에 나온 `Frame Layout Guide`를 사용한다.
 
 <br><br>
 
@@ -121,8 +122,8 @@ categories: [Swift, UI]
 
 여기까지만 해도 충분히 스크롤뷰 사용하는데는 문제가 없다. 
 
-다음편은 조금 실험을 하려한다. 
-
+<br>
+**다음편은 조금 실험을 하려한다.** 
 <br>
 
 왜 이전 스크롤뷰 사이즈 잡는 것과 같이 프레임 자체는 ScrollView의 Width나 다른 Width를 안잡고 Frame Layout Guide를 썼을까? 라는 생각을 시작으로 다른것과도 AutoLayout을 잡아볼 예정이다.
@@ -132,12 +133,10 @@ categories: [Swift, UI]
 다음 편의 결론을 얘기하면, 다 가능하다 이전과 같이 다른것과 AutoLayout을 걸어도 된다.
 
 초반에 얘기한것처럼 컨텐츠 사이즈와 자체 사이즈를 명시한다는 느낌을 주기위해 Frame Layout Guide를 추가한 것 같다.
-
 <br><br>
-
 애플의 의도는 아마 이것 같다.
 
->  사이즈를 잡을때 스크롤뷰를 안벗어나고  Content Layout Guide와 Frame Layout Guide만으로 잡아!
+>  사이즈를 잡을때 스크롤뷰를 안벗어나고  **Content Layout Guide**와 **Frame Layout Guide**만으로 잡아!
 
 
 
