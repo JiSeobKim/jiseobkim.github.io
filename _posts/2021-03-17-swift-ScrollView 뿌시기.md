@@ -85,7 +85,7 @@ categories: [Swift, UI]
 
 <br>
 
-**7. 6의 값들을 전부 0 으로 수정**
+**7. 6의 값들을 전부 1 으로 수정**
 
 <img src="/assets/images/2021-03-17/img-8.png" style="zoom:40%;" />
 
