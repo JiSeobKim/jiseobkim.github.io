@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(swift) ScrollView 뿌시기 - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(swift) ScrollView 뿌시기" />
+    <meta name="keywords" content="(swift) ScrollView 뿌시기, 😀😍😉 JS의 개발 블로그 😁😆😄, Swift, UI" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(swift) ScrollView 뿌시기" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html" property="og:url">
+    
+
+    
+      <meta content="2021-03-17T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@github.io">
+    <meta name="twitter:creator" content="@github.io">
+
+    
+      <meta name="twitter:title" content="(swift) ScrollView 뿌시기">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              매끄러운 iOS 만들자, 뿌셔
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="Jiseob812" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/projects/">My Projects</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(swift) ScrollView 뿌시기</h1>
+</header>
+
+<span class="time">17 Mar 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>하 DragAnimation Final을 진행중이었는데,</p>
+
+<p>스크롤뷰 생성중에 새로 바뀐 Content Layout Guides을 또 아 이거뭐가 뭐였지? 해버려서</p>
+
+<p>이거부터 진행.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p>여기보면 <code class="language-plaintext highlighter-rouge">Content Layout Guides</code> 라는 것이 어느새 새로운것이 추가 되었다.</p>
+
+<p><img src="/assets/images/2021-03-17/img.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>이거 전에도 스크롤뷰 생성은 공부가 필요했다. 자체 사이즈도 잡아줘야하고, 내용물의 사이즈는 얼마일지도 잡아줘야했다.</p>
+
+<p>위의 옵션을 체크해주면, 스크롤뷰 하위에 다음과 같은 2개가 있는 것을 볼 수 있다.</p>
+
+<p><img src="/assets/images/2021-03-17/img-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>새롭게 추가된 이것은 위에 말한것과 같이 기존에 필요했던 자체 사이즈, 내용물 사이즈를 명시한 느낌이다.</p>
+
+<p><br /><br /></p>
+
+<h1 id="autolayout-적용하기">AutoLayout 적용하기</h1>
+
+<p><br /></p>
+
+<p><strong>1. 스크롤뷰 추가하기</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-2.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p><strong>2. AutoLayout 상하좌우 걸기</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-3.png" style="zoom:60%;" /></p>
+
+<p><br /></p>
+
+<p><strong>3. 오류 구경하기(컨텐츠 값을 모르겠다! 라는 대충 그런 의미)</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-4.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p><strong>4. 스크롤뷰 안에 내용물(UIView) 추가하기 - 모호 하다니깐 해주기, 여전히 스크롤뷰 누르면 4같은 에러가 보인다.</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-5.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p><strong>5. 추가한 <code class="language-plaintext highlighter-rouge">View</code>의 상하좌우 AutoLayout을 <code class="language-plaintext highlighter-rouge">Content Layout Guide</code> 의 상하좌우에 걸어준다.</strong></p>
+
+<p>(이 부분 귀찮은데 ㅜ 쉽게 하는 방법이 궁금하다.)</p>
+
+<p><img src="/assets/images/2021-03-17/img-6.png" style="zoom:100%;" /></p>
+
+<p><br /></p>
+
+<p><strong>6. 뷰의 Size Inspector에서 Autolayout 값들을 보자, 이상한 값으로 들어가있다</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-7.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>이는 5와 같은 방식으로 잡아줄 경우 현재의 비율에 비례해서 걸리게 된다.</p>
+
+<p><br /></p>
+
+<p><strong>7. 6의 값들을 전부 0 으로 수정</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-8.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p><strong>8. ScrollView 에러를 다시 보자 - 새로운 에러가 나타난다.</strong></p>
+
+<p><img src="/assets/images/2021-03-17/img-9.png" style="zoom:40%;" /></p>
+
+<p>컨텐츠의 사이즈가 모호해! 는 사라졌다. 대신에 위와 같이 X,Width 값 잡고 Y, Height도 필요하다고 나온다.</p>
+
+<p><br /></p>
+
+<p><strong>9. 컨텐츠의 사이즈를 잡아준다.</strong></p>
+
+<p>가장 일반적으로 세로 스크롤이 되는것이 많다. 이때 Width는 스크롤뷰와 동일하게, 높이는 커스텀하게.</p>
+
+<p><br /></p>
+
+<p>이때, 우리는 생각을 해야한다. 컨텐츠 레이아웃을 잡았고 필요한건 프레임의 사이즈다.</p>
+
+<p>따라서, 높이는 수동으로 잡아주고 폭은 스크롤뷰의 <code class="language-plaintext highlighter-rouge">프레임</code>과 같게! 걸어주며, 이때 초반에 나온 Frame Layout Guide를 사용한다.</p>
+
+<p><br /><br /></p>
+
+<p>폭은 Frame Layout Guide와 동일하게, Height는 400으로 잡아주면 다음과 같이 되며 에러가 사라진다.</p>
+
+<p><img src="/assets/images/2021-03-17/img-16.png" style="zoom:40%;" /></p>
+
+<p><br /><br /></p>
+
+<p>여기까지만 해도 충분히 스크롤뷰 사용하는데는 문제가 없다.</p>
+
+<p>다음편은 조금 실험을 하려한다.</p>
+
+<p><br /></p>
+
+<p>왜 이전 스크롤뷰 사이즈 잡는 것과 같이 프레임 자체는 ScrollView의 Width나 다른 Width를 안잡고 Frame Layout Guide를 썼을까? 라는 생각을 시작으로 다른것과도 AutoLayout을 잡아볼 예정이다.</p>
+
+<p><br /></p>
+
+<p>다음 편의 결론을 얘기하면, 다 가능하다 이전과 같이 다른것과 AutoLayout을 걸어도 된다.</p>
+
+<p>초반에 얘기한것처럼 컨텐츠 사이즈와 자체 사이즈를 명시한다는 느낌을 주기위해 Frame Layout Guide를 추가한 것 같다.</p>
+
+<p><br /><br /></p>
+
+<p>애플의 의도는 아마 이것 같다.</p>
+
+<blockquote>
+  <p>사이즈를 잡을때 스크롤뷰를 안벗어나고  Content Layout Guide와 Frame Layout Guide만으로 잡아!</p>
+</blockquote>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="github.io">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2020/03/25/swift-DragAnimation_Step2_Transform.html">(swift) DragAnimation(2/3) - Transform</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2020/03/01/swift-DragAnimation_Step1_Gesture(Long-&-pan).html">(swift) DragAnimation(1/3) - Gesture(Long &pan)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2019/07/11/swift-File-Manager.html">(Swift) FileManager</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html">(Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/11/04/swift-Tag.html">(Swift) Tag 알아보기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2018/10/27/swift-NotificationCenter.html">(Swift) Notification Center</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/designpattern/2020/11/12/designPattern-DesignPattern-Builder.html">&laquo; (DesignPattern) Builder</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(swift) ScrollView 뿌시기";
+    var disqus_title = "(swift) ScrollView 뿌시기";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
