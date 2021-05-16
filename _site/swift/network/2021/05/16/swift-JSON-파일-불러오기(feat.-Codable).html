@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>(swift) ScrollView 뿌시기 실험 - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <title>(swift) JSON 파일 불러오기(feat. Codable) - 😀😍😉 JS의 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="(swift) ScrollView 뿌시기 실험" />
-    <meta name="keywords" content="(swift) ScrollView 뿌시기 실험, 😀😍😉 JS의 개발 블로그 😁😆😄, Swift, UI" />
+    <meta name="description" content="(swift) JSON 파일 불러오기(feat. Codable)" />
+    <meta name="keywords" content="(swift) JSON 파일 불러오기(feat. Codable), 😀😍😉 JS의 개발 블로그 😁😆😄, Swift, Network" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS의 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="(swift) ScrollView 뿌시기 실험" property="og:title">
+      <meta content="(swift) JSON 파일 불러오기(feat. Codable)" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -25,11 +25,11 @@
     
 
     
-      <meta content="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html" property="og:url">
+      <meta content="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html" property="og:url">
     
 
     
-      <meta content="2021-03-18T00:00:00+09:00" property="article:published_time">
+      <meta content="2021-05-16T00:00:00+09:00" property="article:published_time">
       <meta content="http://localhost:4000/about/" property="article:author">
     
 
@@ -52,11 +52,11 @@
     <meta name="twitter:creator" content="@github.io">
 
     
-      <meta name="twitter:title" content="(swift) ScrollView 뿌시기 실험">
+      <meta name="twitter:title" content="(swift) JSON 파일 불러오기(feat. Codable)">
     
 
     
-      <meta name="twitter:url" content="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html">
+      <meta name="twitter:url" content="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html">
     
 
     
@@ -126,180 +126,169 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">(swift) ScrollView 뿌시기 실험</h1>
+  <h1 class="post-title">(swift) JSON 파일 불러오기(feat. Codable)</h1>
 </header>
 
-<span class="time">18 Mar 2021</span>
+<span class="time">16 May 2021</span>
 
   <span class="categories">
-    &raquo; <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>
+    &raquo; <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>
   </span>
 
 
 <div class="content">
-  <div class="post"><p>이전편 8번에서부터 이어지므로 보고 오는것을 추천 - <a href="https://jiseobkim.github.io/swift/ui/2021/03/17/swift-ScrollView-뿌시기.html">이전글</a></p>
+  <div class="post"><p>개발을 하다보면 서버와 같이 일을 해야하는데,
+API가 아직 안나왔다면 조금 돌아가는 일을 선택한 적이 많았다.</p>
 
-<p>이 에러부터!</p>
+<p>예를 들어 일단 기획에 나온대로 화면 미리 짜고 API가 나오면 추후에 붙인다거나?</p>
 
-<p><img src="/assets/images/2021-03-17/img-9.png" style="zoom:80%;" /></p>
+<p>이럴 경우 2가지 경험이 있었다.</p>
 
-<p><br /><br /></p>
+<h3 id="통신-파트를-제외하고-화면에-필요한-데이터-구조를-내-마음대로-만든다">통신 파트를 제외하고 화면에 필요한 데이터 구조를 내 마음대로 만든다.</h3>
 
-<h1 id="실험">실험</h1>
+<p>눈에 보이는 데이터로 모델을 만들다보니 화면을 구성하기엔 편했다.
+단점은 제대로된 API가 나왔을때 구조적으로 틀어진게 너무 많다.</p>
 
-<p>위의 8부터 다시보고 차근차근 봐보자, 이것 저것 실험하기!</p>
+<p>몇번 겪어보고선 쓰지 않는 방식.</p>
 
-<p>컨텐츠의 사이즈가 모호해! 는 사라졌다. 대신에 위와 같이 X,Width 값 잡고 Y, Height도 필요하다고 나온다.</p>
+<h3 id="통신-파트를-제외하고-문서에-나온대로-모델을-만든-후-화면을-구성한다">통신 파트를 제외하고 문서에 나온대로 모델을 만든 후 화면을 구성한다.</h3>
+<p>고려해야할 부분도 이미 같이 구성했기 때문에 API가 나와도 크게 손댈 곳이 없다.
+다만,, 테스트를 위해 더미 데이터를 만드는게 너무나도 귀찮았다.</p>
 
-<p>하나씩 다잡아보자 X 또는 Width, Y 또는 Height.</p>
+<p><strong>그래서 그 귀찮은 부분을 해결하기 위한 글.</strong></p>
 
-<p><br /></p>
+<p>결론: 프로젝트 안에 json 파일을 생성 후 이 파일을 <code class="language-plaintext highlighter-rouge">Data</code> 형태로 불러와서, 실제로 통신 데이터 받은 것처럼
+처리를 한다.</p>
 
-<p><strong>X값 설정</strong></p>
+<blockquote>
+  <p>단점: 리스트 더불러오기 같은 경우는 여전히 API가 나온 후에 해야 편한것 같다. 
+좋은 방법이 있으면 공유 해주세요!</p>
+</blockquote>
 
-<p>센터로 설정을 해보자</p>
-
-<p><img src="/assets/images/2021-03-18/img-10.png" style="zoom:80%;" /></p>
-
-<p><img src="/assets/images/2021-03-18/img-11.png" style="zoom:40%;" /></p>
-
-<p>x 값을 잡아줬더니 x또는 Width 잡으라는 경고는 사라졌다. 그리곤 ScrollView의 폭만큼 늘어났다</p>
-
-<p><br /><br /></p>
-
-<p><strong>Y값 설정</strong></p>
-
-<p>X는 다시 지워주고 Y만 센터로 해보자</p>
-
-<p><img src="/assets/images/2021-03-18/img-12.png" style="zoom:80%;" /></p>
-
-<p><img src="/assets/images/2021-03-18/img-13.png" style="zoom:40%;" /></p>
-
-<p>마찬가지로 y, height 잡으라는 경고는 사라졌다. 그리곤 ScrollView의 높이만큼 늘어났다.</p>
-
-<p><br /><br /></p>
-
-<p><strong>X,Y값 설정</strong></p>
-
-<p>둘다 센터 0으로 잡아보자</p>
-
-<p><img src="/assets/images/2021-03-18/img-14.png" style="zoom:40%;" /></p>
-
-<p>모든 에러가 사라졌다. 그리고 ScrollView와 같은 사이즈가 되었다.</p>
-
-<p>Content Layout Guide와의 상하좌우를 0으로 맞추고 센터를 0,0잡아준 결과이다.</p>
-
-<p>스크롤뷰 사이즈 = 컨텐츠 사이즈인 상태이다. 그러므로 <strong>스크롤은 되지 않는다.</strong></p>
-
-<p><br /></p>
-
-<p>이번엔 Content Layout Guide와의 좌,우 를 100 잡아보자( Leading만 잡아도 Trailing은 줄어드는 이유는 잘 모르겠다. )</p>
-
-<p><img src="/assets/images/2021-03-18/img-15.png" style="zoom:40%;" /></p>
-
-<p><img src="/assets/images/2021-03-18/img-17.png" style="zoom:40%;" /></p>
-
-<p>가득 차있다가 좌우 여백 100 만큼을 갖는 사이즈로 형성이 된다.</p>
-
-<p>그렇다는건 반대로 여백을 반대 방향으로 잡는다면 그만큼 스크롤이 가능하게 된다는것이다.</p>
-
-<p><br /></p>
-
-<p>반대로 하기전 스크롤 됨을 확인하기가 어려우므로 다음과 같이 이쁘게 꾸며주자 (핑크와 오렌지의 폭은 100)</p>
-
-<p><img src="/assets/images/2021-03-18/img-18.png" style="zoom:40%;" /></p>
-
-<p><br /></p>
-
-<p>Leading만 -100을 줘보자</p>
-
-<p><img src="/assets/images/2021-03-18/img-19.png" style="zoom:40%;" /></p>
-
-<p>자세히 보면 왼쪽은 두줄이다. 오른쪽은 한줄이고!</p>
-
-<p>이상태에서 왼쪽-&gt;오른쪽 드래그를 해보면 더이상 갈 수 없다. 빨간색이 bounce 동안은 볼수 있지만 해당 영역으로 스크롤을 갈 수 없다.</p>
-
-<p>반대로 오른쪽 -&gt; 왼쪽 드래그를 해보면 주황색영역을 볼 수 있다.</p>
-
-<p>이때부터, 뭔가 내 생각대로 안됨을 인식하기 시작했다.</p>
-
-<p>Leading과 Trailing에 대해 내가 모른단 생각이 들었다.</p>
-
-<p><br /><br /></p>
-
-<p>Trailing에 -100을 줘보자</p>
-
-<p><img src="/assets/images/2021-03-18/img-20.png" style="zoom:40%;" /></p>
-
-<p>오 오른쪽으로 갈 수 있는 영역이 100 만큼 생겼다. 그치만 Leading과 다르게 좌로는 늘어나지 않고 우로만 늘어났다.</p>
-
-<p>오.. 혼란이 온다…</p>
-
-<p>Leading과 Trailing은 다르다.</p>
-
-<p>이 얘긴 나중에 하자 길어질듯하다.</p>
-
-<p>공부해서오자.</p>
-
-<p><br /><br /></p>
-
-<p>Leading과 Trailing을 복구 시키고 세로로만 스크롤 되게 해보자</p>
-
-<p>y축을 -100 줘보자.</p>
-
-<p><img src="/assets/images/2021-03-18/img-23.png" style="zoom:40%;" /></p>
-
-<p><br /><br /></p>
-
-<p>축 자체가 -100이 되기 위해선 x2만큼 늘어나야해서 200이 늘어나게 된다.</p>
-
-<p>어찌 됐든 스크롤은 되지만 영역잡기엔 굉장히 별로 안좋은 방법이다.</p>
-
-<p>그냥 상하좌우와 X,Y축 AutoLayout만으로도 스크롤을 가능하게 할 수 있다! 정도만 알게 되었다.</p>
-
-<p><br /><br /></p>
-
-<p><strong>Height, Width값 설정</strong></p>
-
-<p>(Y는 마찬가지로 초기화) 이건 한꺼번에 설정 해도 생각한대로 그려지므로 한꺼번에 설정.</p>
-
-<p>100, 100 으로 잡아보자</p>
-
-<p><img src="/assets/images/2021-03-18/img-21.png" style="zoom:40%;" /></p>
-
-<p>아주 귀엽게 됐다, 아직은 컨텐츠 양이 작아서 드래그가 안되니 조금 많이 키워보자</p>
-
-<p><br /></p>
-
-<p><img src="/assets/images/2021-03-18/img-22.png" style="zoom:40%;" /></p>
-
-<p>오 이것도 된다.</p>
-
-<p>자체적인 Width, Height로도 스크롤은 가능하게 할 수 있다.</p>
-
-<p><br /><br /></p>
-
-<p>하지만, 보통은 X방향 또는 Y방향으로만 스크롤이 되게 하므로 위에 방법들은 보통의 경우에 쓰긴 추천하지 않는다.</p>
-
-<p>그럼 Y축 스크롤만 예를 들었을때, 좌우 폭을 잡는 방법은 다음과 같은 방식이 있다.</p>
+<h1 id="json-파일-만들기">JSON 파일 만들기</h1>
 
 <ol>
-  <li>Frame Layout Guide와 Width를 동일시한다.</li>
-  <li>ScrollView와 Width를 동일시한다.</li>
+  <li>새 파일을 생성하자</li>
 </ol>
 
-<p><br /><br /></p>
+<p><img src="/assets/images/2021-05-16/img-1.png" style="zoom:40%;" /></p>
 
-<p>둘의 차이점은 없다고 생각한다.</p>
+<ol>
+  <li>
+    <p>String을 검색해주고</p>
 
-<p>다만, 구조적으로 봤을때 Frame Layout Guide를 사용한다면 스크롤뷰 내의 뷰의 사이즈를 <code class="language-plaintext highlighter-rouge">Guide</code>들을 이용해서 사이즈를 잡을 수 있다.</p>
+    <p><img src="/assets/images/2021-05-16/img-2.png" style="zoom:40%;" /></p>
+  </li>
+  <li>
+    <p>파일명과 확장자는 <code class="language-plaintext highlighter-rouge">user.json</code>으로 한뒤 <code class="language-plaintext highlighter-rouge">Next</code>를 눌러주면 다음과 같은 창이 뜬다. <code class="language-plaintext highlighter-rouge">User .json</code> 선택</p>
 
-<p><img src="/assets/images/2021-03-18/img-24.png" style="zoom:100%;" /></p>
+    <p><img src="/assets/images/2021-05-16/img-3.png" style="zoom:40%;" /></p>
+  </li>
+  <li>
+    <p>생성된 파일의 모든 내용을 제거 한후 다음과 같이 JSON 스타일의 코드를 넣어주자 (나름 친절하게 타입도 써보았다.)</p>
 
-<p><br /><br /></p>
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Type: Dictionary</span>
+<span class="p">{</span>
+    <span class="s">"totalCount"</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span> 			<span class="c1">// value type: Int</span>
+    <span class="s">"users"</span> <span class="p">:</span> <span class="p">[</span> 						<span class="c1">// value type: [Dictionary]</span>
+        <span class="p">{</span>
+            <span class="s">"name"</span> <span class="p">:</span> <span class="s">"js"</span><span class="p">,</span>  <span class="c1">// value: String</span>
+            <span class="s">"age"</span> <span class="p">:</span> <span class="mi">30</span>			<span class="c1">// value: Int</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s">"name"</span> <span class="p">:</span> <span class="s">"jw"</span><span class="p">,</span>	<span class="c1">// value: String</span>
+            <span class="s">"age"</span> <span class="p">:</span> <span class="mi">28</span>			<span class="c1">// value: Int</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s">"name"</span> <span class="p">:</span> <span class="s">"ch"</span><span class="p">,</span>	<span class="c1">// value: String</span>
+            <span class="s">"age"</span> <span class="p">:</span> <span class="mi">31</span>			<span class="c1">// value: Int</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
-<p>스크롤뷰 내의 컨텐츠 사이즈를 정의할때, 괜히 엄한것이랑 AutoLayout 잡지 말고 Guide들로 잡아! 라는 뜻이 아닐까?</p>
+<p>그럼 이제 프로젝트내에 준비는 끝났다.</p>
 
+<p><img src="/assets/images/2021-05-16/img-4.png" style="zoom:40%;" /></p>
+
+<p>그럼 이제 이 <code class="language-plaintext highlighter-rouge">JSON</code> 파일을 불러오는 코드를 작성</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>func load() -&gt; Data? {
+    // 1. 불러올 파일 이름
+    let fileNm: String = "User"
+    // 2. 불러올 파일의 확장자명
+    let extensionType = "json"
+    
+    // 3. 파일 위치
+    guard let fileLocation = Bundle.main.url(forResource: fileNm, withExtension: extensionType) else { return nil }
+    
+    
+    do {
+        // 4. 해당 위치의 파일을 Data로 초기화하기
+        let data = try Data(contentsOf: fileLocation)
+        return data
+    } catch {
+        // 5. 잘못된 위치나 불가능한 파일 처리 (오늘은 따로 안하기)
+        return nil
+    }
+}
+</code></pre></div></div>
+
+<p>3을 보면 파일명과 확장자는 나눠서 불러온다는 점을 잘 인지해야하며 대소문자도 주의해주고, 
+4의 부분에서 해당 위치의 파일을 데이터로 초기화 해주는 아주 간단한 코드.</p>
+
+<p>그럼 이것을 이용하여 <code class="language-plaintext highlighter-rouge">data</code>로 받은 뒤 <code class="language-plaintext highlighter-rouge">String</code>으로 형변환을 하여 출력을 해보자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>guard
+    let jsonData = load(),
+    let dictData = String(data: jsonData, encoding: .utf8)
+else { return }
+
+print("결과: \(dictData)")
+</code></pre></div></div>
+
+<p>위의 코드 결과는 다음과 같다.
+<img src="/assets/images/2021-05-16/img-5.png" style="zoom:40%;" /></p>
+
+<h1 id="codable-더하기">Codable 더하기</h1>
+
+<p>위에서 JSON을 잘불러왔으니 모델을 만들어서 Codable을 이용해보자</p>
+
+<p><a href="https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html">Codable 관련 글</a></p>
+
+<p>우선 모델을 생성해주자</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserList: Codable {
+    let totalCount: Int
+    let users: [User]
+}
+
+struct User: Codable {
+    let name: String
+    let age: Int
+}
+
+</code></pre></div></div>
+
+<p>그리고 이번엔 <code class="language-plaintext highlighter-rouge">Data</code>를 Codable을 이용하여 <code class="language-plaintext highlighter-rouge">UserList</code>로 얻어 보자</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>guard
+    let jsonData = load(),
+    let userList = try? JSONDecoder().decode(UserList.self, from: jsonData)
+else { return }
+</code></pre></div></div>
+
+<p><img src="/assets/images/2021-05-16/img-6.png" style="zoom:40%;" /></p>
+
+<p>잘 받아졌다.</p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>위와 같이 JSON 파일을 별도로 생성해야하는 귀찮음은 있지만, 실제 작업시 더미 데이터 값을 따로 선언 및 초기화 할 필요가 없다.
+예제야 짧으니 실제 작업 파일에 써도 무방하겠지만, 프로퍼티만 수십가지일 경우 정말 지저분해지는 것을 봐야한다 ㅠ</p>
+
+<p>그래서 개인적으론 API가 아직 문서만 나온 단계라면, 이 방식을 사용하는것을 추천!</p>
 </div>
   <div class="share-page">
   <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
@@ -309,7 +298,7 @@
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   <!-- Facebook -->
-  <div class="fb-share-button" data-href="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 
 <div id="fb-root"></div>
@@ -329,20 +318,6 @@
       
         
           
-            
-            <div class="panel-body">
-              <h4>Related Posts</h4>
-              <ul>
-            
-                <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html">(swift) JSON 파일 불러오기(feat. Codable)</a>
-                  
-                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
-                  
-                </li>
-          
-          
-        
       
           
       
@@ -358,6 +333,20 @@
       
         
           
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html">(swift) ScrollView 뿌시기 실험</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
       
           
       
@@ -687,10 +676,8 @@
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html">&laquo; (swift) ScrollView 뿌시기</a>
+    <a class="prev" href="/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html">&laquo; (swift) ScrollView 뿌시기 실험</a>
   
-  
-    <a class="next" href="/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html">(swift) JSON 파일 불러오기(feat. Codable) &raquo;</a>
   
 </div>
 
@@ -699,8 +686,8 @@
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_(swift) ScrollView 뿌시기 실험";
-    var disqus_title = "(swift) ScrollView 뿌시기 실험";
+    var disqus_identifier = "http://localhost:4000_(swift) JSON 파일 불러오기(feat. Codable)";
+    var disqus_title = "(swift) JSON 파일 불러오기(feat. Codable)";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

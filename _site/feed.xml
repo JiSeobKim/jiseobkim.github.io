@@ -5,9 +5,175 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 18 Mar 2021 15:57:09 +0900</pubDate>
-    <lastBuildDate>Thu, 18 Mar 2021 15:57:09 +0900</lastBuildDate>
+    <pubDate>Sun, 16 May 2021 17:48:21 +0900</pubDate>
+    <lastBuildDate>Sun, 16 May 2021 17:48:21 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>(swift) JSON 파일 불러오기(feat. Codable)</title>
+        <description>&lt;p&gt;개발을 하다보면 서버와 같이 일을 해야하는데,
+API가 아직 안나왔다면 조금 돌아가는 일을 선택한 적이 많았다.&lt;/p&gt;
+
+&lt;p&gt;예를 들어 일단 기획에 나온대로 화면 미리 짜고 API가 나오면 추후에 붙인다거나?&lt;/p&gt;
+
+&lt;p&gt;이럴 경우 2가지 경험이 있었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;통신-파트를-제외하고-화면에-필요한-데이터-구조를-내-마음대로-만든다&quot;&gt;통신 파트를 제외하고 화면에 필요한 데이터 구조를 내 마음대로 만든다.&lt;/h3&gt;
+
+&lt;p&gt;눈에 보이는 데이터로 모델을 만들다보니 화면을 구성하기엔 편했다.
+단점은 제대로된 API가 나왔을때 구조적으로 틀어진게 너무 많다.&lt;/p&gt;
+
+&lt;p&gt;몇번 겪어보고선 쓰지 않는 방식.&lt;/p&gt;
+
+&lt;h3 id=&quot;통신-파트를-제외하고-문서에-나온대로-모델을-만든-후-화면을-구성한다&quot;&gt;통신 파트를 제외하고 문서에 나온대로 모델을 만든 후 화면을 구성한다.&lt;/h3&gt;
+&lt;p&gt;고려해야할 부분도 이미 같이 구성했기 때문에 API가 나와도 크게 손댈 곳이 없다.
+다만,, 테스트를 위해 더미 데이터를 만드는게 너무나도 귀찮았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;그래서 그 귀찮은 부분을 해결하기 위한 글.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;결론: 프로젝트 안에 json 파일을 생성 후 이 파일을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt; 형태로 불러와서, 실제로 통신 데이터 받은 것처럼
+처리를 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;단점: 리스트 더불러오기 같은 경우는 여전히 API가 나온 후에 해야 편한것 같다. 
+좋은 방법이 있으면 공유 해주세요!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;json-파일-만들기&quot;&gt;JSON 파일 만들기&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;새 파일을 생성하자&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;String을 검색해주고&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;파일명과 확장자는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user.json&lt;/code&gt;으로 한뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Next&lt;/code&gt;를 눌러주면 다음과 같은 창이 뜬다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User .json&lt;/code&gt; 선택&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;생성된 파일의 모든 내용을 제거 한후 다음과 같이 JSON 스타일의 코드를 넣어주자 (나름 친절하게 타입도 써보았다.)&lt;/p&gt;
+
+    &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Type: Dictionary&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;totalCount&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 			&lt;span class=&quot;c1&quot;&gt;// value type: Int&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;users&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; 						&lt;span class=&quot;c1&quot;&gt;// value type: [Dictionary]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// value: String&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// value: Int&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// value: String&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// value: Int&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// value: String&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// value: Int&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그럼 이제 프로젝트내에 준비는 끝났다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-4.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 파일을 불러오는 코드를 작성&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func load() -&amp;gt; Data? {
+    // 1. 불러올 파일 이름
+    let fileNm: String = &quot;User&quot;
+    // 2. 불러올 파일의 확장자명
+    let extensionType = &quot;json&quot;
+    
+    // 3. 파일 위치
+    guard let fileLocation = Bundle.main.url(forResource: fileNm, withExtension: extensionType) else { return nil }
+    
+    
+    do {
+        // 4. 해당 위치의 파일을 Data로 초기화하기
+        let data = try Data(contentsOf: fileLocation)
+        return data
+    } catch {
+        // 5. 잘못된 위치나 불가능한 파일 처리 (오늘은 따로 안하기)
+        return nil
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;3을 보면 파일명과 확장자는 나눠서 불러온다는 점을 잘 인지해야하며 대소문자도 주의해주고, 
+4의 부분에서 해당 위치의 파일을 데이터로 초기화 해주는 아주 간단한 코드.&lt;/p&gt;
+
+&lt;p&gt;그럼 이것을 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data&lt;/code&gt;로 받은 뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;으로 형변환을 하여 출력을 해보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;guard
+    let jsonData = load(),
+    let dictData = String(data: jsonData, encoding: .utf8)
+else { return }
+
+print(&quot;결과: \(dictData)&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위의 코드 결과는 다음과 같다.
+&lt;img src=&quot;/assets/images/2021-05-16/img-5.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;codable-더하기&quot;&gt;Codable 더하기&lt;/h1&gt;
+
+&lt;p&gt;위에서 JSON을 잘불러왔으니 모델을 만들어서 Codable을 이용해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html&quot;&gt;Codable 관련 글&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;우선 모델을 생성해주자&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct UserList: Codable {
+    let totalCount: Int
+    let users: [User]
+}
+
+struct User: Codable {
+    let name: String
+    let age: Int
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그리고 이번엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;를 Codable을 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserList&lt;/code&gt;로 얻어 보자&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;guard
+    let jsonData = load(),
+    let userList = try? JSONDecoder().decode(UserList.self, from: jsonData)
+else { return }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-6.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;잘 받아졌다.&lt;/p&gt;
+
+&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;p&gt;위와 같이 JSON 파일을 별도로 생성해야하는 귀찮음은 있지만, 실제 작업시 더미 데이터 값을 따로 선언 및 초기화 할 필요가 없다.
+예제야 짧으니 실제 작업 파일에 써도 무방하겠지만, 프로퍼티만 수십가지일 경우 정말 지저분해지는 것을 봐야한다 ㅠ&lt;/p&gt;
+
+&lt;p&gt;그래서 개인적으론 API가 아직 문서만 나온 단계라면, 이 방식을 사용하는것을 추천!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 May 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html</guid>
+        
+        
+        <category>Swift</category>
+        
+        <category>Network</category>
+        
+      </item>
     
       <item>
         <title>(swift) ScrollView 뿌시기 실험</title>
@@ -2127,222 +2293,6 @@ let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
         <pubDate>Thu, 11 Jul 2019 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</link>
         <guid isPermaLink="true">http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</guid>
-        
-        
-        <category>Swift</category>
-        
-      </item>
-    
-      <item>
-        <title>(Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)</title>
-        <description>&lt;p&gt;참고:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://zeddios.tistory.com/359?category=682195&quot;&gt;zedd님 블로그&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.iosinsight.com/setneedslayout-vs-layoutifneeded-explained&quot;&gt;어느 사이트&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;막연하게 layoutIfNeeded() 를 써왔었는데, 볼때마다 유사해 보이는 setNeedsLayout()은 뭘까 싶었다,&lt;/p&gt;
-
-&lt;p&gt;updateConstraints()도 궁금하고, 비슷한 다른것들도 궁금하지만, 자료좀 찾아보니 저둘이 비교하는게 많았기에 정리!&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님 블로그가 너무 정리가 잘되어있어서 기본적인건 간단하게 설명하고, 이해력이 딸려 살짝 갸우뚱 했던 부분들을 적어야겠다&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;들어가기전-먼저-알아야-이해가-되는것&quot;&gt;들어가기전 먼저 알아야 이해가 되는것!&lt;/h1&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Life cycle&lt;/code&gt;중 view layout을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 해주는 부분이 있다고 한다! 글들을 보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutSubviews()&lt;/code&gt;가 그 역할인가보다. (Zedd님 감사합니다)&lt;/p&gt;
-
-&lt;p&gt;근데 말 그대로, Cycle이다, 한번 지나가면 나중에 오는 그런것! 요게 포인트다.&lt;/p&gt;
-
-&lt;p&gt;또한 해당 싸이클이 왔어도 그 view의 layout이 무효화 되있어야 새로 짜는것 같다&lt;/p&gt;
-
-&lt;p&gt;그래서, Constraint를 수정해도 바로 적용이 안되고,&lt;/p&gt;
-
-&lt;p&gt;SetNeedsLayout() 또는 LayoutIfNeeded() 를 해서 적용을 해줘야 했나보다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;setneedslayout&quot;&gt;setNeedsLayout()&lt;/h1&gt;
-
-&lt;h3 id=&quot;point&quot;&gt;Point&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Async&lt;/li&gt;
-  &lt;li&gt;대기&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위에서 무효화가 돼있어야 한다고 적었는데, 무효화 하는 방법은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;을 써주는 것이다.&lt;/p&gt;
-
-&lt;p&gt;“해당 view 다음 사이클때 업데이트 해줘” 라는 의미며, &lt;a href=&quot;http://www.iosinsight.com/setneedslayout-vs-layoutifneeded-explained&quot;&gt;참고 2번 사이트&lt;/a&gt;에 의하면, 그 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subviews&lt;/code&gt;도 업데이트가 된다.&lt;/p&gt;
-
-&lt;p&gt;바로 바뀌지 않으며 대기 상태이고, 비동기로 진행된다, 그리고 &lt;strong&gt;이 cycle은 언제오는지 알기 힘들다고 한다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;–2번 사이트 표현–&lt;br /&gt;
-“please update but you can wait until the next update cycle”&lt;br /&gt;
-업데이트 해줘, 근데 다음 업데이트까지 기다릴게&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;layoutifneeded&quot;&gt;layoutIfNeeded()&lt;/h1&gt;
-&lt;h3 id=&quot;point-1&quot;&gt;point&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Sync&lt;/li&gt;
-  &lt;li&gt;즉시&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;차이점이라면 동기로 진행되고, 다음 cycle이 될때까지 기다리지 않고 바로 업데이트 시킬때 쓸 수 있다&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;–2번 사이트 표현–&lt;br /&gt;
-“update immediately please”&lt;br /&gt;
-업데이트 해줘, 당장!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;예시를-통한-이해&quot;&gt;예시를 통한 이해&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Zedd&lt;/code&gt;님께서 이 &lt;a href=&quot;https://github.com/lmacfadyen/UIViewLifecycleLayoutDisplay&quot;&gt;링크&lt;/a&gt;를 추천해주셨다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 다음 업데이트때 기다릴게!&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;은 지금 당장 업데이트 해줘!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;결론은 “둘다 새 값으로 업데이트 해줘!” 로 이해를 했다. 근데 이렇게 생각하니 잘 이해가 안됐다,&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.blueHeight.constant = 100
-
-UIView.animate(withDuration: 2.0, animations: {
-    self.view.setNeedsLayout()
-    // 또는
-    self.view.layoutIfNeeded()
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;예제에서 이게 이해가 안된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 높이값 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 변경 되었을때, 애니메이션 효과가 보이면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 바뀐다.&lt;/p&gt;
-
-&lt;p&gt;반면, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 애니메이션 효과없이 바로 새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height&lt;/code&gt;값이 적용된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;기존값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;, 새값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt;이라 해보자, 둘다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;constant&lt;/code&gt;가 100으로 됐다는 의미다.&lt;/p&gt;
-
-&lt;p&gt;그럼 위에 서술한 내용들을 붙여보자&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt; : 100으로 바꿨어, 다음 업데이트때 적용해줘&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;: 100으로 바꿨어, 당장 바꿔줘&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이렇게 생각을 해서 이해가 안됐다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;왜 이해가 안됐는지 적어보면,&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;결국엔 이미 애니메이션 호출전 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 선언해줬으니  애니메이션 시작할때면, 이미 100아닌가?? 그럼 cycle돌다가 업데이트할때 이미 100인거 같아! 근데 애니메이션 주면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 효과가 있다? 그럼 애니메이션동안 cycle이 적용 안된건가? 그럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;은 2초 뒤에 값이 바뀌어야하는것 아닌가?!&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이상한점: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 2초뒤가 아닌 시작하자마자 값이 바뀜??? 잉 아예 틀려버림&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;1번이 이상했다, 시작과 동시에 cycle이 돈거라면 height는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;100&lt;/code&gt;으로 이미 박혀있는거고 적용이 된거다? 근데! 이미 100이면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt; 도 cycle 시작시 이미 100이니깐, 점점 100이 되는게 아니라, 이미 100이겠네?&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이상한점: 왜 애니메이션 효과가 적용된거지? 바로 100으로 되야하는거 아닌가?!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;strong&gt;바보였다. 글쓸때까지도 잘 못 이해하고 있었다…&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;원인-파악&quot;&gt;원인 파악&lt;/h1&gt;
-
-&lt;h3 id=&quot;point_a&quot;&gt;Point_A&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update cycle&lt;/code&gt;은 돌고 돈다, 유저는 알 수 없다&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;그렇다, 나는 알 수 없었다…&lt;/p&gt;
-
-&lt;p&gt;이걸 빼먹고 생각하니 이상한 추론만 했다.&lt;/p&gt;
-
-&lt;p&gt;중점은 이거다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;point_b&quot;&gt;Point_B&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;animations 블록 안에 내용이 animation 효과가 적용된다,&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;point_c&quot;&gt;Point_C&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;는 다음 update cycle때.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-포인트 B와 C를 섞어서 보자&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout&lt;/code&gt;은 다음번에 update cycle 때 해달라고 요청한다. &lt;strong&gt;즉, 지금 한것은 요청만함.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;animation 블럭 내에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 즉시 update를 요청한다, 블럭 내에서! &lt;strong&gt;즉, 지금 요청과 동시에 변화가 시작된다.&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-포인트는 블럭내에서 요청만 했느냐, 요청 + 적용이 되었느냐 였다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;현재 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 0&lt;/code&gt; 이었고 신규값 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;은 요청 사항이었다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layoutIfNeeded()&lt;/code&gt;는 그 값이 animation때 적용했기에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0~100&lt;/code&gt;이 되는 과정이 animation으로 보였다.&lt;/p&gt;
-
-&lt;p&gt;그런데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;의 경우  animations 블럭에선 요청만 했기에 별다른 UI적으로 변경 요소가 없었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-그렇다면, 한번에 바뀐건 어떻게 생각할까? &lt;strong&gt;Point_A&lt;/strong&gt;가 해답이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Animations 블럭&lt;/code&gt;이 지난후 cycle이 돌다가 update cycle이 된것이라 본다.&lt;/p&gt;
-
-&lt;p&gt;그렇기에 해당사이클은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNeedsLayout()&lt;/code&gt;이 요청한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;을 적용한것이며,&lt;/p&gt;
-
-&lt;p&gt;이는 애니메이션과 관련이 없기에 한번에 적용된것이다.&lt;/p&gt;
-
-&lt;p&gt;사람 눈이 착각한 느낌이랄까? 시각적으론 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height = 100&lt;/code&gt;이 적용되고 애니메이션이 시작된것 같지만&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;animations 블럭&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 요청&lt;/li&gt;
-  &lt;li&gt;이후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update cycle&lt;/code&gt; 적용 &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중…&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;animation&lt;/code&gt; 진행중 … 끝&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이렇게 되는게 맞다고 본다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;cycle을 내가 컨트롤하지 않아서 생각을 못했다. 완전 바보였다….&lt;/strong&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 09 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2019/07/09/swift-setNeedsLayout()-VS-layoutIfNeeded()-(feat.-animation).html</guid>
         
         
         <category>Swift</category>
