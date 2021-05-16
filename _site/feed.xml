@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 May 2021 17:59:24 +0900</pubDate>
-    <lastBuildDate>Sun, 16 May 2021 17:59:24 +0900</lastBuildDate>
+    <pubDate>Sun, 16 May 2021 18:05:14 +0900</pubDate>
+    <lastBuildDate>Sun, 16 May 2021 18:05:14 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -193,8 +193,8 @@ else { return }
 그래서 개인적으론 API가 아직 문서만 나온 단계라면, 이 방식을 요즘 선호한다&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat.-Codable).html</guid>
+        <link>http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat-Codable).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5(feat-Codable).html</guid>
         
         
         <category>Swift</category>
