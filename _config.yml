@@ -2,7 +2,7 @@ title: 😀😍😉 JS의 개발 블로그 😁😆😄
 description: 나만의 공간
 author: Jiseob Kim
 github: https://github.com/JiSeobKim
-about: 매끄러운 iOS 만들자, 뿌셔
+about: iOS Developer
 disqus_shortname: https-jiseobkim-github-io
 google_analytics: UA-121626260-1
 avatar_url: /static/img/mainIcon2.png
@@ -43,7 +43,7 @@ paginate: 20
 per_page: 20
 paginate_path: "/page/:num/"
 markdown: kramdown
-plugins:
+gems:
   - jekyll-paginate
   - jekyll-gist
 
