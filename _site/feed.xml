@@ -5,12 +5,188 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 May 2021 18:13:03 +0900</pubDate>
-    <lastBuildDate>Sun, 16 May 2021 18:13:03 +0900</lastBuildDate>
+    <pubDate>Wed, 19 May 2021 21:00:50 +0900</pubDate>
+    <lastBuildDate>Wed, 19 May 2021 21:00:50 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
-        <title>(swift) JSON 파일 불러오기(feat - Codable)</title>
+        <title>(swift) API와 다른 변수명 쓰기</title>
+        <description>&lt;p&gt;&lt;br /&gt;
+일반적으로 Codable을 기본으로만 사용하다보면 프로퍼티의 명칭을 API 문서를 따라갈 수 밖에 없다.&lt;/p&gt;
+
+&lt;p&gt;그치만 이 변수명이 내 개인적인 스타일과 달라 아쉬울때가 있다.&lt;/p&gt;
+
+&lt;p&gt;예를 들어,&lt;/p&gt;
+
+&lt;p&gt;나는 변수명을 짧게 쓰는것보단 길게 쓰는것을 선호한다. 
+지금이야 짧아도 쓰기 좋지만&lt;/p&gt;
+
+&lt;p&gt;한달뒤에 나는 “이 변수명이 뭐 줄임말이였지?”를 하게 되기 때문에 명확히 쓰는것을 좋아한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 이 글의 주제는 &lt;strong&gt;API와 다른 변수명 쓰기&lt;/strong&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;통신 파트는 지난 번에 포스팅한 JSON 파일 불러오기로 대체한다! 관련 내용은 &lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/16/swift-JSON-파일-불러오기.html&quot;&gt;(여기)&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음과 같이 서버에서 값을 내려준다고 가정해보자&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;usrNm&quot; : &quot;js&quot;,
+    &quot;seqNo&quot; : 23,
+    &quot;ordNo&quot; : 1,
+    &quot;addr&quot; : &quot;seoul&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;쉽게 설명하기 위해 간단한 줄임말로 예를 들었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같은 결과값들을 나였다면 다음과 같이 쓰고 싶어할 것이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;usrNm -&amp;gt; userName&lt;/li&gt;
+  &lt;li&gt;seqNo -&amp;gt; sequenceNo&lt;/li&gt;
+  &lt;li&gt;ordNo -&amp;gt; orderNo&lt;/li&gt;
+  &lt;li&gt;addr -&amp;gt; address&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜? 그냥 내마음이 그렇다. 취향이랄까&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 제목에 나온 CodingKey라는 것이 나온다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;codingkey&quot;&gt;CodingKey&lt;/h1&gt;
+
+&lt;p&gt;이제 JSON 데이터를 Codable을 이용하기 위해 구조체나 클래스 파일을 만들어보자&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;프로퍼티 명은 내 마음대로!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct Model: Codable {
+    let userName: String
+    let sequenceNo: Int
+    let orderNo: Int
+    let address: String
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이런식으로 적어준 다음 Codable을 사용하면 당연히? 오류가 난다.&lt;/p&gt;
+
+&lt;p&gt;왜냐면 프로퍼티명을 내 마음대로 했는데, 모든 타입이 옵셔널이 아니니깐!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-19/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;간단하게 코드 설명하면&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;주석 1: JSON 파일을 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;를 받아온것&lt;/li&gt;
+  &lt;li&gt;주석 2: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSONDecoder&lt;/code&gt;를 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;프로토콜을 준수하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt;이라는 값을 뱉게 한다. 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode&lt;/code&gt; 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;throws&lt;/code&gt; 하기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;try&lt;/code&gt;로 받아준다&lt;/li&gt;
+  &lt;li&gt;주석 3: 2가 성공시 해당 값 출력&lt;/li&gt;
+  &lt;li&gt;주석 4: 2가 실패시 error 내용을 출력&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 오류 출력값을 보면&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;keyNotFound(CodingKeys(stringValue: &quot;userName&quot;, intValue: nil), Swift.DecodingError.Context(codingPath: [], debugDescription: &quot;No value associated with key CodingKeys(stringValue: \&quot;userName\&quot;, intValue: nil) (\&quot;userName\&quot;).&quot;, underlyingError: nil))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;라고 한다. 첫 프로퍼티인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName&lt;/code&gt;부터 오류가 났다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이래저래 복잡하지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName&lt;/code&gt;이라는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key&lt;/code&gt;를 찾을 수 없다. 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codingkey&lt;/code&gt;를 의미하는 것 같다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 이 키라는 것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName&lt;/code&gt;과 매칭 시켜준다면 될듯하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;codingkey-사용&quot;&gt;CodingKey 사용&lt;/h1&gt;
+
+&lt;p&gt;해당 구조체 안에 다음과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;을 하나 생성해준다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;다른 곳 보면 CodingKeys라는 enum값을 많이 사용한다. 위 에러에 보듯 한 프로퍼티들을 각각의 키가 존재하니깐 이런 네이밍을 많이 쓰는듯 하다. 뒤에 프로토콜(CodingKey)이랑 항상 헷갈려서 그냥 주저리주저리 적기&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct Model: Codable {
+    let userName: String
+    let sequenceNo: Int
+    let orderNo: Int
+    let address: String
+    
+    // 추가해주기
+    enum CodingKeys: String, CodingKey {
+        case userName = &quot;usrNm&quot;
+        case sequenceNo = &quot;seqNo&quot;
+        case orderNo = &quot;ordNo&quot;
+        case address = &quot;addr&quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이 선언을 해주면 준비 끝! 각각의 키를 수동으로 셋팅을 해주는 것이다.&lt;/p&gt;
+
+&lt;p&gt;보는 바와 같이 각각 케이스들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;들을 가지고 있고,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt; 프로토콜을 준수한다고 명시를 해줘야한다.&lt;/p&gt;
+
+&lt;p&gt;이것을 안하면 프로퍼티명 자체가 키가 되는듯 하다.&lt;/p&gt;
+
+&lt;p&gt;다시 실행해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-19/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;아주 성공적 크킄 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;p&gt;이 방식을 이용하면, 서버 변수명에 내 코드가 따라갈 필요가 없어진다.&lt;/p&gt;
+
+&lt;p&gt;이런식으로 하나씩 불편함을 해소하는 CodingKey 시리즈!&lt;/p&gt;
+
+&lt;p&gt;다음 불편함은 타입 자체를 바꾸는 것이다&lt;/p&gt;
+
+&lt;p&gt;예를 들어 useYn = “Y” 라고 오면,&lt;/p&gt;
+
+&lt;p&gt;나는 이것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; 이 아닌 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt;로 받고 싶을 것이며, 이것은 다음 주제!&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 19 May 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</guid>
+        
+        
+        <category>Swift</category>
+        
+        <category>Network</category>
+        
+      </item>
+    
+      <item>
+        <title>(swift) JSON 파일 불러오기(feat. Codable)</title>
         <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;개발을 하다보면 서버와 같이 일을 해야하는데,&lt;/p&gt;
@@ -193,8 +369,8 @@ else { return }
 그래서 개인적으론 API가 아직 문서만 나온 단계라면, 이 방식을 요즘 선호한다&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/16/swift-JSON-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%87%E1%85%AE%E1%86%AF%E1%84%85%E1%85%A5%E1%84%8B%E1%85%A9%E1%84%80%E1%85%B5.html</guid>
+        <link>http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html</guid>
         
         
         <category>Swift</category>
@@ -2045,285 +2221,6 @@ A point in the local coordinate system of view that identifies the location of t
         
         
         <category>Xcode</category>
-        
-      </item>
-    
-      <item>
-        <title>(Swift) FileManager</title>
-        <description>&lt;p&gt;오늘의 주제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FileManager&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;쓰게된 이유는 다음과 같다,&lt;/p&gt;
-
-&lt;p&gt;사이드 프로젝트를 하고 있는데, Photo kit 관련 해본 경험이 없어서, 이 부분을 직접 써볼려고 앨범 라이브러리를 안쓰는데,&lt;/p&gt;
-
-&lt;p&gt;영상, 이미지, 라이브포토를 앱내에 저장하는 방법이 필요했다.&lt;/p&gt;
-
-&lt;p&gt;NSData로 캐스팅해서 Core Data에 넣으려했는데, 이건 좀 아닌거 같아서 여기저기 물어본 결과&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;바이너리 파일(이미지, 영상 등등)&lt;/strong&gt;은 &lt;strong&gt;파일&lt;/strong&gt;에 저장하고,&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;메타데이터(사진 정보, 관련 정보)&lt;/strong&gt;만 &lt;strong&gt;Core data&lt;/strong&gt;에 저장시키는 방식이 가장 많이 쓰인다고 해서 써보게 됐다.&lt;/p&gt;
-
-&lt;h1 id=&quot;순서&quot;&gt;순서&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/li&gt;
-  &lt;li&gt;폴더 추가 방법은?&lt;/li&gt;
-  &lt;li&gt;파일 추가 방법은?&lt;/li&gt;
-  &lt;li&gt;파일 불러오는 방법은?&lt;/li&gt;
-  &lt;li&gt;파일 삭제하는 방법은?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;file-manager란&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File Manager&lt;/code&gt;란?&lt;/h1&gt;
-
-&lt;p&gt;아이폰 앱마다 자기만의 공간을 가지고 있는데, 이 공간을 관리하는 매니저라 생각하면 될 것 같다.&lt;/p&gt;
-
-&lt;p&gt;이 공간은 일반 맥, 윈도우처럼 Document 폴더, Download폴더 등등 다양한 종류의 폴더가 있다!&lt;/p&gt;
-
-&lt;p&gt;이 글에선 Document폴더를 사용하여 이것 저것 해보려한다.&lt;/p&gt;
-
-&lt;h1 id=&quot;경로-접근&quot;&gt;경로 접근&lt;/h1&gt;
-
-&lt;p&gt;다른 작업들 하기전 공통 사항인 해당 폴더로 접근 하는 방법을 먼저 알아보자&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let fileManager = FileManager.default
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;라는 인스턴스를 만들어준다. (default를 해줌으로써 싱글톤 인스턴스!)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt;는 폴더를 정해주는 요소입니다. Download 폴더 혹은 Document 폴더 등등&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt;은 제한을 걸어주는 요소입니다. 그 이상은 못가게 하는!&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;About - Mask&lt;/strong&gt;&lt;br /&gt;
-view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
-그렇게 하면 Bound 밖의 UI들은 안보이는!!&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt;의 인자들 이름에 붙은 &lt;strong&gt;Mask&lt;/strong&gt;는 이런 의미라 생각하면 좋을 것 같다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;
-애플이 주석을 굉장히 잘써놨으므로 좀더 디테일하게 보자,&lt;/p&gt;
-
-&lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
-developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
-desktopDirectory    // location of user's desktop
-downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
-musicDirectory      // location of user's Music directory (~/Music)
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
-// user's home directory --- place to install user's personal items (~)
-
-public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
-// local to the current machine --- place to install items available to everyone on this machine (/Library)
-
-public static var networkDomainMask: FileManager.SearchPathDomainMask { get } 
-// publically available location in the local area network --- place to install items available on the network (/Network)
-
-public static var systemDomainMask: FileManager.SearchPathDomainMask { get } 
-// provided by Apple, unmodifiable (/System)
-
-public static var allDomainsMask: FileManager.SearchPathDomainMask { get } 
-// all domains: all of the above and future items
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;터미널을 조금이라도 써봤다면 뒤에 괄호만 봐도 쉽게 이해할 수 있을 것 같다.&lt;/p&gt;
-
-&lt;p&gt;센스있게 저렇게 표현해주니 좋다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;경로-추가&quot;&gt;경로 추가&lt;/h1&gt;
-
-&lt;p&gt;키워드:  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;아주 간단하다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let newURL = documentsURL.appendingPathComponent(&quot;App Photos&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;간단한 예를 써보면&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let oldURL = URL(string: &quot;~/Document&quot;)
-let newURL = documentsURL.appendingPathComponent(&quot;Hello&quot;)
-print(newURL) // ~/Document/Hello
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;아주 간단!&lt;/p&gt;
-
-&lt;h1 id=&quot;폴더-추가-방법은&quot;&gt;폴더 추가 방법은?&lt;/h1&gt;
-
-&lt;p&gt;키워드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createDirectory&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성
-let fileManager = FileManager.default
-// 2. 도큐먼트 URL 가져오기
-let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-// 3. 생성할 폴더 이름 추가해주기
-let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
-// 4. 생성하기
-do {
-    try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: false, attributes: nil)
-} catch let e {
-    print(e.localizedDescription)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이것도 아주 간단!&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;at&lt;/code&gt; : 경로 및 폴더명, 위에서 만든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URL&lt;/code&gt; 사용&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withIntermediateDirectories&lt;/code&gt; : “중간 디렉토리들도 만들꺼야?” 이런 의미.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attributes&lt;/code&gt; : 파일 접근 권한, 그룹 등등 폴더 속성 정의&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;다시 말해, 현재 존재하는 폴더가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Document&lt;/code&gt;만 있는 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendingPathComponent&lt;/code&gt;를 여러번해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Document/path1/path2/path3&lt;/code&gt;로 만들었다고 가정하면, 각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt;값에 따라 성공, 실패가 나뉜다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withIntermediateDirectories: true&lt;/code&gt; - 중간 디렉토리인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path1/path2&lt;/code&gt;도 만들고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path3&lt;/code&gt;까지 만든다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withIntermediateDirectories: false&lt;/code&gt; - 중간 디렉토리가 존재하지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catch&lt;/code&gt;로 빠진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;파일-추가-방법은&quot;&gt;파일 추가 방법은?&lt;/h1&gt;
-
-&lt;p&gt;키워드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write(to:_, atomically:_, encoding:_)&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
-let fileManager = FileManager.default
-
-// 2. 도큐먼트 URL 가져오기 - 동일
-let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-// 3. 파일 저장할 Directory 설정
-let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
-
-// 4. File 이름 설정
-let fileURL = directoryURL.appendingPathComponent(&quot;test.txt&quot;)
-
-// 5. File 내용
-let text = NSString(string: &quot;Hello world&quot;)
-
-do {
-    // 6-1. 파일 생성
-    try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
-} catch let e {
-    // 6-2. 오류 처리
-    print(e.localizedDescription)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSString&lt;/code&gt;에 내부 함수로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt;가 존재하며, 이를 이용해서 &lt;strong&gt;쓰기&lt;/strong&gt;를 한다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to&lt;/code&gt;: 위에 만든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URL&lt;/code&gt;을 써주면 그대로 생성.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atomically&lt;/code&gt;: 이거 뭔지 모르겠,,, 읽어도 모르겠,,, 다만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;면 URL이 존재 안해도 시스템상 손상이 없단 뉘앙스를 풍기므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;만,,&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;encoding&lt;/code&gt;: 인코딩 종류!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;여기서 에러가 났던게 파일 경로가 미존재시 “The file “test.txt” doesn’t exist.” 라고 catch로 간다.&lt;/p&gt;
-
-&lt;p&gt;test.txt는 파일을 이제 만들라는건데 왜 없다고 그래,,? 라고 한참 생각했는데, 다른 테스트하느라 경로를 잘못 셋팅했었다.&lt;/p&gt;
-
-&lt;p&gt;허허,, 중간에 다른 경로가 없는건데, 저렇게 설명을 하다니… 그래도 보면 간단하게 이루어진단걸 알 수 있다.&lt;/p&gt;
-
-&lt;p&gt;여기서 또 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; 할 경우엔, 덮어 씌웠었다.&lt;/p&gt;
-
-&lt;h1 id=&quot;파일-불러오는-방법은&quot;&gt;파일 불러오는 방법은?&lt;/h1&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
-let fileManager = FileManager.default
-
-// 2. 도큐먼트 URL 가져오기 - 동일
-let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-// 3. 파일이 있는 Directory 설정
-let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
-
-// 4. 불러올 파일 설정
-let helloPath = directoryURL.appendingPathComponent(&quot;test.txt&quot;)
-
-// Try Catch
-do {
-    // 5-1. 불러오기
-    let text = try String(contentsOf: helloPath, encoding: .utf8)
-    print(text) // Hello world
-} catch let e {
-    // 5-2. 에러처리
-    print(e.localizedDescription)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이건 쓰기보다 간단!&lt;/p&gt;
-
-&lt;h1 id=&quot;파일-삭제하는-방법은&quot;&gt;파일 삭제하는 방법은?&lt;/h1&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 인스턴스 생성 - 동일
-let fileManager = FileManager.default
-
-// 2. 도큐먼트 URL 가져오기 - 동일
-let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-// 3. 파일이 있는 Directory 설정
-let directoryURL = documentsURL.appendingPathComponent(&quot;NewDirectory&quot;)
-
-// 4. 삭제할 파일 설정
-let helloPath = directoryURL.appendingPathComponent(&quot;test.txt&quot;)
-
-// Try Catch
-do {
-    // 5-1. 삭제하기
-    try fileManager.removeItem(at: fileURL)
-} catch let e {
-    // 5-2. 에러처리
-    print(e.localizedDescription)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;관리를 담당하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fileManager&lt;/code&gt;에게 시켜서 삭제를 시키면 깔끔.&lt;/p&gt;
-
-&lt;p&gt;이후 그 파일을 불러오면 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Error&lt;/code&gt;가 발생한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The file “test.txt” couldn’t be opened because there is no such file.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;qa&quot;&gt;Q&amp;amp;A&lt;/h1&gt;
-
-&lt;h3 id=&quot;q--텍스트-말고-이미지나-gif-등등-다른건-어떻게&quot;&gt;Q . 텍스트 말고 이미지나 GIF 등등 다른건 어떻게??&lt;/h3&gt;
-&lt;p&gt;A. NSData 형식으로!&lt;/p&gt;
-
-&lt;p&gt;아래처럼하면 어떤것이든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;형으로 손쉽게 변경가능!&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Archive Data
-let archivedData = NSKeyedArchiver.archivedData(withRootObject: file)
-
-// Unarchive Data
-let unarchivedData = NSKeyedUnarchiver.unarchiveObject(with: file as Data)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;q-애플-내장-앱중-file-app-이랑-관련이-있나&quot;&gt;Q. 애플 내장 앱중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File App&lt;/code&gt; 이랑 관련이 있나?&lt;/h3&gt;
-&lt;p&gt;A. Yes, 프로젝트내에 설정을 하면,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File App&lt;/code&gt;이 해당 어플에 접근할 수 있게 된다!&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 11 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2019/07/11/swift-File-Manager.html</guid>
-        
-        
-        <category>Swift</category>
         
       </item>
     
