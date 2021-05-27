@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) 화면간 데이터 전달. 1편"
+title: "Swift - 화면간 데이터 전달. 1편"
 categories: [Swift]
 ---
 

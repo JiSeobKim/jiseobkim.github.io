@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (xcode) 반성글 - 다크모드 적용 안하기
+title: Xcode - 반성글 - 다크모드 적용 안하기
 categories: [Xcode]
 
 ---

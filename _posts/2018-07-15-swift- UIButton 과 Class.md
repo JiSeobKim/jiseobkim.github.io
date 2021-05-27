@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) UIButton과 클래스"
+title: "Swift - UIButton과 클래스"
 categories: [Swift]
 ---
 

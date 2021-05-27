@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) Generic & Codable"
+title: "Swift - Generic & Codable"
 categories: [Swift]
 ---
 

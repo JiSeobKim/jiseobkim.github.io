@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (swift) DragAnimation(1/3) - Gesture(Long &pan)
+title: Swift - DragAnimation(1/3) - Gesture(Long &pan)
 categories: [Swift, UI]
 
 ---

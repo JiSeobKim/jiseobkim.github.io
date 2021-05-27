@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: (Swift) setNeedsLayout() VS layoutIfNeeded() (feat. animation)
+title: Swift - setNeedsLayout() VS layoutIfNeeded() (feat. animation)
 categories: [Swift]
 ---
 

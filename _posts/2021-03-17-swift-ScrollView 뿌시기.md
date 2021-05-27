@@ -2,7 +2,7 @@
 
 layout: post
 
-title: (swift) ScrollView 뿌시기
+title: Swift - ScrollView 뿌시기
 
 categories: [Swift, UI]
 

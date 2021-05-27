@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (DesignPattern) Builder
+title: DesignPattern - Builder
 categories: [DesignPattern]
 
 ---

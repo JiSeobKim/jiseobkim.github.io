@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: (Tool) Fastlane 기본 설치 방법과 1달 사용후기
+title: Tool - Fastlane 기본 설치 방법과 1달 사용후기
 categories: [Tool]
 ---
 

@@ -2,7 +2,7 @@
 
 layout: post
 
-title: (swift) ScrollView 뿌시기 실험
+title: Swift - ScrollView 뿌시기 실험
 
 categories: [Swift, UI]
 

@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: (Tool) Fastlane Lane 사용법
+title: Tool - Fastlane Lane 사용법
 categories: [Tool]
 ---
 

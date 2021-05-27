@@ -3,7 +3,7 @@ layout: post
 title: Swift - 서버 연동 기본과 Encodable
 published: true
 author: Kim Ji Seob
-category: articles
+category: Network
 tags: 
 - Swift
 - Network

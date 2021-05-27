@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (swift) DragAnimation(2/3) - Transform
+title: Swift - DragAnimation(2/3) - Transform
 categories: [Swift, UI]
 
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?"
+title: "Swift - Class, Struct 값 전달 방식이 다른건 알지만 언제쓰지?"
 categories: [Swift]
 ---
 

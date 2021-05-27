@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: (Swift) FileManager
+title: Swift - FileManager
 categories: [Swift]
 ---
 

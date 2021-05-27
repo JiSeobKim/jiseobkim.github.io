@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Tool) Fastlane을 알아보자 (개념)"
+title: "Tool - Fastlane을 알아보자 (개념)"
 categories: [Tool]
 ---
 

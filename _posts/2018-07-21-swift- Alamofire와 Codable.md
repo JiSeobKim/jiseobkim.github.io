@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) Alamofire와 Codable"
+title: "Swift - Alamofire와 Codable"
 categories: [Swift]
 ---
 

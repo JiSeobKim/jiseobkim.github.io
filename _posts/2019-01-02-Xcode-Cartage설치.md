@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Xcode) Carthage 설치"
+title: "Xcode - Carthage 설치"
 categories: [Xcode]
 ---
 

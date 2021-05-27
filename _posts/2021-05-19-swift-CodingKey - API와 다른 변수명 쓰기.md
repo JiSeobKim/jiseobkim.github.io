@@ -2,7 +2,7 @@
 
 layout: post
 
-title: "(swift) CodingKey - API와 다른 변수명 쓰기(feat. Codable)"
+title: "Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)"
 
 categories: [Swift, Network]
 

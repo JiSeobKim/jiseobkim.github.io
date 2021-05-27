@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) 타입 메소드 & 인스턴스 메소드"
+title: "Swift - 타입 메소드 & 인스턴스 메소드"
 categories: [Swift]
 ---
 

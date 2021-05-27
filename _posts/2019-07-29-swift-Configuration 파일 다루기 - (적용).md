@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Xcode) Configuration 파일 다루기 - (적용)
+title: Xcode - Configuration 파일 다루기 - (적용)
 categories: [Xcode]
 
 ---

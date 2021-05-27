@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) Notification Center"
+title: "Swift - Notification Center"
 categories: [Swift]
 ---
 

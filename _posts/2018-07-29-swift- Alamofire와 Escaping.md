@@ -1,6 +1,6 @@
 ---
 layout: post                       
-title: "(Swift) Alamofire와 Escaping"
+title: "Swift - Alamofire와 Escaping"
 categories: [Swift]
 ---
 자주 반복되는 Alamofire를 함수로 만들자. feat.Escaping
