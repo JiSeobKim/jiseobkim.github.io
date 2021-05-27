@@ -16,15 +16,10 @@ collections:
     permalink: /project/:path/
 
 social:
-    - icon: fa-facebook
-      link: "#"
-    - icon: fa-twitter
-      link: "Jiseob812"
     - icon: fa-github
       link: "https://github.com/JiSeobKim"
 
 share:
-  twitter_username: github.io
   fb_appid:
 
 urls:
@@ -40,7 +35,7 @@ urls:
 url: "https://jiseobkim.github.io"
 baseurl: ""
 paginate: 20
-per_page: 20
+per_page: 100
 paginate_path: "/page/:num/"
 markdown: kramdown
 gems:
