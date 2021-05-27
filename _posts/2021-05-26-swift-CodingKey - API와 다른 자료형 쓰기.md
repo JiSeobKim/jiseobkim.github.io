@@ -2,7 +2,7 @@
 
 layout: post
 
-title: "(swift) API와 다른 자료형 쓰기(feat. Codable)"
+title: "(swift) CodingKey - API와 다른 자료형 쓰기(feat. Codable)"
 
 categories: [Swift, Network]
 
