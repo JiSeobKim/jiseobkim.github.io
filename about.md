@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
-I'm Programmer for Python & Django. I've made quite a few web apps, especially on Django. Now, I am doing more on backend.
+첫 입사일: 2017-12-26
+GitHub: [(JiSeobKim)](https://github.com/JiSeobKim)
 
-email: agus[at]python.web.id
+
+
