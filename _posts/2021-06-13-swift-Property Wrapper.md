@@ -494,7 +494,6 @@ struct UserDefaultWrapper<T> { // 1. 여기에 제네릭 써주고
 
 ```
 struct UserDefaultManager {
-    private static var ud = UserDefaults.standard
     
     @UserDefaultWrapper(key: "userName", defaultValue: "")
     static var userName: String
