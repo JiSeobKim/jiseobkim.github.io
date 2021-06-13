@@ -2,7 +2,7 @@
 
 layout: post
 
-title: "Swift - Property Wrapper - 기본"
+title: "Swift - Property Wrapper(기본)"
 
 categories: [Swift]
 
@@ -30,7 +30,7 @@ categories: [Swift]
 
 익혀가면서 느낀 소감은 
 
-> 연산 프로퍼티(getter/setter)의 업그레이드 버전이다. (100% 개인 생각)
+> 프로퍼티를 초기화 할때, 연산 프로퍼티(getter/setter) 개념을 추가 적용하는 것 (100% 개인 생각) 
 
 한줄로 말하기 정말 어렵다. 몇번을 지운지 모르겠다.
 
@@ -184,7 +184,7 @@ struct FoodTruck {
 
 처음에 느낀점을 말한것 처럼,
 
-getter와 setter의 업그레이드 버전임을 보여줄 수 있는 항목이라 생각된다.
+프로퍼티 초기화시 ,getter와 setter의 개념을 추가해준다라는 것을 잘 보여 줄 수 있을 것 같다.
 
 
 <br>
@@ -340,7 +340,7 @@ WWDC 세션에도 등장했다는 `UserDefault`에 `Property Wrapper` 쓰기!
 
 이 또한 처음에 말한것처럼 `Property Wrapper`는 뭐다?
 
-> 연산 프로퍼티의 업그레이드 버전이다. (100% 개인 생각입니다.)
+> 프로퍼티를 초기화 할때, 연산 프로퍼티(getter/setter) 개념을 추가 적용하는 것 (100% 개인 생각)
 
 <br>
 
