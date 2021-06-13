@@ -37,7 +37,7 @@ categories: [Swift, Network]
 
 다음과 같이 서버에서 값을 내려준다고 가정해보자
 
-```
+```swift
 {
     "usrNm" : "js",
     "seqNo" : 23,
@@ -72,7 +72,7 @@ categories: [Swift, Network]
 
 **프로퍼티 명은 내 마음대로!**
 
-```
+```swift
 struct Model: Codable {
     let userName: String
     let sequenceNo: Int
@@ -102,7 +102,7 @@ struct Model: Codable {
 
 여기서 오류 출력값을 보면
 
-```
+```swift
 keyNotFound(CodingKeys(stringValue: "userName", intValue: nil), Swift.DecodingError.Context(codingPath: [], debugDescription: "No value associated with key CodingKeys(stringValue: \"userName\", intValue: nil) (\"userName\").", underlyingError: nil))
 ```
 
@@ -124,7 +124,7 @@ keyNotFound(CodingKeys(stringValue: "userName", intValue: nil), Swift.DecodingEr
 > 다른 곳 보면 CodingKeys라는 enum값을 많이 사용한다. 위 에러에 보듯 한 프로퍼티들을 각각의 키가 존재하니깐 이런 네이밍을 많이 쓰는듯 하다. 뒤에 프로토콜(CodingKey)이랑 항상 헷갈려서 그냥 주저리주저리 적기
 
 
-```
+```swift
 struct Model: Codable {
     let userName: String
     let sequenceNo: Int

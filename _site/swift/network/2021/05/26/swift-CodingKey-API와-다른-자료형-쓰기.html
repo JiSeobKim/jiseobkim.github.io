@@ -143,10 +143,10 @@
 
 <p>예를 들어 서버에서 다음과 같이 준다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "userName" : "JS",
-    "isHidden" : "Y"
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"userName"</span> <span class="p">:</span> <span class="s">"JS"</span><span class="p">,</span>
+    <span class="s">"isHidden"</span> <span class="p">:</span> <span class="s">"Y"</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -155,28 +155,28 @@
 일반적으로 서버와 자료명을 맞춰서 쓴다고 가정하면 
 모델은 다음과  같을 것이다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Model: Codable {
-    let userName: String
-    let isHidden: String
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <p>그럼 이제 이것을 쓸때 어떻게 쓰는지를 보자</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let nameLabel: UILabel!
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">nameLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span>
 
-// ...
-// label도 어디선가 초기화 했고, Model도 어디선가 Codable로 초기화 되었다고 가정!
+<span class="c1">// ...</span>
+<span class="c1">// label도 어디선가 초기화 했고, Model도 어디선가 Codable로 초기화 되었다고 가정!</span>
 
-// 통신 후 화면 업데이트
-func updateView(model: Model) {
-    // 1. 이름 적용
-    nameLabel.text = model.userName
-    // 2. 숨김 적용
-    nameLabel.isHidden = (model.isHidden == "Y")
-}
+<span class="c1">// 통신 후 화면 업데이트</span>
+<span class="kd">func</span> <span class="nf">updateView</span><span class="p">(</span><span class="nv">model</span><span class="p">:</span> <span class="kt">Model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 1. 이름 적용</span>
+    <span class="n">nameLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">userName</span>
+    <span class="c1">// 2. 숨김 적용</span>
+    <span class="n">nameLabel</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">==</span> <span class="s">"Y"</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>여기서 1의 경우 모델 그대로 가공 없이 넣어주면 그만이었다.</p>
@@ -211,7 +211,7 @@ func updateView(model: Model) {
 <p><br /></p>
 
 <p>아래 코드를 보자</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let value = try JSONDecoder().decode(Model.self, from: response)
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Model</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">response</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -238,9 +238,9 @@ func updateView(model: Model) {
 
 <p>그리고 다음과 같이 <code class="language-plaintext highlighter-rouge">container</code>라는 변수를 만들어준다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -255,7 +255,7 @@ func updateView(model: Model) {
 
 <p>다시 말해,</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let value = try JSONDecoder().decode(Model.self, from: response)
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Model</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">response</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>여기서 decode 했을때 들어간 <code class="language-plaintext highlighter-rouge">response</code>가 위에서 말한 <code class="language-plaintext highlighter-rouge">데이터</code>이고</p>
@@ -278,14 +278,14 @@ func updateView(model: Model) {
 
 <h1 id="container와-초기화">Container와 초기화</h1>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
     
-    // 1. 사용자명 초기화
-    self.userName = try container.decode(String.self, forKey: .userName)
-    // 2. 숨김처리 초기화
-    self.isHidden = try container.decode(String.self, forKey: .isHidden)
-}
+    <span class="c1">// 1. 사용자명 초기화</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">userName</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">userName</span><span class="p">)</span>
+    <span class="c1">// 2. 숨김처리 초기화</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">isHidden</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>1,2의 <code class="language-plaintext highlighter-rouge">try</code> 부분을 보면 다음과 같이 해석할 수 있다.</p>
@@ -310,8 +310,8 @@ func updateView(model: Model) {
 
 <p>우선 모델의 자료형부터 바꾸자</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let userName: String
-let isHidden: Bool
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+<span class="k">let</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">Bool</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -324,7 +324,7 @@ let isHidden: Bool
 
 <p>현재 저 결과 값은 <code class="language-plaintext highlighter-rouge">String</code>이므로 조건을 넣어 <code class="language-plaintext highlighter-rouge">Bool</code>로 바꿔주자.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.isHidden = try container.decode(String.self, forKey: .isHidden) == "Y"
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">isHidden</span><span class="p">)</span> <span class="o">==</span> <span class="s">"Y"</span>
 </code></pre></div></div>
 
 <p>그럼 오류는 사라지게 된다.</p>
@@ -340,17 +340,17 @@ let isHidden: Bool
 <p>그러면 이제 맨 처음 예제를 든 코드의 Before 와 After를 보자</p>
 
 <h3 id="before">Before</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 이름 적용
-nameLabel.text = model.userName
-// 2. 숨김 적용
-nameLabel.isHidden = (model.isHidden == "Y")
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 이름 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">userName</span>
+<span class="c1">// 2. 숨김 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">==</span> <span class="s">"Y"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="after">After</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 이름 적용
-nameLabel.text = model.userName
-// 2. 숨김 적용
-nameLabel.isHidden = model.isHidden
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 이름 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">userName</span>
+<span class="c1">// 2. 숨김 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">isHidden</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -406,7 +406,7 @@ nameLabel.isHidden = model.isHidden
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper - 기본</a>
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>)
                   

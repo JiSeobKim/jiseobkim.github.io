@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>Swift - Property Wrapper - 기본 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <title>Swift - Property Wrapper(기본) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="Swift - Property Wrapper - 기본" />
-    <meta name="keywords" content="Swift - Property Wrapper - 기본, 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <meta name="description" content="Swift - Property Wrapper(기본)" />
+    <meta name="keywords" content="Swift - Property Wrapper(기본), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="Swift - Property Wrapper - 기본" property="og:title">
+      <meta content="Swift - Property Wrapper(기본)" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -52,7 +52,7 @@
     <meta name="twitter:creator" content="@">
 
     
-      <meta name="twitter:title" content="Swift - Property Wrapper - 기본">
+      <meta name="twitter:title" content="Swift - Property Wrapper(기본)">
     
 
     
@@ -118,7 +118,7 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">Swift - Property Wrapper - 기본</h1>
+  <h1 class="post-title">Swift - Property Wrapper(기본)</h1>
 </header>
 
 <span class="time">13 Jun 2021</span>
@@ -150,7 +150,7 @@
 <p>익혀가면서 느낀 소감은</p>
 
 <blockquote>
-  <p>연산 프로퍼티(getter/setter)의 업그레이드 버전이다. (100% 개인 생각)</p>
+  <p>프로퍼티를 초기화 할때, 연산 프로퍼티(getter/setter) 개념을 추가 적용하는 것 (100% 개인 생각)</p>
 </blockquote>
 
 <p>한줄로 말하기 정말 어렵다. 몇번을 지운지 모르겠다.</p>
@@ -171,9 +171,9 @@
 
 <p>첫째로 피자만 판매한다고 가정해보자.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
-    var pizzaPrice: Int
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FoodTruck</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
 
 </code></pre></div></div>
 
@@ -183,18 +183,18 @@
 
 <p>그렇지만 그 특징이 들어간다면 다음과 같이 바뀌어야 할 것이다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
-    // 1. 최대 금액 설정
-    private var maxPrice: Int = 10000
-    // 2. 접근 제어자를 Private으로 해줌으로써 직접 접근 방지
-    private var _pizzaPrice: Int
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FoodTruck</span> <span class="p">{</span>
+    <span class="c1">// 1. 최대 금액 설정</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="c1">// 2. 접근 제어자를 Private으로 해줌으로써 직접 접근 방지</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">_pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
-    // 3. setter를 이용하여 값 저장시 maxPrice을 넘을 수 없게 함. 
-    var pizzaPrice: Int {
-        get { return _pizzaPrice }
-        set { _pizzaPrice = min(newValue, maxPrice)}
-    }
-}
+    <span class="c1">// 3. setter를 이용하여 값 저장시 maxPrice을 넘을 수 없게 함. </span>
+    <span class="k">var</span> <span class="nv">pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_pizzaPrice</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_pizzaPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -205,84 +205,84 @@
 
 <p>근데, 여러개를 판다고 가정해보자. 피자, 파스타, 치킨, 수프, 김치 정도</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
-    private var maxPrice: Int = 10000
-    private var _pizzaPrice: Int
-    private var _pastaPrice: Int
-    private var _chickenPrice: Int
-    private var _soupPrice: Int
-    private var _kimchiPrice: Int
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FoodTruck</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">_pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">_pastaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">_chickenPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">_soupPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">_kimchiPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
     
-    var pizzaPrice: Int {
-        get { return _pizzaPrice }
-        set { _pizzaPrice = min(newValue, maxPrice)}
-    }
+    <span class="k">var</span> <span class="nv">pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_pizzaPrice</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_pizzaPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)}</span>
+    <span class="p">}</span>
     
-    var pastaPrice: Int {
-        get { return _pastaPrice }
-        set { _pastaPrice = min(newValue, maxPrice)}
-    }
+    <span class="k">var</span> <span class="nv">pastaPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_pastaPrice</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_pastaPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)}</span>
+    <span class="p">}</span>
     
-    var chickenPrice: Int {
-        get { return _chickenPrice }
-        set { _chickenPrice = min(newValue, maxPrice)}
-    }
+    <span class="k">var</span> <span class="nv">chickenPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_chickenPrice</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_chickenPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)}</span>
+    <span class="p">}</span>
     
-    var soupPrice: Int {
-        get { return _soupPrice }
-        set { _soupPrice = min(newValue, maxPrice)}
-    }
+    <span class="k">var</span> <span class="nv">soupPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_soupPrice</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_soupPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)}</span>
+    <span class="p">}</span>
     
-    var kimchiPrice: Int {
-        get { return _kimchiPrice }
-        set { _kimchiPrice = min(newValue, maxPrice)}
-    }
-}
+    <span class="k">var</span> <span class="nv">kimchiPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_kimchiPrice</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">_kimchiPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>오 굉장히 길어진다.</p>
 
 <p>다른 방법은 뭐가 있을까, 지금 떠오르는 정도는 enum을 이용하기?</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FoodTruck</span> <span class="p">{</span>
     
-    enum Food {
-        case pizza
-        case pasta
-        case chicken
-        case soup
-        case kimchi
-    }
+    <span class="kd">enum</span> <span class="kt">Food</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">pizza</span>
+        <span class="k">case</span> <span class="n">pasta</span>
+        <span class="k">case</span> <span class="n">chicken</span>
+        <span class="k">case</span> <span class="n">soup</span>
+        <span class="k">case</span> <span class="n">kimchi</span>
+    <span class="p">}</span>
     
-    private var maxPrice: Int = 10000
-    private var pizzaPrice: Int
-    private var pastaPrice: Int
-    private var chickenPrice: Int
-    private var soupPrice: Int
-    private var kimchiPrice: Int
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">pastaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">chickenPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">soupPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">kimchiPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
-    func getPrice(_ food: Food) -&gt; Int {
-        switch food {
-        case .pizza: return pizzaPrice
-        case .pasta: return pastaPrice
-        case .chicken: return chickenPrice
-        case .soup: return soupPrice
-        case .kimchi: return kimchiPrice
-        }
-    }
+    <span class="kd">func</span> <span class="nf">getPrice</span><span class="p">(</span><span class="n">_</span> <span class="nv">food</span><span class="p">:</span> <span class="kt">Food</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">food</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">pizza</span><span class="p">:</span> <span class="k">return</span> <span class="n">pizzaPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">pasta</span><span class="p">:</span> <span class="k">return</span> <span class="n">pastaPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">chicken</span><span class="p">:</span> <span class="k">return</span> <span class="n">chickenPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">soup</span><span class="p">:</span> <span class="k">return</span> <span class="n">soupPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">kimchi</span><span class="p">:</span> <span class="k">return</span> <span class="n">kimchiPrice</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    mutating func setPrice(food: Food, price: Int) {
-        let realPrice = min(price, maxPrice)
-        switch food {
-        case .pizza: self.pizzaPrice = realPrice
-        case .pasta: self.pastaPrice = realPrice
-        case .chicken: self.chickenPrice = realPrice
-        case .soup: self.soupPrice = realPrice
-        case .kimchi: self.kimchiPrice = realPrice
-        }
-    }
-}
+    <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setPrice</span><span class="p">(</span><span class="nv">food</span><span class="p">:</span> <span class="kt">Food</span><span class="p">,</span> <span class="nv">price</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">realPrice</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)</span>
+        <span class="k">switch</span> <span class="n">food</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">pizza</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">pizzaPrice</span> <span class="o">=</span> <span class="n">realPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">pasta</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">pastaPrice</span> <span class="o">=</span> <span class="n">realPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">chicken</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">chickenPrice</span> <span class="o">=</span> <span class="n">realPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">soup</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">soupPrice</span> <span class="o">=</span> <span class="n">realPrice</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">kimchi</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">kimchiPrice</span> <span class="o">=</span> <span class="n">realPrice</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>흠, 뭔가 그래도 코드 같긴 하지만 길어진듯하고,</p>
@@ -297,7 +297,7 @@
 
 <p>처음에 느낀점을 말한것 처럼,</p>
 
-<p>getter와 setter의 업그레이드 버전임을 보여줄 수 있는 항목이라 생각된다.</p>
+<p>프로퍼티 초기화시 ,getter와 setter의 개념을 추가해준다라는 것을 잘 보여 줄 수 있을 것 같다.</p>
 
 <p><br /></p>
 
@@ -309,16 +309,16 @@
 
 <p>일단, 금액 제한을 걸린 객체를 하나 구성해보자</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
-struct MaxPriceOrLessWrapper {
-    private var max = 10000
-    private var value = 0
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span>
+<span class="kd">struct</span> <span class="kt">MaxPriceOrLessWrapper</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">max</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">value</span> <span class="o">=</span> <span class="mi">0</span>
     
-    var wrappedValue: Int {
-        get { return value }
-        set { value = min(newValue,max) }
-    }
-}
+    <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">value</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span><span class="n">max</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -343,13 +343,13 @@ struct MaxPriceOrLessWrapper {
 
 <h3 id="사용하기">사용하기</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
-    @MaxPriceOrLessWrapper var pizzaPrice: Int
-    @MaxPriceOrLessWrapper var pastaPrice: Int
-    @MaxPriceOrLessWrapper var chickenPrice: Int
-    @MaxPriceOrLessWrapper var soupPrice: Int
-    @MaxPriceOrLessWrapper var kimchiPrice: Int
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FoodTruck</span> <span class="p">{</span>
+    <span class="kd">@MaxPriceOrLessWrapper</span> <span class="k">var</span> <span class="nv">pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">@MaxPriceOrLessWrapper</span> <span class="k">var</span> <span class="nv">pastaPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">@MaxPriceOrLessWrapper</span> <span class="k">var</span> <span class="nv">chickenPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">@MaxPriceOrLessWrapper</span> <span class="k">var</span> <span class="nv">soupPrice</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">@MaxPriceOrLessWrapper</span> <span class="k">var</span> <span class="nv">kimchiPrice</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>아주 아주 아주 심플해졌다. 깔끔! 몇줄이 줄은거지?</p>
@@ -375,21 +375,21 @@ struct MaxPriceOrLessWrapper {
 
 <p>다음과 같이 <code class="language-plaintext highlighter-rouge">property wrapper</code>를 바꾸어준다</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
-struct MaxPriceOrLessWrapper {
-    private var max: Int
-    private var value: Int
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span>
+<span class="kd">struct</span> <span class="kt">MaxPriceOrLessWrapper</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span>
     
-    init(value: Int, maxPrice: Int) {
-        self.max = maxPrice
-        self.value = min(value, maxPrice)
-    }
+    <span class="nf">init</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="n">maxPrice</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">)</span>
+    <span class="p">}</span>
     
-    var wrappedValue: Int {
-        get { return value }
-        set { value = min(newValue,max) }
-    }
-}
+    <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value</span> <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span> <span class="n">value</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span><span class="n">max</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -402,22 +402,22 @@ struct MaxPriceOrLessWrapper {
 
 <p>이렇게 쓴다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
-    @MaxPriceOrLessWrapper(value: 9000, maxPrice: 10000) 
-    var pizzaPrice: Int
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">FoodTruck</span> <span class="p">{</span>
+    <span class="kd">@MaxPriceOrLessWrapper</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">9000</span><span class="p">,</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="mi">10000</span><span class="p">)</span> 
+    <span class="k">var</span> <span class="nv">pizzaPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
-    @MaxPriceOrLessWrapper(value: 12000, maxPrice: 10000) 
-    var pastaPrice: Int
+    <span class="kd">@MaxPriceOrLessWrapper</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="mi">10000</span><span class="p">)</span> 
+    <span class="k">var</span> <span class="nv">pastaPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
-    @MaxPriceOrLessWrapper(value: 7500, maxPrice: 10000) 
-    var chickenPrice: Int
+    <span class="kd">@MaxPriceOrLessWrapper</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">7500</span><span class="p">,</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="mi">10000</span><span class="p">)</span> 
+    <span class="k">var</span> <span class="nv">chickenPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
-    @MaxPriceOrLessWrapper(value: 400, maxPrice: 500) 
-    var soupPrice: Int
+    <span class="kd">@MaxPriceOrLessWrapper</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span> 
+    <span class="k">var</span> <span class="nv">soupPrice</span><span class="p">:</span> <span class="kt">Int</span>
     
-    @MaxPriceOrLessWrapper(value: 1000, maxPrice: 500) 
-    var kimchiPrice: Int
-}
+    <span class="kd">@MaxPriceOrLessWrapper</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="nv">maxPrice</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span> 
+    <span class="k">var</span> <span class="nv">kimchiPrice</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
 
 </code></pre></div></div>
 
@@ -442,7 +442,7 @@ struct MaxPriceOrLessWrapper {
 <p>이 또한 처음에 말한것처럼 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>는 뭐다?</p>
 
 <blockquote>
-  <p>연산 프로퍼티의 업그레이드 버전이다. (100% 개인 생각입니다.)</p>
+  <p>프로퍼티를 초기화 할때, 연산 프로퍼티(getter/setter) 개념을 추가 적용하는 것 (100% 개인 생각)</p>
 </blockquote>
 
 <p><br /></p>
@@ -453,27 +453,27 @@ struct MaxPriceOrLessWrapper {
 
 <h2 id="userdefault에-적용해보기---사용-전">UserDefault에 적용해보기 - 사용 전</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserDefaultManager {
-    private static var ud = UserDefaults.standard
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UserDefaultManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">ud</span> <span class="o">=</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span>
     
-    static var userName: String {
-        get {
-            return ud.value(forKey: "userName") as? String ?? ""
-        }
-        set {
-            ud.setValue(newValue, forKey: "userName")
-        }
-    }
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">??</span> <span class="s">""</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    static var hasMembership: Bool {
-        get {
-            return ud.value(forKey: "hasMembership") as? Bool ?? false
-        }
-        set {
-            ud.setValue(newValue, forKey: "hasMembership")
-        }
-    }
-}
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">hasMembership</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">Bool</span> <span class="p">??</span> <span class="kc">false</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>단 2개를 썼을 뿐인데 괄호와 이것 저것 너무 많다.</p>
@@ -497,50 +497,50 @@ struct MaxPriceOrLessWrapper {
   <li><code class="language-plaintext highlighter-rouge">defaultValue</code> - 없을때 얻을 기본값 정도는 있으면 좋겠다.</li>
 </ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
-struct UserDefaultWrapper {
-    private let ud = UserDefaults.standard
-    // 1. 키
-    private let key: String
-    // 2. 기본 값
-    private var defaultValue: String
-    // 3. wrappedValue 정의
-    var wrappedValue: String {
-        get {
-            return ud.value(forKey: key) as? String ?? defaultValue
-        }
-        set {
-            ud.setValue(newValue, forKey: key)
-        }
-    }
-    // 4. 초기값 및 키 셋팅
-    init(key: String, defaultValue: String) {
-        self.key = key
-        self.defaultValue = defaultValue
-    }
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span>
+<span class="kd">struct</span> <span class="kt">UserDefaultWrapper</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">ud</span> <span class="o">=</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span>
+    <span class="c1">// 1. 키</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="c1">// 2. 기본 값</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="c1">// 3. wrappedValue 정의</span>
+    <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">??</span> <span class="n">defaultValue</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 4. 초기값 및 키 셋팅</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">defaultValue</span> <span class="o">=</span> <span class="n">defaultValue</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>이제 이 코드는 어렵지 않을 것이다</p>
 
 <p>그럼 한번 적용해보자.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserDefaultManager {
-    private static var ud = UserDefaults.standard
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UserDefaultManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">ud</span> <span class="o">=</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span>
     
-    // Property Wrapper 적용
-    @UserDefaultWrapper(key: "userName", defaultValue: "")
-    static var userName: String
+    <span class="c1">// Property Wrapper 적용</span>
+    <span class="kd">@UserDefaultWrapper</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="s">""</span><span class="p">)</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
     
-    static var hasMembership: Bool {
-        get {
-            return ud.value(forKey: "hasMembership") as? Bool ?? false
-        }
-        set {
-            ud.setValue(newValue, forKey: "hasMembership")
-        }
-    }
-}
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">hasMembership</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">Bool</span> <span class="p">??</span> <span class="kc">false</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">userName</code>과 <code class="language-plaintext highlighter-rouge">hasMembership</code>중에 <code class="language-plaintext highlighter-rouge">userName</code>에만 적용을 해보았다.</p>
@@ -555,31 +555,31 @@ struct UserDefaultWrapper {
 
 <p>적용해보자</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
-struct UserDefaultWrapper&lt;T&gt; { // 1. 여기에 제네릭 써주고
-    private let ud = UserDefaults.standard
-    private let key: String
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span>
+<span class="kd">struct</span> <span class="kt">UserDefaultWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span> <span class="c1">// 1. 여기에 제네릭 써주고</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">ud</span> <span class="o">=</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span>
     
-    // 2. 여기도 제네릭 써주고
-    private var defaultValue: T
+    <span class="c1">// 2. 여기도 제네릭 써주고</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span>
     
-    // 3. 여기도 제네릭 써주고
-    var wrappedValue: T {
-        get {
-            // 4. 여기도 제네릭 써주고
-            return ud.value(forKey: key) as? T ?? defaultValue
-        }
-        set {
-            ud.setValue(newValue, forKey: key)
-        }
-    }
+    <span class="c1">// 3. 여기도 제네릭 써주고</span>
+    <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="c1">// 4. 여기도 제네릭 써주고</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">T</span> <span class="p">??</span> <span class="n">defaultValue</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    // 5. 여기도 제네릭 써주고
-    init(key: String, defaultValue: T) {
-        self.key = key
-        self.defaultValue = defaultValue
-    }
-}
+    <span class="c1">// 5. 여기도 제네릭 써주고</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">defaultValue</span> <span class="o">=</span> <span class="n">defaultValue</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>총 5군데에 제네릭을 적용해주었다.</p>
@@ -590,18 +590,45 @@ struct UserDefaultWrapper&lt;T&gt; { // 1. 여기에 제네릭 써주고
 
 <p>해보자.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserDefaultManager {
-    private static var ud = UserDefaults.standard
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UserDefaultManager</span> <span class="p">{</span>
     
-    @UserDefaultWrapper(key: "userName", defaultValue: "")
-    static var userName: String
+    <span class="kd">@UserDefaultWrapper</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="s">""</span><span class="p">)</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
     
-    @UserDefaultWrapper(key: "hasMembership", defaultValue: false)
-    static var hasMembership: Bool
-}
+    <span class="kd">@UserDefaultWrapper</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">hasMembership</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>와우 미쳤다.</p>
+
+<p>다시 한번 적용 전의 코드를 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Property Wrapper 적용 전 코드</span>
+<span class="kd">struct</span> <span class="kt">UserDefaultManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">ud</span> <span class="o">=</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span>
+    
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">??</span> <span class="s">""</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">hasMembership</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ud</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">Bool</span> <span class="p">??</span> <span class="kc">false</span>
+        <span class="p">}</span>
+        <span class="k">set</span> <span class="p">{</span>
+            <span class="n">ud</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"hasMembership"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>차이는 어마무시하다.</p>
 
 <p><br /></p>
 
@@ -631,7 +658,7 @@ struct UserDefaultWrapper&lt;T&gt; { // 1. 여기에 제네릭 써주고
 
 <p><a href="https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html">여기 참고</a></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init(from decoder: Decoder) throws {}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{}</span>
 </code></pre></div></div>
 
 <p>여기에도 적용을 할 수가 있었다.</p>
@@ -1015,8 +1042,8 @@ struct UserDefaultWrapper&lt;T&gt; { // 1. 여기에 제네릭 써주고
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper - 기본";
-    var disqus_title = "Swift - Property Wrapper - 기본";
+    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper(기본)";
+    var disqus_title = "Swift - Property Wrapper(기본)";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

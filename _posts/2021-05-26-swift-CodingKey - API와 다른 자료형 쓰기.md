@@ -26,7 +26,7 @@ categories: [Swift, Network]
 
 예를 들어 서버에서 다음과 같이 준다.
 
-```
+```swift
 {
     "userName" : "JS",
     "isHidden" : "Y"
@@ -39,7 +39,7 @@ categories: [Swift, Network]
 일반적으로 서버와 자료명을 맞춰서 쓴다고 가정하면 
 모델은 다음과  같을 것이다.
 
-```
+```swift
 struct Model: Codable {
     let userName: String
     let isHidden: String
@@ -50,7 +50,7 @@ struct Model: Codable {
 
 그럼 이제 이것을 쓸때 어떻게 쓰는지를 보자
 
-```
+```swift
 let nameLabel: UILabel!
 
 // ...
@@ -99,7 +99,7 @@ func updateView(model: Model) {
 
 
 아래 코드를 보자
-```
+```swift
 let value = try JSONDecoder().decode(Model.self, from: response)
 ```
 
@@ -127,7 +127,7 @@ let value = try JSONDecoder().decode(Model.self, from: response)
 
 그리고 다음과 같이 `container`라는 변수를 만들어준다.
 
-```
+```swift
 init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 }
@@ -145,7 +145,7 @@ init(from decoder: Decoder) throws {
 
 다시 말해, 
 
-```
+```swift
 let value = try JSONDecoder().decode(Model.self, from: response)
 ```
 
@@ -167,7 +167,7 @@ let value = try JSONDecoder().decode(Model.self, from: response)
 
 # Container와 초기화
 
-```
+```swift
 init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     
@@ -202,7 +202,7 @@ init(from decoder: Decoder) throws {
 
 우선 모델의 자료형부터 바꾸자
 
-```
+```swift
 let userName: String
 let isHidden: Bool
 ```
@@ -217,7 +217,7 @@ let isHidden: Bool
 
 현재 저 결과 값은 `String`이므로 조건을 넣어 `Bool`로 바꿔주자.
 
-```
+```swift
 self.isHidden = try container.decode(String.self, forKey: .isHidden) == "Y"
 ```
 
@@ -235,7 +235,7 @@ self.isHidden = try container.decode(String.self, forKey: .isHidden) == "Y"
 
 
 ### Before
-```
+```swift
 // 1. 이름 적용
 nameLabel.text = model.userName
 // 2. 숨김 적용
@@ -243,7 +243,7 @@ nameLabel.isHidden = (model.isHidden == "Y")
 ```
 
 ### After
-```
+```swift
 // 1. 이름 적용
 nameLabel.text = model.userName
 // 2. 숨김 적용

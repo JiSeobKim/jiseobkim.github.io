@@ -56,7 +56,7 @@ CodingKey 관련 글을 먼저 읽는 것을 추천!
 
 
 ### 일반적 형태
-```
+```swift
 {
     "age" : 1,
     "name" : "학생1"
@@ -65,7 +65,7 @@ CodingKey 관련 글을 먼저 읽는 것을 추천!
 ```
 
 ### 문제가 발생하는 형태
-```
+```swift
 {
     "name" : "학생1"
 }
@@ -78,7 +78,7 @@ CodingKey 관련 글을 먼저 읽는 것을 추천!
 
 이 방식은 아주 간단하다.
 
-```
+```swift
 struct Model: Codable {
     let age: Int?
     let name: String
@@ -99,7 +99,7 @@ struct Model: Codable {
 
 이전 글에서 방식을 배웠다면 다음과 같이 정의를 할 것이다.
 
-```
+```swift
 struct Model: Codable {
     let age: Int?
     let name: String
@@ -128,7 +128,7 @@ struct Model: Codable {
 1. try에 `?`붙여주기
 2. `decode` 대신 `decodeIfPresent`쓰기
 
-```
+```swift
 // 1
 self.age = try? contianer.decode(Int.self, forKey: .age)
 
@@ -147,7 +147,7 @@ self.age = try contianer.decodeIfPresent(Int.self, forKey: .age)
 옵셔널 처리가 되었고, 이전 포스팅을 보았다면 자료형을 변경하듯이 `nil`일 경우 기본값을 넣어주면 된다.
 
 
-```
+```swift
 // age의 값이 nil일 경우 기본값 0 처리 하기
 self.age = try? contianer.decodeIfPresent(Int.self, forKey: .age) ?? 0
 ```

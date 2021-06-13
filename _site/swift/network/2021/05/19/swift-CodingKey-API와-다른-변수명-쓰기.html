@@ -157,12 +157,12 @@
 
 <p>다음과 같이 서버에서 값을 내려준다고 가정해보자</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "usrNm" : "js",
-    "seqNo" : 23,
-    "ordNo" : 1,
-    "addr" : "seoul"
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"usrNm"</span> <span class="p">:</span> <span class="s">"js"</span><span class="p">,</span>
+    <span class="s">"seqNo"</span> <span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
+    <span class="s">"ordNo"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">"addr"</span> <span class="p">:</span> <span class="s">"seoul"</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <blockquote>
@@ -195,12 +195,12 @@
 
 <p><strong>프로퍼티 명은 내 마음대로!</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Model: Codable {
-    let userName: String
-    let sequenceNo: Int
-    let orderNo: Int
-    let address: String
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">sequenceNo</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">orderNo</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">address</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -225,7 +225,7 @@
 
 <p>여기서 오류 출력값을 보면</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keyNotFound(CodingKeys(stringValue: "userName", intValue: nil), Swift.DecodingError.Context(codingPath: [], debugDescription: "No value associated with key CodingKeys(stringValue: \"userName\", intValue: nil) (\"userName\").", underlyingError: nil))
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">keyNotFound</span><span class="p">(</span><span class="kt">CodingKeys</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="s">"userName"</span><span class="p">,</span> <span class="nv">intValue</span><span class="p">:</span> <span class="kc">nil</span><span class="p">),</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">DecodingError</span><span class="o">.</span><span class="kt">Context</span><span class="p">(</span><span class="nv">codingPath</span><span class="p">:</span> <span class="p">[],</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="s">"No value associated with key CodingKeys(stringValue: </span><span class="se">\"</span><span class="s">userName</span><span class="se">\"</span><span class="s">, intValue: nil) (</span><span class="se">\"</span><span class="s">userName</span><span class="se">\"</span><span class="s">)."</span><span class="p">,</span> <span class="nv">underlyingError</span><span class="p">:</span> <span class="kc">nil</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>라고 한다. 첫 프로퍼티인 <code class="language-plaintext highlighter-rouge">userName</code>부터 오류가 났다.</p>
@@ -247,20 +247,20 @@
   <p>다른 곳 보면 CodingKeys라는 enum값을 많이 사용한다. 위 에러에 보듯 한 프로퍼티들을 각각의 키가 존재하니깐 이런 네이밍을 많이 쓰는듯 하다. 뒤에 프로토콜(CodingKey)이랑 항상 헷갈려서 그냥 주저리주저리 적기</p>
 </blockquote>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Model: Codable {
-    let userName: String
-    let sequenceNo: Int
-    let orderNo: Int
-    let address: String
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">sequenceNo</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">orderNo</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">address</span><span class="p">:</span> <span class="kt">String</span>
     
-    // 추가해주기
-    enum CodingKeys: String, CodingKey {
-        case userName = "usrNm"
-        case sequenceNo = "seqNo"
-        case orderNo = "ordNo"
-        case address = "addr"
-    }
-}
+    <span class="c1">// 추가해주기</span>
+    <span class="kd">enum</span> <span class="kt">CodingKeys</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CodingKey</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">userName</span> <span class="o">=</span> <span class="s">"usrNm"</span>
+        <span class="k">case</span> <span class="n">sequenceNo</span> <span class="o">=</span> <span class="s">"seqNo"</span>
+        <span class="k">case</span> <span class="n">orderNo</span> <span class="o">=</span> <span class="s">"ordNo"</span>
+        <span class="k">case</span> <span class="n">address</span> <span class="o">=</span> <span class="s">"addr"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>위와 같이 선언을 해주면 준비 끝! 각각의 키를 수동으로 셋팅을 해주는 것이다.</p>
@@ -326,7 +326,7 @@
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper - 기본</a>
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>)
                   

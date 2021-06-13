@@ -52,7 +52,7 @@ categories: [Swift]
 
 첫째로 피자만 판매한다고 가정해보자.
 
-```
+```swift
 struct FoodTruck {
     var pizzaPrice: Int
 }
@@ -65,7 +65,7 @@ struct FoodTruck {
 
 그렇지만 그 특징이 들어간다면 다음과 같이 바뀌어야 할 것이다.
 
-```
+```swift
 struct FoodTruck {
     // 1. 최대 금액 설정
     private var maxPrice: Int = 10000
@@ -88,7 +88,7 @@ struct FoodTruck {
 
 근데, 여러개를 판다고 가정해보자. 피자, 파스타, 치킨, 수프, 김치 정도
 
-```
+```swift
 struct FoodTruck {
     private var maxPrice: Int = 10000
     private var _pizzaPrice: Int
@@ -129,7 +129,7 @@ struct FoodTruck {
 
 다른 방법은 뭐가 있을까, 지금 떠오르는 정도는 enum을 이용하기?
 
-```
+```swift
 struct FoodTruck {
     
     enum Food {
@@ -198,7 +198,7 @@ struct FoodTruck {
 
 일단, 금액 제한을 걸린 객체를 하나 구성해보자
 
-```
+```swift
 @propertyWrapper
 struct MaxPriceOrLessWrapper {
     private var max = 10000
@@ -233,7 +233,7 @@ struct MaxPriceOrLessWrapper {
 
 ### 사용하기
 
-```
+```swift
 struct FoodTruck {
     @MaxPriceOrLessWrapper var pizzaPrice: Int
     @MaxPriceOrLessWrapper var pastaPrice: Int
@@ -266,7 +266,7 @@ struct FoodTruck {
 
 다음과 같이 `property wrapper`를 바꾸어준다
 
-```
+```swift
 @propertyWrapper
 struct MaxPriceOrLessWrapper {
     private var max: Int
@@ -294,7 +294,7 @@ struct MaxPriceOrLessWrapper {
 
 이렇게 쓴다.
 
-```
+```swift
 struct FoodTruck {
     @MaxPriceOrLessWrapper(value: 9000, maxPrice: 10000) 
     var pizzaPrice: Int
@@ -351,7 +351,7 @@ WWDC 세션에도 등장했다는 `UserDefault`에 `Property Wrapper` 쓰기!
 ## UserDefault에 적용해보기 - 사용 전
 
 
-```
+```swift
 struct UserDefaultManager {
     private static var ud = UserDefaults.standard
     
@@ -396,7 +396,7 @@ struct UserDefaultManager {
 1. `Key` - 빠질 수 없지
 2. `defaultValue` - 없을때 얻을 기본값 정도는 있으면 좋겠다.
 
-```
+```swift
 @propertyWrapper
 struct UserDefaultWrapper {
     private let ud = UserDefaults.standard
@@ -425,7 +425,7 @@ struct UserDefaultWrapper {
 
 그럼 한번 적용해보자.
 
-```
+```swift
 struct UserDefaultManager {
     private static var ud = UserDefaults.standard
     
@@ -456,7 +456,7 @@ struct UserDefaultManager {
 
 적용해보자
 
-```
+```swift
 @propertyWrapper
 struct UserDefaultWrapper<T> { // 1. 여기에 제네릭 써주고
     private let ud = UserDefaults.standard
@@ -492,7 +492,7 @@ struct UserDefaultWrapper<T> { // 1. 여기에 제네릭 써주고
 
 해보자.
 
-```
+```swift
 struct UserDefaultManager {
     
     @UserDefaultWrapper(key: "userName", defaultValue: "")
@@ -507,7 +507,7 @@ struct UserDefaultManager {
 
 다시 한번 적용 전의 코드를 보자
 
-```
+```swift
 // Property Wrapper 적용 전 코드
 struct UserDefaultManager {
     private static var ud = UserDefaults.standard
@@ -563,7 +563,7 @@ struct UserDefaultManager {
 
 [여기 참고](https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html)
 
-```
+```swift
 init(from decoder: Decoder) throws {}
 ```
 

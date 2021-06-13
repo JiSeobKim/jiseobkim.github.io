@@ -99,7 +99,7 @@ API가 아직 안나왔다면 조금 돌아가는 일을 선택한 적이 많았
 
 그럼 이제 이 `JSON` 파일을 불러오는 코드를 작성
 
-```
+```swift
 func load() -> Data? {
     // 1. 불러올 파일 이름
     let fileNm: String = "User"
@@ -131,7 +131,7 @@ func load() -> Data? {
 
 그럼 이것을 이용하여 `data`로 받은 뒤 `String`으로 형변환을 하여 출력을 해보자.
 
-```
+```swift
 guard
     let jsonData = load(),
     let dictData = String(data: jsonData, encoding: .utf8)
@@ -154,7 +154,7 @@ print("결과: \(dictData)")
 
 우선 모델을 생성해주자
 
-```
+```swift
 struct UserList: Codable {
     let totalCount: Int
     let users: [User]
@@ -170,7 +170,7 @@ struct User: Codable {
 <br>
 
 그리고 이번엔 `Data`를 Codable을 이용하여 `UserList`로 얻어 보자
-```
+```swift
 guard
     let jsonData = load(),
     let userList = try? JSONDecoder().decode(UserList.self, from: jsonData)
