@@ -1,16 +1,972 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>😀😍😉 JS의 개발 블로그 😁😆😄</title>
+    <title>😀😍😉 JS 개발 블로그 😁😆😄</title>
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 19 May 2021 21:00:50 +0900</pubDate>
-    <lastBuildDate>Wed, 19 May 2021 21:00:50 +0900</lastBuildDate>
+    <pubDate>Sun, 13 Jun 2021 15:08:16 +0900</pubDate>
+    <lastBuildDate>Sun, 13 Jun 2021 15:08:16 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
-        <title>(swift) API와 다른 변수명 쓰기</title>
+        <title>Swift - Property Wrapper - 기본</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그 동안 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;에 대한 글은 종종 보았지만,&lt;/p&gt;
+
+&lt;p&gt;정확히 어떻게 어디에 써야겠단 생각이 확실하게 들지 않았었다.&lt;/p&gt;
+
+&lt;p&gt;그나마 많은 글에서 다루었던건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDefault&lt;/code&gt;에 쓰이는 것은 조금 흥미로웠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만 계속 미루고 미루고 미루고 미루다가 이제서야 흥미가 갈만한 사용처가 발견 되었다.&lt;/p&gt;
+
+&lt;p&gt;최근 글의 주제였던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt;과 관련이 있는 부분이라 마음을 먹게 됐다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이번 주제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 개념부터 잡고 가기.&lt;/p&gt;
+
+&lt;p&gt;익혀가면서 느낀 소감은&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;연산 프로퍼티(getter/setter)의 업그레이드 버전이다. (100% 개인 생각)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;한줄로 말하기 정말 어렵다. 몇번을 지운지 모르겠다.&lt;/p&gt;
+
+&lt;p&gt;사용하는 곳이 생각보다 다양하게 이루어져서 그렇다.&lt;/p&gt;
+
+&lt;p&gt;그래서 포스팅은 몇차례 나눠질것이고,&lt;/p&gt;
+
+&lt;p&gt;다양하게 소개를 해볼까한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;property-wrapper-사용전&quot;&gt;Property Wrapper 사용전&lt;/h1&gt;
+
+&lt;h3 id=&quot;가정-푸드트럭-struct가-있고-여기서-판매-되는-음식들은-10000원-이하라는-특징이-있다&quot;&gt;가정: 푸드트럭 Struct가 있고, 여기서 판매 되는 음식들은 10,000원 이하라는 특징이 있다.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;첫째로 피자만 판매한다고 가정해보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct FoodTruck {
+    var pizzaPrice: Int
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;10,000원 이하라는 특징이 없다면 위와 같이 단순하게 값을 넣고 빼고 하게 될 것이다.&lt;/p&gt;
+
+&lt;p&gt;그렇지만 그 특징이 들어간다면 다음과 같이 바뀌어야 할 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct FoodTruck {
+    // 1. 최대 금액 설정
+    private var maxPrice: Int = 10000
+    // 2. 접근 제어자를 Private으로 해줌으로써 직접 접근 방지
+    private var _pizzaPrice: Int
+    
+    // 3. setter를 이용하여 값 저장시 maxPrice을 넘을 수 없게 함. 
+    var pizzaPrice: Int {
+        get { return _pizzaPrice }
+        set { _pizzaPrice = min(newValue, maxPrice)}
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;자 여기까지는 뭐 그냥저냥 이렇게하면 되는거아닌가 싶다.&lt;/p&gt;
+
+&lt;p&gt;맞다.&lt;/p&gt;
+
+&lt;p&gt;근데, 여러개를 판다고 가정해보자. 피자, 파스타, 치킨, 수프, 김치 정도&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct FoodTruck {
+    private var maxPrice: Int = 10000
+    private var _pizzaPrice: Int
+    private var _pastaPrice: Int
+    private var _chickenPrice: Int
+    private var _soupPrice: Int
+    private var _kimchiPrice: Int
+    
+    
+    var pizzaPrice: Int {
+        get { return _pizzaPrice }
+        set { _pizzaPrice = min(newValue, maxPrice)}
+    }
+    
+    var pastaPrice: Int {
+        get { return _pastaPrice }
+        set { _pastaPrice = min(newValue, maxPrice)}
+    }
+    
+    var chickenPrice: Int {
+        get { return _chickenPrice }
+        set { _chickenPrice = min(newValue, maxPrice)}
+    }
+    
+    var soupPrice: Int {
+        get { return _soupPrice }
+        set { _soupPrice = min(newValue, maxPrice)}
+    }
+    
+    var kimchiPrice: Int {
+        get { return _kimchiPrice }
+        set { _kimchiPrice = min(newValue, maxPrice)}
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;오 굉장히 길어진다.&lt;/p&gt;
+
+&lt;p&gt;다른 방법은 뭐가 있을까, 지금 떠오르는 정도는 enum을 이용하기?&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct FoodTruck {
+    
+    enum Food {
+        case pizza
+        case pasta
+        case chicken
+        case soup
+        case kimchi
+    }
+    
+    private var maxPrice: Int = 10000
+    private var pizzaPrice: Int
+    private var pastaPrice: Int
+    private var chickenPrice: Int
+    private var soupPrice: Int
+    private var kimchiPrice: Int
+    
+    func getPrice(_ food: Food) -&amp;gt; Int {
+        switch food {
+        case .pizza: return pizzaPrice
+        case .pasta: return pastaPrice
+        case .chicken: return chickenPrice
+        case .soup: return soupPrice
+        case .kimchi: return kimchiPrice
+        }
+    }
+    
+    mutating func setPrice(food: Food, price: Int) {
+        let realPrice = min(price, maxPrice)
+        switch food {
+        case .pizza: self.pizzaPrice = realPrice
+        case .pasta: self.pastaPrice = realPrice
+        case .chicken: self.chickenPrice = realPrice
+        case .soup: self.soupPrice = realPrice
+        case .kimchi: self.kimchiPrice = realPrice
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;흠, 뭔가 그래도 코드 같긴 하지만 길어진듯하고,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;를 보고나니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;도 너무 자리 차지 많이하며&lt;/p&gt;
+
+&lt;p&gt;그에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt; 문도 너무 길게 느껴진다.&lt;/p&gt;
+
+&lt;p&gt;심지어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get/set&lt;/code&gt; 2개다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;처음에 느낀점을 말한것 처럼,&lt;/p&gt;
+
+&lt;p&gt;getter와 setter의 업그레이드 버전임을 보여줄 수 있는 항목이라 생각된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;property-wrapper-사용후&quot;&gt;Property Wrapper 사용후&lt;/h1&gt;
+
+&lt;h3 id=&quot;사용-준비&quot;&gt;사용 준비&lt;/h3&gt;
+
+&lt;p&gt;단점이라고 하면 새로운 모델을 만들어줘야 한다는점? 그외에는 잘 모르겠다.&lt;/p&gt;
+
+&lt;p&gt;일단, 금액 제한을 걸린 객체를 하나 구성해보자&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@propertyWrapper
+struct MaxPriceOrLessWrapper {
+    private var max = 10000
+    private var value = 0
+    
+    var wrappedValue: Int {
+        get { return value }
+        set { value = min(newValue,max) }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;struct&lt;/code&gt;를 만들고 그 위에(혹은 앞에) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@propertyWrapper&lt;/code&gt;를 붙여준다.&lt;/p&gt;
+
+&lt;p&gt;그러면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wrappedValue&lt;/code&gt;라는것을 선언해줘야하는데,&lt;/p&gt;
+
+&lt;p&gt;이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;가 붙은 모든 값은&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wrappedValue&lt;/code&gt; 연산프로퍼티로 값을 뱉고 정의한다.&lt;/p&gt;
+
+&lt;p&gt;이게 핵심이다. 안써주면 오류남!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;내용은 아주 간단하다. 최대 금액을 적어주었고, 연산 프로퍼티 하나를 적어주었다.&lt;/p&gt;
+
+&lt;p&gt;그럼 이것을 어떻게 적용하는가?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;사용하기&quot;&gt;사용하기&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct FoodTruck {
+    @MaxPriceOrLessWrapper var pizzaPrice: Int
+    @MaxPriceOrLessWrapper var pastaPrice: Int
+    @MaxPriceOrLessWrapper var chickenPrice: Int
+    @MaxPriceOrLessWrapper var soupPrice: Int
+    @MaxPriceOrLessWrapper var kimchiPrice: Int
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아주 아주 아주 심플해졌다. 깔끔! 몇줄이 줄은거지?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 실제로 잘 동작하는지도 확인해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-06-13/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;아주 아주 훌륭하다.&lt;/p&gt;
+
+&lt;p&gt;하지만 보는것과 같이 아쉬운점은 조금 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;위와 같이 초기값이 0이라는 점?&lt;/li&gt;
+  &lt;li&gt;MaxPrice가 다 다를수도 있잖아? (디저트, 메인 음식 별로?)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그 아쉬움도 달랠 수 있다.&lt;/p&gt;
+
+&lt;p&gt;다음과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;property wrapper&lt;/code&gt;를 바꾸어준다&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@propertyWrapper
+struct MaxPriceOrLessWrapper {
+    private var max: Int
+    private var value: Int
+    
+    init(value: Int, maxPrice: Int) {
+        self.max = maxPrice
+        self.value = min(value, maxPrice)
+    }
+    
+    var wrappedValue: Int {
+        get { return value }
+        set { value = min(newValue,max) }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;초기 세팅을 커스텀하겠다! 라는 것이고&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;value&lt;/code&gt;는 마찬가지로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxPrice&lt;/code&gt;를 넘지 않는다.&lt;/p&gt;
+
+&lt;p&gt;어떻게 쓰는가?&lt;/p&gt;
+
+&lt;p&gt;이렇게 쓴다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct FoodTruck {
+    @MaxPriceOrLessWrapper(value: 9000, maxPrice: 10000) 
+    var pizzaPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 12000, maxPrice: 10000) 
+    var pastaPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 7500, maxPrice: 10000) 
+    var chickenPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 400, maxPrice: 500) 
+    var soupPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 1000, maxPrice: 500) 
+    var kimchiPrice: Int
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;대박.. 간단해..&lt;/p&gt;
+
+&lt;p&gt;그리고 이전 코드를 값 변경없이 처음 print만 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-06-13/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;너무 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;userdefault에-적용해보기&quot;&gt;UserDefault에 적용해보기&lt;/h1&gt;
+
+&lt;p&gt;WWDC 세션에도 등장했다는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDefault&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 쓰기!&lt;/p&gt;
+
+&lt;p&gt;기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDefault&lt;/code&gt;라 함은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key&lt;/code&gt;를 가지고 값에 접근하여&lt;/p&gt;
+
+&lt;p&gt;쓰거나 얻어 오거나 한다. 다른말로  setter 하거나 getter 한다.&lt;/p&gt;
+
+&lt;p&gt;이 또한 처음에 말한것처럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;는 뭐다?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;연산 프로퍼티의 업그레이드 버전이다. (100% 개인 생각입니다.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼  또 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;가 있기 전과 후를 비교해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;userdefault에-적용해보기---사용-전&quot;&gt;UserDefault에 적용해보기 - 사용 전&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    static var userName: String {
+        get {
+            return ud.value(forKey: &quot;userName&quot;) as? String ?? &quot;&quot;
+        }
+        set {
+            ud.setValue(newValue, forKey: &quot;userName&quot;)
+        }
+    }
+    
+    static var hasMembership: Bool {
+        get {
+            return ud.value(forKey: &quot;hasMembership&quot;) as? Bool ?? false
+        }
+        set {
+            ud.setValue(newValue, forKey: &quot;hasMembership&quot;)
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;단 2개를 썼을 뿐인데 괄호와 이것 저것 너무 많다.&lt;/p&gt;
+
+&lt;p&gt;실제로도 저렇게 쓰인 코드 마지못해 썼지만 정말 거슬렸다.&lt;/p&gt;
+
+&lt;p&gt;반복에 반복이 너무 많다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;userdefault에-적용해보기---사용-후&quot;&gt;UserDefault에 적용해보기 - 사용 후&lt;/h2&gt;
+
+&lt;p&gt;차근차근 개선해보자&lt;/p&gt;
+
+&lt;p&gt;우선 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;에 대해서만 보자&lt;/p&gt;
+
+&lt;p&gt;필요한 것&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Key&lt;/code&gt; - 빠질 수 없지&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defaultValue&lt;/code&gt; - 없을때 얻을 기본값 정도는 있으면 좋겠다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@propertyWrapper
+struct UserDefaultWrapper {
+    private let ud = UserDefaults.standard
+    // 1. 키
+    private let key: String
+    // 2. 기본 값
+    private var defaultValue: String
+    // 3. wrappedValue 정의
+    var wrappedValue: String {
+        get {
+            return ud.value(forKey: key) as? String ?? defaultValue
+        }
+        set {
+            ud.setValue(newValue, forKey: key)
+        }
+    }
+    // 4. 초기값 및 키 셋팅
+    init(key: String, defaultValue: String) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이제 이 코드는 어렵지 않을 것이다&lt;/p&gt;
+
+&lt;p&gt;그럼 한번 적용해보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    // Property Wrapper 적용
+    @UserDefaultWrapper(key: &quot;userName&quot;, defaultValue: &quot;&quot;)
+    static var userName: String
+    
+    static var hasMembership: Bool {
+        get {
+            return ud.value(forKey: &quot;hasMembership&quot;) as? Bool ?? false
+        }
+        set {
+            ud.setValue(newValue, forKey: &quot;hasMembership&quot;)
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasMembership&lt;/code&gt;중에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName&lt;/code&gt;에만 적용을 해보았다.&lt;/p&gt;
+
+&lt;p&gt;너무 심플하다. 괄호와 반복의 지옥에서 벗어난 느낌 ㅠ&lt;/p&gt;
+
+&lt;p&gt;근데, 걱정이 될 수 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;만 했으니깐 다른 타입들도 다 정의를 해야해? 라는 걱정.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그치만 우리에겐 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Generics&lt;/code&gt;이 있다.&lt;/p&gt;
+
+&lt;p&gt;적용해보자&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@propertyWrapper
+struct UserDefaultWrapper&amp;lt;T&amp;gt; { // 1. 여기에 제네릭 써주고
+    private let ud = UserDefaults.standard
+    private let key: String
+    
+    // 2. 여기도 제네릭 써주고
+    private var defaultValue: T
+    
+    // 3. 여기도 제네릭 써주고
+    var wrappedValue: T {
+        get {
+            // 4. 여기도 제네릭 써주고
+            return ud.value(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            ud.setValue(newValue, forKey: key)
+        }
+    }
+    
+    // 5. 여기도 제네릭 써주고
+    init(key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;총 5군데에 제네릭을 적용해주었다.&lt;/p&gt;
+
+&lt;p&gt;이건 이제 타입 불문하고 다 써줄 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;해보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    @UserDefaultWrapper(key: &quot;userName&quot;, defaultValue: &quot;&quot;)
+    static var userName: String
+    
+    @UserDefaultWrapper(key: &quot;hasMembership&quot;, defaultValue: false)
+    static var hasMembership: Bool
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;와우 미쳤다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;사용은 사용 전후가 다를게 없지만 그래도 쓰는건 다음과 같이.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-06-13/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;p&gt;공부를 하며 코드 작성하면서도 놀랬는데, 블로그 글 쓰면서 보니 더 놀라웠다.&lt;/p&gt;
+
+&lt;p&gt;굉장히 간결해진다는 점이 인상적이다.&lt;/p&gt;
+
+&lt;p&gt;왜 이제 공부했지?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;코드를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;이 굉장히 중요하다.&lt;/p&gt;
+
+&lt;p&gt;없어도 쓸 수는 있지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;이 들어가면 더 활용성이 좋다는것.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 쓰인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;도 있지만, 이전 포스팅중에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;을 이용한  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;이 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html&quot;&gt;여기 참고&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;init(from decoder: Decoder) throws {}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기에도 적용을 할 수가 있었다.&lt;/p&gt;
+
+&lt;p&gt;정말 이거 적용해보고 소리 질렀다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 다음 주제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;에 관한것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;끝.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 13 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - API에 잘못된 값 처리 (feat. CodingKey)</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;CodingKey 관련 글을 먼저 읽는 것을 추천!
+&lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html&quot;&gt;(CodingKey 변수명 다르게 쓰기)&lt;/a&gt; , &lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html&quot;&gt;(CodingKey 자료형 다르게 쓰기)&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;오늘은 짧게 쓰기.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;서버에 데이터를 쓰다보면 어김없이 예외처리는 필수.&lt;/p&gt;
+
+&lt;p&gt;오늘의 주제는 그 예외처리를 어떻게 할지이다.&lt;/p&gt;
+
+&lt;p&gt;필자가 아는 선에선 2가지 정도 처리가 있다.&lt;/p&gt;
+
+&lt;p&gt;“만약에 데이터가 잘못 or 안내려온다”&lt;/p&gt;
+
+&lt;p&gt;라는 가정을 해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그렇담 여기서는 이렇게 처리 할 수 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;데이터를 nil 처리 해준다&lt;/li&gt;
+  &lt;li&gt;기본값을 넣어준다&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;나는 2의 방식을 선호하는 편이다&lt;/p&gt;
+
+&lt;p&gt;왜냐면 옵셔널은 정말 좋다 생각하지만,&lt;/p&gt;
+
+&lt;p&gt;결국엔 쓰기 위해선 옵셔널을 벗겨내야하기 때문에&lt;/p&gt;
+
+&lt;p&gt;사용하는 곳에 여기저기 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt;문이 붙기 마련이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;어차피 안전하게 벗겨서 쓸거면 미리 안전하게 벗기자를 선호하는편!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예시를 들게 될 JSON 형태는 다음과 같다.&lt;/p&gt;
+
+&lt;h3 id=&quot;일반적-형태&quot;&gt;일반적 형태&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;age&quot; : 1,
+    &quot;name&quot; : &quot;학생1&quot;
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;문제가-발생하는-형태&quot;&gt;문제가 발생하는 형태&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;name&quot; : &quot;학생1&quot;
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;옵셔널-처리&quot;&gt;옵셔널 처리&lt;/h1&gt;
+
+&lt;p&gt;이 방식은 아주 간단하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct Model: Codable {
+    let age: Int?
+    let name: String
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이 단순하게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;age&lt;/code&gt;라는 값에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;?&lt;/code&gt;옵셔널만 붙여주면&lt;/p&gt;
+
+&lt;p&gt;해당 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nil&lt;/code&gt;처리가 될뿐 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;을 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decoding&lt;/code&gt;을 진행해도 문제가 없다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;근데 만약 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt;를 사용한다면?&lt;/p&gt;
+
+&lt;p&gt;약간의 처리가 필요하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이전 글에서 방식을 배웠다면 다음과 같이 정의를 할 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct Model: Codable {
+    let age: Int?
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case age
+        case name
+    }
+    
+    init(from decoder: Decoder) throws {
+        let contianer = try decoder.container(keyedBy: CodingKeys.self)
+        // 주석1 - sequence값이 없기 떄문에 에러 발생
+        self.age = try contianer.decode(Int.self, forKey: .age)
+        self.name = try contianer.decode(String.self, forKey: .name)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;주석1에 써둔 이유로 문제의 JSON을 이 코드로 처리하게 된다면 에러가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 2가지 방식이 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;try에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;?&lt;/code&gt;붙여주기&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode&lt;/code&gt; 대신 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decodeIfPresent&lt;/code&gt;쓰기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1
+self.age = try? contianer.decode(Int.self, forKey: .age)
+
+// 2
+self.age = try contianer.decodeIfPresent(Int.self, forKey: .age)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;필자의 생각엔 두 방식이 차이는 없다.&lt;/p&gt;
+
+&lt;p&gt;단순하게 nil을 넣어도 초기화는 문제가 없기에 try 해도 문제가 되지 않는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;기본값-처리&quot;&gt;기본값 처리&lt;/h1&gt;
+
+&lt;p&gt;옵셔널 처리가 되었고, 이전 포스팅을 보았다면 자료형을 변경하듯이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nil&lt;/code&gt;일 경우 기본값을 넣어주면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// age의 값이 nil일 경우 기본값 0 처리 하기
+self.age = try? contianer.decodeIfPresent(Int.self, forKey: .age) ?? 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;p&gt;근데 단점이 있다.&lt;/p&gt;
+
+&lt;p&gt;옵셔널로 쓰면 간단하지만,&lt;/p&gt;
+
+&lt;p&gt;자료형을 바꿀 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;도 정의 해야하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt; 또한 정의를 해야한다.&lt;/p&gt;
+
+&lt;p&gt;그 말은 즉, 코드가 너무 길어진다.&lt;/p&gt;
+
+&lt;p&gt;이 단점은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Protperty Wrapper&lt;/code&gt;로 해결이 가능할것으로 보인다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Protperty Wrapper&lt;/code&gt; 써보고 싶었는데 이참에 공부해봐야지&lt;/p&gt;
+
+&lt;p&gt;끝.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 30 May 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html</guid>
+        
+        
+        <category>Swift</category>
+        
+        <category>Network</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이전 글에서 API 결과값의 변수명과 다른 변수명을 쓰는 것에 대해 포스팅을 하였다.
+&lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html&quot;&gt;(이전글 링크)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이러한 느낌으로 
+이번엔 
+“서버에서 내려준 자료형과 다른 자료형을 쓰고 싶다!”
+라는 생각이 든적이 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예를 들어 서버에서 다음과 같이 준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;userName&quot; : &quot;JS&quot;,
+    &quot;isHidden&quot; : &quot;Y&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그렇담,
+일반적으로 서버와 자료명을 맞춰서 쓴다고 가정하면 
+모델은 다음과  같을 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct Model: Codable {
+    let userName: String
+    let isHidden: String
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 이것을 쓸때 어떻게 쓰는지를 보자&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let nameLabel: UILabel!
+
+// ...
+// label도 어디선가 초기화 했고, Model도 어디선가 Codable로 초기화 되었다고 가정!
+
+// 통신 후 화면 업데이트
+func updateView(model: Model) {
+    // 1. 이름 적용
+    nameLabel.text = model.userName
+    // 2. 숨김 적용
+    nameLabel.isHidden = (model.isHidden == &quot;Y&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기서 1의 경우 모델 그대로 가공 없이 넣어주면 그만이었다.&lt;/p&gt;
+
+&lt;p&gt;그런데 2의 경우는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 타입으로 가공하여 적용을 해주었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이게 아쉬웠다.&lt;/p&gt;
+
+&lt;p&gt;쓰는 곳에서 별도로 처리하는게 뭔가 귀찮고 깔끔해보이지도 않는다.&lt;/p&gt;
+
+&lt;p&gt;모델 안에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getter&lt;/code&gt;를 써도 되겠지만 이또한 뭔가 아쉬움이 남는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그러다가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt;를 알게 되고, 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Key&lt;/code&gt;가 초기화 할때 사용이 된다는걸 알게 되었고,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;초기화할때 커스텀이 가능함을 알게 되었다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;codingkey와-init&quot;&gt;CodingKey와 Init&lt;/h1&gt;
+
+&lt;p&gt;지난편에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt; 를 정의를 하였지만 구체적으로 어떻게 사용 되는지는 다루지 않았다.&lt;/p&gt;
+
+&lt;p&gt;마치 타입추론 같이 알아서 가져다 쓰나보다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래 코드를 보자&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let value = try JSONDecoder().decode(Model.self, from: response)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;자주본 Codable을 이용하여 객체를 얻는 부분이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode&lt;/code&gt;를 기억하자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 모델 부분에 CodingKey Enum을 만들어주고&lt;/p&gt;
+
+&lt;p&gt;해당 모델 내에서 init을 입력해서 제안을 보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-26/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;파란줄을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decoder&lt;/code&gt;가 써있다.&lt;/p&gt;
+
+&lt;p&gt;딱봐도 기억하자한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode&lt;/code&gt;와 아래의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decoder&lt;/code&gt; 뭔가 관련이 있을듯 하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 다음과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container&lt;/code&gt;라는 변수를 만들어준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container&lt;/code&gt;는 무엇인가?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-26/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;음 대충  &lt;strong&gt;“디코더에 저장된 데이터를 새 키로 박아서 데이터를 반환한다.”&lt;/strong&gt; 라는 것 같다.&lt;/p&gt;
+
+&lt;p&gt;다시 말해,&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let value = try JSONDecoder().decode(Model.self, from: response)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기서 decode 했을때 들어간 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;response&lt;/code&gt;가 위에서 말한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터&lt;/code&gt;이고&lt;/p&gt;
+
+&lt;p&gt;그 데이터와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codingkeys.self&lt;/code&gt; 의 키를 연결해서 뱉어 준값이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container&lt;/code&gt;인 것이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;설명하자니 어렵다&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아무튼,&lt;/p&gt;
+
+&lt;p&gt;그럼 현재 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt;이라는 것은 초기화가 되지 않은 상태다.&lt;/p&gt;
+
+&lt;p&gt;이제 할 일은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container&lt;/code&gt; 데이터를 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt;을 &lt;strong&gt;초기화&lt;/strong&gt; 해주는 것!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;container와-초기화&quot;&gt;Container와 초기화&lt;/h1&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    // 1. 사용자명 초기화
+    self.userName = try container.decode(String.self, forKey: .userName)
+    // 2. 숨김처리 초기화
+    self.isHidden = try container.decode(String.self, forKey: .isHidden)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;1,2의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;try&lt;/code&gt; 부분을 보면 다음과 같이 해석할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;“컨테이너(데이터) 안에서 forKey로 넣은 것에 맞는 데이터를 빼오고, String 타입으로 가져와”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;라는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Decode&lt;/code&gt;하면 다음과 같이 이쁘게 출력된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-26/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 방식을 이용하여 글의 주제였던 &lt;strong&gt;“API 결과 값과 다른 자료형 쓰기”&lt;/strong&gt;를 하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;자료형-바꾸기&quot;&gt;자료형 바꾸기&lt;/h1&gt;
+
+&lt;p&gt;우리가 바꿀 것은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt;의 자료형을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 하는 것!&lt;/p&gt;
+
+&lt;p&gt;우선 모델의 자료형부터 바꾸자&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let userName: String
+let isHidden: Bool
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그러면 자료형이 안맞기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt; 부분에서 아래와 같이 에러가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-26/img-4.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;현재 저 결과 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;이므로 조건을 넣어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt;로 바꿔주자.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.isHidden = try container.decode(String.self, forKey: .isHidden) == &quot;Y&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그럼 오류는 사라지게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 빌드해서 브레이크를 걸고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Variables View&lt;/code&gt;를 보면 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-26/img-5.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 타입이라고 정확하게 나왔다!&lt;/p&gt;
+
+&lt;p&gt;그러면 이제 맨 처음 예제를 든 코드의 Before 와 After를 보자&lt;/p&gt;
+
+&lt;h3 id=&quot;before&quot;&gt;Before&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 이름 적용
+nameLabel.text = model.userName
+// 2. 숨김 적용
+nameLabel.isHidden = (model.isHidden == &quot;Y&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;after&quot;&gt;After&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 1. 이름 적용
+nameLabel.text = model.userName
+// 2. 숨김 적용
+nameLabel.isHidden = model.isHidden
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;p&gt;이건 예제이기 때문에 저 한줄을 위해 너무 많은 코드가 추가된 느낌이 든다면 기분탓으로 치자.&lt;/p&gt;
+
+&lt;p&gt;아래와 같이 이것을 이용하면 많은 것을 내 맘대로 바꿀 수 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;시간 타임 스탬프를 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Date&lt;/code&gt;로 정의하기&lt;/li&gt;
+  &lt;li&gt;enum과 연계하여 정의하기(이게 은근 꿀이다)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;등등!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;끝!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 May 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</guid>
+        
+        
+        <category>Swift</category>
+        
+        <category>Network</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)</title>
         <description>&lt;p&gt;&lt;br /&gt;
 일반적으로 Codable을 기본으로만 사용하다보면 프로퍼티의 명칭을 API 문서를 따라갈 수 밖에 없다.&lt;/p&gt;
 
@@ -186,7 +1142,7 @@
       </item>
     
       <item>
-        <title>(swift) JSON 파일 불러오기(feat. Codable)</title>
+        <title>Swift - JSON 파일 불러오기(feat. Codable)</title>
         <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;개발을 하다보면 서버와 같이 일을 해야하는데,&lt;/p&gt;
@@ -380,7 +1336,7 @@ else { return }
       </item>
     
       <item>
-        <title>(swift) ScrollView 뿌시기 실험</title>
+        <title>Swift - ScrollView 뿌시기 실험</title>
         <description>&lt;p&gt;이전편 8번에서부터 이어지므로 보고 오는것을 추천 - &lt;a href=&quot;https://jiseobkim.github.io/swift/ui/2021/03/17/swift-ScrollView-뿌시기.html&quot;&gt;이전글&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;이 에러부터!&lt;/p&gt;
@@ -557,7 +1513,7 @@ else { return }
       </item>
     
       <item>
-        <title>(swift) ScrollView 뿌시기</title>
+        <title>Swift - ScrollView 뿌시기</title>
         <description>&lt;p&gt;하 DragAnimation Final을 진행중이었는데,&lt;/p&gt;
 
 &lt;p&gt;스크롤뷰 생성중에 새로 바뀐 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content Layout Guides&lt;/code&gt;을 또 아 이거뭐가 뭐였지? 해버려서&lt;/p&gt;
@@ -708,7 +1664,7 @@ else { return }
       </item>
     
       <item>
-        <title>(DesignPattern) Builder</title>
+        <title>DesignPattern - Builder</title>
         <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;오랫만에 블로그 글 남기기.&lt;/p&gt;
@@ -939,7 +1895,7 @@ else { return }
       </item>
     
       <item>
-        <title>(xcode) 반성글 - 다크모드 적용 안하기</title>
+        <title>Xcode - 반성글 - 다크모드 적용 안하기</title>
         <description>&lt;p&gt;원래는 DragAnimation 글을 이어 가야하나, &lt;br /&gt;
 반성과 다시는 같은 실수 안하자는 의미로 글을 적는다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -1084,7 +2040,7 @@ key 부분에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt
       </item>
     
       <item>
-        <title>(swift) DragAnimation(2/3) - Transform</title>
+        <title>Swift - DragAnimation(2/3) - Transform</title>
         <description>&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transform&lt;/code&gt; 이란 주제로 설명을 하려다보니 대충 알고 있었음을 알게 되었다. &lt;br /&gt; 
 그러다보니 여기서 생각보다 오래걸렸다 &lt;br /&gt;&lt;/p&gt;
 
@@ -1374,853 +2330,6 @@ B * A는 다음과 같다. &lt;br /&gt;&lt;/p&gt;
         <category>Swift</category>
         
         <category>UI</category>
-        
-      </item>
-    
-      <item>
-        <title>(swift) DragAnimation(1/3) - Gesture(Long &amp;pan)</title>
-        <description>&lt;p&gt;오랫만에 포스팅…………. 여러모로 힘든 시기였다 ㅠ 기운내자&lt;/p&gt;
-
-&lt;p&gt;개인적으로는 iOS의 장점중 하나가 부드러운 동작이라 생각한다.&lt;/p&gt;
-
-&lt;p&gt;그래서 개인적으론 웹뷰를 선호하지 않는 이유중 하나는 웹뷰로도 동작이 부드러울수는 있으나,&lt;/p&gt;
-
-&lt;p&gt;네이티브의 부드러움을 따라가는 앱은 보지 못했다.&lt;/p&gt;
-
-&lt;p&gt;그리고 부드러운 동작과 잘 맞는 애니메이션은 사용자가 앱에 더 관심을 갖게 해주고, 좋은 경험(UX)를 준다고 생각한다.&lt;/p&gt;
-
-&lt;p&gt;화면 하나를 띄울때도 단순히 보여주는게 아닌 어떻게 해야 더 자연스럽고 좋은 경험을 유저에게 선사할 수 있을지&lt;/p&gt;
-
-&lt;p&gt;고민하고 시도하는 개발자가 좋은것 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그래서 시도한 UI 따라하기!&lt;/p&gt;
-
-&lt;p&gt;몇몇 앱들보면 특정 UIView 또는 UIButton 등을 길게 누르면 이동 시키고, &lt;br /&gt; 
-다른 뷰 위에 올릴시 새로운 액션이 일어남을 볼 수 있는 앱들이 있었다.&lt;/p&gt;
-
-&lt;p&gt;이런 앱들 보면서 어떻게 하면 저렇게 될까? 라는 생각하다가 시도를 해보았다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번 편은 3편으로 이루어질것이고, 순서는 다음과 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Gesture - Long Press&lt;/li&gt;
-  &lt;li&gt;Transform&lt;/li&gt;
-  &lt;li&gt;응용하기 (1 + 2)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;무엇을 만들게 될지 결과물부터 보고 이야기를 진행하는게 좋을 것 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2020-03-01/gif1.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;del&gt;아아… 테마 바꾸고 이미지를 로컬에서 못불러서 푸시하고 확인하는것 반복하다 이건 아니다 싶어서
-로컬로 불러오게끔 하는데, 삽질을 너무 많이 했다…..
-그건 성공했는데, 이미지 왜케 크니?….
-내일 이어서 적어야겠다.&lt;/del&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위에 gif 파일을 보면 특징은 다음과 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;스크롤뷰이며 위 아래 스크롤이 가능하다.&lt;/li&gt;
-  &lt;li&gt;롱터치시 터치된 뷰의 Frame과 Alpha값이 변화하며 클릭(터치)한채로 움직이면 따라 움직인다.&lt;/li&gt;
-  &lt;li&gt;2의 상태로 가운데 사각형의 영역에 들어가면 가운데 사각형이 반응을 한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이와 같은 점이 다른 유명 앱들에서 보이는 액션들이었다. 그렇담 위와 같은 액션에서 주목해야할 점은 무엇일까?&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;스크롤뷰이며 위 아래 스크롤이 가능하다.
-    &lt;blockquote&gt;
-      &lt;p&gt;롱터치 후에 위아래 움직이는 것과 스크롤뷰의 터치후 위아래 움직이는것의 구분이 필요하다.
-(쉽게 말해 터치된 후 위아래로 움직이는데 스크롤뷰도 위아래로 움직이면 안된다는 뜻)&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;롱터치시 터치된 뷰의 Frame과 Alpha값이 변화하며 클릭(터치)한채로 움직이면 따라 움직인다.
-    &lt;blockquote&gt;
-      &lt;p&gt;롱터치 후 Frame과 Alpha값에 변화를 주고 드래그에 따라가도록 해야한다.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2의 상태로 가운데 사각형의 영역에 들어가면 가운데 사각형이 반응을 한다.
-    &lt;blockquote&gt;
-      &lt;p&gt;사각형 안에 들어갔을때 사각형이 반응하게 하려면, 현재 터치된 정확한 위치 정보를 알아야 한다.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;h3 id=&quot;주의&quot;&gt;주의:&lt;/h3&gt;
-  &lt;p&gt;이 시리즈에선 스크롤뷰를 생성하고 적용하는 법은 따로 다루지 않는다. &lt;br /&gt;
-필자는 스크롤 뷰 안에 스택뷰를 넣고 코드로 뷰를 추가하는 형식을 이용하였기에 gif 하단에 Add와 Clear버튼이 존재&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그래서 글의 도입부와 같이 3가지로 포스팅을 나눠서 진행!&lt;/p&gt;
-
-&lt;p&gt;이 글에선 상대적으로 쉬운 제스쳐에 관해서 글을 적어본다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;gesture&quot;&gt;Gesture?&lt;/h1&gt;
-
-&lt;p&gt;제스처란 순수하게 한글로 얘기하면 동작이라 볼 수 있다.
-&lt;br /&gt;&lt;br /&gt;
-그렇담 앱에서 동작이란 무엇일까?
-사용자의 액션이라고 볼 수 있을 것 같다.
-&lt;br /&gt;&lt;br /&gt;
-가장 간단한 제스쳐는 터치다.&lt;br /&gt;
-기본적으로 앱을 사용하려면 사용자가 해야할 액션은 터치일 것이다.
-&lt;br /&gt;&lt;br /&gt;
-내가 원하는 화면으로 이동을 해야하고, 원하는 아이템을 선택해야하고,&lt;br /&gt;
-그 아이템을 삭제하던 추가하던 저장하던 원하는것을 하려면 그에 해당되는 것을 눌러야한다.
-&lt;br /&gt;&lt;br /&gt;
-이와 같이 누르는 행위가 하나의 제스쳐이다.&lt;br /&gt; 
-이 터치 외엔 무엇이 있을까&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;드래그(두손가락 터치,세손가락, 네손가락…)&lt;/li&gt;
-  &lt;li&gt;롱터치&lt;/li&gt;
-  &lt;li&gt;스와이프&lt;/li&gt;
-  &lt;li&gt;핀치 투 줌&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-지금은 여기까지만 생각난다.. &lt;br /&gt;
-뭐 아무튼 이런 것들이 있다.
-&lt;br /&gt;&lt;br /&gt;
-이 글에서는 롱터치 대해서 알아볼 것이다. &lt;br /&gt;
-여기서부터는 필요한 내용만 간결하게 씁시다. 읽기 쉽게.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;long-press-gestrue-롱터치&quot;&gt;Long Press Gestrue (롱터치)&lt;/h1&gt;
-
-&lt;p&gt;롱 프레스는 뭔가 거부감이 드니 롱터치라고 하겠다.&lt;/p&gt;
-
-&lt;p&gt;일단 적용하는 코드부터 보자&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Long Press Gesture - 선언
-let longTouchGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTouchAction(_:)))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;뒷부분이 어디서 많이 본거 같다. 버튼에 액션 넣을때 많이 봤을 것이다. 그리고 인자들은 다음과 같다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;타겟: 롱터치 했을 때, 어디서 처리할거야? &lt;br /&gt;
-액션: 롱터치 했을 때, 무슨 처리할래?&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이건 제스쳐에 대한 정의만 된 것이다. 그렇담 이 제스쳐를 어딘가에 적용을 시켜줘야겠지?&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Long Press Gesture - 적용
-view.addGestureRecognizer(panGestrue)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;다시말해 의미는 다음과 같다. &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 롱터치 했을 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self&lt;/code&gt;에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;longTouchAction(_:)&lt;/code&gt; 라는 함수를 실행하자~&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;근데 여기서 longTouchAction이라는 함수를 보면 다음과 같다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@objc
-func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
-    print(recognizer.state.rawValue)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@objc&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;selector&lt;/code&gt;에다 써주려면 써야하고, &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recognizer&lt;/code&gt;라는 애가 제스쳐에 대한 정보를 가지고 있다&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이를 통해 많은 것을 알 수 있지만 여기서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.state&lt;/code&gt;에 대해서 알아보자.
-&lt;img src=&quot;/assets/images/2020-03-01/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;그렇다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;이고 자료형은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Int&lt;/code&gt;이다. 그렇단건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt;랑 궁합이 잘 맞겠다는 말~&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;이니 종류를 한번 보자.
-&lt;img src=&quot;/assets/images/2020-03-01/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;뭐가 많다. 세분화해서 사용 가능하다.&lt;/p&gt;
-
-&lt;p&gt;근데 이 글에선 롱터치의 시작, 종료, 변화에 대해서 알면 된다.&lt;/p&gt;
-
-&lt;p&gt;다시말해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.began&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ended&lt;/code&gt; 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt;만 알면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래의 코드를 보자.&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@objc
-func longTouchAction(_ recognizer: UILongPressGestureRecognizer) {
-    switch recognizer.state {
-    case .began:
-        // 롱터치 시작
-        break
-    case .ended:
-        // 롱터치 종료
-        break
-    case .changed:
-        // 터치 후 변화
-        // 1
-        let point: CGPoint = recognizer.location(in: self.view)
-        // 2
-        let point2: CGPoint = recognizer.location(in: self.longTouchView)
-    default:
-        // 나머지 불필요
-        break
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.began&lt;/code&gt; &lt;br /&gt;
-롱프레스가 시작 됐다를 알려준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ended&lt;/code&gt; &lt;br /&gt;
-롱프레스가 끝났다를 알려준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt; &lt;br /&gt;
-얘를 주목하자,&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;location(in:_)&lt;/code&gt;이 무엇이냐 하면, 문서상 이렇게 써있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Summary&lt;br /&gt;
-Returns the point computed as the location in a given view of the gesture represented by the receiver.&lt;br /&gt;&lt;br /&gt;
-Declaration&lt;br /&gt;
-func location(in view: UIView?) -&amp;gt; CGPoint&lt;br /&gt;&lt;br /&gt;
-Discussion&lt;br /&gt;
-The returned value is a generic single-point location for the gesture computed by the UIKit framework. It is usually the centroid of the touches involved in the gesture. For objects of the UISwipeGestureRecognizer and UITapGestureRecognizer classes, the location returned by this method has a significance special to the gesture. This significance is documented in the reference for those classes.&lt;br /&gt;&lt;br /&gt;
-Parameters&lt;br /&gt;
-view    &lt;br /&gt;
-A UIView object on which the gesture took place. Specify nil to indicate the window.&lt;br /&gt;&lt;br /&gt;
-Returns&lt;br /&gt;
-A point in the local coordinate system of view that identifies the location of the gesture. If nil is specified for view, the method returns the gesture location in the window’s base coordinate system.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;어렵다, 쉽게 말해 다음과 같다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;당신이 터치한 위치 정보(좌표)를 알려 줄게! 어느 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 기준으로 할지 알려줘&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;즉, 전체 화면상 x,y가 몇인지 알면 좋긴 하겠지만, &lt;br /&gt;
-특정 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;위에서 x,y가 몇인지 계산하기 귀찮으니 기준점을 알려주면 알아서 계산된 값을 알려준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;다시 말해, &lt;br /&gt;
-위에 주석 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self.view&lt;/code&gt; 기준으로 x,y를 알려주는 값이고 &lt;br /&gt;
-위에 주석 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self.panGetstureView&lt;/code&gt; 기준으로 x,y를 알려주는 값이다. &lt;br /&gt;
-(마치 view의 frame과 bound 차이 그런 느낌…?)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;point&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt;를 잘 생각해보자, &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.began&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.ended&lt;/code&gt;는 한번만 호출되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.changed&lt;/code&gt;는 바뀔때마다 호출이 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;한마디로 롱터치 시작 후 &lt;strong&gt;변화&lt;/strong&gt;되는 &lt;strong&gt;위치값&lt;/strong&gt;을 알 수 있다.&lt;br /&gt;
-이를 이용하면, 위에 GIF와 같이 롱터치후 변화 되는 값에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt;를 이동시켜줄 수 있다는 말이 된다!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;(잘 이해가 안된다면 위 코드에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;point&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;point2&lt;/code&gt;를 주석걸고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;print&lt;/code&gt;해서 x, y값에 대해 보면 이해에 도움이 될 것 같다.)&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 01 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/ui/2020/03/01/swift-DragAnimation_Step1_Gesture(Long-&-pan).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/ui/2020/03/01/swift-DragAnimation_Step1_Gesture(Long-&-pan).html</guid>
-        
-        
-        <category>Swift</category>
-        
-        <category>UI</category>
-        
-      </item>
-    
-      <item>
-        <title>(Xcode) Configuration 파일 다루기 - (적용)</title>
-        <description>&lt;p&gt;처음으로 vi를 이용해 글쓰다가 iterm이 죽음,, 다날라감….. 이 포스팅 절반은 쓴거 같은데……….&lt;/p&gt;
-
-&lt;p&gt;안그래도 아파서 힘든데………. 부들부들&lt;/p&gt;
-
-&lt;p&gt;허허허,, 다시 쓰는거니 좀더 깔끔하게 글이 나올려나?&lt;/p&gt;
-
-&lt;p&gt;최대한 간결하게 해야겠다&lt;/p&gt;
-
-&lt;p&gt;다시 처음 쓰는것 마냥 고고&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번엔 Config 파일을 만들고 적용하는것을 포스팅 할 것이다! &lt;a href=&quot;https://jiseobkim.github.io/xcode/2019/07/22/swift-Configuration-파일-다루기-(개념).html&quot;&gt;이전편 보러가기&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;새 파일을 만든다. Command + n&lt;/p&gt;
-
-&lt;p&gt;거기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Configuration Settings File&lt;/code&gt; 라는 파일을 찾고, 만약 찾기 힘들다면&lt;/p&gt;
-
-&lt;p&gt;검색 기능을 이용해서 찾자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;총 2개를 만들어 준다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;개발&lt;/li&gt;
-  &lt;li&gt;상용&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이 포스팅에서 Config 파일에 적어둘 내용은 다음과 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;앱 이름&lt;/li&gt;
-  &lt;li&gt;Bundle Identifier&lt;/li&gt;
-  &lt;li&gt;서버 URL (개발 서버 or 상용 서버)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;간략하게 설명하면, 이 글을 시작한 이유가 개발자인 내가 식권앱을 쓰다가, 개발용을 설치하면 실사용 하기 위해&lt;/p&gt;
-
-&lt;p&gt;재설치를 해야하는 귀차니즘이 있기 생기기 때문에 시작한 포스팅.&lt;/p&gt;
-
-&lt;p&gt;그렇기에 위의 3가지를 예를 들려한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;앱이름&quot;&gt;앱이름&lt;/h3&gt;
-
-&lt;p&gt;앱이 2개 설치될 예정인데, 앱 이름이 동일하면, 구분이 안되니깐!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;bundle-identifier&quot;&gt;Bundle Identifier&lt;/h3&gt;
-
-&lt;p&gt;앱을 2개 설치하기 위해!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;서버-url&quot;&gt;서버 URL&lt;/h3&gt;
-
-&lt;p&gt;코드내에 상용서버, 개발 서버 선언할필요 없이 Config 설정에 따라 바뀌게 설치&lt;/p&gt;
-
-&lt;p&gt;ex) 상용 config 셋팅시 URL은 상용 URL을 불러오게 끔 (개발은 개발 URL)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;어디를 건들여야하는지 알아보자.&lt;/p&gt;
-
-&lt;p&gt;우선 만든 Config를 설정하는곳은 여기다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;보통 Target 안에 부분은 손은 댓었어도 이곳은 손대본적이 없었다.&lt;/p&gt;
-
-&lt;p&gt;근데 이제와서 생각해보니 어차피 Target한테 밀리는 설정들이라서 그랬나보다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;사진에 보면, Project(파란색)과 Target(빨간색)이 존재한다.&lt;/p&gt;
-
-&lt;p&gt;우린 각각 Target의 Config를 손볼 예정이다.&lt;/p&gt;
-
-&lt;p&gt;Target의 Config에 &lt;strong&gt;Config_Dis&lt;/strong&gt;를 넣어주자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Target의 BuildSetting 부분을 보자, 기존에는 없던 Level이 추가된다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Config.File (Config_dev.xcconfig. None)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이젠 활용만 하면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;bundle-id-적용&quot;&gt;Bundle ID 적용&lt;/h1&gt;
-
-&lt;p&gt;Target의 Build Setting에서 Bundle 이라고 검색하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product BUndle Identifier&lt;/code&gt;라는 항목이 보인다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;현재는 고정값이 들어가있지만, 이 부분이 Config에 따라 다르게 적용되게 해야한다.&lt;/p&gt;
-
-&lt;p&gt;(사진엔 Config를 넣기 전이라 Config.File 이라는 레벨이 안보임!)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 여기는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(inherited)&lt;/code&gt;를 넣어줌으로써 Config따라 값이 바뀌게 해준다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;이 부분이 가장 중요. 나머진 응용 &amp;amp; 반복!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;아래처럼 바꿔주기만 하자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img5.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그리고 Build setting 말고 General 보면 나오는 Bundle ID는 깔끔하게 결과값만 나온다! 아마 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Resolved&lt;/code&gt;값을 표출하는것 아닌가 싶다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 Bundle ID 셋팅이 끝났다.&lt;/p&gt;
-
-&lt;p&gt;Config만 바꿔줘도 Bundle ID가 바뀐다. 이말을 다시 말하면 앱에서는 Config에 따라 서로 다른 앱으로 인식한다는 것이다.&lt;/p&gt;
-
-&lt;p&gt;그렇단건 앱이 2개가 설치가 된다는 것이다!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;실행해보면 다음과 같이 2개가 설치 될것이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;앱-이름-바꾸기&quot;&gt;앱 이름 바꾸기&lt;/h1&gt;
-
-&lt;p&gt;두개 설치까진 됐으나, 뭐가 뭔지 알기가 힘들다.&lt;/p&gt;
-
-&lt;p&gt;그러니 앱이름을 Config에 따라 달리 셋팅을 해주자&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이건 간단하지만 살짝 다르다.&lt;/p&gt;
-
-&lt;p&gt;BuildSetting 부분에 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Name&lt;/code&gt;이란 부분이 있는데, 이 부분을 수정하고 빌드하면 2개가 설치 되긴하는데,&lt;/p&gt;
-
-&lt;p&gt;두번째꺼 설치후 다시 빌드하면 오류를 뿜는다. 쓰지말자,&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Config파일에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DISPLAY_NAME&lt;/code&gt;이라는 항목을 넣어줬으며, 이것을 검색하면 보인다.&lt;/p&gt;
-
-&lt;p&gt;보면 DISPLAY_NAME 위에 User-Defined 라는 항목이 보이며, 이 부분 아래는 전부&lt;/p&gt;
-
-&lt;p&gt;기존 Build Setting이 아닌 추가된 부분이다. Level 옆에 + 버튼을 눌러서 추가도 가능하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼, 이 부분을 가져다 쓰기만 하면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 Display 부분에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(DISPLAY_NAME)&lt;/code&gt; 이라고 적어주면 끝!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래는 결과&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img9.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;가장 마지막단의 값이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Resolved&lt;/code&gt;되니 Config에 정의한 그 값이 곧 그 값!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;서버-url-변경&quot;&gt;서버 URL 변경&lt;/h1&gt;
-
-&lt;p&gt;위에 간략하게 설명한 바와 같이 많은 현업에서 상용 서버, 개발 서버 나눠서 쓰고 있을것이다.&lt;/p&gt;
-
-&lt;p&gt;근데, 지금 회사에선&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;isReal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isReal&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;realServer.com&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;devServer.com&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이런식으로 코드를 수정하는 방식을 쓰고있었다.&lt;/p&gt;
-
-&lt;p&gt;간편한 방법이긴 하지만, 배포전 신경을 항상 써줘야했다.&lt;/p&gt;
-
-&lt;p&gt;하지만! Config를 이용하여 셋팅만 잘 해둔다면, 배포시 별다른 걱정을 하지않아도 된다!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그렇담 이것을 앱에서 어찌 가져다 쓸까?&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt;를 이용!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Info.plist 파일에서 오른쪽 클릭을하면 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add Row&lt;/code&gt;가 보일것이다! 클릭&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이름은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Server URL&lt;/code&gt;이 적당하려나? (다른값 보고 따라함)&lt;/p&gt;
-
-&lt;p&gt;아무튼 그렇게 해주고 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;  값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(SERVER_URL)&lt;/code&gt;! 아래처럼 적용&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img11.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 이제 가져다 써보자&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if let url = Bundle.main.object(forInfoDictionaryKey: &quot;Server URL&quot;) as? String {
-    print(&quot;plist에서 받은 값은 \(url)&quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이런식으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist&lt;/code&gt;에 접근해서 값을 가지고 올 수 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;object 함수 Summary 부분 발췌&lt;/p&gt;
-
-  &lt;p&gt;Returns the value associated with the specified key in the receiver’s information property list&lt;/p&gt;
-
-  &lt;p&gt;해석: plist꺼 값 꺼내옴&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래 이미지는  출력 코드는 동일하지만 Config 파일만 교체하고 결과 값이 다른 것을 보여준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-29/img12.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;이렇게 나온다면, 충분히 응용 가능할것으로 보인다.&lt;/p&gt;
-
-&lt;p&gt;길어진 관계로 고급편을 만들어야겠다. (vi 쓰다 날아가서 나누는거 암튼 아님)&lt;/p&gt;
-
-&lt;p&gt;크큭크크크ㅡ크ㅋ&lt;/p&gt;
-</description>
-        <pubDate>Mon, 29 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/xcode/2019/07/29/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EC%A0%81%EC%9A%A9).html</link>
-        <guid isPermaLink="true">http://localhost:4000/xcode/2019/07/29/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EC%A0%81%EC%9A%A9).html</guid>
-        
-        
-        <category>Xcode</category>
-        
-      </item>
-    
-      <item>
-        <title>(Xcode) Configuration 파일 다루기 - (개념)</title>
-        <description>&lt;p&gt;오늘의 주제의 제목은 뭔가 애매하다&lt;/p&gt;
-
-&lt;p&gt;하지만 Configuration 파일을 잘 이용하면&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;같은 앱 다중설치&lt;/li&gt;
-  &lt;li&gt;서버 변경 방식&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;등등을 유용하게 쓰일 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;어쩌다-포스팅하게-되었나&quot;&gt;어쩌다 포스팅하게 되었나?&lt;/h1&gt;
-
-&lt;p&gt;회사 앱중 전자 식권 앱이 있는데, 개발을 하다보니 서버를 왔다, 갔다 할 필요가 있었다.&lt;/p&gt;
-
-&lt;p&gt;그런데, 다음과 같은 문제들이 발생했다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;서버가 다르다 보니 로그인이 자꾸 풀려서 재로그인해야한다, 귀찮&lt;/li&gt;
-  &lt;li&gt;개발 서버 깔고 나갔다가, 결제 직전 알아차려서 앱스토어에서 다시 받아야하는 귀차니즘 발생&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let's Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
-
-&lt;p&gt;(여러번 시도했었지만 실패,,, 하지만 성공했으니 포스팅을 아하하, 해당 세션 Toss개발자님 사랑합니다. 토스 가고싶어요)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;같은 문제점을 역시나 고민하고 계신 선배 개발자분들이 계셨다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;핵심은-configuration-파일&quot;&gt;핵심은 Configuration 파일&lt;/h1&gt;
-
-&lt;p&gt;서버 변경, 앱 다중 설치 등등을 Configuration 파일 설정 외에는 다음과 같은 방식들을 알고 있었다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Scheme 추가&lt;/li&gt;
-  &lt;li&gt;Target 추가&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;각각 단점이 보였다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;1-scheme&quot;&gt;1. Scheme&lt;/h3&gt;
-
-&lt;p&gt;이건 선택 가능 옵션이 Release? or Debug? 뿐이었다, 그렇단건 코드에서 아래와 같은 조건으로 주소 변경만 될뿐, 앱을 나눌수 없는거 같다&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var address: String = &quot;&quot;
-#if DEBUG
-    address = &quot;www.dev.com&quot;
-#else
-    address = &quot;www.dis.com&quot;
-#endif
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이렇게 주소를 변경할 수 있었다. 하지만! 정작 중요한 앱나누기가 안댐.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;PASS&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;2-target-추가&quot;&gt;2. Target 추가&lt;/h3&gt;
-
-&lt;p&gt;이건 좀 괜찮아보였다. Build Setting이 별도이므로, Bundle ID만 따로 해주면 앱 2개 설치도 되며, 손쉽게 변경이 가능하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;하지만 문제점 있음!&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;문제점1: Build Setting이 별도라는건, 수정해야할게 두가지라는 점.&lt;/li&gt;
-  &lt;li&gt;문제점2: 새로 파일을 만들경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target Memebership&lt;/code&gt;을 다 체크해줘야함&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;(Target Membership 체크해야하는 화면)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그래서 위에서 언급한 세션 기억이 났고, 이거다! 싶었다.&lt;/p&gt;
-
-&lt;h1 id=&quot;configuration-파일이란&quot;&gt;Configuration 파일이란?&lt;/h1&gt;
-
-&lt;p&gt;깃블로그 하다보니  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일에 주로 속성?값이라 해야하나 그런것들이 적혀있었다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;블로그 타이틀&lt;/li&gt;
-  &lt;li&gt;블로그 부제&lt;/li&gt;
-  &lt;li&gt;Analytics key값&lt;/li&gt;
-  &lt;li&gt;페이징 갯수&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;등등 뭔가 앱으로 치면&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름&lt;/li&gt;
-  &lt;li&gt;서버 URL&lt;/li&gt;
-  &lt;li&gt;Bundle ID&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이런것들이 들어가기 딱인 느낌이었고, 앱에도 그런 파일이 존재했다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;where&quot;&gt;Where?&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 Config파일을 설정
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;그리고 TARGET이 아닌 PROJECT의 Build Setting을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level&lt;/code&gt; 형태로 보면  &lt;strong&gt;Configurations&lt;/strong&gt;라는곳이 존재하고 여기에 셋팅을 해주게 된다.&lt;/p&gt;
-
-&lt;p&gt;여기서 눈여겨봐야 할 점은 다음과 같다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Debug&lt;/strong&gt;의 하위 - &lt;strong&gt;Project&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Project&lt;/strong&gt;의 하위 - &lt;strong&gt;Target&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;속해있다는 점을 잘보고, &lt;strong&gt;Target&lt;/strong&gt;의 &lt;strong&gt;Build Setting&lt;/strong&gt;을 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;빨간 영역을 보면, Resolved - Target - Config - Project 로 되어있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Resolve- 결정하다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Resolved&lt;/strong&gt; 는 결정했다! 정도로 보면 될텐데, 무엇을 결정했다는 것일까.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;결론적인 예를 들면 이런것이다,&lt;/p&gt;
-
-&lt;p&gt;각각 단계에서 앱 이름을 정의 했다 가정을 하자&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 A (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 B (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 C (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;그럼 뭔가 결정이 나야하고 여기서는 가장 최하위단에서 적용한것이 이름이 되므로,&lt;/p&gt;
-
-&lt;p&gt;위와 같은 경우 앱 이름은 &lt;strong&gt;C&lt;/strong&gt;라고 표출이 된다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;수정&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;제일 하단이 비어있을 경우 그 전값 불러옴&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 클래스 상속과 같은 상속이 존재하며, $(inherited) 라고 써주면 바로 전단계가 적용된다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;$(inherited) 같은 경우는 Build Setting에서 많이 보인다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 좀더 예를 들어보자&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 A (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 B (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 없음 (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; &lt;del&gt;이름 비어있음&lt;/del&gt; 수정: B&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 없음 (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 없음 (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 C (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; C&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 A (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 없음 (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 C (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; C&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 없음 (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 없음 (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 C (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; C&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 A (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 B (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 $(inherited) (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; B&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 A (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 없음 (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 $(inherited) (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; &lt;del&gt;이름 비어있음&lt;/del&gt; 재검토 필요&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;앱 이름 A (in Project)&lt;/li&gt;
-  &lt;li&gt;앱 이름 $(inherited) (in Config)&lt;/li&gt;
-  &lt;li&gt;앱 이름 $(inherited) (in Target)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-&amp;gt; A&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-이정도면 예시는 됐으려나, 어찌 됐든 중요한건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(inherited)&lt;/code&gt;!&lt;/p&gt;
-
-&lt;p&gt;그럼 이걸 이제 어떻게 써먹을지 보자&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;config-활용&quot;&gt;Config 활용&lt;/h1&gt;
-
-&lt;p&gt;이런건 그림이 이해하기 제일 좋을것 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;!!!!! 여기서 중요한것임 !!!!!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;!!!!! 이것만 봐도 될정도 !!!!!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;!!!!! 핵심임 !!!!!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/JiSeobKim/jiseobkim.github.io/master/static/img/_posts/2019-07-22/img5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Target은 $(inherited)&lt;/li&gt;
-  &lt;li&gt;Config를 A 혹은 B로 변경해줌으로써 서버와 앱이름등등을 바꿔준다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;그렇담 어케 적용하는지는 다음편에!!!&lt;/p&gt;
-
-&lt;p&gt;크큭크ㅋᄏᆨ큭-크ㅡ큭&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 22 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/xcode/2019/07/22/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EA%B0%9C%EB%85%90).html</link>
-        <guid isPermaLink="true">http://localhost:4000/xcode/2019/07/22/swift-Configuration-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-(%EA%B0%9C%EB%85%90).html</guid>
-        
-        
-        <category>Xcode</category>
         
       </item>
     

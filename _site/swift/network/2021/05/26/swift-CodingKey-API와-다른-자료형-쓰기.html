@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)" />
+    <meta name="keywords" content="Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable), 😀😍😉 JS 개발 블로그 😁😆😄, Swift, Network" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html" property="og:url">
+    
+
+    
+      <meta content="2021-05-26T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</h1>
+</header>
+
+<span class="time">26 May 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>이전 글에서 API 결과값의 변수명과 다른 변수명을 쓰는 것에 대해 포스팅을 하였다.
+<a href="https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html">(이전글 링크)</a></p>
+
+<p>이러한 느낌으로 
+이번엔 
+“서버에서 내려준 자료형과 다른 자료형을 쓰고 싶다!”
+라는 생각이 든적이 있었다.</p>
+
+<p><br /></p>
+
+<p>예를 들어 서버에서 다음과 같이 준다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "userName" : "JS",
+    "isHidden" : "Y"
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그렇담,
+일반적으로 서버와 자료명을 맞춰서 쓴다고 가정하면 
+모델은 다음과  같을 것이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Model: Codable {
+    let userName: String
+    let isHidden: String
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그럼 이제 이것을 쓸때 어떻게 쓰는지를 보자</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let nameLabel: UILabel!
+
+// ...
+// label도 어디선가 초기화 했고, Model도 어디선가 Codable로 초기화 되었다고 가정!
+
+// 통신 후 화면 업데이트
+func updateView(model: Model) {
+    // 1. 이름 적용
+    nameLabel.text = model.userName
+    // 2. 숨김 적용
+    nameLabel.isHidden = (model.isHidden == "Y")
+}
+</code></pre></div></div>
+
+<p>여기서 1의 경우 모델 그대로 가공 없이 넣어주면 그만이었다.</p>
+
+<p>그런데 2의 경우는 <code class="language-plaintext highlighter-rouge">Bool</code> 타입으로 가공하여 적용을 해주었다.</p>
+
+<p><br /></p>
+
+<p>이게 아쉬웠다.</p>
+
+<p>쓰는 곳에서 별도로 처리하는게 뭔가 귀찮고 깔끔해보이지도 않는다.</p>
+
+<p>모델 안에 <code class="language-plaintext highlighter-rouge">getter</code>를 써도 되겠지만 이또한 뭔가 아쉬움이 남는다.</p>
+
+<p><br /></p>
+
+<p>그러다가 <code class="language-plaintext highlighter-rouge">CodingKey</code>를 알게 되고, 이 <code class="language-plaintext highlighter-rouge">Key</code>가 초기화 할때 사용이 된다는걸 알게 되었고,</p>
+
+<p><br /></p>
+
+<p><strong>초기화할때 커스텀이 가능함을 알게 되었다.</strong></p>
+
+<p><br />
+<br /></p>
+
+<h1 id="codingkey와-init">CodingKey와 Init</h1>
+
+<p>지난편에 <code class="language-plaintext highlighter-rouge">CodingKey</code> 를 정의를 하였지만 구체적으로 어떻게 사용 되는지는 다루지 않았다.</p>
+
+<p>마치 타입추론 같이 알아서 가져다 쓰나보다.</p>
+
+<p><br /></p>
+
+<p>아래 코드를 보자</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let value = try JSONDecoder().decode(Model.self, from: response)
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>자주본 Codable을 이용하여 객체를 얻는 부분이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">decode</code>를 기억하자.</p>
+
+<p><br /></p>
+
+<p>그리고 모델 부분에 CodingKey Enum을 만들어주고</p>
+
+<p>해당 모델 내에서 init을 입력해서 제안을 보자</p>
+
+<p><img src="/assets/images/2021-05-26/img-1.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>파란줄을 보면 <code class="language-plaintext highlighter-rouge">decoder</code>가 써있다.</p>
+
+<p>딱봐도 기억하자한 <code class="language-plaintext highlighter-rouge">decode</code>와 아래의 <code class="language-plaintext highlighter-rouge">decoder</code> 뭔가 관련이 있을듯 하다.</p>
+
+<p><br /></p>
+
+<p>그리고 다음과 같이 <code class="language-plaintext highlighter-rouge">container</code>라는 변수를 만들어준다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>저 <code class="language-plaintext highlighter-rouge">container</code>는 무엇인가?</p>
+
+<p><img src="/assets/images/2021-05-26/img-2.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>음 대충  <strong>“디코더에 저장된 데이터를 새 키로 박아서 데이터를 반환한다.”</strong> 라는 것 같다.</p>
+
+<p>다시 말해,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let value = try JSONDecoder().decode(Model.self, from: response)
+</code></pre></div></div>
+
+<p>여기서 decode 했을때 들어간 <code class="language-plaintext highlighter-rouge">response</code>가 위에서 말한 <code class="language-plaintext highlighter-rouge">데이터</code>이고</p>
+
+<p>그 데이터와 <code class="language-plaintext highlighter-rouge">Codingkeys.self</code> 의 키를 연결해서 뱉어 준값이 <code class="language-plaintext highlighter-rouge">container</code>인 것이다.</p>
+
+<blockquote>
+  <p>설명하자니 어렵다</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>아무튼,</p>
+
+<p>그럼 현재 <code class="language-plaintext highlighter-rouge">Model</code>이라는 것은 초기화가 되지 않은 상태다.</p>
+
+<p>이제 할 일은 <code class="language-plaintext highlighter-rouge">container</code> 데이터를 이용하여 <code class="language-plaintext highlighter-rouge">Model</code>을 <strong>초기화</strong> 해주는 것!</p>
+
+<p><br /></p>
+
+<h1 id="container와-초기화">Container와 초기화</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    // 1. 사용자명 초기화
+    self.userName = try container.decode(String.self, forKey: .userName)
+    // 2. 숨김처리 초기화
+    self.isHidden = try container.decode(String.self, forKey: .isHidden)
+}
+</code></pre></div></div>
+
+<p>1,2의 <code class="language-plaintext highlighter-rouge">try</code> 부분을 보면 다음과 같이 해석할 수 있다.</p>
+
+<p><strong>“컨테이너(데이터) 안에서 forKey로 넣은 것에 맞는 데이터를 빼오고, String 타입으로 가져와”</strong></p>
+
+<p>라는 것이다.</p>
+
+<p><br /></p>
+
+<p>그럼 이제 <code class="language-plaintext highlighter-rouge">Decode</code>하면 다음과 같이 이쁘게 출력된다.</p>
+
+<p><img src="/assets/images/2021-05-26/img-3.png" style="zoom:40%;" /></p>
+
+<p>이 방식을 이용하여 글의 주제였던 <strong>“API 결과 값과 다른 자료형 쓰기”</strong>를 하는 것이다.</p>
+
+<p><br /></p>
+
+<h1 id="자료형-바꾸기">자료형 바꾸기</h1>
+
+<p>우리가 바꿀 것은 <code class="language-plaintext highlighter-rouge">isHidden</code>의 자료형을 <code class="language-plaintext highlighter-rouge">String</code> -&gt; <code class="language-plaintext highlighter-rouge">Bool</code> 하는 것!</p>
+
+<p>우선 모델의 자료형부터 바꾸자</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let userName: String
+let isHidden: Bool
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그러면 자료형이 안맞기 때문에 <code class="language-plaintext highlighter-rouge">init</code> 부분에서 아래와 같이 에러가 발생한다.</p>
+
+<p><img src="/assets/images/2021-05-26/img-4.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>현재 저 결과 값은 <code class="language-plaintext highlighter-rouge">String</code>이므로 조건을 넣어 <code class="language-plaintext highlighter-rouge">Bool</code>로 바꿔주자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.isHidden = try container.decode(String.self, forKey: .isHidden) == "Y"
+</code></pre></div></div>
+
+<p>그럼 오류는 사라지게 된다.</p>
+
+<p><br /></p>
+
+<p>그리고 빌드해서 브레이크를 걸고 <code class="language-plaintext highlighter-rouge">Variables View</code>를 보면 다음과 같다.</p>
+
+<p><img src="/assets/images/2021-05-26/img-5.png" style="zoom:40%;" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">isHidden</code>은 <code class="language-plaintext highlighter-rouge">Bool</code> 타입이라고 정확하게 나왔다!</p>
+
+<p>그러면 이제 맨 처음 예제를 든 코드의 Before 와 After를 보자</p>
+
+<h3 id="before">Before</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 이름 적용
+nameLabel.text = model.userName
+// 2. 숨김 적용
+nameLabel.isHidden = (model.isHidden == "Y")
+</code></pre></div></div>
+
+<h3 id="after">After</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. 이름 적용
+nameLabel.text = model.userName
+// 2. 숨김 적용
+nameLabel.isHidden = model.isHidden
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>이건 예제이기 때문에 저 한줄을 위해 너무 많은 코드가 추가된 느낌이 든다면 기분탓으로 치자.</p>
+
+<p>아래와 같이 이것을 이용하면 많은 것을 내 맘대로 바꿀 수 있다.</p>
+
+<ul>
+  <li>시간 타임 스탬프를 바로 <code class="language-plaintext highlighter-rouge">Date</code>로 정의하기</li>
+  <li>enum과 연계하여 정의하기(이게 은근 꿀이다)</li>
+</ul>
+
+<p>등등!</p>
+
+<p><br /></p>
+
+<p>끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper - 기본</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html">Swift - API에 잘못된 값 처리 (feat. CodingKey)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html">Swift - JSON 파일 불러오기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html">Swift - ScrollView 뿌시기 실험</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html">Swift - ScrollView 뿌시기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">&laquo; Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)</a>
+  
+  
+    <a class="next" href="/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html">Swift - API에 잘못된 값 처리 (feat. CodingKey) &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)";
+    var disqus_title = "Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

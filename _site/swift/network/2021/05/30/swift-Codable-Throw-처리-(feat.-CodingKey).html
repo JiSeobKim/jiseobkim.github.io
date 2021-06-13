@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - API에 잘못된 값 처리 (feat. CodingKey) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - API에 잘못된 값 처리 (feat. CodingKey)" />
+    <meta name="keywords" content="Swift - API에 잘못된 값 처리 (feat. CodingKey), 😀😍😉 JS 개발 블로그 😁😆😄, Swift, Network" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - API에 잘못된 값 처리 (feat. CodingKey)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html" property="og:url">
+    
+
+    
+      <meta content="2021-05-30T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - API에 잘못된 값 처리 (feat. CodingKey)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - API에 잘못된 값 처리 (feat. CodingKey)</h1>
+</header>
+
+<span class="time">30 May 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>CodingKey 관련 글을 먼저 읽는 것을 추천!
+<a href="https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html">(CodingKey 변수명 다르게 쓰기)</a> , <a href="https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html">(CodingKey 자료형 다르게 쓰기)</a></p>
+
+<hr />
+
+<p>오늘은 짧게 쓰기.</p>
+
+<p><br /></p>
+
+<p>서버에 데이터를 쓰다보면 어김없이 예외처리는 필수.</p>
+
+<p>오늘의 주제는 그 예외처리를 어떻게 할지이다.</p>
+
+<p>필자가 아는 선에선 2가지 정도 처리가 있다.</p>
+
+<p>“만약에 데이터가 잘못 or 안내려온다”</p>
+
+<p>라는 가정을 해보자</p>
+
+<p><br /></p>
+
+<p>그렇담 여기서는 이렇게 처리 할 수 있다.</p>
+
+<ol>
+  <li>데이터를 nil 처리 해준다</li>
+  <li>기본값을 넣어준다</li>
+</ol>
+
+<p><br /></p>
+
+<p>나는 2의 방식을 선호하는 편이다</p>
+
+<p>왜냐면 옵셔널은 정말 좋다 생각하지만,</p>
+
+<p>결국엔 쓰기 위해선 옵셔널을 벗겨내야하기 때문에</p>
+
+<p>사용하는 곳에 여기저기 <code class="language-plaintext highlighter-rouge">if</code>문이 붙기 마련이다.</p>
+
+<blockquote>
+  <p>어차피 안전하게 벗겨서 쓸거면 미리 안전하게 벗기자를 선호하는편!</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>예시를 들게 될 JSON 형태는 다음과 같다.</p>
+
+<h3 id="일반적-형태">일반적 형태</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "age" : 1,
+    "name" : "학생1"
+}
+
+</code></pre></div></div>
+
+<h3 id="문제가-발생하는-형태">문제가 발생하는 형태</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "name" : "학생1"
+}
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="옵셔널-처리">옵셔널 처리</h1>
+
+<p>이 방식은 아주 간단하다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Model: Codable {
+    let age: Int?
+    let name: String
+}
+</code></pre></div></div>
+
+<p>위와 같이 단순하게 <code class="language-plaintext highlighter-rouge">age</code>라는 값에 <code class="language-plaintext highlighter-rouge">?</code>옵셔널만 붙여주면</p>
+
+<p>해당 값은 <code class="language-plaintext highlighter-rouge">nil</code>처리가 될뿐 <code class="language-plaintext highlighter-rouge">Codable</code>을 통해 <code class="language-plaintext highlighter-rouge">decoding</code>을 진행해도 문제가 없다.</p>
+
+<p><br /></p>
+
+<p>근데 만약 <code class="language-plaintext highlighter-rouge">CodingKey</code>를 사용한다면?</p>
+
+<p>약간의 처리가 필요하다.</p>
+
+<p><br /></p>
+
+<p>이전 글에서 방식을 배웠다면 다음과 같이 정의를 할 것이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Model: Codable {
+    let age: Int?
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case age
+        case name
+    }
+    
+    init(from decoder: Decoder) throws {
+        let contianer = try decoder.container(keyedBy: CodingKeys.self)
+        // 주석1 - sequence값이 없기 떄문에 에러 발생
+        self.age = try contianer.decode(Int.self, forKey: .age)
+        self.name = try contianer.decode(String.self, forKey: .name)
+    }
+}
+</code></pre></div></div>
+
+<p>주석1에 써둔 이유로 문제의 JSON을 이 코드로 처리하게 된다면 에러가 발생한다.</p>
+
+<p><br /></p>
+
+<p>그럼 2가지 방식이 있다.</p>
+
+<ol>
+  <li>try에 <code class="language-plaintext highlighter-rouge">?</code>붙여주기</li>
+  <li><code class="language-plaintext highlighter-rouge">decode</code> 대신 <code class="language-plaintext highlighter-rouge">decodeIfPresent</code>쓰기</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1
+self.age = try? contianer.decode(Int.self, forKey: .age)
+
+// 2
+self.age = try contianer.decodeIfPresent(Int.self, forKey: .age)
+</code></pre></div></div>
+
+<p>필자의 생각엔 두 방식이 차이는 없다.</p>
+
+<p>단순하게 nil을 넣어도 초기화는 문제가 없기에 try 해도 문제가 되지 않는다.</p>
+
+<p><br /></p>
+
+<h1 id="기본값-처리">기본값 처리</h1>
+
+<p>옵셔널 처리가 되었고, 이전 포스팅을 보았다면 자료형을 변경하듯이 <code class="language-plaintext highlighter-rouge">nil</code>일 경우 기본값을 넣어주면 된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// age의 값이 nil일 경우 기본값 0 처리 하기
+self.age = try? contianer.decodeIfPresent(Int.self, forKey: .age) ?? 0
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>근데 단점이 있다.</p>
+
+<p>옵셔널로 쓰면 간단하지만,</p>
+
+<p>자료형을 바꿀 경우 <code class="language-plaintext highlighter-rouge">enum</code>도 정의 해야하고 <code class="language-plaintext highlighter-rouge">init</code> 또한 정의를 해야한다.</p>
+
+<p>그 말은 즉, 코드가 너무 길어진다.</p>
+
+<p>이 단점은 <code class="language-plaintext highlighter-rouge">Protperty Wrapper</code>로 해결이 가능할것으로 보인다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Protperty Wrapper</code> 써보고 싶었는데 이참에 공부해봐야지</p>
+
+<p>끝.</p>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper - 기본</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html">Swift - JSON 파일 불러오기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html">Swift - ScrollView 뿌시기 실험</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html">Swift - ScrollView 뿌시기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+    
+      
+        
+          
+      
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">&laquo; Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</a>
+  
+  
+    <a class="next" href="/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper - 기본 &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - API에 잘못된 값 처리 (feat. CodingKey)";
+    var disqus_title = "Swift - API에 잘못된 값 처리 (feat. CodingKey)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

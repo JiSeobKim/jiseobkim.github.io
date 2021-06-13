@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - Property Wrapper - 기본 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - Property Wrapper - 기본" />
+    <meta name="keywords" content="Swift - Property Wrapper - 기본, 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - Property Wrapper - 기본" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html" property="og:url">
+    
+
+    
+      <meta content="2021-06-13T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - Property Wrapper - 기본">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - Property Wrapper - 기본</h1>
+</header>
+
+<span class="time">13 Jun 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>그 동안 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>에 대한 글은 종종 보았지만,</p>
+
+<p>정확히 어떻게 어디에 써야겠단 생각이 확실하게 들지 않았었다.</p>
+
+<p>그나마 많은 글에서 다루었던건 <code class="language-plaintext highlighter-rouge">UserDefault</code>에 쓰이는 것은 조금 흥미로웠다.</p>
+
+<p><br /></p>
+
+<p>하지만 계속 미루고 미루고 미루고 미루다가 이제서야 흥미가 갈만한 사용처가 발견 되었다.</p>
+
+<p>최근 글의 주제였던 <code class="language-plaintext highlighter-rouge">Codable</code>과 <code class="language-plaintext highlighter-rouge">CodingKey</code>과 관련이 있는 부분이라 마음을 먹게 됐다.</p>
+
+<p><br /></p>
+
+<p>이번 주제는 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 개념부터 잡고 가기.</p>
+
+<p>익혀가면서 느낀 소감은</p>
+
+<blockquote>
+  <p>연산 프로퍼티(getter/setter)의 업그레이드 버전이다. (100% 개인 생각)</p>
+</blockquote>
+
+<p>한줄로 말하기 정말 어렵다. 몇번을 지운지 모르겠다.</p>
+
+<p>사용하는 곳이 생각보다 다양하게 이루어져서 그렇다.</p>
+
+<p>그래서 포스팅은 몇차례 나눠질것이고,</p>
+
+<p>다양하게 소개를 해볼까한다.</p>
+
+<p><br /></p>
+
+<h1 id="property-wrapper-사용전">Property Wrapper 사용전</h1>
+
+<h3 id="가정-푸드트럭-struct가-있고-여기서-판매-되는-음식들은-10000원-이하라는-특징이-있다">가정: 푸드트럭 Struct가 있고, 여기서 판매 되는 음식들은 10,000원 이하라는 특징이 있다.</h3>
+
+<p><br /></p>
+
+<p>첫째로 피자만 판매한다고 가정해보자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+    var pizzaPrice: Int
+}
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>10,000원 이하라는 특징이 없다면 위와 같이 단순하게 값을 넣고 빼고 하게 될 것이다.</p>
+
+<p>그렇지만 그 특징이 들어간다면 다음과 같이 바뀌어야 할 것이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+    // 1. 최대 금액 설정
+    private var maxPrice: Int = 10000
+    // 2. 접근 제어자를 Private으로 해줌으로써 직접 접근 방지
+    private var _pizzaPrice: Int
+    
+    // 3. setter를 이용하여 값 저장시 maxPrice을 넘을 수 없게 함. 
+    var pizzaPrice: Int {
+        get { return _pizzaPrice }
+        set { _pizzaPrice = min(newValue, maxPrice)}
+    }
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>자 여기까지는 뭐 그냥저냥 이렇게하면 되는거아닌가 싶다.</p>
+
+<p>맞다.</p>
+
+<p>근데, 여러개를 판다고 가정해보자. 피자, 파스타, 치킨, 수프, 김치 정도</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+    private var maxPrice: Int = 10000
+    private var _pizzaPrice: Int
+    private var _pastaPrice: Int
+    private var _chickenPrice: Int
+    private var _soupPrice: Int
+    private var _kimchiPrice: Int
+    
+    
+    var pizzaPrice: Int {
+        get { return _pizzaPrice }
+        set { _pizzaPrice = min(newValue, maxPrice)}
+    }
+    
+    var pastaPrice: Int {
+        get { return _pastaPrice }
+        set { _pastaPrice = min(newValue, maxPrice)}
+    }
+    
+    var chickenPrice: Int {
+        get { return _chickenPrice }
+        set { _chickenPrice = min(newValue, maxPrice)}
+    }
+    
+    var soupPrice: Int {
+        get { return _soupPrice }
+        set { _soupPrice = min(newValue, maxPrice)}
+    }
+    
+    var kimchiPrice: Int {
+        get { return _kimchiPrice }
+        set { _kimchiPrice = min(newValue, maxPrice)}
+    }
+}
+</code></pre></div></div>
+
+<p>오 굉장히 길어진다.</p>
+
+<p>다른 방법은 뭐가 있을까, 지금 떠오르는 정도는 enum을 이용하기?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+    
+    enum Food {
+        case pizza
+        case pasta
+        case chicken
+        case soup
+        case kimchi
+    }
+    
+    private var maxPrice: Int = 10000
+    private var pizzaPrice: Int
+    private var pastaPrice: Int
+    private var chickenPrice: Int
+    private var soupPrice: Int
+    private var kimchiPrice: Int
+    
+    func getPrice(_ food: Food) -&gt; Int {
+        switch food {
+        case .pizza: return pizzaPrice
+        case .pasta: return pastaPrice
+        case .chicken: return chickenPrice
+        case .soup: return soupPrice
+        case .kimchi: return kimchiPrice
+        }
+    }
+    
+    mutating func setPrice(food: Food, price: Int) {
+        let realPrice = min(price, maxPrice)
+        switch food {
+        case .pizza: self.pizzaPrice = realPrice
+        case .pasta: self.pastaPrice = realPrice
+        case .chicken: self.chickenPrice = realPrice
+        case .soup: self.soupPrice = realPrice
+        case .kimchi: self.kimchiPrice = realPrice
+        }
+    }
+}
+</code></pre></div></div>
+
+<p>흠, 뭔가 그래도 코드 같긴 하지만 길어진듯하고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">Property Wrapper</code>를 보고나니 <code class="language-plaintext highlighter-rouge">enum</code>도 너무 자리 차지 많이하며</p>
+
+<p>그에 따라 <code class="language-plaintext highlighter-rouge">switch</code> 문도 너무 길게 느껴진다.</p>
+
+<p>심지어 <code class="language-plaintext highlighter-rouge">get/set</code> 2개다!</p>
+
+<p><br /></p>
+
+<p>처음에 느낀점을 말한것 처럼,</p>
+
+<p>getter와 setter의 업그레이드 버전임을 보여줄 수 있는 항목이라 생각된다.</p>
+
+<p><br /></p>
+
+<h1 id="property-wrapper-사용후">Property Wrapper 사용후</h1>
+
+<h3 id="사용-준비">사용 준비</h3>
+
+<p>단점이라고 하면 새로운 모델을 만들어줘야 한다는점? 그외에는 잘 모르겠다.</p>
+
+<p>일단, 금액 제한을 걸린 객체를 하나 구성해보자</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
+struct MaxPriceOrLessWrapper {
+    private var max = 10000
+    private var value = 0
+    
+    var wrappedValue: Int {
+        get { return value }
+        set { value = min(newValue,max) }
+    }
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">struct</code>를 만들고 그 위에(혹은 앞에) <code class="language-plaintext highlighter-rouge">@propertyWrapper</code>를 붙여준다.</p>
+
+<p>그러면 <code class="language-plaintext highlighter-rouge">wrappedValue</code>라는것을 선언해줘야하는데,</p>
+
+<p>이 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>가 붙은 모든 값은</p>
+
+<p><code class="language-plaintext highlighter-rouge">wrappedValue</code> 연산프로퍼티로 값을 뱉고 정의한다.</p>
+
+<p>이게 핵심이다. 안써주면 오류남!</p>
+
+<p><br /></p>
+
+<p>내용은 아주 간단하다. 최대 금액을 적어주었고, 연산 프로퍼티 하나를 적어주었다.</p>
+
+<p>그럼 이것을 어떻게 적용하는가?</p>
+
+<p><br /></p>
+
+<h3 id="사용하기">사용하기</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+    @MaxPriceOrLessWrapper var pizzaPrice: Int
+    @MaxPriceOrLessWrapper var pastaPrice: Int
+    @MaxPriceOrLessWrapper var chickenPrice: Int
+    @MaxPriceOrLessWrapper var soupPrice: Int
+    @MaxPriceOrLessWrapper var kimchiPrice: Int
+}
+</code></pre></div></div>
+
+<p>아주 아주 아주 심플해졌다. 깔끔! 몇줄이 줄은거지?</p>
+
+<p><br /></p>
+
+<p>그럼 실제로 잘 동작하는지도 확인해보자</p>
+
+<p><img src="/assets/images/2021-06-13/img-1.png" style="zoom:40%;" /></p>
+
+<p>아주 아주 훌륭하다.</p>
+
+<p>하지만 보는것과 같이 아쉬운점은 조금 있다.</p>
+
+<ol>
+  <li>위와 같이 초기값이 0이라는 점?</li>
+  <li>MaxPrice가 다 다를수도 있잖아? (디저트, 메인 음식 별로?)</li>
+</ol>
+
+<p><br /></p>
+
+<p>그 아쉬움도 달랠 수 있다.</p>
+
+<p>다음과 같이 <code class="language-plaintext highlighter-rouge">property wrapper</code>를 바꾸어준다</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
+struct MaxPriceOrLessWrapper {
+    private var max: Int
+    private var value: Int
+    
+    init(value: Int, maxPrice: Int) {
+        self.max = maxPrice
+        self.value = min(value, maxPrice)
+    }
+    
+    var wrappedValue: Int {
+        get { return value }
+        set { value = min(newValue,max) }
+    }
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>초기 세팅을 커스텀하겠다! 라는 것이고</p>
+
+<p><code class="language-plaintext highlighter-rouge">value</code>는 마찬가지로 <code class="language-plaintext highlighter-rouge">maxPrice</code>를 넘지 않는다.</p>
+
+<p>어떻게 쓰는가?</p>
+
+<p>이렇게 쓴다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct FoodTruck {
+    @MaxPriceOrLessWrapper(value: 9000, maxPrice: 10000) 
+    var pizzaPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 12000, maxPrice: 10000) 
+    var pastaPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 7500, maxPrice: 10000) 
+    var chickenPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 400, maxPrice: 500) 
+    var soupPrice: Int
+    
+    @MaxPriceOrLessWrapper(value: 1000, maxPrice: 500) 
+    var kimchiPrice: Int
+}
+
+</code></pre></div></div>
+
+<p>대박.. 간단해..</p>
+
+<p>그리고 이전 코드를 값 변경없이 처음 print만 보자</p>
+
+<p><img src="/assets/images/2021-06-13/img-2.png" style="zoom:40%;" /></p>
+
+<p>너무 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="userdefault에-적용해보기">UserDefault에 적용해보기</h1>
+
+<p>WWDC 세션에도 등장했다는 <code class="language-plaintext highlighter-rouge">UserDefault</code>에 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 쓰기!</p>
+
+<p>기본적으로 <code class="language-plaintext highlighter-rouge">UserDefault</code>라 함은 <code class="language-plaintext highlighter-rouge">key</code>를 가지고 값에 접근하여</p>
+
+<p>쓰거나 얻어 오거나 한다. 다른말로  setter 하거나 getter 한다.</p>
+
+<p>이 또한 처음에 말한것처럼 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>는 뭐다?</p>
+
+<blockquote>
+  <p>연산 프로퍼티의 업그레이드 버전이다. (100% 개인 생각입니다.)</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그럼  또 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>가 있기 전과 후를 비교해보자</p>
+
+<p><br /></p>
+
+<h2 id="userdefault에-적용해보기---사용-전">UserDefault에 적용해보기 - 사용 전</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    static var userName: String {
+        get {
+            return ud.value(forKey: "userName") as? String ?? ""
+        }
+        set {
+            ud.setValue(newValue, forKey: "userName")
+        }
+    }
+    
+    static var hasMembership: Bool {
+        get {
+            return ud.value(forKey: "hasMembership") as? Bool ?? false
+        }
+        set {
+            ud.setValue(newValue, forKey: "hasMembership")
+        }
+    }
+}
+</code></pre></div></div>
+
+<p>단 2개를 썼을 뿐인데 괄호와 이것 저것 너무 많다.</p>
+
+<p>실제로도 저렇게 쓰인 코드 마지못해 썼지만 정말 거슬렸다.</p>
+
+<p>반복에 반복이 너무 많다.</p>
+
+<p><br /></p>
+
+<h2 id="userdefault에-적용해보기---사용-후">UserDefault에 적용해보기 - 사용 후</h2>
+
+<p>차근차근 개선해보자</p>
+
+<p>우선 <code class="language-plaintext highlighter-rouge">String</code>에 대해서만 보자</p>
+
+<p>필요한 것</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Key</code> - 빠질 수 없지</li>
+  <li><code class="language-plaintext highlighter-rouge">defaultValue</code> - 없을때 얻을 기본값 정도는 있으면 좋겠다.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
+struct UserDefaultWrapper {
+    private let ud = UserDefaults.standard
+    // 1. 키
+    private let key: String
+    // 2. 기본 값
+    private var defaultValue: String
+    // 3. wrappedValue 정의
+    var wrappedValue: String {
+        get {
+            return ud.value(forKey: key) as? String ?? defaultValue
+        }
+        set {
+            ud.setValue(newValue, forKey: key)
+        }
+    }
+    // 4. 초기값 및 키 셋팅
+    init(key: String, defaultValue: String) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+}
+</code></pre></div></div>
+
+<p>이제 이 코드는 어렵지 않을 것이다</p>
+
+<p>그럼 한번 적용해보자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    // Property Wrapper 적용
+    @UserDefaultWrapper(key: "userName", defaultValue: "")
+    static var userName: String
+    
+    static var hasMembership: Bool {
+        get {
+            return ud.value(forKey: "hasMembership") as? Bool ?? false
+        }
+        set {
+            ud.setValue(newValue, forKey: "hasMembership")
+        }
+    }
+}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">userName</code>과 <code class="language-plaintext highlighter-rouge">hasMembership</code>중에 <code class="language-plaintext highlighter-rouge">userName</code>에만 적용을 해보았다.</p>
+
+<p>너무 심플하다. 괄호와 반복의 지옥에서 벗어난 느낌 ㅠ</p>
+
+<p>근데, 걱정이 될 수 있다. <code class="language-plaintext highlighter-rouge">String</code>만 했으니깐 다른 타입들도 다 정의를 해야해? 라는 걱정.</p>
+
+<p><br /></p>
+
+<p>그치만 우리에겐 <code class="language-plaintext highlighter-rouge">Generics</code>이 있다.</p>
+
+<p>적용해보자</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@propertyWrapper
+struct UserDefaultWrapper&lt;T&gt; { // 1. 여기에 제네릭 써주고
+    private let ud = UserDefaults.standard
+    private let key: String
+    
+    // 2. 여기도 제네릭 써주고
+    private var defaultValue: T
+    
+    // 3. 여기도 제네릭 써주고
+    var wrappedValue: T {
+        get {
+            // 4. 여기도 제네릭 써주고
+            return ud.value(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            ud.setValue(newValue, forKey: key)
+        }
+    }
+    
+    // 5. 여기도 제네릭 써주고
+    init(key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+}
+</code></pre></div></div>
+
+<p>총 5군데에 제네릭을 적용해주었다.</p>
+
+<p>이건 이제 타입 불문하고 다 써줄 수 있다.</p>
+
+<p><br /></p>
+
+<p>해보자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    @UserDefaultWrapper(key: "userName", defaultValue: "")
+    static var userName: String
+    
+    @UserDefaultWrapper(key: "hasMembership", defaultValue: false)
+    static var hasMembership: Bool
+}
+</code></pre></div></div>
+
+<p>와우 미쳤다.</p>
+
+<p><br /></p>
+
+<p>사용은 사용 전후가 다를게 없지만 그래도 쓰는건 다음과 같이.</p>
+
+<p><img src="/assets/images/2021-06-13/img-3.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>공부를 하며 코드 작성하면서도 놀랬는데, 블로그 글 쓰면서 보니 더 놀라웠다.</p>
+
+<p>굉장히 간결해진다는 점이 인상적이다.</p>
+
+<p>왜 이제 공부했지?</p>
+
+<p><br /></p>
+
+<p>코드를 보면 <code class="language-plaintext highlighter-rouge">init</code>이 굉장히 중요하다.</p>
+
+<p>없어도 쓸 수는 있지만 <code class="language-plaintext highlighter-rouge">init</code>이 들어가면 더 활용성이 좋다는것.</p>
+
+<p><br /></p>
+
+<p>여기서 쓰인 <code class="language-plaintext highlighter-rouge">init</code>도 있지만, 이전 포스팅중에 <code class="language-plaintext highlighter-rouge">Codable</code>을 이용한  <code class="language-plaintext highlighter-rouge">init</code>이 존재한다.</p>
+
+<p><a href="https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html">여기 참고</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init(from decoder: Decoder) throws {}
+</code></pre></div></div>
+
+<p>여기에도 적용을 할 수가 있었다.</p>
+
+<p>정말 이거 적용해보고 소리 질렀다.</p>
+
+<p><br /></p>
+
+<p>그래서 다음 주제는 <code class="language-plaintext highlighter-rouge">Codable</code>과 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>에 관한것이다.</p>
+
+<p><br /></p>
+
+<p>끝.</p>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html">Swift - API에 잘못된 값 처리 (feat. CodingKey)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html">Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html">Swift - JSON 파일 불러오기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html">Swift - ScrollView 뿌시기 실험</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html">Swift - ScrollView 뿌시기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/UI">UI</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html">&laquo; Swift - API에 잘못된 값 처리 (feat. CodingKey)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper - 기본";
+    var disqus_title = "Swift - Property Wrapper - 기본";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
