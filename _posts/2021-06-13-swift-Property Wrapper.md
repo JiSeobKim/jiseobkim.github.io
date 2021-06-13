@@ -505,6 +505,35 @@ struct UserDefaultManager {
 
 와우 미쳤다.
 
+다시 한번 적용 전의 코드를 보자
+
+```
+// Property Wrapper 적용 전 코드
+struct UserDefaultManager {
+    private static var ud = UserDefaults.standard
+    
+    static var userName: String {
+        get {
+            return ud.value(forKey: "userName") as? String ?? ""
+        }
+        set {
+            ud.setValue(newValue, forKey: "userName")
+        }
+    }
+    
+    static var hasMembership: Bool {
+        get {
+            return ud.value(forKey: "hasMembership") as? Bool ?? false
+        }
+        set {
+            ud.setValue(newValue, forKey: "hasMembership")
+        }
+    }
+}
+```
+
+차이는 어마무시하다.
+
 <br>
 
 사용은 사용 전후가 다를게 없지만 그래도 쓰는건 다음과 같이.
