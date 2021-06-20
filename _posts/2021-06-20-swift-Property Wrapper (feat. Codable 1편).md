@@ -2,7 +2,7 @@
 
 layout: post
 
-title: "Swift - Property Wrapper(기본)"
+title: "Swift - Property Wrapper (feat. Codable 1편)"
 
 categories: [Swift]
 
@@ -45,7 +45,7 @@ categories: [Swift]
 
 해당 코드를 보면 아쉬움이 있다.
 
-### `isHidden` 은 `Bool` 타입이 아니여서 조건문(`if` or `switch`) 등에서 `String` 비교가 들어간다
+`isHidden` 은 `Bool` 타입이 아니여서 조건문(`if` or `switch`) 등에서 `String` 비교가 들어간다
 
 ```swift
 // 전제조건: Model이란 구조체에 파싱 되었다는 기준하에 작성
@@ -71,6 +71,8 @@ if model.isHidden {
 이 점은 이전에 `CodingKey` 관련 글에서 해결하였다. [참고](https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html)
 
 <br>
+
+---
 
 ### 개선한 것의 단점
 
@@ -122,6 +124,8 @@ init(from decoder: Decoder) throws {
 **그래서 반복적인 이 부분을 개선하고 싶었던 찰나에 Property Wrapper를 적용 가능한 것을 알게 되었다.**
 
 <br>
+
+---
 
 # Property Wrapper와 Codable 
 
@@ -243,6 +247,8 @@ struct Model: Codable {
 위에 말한바와 같이 `Property Wrapper`로 인해 반복적인 작업이 제거되었다.
 
 <br>
+
+---
 
 # 단점
 
