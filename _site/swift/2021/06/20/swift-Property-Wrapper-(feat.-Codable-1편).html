@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>Swift - Property Wrapper(기본) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <title>Swift - Property Wrapper (feat. Codable 1편) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="Swift - Property Wrapper(기본)" />
-    <meta name="keywords" content="Swift - Property Wrapper(기본), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <meta name="description" content="Swift - Property Wrapper (feat. Codable 1편)" />
+    <meta name="keywords" content="Swift - Property Wrapper (feat. Codable 1편), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="Swift - Property Wrapper(기본)" property="og:title">
+      <meta content="Swift - Property Wrapper (feat. Codable 1편)" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -52,7 +52,7 @@
     <meta name="twitter:creator" content="@">
 
     
-      <meta name="twitter:title" content="Swift - Property Wrapper(기본)">
+      <meta name="twitter:title" content="Swift - Property Wrapper (feat. Codable 1편)">
     
 
     
@@ -118,7 +118,7 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">Swift - Property Wrapper(기본)</h1>
+  <h1 class="post-title">Swift - Property Wrapper (feat. Codable 1편)</h1>
 </header>
 
 <span class="time">20 Jun 2021</span>
@@ -164,7 +164,7 @@
 
 <p>해당 코드를 보면 아쉬움이 있다.</p>
 
-<h3 id="ishidden-은-bool-타입이-아니여서-조건문if-or-switch-등에서-string-비교가-들어간다"><code class="language-plaintext highlighter-rouge">isHidden</code> 은 <code class="language-plaintext highlighter-rouge">Bool</code> 타입이 아니여서 조건문(<code class="language-plaintext highlighter-rouge">if</code> or <code class="language-plaintext highlighter-rouge">switch</code>) 등에서 <code class="language-plaintext highlighter-rouge">String</code> 비교가 들어간다</h3>
+<p><code class="language-plaintext highlighter-rouge">isHidden</code> 은 <code class="language-plaintext highlighter-rouge">Bool</code> 타입이 아니여서 조건문(<code class="language-plaintext highlighter-rouge">if</code> or <code class="language-plaintext highlighter-rouge">switch</code>) 등에서 <code class="language-plaintext highlighter-rouge">String</code> 비교가 들어간다</p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 전제조건: Model이란 구조체에 파싱 되었다는 기준하에 작성</span>
 <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">==</span> <span class="s">"Y"</span> <span class="p">{</span>
@@ -188,6 +188,8 @@
 <p>이 점은 이전에 <code class="language-plaintext highlighter-rouge">CodingKey</code> 관련 글에서 해결하였다. <a href="https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html">참고</a></p>
 
 <p><br /></p>
+
+<hr />
 
 <h3 id="개선한-것의-단점">개선한 것의 단점</h3>
 
@@ -237,6 +239,8 @@
 <p><strong>그래서 반복적인 이 부분을 개선하고 싶었던 찰나에 Property Wrapper를 적용 가능한 것을 알게 되었다.</strong></p>
 
 <p><br /></p>
+
+<hr />
 
 <h1 id="property-wrapper와-codable">Property Wrapper와 Codable</h1>
 
@@ -356,6 +360,8 @@
 <p>위에 말한바와 같이 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>로 인해 반복적인 작업이 제거되었다.</p>
 
 <p><br /></p>
+
+<hr />
 
 <h1 id="단점">단점</h1>
 
@@ -758,8 +764,8 @@
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper(기본)";
-    var disqus_title = "Swift - Property Wrapper(기본)";
+    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper (feat. Codable 1편)";
+    var disqus_title = "Swift - Property Wrapper (feat. Codable 1편)";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

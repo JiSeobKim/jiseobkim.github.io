@@ -5,12 +5,12 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Jun 2021 20:52:01 +0900</pubDate>
-    <lastBuildDate>Sun, 20 Jun 2021 20:52:01 +0900</lastBuildDate>
+    <pubDate>Sun, 20 Jun 2021 21:03:36 +0900</pubDate>
+    <lastBuildDate>Sun, 20 Jun 2021 21:03:36 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
-        <title>Swift - Property Wrapper(기본)</title>
+        <title>Swift - Property Wrapper (feat. Codable 1편)</title>
         <description>&lt;blockquote&gt;
   &lt;p&gt;이편의 단점이 존재함으로 끝까지 읽기와 다음편은 필수로 읽는 것을 권장!&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -46,7 +46,7 @@
 
 &lt;p&gt;해당 코드를 보면 아쉬움이 있다.&lt;/p&gt;
 
-&lt;h3 id=&quot;ishidden-은-bool-타입이-아니여서-조건문if-or-switch-등에서-string-비교가-들어간다&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt; 은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 타입이 아니여서 조건문(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt;) 등에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; 비교가 들어간다&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt; 은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 타입이 아니여서 조건문(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt;) 등에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; 비교가 들어간다&lt;/p&gt;
 
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 전제조건: Model이란 구조체에 파싱 되었다는 기준하에 작성&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isHidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Y&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -70,6 +70,8 @@
 &lt;p&gt;이 점은 이전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt; 관련 글에서 해결하였다. &lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html&quot;&gt;참고&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h3 id=&quot;개선한-것의-단점&quot;&gt;개선한 것의 단점&lt;/h3&gt;
 
@@ -119,6 +121,8 @@
 &lt;p&gt;&lt;strong&gt;그래서 반복적인 이 부분을 개선하고 싶었던 찰나에 Property Wrapper를 적용 가능한 것을 알게 되었다.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&quot;property-wrapper와-codable&quot;&gt;Property Wrapper와 Codable&lt;/h1&gt;
 
@@ -238,6 +242,8 @@
 &lt;p&gt;위에 말한바와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;로 인해 반복적인 작업이 제거되었다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&quot;단점&quot;&gt;단점&lt;/h1&gt;
 
