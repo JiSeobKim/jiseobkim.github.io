@@ -5,9 +5,274 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 Jun 2021 15:48:20 +0900</pubDate>
-    <lastBuildDate>Sun, 13 Jun 2021 15:48:20 +0900</lastBuildDate>
+    <pubDate>Sun, 20 Jun 2021 20:52:01 +0900</pubDate>
+    <lastBuildDate>Sun, 20 Jun 2021 20:52:01 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Swift - Property Wrapper(기본)</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;이편의 단점이 존재함으로 끝까지 읽기와 다음편은 필수로 읽는 것을 권장!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jiseobkim.github.io/swift/2021/06/13/swift-Property-Wrapper.html&quot;&gt;지난 편&lt;/a&gt;에 이어서 진행!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;지난번의 글의 주제가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 의 기본과  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDefault&lt;/code&gt; 에 적용하는 글이었다면,&lt;/p&gt;
+
+&lt;p&gt;이번편은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;에 적용을 해보는 것이 이번 글의 주제!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;정확히는 Decodable에 적용! 하지만 Codable이 더 익숙할테니 Codable이라 하기.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;이-포스팅을-하게된-이유&quot;&gt;이 포스팅을 하게된 이유&lt;/h1&gt;
+
+&lt;p&gt;다음과 같은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt;이 있다고 해보자&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;isHidden&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Y&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;해당 코드를 보면 아쉬움이 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;ishidden-은-bool-타입이-아니여서-조건문if-or-switch-등에서-string-비교가-들어간다&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt; 은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 타입이 아니여서 조건문(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt;) 등에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; 비교가 들어간다&lt;/h3&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 전제조건: Model이란 구조체에 파싱 되었다는 기준하에 작성&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isHidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Y&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 어떤 어떤 처리&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만, 개인적으론 다음과 같이 되길 바란다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isHidden&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 어떤 어떤 처리&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그렇게 되기 위해선 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt;이라는 값이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt;형태여야 한다.&lt;/p&gt;
+
+&lt;p&gt;이 점은 이전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt; 관련 글에서 해결하였다. &lt;a href=&quot;https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html&quot;&gt;참고&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;개선한-것의-단점&quot;&gt;개선한 것의 단점&lt;/h3&gt;
+
+&lt;p&gt;위의 방식은 실제 사용하는 코드에서 내가 원하는 스타일로 코딩을 할 수 있어서 좋았다.&lt;/p&gt;
+
+&lt;p&gt;하지만, 단점이 따라왔다.&lt;/p&gt;
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;해당 코드가 같이 존재해야한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시말해, 다음 코드의 주석1,2와 같이 각 프로퍼티들을 다 초기화 해주어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 이전글중 일부 부분 (https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;keyedBy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CodingKeys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// 1. 사용자명 초기화&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;forKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 2. 숨김처리 초기화&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isHidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;forKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isHidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서는 값이 2개다. 따라서 라인도 2줄이 따라온다.&lt;/p&gt;
+
+&lt;p&gt;그런데 여기서 만약 자료형을 바꾸게 된다면 코드가 길어지거나 심하면 라인이 몇줄 추가가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이런 자료형 변경이나 프로퍼티가 많다면&lt;/p&gt;
+
+&lt;p&gt;각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;파트마다 라인의 수는 같이 증가하게 된다.&lt;/p&gt;
+
+&lt;p&gt;이게 은근 귀찮다.&lt;/p&gt;
+
+&lt;p&gt;편하자고 한건데, 편하자고 준비가 너무 긴 느낌이랄까?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;그래서 반복적인 이 부분을 개선하고 싶었던 찰나에 Property Wrapper를 적용 가능한 것을 알게 되었다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;property-wrapper와-codable&quot;&gt;Property Wrapper와 Codable&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDefault&lt;/code&gt;에서도 보았듯이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;를 이용하여 반복적인 행위를 제거하였다.
+여기서도 마찬가지다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;초기화 과정에서 반복되는 행위를 제거하는 것이 목적!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;property-wrapper-작성&quot;&gt;Property Wrapper 작성&lt;/h3&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;@propertyWrapper&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;StringBoolConverter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;wrappedValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이름과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt; 이지만 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;인 것을 바꿔주는 그런 역할이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이전과는 다르게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt; 부분 또한 없으며 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get/set&lt;/code&gt; 부분도 없다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;이 없는 이유는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Decodable&lt;/code&gt;에 의해 초기화가 될 것이기 때문이다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get/set&lt;/code&gt;이 없는 이유는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDefault&lt;/code&gt;처럼 값처리를 위한 연산이 필요 없기 때문이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이거하다가 저번글의 Property Wrapper를 
+“프로퍼티를 초기화 할때, 연산 프로퍼티(getter/setter) 개념을 추가 적용하는 것 (100% 개인 생각)” 
+라고 요약했는데, 이 말에 대해 조금 더 고민 해봐야겠다.
+“초기화를 커스텀 할 수 있다.” 라는 말이 더 어울릴려나…?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Extension&lt;/code&gt;을 해보자&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;StringBoolConverter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;singleValueContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;stringBool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;wrappedValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stringBool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Y&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 부분은 어렵지 않을 것이다.&lt;/p&gt;
+
+&lt;p&gt;내 블로그에서 나오지 않은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;singleValueContainer()&lt;/code&gt;의 경우 프로퍼티 네임과 동일한 것을 찾아서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode&lt;/code&gt; 해주는 역할인듯하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt;를 따로 작성하지 않으면 기본적으로 이루어지는 방식으로 예상된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;쓰는 방식은 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;모델을 보자&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;@StringBoolConverter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;isHidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아주 간단하다!&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StringBoolConverter&lt;/code&gt;만 붙여주면 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt;이라는 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;으로 온 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Y&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;N&lt;/code&gt; 값에 의해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bool&lt;/code&gt;로 변환 되어 초기화가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;실제로 쓰고, 출력된 결과는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-06-20/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;잘나왔다!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;전체 코드를 비교해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;property-wrapper-사용-전&quot;&gt;Property Wrapper 사용 전&lt;/h3&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;isHidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+    
+    &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;singleValueContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        
+        &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isHidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Y&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;property-wrapper-사용-후&quot;&gt;Property Wrapper 사용 후&lt;/h3&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;@StringBoolConverter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;isHidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;부분이 제거됨에 따라 아주 심플해졌다!&lt;/p&gt;
+
+&lt;p&gt;위에 말한바와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt;로 인해 반복적인 작업이 제거되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;단점&quot;&gt;단점&lt;/h1&gt;
+
+&lt;p&gt;굉장히 좋음에도 단점이 존재한다.&lt;/p&gt;
+
+&lt;p&gt;그것은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nil&lt;/code&gt;처리가 위와 같은 방식으로는 안된다는 점이다.&lt;/p&gt;
+
+&lt;p&gt;위의 코드 예시의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt;이라는 값이 존재한다.&lt;/p&gt;
+
+&lt;p&gt;하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isHidden&lt;/code&gt;이라는 값이 없을 경우, 모델에 해당 값을 옵셔널처리 해주더라도 이 코드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;throw&lt;/code&gt;하게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 말해 초기화가 안된다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;실제로 서버에서도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Request&lt;/code&gt;에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response&lt;/code&gt;가 달라질 가능성은 존재한다.&lt;/p&gt;
+
+&lt;p&gt;그렇기에 이 단점은 치명적이라 생각된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만, 이 단점 또한 커버가 가능하다.&lt;/p&gt;
+
+&lt;p&gt;그 포스팅은 다음편에~~&lt;/p&gt;
+</description>
+        <pubDate>Sun, 20 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%E1%84%91%E1%85%A7%E1%86%AB).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%E1%84%91%E1%85%A7%E1%86%AB).html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
     
       <item>
         <title>Swift - Property Wrapper(기본)</title>
@@ -726,8 +991,8 @@
 
 </description>
         <pubDate>Sun, 30 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html</guid>
+        <link>http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%EC%B2%98%EB%A6%AC-(feat.-CodingKey).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%EC%B2%98%EB%A6%AC-(feat.-CodingKey).html</guid>
         
         
         <category>Swift</category>
@@ -982,8 +1247,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</guid>
+        <link>http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%93%B0%EA%B8%B0.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%93%B0%EA%B8%B0.html</guid>
         
         
         <category>Swift</category>
@@ -1158,8 +1423,8 @@
 
 </description>
         <pubDate>Wed, 19 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%E1%84%8B%E1%85%AA-%E1%84%83%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%E1%84%86%E1%85%A7%E1%86%BC-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5.html</guid>
+        <link>http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EB%B3%80%EC%88%98%EB%AA%85-%EC%93%B0%EA%B8%B0.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EB%B3%80%EC%88%98%EB%AA%85-%EC%93%B0%EA%B8%B0.html</guid>
         
         
         <category>Swift</category>
@@ -1529,8 +1794,8 @@
 
 </description>
         <pubDate>Thu, 18 Mar 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A5%E1%86%B7.html</guid>
+        <link>http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%EB%BF%8C%EC%8B%9C%EA%B8%B0-%EC%8B%A4%ED%97%98.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%EB%BF%8C%EC%8B%9C%EA%B8%B0-%EC%8B%A4%ED%97%98.html</guid>
         
         
         <category>Swift</category>
@@ -1680,8 +1945,8 @@
 
 </description>
         <pubDate>Wed, 17 Mar 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%E1%84%88%E1%85%AE%E1%84%89%E1%85%B5%E1%84%80%E1%85%B5.html</guid>
+        <link>http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%EB%BF%8C%EC%8B%9C%EA%B8%B0.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/ui/2021/03/17/swift-ScrollView-%EB%BF%8C%EC%8B%9C%EA%B8%B0.html</guid>
         
         
         <category>Swift</category>
@@ -2950,7 +3215,7 @@ A point in the local coordinate system of view that identifies the location of t
   &lt;li&gt;개발 서버 깔고 나갔다가, 결제 직전 알아차려서 앱스토어에서 다시 받아야하는 귀차니즘 발생&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let's Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
+&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let&apos;s Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
 
 &lt;p&gt;(여러번 시도했었지만 실패,,, 하지만 성공했으니 포스팅을 아하하, 해당 세션 Toss개발자님 사랑합니다. 토스 가고싶어요)&lt;/p&gt;
 
@@ -3274,9 +3539,9 @@ view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
 &lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
 developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
-desktopDirectory    // location of user's desktop
-downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
-musicDirectory      // location of user's Music directory (~/Music)
+desktopDirectory    // location of user&apos;s desktop
+downloadsDirectory  // location of the user&apos;s &quot;Downloads&quot; directory
+musicDirectory      // location of user&apos;s Music directory (~/Music)
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.&lt;/p&gt;
@@ -3285,7 +3550,7 @@ musicDirectory      // location of user's Music directory (~/Music)
 
 &lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
-// user's home directory --- place to install user's personal items (~)
+// user&apos;s home directory --- place to install user&apos;s personal items (~)
 
 public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
 // local to the current machine --- place to install items available to everyone on this machine (/Library)
@@ -3858,8 +4123,8 @@ end
 &lt;p&gt;이걸로 &lt;em&gt;fastlane&lt;/em&gt;은 일단 끝!&lt;/p&gt;
 </description>
         <pubDate>Sun, 28 Apr 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%87%E1%85%A5%E1%86%B8.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%87%E1%85%A5%E1%86%B8.html</guid>
+        <link>http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%EC%82%AC%EC%9A%A9%EB%B2%95.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tool/2019/04/28/Tool-FastLane-Lane-%EC%82%AC%EC%9A%A9%EB%B2%95.html</guid>
         
         
         <category>Tool</category>
@@ -4289,8 +4554,8 @@ IPA로 추출을 할때 터미널에 명령어 &lt;code class=&quot;language-pla
 
 </description>
         <pubDate>Sat, 30 Mar 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/tool/2019/03/30/Tool-Fastlane%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tool/2019/03/30/Tool-Fastlane%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1.html</guid>
+        <link>http://localhost:4000/tool/2019/03/30/Tool-Fastlane%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tool/2019/03/30/Tool-Fastlane%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90.html</guid>
         
         
         <category>Tool</category>
@@ -7173,7 +7438,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
     &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;anyData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// + 추가 확인&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;anyData&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;It's Any&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;It&apos;s Any&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
