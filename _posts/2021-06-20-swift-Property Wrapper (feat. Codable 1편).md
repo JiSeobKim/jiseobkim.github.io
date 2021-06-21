@@ -99,7 +99,7 @@ init(from decoder: Decoder) throws {
     // 1. 사용자명 초기화
     self.userName = try container.decode(String.self, forKey: .userName)
     // 2. 숨김처리 초기화
-    self.isHidden = try container.decode(String.self, forKey: .isHidden)
+    self.isHidden = try container.decode(String.self, forKey: .isHidden) == "Y"
 }
 ```
 
@@ -111,7 +111,7 @@ init(from decoder: Decoder) throws {
 
 <br>
 
-이런 자료형 변경이나 프로퍼티가 많다면
+주석 2번과 같이 자료형 변경이나 프로퍼티가 많다면
 
 각 `init`파트마다 라인의 수는 같이 증가하게 된다.
 
