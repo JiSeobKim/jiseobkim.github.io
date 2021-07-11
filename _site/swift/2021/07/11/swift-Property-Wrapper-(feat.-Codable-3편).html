@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - Property Wrapper (feat. Codable 3편) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - Property Wrapper (feat. Codable 3편)" />
+    <meta name="keywords" content="Swift - Property Wrapper (feat. Codable 3편), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - Property Wrapper (feat. Codable 3편)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html" property="og:url">
+    
+
+    
+      <meta content="2021-07-11T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - Property Wrapper (feat. Codable 3편)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - Property Wrapper (feat. Codable 3편)</h1>
+</header>
+
+<span class="time">11 Jul 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p><a href="https://jiseobkim.github.io/swift/2021-06-27-swift-Property-Wrapper-(feat.-Codable-2편).html">지난 편</a>에 이어서 진행!</p>
+
+<p><br /></p>
+
+<p><strong>목표: 전편 마지막에 언급한것 처럼 Generic을 이용하여 반복되던 코드를 줄이기</strong></p>
+
+<p><br /></p>
+
+<p>이 시리즈를 이어가면서 해온것들을 정리하면 단순하게는 다음과 같이 볼 수 있다.</p>
+
+<p>JSON 값을 객체화 할때 다음과 같은 유형들이 있었다.</p>
+
+<ol>
+  <li>옵셔널 Int -&gt; Int (Default: 0)</li>
+  <li>옵셔널 String -&gt; String (Default: “”)</li>
+  <li>옵셔널 String -&gt; Bool (Default: false)</li>
+</ol>
+
+<p>(3의 경우는 <code class="language-plaintext highlighter-rouge">{ "abc": "Y" }</code> 같은 값을 <code class="language-plaintext highlighter-rouge">Bool</code> 형태로 바꿔주는 다른 타입 처리였다.)</p>
+
+<p><br /></p>
+
+<p>이것을 이쁘게 묶어보면 다음과 같다.</p>
+
+<p><img src="/assets/images/2021-07-11/img.png" style="zoom:40%;" /></p>
+
+<p>오른쪽의 경우는 각 처리방법이 다르므로 <code class="language-plaintext highlighter-rouge">Generic</code>으로 묶기가 힘들겠지만</p>
+
+<p>왼쪽의 경우는 공통적으로 “타입이 같고 기본값을 가진다.” 라는 점을 이용하여 묶어보도록 하자</p>
+
+<p>그리고 배열도 JSON 값으로 자주 나오니 이렇게 묶어보자.</p>
+
+<p><img src="/assets/images/2021-07-11/img-1.png" style="zoom:40%;" /></p>
+
+<p>그리고 최종적으로 모든것은 JSON 데이터를 처리 하기 위한 것이므로 분산되어있으면 관리가 어려우니</p>
+
+<p>전부를 묶자.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-11/img-2.png" style="zoom:40%;" /></p>
+
+<p>기본값 처리는 이전편에 했으니 이번편은 <code class="language-plaintext highlighter-rouge">Generic</code>을 중점으로 보게 될것이고,</p>
+
+<p>다른 타입처리 다음편에서 진행 예정(추가로 <code class="language-plaintext highlighter-rouge">decodable Array</code>도!)</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>단일의 Property Wrapper를 이용하여 사용은 불가능하다.</p>
+
+  <p>여기서의 경우 초반에 묶은 것처럼 같은 기본형 처리랩퍼, 다른 타입용 랩퍼는 별도로 운용되며</p>
+
+  <p>Enum을 이용하여 묶어주게 된다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h1 id="property-wrapper--기본값-처리-그리고-generic">Property Wrapper &amp; 기본값 처리 그리고 Generic</h1>
+
+<h2 id="protocol">Protocol</h2>
+
+<p>Generic으로 묶기의 포인트는 프로토콜을 이용하며 초기값을 받는다는 점이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">protocol</span> <span class="kt">DefaultWrapperAvailable</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">ValueType</span><span class="p">:</span> <span class="kt">Decodable</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">ValueType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>위의 코드를 보자.</p>
+
+<p>기본값 랩퍼를 이용할 수 있는 프로토콜을 만들었다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">associatedtype</code>라는 것은 프로토콜에서 쓰일 수 있는데,</p>
+
+<p>느낌은 약간 <code class="language-plaintext highlighter-rouge">Generic</code>과 비슷하다.</p>
+
+<p>이 자리에 어떤 타입이든 올 수가 있다.</p>
+
+<p><br /></p>
+
+<p>프로토콜이라는 자체가 서로의 의존성을 줄여주고 적용시 해당 규약? 규칙?들을 따라야 한다는 것인데</p>
+
+<p>그러다보니 범용성이 필요해서 만들어진게 아닌가 싶다. (개인적 생각)</p>
+
+<p><br /></p>
+
+<p>두번째 줄을 보고 나서 좀더 설명을 해야 이해하기가 쉬울듯 하다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">static var</code>로 선언을 해준 프로퍼티의 타입을 보면 <code class="language-plaintext highlighter-rouge">ValueType</code>이다.</p>
+
+<p>저런 타입은 실제 없지만 그 윗줄에 <code class="language-plaintext highlighter-rouge">associatedtype</code>로 적어주었고, 그 타입이라는 의미다.</p>
+
+<p>그래서 해당 프로토콜을 적용시키게 된다면 반드시 <code class="language-plaintext highlighter-rouge">ValueType</code>이란 어떤 타입인가를 명시를 해줘야한다.</p>
+
+<p><br /></p>
+
+<p>하지만, 조건이 하나 더 붙어있다. 이 타입은 <code class="language-plaintext highlighter-rouge">Decodable</code>을 따라야 한다는 점이다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">associatedtype</code>는 이정도로만 설명을 하고,</p>
+
+<p>왜 했는지가 중요하다.</p>
+
+<p><br /></p>
+
+<p>통신후 <code class="language-plaintext highlighter-rouge">Decodable</code>을 이용하여</p>
+
+<p><strong>다양한 자료형의 기본값</strong>을 처리하는 부분이기 때문에</p>
+
+<p><code class="language-plaintext highlighter-rouge">associatedtype</code>이 필요했고, 이 자료형들은 <code class="language-plaintext highlighter-rouge">Decodable</code>을 따라야한다.</p>
+
+<p>그리고 기본값은 단순히 해당 프로토콜을 따르는 객체에서</p>
+
+<p><strong>기본값이 무엇인지만 필요</strong>하므로  <code class="language-plaintext highlighter-rouge">타입 프로퍼티(static var)</code>로써 <code class="language-plaintext highlighter-rouge">get</code>만 필요하다.</p>
+
+<p><br /></p>
+
+<p>초기화는 불필요하다.</p>
+<blockquote>
+  <p>이 글에서 초기화가 불필요하다는 말이 자주 나온다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h2 id="property-wrapper-선언">Property Wrapper 선언</h2>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span> 
+<span class="kd">struct</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">ValueType</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="kt">ValueType</span>
+    <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">ValueType</span>
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>랩퍼 생성 부분이다.</p>
+
+<p>이전과 다른 부분은 <code class="language-plaintext highlighter-rouge">&lt;T: JSONDefaultWrapperAvailable&gt;</code>이 가장 먼저 눈에 들어오게 될텐데,</p>
+
+<p><code class="language-plaintext highlighter-rouge">Generic T</code> 라는 값을 선언시 정의 해줘야하며, 이는 위에서 만든 <code class="language-plaintext highlighter-rouge">프로토콜</code>을 따르게 된다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">associatedtype</code> 였던 부분을 <code class="language-plaintext highlighter-rouge">typealias</code>를 이용하여 정의를 해주고, <code class="language-plaintext highlighter-rouge">기본 값</code> 또한 알 수 있다.</p>
+
+<p><br /></p>
+
+<p>즉, 우리는 기본값을 미리 받아올 수 있고,</p>
+
+<p>그 받아온 값을  <code class="language-plaintext highlighter-rouge">init</code> 을 호출할때 넣겠다는 것이다.</p>
+
+<p><br /></p>
+
+<p>여기서 핵심이 위 부분이다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">decode</code> 하게되면 <code class="language-plaintext highlighter-rouge">try</code>를 하게 될테고, <code class="language-plaintext highlighter-rouge">JSON</code> 에 <strong>해당 키가 없을 경우 이는 뱉어지게 되는데</strong>,</p>
+
+<p>이때 <code class="language-plaintext highlighter-rouge">init</code>을 하게 되고, 그 때의 값이 저<code class="language-plaintext highlighter-rouge">defaultValue</code> 를 이용하여 <code class="language-plaintext highlighter-rouge">init</code>을 해줌으로써</p>
+
+<p>키가 없어도 기본값을 정의할 수 있게 된다.</p>
+
+<p><br /></p>
+
+<h2 id="protocol과-enum">Protocol과 Enum</h2>
+
+<p>위에 만든 프로토콜을 따르는 무언가가 필요하다.</p>
+
+<p>그래야 각 자료형 별 기본값을 넣어주게 될테니깐!</p>
+
+<p>그렇담 보통은 프로토콜을 적용시킬때 <code class="language-plaintext highlighter-rouge">class</code> ,<code class="language-plaintext highlighter-rouge">struct</code> 두가지에 적용을 많이 하게 될텐데,</p>
+
+<p><br /></p>
+
+<p>두가지의 공통점이 있다.</p>
+
+<p><strong>프로퍼티와 메소드가 없더라도 초기화가 된다</strong></p>
+
+<p><br /></p>
+
+<p>다음을 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 생성</span>
+<span class="kd">class</span> <span class="kt">AA</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kd">struct</span> <span class="kt">BB</span> <span class="p">{</span>        
+<span class="p">}</span>
+
+<span class="c1">// 어딘가..</span>
+<span class="c1">// 2. 선언 및 초기화</span>
+<span class="k">let</span> <span class="nv">aa</span> <span class="o">=</span> <span class="kt">AA</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">bb</span> <span class="o">=</span> <span class="kt">BB</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>클래스 AA와 구조체 BB를 만들어 주었고 주석2와 같이 선언과 초기화를 해주었다.</p>
+
+<p><strong>프로퍼티와 메소드가 없음에도.</strong></p>
+
+<p><br /></p>
+
+<p>다시 우리가 만든 프로토콜을 보자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">ValueType</span><span class="p">:</span> <span class="kt">Decodable</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">ValueType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>여기서 이 프로토콜을 따르는 것은 초기화 될 필요성이 있는가?</p>
+
+<p><br /></p>
+
+<p>아니다 전혀 필요없다.</p>
+
+<p>단순하게</p>
+
+<ol>
+  <li>자료형은 무엇인가?</li>
+  <li>이 자료형을 가진 기본값은 무엇인가?</li>
+</ol>
+
+<p>이 두가지 정의만 필요할뿐 초기화될 이유는 전혀 없다.</p>
+
+<p><br /></p>
+
+<p>그래서 <code class="language-plaintext highlighter-rouge">Enum</code>이 나오게 된다.</p>
+
+<p>열거형에도 프로토콜을 적용시킬 수 있다. 그치만 다른점은 위와 같이 초기화가 안된다는 것이다.</p>
+
+<p><img src="/assets/images/2021-07-11/img-3.png" style="zoom:40%;" /></p>
+
+<p>위의 스샷을 보면 두가지 열거형이 있다.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">CC</code>: 프로퍼티, 메소드 정의 x</li>
+  <li><code class="language-plaintext highlighter-rouge">DD</code>: 프로퍼티, 메소드 정의 x, 프로토콜 o</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">DD</code>의 내용물은 조금 뒤에 얘기하고, 이미지 아래 부분 에러를 보면</p>
+
+<p>초기화를 할 수 없다는것이 중점이다. 불필요한 초기화는 애초에 차단!</p>
+
+<p><br /></p>
+
+<p>그렇기에 여기선 <code class="language-plaintext highlighter-rouge">class</code>,<code class="language-plaintext highlighter-rouge">struct</code>가 아닌 <code class="language-plaintext highlighter-rouge">enum</code>에 프로토콜을 적용 할 것이다.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="enum-정의">Enum 정의</h1>
+
+<p>여기서부터는 각 자료형별로 <code class="language-plaintext highlighter-rouge">Enum</code>에 프로토콜을 적용하여 정의해보자</p>
+
+<p>우선 <code class="language-plaintext highlighter-rouge">Bool</code>과 <code class="language-plaintext highlighter-rouge">String</code>부터!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+    <span class="c1">// 기본값 - true</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+    <span class="c1">// 기본값 - false </span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+    <span class="c1">// 기본값 - "" </span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위에 에러 이미지 캡쳐본과 차이가 있다면(<code class="language-plaintext highlighter-rouge">enum DD</code>), <code class="language-plaintext highlighter-rouge">typealias</code>가 없다는점이다.</p>
+
+<p><br /></p>
+
+<p>추론이 된 상황인데, 프로토콜 정의부를 보면  <code class="language-plaintext highlighter-rouge">defaultValue</code> 타입이 <code class="language-plaintext highlighter-rouge">ValueType</code> 이었는데,</p>
+
+<p>이를 이용하여 <code class="language-plaintext highlighter-rouge">defaultValue</code>에 타입을 정의하면 <code class="language-plaintext highlighter-rouge">typealias</code>는 별도로 정의할 필요가 없다.</p>
+
+<p><br /></p>
+
+<p>위의 내용은 간단하다. 기본값 프로토콜을 따른다는 것과 그리고 기본값을 각각 지정해줬다는 점이다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">JSON</code> 데이터 처리 부분의 분산을 막기위해 <code class="language-plaintext highlighter-rouge">property wrapper</code>와 <code class="language-plaintext highlighter-rouge">enum</code>들을 다시 한번</p>
+
+<p><code class="language-plaintext highlighter-rouge">enum</code>으로 묶자</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">enum</code>으로 묶는 이유는 다시 한번 말하면, 불필요한 초기화를 방지 가능하기 때문이다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>이렇게.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">JSONDefaultWrapper</span> <span class="p">{</span>
+    <span class="c1">// Property Wrapper</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">typealias</span> <span class="kt">ValueType</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="kt">ValueType</span>
+        
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">ValueType</span>
+        
+        <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Type Enums</span>
+    <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - true</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - false </span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - "" </span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그리고 이전편에 나온 것들을 되새겨보면,</p>
+<ol>
+  <li>랩퍼에 <code class="language-plaintext highlighter-rouge">init(from decoder: Decoder)</code> 정의가 필요하다</li>
+</ol>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">ValueType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">KeyedDecodingContainer</code>에 <code class="language-plaintext highlighter-rouge">extension</code>하여  <code class="language-plaintext highlighter-rouge">decode</code> 메소드 추가 필요하다.</li>
+</ol>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">KeyedDecodingContainer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>위와 같이 셋팅을 해주면 사용할 준비는 끝났다.</p>
+
+<p><img src="/assets/images/2021-07-11/img-4.png" style="zoom:40%;" /></p>
+
+<p>실제 적용 코드와 출력 값이다.</p>
+
+<p><br /></p>
+
+<p>위 이미지를 설명하면 다음과 같다.</p>
+
+<ol>
+  <li>맨 첫줄에 <code class="language-plaintext highlighter-rouge">stringValue</code>는 옵셔널이 아닌 <code class="language-plaintext highlighter-rouge">String</code>이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">JSON</code> 형태의 데이터는 <code class="language-plaintext highlighter-rouge">stringValue</code>와 관련된 키가 없다. (이러한 이유 때문에 별도 처리가 없었다면 error를 뱉게 된다.)</li>
+  <li><code class="language-plaintext highlighter-rouge">Decode</code>를 했을때, <code class="language-plaintext highlighter-rouge">stringValue</code>가 빈값인지 확인이 되었다.</li>
+</ol>
+
+<p><br /></p>
+
+<p>2가 핵심이다. 관련 키가 없지만 객체가 잘 생성 되었다.</p>
+
+<p><br /></p>
+
+<p>그럼 위에 <code class="language-plaintext highlighter-rouge">enum</code>을 전부 적용하여 다시 결과를 보자.</p>
+
+<p><img src="/assets/images/2021-07-11/img-5.png" style="zoom:40%;" /></p>
+
+<p>아주 아주 잘 되었다!</p>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">JSON</code> 데이터에 해당 키가 없어도 문제 없다!</p>
+
+<p><br />
+<br /></p>
+
+<p><strong>그치만 못생긴건 문제가 있다.</strong></p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">EmptyString</span><span class="o">&gt;</span> <span class="k">var</span> <span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span>
+<span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">True</span><span class="o">&gt;</span> <span class="k">var</span> <span class="nv">trueValue</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">False</span><span class="o">&gt;</span> <span class="k">var</span> <span class="nv">falseValue</span><span class="p">:</span> <span class="kt">Bool</span>
+</code></pre></div></div>
+
+<p>아 이 얼마나 해괴하게 생겼는가;;</p>
+
+<p>굉장히 끔찍하고 가독성도 별로 그냥 별로다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">typealias</code>를 통해 정리좀 해주자.</p>
+
+<p><br /></p>
+
+<p>정리하기 앞서 원래 <code class="language-plaintext highlighter-rouge">enum</code>들은 <code class="language-plaintext highlighter-rouge">JSONDefaultWrapper</code>를 치고</p>
+
+<p><code class="language-plaintext highlighter-rouge">.</code>을 누르면 자동완성이 촤라락 뜨게 될텐데,</p>
+
+<p>이 부분을 정리 할 것이니 자동완성에 표출되길 원치 않는다.</p>
+
+<p>이것들 또한 다시 한번 <code class="language-plaintext highlighter-rouge">enum</code>으로 묶어주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+    <span class="c1">// Type Enums</span>
+    <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - true</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - false</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - ""</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 말이다.</p>
+
+<p><br /></p>
+
+<p>그리고 나선 아까 못생긴 부분들을 <code class="language-plaintext highlighter-rouge">typealias</code>로 다시 적어주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">JSONDefaultWrapper</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyString</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">EmptyString</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">True</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">True</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">False</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">False</span><span class="o">&gt;</span>
+    
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그럼 다시 사용하는 부분을 보면 다음과 같이 정리가 된다.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">EmptyString</span> <span class="k">var</span> <span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span>
+<span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">True</span> <span class="k">var</span> <span class="nv">trueValue</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">False</span> <span class="k">var</span> <span class="nv">falseValue</span><span class="p">:</span> <span class="kt">Bool</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>오 훨씬 깔끔하다!</p>
+
+<p>그럼 이제 사용법을 알았으니 숫자들에 대해서도 해보자.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="숫자-처리">숫자 처리</h1>
+
+<p>일부로 숫자 자료형들을 따로 뺐는데</p>
+
+<p><code class="language-plaintext highlighter-rouge">Int</code>, <code class="language-plaintext highlighter-rouge">Double</code>, <code class="language-plaintext highlighter-rouge">Float</code>, <code class="language-plaintext highlighter-rouge">CGFloat</code> 등등 숫자 관련 자료형이 많다.</p>
+
+<p>그렇단 말은 <code class="language-plaintext highlighter-rouge">enum TypeCase</code> 안에  각 자료형별 <code class="language-plaintext highlighter-rouge">enum</code>이 추가 되어야 한다는 것인데</p>
+
+<p>이것은 <code class="language-plaintext highlighter-rouge">Generic</code>으로 빼버리자</p>
+
+<p>완성본은 다음과 같다</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+    <span class="c1">// Type Enums</span>
+    <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - true</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - false</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - ""</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kd">enum</span> <span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="k">where</span> <span class="kt">T</span><span class="p">:</span> <span class="kt">Numeric</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - 0</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>제일 아래에 <code class="language-plaintext highlighter-rouge">Zero</code>라고 추가해줬는데 <code class="language-plaintext highlighter-rouge">Generic T</code>가 <code class="language-plaintext highlighter-rouge">decodeble</code>을 따르며, <code class="language-plaintext highlighter-rouge">Numeric</code>또한 따르게 된다.</p>
+
+<p>여기서 포인트는 <code class="language-plaintext highlighter-rouge">Numeric</code> 이라는 점!</p>
+
+<p>숫자 관련 처리를 다 해버릴 수 있다.</p>
+
+<p>하지만 <code class="language-plaintext highlighter-rouge">typealias</code>는 정의 해줘야지 ㅠ 차마 이거까진 못 줄였다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">typealias</span> <span class="kt">IntZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span>
+<span class="kd">typealias</span> <span class="kt">DoubleZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;&gt;</span>
+<span class="kd">typealias</span> <span class="kt">FloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;&gt;</span>
+<span class="kd">typealias</span> <span class="kt">CGFloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">CGFloat</span><span class="o">&gt;&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>자 그럼 다시 실행하여 출력값을 보자</p>
+
+<p><img src="/assets/images/2021-07-11/img-6.png" style="zoom:40%;" /></p>
+
+<p>크킄.. 됐다..</p>
+
+<p>쓰면서도 너무나 헷갈렸던 이번 포스팅</p>
+
+<p>도대체 몇번을 썼다 지웠다 한지 모르겠네?</p>
+
+<p><br /></p>
+
+<p>드디어 다음 포스팅이 이 시리즈의 마지막일듯 하다.</p>
+
+<p><br /></p>
+
+<p>이 글에서 정의된 <code class="language-plaintext highlighter-rouge">JSONDefaultWrapper</code>의 전체 코드를 보고 마무리하기.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">JSONDefaultWrapper</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyString</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">EmptyString</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">True</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">True</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">False</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">False</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">IntZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">DoubleZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">FloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">CGFloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">CGFloat</span><span class="o">&gt;&gt;</span>
+    
+    <span class="c1">// Property Wrapper</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">typealias</span> <span class="kt">ValueType</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="kt">ValueType</span>
+
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">ValueType</span>
+
+        <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+        <span class="c1">// Type Enums</span>
+        <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - true</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - ""</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">enum</span> <span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="k">where</span> <span class="kt">T</span><span class="p">:</span> <span class="kt">Numeric</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - 0</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">ValueType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">KeyedDecodingContainer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>끝.</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 2편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 1편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%EC%B2%98%EB%A6%AC-(feat.-CodingKey).html">Swift - API에 잘못된 값 처리 (feat. CodingKey)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%93%B0%EA%B8%B0.html">Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/19/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EB%B3%80%EC%88%98%EB%AA%85-%EC%93%B0%EA%B8%B0.html">Swift - CodingKey - API와 다른 변수명 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html">&laquo; Swift - Property Wrapper (feat. Codable 2편)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper (feat. Codable 3편)";
+    var disqus_title = "Swift - Property Wrapper (feat. Codable 3편)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
