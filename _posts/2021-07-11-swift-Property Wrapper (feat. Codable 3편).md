@@ -559,6 +559,11 @@ typealias CGFloatZero = Wrapper<JSONDefaultWrapper.TypeCase.Zero<CGFloat>>
 이 글에서 정의된 `JSONDefaultWrapper`의 전체 코드를 보고 마무리하기.
 
 ```swift
+protocol JSONDefaultWrapperAvailable {
+    associatedtype ValueType: Decodable
+    static var defaultValue: ValueType { get }
+}
+
 enum JSONDefaultWrapper {
     typealias EmptyString = Wrapper<JSONDefaultWrapper.TypeCase.EmptyString>
     typealias True = Wrapper<JSONDefaultWrapper.TypeCase.True>
