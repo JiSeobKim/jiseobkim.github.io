@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - Property Wrapper (feat. Codable Final) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - Property Wrapper (feat. Codable Final)" />
+    <meta name="keywords" content="Swift - Property Wrapper (feat. Codable Final), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - Property Wrapper (feat. Codable Final)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html" property="og:url">
+    
+
+    
+      <meta content="2021-07-12T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - Property Wrapper (feat. Codable Final)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - Property Wrapper (feat. Codable Final)</h1>
+</header>
+
+<span class="time">12 Jul 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p><a href="https://jiseobkim.github.io/swift/2021-07-11-swift-Property-Wrapper-(feat.-Codable-3편).html">지난 편</a>에 이어서 진행!</p>
+
+<p><br /></p>
+
+<p>이제 진짜 마지막 파트다.</p>
+
+<p><br /></p>
+
+<p>이전편에서는 <code class="language-plaintext highlighter-rouge">JSON</code>데이터에 해당 키가 없어도 에러가 나지 않고
+기본값을 지정할 수 있게 했다.</p>
+
+<p><br /></p>
+
+<p>이때, <code class="language-plaintext highlighter-rouge">Generic</code>을 이용하였었다.</p>
+
+<p><br /></p>
+
+<p>이번 편은 아주 간단하게 끝낼 것이다.</p>
+
+<p>다른 타입으로 형변환 하는 것과 리스트에 대한 처리다.</p>
+
+<p><br /></p>
+
+<p>다른 타입으로 바꾸는건 옵셔널인 타입과 옵셔널이 아닌 타입을 적용할 것이다.</p>
+
+<p><br /></p>
+
+<h1 id="옵셔널이-아닌-타입">옵셔널이 아닌 타입</h1>
+
+<p>옵셔널이 아니고 다른 타입 캐스팅을 보자</p>
+
+<p>이전에 했던</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"isHidden"</span> <span class="p">:</span> <span class="s">"Y"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이 값을 <code class="language-plaintext highlighter-rouge">Bool</code> 형태로 받기를 진행 할건데,</p>
+
+<p>이것도 기본값이 <code class="language-plaintext highlighter-rouge">true</code> 또는 <code class="language-plaintext highlighter-rouge">false</code>이므로</p>
+
+<p>다음 것들도 2개가 나올 것이다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">init(from decoder: Decoder){}</code></li>
+  <li><code class="language-plaintext highlighter-rouge">extension KeyedDecodingContainer{}</code></li>
+</ul>
+
+<p><br /></p>
+
+<p>그러므로 그냥 <code class="language-plaintext highlighter-rouge">protocol</code>로 묶어주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이전에 만든 <code class="language-plaintext highlighter-rouge">JSONDefaultWrapper</code>안에 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 를 만들어주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">JSONDefaultWrapper</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="c1">// Property Wrapper - Optional String To Bool</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Decodable</code>도 적용해주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="p">(</span><span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">))</span> <span class="o">==</span> <span class="s">"Y"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">KeyedDecodingContainer</code> 확장도 해주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">KeyedDecodingContainer</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이전 편들을 봤다면 이해하기 훨씬 수월할 것이다.
+그리고 쓰기 위해 이전편의 <code class="language-plaintext highlighter-rouge">JSONDefaultWrapper.TypeCase</code>에도 정의를 해준다.</p>
+
+<p><br /></p>
+
+<p>기본값 <code class="language-plaintext highlighter-rouge">true</code>, <code class="language-plaintext highlighter-rouge">false</code> 둘다!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="kt">StringFalse</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - false</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">StringTrue</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - false</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그리고 마무리로 <code class="language-plaintext highlighter-rouge">typealias</code>를 통해 간추려준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">JSONDefaultWrapper</span> <span class="p">{</span>
+    <span class="c1">//...</span>
+    <span class="kd">typealias</span> <span class="kt">StringFalse</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringFalse</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">StringTrue</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringTrue</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그럼 쓸 준비는 끝났다.</p>
+
+<blockquote>
+  <p>그냥 property wrapper 2개 만드는게 나을려나?</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>쓰는 방법은 마찬가지로 이전과 같다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">Posting</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">StringFalse</span> <span class="k">var</span> <span class="nv">stringFalseValue</span><span class="p">:</span> <span class="kt">Bool</span>
+    <span class="kd">@JSONDefaultWrapper</span><span class="o">.</span><span class="kt">StringTrue</span> <span class="k">var</span> <span class="nv">stringTrueValue</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이렇게 해주면 아주 잘 된다.</p>
+
+<p><br /></p>
+
+<h1 id="옵셔널-타입">옵셔널 타입</h1>
+
+<p>이번에는 조금 다른걸 해보자,</p>
+
+<p><code class="language-plaintext highlighter-rouge">nil</code>로 냅두는게 나은 케이스가 있을 수 있다.</p>
+
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">timestamp</code>를 <code class="language-plaintext highlighter-rouge">Date</code>로 바꾼다거나..?</p>
+
+<p><br /></p>
+
+<p>이 경우에는 기본 값으로 오늘 날짜를 넣는다거나 이런건 별로다</p>
+
+<p>차라리 <code class="language-plaintext highlighter-rouge">nil</code>로써 냅두는게 낫다고 본다.</p>
+
+<p>그래서 적용을 해보자.</p>
+
+<blockquote>
+  <p>독단적인 케이스니 <code class="language-plaintext highlighter-rouge">protocol</code>을 적용하지 않는다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>마찬가지로 <code class="language-plaintext highlighter-rouge">enum JSONDefaultWrapper {}</code> 안에 선언을 해준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="p">`</span><span class="nv">JSONDefaultWrapper</span><span class="p">`</span> <span class="p">{</span>
+    <span class="c1">// Property Wrapper - Optional Timestamp to Optinoal Date</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>여기서 봐야할 점은 wrappedValue가 옵셔널이라는 점?</p>
+
+<p>그렇담 초기화해도 문제가 없다.</p>
+
+<p>어차피 <code class="language-plaintext highlighter-rouge">nil</code>로 들어가면 되니깐.</p>
+
+<p><br /></p>
+
+<p>(여기서 <code class="language-plaintext highlighter-rouge">struct</code> 생성과 동시에 <code class="language-plaintext highlighter-rouge">Decodable</code>을 넣고 <code class="language-plaintext highlighter-rouge">init(from decoder: Decoder)</code>을 만들면 
+자동으로 <code class="language-plaintext highlighter-rouge">init()</code>은 생성 되지 않는 것을 알게 되었다.)</p>
+
+<p><br /></p>
+
+<p>그 다음은 마찬가지로</p>
+
+<p><code class="language-plaintext highlighter-rouge">Decoadable</code> 받아주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">timestamp</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Double</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Date</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">timeIntervalSince1970</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="n">date</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">KeyedDecodingContainer</code> 확장해주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이러면 준비끝.</p>
+
+<p><br /></p>
+
+<h1 id="리스트">리스트</h1>
+
+<p>진짜 진짜 마무리로 리스트 처리 던지고 끝내기</p>
+
+<p>별도로 랩퍼 만들 필요 없다. 이미 다 갖춰 졌다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">JSONDefaultWrapperAvailable.TypeCase</code>에 정의만 해주고!</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDefaultWrapperAvailable</span> <span class="p">{</span>
+        <span class="c1">// 기본값 - []</span>
+        <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[]</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">typealias</code>만 조끔 어렵게 손봐주면</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">JSONDefaultWrapper</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyList</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDefaultWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>사용 준비 끝!!</p>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="결과">결과</h1>
+
+<h3 id="키-미존재">키 미존재</h3>
+<p><img src="/assets/images/2021-07-12/img.png" style="zoom:40%;" /></p>
+
+<hr />
+
+<h3 id="키-존재">키 존재</h3>
+<p><img src="/assets/images/2021-07-12/img-1.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>아주 좋아ㅏㅏㅏ 드디어 끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 3편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 2편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 1편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%EC%B2%98%EB%A6%AC-(feat.-CodingKey).html">Swift - API에 잘못된 값 처리 (feat. CodingKey)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/network/2021/05/26/swift-CodingKey-API%EC%99%80-%EB%8B%A4%EB%A5%B8-%EC%9E%90%EB%A3%8C%ED%98%95-%EC%93%B0%EA%B8%B0.html">Swift - CodingKey - API와 다른 자료형 쓰기(feat. Codable)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>, <a href="/category/Network">Network</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html">&laquo; Swift - Property Wrapper (feat. Codable 3편)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper (feat. Codable Final)";
+    var disqus_title = "Swift - Property Wrapper (feat. Codable Final)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
