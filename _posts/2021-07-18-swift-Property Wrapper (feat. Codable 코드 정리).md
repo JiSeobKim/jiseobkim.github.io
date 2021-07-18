@@ -15,7 +15,7 @@ categories: [Swift]
 
 관리가 용이하게 코코아팟이나 SPM으로 만들어보고 싶기도 하다.
 
-```
+```swift
 protocol JSONDefaultWrapperAvailable {
     associatedtype ValueType: Decodable
     static var defaultValue: ValueType { get }
