@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - SPM 만들기 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - SPM 만들기" />
+    <meta name="keywords" content="Swift - SPM 만들기, 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - SPM 만들기" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html" property="og:url">
+    
+
+    
+      <meta content="2021-07-31T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - SPM 만들기">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - SPM 만들기</h1>
+</header>
+
+<span class="time">31 Jul 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>지난편으로 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 포스팅이 끝났다.</p>
+
+<p>끝나면서 마지막 무렵 이것을 <code class="language-plaintext highlighter-rouge">CocoaPod</code>이나 <code class="language-plaintext highlighter-rouge">SPM</code> 으로 만들면 어떨까?</p>
+
+<p>라는 생각을 하였었고, 이 기회에 <code class="language-plaintext highlighter-rouge">SPM</code>으로 만들어보기로 하였다.</p>
+
+<p><br /></p>
+
+<p>그래서 이번편은 <code class="language-plaintext highlighter-rouge">SPM</code> 만드는 것을 주제로 하였다.</p>
+
+<p><br /></p>
+
+<h1 id="spm이란">SPM이란?</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Swift Package Manager</code>의 약자로써 역할은 쉽게 말해 <code class="language-plaintext highlighter-rouge">CocoaPod</code>과 <code class="language-plaintext highlighter-rouge">Cartage</code>와 같다.</p>
+
+<p>라이브러리를 관리하게 해주는 것이다.</p>
+
+<p><br /></p>
+
+<p>카르타고는 얼마전에 한창 이슈가 된 것 같고,</p>
+
+<p>그전부터 장점은 있었지만 사용의 번거로움이 있어</p>
+
+<p>잘 사용하지 않았다.</p>
+
+<p><br /></p>
+
+<p>코코아팟의 경우 쓰기가 쉬웠다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">podfile</code>에 한줄 추가하고 <code class="language-plaintext highlighter-rouge">pod install</code> 만 해주면 사용이 가능했으니깐!</p>
+
+<p>하지만, <code class="language-plaintext highlighter-rouge">pod install</code>을 하게 되면 바로 <code class="language-plaintext highlighter-rouge">workspace</code> 파일이 생성된다는게 조금 아쉬웠다.</p>
+
+<p>하나라도 설치하게 되면 <code class="language-plaintext highlighter-rouge">workspace</code>가 생겨버리니 뭔가 무거워진다는 기분이 들었다.</p>
+
+<p><br /></p>
+
+<p>두개의 공통점은 <code class="language-plaintext highlighter-rouge">써드파티</code>라는 점이다.</p>
+
+<p><br /></p>
+
+<p>애플에서도 관리를 할 수 있게 직접 SPM을 내놓았다. 즉 <code class="language-plaintext highlighter-rouge">퍼스트파티</code>라는것!</p>
+
+<p>애플은 도입이 늦긴해도 한번 넣으면 제대로 해주니 기대가 되었다.</p>
+
+<blockquote>
+  <p>요즘엔 Xcode Cloud가 된다. 인증서 관리, 코드 관리 등이 더욱 쉬워질 것 같아서!</p>
+</blockquote>
+
+<p><br /></p>
+
+<h1 id="spm-생성">SPM 생성</h1>
+
+<p>퍼스트 파티인 만큼 만드는 것은 아주 쉽다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Xcode</code>의 <code class="language-plaintext highlighter-rouge">New</code>에 보면 사진과 같이 <code class="language-plaintext highlighter-rouge">Swift Package</code>가 존재한다.</p>
+
+<p><img src="/assets/images/2021-07-31/img-0.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>만들고나면 구조는 다음과 같다.</p>
+
+<p><img src="/assets/images/2021-07-31/img-1.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>여기에서 이것 저것 설정을 할 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">dependencies</code>에는 이 라이브러리가 의존하게 되는 라이브러리를 명시해줄 수 있다.</p>
+
+<p>통신 관련이라면 <code class="language-plaintext highlighter-rouge">Alamofire</code>를 추가하겠지?</p>
+
+<p><br /></p>
+
+<p>그리고, 지금 상태는 <code class="language-plaintext highlighter-rouge">iOS</code>만 국한되어있지 않다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">macOS</code>, <code class="language-plaintext highlighter-rouge">tvOS</code>, <code class="language-plaintext highlighter-rouge">watchOS</code> 등도 해당이 된다.</p>
+
+<p>필요하다면  <code class="language-plaintext highlighter-rouge">platforms</code>도 정해줄 수 있는 그런 화면이다.</p>
+
+<p><br /></p>
+
+<h1 id="소스-코드">소스 코드</h1>
+
+<p><img src="/assets/images/2021-07-31/img-2.png" style="zoom:40%;" /></p>
+
+<p>가져다 쓸 코드를 정의하는 곳은 위의 사진 처럼</p>
+
+<p><code class="language-plaintext highlighter-rouge">Source</code> - <code class="language-plaintext highlighter-rouge">라이브러리명 폴더</code> 안에 <code class="language-plaintext highlighter-rouge">swift</code>파일이 생성되어 있을 것이다.</p>
+
+<p><br /></p>
+
+<p>역시 시작은 헬로월드지</p>
+
+<p><br /></p>
+
+<h1 id="github에-repository-생성-후-푸시">GitHub에 Repository 생성 후 푸시</h1>
+
+<p><img src="/assets/images/2021-07-31/img-13.png" style="zoom:40%;" /></p>
+
+<p>이 부분은 간단하니깐 방법은 생략,,,</p>
+
+<p><br /></p>
+
+<h1 id="spm-적용">SPM 적용</h1>
+
+<p>준비는 끝났다. 이제 사용만 하면 된다!</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-3.png" style="zoom:40%;" /></p>
+
+<p>위 사진 경로대로 들어가보면 추가할 수 있다.</p>
+
+<p>코코아팟을 쓸때와 달리 Xcode 내에서 해결이 된다는 점이 매력적이다.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-4.png" style="zoom:40%;" /></p>
+
+<p>생성했던 깃헙 주소를 넣어주고 <code class="language-plaintext highlighter-rouge">Next</code>를 누르자.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-5.png" style="zoom:40%;" /></p>
+
+<p>여기는 살짝 짚고 넘어가자면,</p>
+
+<p>해당 저장소에 다양한 방법으로 받아 올 수 있다.</p>
+
+<p><br /></p>
+
+<p><strong>버전</strong>을 정한다거나, 특정 <strong>브랜치</strong>를 받거나, 특정 <strong>커밋</strong>을 가져오는 것도 가능하다.</p>
+
+<p>이번에 나는 브랜치로 포스팅!</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Next</code></p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-6.png" style="zoom:40%;" /></p>
+
+<p>적용할 패키지와 추가될 타겟을 확인하고 <code class="language-plaintext highlighter-rouge">finish</code>해주면 끝! 쉽다</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-7.png" style="zoom:40%;" /></p>
+
+<p>그럼 위와 같이 달라진점을 볼 수 있다.</p>
+
+<p><br /></p>
+
+<p>빨간 부분을 보면 프로젝트 파일안에서 추가된 점을 볼 수 있으며, 삭제도 여기서 할 수 있다.</p>
+
+<p>파란 부분을 보면 SPM으로 추가된 것들도 볼 수 있다.</p>
+
+<p><br /></p>
+
+<h1 id="사용">사용</h1>
+
+<p><img src="/assets/images/2021-07-31/img-8.png" style="zoom:40%;" /></p>
+
+<p>위와 같이 <code class="language-plaintext highlighter-rouge">import</code> 해주고 써주면 바로 실패 ㅠ</p>
+
+<p><br /></p>
+
+<p>왜냐면 접근제어자가 <code class="language-plaintext highlighter-rouge">public</code>, <code class="language-plaintext highlighter-rouge">open</code>이 아니라 <code class="language-plaintext highlighter-rouge">internal</code> 때문에 접근 할 수 없다.</p>
+
+<blockquote>
+  <p>자동 생성된 코드는 퍼블릭으로 해줘야하는거 아닌가!?</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>다시 SPM 파일로 돌아가서 바꿔주자</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-9.png" style="zoom:40%;" /></p>
+
+<p>위처럼 <code class="language-plaintext highlighter-rouge">struct</code> 앞에 붙여주고</p>
+
+<p><code class="language-plaintext highlighter-rouge">init()</code>도 붙여주고</p>
+
+<p>비교하게 프로퍼티도 하나 <code class="language-plaintext highlighter-rouge">public</code>을 붙여서 만들어줬다.</p>
+
+<p><br /></p>
+
+<p>따라서 프로퍼티는 <code class="language-plaintext highlighter-rouge">internal</code>인 <code class="language-plaintext highlighter-rouge">text</code>와 <code class="language-plaintext highlighter-rouge">public</code>인 <code class="language-plaintext highlighter-rouge">publicText</code> 두개가 존재한다.</p>
+
+<p>그리고 푸시를 해주자.</p>
+
+<p><br /></p>
+
+<p>그리고 다시 원래 사용하던 프로젝트로 이동하자,</p>
+
+<p><br /></p>
+
+<p>그럼 이전 버전을 업데이트 해줘야한다.</p>
+
+<p>이 또한 퍼스트파티이기 때문에 아주 간단하게 할 수 있다.</p>
+
+<p><img src="/assets/images/2021-07-31/img-10.png" style="zoom:40%;" /></p>
+
+<p>업데이트하기 눌러준다!</p>
+
+<p><br /></p>
+
+<p>그럼 이제 다시 코드로 가서 사용해보자</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-11.png" style="zoom:40%;" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">init</code>까지 아주 잘되었고, 위에 말했듯이 <code class="language-plaintext highlighter-rouge">internal</code>인 <code class="language-plaintext highlighter-rouge">text</code>는 보이지 않지만</p>
+
+<p><code class="language-plaintext highlighter-rouge">public</code>인 <code class="language-plaintext highlighter-rouge">publicText</code>는 잘 보인다.</p>
+
+<p><br /></p>
+
+<p>출력까지 해보자</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-07-31/img-12.png" style="zoom:40%;" /></p>
+
+<p>오오 아주 간단하다 간단해.</p>
+
+<p><br /></p>
+
+<p>다음번엔 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 만든 것을 SPM으로 적용해보자!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html">Swift - Property Wrapper (feat. Codable 코드 정리)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html">Swift - Property Wrapper (feat. Codable Final)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 3편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html">Swift - Property Wrapper (feat. Codable 2편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 1편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html">&laquo; Swift - Property Wrapper (feat. Codable 코드 정리)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - SPM 만들기";
+    var disqus_title = "Swift - SPM 만들기";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

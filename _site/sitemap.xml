@@ -5,9 +5,403 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 12 Jul 2021 22:45:10 +0900</pubDate>
-    <lastBuildDate>Mon, 12 Jul 2021 22:45:10 +0900</lastBuildDate>
+    <pubDate>Sat, 31 Jul 2021 17:12:35 +0900</pubDate>
+    <lastBuildDate>Sat, 31 Jul 2021 17:12:35 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Swift - SPM 만들기</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;지난편으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 포스팅이 끝났다.&lt;/p&gt;
+
+&lt;p&gt;끝나면서 마지막 무렵 이것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CocoaPod&lt;/code&gt;이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPM&lt;/code&gt; 으로 만들면 어떨까?&lt;/p&gt;
+
+&lt;p&gt;라는 생각을 하였었고, 이 기회에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPM&lt;/code&gt;으로 만들어보기로 하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 이번편은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPM&lt;/code&gt; 만드는 것을 주제로 하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spm이란&quot;&gt;SPM이란?&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Swift Package Manager&lt;/code&gt;의 약자로써 역할은 쉽게 말해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CocoaPod&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cartage&lt;/code&gt;와 같다.&lt;/p&gt;
+
+&lt;p&gt;라이브러리를 관리하게 해주는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;카르타고는 얼마전에 한창 이슈가 된 것 같고,&lt;/p&gt;
+
+&lt;p&gt;그전부터 장점은 있었지만 사용의 번거로움이 있어&lt;/p&gt;
+
+&lt;p&gt;잘 사용하지 않았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;코코아팟의 경우 쓰기가 쉬웠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile&lt;/code&gt;에 한줄 추가하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt; 만 해주면 사용이 가능했으니깐!&lt;/p&gt;
+
+&lt;p&gt;하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;을 하게 되면 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workspace&lt;/code&gt; 파일이 생성된다는게 조금 아쉬웠다.&lt;/p&gt;
+
+&lt;p&gt;하나라도 설치하게 되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workspace&lt;/code&gt;가 생겨버리니 뭔가 무거워진다는 기분이 들었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;두개의 공통점은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;써드파티&lt;/code&gt;라는 점이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;애플에서도 관리를 할 수 있게 직접 SPM을 내놓았다. 즉 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;퍼스트파티&lt;/code&gt;라는것!&lt;/p&gt;
+
+&lt;p&gt;애플은 도입이 늦긴해도 한번 넣으면 제대로 해주니 기대가 되었다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;요즘엔 Xcode Cloud가 된다. 인증서 관리, 코드 관리 등이 더욱 쉬워질 것 같아서!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spm-생성&quot;&gt;SPM 생성&lt;/h1&gt;
+
+&lt;p&gt;퍼스트 파티인 만큼 만드는 것은 아주 쉽다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Xcode&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;New&lt;/code&gt;에 보면 사진과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Swift Package&lt;/code&gt;가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-0.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;만들고나면 구조는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기에서 이것 저것 설정을 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt;에는 이 라이브러리가 의존하게 되는 라이브러리를 명시해줄 수 있다.&lt;/p&gt;
+
+&lt;p&gt;통신 관련이라면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alamofire&lt;/code&gt;를 추가하겠지?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고, 지금 상태는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iOS&lt;/code&gt;만 국한되어있지 않다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macOS&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tvOS&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;watchOS&lt;/code&gt; 등도 해당이 된다.&lt;/p&gt;
+
+&lt;p&gt;필요하다면  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;platforms&lt;/code&gt;도 정해줄 수 있는 그런 화면이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;소스-코드&quot;&gt;소스 코드&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;가져다 쓸 코드를 정의하는 곳은 위의 사진 처럼&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Source&lt;/code&gt; - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라이브러리명 폴더&lt;/code&gt; 안에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;swift&lt;/code&gt;파일이 생성되어 있을 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;역시 시작은 헬로월드지&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;github에-repository-생성-후-푸시&quot;&gt;GitHub에 Repository 생성 후 푸시&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-13.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 부분은 간단하니깐 방법은 생략,,,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spm-적용&quot;&gt;SPM 적용&lt;/h1&gt;
+
+&lt;p&gt;준비는 끝났다. 이제 사용만 하면 된다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 사진 경로대로 들어가보면 추가할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;코코아팟을 쓸때와 달리 Xcode 내에서 해결이 된다는 점이 매력적이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-4.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;생성했던 깃헙 주소를 넣어주고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Next&lt;/code&gt;를 누르자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-5.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기는 살짝 짚고 넘어가자면,&lt;/p&gt;
+
+&lt;p&gt;해당 저장소에 다양한 방법으로 받아 올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;버전&lt;/strong&gt;을 정한다거나, 특정 &lt;strong&gt;브랜치&lt;/strong&gt;를 받거나, 특정 &lt;strong&gt;커밋&lt;/strong&gt;을 가져오는 것도 가능하다.&lt;/p&gt;
+
+&lt;p&gt;이번에 나는 브랜치로 포스팅!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Next&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-6.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;적용할 패키지와 추가될 타겟을 확인하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finish&lt;/code&gt;해주면 끝! 쉽다&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-7.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 위와 같이 달라진점을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;빨간 부분을 보면 프로젝트 파일안에서 추가된 점을 볼 수 있으며, 삭제도 여기서 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;파란 부분을 보면 SPM으로 추가된 것들도 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;사용&quot;&gt;사용&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-8.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;import&lt;/code&gt; 해주고 써주면 바로 실패 ㅠ&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜냐면 접근제어자가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;open&lt;/code&gt;이 아니라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; 때문에 접근 할 수 없다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;자동 생성된 코드는 퍼블릭으로 해줘야하는거 아닌가!?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 SPM 파일로 돌아가서 바꿔주자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-9.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위처럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;struct&lt;/code&gt; 앞에 붙여주고&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt;도 붙여주고&lt;/p&gt;
+
+&lt;p&gt;비교하게 프로퍼티도 하나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;을 붙여서 만들어줬다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;따라서 프로퍼티는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publicText&lt;/code&gt; 두개가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 푸시를 해주자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 다시 원래 사용하던 프로젝트로 이동하자,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이전 버전을 업데이트 해줘야한다.&lt;/p&gt;
+
+&lt;p&gt;이 또한 퍼스트파티이기 때문에 아주 간단하게 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-10.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;업데이트하기 눌러준다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 다시 코드로 가서 사용해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-11.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;까지 아주 잘되었고, 위에 말했듯이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt;는 보이지 않지만&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publicText&lt;/code&gt;는 잘 보인다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;출력까지 해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-12.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;오오 아주 간단하다 간단해.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음번엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 만든 것을 SPM으로 적용해보자!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 31 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - Property Wrapper (feat. Codable 코드 정리)</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이것은 이전 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 시리즈의 최종 코드 적어 두기용&lt;/p&gt;
+
+&lt;p&gt;나중에 내가 보기 쉽게!&lt;/p&gt;
+
+&lt;p&gt;관리가 용이하게 코코아팟이나 SPM으로 만들어보고 싶기도 하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;protocol JSONDefaultWrapperAvailable {
+    associatedtype ValueType: Decodable
+    static var defaultValue: ValueType { get }
+}
+
+protocol JSONStringConverterAvailable {
+    static var defaultValue: Bool { get }
+}
+
+enum JSONDefaultWrapper {
+    typealias EmptyString = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.EmptyString&amp;gt;
+    typealias True = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.True&amp;gt;
+    typealias False = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.False&amp;gt;
+    typealias IntZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;Int&amp;gt;&amp;gt;
+    typealias DoubleZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;Double&amp;gt;&amp;gt;
+    typealias FloatZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;Float&amp;gt;&amp;gt;
+    typealias CGFloatZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;CGFloat&amp;gt;&amp;gt;
+    typealias StringFalse = StringConverterWrapper&amp;lt;JSONDefaultWrapper.TypeCase.StringFalse&amp;gt;
+    typealias StringTrue = StringConverterWrapper&amp;lt;JSONDefaultWrapper.TypeCase.StringTrue&amp;gt;
+    typealias EmptyList&amp;lt;T: Decodable &amp;amp; ExpressibleByArrayLiteral&amp;gt; = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.List&amp;lt;T&amp;gt;&amp;gt;
+    typealias EmptyDict&amp;lt;T: Decodable &amp;amp; ExpressibleByDictionaryLiteral&amp;gt; = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Dict&amp;lt;T&amp;gt;&amp;gt;
+    
+    // Property Wrapper - Optional Type to Type
+    @propertyWrapper
+    struct Wrapper&amp;lt;T: JSONDefaultWrapperAvailable&amp;gt; {
+        typealias ValueType = T.ValueType
+
+        var wrappedValue: ValueType
+
+        init() {
+        wrappedValue = T.defaultValue
+        }
+    }
+    
+    // Property Wrapper - Optional String To Bool
+    @propertyWrapper
+    struct StringConverterWrapper&amp;lt;T: JSONStringConverterAvailable&amp;gt; {
+        var wrappedValue: Bool = T.defaultValue
+    }
+    
+    // Property Wrapper - Optional Timestamp to Optinoal Date
+    @propertyWrapper
+    struct TimestampToOptionalDate {
+        var wrappedValue: Date?
+    }
+    
+    @propertyWrapper
+    struct TrueByStringToBool {
+        var wrappedValue: Bool = true
+    }
+    
+    @propertyWrapper
+    struct FalseByStringToBool {
+        var wrappedValue: Bool = false
+    }
+
+    enum TypeCase {
+        // Type Enums
+        enum True: JSONDefaultWrapperAvailable {
+            // 기본값 - true
+            static var defaultValue: Bool { true }
+        }
+
+        enum False: JSONDefaultWrapperAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { false }
+        }
+
+        enum EmptyString: JSONDefaultWrapperAvailable {
+            // 기본값 - &quot;&quot;
+            static var defaultValue: String { &quot;&quot; }
+        }
+        
+        enum Zero&amp;lt;T: Decodable&amp;gt;: JSONDefaultWrapperAvailable where T: Numeric {
+            // 기본값 - 0
+            static var defaultValue: T { 0 }
+        }
+        
+        enum StringFalse: JSONStringConverterAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { false }
+        }
+        
+        enum StringTrue: JSONStringConverterAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { true }
+        }
+        
+        enum List&amp;lt;T: Decodable &amp;amp; ExpressibleByArrayLiteral&amp;gt;: JSONDefaultWrapperAvailable {
+            // 기본값 - []
+            static var defaultValue: T { [] }
+        }
+        
+        enum Dict&amp;lt;T: Decodable &amp;amp; ExpressibleByDictionaryLiteral&amp;gt;: JSONDefaultWrapperAvailable {
+            // 기본값 - [:]
+            static var defaultValue: T { [:] }
+        }
+    }
+}
+
+extension JSONDefaultWrapper.Wrapper: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.wrappedValue = try container.decode(ValueType.self)
+    }
+}
+
+extension JSONDefaultWrapper.StringConverterWrapper: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.wrappedValue = (try container.decode(String.self)) == &quot;Y&quot;
+    }
+}
+
+extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let timestamp = try container.decode(Double.self)
+        let date = Date.init(timeIntervalSince1970: timestamp)
+        self.wrappedValue = date
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sun, 18 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
     
       <item>
         <title>Swift - Property Wrapper (feat. Codable Final)</title>
@@ -1234,8 +1628,8 @@
 &lt;p&gt;끝.&lt;/p&gt;
 </description>
         <pubDate>Sun, 27 Jun 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</guid>
+        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</guid>
         
         
         <category>Swift</category>

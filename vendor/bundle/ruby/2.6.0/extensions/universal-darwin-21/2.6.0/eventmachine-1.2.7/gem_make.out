@@ -1,5 +1,5 @@
 current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/2.6.0/gems/eventmachine-1.2.7/ext
-/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /Library/Ruby/Site/2.6.0 -r ./siteconf20210702-28497-1n790wp.rb extconf.rb
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /Library/Ruby/Site/2.6.0 -r ./siteconf20210731-59552-4v5zwv.rb extconf.rb
 checking for -lcrypto... *** extconf.rb failed ***
 Could not create Makefile due to some reason, probably lack of necessary
 libraries and/or headers.  Check the mkmf.log file for more details.  You may

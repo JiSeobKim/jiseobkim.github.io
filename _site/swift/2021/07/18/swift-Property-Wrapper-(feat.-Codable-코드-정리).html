@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - Property Wrapper (feat. Codable 코드 정리) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - Property Wrapper (feat. Codable 코드 정리)" />
+    <meta name="keywords" content="Swift - Property Wrapper (feat. Codable 코드 정리), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - Property Wrapper (feat. Codable 코드 정리)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html" property="og:url">
+    
+
+    
+      <meta content="2021-07-18T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - Property Wrapper (feat. Codable 코드 정리)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - Property Wrapper (feat. Codable 코드 정리)</h1>
+</header>
+
+<span class="time">18 Jul 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>이것은 이전 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 시리즈의 최종 코드 적어 두기용</p>
+
+<p>나중에 내가 보기 쉽게!</p>
+
+<p>관리가 용이하게 코코아팟이나 SPM으로 만들어보고 싶기도 하다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protocol JSONDefaultWrapperAvailable {
+    associatedtype ValueType: Decodable
+    static var defaultValue: ValueType { get }
+}
+
+protocol JSONStringConverterAvailable {
+    static var defaultValue: Bool { get }
+}
+
+enum JSONDefaultWrapper {
+    typealias EmptyString = Wrapper&lt;JSONDefaultWrapper.TypeCase.EmptyString&gt;
+    typealias True = Wrapper&lt;JSONDefaultWrapper.TypeCase.True&gt;
+    typealias False = Wrapper&lt;JSONDefaultWrapper.TypeCase.False&gt;
+    typealias IntZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;Int&gt;&gt;
+    typealias DoubleZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;Double&gt;&gt;
+    typealias FloatZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;Float&gt;&gt;
+    typealias CGFloatZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;CGFloat&gt;&gt;
+    typealias StringFalse = StringConverterWrapper&lt;JSONDefaultWrapper.TypeCase.StringFalse&gt;
+    typealias StringTrue = StringConverterWrapper&lt;JSONDefaultWrapper.TypeCase.StringTrue&gt;
+    typealias EmptyList&lt;T: Decodable &amp; ExpressibleByArrayLiteral&gt; = Wrapper&lt;JSONDefaultWrapper.TypeCase.List&lt;T&gt;&gt;
+    typealias EmptyDict&lt;T: Decodable &amp; ExpressibleByDictionaryLiteral&gt; = Wrapper&lt;JSONDefaultWrapper.TypeCase.Dict&lt;T&gt;&gt;
+    
+    // Property Wrapper - Optional Type to Type
+    @propertyWrapper
+    struct Wrapper&lt;T: JSONDefaultWrapperAvailable&gt; {
+        typealias ValueType = T.ValueType
+
+        var wrappedValue: ValueType
+
+        init() {
+        wrappedValue = T.defaultValue
+        }
+    }
+    
+    // Property Wrapper - Optional String To Bool
+    @propertyWrapper
+    struct StringConverterWrapper&lt;T: JSONStringConverterAvailable&gt; {
+        var wrappedValue: Bool = T.defaultValue
+    }
+    
+    // Property Wrapper - Optional Timestamp to Optinoal Date
+    @propertyWrapper
+    struct TimestampToOptionalDate {
+        var wrappedValue: Date?
+    }
+    
+    @propertyWrapper
+    struct TrueByStringToBool {
+        var wrappedValue: Bool = true
+    }
+    
+    @propertyWrapper
+    struct FalseByStringToBool {
+        var wrappedValue: Bool = false
+    }
+
+    enum TypeCase {
+        // Type Enums
+        enum True: JSONDefaultWrapperAvailable {
+            // 기본값 - true
+            static var defaultValue: Bool { true }
+        }
+
+        enum False: JSONDefaultWrapperAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { false }
+        }
+
+        enum EmptyString: JSONDefaultWrapperAvailable {
+            // 기본값 - ""
+            static var defaultValue: String { "" }
+        }
+        
+        enum Zero&lt;T: Decodable&gt;: JSONDefaultWrapperAvailable where T: Numeric {
+            // 기본값 - 0
+            static var defaultValue: T { 0 }
+        }
+        
+        enum StringFalse: JSONStringConverterAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { false }
+        }
+        
+        enum StringTrue: JSONStringConverterAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { true }
+        }
+        
+        enum List&lt;T: Decodable &amp; ExpressibleByArrayLiteral&gt;: JSONDefaultWrapperAvailable {
+            // 기본값 - []
+            static var defaultValue: T { [] }
+        }
+        
+        enum Dict&lt;T: Decodable &amp; ExpressibleByDictionaryLiteral&gt;: JSONDefaultWrapperAvailable {
+            // 기본값 - [:]
+            static var defaultValue: T { [:] }
+        }
+    }
+}
+
+extension JSONDefaultWrapper.Wrapper: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.wrappedValue = try container.decode(ValueType.self)
+    }
+}
+
+extension JSONDefaultWrapper.StringConverterWrapper: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.wrappedValue = (try container.decode(String.self)) == "Y"
+    }
+}
+
+extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let timestamp = try container.decode(Double.self)
+        let date = Date.init(timeIntervalSince1970: timestamp)
+        self.wrappedValue = date
+    }
+}
+</code></pre></div></div>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html">Swift - SPM 만들기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html">Swift - Property Wrapper (feat. Codable Final)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 3편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html">Swift - Property Wrapper (feat. Codable 2편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 1편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html">&laquo; Swift - Property Wrapper (feat. Codable Final)</a>
+  
+  
+    <a class="next" href="/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html">Swift - SPM 만들기 &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - Property Wrapper (feat. Codable 코드 정리)";
+    var disqus_title = "Swift - Property Wrapper (feat. Codable 코드 정리)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

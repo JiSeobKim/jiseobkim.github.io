@@ -5,9 +5,403 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 12 Jul 2021 22:45:10 +0900</pubDate>
-    <lastBuildDate>Mon, 12 Jul 2021 22:45:10 +0900</lastBuildDate>
+    <pubDate>Sat, 31 Jul 2021 17:12:35 +0900</pubDate>
+    <lastBuildDate>Sat, 31 Jul 2021 17:12:35 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Swift - SPM 만들기</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;지난편으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 포스팅이 끝났다.&lt;/p&gt;
+
+&lt;p&gt;끝나면서 마지막 무렵 이것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CocoaPod&lt;/code&gt;이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPM&lt;/code&gt; 으로 만들면 어떨까?&lt;/p&gt;
+
+&lt;p&gt;라는 생각을 하였었고, 이 기회에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPM&lt;/code&gt;으로 만들어보기로 하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 이번편은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPM&lt;/code&gt; 만드는 것을 주제로 하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spm이란&quot;&gt;SPM이란?&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Swift Package Manager&lt;/code&gt;의 약자로써 역할은 쉽게 말해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CocoaPod&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cartage&lt;/code&gt;와 같다.&lt;/p&gt;
+
+&lt;p&gt;라이브러리를 관리하게 해주는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;카르타고는 얼마전에 한창 이슈가 된 것 같고,&lt;/p&gt;
+
+&lt;p&gt;그전부터 장점은 있었지만 사용의 번거로움이 있어&lt;/p&gt;
+
+&lt;p&gt;잘 사용하지 않았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;코코아팟의 경우 쓰기가 쉬웠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile&lt;/code&gt;에 한줄 추가하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt; 만 해주면 사용이 가능했으니깐!&lt;/p&gt;
+
+&lt;p&gt;하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;을 하게 되면 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workspace&lt;/code&gt; 파일이 생성된다는게 조금 아쉬웠다.&lt;/p&gt;
+
+&lt;p&gt;하나라도 설치하게 되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workspace&lt;/code&gt;가 생겨버리니 뭔가 무거워진다는 기분이 들었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;두개의 공통점은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;써드파티&lt;/code&gt;라는 점이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;애플에서도 관리를 할 수 있게 직접 SPM을 내놓았다. 즉 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;퍼스트파티&lt;/code&gt;라는것!&lt;/p&gt;
+
+&lt;p&gt;애플은 도입이 늦긴해도 한번 넣으면 제대로 해주니 기대가 되었다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;요즘엔 Xcode Cloud가 된다. 인증서 관리, 코드 관리 등이 더욱 쉬워질 것 같아서!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spm-생성&quot;&gt;SPM 생성&lt;/h1&gt;
+
+&lt;p&gt;퍼스트 파티인 만큼 만드는 것은 아주 쉽다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Xcode&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;New&lt;/code&gt;에 보면 사진과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Swift Package&lt;/code&gt;가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-0.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;만들고나면 구조는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기에서 이것 저것 설정을 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt;에는 이 라이브러리가 의존하게 되는 라이브러리를 명시해줄 수 있다.&lt;/p&gt;
+
+&lt;p&gt;통신 관련이라면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alamofire&lt;/code&gt;를 추가하겠지?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고, 지금 상태는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iOS&lt;/code&gt;만 국한되어있지 않다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macOS&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tvOS&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;watchOS&lt;/code&gt; 등도 해당이 된다.&lt;/p&gt;
+
+&lt;p&gt;필요하다면  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;platforms&lt;/code&gt;도 정해줄 수 있는 그런 화면이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;소스-코드&quot;&gt;소스 코드&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;가져다 쓸 코드를 정의하는 곳은 위의 사진 처럼&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Source&lt;/code&gt; - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라이브러리명 폴더&lt;/code&gt; 안에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;swift&lt;/code&gt;파일이 생성되어 있을 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;역시 시작은 헬로월드지&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;github에-repository-생성-후-푸시&quot;&gt;GitHub에 Repository 생성 후 푸시&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-13.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 부분은 간단하니깐 방법은 생략,,,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spm-적용&quot;&gt;SPM 적용&lt;/h1&gt;
+
+&lt;p&gt;준비는 끝났다. 이제 사용만 하면 된다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 사진 경로대로 들어가보면 추가할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;코코아팟을 쓸때와 달리 Xcode 내에서 해결이 된다는 점이 매력적이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-4.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;생성했던 깃헙 주소를 넣어주고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Next&lt;/code&gt;를 누르자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-5.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기는 살짝 짚고 넘어가자면,&lt;/p&gt;
+
+&lt;p&gt;해당 저장소에 다양한 방법으로 받아 올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;버전&lt;/strong&gt;을 정한다거나, 특정 &lt;strong&gt;브랜치&lt;/strong&gt;를 받거나, 특정 &lt;strong&gt;커밋&lt;/strong&gt;을 가져오는 것도 가능하다.&lt;/p&gt;
+
+&lt;p&gt;이번에 나는 브랜치로 포스팅!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Next&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-6.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;적용할 패키지와 추가될 타겟을 확인하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finish&lt;/code&gt;해주면 끝! 쉽다&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-7.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 위와 같이 달라진점을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;빨간 부분을 보면 프로젝트 파일안에서 추가된 점을 볼 수 있으며, 삭제도 여기서 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;파란 부분을 보면 SPM으로 추가된 것들도 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;사용&quot;&gt;사용&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-8.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;import&lt;/code&gt; 해주고 써주면 바로 실패 ㅠ&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜냐면 접근제어자가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;open&lt;/code&gt;이 아니라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; 때문에 접근 할 수 없다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;자동 생성된 코드는 퍼블릭으로 해줘야하는거 아닌가!?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 SPM 파일로 돌아가서 바꿔주자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-9.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위처럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;struct&lt;/code&gt; 앞에 붙여주고&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init()&lt;/code&gt;도 붙여주고&lt;/p&gt;
+
+&lt;p&gt;비교하게 프로퍼티도 하나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;을 붙여서 만들어줬다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;따라서 프로퍼티는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publicText&lt;/code&gt; 두개가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 푸시를 해주자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 다시 원래 사용하던 프로젝트로 이동하자,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이전 버전을 업데이트 해줘야한다.&lt;/p&gt;
+
+&lt;p&gt;이 또한 퍼스트파티이기 때문에 아주 간단하게 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-10.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;업데이트하기 눌러준다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 이제 다시 코드로 가서 사용해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-11.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;까지 아주 잘되었고, 위에 말했듯이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text&lt;/code&gt;는 보이지 않지만&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publicText&lt;/code&gt;는 잘 보인다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;출력까지 해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-07-31/img-12.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;오오 아주 간단하다 간단해.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음번엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 만든 것을 SPM으로 적용해보자!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 31 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Swift - Property Wrapper (feat. Codable 코드 정리)</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이것은 이전 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Property Wrapper&lt;/code&gt; 시리즈의 최종 코드 적어 두기용&lt;/p&gt;
+
+&lt;p&gt;나중에 내가 보기 쉽게!&lt;/p&gt;
+
+&lt;p&gt;관리가 용이하게 코코아팟이나 SPM으로 만들어보고 싶기도 하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;protocol JSONDefaultWrapperAvailable {
+    associatedtype ValueType: Decodable
+    static var defaultValue: ValueType { get }
+}
+
+protocol JSONStringConverterAvailable {
+    static var defaultValue: Bool { get }
+}
+
+enum JSONDefaultWrapper {
+    typealias EmptyString = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.EmptyString&amp;gt;
+    typealias True = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.True&amp;gt;
+    typealias False = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.False&amp;gt;
+    typealias IntZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;Int&amp;gt;&amp;gt;
+    typealias DoubleZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;Double&amp;gt;&amp;gt;
+    typealias FloatZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;Float&amp;gt;&amp;gt;
+    typealias CGFloatZero = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Zero&amp;lt;CGFloat&amp;gt;&amp;gt;
+    typealias StringFalse = StringConverterWrapper&amp;lt;JSONDefaultWrapper.TypeCase.StringFalse&amp;gt;
+    typealias StringTrue = StringConverterWrapper&amp;lt;JSONDefaultWrapper.TypeCase.StringTrue&amp;gt;
+    typealias EmptyList&amp;lt;T: Decodable &amp;amp; ExpressibleByArrayLiteral&amp;gt; = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.List&amp;lt;T&amp;gt;&amp;gt;
+    typealias EmptyDict&amp;lt;T: Decodable &amp;amp; ExpressibleByDictionaryLiteral&amp;gt; = Wrapper&amp;lt;JSONDefaultWrapper.TypeCase.Dict&amp;lt;T&amp;gt;&amp;gt;
+    
+    // Property Wrapper - Optional Type to Type
+    @propertyWrapper
+    struct Wrapper&amp;lt;T: JSONDefaultWrapperAvailable&amp;gt; {
+        typealias ValueType = T.ValueType
+
+        var wrappedValue: ValueType
+
+        init() {
+        wrappedValue = T.defaultValue
+        }
+    }
+    
+    // Property Wrapper - Optional String To Bool
+    @propertyWrapper
+    struct StringConverterWrapper&amp;lt;T: JSONStringConverterAvailable&amp;gt; {
+        var wrappedValue: Bool = T.defaultValue
+    }
+    
+    // Property Wrapper - Optional Timestamp to Optinoal Date
+    @propertyWrapper
+    struct TimestampToOptionalDate {
+        var wrappedValue: Date?
+    }
+    
+    @propertyWrapper
+    struct TrueByStringToBool {
+        var wrappedValue: Bool = true
+    }
+    
+    @propertyWrapper
+    struct FalseByStringToBool {
+        var wrappedValue: Bool = false
+    }
+
+    enum TypeCase {
+        // Type Enums
+        enum True: JSONDefaultWrapperAvailable {
+            // 기본값 - true
+            static var defaultValue: Bool { true }
+        }
+
+        enum False: JSONDefaultWrapperAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { false }
+        }
+
+        enum EmptyString: JSONDefaultWrapperAvailable {
+            // 기본값 - &quot;&quot;
+            static var defaultValue: String { &quot;&quot; }
+        }
+        
+        enum Zero&amp;lt;T: Decodable&amp;gt;: JSONDefaultWrapperAvailable where T: Numeric {
+            // 기본값 - 0
+            static var defaultValue: T { 0 }
+        }
+        
+        enum StringFalse: JSONStringConverterAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { false }
+        }
+        
+        enum StringTrue: JSONStringConverterAvailable {
+            // 기본값 - false
+            static var defaultValue: Bool { true }
+        }
+        
+        enum List&amp;lt;T: Decodable &amp;amp; ExpressibleByArrayLiteral&amp;gt;: JSONDefaultWrapperAvailable {
+            // 기본값 - []
+            static var defaultValue: T { [] }
+        }
+        
+        enum Dict&amp;lt;T: Decodable &amp;amp; ExpressibleByDictionaryLiteral&amp;gt;: JSONDefaultWrapperAvailable {
+            // 기본값 - [:]
+            static var defaultValue: T { [:] }
+        }
+    }
+}
+
+extension JSONDefaultWrapper.Wrapper: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.wrappedValue = try container.decode(ValueType.self)
+    }
+}
+
+extension JSONDefaultWrapper.StringConverterWrapper: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.wrappedValue = (try container.decode(String.self)) == &quot;Y&quot;
+    }
+}
+
+extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let timestamp = try container.decode(Double.self)
+        let date = Date.init(timeIntervalSince1970: timestamp)
+        self.wrappedValue = date
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sun, 18 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
     
       <item>
         <title>Swift - Property Wrapper (feat. Codable Final)</title>
@@ -1234,8 +1628,8 @@
 &lt;p&gt;끝.&lt;/p&gt;
 </description>
         <pubDate>Sun, 27 Jun 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</guid>
+        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</guid>
         
         
         <category>Swift</category>
@@ -2669,377 +3063,6 @@
         <category>Swift</category>
         
         <category>Network</category>
-        
-      </item>
-    
-      <item>
-        <title>Swift - JSON 파일 불러오기(feat. Codable)</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;개발을 하다보면 서버와 같이 일을 해야하는데,&lt;/p&gt;
-
-&lt;p&gt;API가 아직 안나왔다면 조금 돌아가는 일을 선택한 적이 많았다.&lt;/p&gt;
-
-&lt;p&gt;예를 들어 일단 기획에 나온대로 화면 미리 짜고 API가 나오면 추후에 붙인다거나?&lt;/p&gt;
-
-&lt;p&gt;이럴 경우 2가지 경험이 있었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;통신-파트를-제외하고-화면에-필요한-데이터-구조를-내-마음대로-만든다&quot;&gt;통신 파트를 제외하고 화면에 필요한 데이터 구조를 내 마음대로 만든다.&lt;/h3&gt;
-
-&lt;p&gt;눈에 보이는 데이터로 모델을 만들다보니 화면을 구성하기엔 편했다.
-단점은 제대로된 API가 나왔을때 구조적으로 틀어진게 너무 많다.&lt;/p&gt;
-
-&lt;p&gt;몇번 겪어보고선 쓰지 않는 방식.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;통신-파트를-제외하고-문서에-나온대로-모델을-만든-후-화면을-구성한다&quot;&gt;통신 파트를 제외하고 문서에 나온대로 모델을 만든 후 화면을 구성한다.&lt;/h3&gt;
-&lt;p&gt;고려해야할 부분도 이미 같이 구성했기 때문에 API가 나와도 크게 손댈 곳이 없다.
-다만,, 테스트를 위해 더미 데이터를 만드는게 너무나도 귀찮았다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;strong&gt;그래서 그 귀찮은 부분을 해결하기 위한 글.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;결론: 프로젝트 안에 json 파일을 생성 후 이 파일을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt; 형태로 불러와서, 실제로 통신 데이터 받은 것처럼
-처리를 한다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;단점: 리스트 더불러오기 같은 경우는 여전히 API가 나온 후에 해야 편한것 같다. 
-좋은 방법이 있으면 공유 해주세요!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;json-파일-만들기&quot;&gt;JSON 파일 만들기&lt;/h1&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;새 파일을 생성하자
-&lt;img src=&quot;/assets/images/2021-05-16/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;String을 검색해주고
-&lt;img src=&quot;/assets/images/2021-05-16/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;파일명과 확장자는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user.json&lt;/code&gt;으로 한뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Next&lt;/code&gt;를 눌러주면 다음과 같은 창이 뜬다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User .json&lt;/code&gt; 선택
-&lt;img src=&quot;/assets/images/2021-05-16/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;생성된 파일의 모든 내용을 제거 한후 다음과 같이 JSON 스타일의 코드를 넣어주자 (나름 친절하게 타입도 써보았다.)&lt;/p&gt;
-
-    &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Type: Dictionary&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;totalCount&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 			&lt;span class=&quot;c1&quot;&gt;// value type: Int&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&quot;users&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; 						&lt;span class=&quot;c1&quot;&gt;// value type: [Dictionary]&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// value: String&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// value: Int&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// value: String&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// value: Int&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// value: String&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// value: Int&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;그럼 이제 프로젝트내에 준비는 끝났다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-4.png&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 이제 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 파일을 불러오는 코드를 작성&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 1. 불러올 파일 이름&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fileNm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;User&quot;&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 2. 불러올 파일의 확장자명&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;extensionType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;json&quot;&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// 3. 파일 위치&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;fileLocation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;forResource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileNm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;withExtension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extensionType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 4. 해당 위치의 파일을 Data로 초기화하기&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;contentsOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileLocation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 5. 잘못된 위치나 불가능한 파일 처리 (오늘은 따로 안하기)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;3을 보면 파일명과 확장자는 나눠서 불러온다는 점을 잘 봐야하고,&lt;/p&gt;
-
-&lt;p&gt;대소문자도 주의해주고,&lt;/p&gt;
-
-&lt;p&gt;4의 부분에서 해당 위치의 파일을 데이터로 초기화 해주는 아주 간단한 코드.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 이것을 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data&lt;/code&gt;로 받은 뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;으로 형변환을 하여 출력을 해보자.&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;dictData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;utf8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;결과: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dictData&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위의 코드 결과는 다음과 같다.
-&lt;img src=&quot;/assets/images/2021-05-16/img-5.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;codable-더하기&quot;&gt;Codable 더하기&lt;/h1&gt;
-
-&lt;p&gt;위에서 JSON을 잘불러왔으니 모델을 만들어서 Codable을 이용해보자
-&lt;a href=&quot;https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html&quot;&gt;(Codable 관련 글)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;우선 모델을 생성해주자&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UserList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;totalCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그리고 이번엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;를 Codable을 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserList&lt;/code&gt;로 얻어 보자&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;userList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;JSONDecoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;UserList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-05-16/img-6.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;성공!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
-
-&lt;p&gt;예제야 짧으니 실제 작업 파일에 써도 무방하겠지만,&lt;/p&gt;
-
-&lt;p&gt;프로퍼티만 수십가지일 경우 정말 지저분해지는 것을 봐야한다&lt;/p&gt;
-
-&lt;p&gt;위와 같이 JSON 파일을 별도로 생성해야하는 귀찮음은 있지만,&lt;/p&gt;
-
-&lt;p&gt;실제 작업시 더미 데이터 값을 따로 선언 및 초기화 할 필요가 없다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-그래서 개인적으론 API가 아직 문서만 나온 단계라면, 이 방식을 요즘 선호한다&lt;/p&gt;
-</description>
-        <pubDate>Sun, 16 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/16/swift-JSON-%ED%8C%8C%EC%9D%BC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0.html</guid>
-        
-        
-        <category>Swift</category>
-        
-        <category>Network</category>
-        
-      </item>
-    
-      <item>
-        <title>Swift - ScrollView 뿌시기 실험</title>
-        <description>&lt;p&gt;이전편 8번에서부터 이어지므로 보고 오는것을 추천 - &lt;a href=&quot;https://jiseobkim.github.io/swift/ui/2021/03/17/swift-ScrollView-뿌시기.html&quot;&gt;이전글&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;이 에러부터!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-17/img-9.png&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;실험&quot;&gt;실험&lt;/h1&gt;
-
-&lt;p&gt;위의 8부터 다시보고 차근차근 봐보자, 이것 저것 실험하기!&lt;/p&gt;
-
-&lt;p&gt;컨텐츠의 사이즈가 모호해! 는 사라졌다. 대신에 위와 같이 X,Width 값 잡고 Y, Height도 필요하다고 나온다.&lt;/p&gt;
-
-&lt;p&gt;하나씩 다잡아보자 X 또는 Width, Y 또는 Height.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;X값 설정&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;센터로 설정을 해보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-10.png&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-11.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;x 값을 잡아줬더니 x또는 Width 잡으라는 경고는 사라졌다. 그리곤 ScrollView의 폭만큼 늘어났다&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Y값 설정&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;X는 다시 지워주고 Y만 센터로 해보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-12.png&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-13.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;마찬가지로 y, height 잡으라는 경고는 사라졌다. 그리곤 ScrollView의 높이만큼 늘어났다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;X,Y값 설정&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;둘다 센터 0으로 잡아보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-14.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;모든 에러가 사라졌다. 그리고 ScrollView와 같은 사이즈가 되었다.&lt;/p&gt;
-
-&lt;p&gt;Content Layout Guide와의 상하좌우를 0으로 맞추고 센터를 0,0잡아준 결과이다.&lt;/p&gt;
-
-&lt;p&gt;스크롤뷰 사이즈 = 컨텐츠 사이즈인 상태이다. 그러므로 &lt;strong&gt;스크롤은 되지 않는다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번엔 Content Layout Guide와의 좌,우 를 100 잡아보자( Leading만 잡아도 Trailing은 줄어드는 이유는 잘 모르겠다. )&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-15.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-17.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;가득 차있다가 좌우 여백 100 만큼을 갖는 사이즈로 형성이 된다.&lt;/p&gt;
-
-&lt;p&gt;그렇다는건 반대로 여백을 반대 방향으로 잡는다면 그만큼 스크롤이 가능하게 된다는것이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;반대로 하기전 스크롤 됨을 확인하기가 어려우므로 다음과 같이 이쁘게 꾸며주자 (핑크와 오렌지의 폭은 100)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-18.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Leading만 -100을 줘보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-19.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;자세히 보면 왼쪽은 두줄이다. 오른쪽은 한줄이고!&lt;/p&gt;
-
-&lt;p&gt;이상태에서 왼쪽-&amp;gt;오른쪽 드래그를 해보면 더이상 갈 수 없다. 빨간색이 bounce 동안은 볼수 있지만 해당 영역으로 스크롤을 갈 수 없다.&lt;/p&gt;
-
-&lt;p&gt;반대로 오른쪽 -&amp;gt; 왼쪽 드래그를 해보면 주황색영역을 볼 수 있다.&lt;/p&gt;
-
-&lt;p&gt;이때부터, 뭔가 내 생각대로 안됨을 인식하기 시작했다.&lt;/p&gt;
-
-&lt;p&gt;Leading과 Trailing에 대해 내가 모른단 생각이 들었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Trailing에 -100을 줘보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-20.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;오 오른쪽으로 갈 수 있는 영역이 100 만큼 생겼다. 그치만 Leading과 다르게 좌로는 늘어나지 않고 우로만 늘어났다.&lt;/p&gt;
-
-&lt;p&gt;오.. 혼란이 온다…&lt;/p&gt;
-
-&lt;p&gt;Leading과 Trailing은 다르다.&lt;/p&gt;
-
-&lt;p&gt;이 얘긴 나중에 하자 길어질듯하다.&lt;/p&gt;
-
-&lt;p&gt;공부해서오자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Leading과 Trailing을 복구 시키고 세로로만 스크롤 되게 해보자&lt;/p&gt;
-
-&lt;p&gt;y축을 -100 줘보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-23.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;축 자체가 -100이 되기 위해선 x2만큼 늘어나야해서 200이 늘어나게 된다.&lt;/p&gt;
-
-&lt;p&gt;어찌 됐든 스크롤은 되지만 영역잡기엔 굉장히 별로 안좋은 방법이다.&lt;/p&gt;
-
-&lt;p&gt;그냥 상하좌우와 X,Y축 AutoLayout만으로도 스크롤을 가능하게 할 수 있다! 정도만 알게 되었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Height, Width값 설정&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;(Y는 마찬가지로 초기화) 이건 한꺼번에 설정 해도 생각한대로 그려지므로 한꺼번에 설정.&lt;/p&gt;
-
-&lt;p&gt;100, 100 으로 잡아보자&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-21.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;아주 귀엽게 됐다, 아직은 컨텐츠 양이 작아서 드래그가 안되니 조금 많이 키워보자&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-22.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;오 이것도 된다.&lt;/p&gt;
-
-&lt;p&gt;자체적인 Width, Height로도 스크롤은 가능하게 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;하지만, 보통은 X방향 또는 Y방향으로만 스크롤이 되게 하므로 위에 방법들은 보통의 경우에 쓰긴 추천하지 않는다.&lt;/p&gt;
-
-&lt;p&gt;그럼 Y축 스크롤만 예를 들었을때, 좌우 폭을 잡는 방법은 다음과 같은 방식이 있다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Frame Layout Guide와 Width를 동일시한다.&lt;/li&gt;
-  &lt;li&gt;ScrollView와 Width를 동일시한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;둘의 차이점은 없다고 생각한다.&lt;/p&gt;
-
-&lt;p&gt;다만, 구조적으로 봤을때 Frame Layout Guide를 사용한다면 스크롤뷰 내의 뷰의 사이즈를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Guide&lt;/code&gt;들을 이용해서 사이즈를 잡을 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-03-18/img-24.png&quot; style=&quot;zoom:100%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;스크롤뷰 내의 컨텐츠 사이즈를 정의할때, 괜히 엄한것이랑 AutoLayout 잡지 말고 Guide들로 잡아! 라는 뜻이 아닐까?&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 18 Mar 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%EB%BF%8C%EC%8B%9C%EA%B8%B0-%EC%8B%A4%ED%97%98.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/ui/2021/03/18/swift-ScrollView-%EB%BF%8C%EC%8B%9C%EA%B8%B0-%EC%8B%A4%ED%97%98.html</guid>
-        
-        
-        <category>Swift</category>
-        
-        <category>UI</category>
         
       </item>
     
