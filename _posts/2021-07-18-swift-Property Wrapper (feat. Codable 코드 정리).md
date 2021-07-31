@@ -15,8 +15,8 @@ categories: [Swift]
 
 관리가 용이하게 코코아팟이나 SPM으로 만들어보고 싶기도 하다.
 
-```
-protocol JSONDefaultWrapperAvailable {
+```swift
+protocol JSONDecodeWrapperAvailable {
     associatedtype ValueType: Decodable
     static var defaultValue: ValueType { get }
 }
@@ -25,22 +25,22 @@ protocol JSONStringConverterAvailable {
     static var defaultValue: Bool { get }
 }
 
-enum JSONDefaultWrapper {
-    typealias EmptyString = Wrapper<JSONDefaultWrapper.TypeCase.EmptyString>
-    typealias True = Wrapper<JSONDefaultWrapper.TypeCase.True>
-    typealias False = Wrapper<JSONDefaultWrapper.TypeCase.False>
-    typealias IntZero = Wrapper<JSONDefaultWrapper.TypeCase.Zero<Int>>
-    typealias DoubleZero = Wrapper<JSONDefaultWrapper.TypeCase.Zero<Double>>
-    typealias FloatZero = Wrapper<JSONDefaultWrapper.TypeCase.Zero<Float>>
-    typealias CGFloatZero = Wrapper<JSONDefaultWrapper.TypeCase.Zero<CGFloat>>
-    typealias StringFalse = StringConverterWrapper<JSONDefaultWrapper.TypeCase.StringFalse>
-    typealias StringTrue = StringConverterWrapper<JSONDefaultWrapper.TypeCase.StringTrue>
-    typealias EmptyList<T: Decodable & ExpressibleByArrayLiteral> = Wrapper<JSONDefaultWrapper.TypeCase.List<T>>
-    typealias EmptyDict<T: Decodable & ExpressibleByDictionaryLiteral> = Wrapper<JSONDefaultWrapper.TypeCase.Dict<T>>
+enum JSONDecodeWrapper {
+    typealias EmptyString = Wrapper<JSONDecodeWrapper.TypeCase.EmptyString>
+    typealias True = Wrapper<JSONDecodeWrapper.TypeCase.True>
+    typealias False = Wrapper<JSONDecodeWrapper.TypeCase.False>
+    typealias IntZero = Wrapper<JSONDecodeWrapper.TypeCase.Zero<Int>>
+    typealias DoubleZero = Wrapper<JSONDecodeWrapper.TypeCase.Zero<Double>>
+    typealias FloatZero = Wrapper<JSONDecodeWrapper.TypeCase.Zero<Float>>
+    typealias CGFloatZero = Wrapper<JSONDecodeWrapper.TypeCase.Zero<CGFloat>>
+    typealias StringFalse = StringConverterWrapper<JSONDecodeWrapper.TypeCase.StringFalse>
+    typealias StringTrue = StringConverterWrapper<JSONDecodeWrapper.TypeCase.StringTrue>
+    typealias EmptyList<T: Decodable & ExpressibleByArrayLiteral> = Wrapper<JSONDecodeWrapper.TypeCase.List<T>>
+    typealias EmptyDict<T: Decodable & ExpressibleByDictionaryLiteral> = Wrapper<JSONDecodeWrapper.TypeCase.Dict<T>>
     
     // Property Wrapper - Optional Type to Type
     @propertyWrapper
-    struct Wrapper<T: JSONDefaultWrapperAvailable> {
+    struct Wrapper<T: JSONDecodeWrapperAvailable> {
         typealias ValueType = T.ValueType
 
         var wrappedValue: ValueType
@@ -74,22 +74,22 @@ enum JSONDefaultWrapper {
 
     enum TypeCase {
         // Type Enums
-        enum True: JSONDefaultWrapperAvailable {
+        enum True: JSONDecodeWrapperAvailable {
             // 기본값 - true
             static var defaultValue: Bool { true }
         }
 
-        enum False: JSONDefaultWrapperAvailable {
+        enum False: JSONDecodeWrapperAvailable {
             // 기본값 - false
             static var defaultValue: Bool { false }
         }
 
-        enum EmptyString: JSONDefaultWrapperAvailable {
+        enum EmptyString: JSONDecodeWrapperAvailable {
             // 기본값 - ""
             static var defaultValue: String { "" }
         }
         
-        enum Zero<T: Decodable>: JSONDefaultWrapperAvailable where T: Numeric {
+        enum Zero<T: Decodable>: JSONDecodeWrapperAvailable where T: Numeric {
             // 기본값 - 0
             static var defaultValue: T { 0 }
         }
@@ -104,33 +104,33 @@ enum JSONDefaultWrapper {
             static var defaultValue: Bool { true }
         }
         
-        enum List<T: Decodable & ExpressibleByArrayLiteral>: JSONDefaultWrapperAvailable {
+        enum List<T: Decodable & ExpressibleByArrayLiteral>: JSONDecodeWrapperAvailable {
             // 기본값 - []
             static var defaultValue: T { [] }
         }
         
-        enum Dict<T: Decodable & ExpressibleByDictionaryLiteral>: JSONDefaultWrapperAvailable {
+        enum Dict<T: Decodable & ExpressibleByDictionaryLiteral>: JSONDecodeWrapperAvailable {
             // 기본값 - [:]
             static var defaultValue: T { [:] }
         }
     }
 }
 
-extension JSONDefaultWrapper.Wrapper: Decodable {
+extension JSONDecodeWrapper.Wrapper: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.wrappedValue = try container.decode(ValueType.self)
     }
 }
 
-extension JSONDefaultWrapper.StringConverterWrapper: Decodable {
+extension JSONDecodeWrapper.StringConverterWrapper: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.wrappedValue = (try container.decode(String.self)) == "Y"
     }
 }
 
-extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
+extension JSONDecodeWrapper.TimestampToOptionalDate: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let timestamp = try container.decode(Double.self)
@@ -138,4 +138,20 @@ extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
         self.wrappedValue = date
     }
 }
+
+extension KeyedDecodingContainer {
+    func decode<T: JSONDecodeWrapperAvailable>(_ type: JSONDecodeWrapper.Wrapper<T>.Type, forKey key: Key) throws -> JSONDecodeWrapper.Wrapper<T> {
+        try decodeIfPresent(type, forKey: key) ?? .init()
+    }
+    
+    func decode<T: JSONStringConverterAvailable>(_ type: JSONDecodeWrapper.StringConverterWrapper<T>.Type, forKey key: Key) throws -> JSONDecodeWrapper.StringConverterWrapper<T> {
+        try decodeIfPresent(type, forKey: key) ?? .init()
+    }
+    
+    func decode(_ type: JSONDecodeWrapper.TimestampToOptionalDate.Type, forKey key: Key) throws -> JSONDecodeWrapper.TimestampToOptionalDate {
+        try decodeIfPresent(type, forKey: key) ?? .init()
+    }
+}
+
+
 ```
