@@ -1,6 +1,7 @@
-have_func: checking for rb_ary_subseq()... -------------------- yes
+have_func: checking for rb_ary_subseq()... -------------------- no
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -12,6 +13,12 @@ checked program was:
 /* end */
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
+  "_rb_ary_subseq", referenced from:
+      _t in conftest-f45d15.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -28,6 +35,39 @@ checked program was:
 12:   return !!argv[argc];
 13: }
 14: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_ary_subseq; return !p; }
+/* end */
+
+"clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+conftest.c:14:13: error: conflicting types for 'rb_ary_subseq'
+extern void rb_ary_subseq();
+            ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/array.h:42:7: note: previous declaration is here
+VALUE rb_ary_subseq(VALUE, long, long);
+      ^
+conftest.c:15:29: error: too few arguments to function call, expected 3, have 0
+int t(void) { rb_ary_subseq(); return 0; }
+              ~~~~~~~~~~~~~ ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/array.h:42:7: note: 'rb_ary_subseq' declared here
+VALUE rb_ary_subseq(VALUE, long, long);
+      ^
+2 errors generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void rb_ary_subseq();
+15: int t(void) { rb_ary_subseq(); return 0; }
 /* end */
 
 --------------------
