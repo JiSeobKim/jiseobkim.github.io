@@ -25,7 +25,7 @@
     
 
     
-      <meta content="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html" property="og:url">
+      <meta content="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%EC%BD%94%EB%93%9C-%EC%A0%95%EB%A6%AC).html" property="og:url">
     
 
     
@@ -56,7 +56,7 @@
     
 
     
-      <meta name="twitter:url" content="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html">
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%EC%BD%94%EB%93%9C-%EC%A0%95%EB%A6%AC).html">
     
 
     
@@ -137,128 +137,144 @@
 
 <p>관리가 용이하게 코코아팟이나 SPM으로 만들어보고 싶기도 하다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protocol JSONDefaultWrapperAvailable {
-    associatedtype ValueType: Decodable
-    static var defaultValue: ValueType { get }
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">ValueType</span><span class="p">:</span> <span class="kt">Decodable</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">ValueType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
 
-protocol JSONStringConverterAvailable {
-    static var defaultValue: Bool { get }
-}
+<span class="kd">protocol</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
 
-enum JSONDefaultWrapper {
-    typealias EmptyString = Wrapper&lt;JSONDefaultWrapper.TypeCase.EmptyString&gt;
-    typealias True = Wrapper&lt;JSONDefaultWrapper.TypeCase.True&gt;
-    typealias False = Wrapper&lt;JSONDefaultWrapper.TypeCase.False&gt;
-    typealias IntZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;Int&gt;&gt;
-    typealias DoubleZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;Double&gt;&gt;
-    typealias FloatZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;Float&gt;&gt;
-    typealias CGFloatZero = Wrapper&lt;JSONDefaultWrapper.TypeCase.Zero&lt;CGFloat&gt;&gt;
-    typealias StringFalse = StringConverterWrapper&lt;JSONDefaultWrapper.TypeCase.StringFalse&gt;
-    typealias StringTrue = StringConverterWrapper&lt;JSONDefaultWrapper.TypeCase.StringTrue&gt;
-    typealias EmptyList&lt;T: Decodable &amp; ExpressibleByArrayLiteral&gt; = Wrapper&lt;JSONDefaultWrapper.TypeCase.List&lt;T&gt;&gt;
-    typealias EmptyDict&lt;T: Decodable &amp; ExpressibleByDictionaryLiteral&gt; = Wrapper&lt;JSONDefaultWrapper.TypeCase.Dict&lt;T&gt;&gt;
+<span class="kd">enum</span> <span class="kt">JSONDecodeWrapper</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyString</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">EmptyString</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">True</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">True</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">False</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">False</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">IntZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">DoubleZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">FloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">CGFloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">CGFloat</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">StringFalse</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringFalse</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">StringTrue</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringTrue</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyList</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyDict</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByDictionaryLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Dict</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
     
-    // Property Wrapper - Optional Type to Type
-    @propertyWrapper
-    struct Wrapper&lt;T: JSONDefaultWrapperAvailable&gt; {
-        typealias ValueType = T.ValueType
+    <span class="c1">// Property Wrapper - Optional Type to Type</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">typealias</span> <span class="kt">ValueType</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="kt">ValueType</span>
 
-        var wrappedValue: ValueType
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">ValueType</span>
 
-        init() {
-        wrappedValue = T.defaultValue
-        }
-    }
+        <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    // Property Wrapper - Optional String To Bool
-    @propertyWrapper
-    struct StringConverterWrapper&lt;T: JSONStringConverterAvailable&gt; {
-        var wrappedValue: Bool = T.defaultValue
-    }
+    <span class="c1">// Property Wrapper - Optional String To Bool</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+    <span class="p">}</span>
     
-    // Property Wrapper - Optional Timestamp to Optinoal Date
-    @propertyWrapper
-    struct TimestampToOptionalDate {
-        var wrappedValue: Date?
-    }
+    <span class="c1">// Property Wrapper - Optional Timestamp to Optinoal Date</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span>
+    <span class="p">}</span>
     
-    @propertyWrapper
-    struct TrueByStringToBool {
-        var wrappedValue: Bool = true
-    }
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">TrueByStringToBool</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">}</span>
     
-    @propertyWrapper
-    struct FalseByStringToBool {
-        var wrappedValue: Bool = false
-    }
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">FalseByStringToBool</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
 
-    enum TypeCase {
-        // Type Enums
-        enum True: JSONDefaultWrapperAvailable {
-            // 기본값 - true
-            static var defaultValue: Bool { true }
-        }
+    <span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+        <span class="c1">// Type Enums</span>
+        <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - true</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
 
-        enum False: JSONDefaultWrapperAvailable {
-            // 기본값 - false
-            static var defaultValue: Bool { false }
-        }
+        <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
 
-        enum EmptyString: JSONDefaultWrapperAvailable {
-            // 기본값 - ""
-            static var defaultValue: String { "" }
-        }
+        <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - ""</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+        <span class="p">}</span>
         
-        enum Zero&lt;T: Decodable&gt;: JSONDefaultWrapperAvailable where T: Numeric {
-            // 기본값 - 0
-            static var defaultValue: T { 0 }
-        }
+        <span class="kd">enum</span> <span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="k">where</span> <span class="kt">T</span><span class="p">:</span> <span class="kt">Numeric</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - 0</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span>
+        <span class="p">}</span>
         
-        enum StringFalse: JSONStringConverterAvailable {
-            // 기본값 - false
-            static var defaultValue: Bool { false }
-        }
+        <span class="kd">enum</span> <span class="kt">StringFalse</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
         
-        enum StringTrue: JSONStringConverterAvailable {
-            // 기본값 - false
-            static var defaultValue: Bool { true }
-        }
+        <span class="kd">enum</span> <span class="kt">StringTrue</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
         
-        enum List&lt;T: Decodable &amp; ExpressibleByArrayLiteral&gt;: JSONDefaultWrapperAvailable {
-            // 기본값 - []
-            static var defaultValue: T { [] }
-        }
+        <span class="kd">enum</span> <span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - []</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[]</span> <span class="p">}</span>
+        <span class="p">}</span>
         
-        enum Dict&lt;T: Decodable &amp; ExpressibleByDictionaryLiteral&gt;: JSONDefaultWrapperAvailable {
-            // 기본값 - [:]
-            static var defaultValue: T { [:] }
-        }
-    }
-}
+        <span class="kd">enum</span> <span class="kt">Dict</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByDictionaryLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - [:]</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[:]</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-extension JSONDefaultWrapper.Wrapper: Decodable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        self.wrappedValue = try container.decode(ValueType.self)
-    }
-}
+<span class="kd">extension</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">ValueType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-extension JSONDefaultWrapper.StringConverterWrapper: Decodable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        self.wrappedValue = (try container.decode(String.self)) == "Y"
-    }
-}
+<span class="kd">extension</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="p">(</span><span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">))</span> <span class="o">==</span> <span class="s">"Y"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let timestamp = try container.decode(Double.self)
-        let date = Date.init(timeIntervalSince1970: timestamp)
-        self.wrappedValue = date
-    }
-}
+<span class="kd">extension</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">timestamp</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Double</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Date</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">timeIntervalSince1970</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="n">date</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">KeyedDecodingContainer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSONDecodeWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
 </code></pre></div></div>
 </div>
   <div class="share-page">
@@ -269,7 +285,7 @@ extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   <!-- Facebook -->
-  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%EC%BD%94%EB%93%9C-%EC%A0%95%EB%A6%AC).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 
 <div id="fb-root"></div>
@@ -295,7 +311,24 @@ extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
               <ul>
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html">Swift - SPM 만들기</a>
+                  <a href="http://localhost:4000/swift/2021/08/06/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0(feat.-PropertyWrapper%ED%8E%B8).html">Swift - SPM 만들기(feat.  PropertyWrapper편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/31/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0.html">Swift - SPM 만들기</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>)
                   
@@ -353,7 +386,7 @@ extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
           
             
                 <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html">Swift - Property Wrapper (feat. Codable 2편)</a>
+                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 2편)</a>
                   
                     (Categories: <a href="/category/Swift">Swift</a>)
                   
@@ -385,16 +418,6 @@ extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
       
         
           
-            
-                <li class="relatedPost">
-                  <a href="http://localhost:4000/swift/2021/06/13/swift-Property-Wrapper.html">Swift - Property Wrapper(기본)</a>
-                  
-                    (Categories: <a href="/category/Swift">Swift</a>)
-                  
-                </li>
-          
-          
-        
       
     
   
@@ -664,7 +687,7 @@ extension JSONDefaultWrapper.TimestampToOptionalDate: Decodable {
     <a class="prev" href="/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html">&laquo; Swift - Property Wrapper (feat. Codable Final)</a>
   
   
-    <a class="next" href="/swift/2021/07/31/swift-SPM-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html">Swift - SPM 만들기 &raquo;</a>
+    <a class="next" href="/swift/2021/07/31/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0.html">Swift - SPM 만들기 &raquo;</a>
   
 </div>
 

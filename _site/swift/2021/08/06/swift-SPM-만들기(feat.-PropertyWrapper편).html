@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Swift - SPM 만들기(feat.  PropertyWrapper편) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="Swift - SPM 만들기(feat.  PropertyWrapper편)" />
+    <meta name="keywords" content="Swift - SPM 만들기(feat.  PropertyWrapper편), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="Swift - SPM 만들기(feat.  PropertyWrapper편)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2021/08/06/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0(feat.-PropertyWrapper%ED%8E%B8).html" property="og:url">
+    
+
+    
+      <meta content="2021-08-06T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Swift - SPM 만들기(feat.  PropertyWrapper편)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2021/08/06/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0(feat.-PropertyWrapper%ED%8E%B8).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Swift - SPM 만들기(feat.  PropertyWrapper편)</h1>
+</header>
+
+<span class="time">06 Aug 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>지난편에는 <code class="language-plaintext highlighter-rouge">SPM</code>에 대해서 만드는 기본 방법에 대해 알아보았다.</p>
+
+<p><br /></p>
+
+<p>이번편에서는 지지난편에 마무리를 지었던
+<code class="language-plaintext highlighter-rouge">Property Wrapper</code>를 SPM으로 만들어서 적용하자.</p>
+
+<p><br /></p>
+
+<p>지난편 파일에다가 새로운 <code class="language-plaintext highlighter-rouge">swift</code>파일을 하나 만들어주자.
+<img src="/assets/images/2021-08-08/img.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>그리고 <a href="https://jiseobkim.github.io/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-코드-정리).html">지난편의 글</a>에서 코드를 가져오자.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">ValueType</span><span class="p">:</span> <span class="kt">Decodable</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">ValueType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">protocol</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="kt">JSWrapper</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyString</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">EmptyString</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">True</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">True</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">False</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">False</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">IntZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">DoubleZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">FloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">CGFloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">CGFloat</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">StringFalse</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringFalse</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">StringTrue</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringTrue</span><span class="o">&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyList</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
+    <span class="kd">typealias</span> <span class="kt">EmptyDict</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByDictionaryLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Dict</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
+    
+    <span class="c1">// Property Wrapper - Optional Type to Type</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">typealias</span> <span class="kt">ValueType</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="kt">ValueType</span>
+
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">ValueType</span>
+
+        <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Property Wrapper - Optional String To Bool</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Property Wrapper - Optional Timestamp to Optinoal Date</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span>
+    <span class="p">}</span>
+    
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">TrueByStringToBool</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">struct</span> <span class="kt">FalseByStringToBool</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+        <span class="c1">// Type Enums</span>
+        <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - true</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - ""</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">enum</span> <span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="k">where</span> <span class="kt">T</span><span class="p">:</span> <span class="kt">Numeric</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - 0</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">enum</span> <span class="kt">StringFalse</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">enum</span> <span class="kt">StringTrue</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">enum</span> <span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - []</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[]</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">enum</span> <span class="kt">Dict</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByDictionaryLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - [:]</span>
+            <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[:]</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">ValueType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="p">(</span><span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">))</span> <span class="o">==</span> <span class="s">"Y"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">timestamp</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Double</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Date</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">timeIntervalSince1970</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="n">date</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">KeyedDecodingContainer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDecodeWrapperAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>조금 길었다.</p>
+
+<p>아무튼! 이상태로 빌드해보면 실패한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">CGFloat</code>을 사용 하였는데, <code class="language-plaintext highlighter-rouge">UIKit</code>을 <code class="language-plaintext highlighter-rouge">import</code> 안해줬기 때문이다.</p>
+
+<p><br /></p>
+
+<p>그런데, <code class="language-plaintext highlighter-rouge">import UIKit</code>을 하더라도 타겟에 따라 성공할 수도 실패할 수도 있다.</p>
+
+<p><img src="/assets/images/2021-08-08/img-1.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>왜냐하면 공식 문서에 따르면 UIKit의 경우 iOS, tvOS에만 가능한 프레임워크이기 때문!</p>
+
+<p><img src="/assets/images/2021-08-08/img-2.png" style="zoom:40%;" /></p>
+
+<p>타겟을 <code class="language-plaintext highlighter-rouge">Any iOS Device</code>에 맞춰주자,</p>
+
+<p><br /></p>
+
+<p>그리고 여기서는 iOS에서만 가능하게 할거니깐 <code class="language-plaintext highlighter-rouge">package</code>를 살짝 손봐주자
+<img src="/assets/images/2021-08-08/img-3.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>의미는 간단하다. 사용 가능한 플랫폼을 배열 형태로 정의 해준다.</p>
+
+<p>배열에 들어가는 자료형은 <code class="language-plaintext highlighter-rouge">SupportedPlatform</code>으로 <code class="language-plaintext highlighter-rouge">구조체</code>이다</p>
+
+<p><br /></p>
+
+<p>안에 있는 <code class="language-plaintext highlighter-rouge">iOS</code>는 <code class="language-plaintext highlighter-rouge">enum</code>을 쓸거라 예상 했는데, 기가막히게도 완벽히 틀렸다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.iOS</code>: 타입 메소드</li>
+  <li><code class="language-plaintext highlighter-rouge">.v9</code>:  타입 프로퍼티</li>
+</ul>
+
+<p>너무나도 직관적으로 해석된다. 사용 가능한 플랫폼은 <code class="language-plaintext highlighter-rouge">iOS</code>고 <code class="language-plaintext highlighter-rouge">v9</code>이상에서만 가능하다.</p>
+
+<p>따라서 설명 패스.</p>
+
+<p><br /></p>
+
+<p>타겟 맞추고, 플랫폼을 정의해주고 나서 빌드를 하면 성공을 하게 된다.</p>
+
+<p><br /></p>
+
+<p>하지만,</p>
+
+<p>전의 글을 봤다면 실패할것이란 것을 알 수 있다.</p>
+
+<p><br /></p>
+
+<p>접근제어자가 <code class="language-plaintext highlighter-rouge">internal</code>로 되어있기에 자신이 쓰려는 프로젝트에선</p>
+
+<p>이 라이브러리를 <code class="language-plaintext highlighter-rouge">import</code>해주어도 접근이 불가하다.</p>
+
+<p>써야할 곳들에 <code class="language-plaintext highlighter-rouge">접근제어자</code>를 <code class="language-plaintext highlighter-rouge">public</code>로 수정해주자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">ValueType</span><span class="p">:</span> <span class="kt">Decodable</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">ValueType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">JSWrapper</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">EmptyString</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">EmptyString</span><span class="o">&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">True</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">True</span><span class="o">&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">False</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">False</span><span class="o">&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IntZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">DoubleZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Double</span><span class="o">&gt;&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">FloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CGFloatZero</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">CGFloat</span><span class="o">&gt;&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StringFalse</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringFalse</span><span class="o">&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StringTrue</span> <span class="o">=</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">StringTrue</span><span class="o">&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">EmptyList</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">EmptyDict</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByDictionaryLiteral</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TypeCase</span><span class="o">.</span><span class="kt">Dict</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span>
+    
+    <span class="c1">// Property Wrapper - Optional Type to Type</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ValueType</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="kt">ValueType</span>
+        <span class="kd">public</span> <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">ValueType</span>
+        <span class="kd">public</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Property Wrapper - Optional String To Bool</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="kd">public</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="n">defaultValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Property Wrapper - Optional Timestamp to Optinoal Date</span>
+    <span class="kd">@propertyWrapper</span>
+    <span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="kd">public</span> <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span>
+        <span class="kd">public</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">wrappedValue</span> <span class="o">=</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TypeCase</span> <span class="p">{</span>
+        <span class="c1">// Type Enums</span>
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">True</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - true</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">False</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EmptyString</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - ""</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">""</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Zero</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="k">where</span> <span class="kt">T</span><span class="p">:</span> <span class="kt">Numeric</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - 0</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">StringFalse</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">StringTrue</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - false</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="kc">true</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">List</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByArrayLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - []</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[]</span> <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Dict</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="o">&amp;</span> <span class="kt">ExpressibleByDictionaryLiteral</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span> <span class="p">{</span>
+            <span class="c1">// 기본값 - [:]</span>
+            <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="p">[:]</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">ValueType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="p">(</span><span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">))</span> <span class="o">==</span> <span class="s">"Y"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">timestamp</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Double</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Date</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">timeIntervalSince1970</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wrappedValue</span> <span class="o">=</span> <span class="n">date</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">KeyedDecodingContainer</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONDecoderWrapperAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">Wrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">public</span> <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">JSONStringConverterAvailable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">StringConverterWrapper</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">JSWrapper</span><span class="o">.</span><span class="kt">TimestampToOptionalDate</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="nf">decodeIfPresent</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">??</span> <span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p><br /></p>
+
+<p>엮이고 엮이다보니 생각보다 많은 곳에 <code class="language-plaintext highlighter-rouge">public</code>을 붙여줬다.</p>
+
+<p>거진 다붙였다고 봐야할 듯 하다.</p>
+
+<p><br /></p>
+
+<p>이제 커밋하고 푸시까지 해주자.</p>
+
+<p>이번에도 <code class="language-plaintext highlighter-rouge">Branch</code>로 불러오게 할 것이고, 이번 브랜치 명은 <code class="language-plaintext highlighter-rouge">Feature/PropertyWrapper</code>로 정했다.</p>
+
+<p>그리고 가져오자.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-08-08/img-4.png" style="zoom:40%;" /></p>
+
+<blockquote>
+  <p>갑자기 다크모드 된것 같다면 그것은 기분탓.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그리고, <code class="language-plaintext highlighter-rouge">import JSLibrary</code> 해주고 확인 코드와 결과는 다음과 같다</p>
+
+<p><img src="/assets/images/2021-08-08/img-5.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 주석1. wrapper 테스트할 클래스</span>
+<span class="kd">class</span> <span class="kt">TestClass</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+    <span class="kd">@JSWrapper</span><span class="o">.</span><span class="kt">EmptyString</span> <span class="k">var</span> <span class="nv">emptyString</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">@JSWrapper</span><span class="o">.</span><span class="kt">IntZero</span> <span class="k">var</span> <span class="nv">zeroInt</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">@JSWrapper</span><span class="o">.</span><span class="kt">False</span> <span class="k">var</span> <span class="nv">falseBool</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>주석 1의 코드는 위와 같은데, SPM으로 만들어준 <code class="language-plaintext highlighter-rouge">JSWrapper</code>를 이용했다는게 중점이다.</p>
+
+<p>그 역할은 위의 결과와도 같으며 사용법은 이전 글들을 참고하면 좋을 듯하다.</p>
+
+<p><strong>결론은 잘된다!</strong></p>
+
+<p><br /></p>
+
+<p>예전에 프레임워크 만들다가 실패한적이 있었는데,</p>
+
+<p>SPM 만들기가 생각보다 너무 간단해서 유용하다 생각되는 것들을</p>
+
+<p>내 이름을 넣고 라이브러리 하나 만들면 좋을 듯하다.</p>
+
+<p><br /></p>
+
+<p>끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2021/08/06/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0(feat.-PropertyWrapper%ED%8E%B8).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/31/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0.html">Swift - SPM 만들기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%EC%BD%94%EB%93%9C-%EC%A0%95%EB%A6%AC).html">Swift - Property Wrapper (feat. Codable 코드 정리)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/12/swift-Property-Wrapper-(feat.-Codable-Final).html">Swift - Property Wrapper (feat. Codable Final)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/11/swift-Property-Wrapper-(feat.-Codable-3%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 3편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 2편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/06/20/swift-Property-Wrapper-(feat.-Codable-1%ED%8E%B8).html">Swift - Property Wrapper (feat. Codable 1편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2021/07/31/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0.html">&laquo; Swift - SPM 만들기</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_Swift - SPM 만들기(feat.  PropertyWrapper편)";
+    var disqus_title = "Swift - SPM 만들기(feat.  PropertyWrapper편)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
