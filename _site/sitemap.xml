@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 08 Aug 2021 21:53:29 +0900</pubDate>
-    <lastBuildDate>Sun, 08 Aug 2021 21:53:29 +0900</lastBuildDate>
+    <pubDate>Sun, 08 Aug 2021 21:56:27 +0900</pubDate>
+    <lastBuildDate>Sun, 08 Aug 2021 21:56:27 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -2067,8 +2067,8 @@
 &lt;p&gt;끝.&lt;/p&gt;
 </description>
         <pubDate>Sun, 27 Jun 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</guid>
+        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</guid>
         
         
         <category>Swift</category>
