@@ -3,6 +3,7 @@ package configuration for openssl is not found
 have_library: checking for -lcrypto... -------------------- no
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -117,10 +118,11 @@ checked program was:
 /* end */
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
-Undefined symbols for architecture arm64:
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
   "_rb_thread_blocking_region", referenced from:
-      _t in conftest-714314.o
-ld: symbol(s) not found for architecture arm64
+      _t in conftest-be140f.o
+ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
@@ -143,9 +145,15 @@ checked program was:
 
 --------------------
 
-have_func: checking for rb_thread_call_without_gvl() in ruby/thread.h... -------------------- yes
+have_func: checking for rb_thread_call_without_gvl() in ruby/thread.h... -------------------- no
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
+  "_rb_thread_call_without_gvl", referenced from:
+      _t in conftest-1e3b7b.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -166,11 +174,52 @@ checked program was:
 16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_without_gvl; return !p; }
 /* end */
 
+"clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+conftest.c:16:13: error: conflicting types for 'rb_thread_call_without_gvl'
+extern void rb_thread_call_without_gvl();
+            ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/thread.h:24:7: note: previous declaration is here
+void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+      ^
+conftest.c:17:42: error: too few arguments to function call, expected 4, have 0
+int t(void) { rb_thread_call_without_gvl(); return 0; }
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/thread.h:24:7: note: 'rb_thread_call_without_gvl' declared here
+void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+      ^
+2 errors generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ruby/thread.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: extern void rb_thread_call_without_gvl();
+17: int t(void) { rb_thread_call_without_gvl(); return 0; }
+/* end */
+
 --------------------
 
-have_func: checking for rb_thread_fd_select()... -------------------- yes
+have_func: checking for rb_thread_fd_select()... -------------------- no
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
+  "_rb_thread_fd_select", referenced from:
+      _t in conftest-5a05cf.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -187,6 +236,39 @@ checked program was:
 12:   return !!argv[argc];
 13: }
 14: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_fd_select; return !p; }
+/* end */
+
+"clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+conftest.c:14:13: error: conflicting types for 'rb_thread_fd_select'
+extern void rb_thread_fd_select();
+            ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/select.h:48:5: note: previous declaration is here
+int rb_thread_fd_select(int, rb_fdset_t *, rb_fdset_t *, rb_fdset_t *, struct timeval *);
+    ^
+conftest.c:15:35: error: too few arguments to function call, expected 5, have 0
+int t(void) { rb_thread_fd_select(); return 0; }
+              ~~~~~~~~~~~~~~~~~~~ ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/select.h:48:5: note: 'rb_thread_fd_select' declared here
+int rb_thread_fd_select(int, rb_fdset_t *, rb_fdset_t *, rb_fdset_t *, struct timeval *);
+    ^
+2 errors generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void rb_thread_fd_select();
+15: int t(void) { rb_thread_fd_select(); return 0; }
 /* end */
 
 --------------------
@@ -207,7 +289,7 @@ checked program was:
 
 --------------------
 
-have_func: checking for rb_wait_for_single_fd()... -------------------- yes
+have_func: checking for rb_wait_for_single_fd()... -------------------- no
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
 conftest.c:14:57: error: use of undeclared identifier 'rb_wait_for_single_fd'
@@ -233,6 +315,12 @@ checked program was:
 /* end */
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
+  "_rb_wait_for_single_fd", referenced from:
+      _t in conftest-974421.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -280,10 +368,11 @@ checked program was:
 /* end */
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
-Undefined symbols for architecture arm64:
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
   "_rb_enable_interrupt", referenced from:
-      _t in conftest-be2421.o
-ld: symbol(s) not found for architecture arm64
+      _t in conftest-ef211a.o
+ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
@@ -306,9 +395,15 @@ checked program was:
 
 --------------------
 
-have_func: checking for rb_time_new()... -------------------- yes
+have_func: checking for rb_time_new()... -------------------- no
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
+  "_rb_time_new", referenced from:
+      _t in conftest-1321ce.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -325,6 +420,39 @@ checked program was:
 12:   return !!argv[argc];
 13: }
 14: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_time_new; return !p; }
+/* end */
+
+"clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+conftest.c:14:13: error: conflicting types for 'rb_time_new'
+extern void rb_time_new();
+            ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/time.h:39:7: note: previous declaration is here
+VALUE rb_time_new(time_t, long);
+      ^
+conftest.c:15:27: error: too few arguments to function call, expected 2, have 0
+int t(void) { rb_time_new(); return 0; }
+              ~~~~~~~~~~~ ^
+/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/time.h:39:7: note: 'rb_time_new' declared here
+VALUE rb_time_new(time_t, long);
+      ^
+2 errors generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void rb_time_new();
+15: int t(void) { rb_time_new(); return 0; }
 /* end */
 
 --------------------
@@ -411,6 +539,7 @@ checked program was:
 have_func: checking for writev() in sys/uio.h... -------------------- yes
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -461,10 +590,11 @@ checked program was:
 /* end */
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
-Undefined symbols for architecture arm64:
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
   "_pipe2", referenced from:
-      _t in conftest-156f41.o
-ld: symbol(s) not found for architecture arm64
+      _t in conftest-e0e83b.o
+ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
@@ -517,10 +647,11 @@ checked program was:
 /* end */
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
-Undefined symbols for architecture arm64:
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
+Undefined symbols for architecture x86_64:
   "_accept4", referenced from:
-      _t in conftest-ce0b78.o
-ld: symbol(s) not found for architecture arm64
+      _t in conftest-c590cf.o
+ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
 /* begin */
@@ -592,6 +723,7 @@ checked program was:
 have_func: checking for clock_gettime()... -------------------- yes
 
 "clang -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0   "
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -646,6 +778,7 @@ checked program was:
 
 "clang++ -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0 -Wall  "
 clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -655,6 +788,7 @@ checked program was:
 
 "clang++ -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0 -Wextra  "
 clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -664,6 +798,7 @@ checked program was:
 
 "clang++ -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0 -Wno-deprecated-declarations  "
 clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -673,6 +808,7 @@ checked program was:
 
 "clang++ -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0 -Wno-ignored-qualifiers  "
 clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -682,6 +818,7 @@ checked program was:
 
 "clang++ -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0 -Wno-unused-result  "
 clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -691,6 +828,7 @@ checked program was:
 
 "clang++ -fdeclspec -o conftest -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/arm64-darwin21 -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/backward -I/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0 -I. -I/Users/jiseob/.rbenv/versions/3.0.2/openssl/include -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -O3 -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdivision-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wmissing-noreturn -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wextra-tokens -fno-common -pipe conftest.c  -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib -L/Users/jiseob/.rbenv/versions/3.0.2/openssl/lib -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -m64   -lruby.3.0 -Wno-address  "
 clang: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -704,6 +842,7 @@ conftest.c:5:35: warning: unused variable 'tuple' [-Wunused-variable]
   int main(){ pair<const int,int> tuple = make_pair(1,2); }
                                   ^
 1 warning generated.
+ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 checked program was:
 /* begin */
 1: #include "ruby.h"
