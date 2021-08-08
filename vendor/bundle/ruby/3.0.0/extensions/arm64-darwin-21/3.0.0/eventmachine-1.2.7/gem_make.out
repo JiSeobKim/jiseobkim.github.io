@@ -1,73 +1,16 @@
-current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext
-/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20210808-6836-ha1tny.rb extconf.rb
-checking for -lcrypto... no
-checking for openssl/ssl.h... yes
-checking for openssl/err.h... yes
-checking for rb_trap_immediate in ruby.h,rubysig.h... no
-checking for rb_thread_blocking_region()... no
-checking for rb_thread_call_without_gvl() in ruby/thread.h... no
-checking for rb_thread_fd_select()... no
-checking for rb_fdset_t in ruby/intern.h... yes
-checking for rb_wait_for_single_fd()... no
-checking for rb_enable_interrupt()... no
-checking for rb_time_new()... no
-checking for inotify_init() in sys/inotify.h... no
-checking for __NR_inotify_init in sys/syscall.h... no
-checking for writev() in sys/uio.h... yes
-checking for pipe2() in unistd.h... no
-checking for accept4() in sys/socket.h... no
-checking for SOCK_CLOEXEC in sys/socket.h... no
-checking for sys/event.h... yes
-checking for sys/queue.h... yes
-checking for clock_gettime()... yes
-checking for CLOCK_MONOTONIC_RAW in time.h... yes
-checking for CLOCK_MONOTONIC in time.h... yes
-CXXFLAGS= -Wall -Wextra -Wno-deprecated-declarations -Wno-ignored-qualifiers -Wno-unused-result -Wno-address
+current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20210808-22146-upg1a1.rb extconf.rb
 creating Makefile
 
-current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext
+current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext/fastfilereader
 make DESTDIR\= clean
 
-current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext
+current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext/fastfilereader
 make DESTDIR\=
-compiling binder.cpp
-compiling cmain.cpp
-compiling ed.cpp
-compiling em.cpp
-em.cpp:706:13: error: use of undeclared identifier 'rb_thread_select'; did you mean 'rb_thread_fd_select'?
-        if ((ret = rb_thread_select(kqfd + 1, &fdreads, NULL, NULL, &tv)) < 1) {
-                   ^~~~~~~~~~~~~~~~
-                   rb_thread_fd_select
-/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/select.h:48:5: note: 'rb_thread_fd_select' declared here
-int rb_thread_fd_select(int, rb_fdset_t *, rb_fdset_t *, rb_fdset_t *, struct timeval *);
-    ^
-em.cpp:706:40: error: cannot initialize a parameter of type 'rb_fdset_t *' with an rvalue of type 'fd_set *'
-        if ((ret = rb_thread_select(kqfd + 1, &fdreads, NULL, NULL, &tv)) < 1) {
-                                              ^~~~~~~~
-/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/select.h:48:42: note: passing argument to parameter here
-int rb_thread_fd_select(int, rb_fdset_t *, rb_fdset_t *, rb_fdset_t *, struct timeval *);
-                                         ^
-em.cpp:939:9: error: use of undeclared identifier 'rb_thread_select'; did you mean 'rb_thread_fd_select'?
-        return EmSelect (maxsocket+1, &fdreads, &fdwrites, &fderrors, &tv);
-               ^~~~~~~~
-               rb_thread_fd_select
-./em.h:29:22: note: expanded from macro 'EmSelect'
-    #define EmSelect rb_thread_select
-                     ^
-/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/select.h:48:5: note: 'rb_thread_fd_select' declared here
-int rb_thread_fd_select(int, rb_fdset_t *, rb_fdset_t *, rb_fdset_t *, struct timeval *);
-    ^
-em.cpp:1063:6: error: use of undeclared identifier 'rb_thread_select'; did you mean 'rb_thread_fd_select'?
-                                        EmSelect (0, NULL, NULL, NULL, &tv);
-                                        ^~~~~~~~
-                                        rb_thread_fd_select
-./em.h:29:22: note: expanded from macro 'EmSelect'
-    #define EmSelect rb_thread_select
-                     ^
-/Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/ruby/internal/intern/select.h:48:5: note: 'rb_thread_fd_select' declared here
-int rb_thread_fd_select(int, rb_fdset_t *, rb_fdset_t *, rb_fdset_t *, struct timeval *);
-    ^
-4 errors generated.
-make: *** [em.o] Error 1
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
 
-make failed, exit code 2
+current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20210808-22146-bajaca

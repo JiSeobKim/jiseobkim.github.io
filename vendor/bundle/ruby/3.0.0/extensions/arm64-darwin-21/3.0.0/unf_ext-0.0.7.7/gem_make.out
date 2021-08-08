@@ -1,5 +1,5 @@
 current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
-/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20210808-6836-cttv5q.rb extconf.rb
+/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20210808-22146-zw88oq.rb extconf.rb
 checking for -lstdc++... yes
 creating Makefile
 
@@ -10,8 +10,7 @@ current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.
 make DESTDIR\=
 compiling unf.cc
 linking shared-object unf_ext.bundle
-ld: warning: ignoring file /Users/jiseob/.rbenv/versions/3.0.2/lib/libruby.3.0.dylib, building for macOS-x86_64 but attempting to link with file built for macOS-arm64
 
 current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20210808-6836-24k4yl
+/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20210808-22146-4w4y6c
