@@ -5,9 +5,189 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 08 Aug 2021 22:09:35 +0900</pubDate>
-    <lastBuildDate>Sun, 08 Aug 2021 22:09:35 +0900</lastBuildDate>
+    <pubDate>Sat, 14 Aug 2021 15:32:58 +0900</pubDate>
+    <lastBuildDate>Sat, 14 Aug 2021 15:32:58 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Project - LOL API (문서 살펴보기)</title>
+        <description>&lt;p&gt;노마드코더 영상에서 그런말이 나오더라&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;공부할 리스트만 만들면 쉽게 지치기 쉽다, 
+만들고 싶은 목록을 만들어라, 
+그럼 거기에 필요한 것들을 공부하게 될 것이다&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;크, 그래서 가끔 즐기는 롤에서 전적 관련 APP을 간단하게 만들어보려고한다.&lt;/p&gt;
+
+&lt;p&gt;카피 앱이 아니기 때문에 UI 다루는 스킬보단&lt;/p&gt;
+
+&lt;p&gt;라이엇은 API 응답값 형태가 이렇구나 저렇구나 하면서 다른 회사의 API를 체험해보는 경험이 될 듯하다.&lt;/p&gt;
+
+&lt;p&gt;깃헙에 저장소를 만들면서 공개용으로 만들고 싶었지만,,, Key 부분이 조금 걸려서
+프라이빗으로 만들게 된 점은 다소 아쉽다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.riotgames.com&quot;&gt;개발자 사이트&lt;/a&gt;에 들어가서 가입하고 나오는 화면은 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;저기 중간에 나오는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;API Key&lt;/code&gt; 는 필요한거니 잘 가지고 있자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 상단에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;API 탭&lt;/code&gt;에 들어가보면 수많은 API들이 기다리고 있다.&lt;/p&gt;
+
+&lt;p&gt;처음에 너무 많아서 정신도 없고 문서 양식 파악이 안되어서 무슨말인지 한참 봤다.&lt;/p&gt;
+
+&lt;p&gt;처음엔 어려웠지만 읽는 방법을 알고 나니 술술 읽히는 부분이 마음에 들었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아무래도 게임내의 정보다 보니 모든 API 들이 URL Path 부분에 값을 채워줘야했다.&lt;/p&gt;
+
+&lt;p&gt;그 중 제일 기본이 사용자 정보였다.&lt;/p&gt;
+
+&lt;p&gt;사용자 정보를 알아야 그 사람의 전적이라던가 게임 정보라던가 알 수 있으니 당연한 것이었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;사용자-정보-문서-확인&quot;&gt;사용자 정보 문서 확인&lt;/h1&gt;
+
+&lt;p&gt;문서 보는 방식을 사용자 정보 보는것으로 알아보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;API 탭&lt;/code&gt;으로 이동한뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Summoner&lt;/code&gt;을 찾자&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Summoner는 소환사라는 의미다&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;상단엔 페이지 이름 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMMONER_V4&lt;/code&gt;가 적혀있고,&lt;/p&gt;
+
+&lt;p&gt;오른쪽엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;모두 접기&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;모두 펼치기&lt;/code&gt;가 있다.&lt;/p&gt;
+
+&lt;p&gt;아래 API들을 접고 펴기 하겠다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그아래는 왼쪽부터&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Method&lt;/code&gt; - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URL Path&lt;/code&gt; - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Description&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get&lt;/code&gt;이 압도적으로 많겠지? 라이엇은 정보를 제공만 할테니.&lt;/p&gt;
+
+&lt;p&gt;그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path&lt;/code&gt;에 보면 괄호&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{}&lt;/code&gt; 안에 것이 필요한 정보인데,&lt;/p&gt;
+
+&lt;p&gt;현재는 다른 값들은 알지 못하고 두번째 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{summonerName}&lt;/code&gt;을 이용해서 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 오른쪽에는 간단하게 설명이 되어있고 클릭이 가능해서 파란색으로 되어있다.&lt;/p&gt;
+
+&lt;p&gt;눌러보면 펼쳐지게 되니 눌러보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼 해당 API에 대한 정보가 나오는데,&lt;/p&gt;
+
+&lt;p&gt;처음 나오는건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response Data Type&lt;/code&gt;에 대한 것이다.&lt;/p&gt;
+
+&lt;p&gt;응답값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SummonerDTO&lt;/code&gt;라는 형태로 돌려주고 바로 아래에
+이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SummonerDTO&lt;/code&gt;라는 것에 대한 자료형을 설명해준다.&lt;/p&gt;
+
+&lt;p&gt;단순히 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dictionary&lt;/code&gt;로 뿌려주는게 아니라 데이터 형태의 이름을 붙여주니
+이 부분이 아주 좋았다.&lt;/p&gt;
+
+&lt;p&gt;서버도 클라이언트도 모두 자료형에 대해 네이밍을 통일할 수 있겠다 싶었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜냐면 응답값이 형태가 정의가 제대로 안되어있으면&lt;/p&gt;
+
+&lt;p&gt;비슷하지만 미묘하게 달라서다른게 자료형이 많아지는 현상이…&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다른 API들을 보면 알겠지만 설명해주는 부분에 또 다른게 있으면&lt;/p&gt;
+
+&lt;p&gt;그 아래에 또 다른 것에 대한 설명을 해주기 때문에 여기 저기 찾아볼 필요가 없었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그 다음은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ErrorCode&lt;/code&gt;에 대해 정의가 되어있다&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그 아래 부분엔 편리한것이 있는데, API를 바로 테스트해 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-4.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;path에 필요했던 값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;summonerName&lt;/code&gt;이란 필드 값을 채우고&lt;/p&gt;
+
+&lt;p&gt;아래에 빨간 버튼을 눌러주면 실행값이 나온다.&lt;/p&gt;
+
+&lt;p&gt;보여주는 항목들은 다음과 같다&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Request URL&lt;/li&gt;
+  &lt;li&gt;Request Headers&lt;/li&gt;
+  &lt;li&gt;Response Status Code&lt;/li&gt;
+  &lt;li&gt;Response HEADERS&lt;/li&gt;
+  &lt;li&gt;Response Body&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;정말 친절하다! 따로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PostMan&lt;/code&gt;이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Paw&lt;/code&gt; 같은 프로그램들을 켜서&lt;/p&gt;
+
+&lt;p&gt;테스트를 해볼 필요가 없었다. 크 역시 큰 곳은 다르다 이건가…&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그 중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response Body&lt;/code&gt;를 보자&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;waVzd7W1xB47_2P650Jn67EO8iijoAoX6fOEdWqDQVvs0io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;accountId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;8VOqFMdQDXwTKPsbSBg5wo08GjcaZlpUmjBs9aSHUn0ap8Y&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;puuid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ywGOQDCvN_7PsLZChEIyW-4c535T2w5Hi2WfB8E-uIeVpCuQZHT3LuuGIUQ9g7XX-dysavsFfHFtnA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2세트짬뽕2탕슉1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;profileIconId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4569&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;revisionDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1628400316000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;summonerLevel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;274&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 같은 형태로 내려준다.&lt;/p&gt;
+
+&lt;p&gt;다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puuid&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accountId&lt;/code&gt; 이런 것 들을 이용해서 다른 API를 통해
+이런 저런 값들을 얻을 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음 편을 통해서 실제로 호출해보자.&lt;/p&gt;
+
+&lt;p&gt;끝.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 14 Aug 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/project/2021/08/14/project-LOL-API-(%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5-%E1%84%89%E1%85%A1%E1%86%AF%E1%84%91%E1%85%A7%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5).html</link>
+        <guid isPermaLink="true">http://localhost:4000/project/2021/08/14/project-LOL-API-(%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5-%E1%84%89%E1%85%A1%E1%86%AF%E1%84%91%E1%85%A7%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5).html</guid>
+        
+        
+        <category>Project</category>
+        
+      </item>
     
       <item>
         <title>Swift - SPM 만들기(feat.  PropertyWrapper편)</title>
