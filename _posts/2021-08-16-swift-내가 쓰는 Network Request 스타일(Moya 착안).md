@@ -135,10 +135,10 @@ enum API {
 
 여기에 API들이 차곡 차곡 추가 되면 된다
 
-<br>
-
 - 소환사 정보 가져오기
 - 챔피언 리스트 가져오기
+
+<br>
 
 두가지에 대해 우선 정의해두었으며,
 
@@ -384,13 +384,13 @@ func request<T: Decodable>(dataType: T.Type, complete: @escaping ((Result<T,Netw
 
 <br>
 
-메소드 선언 부분
+**메소드 선언 부분**
 - 메소드에 제네릭 사용, `T`는 `Decodable`을 준수한다.
 - 받고 싶은 객체의 타입을 `dataType`으로 파라미터로 받는다.
 - 성공 여부에 따라 응답값을 원하는 객체로 담거나 또는 에러를 `Result`로 감싼 인자를 담는 클로저다.
 
 <br> 
-메소드 내용
+**메소드 내용**
 - **1:** 이 API에 호출은 그전에 `NSDictionary`로 처리하는 메소드에서 끝났다. 호출만 해서 `NSDictionary`를 처리하자.
 - **2:** `NSDictionary`가 잘 왔는지 확인
 - **3:** `NSDictionary`를 `Data`로 바꾸고, `JSONDecoder`를 이용해 `Data`를 `T`로 얻어낸다.
@@ -444,7 +444,7 @@ api.request { result in
 
 아주 좋다 ㅠ
 
-저 dict를 이제 원하는대로 처리 해주면 된다.
+저 `dict`를 이제 원하는대로 처리 해주면 된다.
 
 <br>
 
@@ -518,6 +518,8 @@ func printSummonerInfo(_ summoner: SummonerDTO) {
 <br>
 
 그리곤, 결과를 출력 함수 `printSummonerInfo`에 넣어줬다.
+
+<br>
 
 결과는 다음과 같다.
 
