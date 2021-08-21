@@ -1,0 +1,544 @@
+<p>통신문 관련해서 내가 쓰는 스타일을 적은 적이 없는듯하여</p>
+
+<p>언젠간 포스팅 해야지 싶었는데</p>
+
+<p><code class="language-plaintext highlighter-rouge">롤 API</code> 관련해서 작성하다가</p>
+
+<p>마침 API 관련 글 적던 중이라</p>
+
+<p>한번 적고 넘어가면 좋을 듯 하여 적게 되었다.</p>
+
+<p><br /></p>
+
+<p>원래는 <code class="language-plaintext highlighter-rouge">Alamofire</code>만 쓰다가</p>
+
+<p><code class="language-plaintext highlighter-rouge">Moya</code>에 대해 알게 되고, 접근 방식이 굉장히 좋다고 생각되었다.</p>
+
+<p><br /></p>
+
+<p>그렇지만, 미숙함에 의해서 불편함을 느꼈고,</p>
+
+<p>좀더 단순화하자 싶어서 다음과 같은 방식을 쓰게 되었다.</p>
+
+<p><br /></p>
+
+<p>*ps 글의 기준은 롤 API 관련 되어 있음을 참고바랍니다.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="enum을-사용하다">Enum을 사용하다</h1>
+
+<p>그전엔 단순히 <code class="language-plaintext highlighter-rouge">Moya</code>에서 아이디어를 착안하여 쓰다보니</p>
+
+<p>그냥 썼다. 이유는 생각 안하고!</p>
+
+<p>그런데,</p>
+
+<p><code class="language-plaintext highlighter-rouge">Property Wrapper</code>편 공부하다보니</p>
+
+<p>class, struct, enum으로 선언하는 것들중</p>
+
+<p>enum 선언은 class, struct와 다른 점이있다.</p>
+
+<p><br /></p>
+
+<p>class와 struct의 경우 별도 <code class="language-plaintext highlighter-rouge">init</code>문을 작성하지 않아도</p>
+
+<p>기본값이 모두 제공 되면 <code class="language-plaintext highlighter-rouge">default initializer</code>를 제공하고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">class</code>의 경우 기본값이 제공 되지 않고 초기화 구문이 없으면 컴파일 에러를 낸다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">struct</code>의 경우 기본값이 제공 되지 않으면 자동으로 <code class="language-plaintext highlighter-rouge">Memberwise initializer</code>문이 생성된다.</p>
+
+<blockquote>
+  <p>위 내용은 요즘 공식 문서로 공부하다보니 좀더 명확하게 알게 되었다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">enum</code>의 차이는 별도의 초기화가 자동으로 생성되지도 않으며,</p>
+
+<p>컴파일 에러가 나지 않는다는 것이다.</p>
+
+<p><br /></p>
+
+<p>이에 장점은 <code class="language-plaintext highlighter-rouge">case</code>에 보다 집중할 수 있다는 점이다.</p>
+
+<p><br /></p>
+
+<p>그래서 <code class="language-plaintext highlighter-rouge">Enum</code>을 쓰나보다.</p>
+
+<p>이제 차근차근 코드를 보자.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="case-정의">Case 정의</h1>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">import</span> <span class="kt">Alamofire</span>
+<span class="kd">import</span> <span class="kt">Foundation</span>
+
+<span class="c1">/// 에러 정의</span>
+<span class="kd">enum</span> <span class="kt">NetworkError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">notValidateStatusCode</span>  <span class="c1">// 유효하지 않는 StatusCode</span>
+    <span class="k">case</span> <span class="n">noData</span>                 <span class="c1">// 결과 데이터 미존재</span>
+    <span class="k">case</span> <span class="n">failDecode</span>             <span class="c1">// Decode 실패</span>
+<span class="p">}</span>
+
+<span class="c1">/// 통신 Enum</span>
+<span class="kd">enum</span> <span class="kt">API</span> <span class="p">{</span>
+    <span class="c1">/// 유저 정보가져오기</span>
+    <span class="k">case</span> <span class="nf">getUserInfo</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+    <span class="c1">/// 챔피언 리스트 가져오기</span>
+    <span class="k">case</span> <span class="n">getChampionList</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="enum---error">Enum - Error</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Result</code>를 사용하게 될텐데, 이 부분은 나중에 따로 포스팅하기로하고,,</p>
+
+<p>말 그대로 결과에 대해 정의하기 좋다.</p>
+
+<p>성공과 실패를 나눠서 보내기때문에 <code class="language-plaintext highlighter-rouge">swich</code>문과 찰떡이다,</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Almofire</code>에서 먼저 작성되었는데 <code class="language-plaintext highlighter-rouge">Swift</code>에도 나중에 추가된것으로 알고 있다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>위에 말했듯이 실패에 대해서 정의를 해야한다. 이는 <code class="language-plaintext highlighter-rouge">Error</code>로 정의되어야 하므로,</p>
+
+<p>위에 <code class="language-plaintext highlighter-rouge">NetworkError: Error</code> 라는 열거형을 하나 생성하게 되었다.</p>
+
+<p>내용은 주석과 같으므로 패쓰.</p>
+
+<p><br /></p>
+
+<h3 id="enum---api">Enum - API</h3>
+
+<p>여기에 API들이 차곡 차곡 추가 되면 된다</p>
+
+<ul>
+  <li>소환사 정보 가져오기</li>
+  <li>챔피언 리스트 가져오기</li>
+</ul>
+
+<p><br /></p>
+
+<p>두가지에 대해 우선 정의해두었으며,</p>
+
+<p>파라미터가 필요한 소환사 정보 가져오는 API는</p>
+
+<p><code class="language-plaintext highlighter-rouge">Associate Value</code>(name: String)를 넣어줌으로써 필요한 값들을 받을 수 있게 된다.</p>
+
+<p><br /></p>
+
+<p>API의 종류를 정의해줬으니,</p>
+
+<p>통신에 필요한 것들을 정의해보자.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="통신에-필요한-정보-정의">통신에 필요한 정보 정의</h1>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// MARK: 통신 필요 정보 관련</span>
+<span class="kd">extension</span> <span class="kt">API</span> <span class="p">{</span>
+    <span class="c1">/// API Key</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span><span class="s">"발급 받은 API 키"</span><span class="p">}</span>
+    
+    <span class="c1">/// 도메인</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">domain</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">getUserInfo</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">"https://kr.api.riotgames.com"</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">getChampionList</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">"http://ddragon.leagueoflegends.com"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">/// URL Path</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">getUserInfo</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="k">let</span> <span class="nv">name</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">"/lol/summoner/v4/summoners/by-name/</span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">"</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">getChampionList</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">"/cdn/11.16.1/data/en_US/champion.json"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">/// HTTP 메소드</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">Alamofire</span><span class="o">.</span><span class="kt">HTTPMethod</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="n">getUserInfo</span><span class="p">,</span> <span class="o">.</span><span class="nv">getChampionList</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">.</span><span class="k">get</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">/// API Key 필요 여부</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">isNeedAPIKey</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">getUserInfo</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">/// 통신 헤더</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">HTTPHeaders</span> <span class="p">{</span>
+        
+        <span class="k">var</span> <span class="nv">result</span> <span class="o">=</span> <span class="kt">HTTPHeaders</span><span class="p">([</span>
+            <span class="kt">HTTPHeader</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span><span class="s">"Accept-Language"</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"ko-KR,ko;q=0.9"</span><span class="p">),</span>
+            <span class="kt">HTTPHeader</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span><span class="s">"Accept-Charset"</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"application/x-www-form-urlencoded; charset=UTF-8"</span><span class="p">),</span>
+            <span class="kt">HTTPHeader</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span><span class="s">"Origin"</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"https://developer.riotgames.com"</span><span class="p">)</span>
+        <span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">isNeedAPIKey</span> <span class="p">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="kt">HTTPHeader</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"X-Riot-Token"</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">key</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="p">}</span>
+    
+    <span class="c1">/// Body Parameter - 주로 Get으로 예상되어 필요 x</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">parameter</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]?</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">getUserInfo</span><span class="p">:</span> <span class="k">return</span> <span class="kc">nil</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">getChampionList</span><span class="p">:</span> <span class="k">return</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>통신하면서 기본적으로 필요한 것들을 정의 해둔것이다.</p>
+
+<p>거의 <code class="language-plaintext highlighter-rouge">Moya</code>와 같다고 봐야한다.</p>
+
+<p>이 부분이 너무 매력적이 었으니깐!</p>
+
+<p><br /></p>
+
+<p>그리고 연산 프로퍼티들이 다 자기 자신 <code class="language-plaintext highlighter-rouge">enum</code>에 연관되어 있으므로,</p>
+
+<p>새로운 <code class="language-plaintext highlighter-rouge">API</code>가 <code class="language-plaintext highlighter-rouge">case</code>로 추가될 경우 여기 부분들이 전부</p>
+
+<p><code class="language-plaintext highlighter-rouge">컴파일에러</code>를 뱉게 되므로 실수 없이 다 정의를 해줘야한단 점이 있다.</p>
+
+<blockquote>
+  <p>프로토콜 마냥 강압적인것 아주 좋아.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">case</code>에 따라 다르게 <code class="language-plaintext highlighter-rouge">return</code>하게 된다.</p>
+
+<blockquote>
+  <p>외부에선 따로 호출될 이유가 없기에 모두 <code class="language-plaintext highlighter-rouge">private</code> 처리</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="request-정의">Request 정의</h1>
+
+<p>이 부분은 2가지로 나눌 수 있을 것 같다.</p>
+
+<ul>
+  <li>단순 결과를 NSDictionary로 얻기</li>
+  <li>결과를 원하는 객체로 받기</li>
+</ul>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Codable</code> 관련해선 포스팅한적이 있다. <a href="https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html">포스팅</a></p>
+
+<p>근데, 회사에서 쓰다보니 정말 단순한건 그냥 <code class="language-plaintext highlighter-rouge">NSDictionary</code>로 처리하는게 편할때가 있었다.</p>
+
+<p>그래서 베이스를 <code class="language-plaintext highlighter-rouge">NSDictionary</code>로 처리하는걸 베이스로 잡았다.</p>
+
+<p><br /></p>
+
+<h3 id="nsdictionary를-이용한-클로저">NSDictionary를 이용한 클로저</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// 통신 요청</span>
+<span class="c1">/// - Parameter complete: 결과 클로저 - 성공시 NSDictionary, 실패시 정의 해둔 에러</span>
+<span class="kd">func</span> <span class="nf">request</span><span class="p">(</span><span class="nv">complete</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">NSDictionary</span><span class="p">?,</span><span class="kt">NetworkError</span><span class="o">&gt;</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">()))</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">url</span> <span class="o">=</span> <span class="n">domain</span>
+    
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">convertedPath</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="nf">addingPercentEncoding</span><span class="p">(</span><span class="nv">withAllowedCharacters</span><span class="p">:</span> <span class="o">.</span><span class="n">urlPathAllowed</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="n">convertedPath</span>
+    <span class="p">}</span>
+    <span class="kt">AF</span><span class="o">.</span><span class="nf">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="nv">parameters</span><span class="p">:</span> <span class="n">parameter</span><span class="p">,</span> <span class="nv">headers</span><span class="p">:</span> <span class="n">header</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">responseJSON</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
+            
+            <span class="c1">// 통신 결과 처리</span>
+            <span class="k">switch</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">dict</span><span class="p">):</span>
+                <span class="c1">// 성공</span>
+                <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">dict</span> <span class="k">as?</span> <span class="kt">NSDictionary</span><span class="p">))</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nv">failure</span><span class="p">:</span>
+                
+                <span class="c1">// 결과는 없지만 statusCode에 따라 확인이 필요할 수 있음.</span>
+                <span class="k">if</span> <span class="k">let</span> <span class="nv">stCode</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">,</span> <span class="mi">200</span><span class="o">..&lt;</span><span class="mi">300</span> <span class="o">~=</span> <span class="n">stCode</span> <span class="p">{</span>
+                    <span class="c1">// 성공</span>
+                    <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kc">nil</span><span class="p">))</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="c1">// 진짜 실패</span>
+                    <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="o">.</span><span class="n">notValidateStatusCode</span><span class="p">))</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>위와 같이 메소드를 만들 수 있는데,</p>
+
+<p>파라미터는 단순하게 <code class="language-plaintext highlighter-rouge">Result</code>를 인자로 갖는 클로저다.</p>
+
+<p><br /></p>
+
+<p>이때, 성공시 <code class="language-plaintext highlighter-rouge">NSDictionary</code> 뱉고, 실패시 위에 선언 해둔 <code class="language-plaintext highlighter-rouge">NetworkError</code>를 뱉게 된다.</p>
+
+<p>주석을 간단히 설명하면 다음과 같다</p>
+
+<ul>
+  <li><strong>1,2:</strong> 도메인을 가져오고 <code class="language-plaintext highlighter-rouge">path</code>와 조합을 해야하는데, 한글이 들어갈 수 있으니 인코딩해서 정의</li>
+  <li><strong>3:</strong> 실질적 요청인데 이때, 위에 정의해둔 <code class="language-plaintext highlighter-rouge">url</code>, <code class="language-plaintext highlighter-rouge">method</code>, <code class="language-plaintext highlighter-rouge">parameter</code>등을 조합하게 된다.</li>
+  <li><strong>4:</strong> <code class="language-plaintext highlighter-rouge">Alamfore</code>도 <code class="language-plaintext highlighter-rouge">Result</code> 형식을 쓰게 되며 <code class="language-plaintext highlighter-rouge">switch</code>로 성공과 실패에 대응한다.</li>
+  <li><strong>5:</strong> <code class="language-plaintext highlighter-rouge">responseJSON</code>이기 때문에 <code class="language-plaintext highlighter-rouge">Any</code>로 온것을 <code class="language-plaintext highlighter-rouge">NSDictionary</code>로 캐스팅하여 클로저를 이용</li>
+  <li><strong>6:</strong> 간혹 있는 경우인데, 성공만하고 <code class="language-plaintext highlighter-rouge">response</code>를 안주는 경우가 있었다.(롤 API말고!)
+이럴 경우 이 <code class="language-plaintext highlighter-rouge">switch</code>문에선 실패로 떨어지지만, 실제론 성공이기 때문에 <code class="language-plaintext highlighter-rouge">statusCode</code>를 체크해줬다.</li>
+  <li><strong>7:</strong> 성공 범위의 코드이므로 성공</li>
+  <li><strong>8:</strong> 이건 진짜 실패다. 유효하지 않는 <code class="language-plaintext highlighter-rouge">StatusCode</code>라는 에러 케이스를 사용했다.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="generic을-이용한-클로저">Generic을 이용한 클로저</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// 통신 요청 (with Generic)</span>
+<span class="c1">/// - Parameters:</span>
+<span class="c1">///     - dataType: Generic으로 선언된 자료형의 타입을 받는다.</span>
+<span class="c1">///     - complete: 클로저 - 성공시 T의 객체, 실패시 선언해둔 에러</span>
+<span class="kd">func</span> <span class="n">request</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">dataType</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">complete</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span><span class="kt">NetworkError</span><span class="o">&gt;</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">()))</span> <span class="p">{</span>
+    
+    <span class="c1">// 1. 위에 선언한 요청 메소드를 통해 NSDictionary를 받는다.</span>
+    <span class="n">request</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">dict</span><span class="p">):</span>
+            
+            <span class="c1">// 2. 데이터 존재 확인</span>
+            <span class="k">guard</span> <span class="k">let</span> <span class="nv">dicData</span> <span class="o">=</span> <span class="n">dict</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// 데이터 미존재 에러</span>
+                <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="o">.</span><span class="n">noData</span><span class="p">))</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            
+            <span class="c1">// 3. 얻은 NSDictionary를 JSON 데이터로 바꾼뒤 T형태로 Decode 해준다.</span>
+            <span class="k">guard</span>
+                <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">dicData</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="n">prettyPrinted</span><span class="p">),</span>
+                <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// 4. Decode실패</span>
+                <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="o">.</span><span class="n">failDecode</span><span class="p">))</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            
+            <span class="c1">// 5. T 객체 생성 성공!</span>
+            <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+            
+        <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">e</span><span class="p">):</span>
+            <span class="c1">// 6. Request 실패</span>
+            <span class="nf">complete</span><span class="p">(</span><span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>지난 <a href="https://jiseobkim.github.io/swift/2018/07/21/swift-Alamofire와-Codable.html">포스팅</a> 부분에 자세한건 적혀있지만 간단하게 설명하면 다음과 같다.</p>
+
+<p><br /></p>
+
+<p><strong>메소드 선언 부분</strong></p>
+<ul>
+  <li>메소드에 제네릭 사용, <code class="language-plaintext highlighter-rouge">T</code>는 <code class="language-plaintext highlighter-rouge">Decodable</code>을 준수한다.</li>
+  <li>받고 싶은 객체의 타입을 <code class="language-plaintext highlighter-rouge">dataType</code>으로 파라미터로 받는다.</li>
+  <li>성공 여부에 따라 응답값을 원하는 객체로 담거나 또는 에러를 <code class="language-plaintext highlighter-rouge">Result</code>로 감싼 인자를 담는 클로저다.</li>
+</ul>
+
+<p><br /> 
+<strong>메소드 내용</strong></p>
+<ul>
+  <li><strong>1:</strong> 이 API에 호출은 그전에 <code class="language-plaintext highlighter-rouge">NSDictionary</code>로 처리하는 메소드에서 끝났다. 호출만 해서 <code class="language-plaintext highlighter-rouge">NSDictionary</code>를 처리하자.</li>
+  <li><strong>2:</strong> <code class="language-plaintext highlighter-rouge">NSDictionary</code>가 잘 왔는지 확인</li>
+  <li><strong>3:</strong> <code class="language-plaintext highlighter-rouge">NSDictionary</code>를 <code class="language-plaintext highlighter-rouge">Data</code>로 바꾸고, <code class="language-plaintext highlighter-rouge">JSONDecoder</code>를 이용해 <code class="language-plaintext highlighter-rouge">Data</code>를 <code class="language-plaintext highlighter-rouge">T</code>로 얻어낸다.</li>
+  <li><strong>4:</strong> 3 과정중 실패하면 <code class="language-plaintext highlighter-rouge">Result</code>를 실패로 보내자</li>
+  <li><strong>5:</strong> T 인스턴스가 잘 생성되었다. 돌려주자</li>
+  <li><strong>6:</strong> 이건 그냥 통신 부분에서 실패.. 그대로 실패로 돌려주자</li>
+</ul>
+
+<blockquote>
+  <p>3의 부분은 <code class="language-plaintext highlighter-rouge">Alamofire.ResponseData</code>로 받을 경우 안해도 되지만 그러면 또 <code class="language-plaintext highlighter-rouge">StatusCode</code> 분기 타고 ㅠ 번거롭다</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>이렇게 되면 준비는 끝난다.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="사용">사용</h1>
+
+<p>하나는 <code class="language-plaintext highlighter-rouge">NSDictionary</code>, 하나는 <code class="language-plaintext highlighter-rouge">객체</code>로 받아보자</p>
+
+<p>우선 간단하게 챔피언 리스트를 가져오는 API</p>
+
+<p><br /></p>
+
+<h3 id="nsdictionary-클로저로-요청">NSDictionary 클로저로 요청</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 정의</span>
+<span class="k">let</span> <span class="nv">api</span> <span class="o">=</span> <span class="kt">API</span><span class="o">.</span><span class="n">getChampionList</span>
+
+<span class="c1">// 요청</span>
+<span class="n">api</span><span class="o">.</span><span class="n">request</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">dict</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">dict</span><span class="p">)</span>
+        
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">e</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>굉장히 심플해보인다!</p>
+
+<p>아주 좋다 ㅠ</p>
+
+<p>저 <code class="language-plaintext highlighter-rouge">dict</code>를 이제 원하는대로 처리 해주면 된다.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>실제 저 API는 정말 엄청나게 길다. <br />
+그래서 따로 출력값은 안보여주고, <br />
+나중에 롤 포스팅할때 살펴보자. <br /></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="generic을-이용한-클로저로-요청">Generic을 이용한 클로저로 요청</h3>
+
+<p>객체로 받을거니깐 객체를 정의부터 해보자</p>
+
+<p>이번에 사용될 API는 <code class="language-plaintext highlighter-rouge">소환사 정보</code> 가져오기다.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">SummonerDTO</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">id</span><span class="p">,</span> <span class="n">accountId</span><span class="p">,</span> <span class="n">puuid</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">profileIconId</span><span class="p">,</span> <span class="n">revisionDate</span><span class="p">,</span> <span class="nv">summonerLevel</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 생겼다!</p>
+
+<blockquote>
+  <p>사실 Codable까진 받을 필요 없다, Decodable만 해줘도 된다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>이제 사용해보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 사용</span>
+<span class="k">let</span> <span class="nv">api</span> <span class="o">=</span> <span class="kt">API</span><span class="o">.</span><span class="nf">getUserInfo</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="nf">request</span><span class="p">(</span><span class="nv">dataType</span><span class="p">:</span> <span class="kt">SummonerDTO</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">data</span><span class="p">):</span>
+        <span class="nf">printSummonerInfo</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">e</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+<span class="c1">// 출력</span>
+<span class="kd">func</span> <span class="nf">printSummonerInfo</span><span class="p">(</span><span class="n">_</span> <span class="nv">summoner</span><span class="p">:</span> <span class="kt">SummonerDTO</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"""
+        ** 결과 **
+        id: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">id</span><span class="se">)</span><span class="s">
+        accountId: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">accountId</span><span class="se">)</span><span class="s">
+        puuid: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">puuid</span><span class="se">)</span><span class="s">
+        name: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s">
+        profileIconId: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">profileIconId</span><span class="se">)</span><span class="s">
+        revisionDate: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">revisionDate</span><span class="se">)</span><span class="s">
+        summonerLevel: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">summonerLevel</span><span class="se">)</span><span class="s">
+        """</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">print</code>부분을 제외하면 정말 뭐 없다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">API</code>정의시, <code class="language-plaintext highlighter-rouge">Associate Value</code>로 <code class="language-plaintext highlighter-rouge">name</code>을 내 아이디 넣어주고</p>
+
+<p>요청시, 얻고자하는 객체 타입(<code class="language-plaintext highlighter-rouge">SummonerDTO</code>)을 넣어줬다.</p>
+
+<p><br /></p>
+
+<p>그리곤, 결과를 출력 함수 <code class="language-plaintext highlighter-rouge">printSummonerInfo</code>에 넣어줬다.</p>
+
+<p><br /></p>
+
+<p>결과는 다음과 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>** 결과 **
+id: waVzd7W1xB47_2P650Jn67EO8iijoAoX6fOEdWqDQVvs0io
+accountId: 8VOqFMdQDXwTKPsbSBg5wo08GjcaZlpUmjBs9aSHUn0ap8Y
+puuid: ywGOQDCvN_7PsLZChEIyW-4c535T2w5Hi2WfB8E-uIeVpCuQZHT3LuuGIUQ9g7XX-dysavsFfHFtnA
+name: 2세트짬뽕2탕슉1
+profileIconId: 4569
+revisionDate: 1628400316000
+summonerLevel: 274
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>개인적으론 사용하기 넘편하다 생각된다!</p>
+
+<blockquote>
+  <p>물론,, 내 사용 범위 한도 내에서…</p>
+</blockquote>
+
+<p>끝!</p>

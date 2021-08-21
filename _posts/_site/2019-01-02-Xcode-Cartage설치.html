@@ -1,0 +1,117 @@
+<p>Hello! 2019!</p>
+
+<p>이전편에서 <code class="language-plaintext highlighter-rouge">Carthage</code>이란 무엇인지 그리고 Cocoapods보다 장점은 무엇인지 글을 써봤다.</p>
+
+<p>이전글: [Carthage-서론][https://jiseobkim.github.io/xcode/2018/12/26/Xcode-Cartage.html]</p>
+
+<p>오늘도 짧게! 설치법만 적어야겠다.</p>
+
+<hr />
+
+<h3 id="요약">요약</h3>
+
+<ul>
+  <li>Homebrew 설치</li>
+  <li>Homebrew를 이용한 Carthage 설치</li>
+  <li>Carthage를 통한 라이브러리 설치( Alamofire 로 설치 예정! )</li>
+</ul>
+
+<hr />
+
+<h3 id="homebrew-설치">Homebrew 설치</h3>
+
+<p><em>Homebrew</em>란? 쉽게 생각하자면 Cocoapods과 Carthage 처럼 Package Manager 같은 것이라 생각하면 될 것 같다!</p>
+
+<p>그럼 우린 무엇을 할것인가!</p>
+
+<p>Carthage 란것을 설치해야 하므로 일단 <em>Homebrew</em>가 설치되어 있다면 Pass</p>
+
+<p>[Homebrew 사이트][https://brew.sh]가 공식 사이트다. 자세히 보고 싶다면 한번쯤 보면 좋을듯하다.</p>
+
+<p>하지만 귀찮다면, <code class="language-plaintext highlighter-rouge">Terminal</code>을 실행하고  아래 명령어 입력 후 Enter!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre></div></div>
+
+<p>기다리면 끝.</p>
+
+<h3 id="carthage-설치">Carthage 설치</h3>
+
+<p>[Carthage 공식 Github 사이트][https://github.com/Carthage/Carthage]에 굉장히 자세히 나와있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Terminal</code>을 열고</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chown -R $(whoami) /usr/local
+</code></pre></div></div>
+
+<p>입력하고</p>
+
+<blockquote>
+  <p>chown 은 소유자나 소유 그룹을 변경하는것이고,</p>
+
+  <p>옵션 -R은 해당 경로와 하위 파일들 다 바꾼다는것,</p>
+
+  <p>$(whoami)는 말그대로 내가 누군지를 나타낸다. 아마 Terminal 명령어 입력하는 곳 앞부분이랑 같을 것이다!</p>
+
+  <p>뒤에 /usr/local 설정하고자 하는 파일이다.</p>
+
+  <p>즉, /usr/local 경로와 그하위 목록들의 소유자를 나로 바꿔라! 라는 의미로 해석할 수 있다.</p>
+
+  <p>안해도 되는 경우가 있지만 iTerm2를 쓰면서 oh-my-zip을 써서 그런가? 안해주면 안되었다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install carthage
+</code></pre></div></div>
+
+<p>입력하면 끝.</p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h3 id="carthage를-통한-라이브러리-설치">Carthage를 통한 라이브러리 설치</h3>
+
+<p>Cocoapods 사용자라면 <code class="language-plaintext highlighter-rouge">pod init</code>을 해서 Podfile을 만들었을 것이다.</p>
+
+<blockquote>
+  <p>Podfile은 설치할 라이브러리 이름을 적는곳 (추가 정보도 입력가능)</p>
+</blockquote>
+
+<p>Carthage 사용자라면 Cartfile이란것을 만들어 줘야한다. (Terminal 입력)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi Cartfile
+</code></pre></div></div>
+
+<p>편집기가 열리면 설치하고자 하는 라이브러리 주소 정보 및 버젼 정보를 적으면 된다. (Terminal 입력)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>github "Alamofire/Alamofire" ~&gt; 4.7.2
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">-&gt; 4.7.2</code> 는 생략 가능</p>
+</blockquote>
+
+<p>Podfile에 비해 Cartfile은 파일 내용이 심플해서 좋다.</p>
+
+<p><br /></p>
+
+<p>pod install 같이 설치가 필요하다. (Terminal 입력)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>carthage update
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>하지만, 심플한만큼 후자업이 조금 있다…</p>
+
+<ol>
+  <li>Framework 수동 추가</li>
+  <li>Run Script 생성</li>
+  <li>shell script 작성 (이 표현이 맞는지 모르겠…..)</li>
+  <li>Input Files에 루트 추가</li>
+</ol>
+
+<h1 id="졸리므로-나머진-내일-작성">졸리므로 나머진 내일 작성.</h1>
+

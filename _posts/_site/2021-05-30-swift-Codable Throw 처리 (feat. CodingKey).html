@@ -1,0 +1,157 @@
+<p><br /></p>
+
+<p>CodingKey 관련 글을 먼저 읽는 것을 추천!
+<a href="https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html">(CodingKey 변수명 다르게 쓰기)</a> , <a href="https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html">(CodingKey 자료형 다르게 쓰기)</a></p>
+
+<hr />
+
+<p>오늘은 짧게 쓰기.</p>
+
+<p><br /></p>
+
+<p>서버에 데이터를 쓰다보면 어김없이 예외처리는 필수.</p>
+
+<p>오늘의 주제는 그 예외처리를 어떻게 할지이다.</p>
+
+<p>필자가 아는 선에선 2가지 정도 처리가 있다.</p>
+
+<p>“만약에 데이터가 잘못 or 안내려온다”</p>
+
+<p>라는 가정을 해보자</p>
+
+<p><br /></p>
+
+<p>그렇담 여기서는 이렇게 처리 할 수 있다.</p>
+
+<ol>
+  <li>데이터를 nil 처리 해준다</li>
+  <li>기본값을 넣어준다</li>
+</ol>
+
+<p><br /></p>
+
+<p>나는 2의 방식을 선호하는 편이다</p>
+
+<p>왜냐면 옵셔널은 정말 좋다 생각하지만,</p>
+
+<p>결국엔 쓰기 위해선 옵셔널을 벗겨내야하기 때문에</p>
+
+<p>사용하는 곳에 여기저기 <code class="language-plaintext highlighter-rouge">if</code>문이 붙기 마련이다.</p>
+
+<blockquote>
+  <p>어차피 안전하게 벗겨서 쓸거면 미리 안전하게 벗기자를 선호하는편!</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>예시를 들게 될 JSON 형태는 다음과 같다.</p>
+
+<h3 id="일반적-형태">일반적 형태</h3>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"age"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">"name"</span> <span class="p">:</span> <span class="s">"학생1"</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="문제가-발생하는-형태">문제가 발생하는 형태</h3>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"name"</span> <span class="p">:</span> <span class="s">"학생1"</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="옵셔널-처리">옵셔널 처리</h1>
+
+<p>이 방식은 아주 간단하다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위와 같이 단순하게 <code class="language-plaintext highlighter-rouge">age</code>라는 값에 <code class="language-plaintext highlighter-rouge">?</code>옵셔널만 붙여주면</p>
+
+<p>해당 값은 <code class="language-plaintext highlighter-rouge">nil</code>처리가 될뿐 <code class="language-plaintext highlighter-rouge">Codable</code>을 통해 <code class="language-plaintext highlighter-rouge">decoding</code>을 진행해도 문제가 없다.</p>
+
+<p><br /></p>
+
+<p>근데 만약 <code class="language-plaintext highlighter-rouge">CodingKey</code>를 사용한다면?</p>
+
+<p>약간의 처리가 필요하다.</p>
+
+<p><br /></p>
+
+<p>이전 글에서 방식을 배웠다면 다음과 같이 정의를 할 것이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    
+    <span class="kd">enum</span> <span class="kt">CodingKeys</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CodingKey</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">age</span>
+        <span class="k">case</span> <span class="n">name</span>
+    <span class="p">}</span>
+    
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">contianer</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="c1">// 주석1 - sequence값이 없기 떄문에 에러 발생</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="k">try</span> <span class="n">contianer</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">age</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="k">try</span> <span class="n">contianer</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>주석1에 써둔 이유로 문제의 JSON을 이 코드로 처리하게 된다면 에러가 발생한다.</p>
+
+<p><br /></p>
+
+<p>그럼 2가지 방식이 있다.</p>
+
+<ol>
+  <li>try에 <code class="language-plaintext highlighter-rouge">?</code>붙여주기</li>
+  <li><code class="language-plaintext highlighter-rouge">decode</code> 대신 <code class="language-plaintext highlighter-rouge">decodeIfPresent</code>쓰기</li>
+</ol>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1</span>
+<span class="k">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">contianer</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">age</span><span class="p">)</span>
+
+<span class="c1">// 2</span>
+<span class="k">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="k">try</span> <span class="n">contianer</span><span class="o">.</span><span class="nf">decodeIfPresent</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">age</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>필자의 생각엔 두 방식이 차이는 없다.</p>
+
+<p>단순하게 nil을 넣어도 초기화는 문제가 없기에 try 해도 문제가 되지 않는다.</p>
+
+<p><br /></p>
+
+<h1 id="기본값-처리">기본값 처리</h1>
+
+<p>옵셔널 처리가 되었고, 이전 포스팅을 보았다면 자료형을 변경하듯이 <code class="language-plaintext highlighter-rouge">nil</code>일 경우 기본값을 넣어주면 된다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// age의 값이 nil일 경우 기본값 0 처리 하기</span>
+<span class="k">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">contianer</span><span class="o">.</span><span class="nf">decodeIfPresent</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">age</span><span class="p">)</span> <span class="p">??</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>근데 단점이 있다.</p>
+
+<p>옵셔널로 쓰면 간단하지만,</p>
+
+<p>자료형을 바꿀 경우 <code class="language-plaintext highlighter-rouge">enum</code>도 정의 해야하고 <code class="language-plaintext highlighter-rouge">init</code> 또한 정의를 해야한다.</p>
+
+<p>그 말은 즉, 코드가 너무 길어진다.</p>
+
+<p>이 단점은 <code class="language-plaintext highlighter-rouge">Protperty Wrapper</code>로 해결이 가능할것으로 보인다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Protperty Wrapper</code> 써보고 싶었는데 이참에 공부해봐야지</p>
+
+<p>끝.</p>
+

@@ -5,9 +5,31 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 16 Aug 2021 16:00:44 +0900</pubDate>
-    <lastBuildDate>Mon, 16 Aug 2021 16:00:44 +0900</lastBuildDate>
+    <pubDate>Sat, 21 Aug 2021 13:11:40 +0900</pubDate>
+    <lastBuildDate>Sat, 21 Aug 2021 13:11:40 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Swift - JSON 데이터 쉽게 모델 만들기(feat. QuickType)</title>
+        <description>&lt;p&gt;오늘도 LOL API와 관련이 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 툴을 하나 소개하려한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QuickType&lt;/code&gt;이라는 것인데,&lt;/p&gt;
+
+&lt;p&gt;앱스토어에서 받아도 되고, 다운받기 싫다면 웹사이트에서만 해도 된다.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 21 Aug 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/08/21/swift-LOL-API-(%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/08/21/swift-LOL-API-(%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC).html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
     
       <item>
         <title>Swift - 내가 쓰는 Network Request 스타일(Moya 착안)</title>
@@ -141,12 +163,12 @@
 
 &lt;p&gt;여기에 API들이 차곡 차곡 추가 되면 된다&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
 &lt;ul&gt;
   &lt;li&gt;소환사 정보 가져오기&lt;/li&gt;
   &lt;li&gt;챔피언 리스트 가져오기&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;두가지에 대해 우선 정의해두었으며,&lt;/p&gt;
 
@@ -393,7 +415,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;메소드 선언 부분&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;메소드 선언 부분&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;메소드에 제네릭 사용, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;T&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Decodable&lt;/code&gt;을 준수한다.&lt;/li&gt;
   &lt;li&gt;받고 싶은 객체의 타입을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dataType&lt;/code&gt;으로 파라미터로 받는다.&lt;/li&gt;
@@ -401,7 +423,7 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt; 
-메소드 내용&lt;/p&gt;
+&lt;strong&gt;메소드 내용&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;1:&lt;/strong&gt; 이 API에 호출은 그전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSDictionary&lt;/code&gt;로 처리하는 메소드에서 끝났다. 호출만 해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSDictionary&lt;/code&gt;를 처리하자.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;2:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSDictionary&lt;/code&gt;가 잘 왔는지 확인&lt;/li&gt;
@@ -456,7 +478,7 @@
 
 &lt;p&gt;아주 좋다 ㅠ&lt;/p&gt;
 
-&lt;p&gt;저 dict를 이제 원하는대로 처리 해주면 된다.&lt;/p&gt;
+&lt;p&gt;저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dict&lt;/code&gt;를 이제 원하는대로 처리 해주면 된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -532,6 +554,8 @@
 
 &lt;p&gt;그리곤, 결과를 출력 함수 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;printSummonerInfo&lt;/code&gt;에 넣어줬다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;p&gt;결과는 다음과 같다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;** 결과 **
@@ -555,8 +579,8 @@ summonerLevel: 274
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Mon, 16 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2021/08/16/project-LOL-API-(%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A1-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9&%E1%84%8E%E1%85%A2%E1%86%B7%E1%84%91%E1%85%B5%E1%84%8B%E1%85%A5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2021/08/16/project-LOL-API-(%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%A1-%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9&%E1%84%8E%E1%85%A2%E1%86%B7%E1%84%91%E1%85%B5%E1%84%8B%E1%85%A5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3).html</guid>
+        <link>http://localhost:4000/swift/2021/08/16/swift-%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1-%E1%84%8A%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB-Network-Request-%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF(Moya-%E1%84%8E%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%A1%E1%86%AB).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/08/16/swift-%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1-%E1%84%8A%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB-Network-Request-%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF(Moya-%E1%84%8E%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%A1%E1%86%AB).html</guid>
         
         
         <category>Swift</category>
@@ -6021,7 +6045,7 @@ A point in the local coordinate system of view that identifies the location of t
   &lt;li&gt;개발 서버 깔고 나갔다가, 결제 직전 알아차려서 앱스토어에서 다시 받아야하는 귀차니즘 발생&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let&apos;s Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
+&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let's Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
 
 &lt;p&gt;(여러번 시도했었지만 실패,,, 하지만 성공했으니 포스팅을 아하하, 해당 세션 Toss개발자님 사랑합니다. 토스 가고싶어요)&lt;/p&gt;
 
@@ -6345,9 +6369,9 @@ view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
 &lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
 developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
-desktopDirectory    // location of user&apos;s desktop
-downloadsDirectory  // location of the user&apos;s &quot;Downloads&quot; directory
-musicDirectory      // location of user&apos;s Music directory (~/Music)
+desktopDirectory    // location of user's desktop
+downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
+musicDirectory      // location of user's Music directory (~/Music)
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.&lt;/p&gt;
@@ -6356,7 +6380,7 @@ musicDirectory      // location of user&apos;s Music directory (~/Music)
 
 &lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
-// user&apos;s home directory --- place to install user&apos;s personal items (~)
+// user's home directory --- place to install user's personal items (~)
 
 public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
 // local to the current machine --- place to install items available to everyone on this machine (/Library)
@@ -10244,7 +10268,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
     &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;anyData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// + 추가 확인&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;anyData&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;It&apos;s Any&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;It's Any&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;

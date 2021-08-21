@@ -1,0 +1,259 @@
+<blockquote>
+  <p>이편의 단점이 존재함으로 끝까지 읽기와 다음편은 필수로 읽는 것을 권장!</p>
+</blockquote>
+
+<p><br /></p>
+
+<p><a href="https://jiseobkim.github.io/swift/2021/06/13/swift-Property-Wrapper.html">지난 편</a>에 이어서 진행!</p>
+
+<p><br /></p>
+
+<p>지난번의 글의 주제가 <code class="language-plaintext highlighter-rouge">Property Wrapper</code> 의 기본과  <code class="language-plaintext highlighter-rouge">UserDefault</code> 에 적용하는 글이었다면,</p>
+
+<p>이번편은 <code class="language-plaintext highlighter-rouge">Codable</code>에 적용을 해보는 것이 이번 글의 주제!</p>
+
+<blockquote>
+  <p>정확히는 Decodable에 적용! 하지만 Codable이 더 익숙할테니 Codable이라 하기.</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="이-포스팅을-하게된-이유">이 포스팅을 하게된 이유</h1>
+
+<p>다음과 같은 <code class="language-plaintext highlighter-rouge">JSON</code>이 있다고 해보자</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"isHidden"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<p>해당 코드를 보면 아쉬움이 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">isHidden</code> 은 <code class="language-plaintext highlighter-rouge">Bool</code> 타입이 아니여서 조건문(<code class="language-plaintext highlighter-rouge">if</code> or <code class="language-plaintext highlighter-rouge">switch</code>) 등에서 <code class="language-plaintext highlighter-rouge">String</code> 비교가 들어간다</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 전제조건: Model이란 구조체에 파싱 되었다는 기준하에 작성</span>
+<span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">==</span> <span class="s">"Y"</span> <span class="p">{</span>
+    <span class="c1">// 어떤 어떤 처리</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>하지만, 개인적으론 다음과 같이 되길 바란다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="p">{</span>
+    <span class="c1">// 어떤 어떤 처리</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그렇게 되기 위해선 <code class="language-plaintext highlighter-rouge">isHidden</code>이라는 값이 <code class="language-plaintext highlighter-rouge">Bool</code>형태여야 한다.</p>
+
+<p>이 점은 이전에 <code class="language-plaintext highlighter-rouge">CodingKey</code> 관련 글에서 해결하였다. <a href="https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html">참고</a></p>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="개선한-것의-단점">개선한 것의 단점</h3>
+
+<p>위의 방식은 실제 사용하는 코드에서 내가 원하는 스타일로 코딩을 할 수 있어서 좋았다.</p>
+
+<p>하지만, 단점이 따라왔다.</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>해당 코드가 같이 존재해야한다.</p>
+
+<p><br /></p>
+
+<p>다시말해, 다음 코드의 주석1,2와 같이 각 프로퍼티들을 다 초기화 해주어야 한다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 이전글중 일부 부분 (https://jiseobkim.github.io/swift/network/2021/05/26/swift-CodingKey-API와-다른-자료형-쓰기.html)</span>
+<span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    
+    <span class="c1">// 1. 사용자명 초기화</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">userName</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">userName</span><span class="p">)</span>
+    <span class="c1">// 2. 숨김처리 초기화</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">isHidden</span><span class="p">)</span> <span class="o">==</span> <span class="s">"Y"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>여기서는 값이 2개다. 따라서 라인도 2줄이 따라온다.</p>
+
+<p>그런데 여기서 만약 자료형을 바꾸게 된다면 코드가 길어지거나 심하면 라인이 몇줄 추가가 된다.</p>
+
+<p><br /></p>
+
+<p>주석 2번과 같이 자료형 변경이나 프로퍼티가 많다면</p>
+
+<p>각 <code class="language-plaintext highlighter-rouge">init</code>파트마다 라인의 수는 같이 증가하게 된다.</p>
+
+<p>이게 은근 귀찮다.</p>
+
+<p>편하자고 한건데, 편하자고 준비가 너무 긴 느낌이랄까?</p>
+
+<p><br /></p>
+
+<p><strong>그래서 반복적인 이 부분을 개선하고 싶었던 찰나에 Property Wrapper를 적용 가능한 것을 알게 되었다.</strong></p>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="property-wrapper와-codable">Property Wrapper와 Codable</h1>
+
+<p><code class="language-plaintext highlighter-rouge">UserDefault</code>에서도 보았듯이 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>를 이용하여 반복적인 행위를 제거하였다.
+여기서도 마찬가지다.</p>
+
+<p><strong>초기화 과정에서 반복되는 행위를 제거하는 것이 목적!</strong></p>
+
+<p><br /></p>
+
+<h3 id="property-wrapper-작성">Property Wrapper 작성</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@propertyWrapper</span>
+<span class="kd">struct</span> <span class="kt">StringBoolConverter</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이름과 같이 <code class="language-plaintext highlighter-rouge">Bool</code> 이지만 값은 <code class="language-plaintext highlighter-rouge">String</code>인 것을 바꿔주는 그런 역할이다.</p>
+
+<p><br /></p>
+
+<p>이전과는 다르게 <code class="language-plaintext highlighter-rouge">init</code> 부분 또한 없으며 <code class="language-plaintext highlighter-rouge">get/set</code> 부분도 없다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">init</code>이 없는 이유는 <code class="language-plaintext highlighter-rouge">Decodable</code>에 의해 초기화가 될 것이기 때문이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">get/set</code>이 없는 이유는 <code class="language-plaintext highlighter-rouge">UserDefault</code>처럼 값처리를 위한 연산이 필요 없기 때문이다.</li>
+</ul>
+
+<p><br /></p>
+
+<blockquote>
+  <p>이거하다가 저번글의 Property Wrapper를 
+“프로퍼티를 초기화 할때, 연산 프로퍼티(getter/setter) 개념을 추가 적용하는 것 (100% 개인 생각)” 
+라고 요약했는데, 이 말에 대해 조금 더 고민 해봐야겠다.
+“초기화를 커스텀 할 수 있다.” 라는 말이 더 어울릴려나…?</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그럼 이제 <code class="language-plaintext highlighter-rouge">Extension</code>을 해보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">StringBoolConverter</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">stringBool</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="n">wrappedValue</span> <span class="o">=</span> <span class="n">stringBool</span> <span class="o">==</span> <span class="s">"Y"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이 부분은 어렵지 않을 것이다.</p>
+
+<p>내 블로그에서 나오지 않은 <code class="language-plaintext highlighter-rouge">singleValueContainer()</code>의 경우 프로퍼티 네임과 동일한 것을 찾아서 <code class="language-plaintext highlighter-rouge">decode</code> 해주는 역할인듯하다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">CodingKey</code>를 따로 작성하지 않으면 기본적으로 이루어지는 방식으로 예상된다.</p>
+
+<p><br /></p>
+
+<p>쓰는 방식은 다음과 같다.</p>
+
+<p>모델을 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="kd">@StringBoolConverter</span> <span class="k">var</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>아주 간단하다!</p>
+
+<p><code class="language-plaintext highlighter-rouge">@StringBoolConverter</code>만 붙여주면 이 <code class="language-plaintext highlighter-rouge">isHidden</code>이라는 값은 <code class="language-plaintext highlighter-rouge">String</code>으로 온 <code class="language-plaintext highlighter-rouge">Y</code> 또는 <code class="language-plaintext highlighter-rouge">N</code> 값에 의해 <code class="language-plaintext highlighter-rouge">Bool</code>로 변환 되어 초기화가 된다.</p>
+
+<p><br /></p>
+
+<p>실제로 쓰고, 출력된 결과는 다음과 같다.</p>
+
+<p><img src="/assets/images/2021-06-20/img-1.png" style="zoom:40%;" /></p>
+
+<p>잘나왔다!</p>
+
+<hr />
+
+<p><br /></p>
+
+<p>전체 코드를 비교해보자.</p>
+
+<p><br /></p>
+
+<h3 id="property-wrapper-사용-전">Property Wrapper 사용 전</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">Bool</span>
+    
+    <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+        
+        <span class="k">self</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="o">==</span> <span class="s">"Y"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="property-wrapper-사용-후">Property Wrapper 사용 후</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="kd">@StringBoolConverter</span> <span class="k">var</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">init</code>부분이 제거됨에 따라 아주 심플해졌다!</p>
+
+<p>위에 말한바와 같이 <code class="language-plaintext highlighter-rouge">Property Wrapper</code>로 인해 반복적인 작업이 제거되었다.</p>
+
+<p><br /></p>
+
+<hr />
+
+<h1 id="단점">단점</h1>
+
+<p>굉장히 좋음에도 단점이 존재한다.</p>
+
+<p>그것은 <code class="language-plaintext highlighter-rouge">nil</code>처리가 위와 같은 방식으로는 안된다는 점이다.</p>
+
+<p>위의 코드 예시의 경우 <code class="language-plaintext highlighter-rouge">json</code>에 <code class="language-plaintext highlighter-rouge">isHidden</code>이라는 값이 존재한다.</p>
+
+<p>하지만, <code class="language-plaintext highlighter-rouge">isHidden</code>이라는 값이 없을 경우, 모델에 해당 값을 옵셔널처리 해주더라도 이 코드는 <code class="language-plaintext highlighter-rouge">throw</code>하게 된다.</p>
+
+<p><br /></p>
+
+<p>다시 말해 초기화가 안된다!</p>
+
+<p><br /></p>
+
+<p>실제로 서버에서도 <code class="language-plaintext highlighter-rouge">Request</code>에 따라 <code class="language-plaintext highlighter-rouge">Response</code>가 달라질 가능성은 존재한다.</p>
+
+<p>그렇기에 이 단점은 치명적이라 생각된다.</p>
+
+<p><br /></p>
+
+<p>하지만, 이 단점 또한 커버가 가능하다.</p>
+
+<p>그 포스팅은 다음편에~~</p>

@@ -1,0 +1,163 @@
+<p>이전편 8번에서부터 이어지므로 보고 오는것을 추천 - <a href="https://jiseobkim.github.io/swift/ui/2021/03/17/swift-ScrollView-뿌시기.html">이전글</a></p>
+
+<p>이 에러부터!</p>
+
+<p><img src="/assets/images/2021-03-17/img-9.png" style="zoom:80%;" /></p>
+
+<p><br /><br /></p>
+
+<h1 id="실험">실험</h1>
+
+<p>위의 8부터 다시보고 차근차근 봐보자, 이것 저것 실험하기!</p>
+
+<p>컨텐츠의 사이즈가 모호해! 는 사라졌다. 대신에 위와 같이 X,Width 값 잡고 Y, Height도 필요하다고 나온다.</p>
+
+<p>하나씩 다잡아보자 X 또는 Width, Y 또는 Height.</p>
+
+<p><br /></p>
+
+<p><strong>X값 설정</strong></p>
+
+<p>센터로 설정을 해보자</p>
+
+<p><img src="/assets/images/2021-03-18/img-10.png" style="zoom:80%;" /></p>
+
+<p><img src="/assets/images/2021-03-18/img-11.png" style="zoom:40%;" /></p>
+
+<p>x 값을 잡아줬더니 x또는 Width 잡으라는 경고는 사라졌다. 그리곤 ScrollView의 폭만큼 늘어났다</p>
+
+<p><br /><br /></p>
+
+<p><strong>Y값 설정</strong></p>
+
+<p>X는 다시 지워주고 Y만 센터로 해보자</p>
+
+<p><img src="/assets/images/2021-03-18/img-12.png" style="zoom:80%;" /></p>
+
+<p><img src="/assets/images/2021-03-18/img-13.png" style="zoom:40%;" /></p>
+
+<p>마찬가지로 y, height 잡으라는 경고는 사라졌다. 그리곤 ScrollView의 높이만큼 늘어났다.</p>
+
+<p><br /><br /></p>
+
+<p><strong>X,Y값 설정</strong></p>
+
+<p>둘다 센터 0으로 잡아보자</p>
+
+<p><img src="/assets/images/2021-03-18/img-14.png" style="zoom:40%;" /></p>
+
+<p>모든 에러가 사라졌다. 그리고 ScrollView와 같은 사이즈가 되었다.</p>
+
+<p>Content Layout Guide와의 상하좌우를 0으로 맞추고 센터를 0,0잡아준 결과이다.</p>
+
+<p>스크롤뷰 사이즈 = 컨텐츠 사이즈인 상태이다. 그러므로 <strong>스크롤은 되지 않는다.</strong></p>
+
+<p><br /></p>
+
+<p>이번엔 Content Layout Guide와의 좌,우 를 100 잡아보자( Leading만 잡아도 Trailing은 줄어드는 이유는 잘 모르겠다. )</p>
+
+<p><img src="/assets/images/2021-03-18/img-15.png" style="zoom:40%;" /></p>
+
+<p><img src="/assets/images/2021-03-18/img-17.png" style="zoom:40%;" /></p>
+
+<p>가득 차있다가 좌우 여백 100 만큼을 갖는 사이즈로 형성이 된다.</p>
+
+<p>그렇다는건 반대로 여백을 반대 방향으로 잡는다면 그만큼 스크롤이 가능하게 된다는것이다.</p>
+
+<p><br /></p>
+
+<p>반대로 하기전 스크롤 됨을 확인하기가 어려우므로 다음과 같이 이쁘게 꾸며주자 (핑크와 오렌지의 폭은 100)</p>
+
+<p><img src="/assets/images/2021-03-18/img-18.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>Leading만 -100을 줘보자</p>
+
+<p><img src="/assets/images/2021-03-18/img-19.png" style="zoom:40%;" /></p>
+
+<p>자세히 보면 왼쪽은 두줄이다. 오른쪽은 한줄이고!</p>
+
+<p>이상태에서 왼쪽-&gt;오른쪽 드래그를 해보면 더이상 갈 수 없다. 빨간색이 bounce 동안은 볼수 있지만 해당 영역으로 스크롤을 갈 수 없다.</p>
+
+<p>반대로 오른쪽 -&gt; 왼쪽 드래그를 해보면 주황색영역을 볼 수 있다.</p>
+
+<p>이때부터, 뭔가 내 생각대로 안됨을 인식하기 시작했다.</p>
+
+<p>Leading과 Trailing에 대해 내가 모른단 생각이 들었다.</p>
+
+<p><br /><br /></p>
+
+<p>Trailing에 -100을 줘보자</p>
+
+<p><img src="/assets/images/2021-03-18/img-20.png" style="zoom:40%;" /></p>
+
+<p>오 오른쪽으로 갈 수 있는 영역이 100 만큼 생겼다. 그치만 Leading과 다르게 좌로는 늘어나지 않고 우로만 늘어났다.</p>
+
+<p>오.. 혼란이 온다…</p>
+
+<p>Leading과 Trailing은 다르다.</p>
+
+<p>이 얘긴 나중에 하자 길어질듯하다.</p>
+
+<p>공부해서오자.</p>
+
+<p><br /><br /></p>
+
+<p>Leading과 Trailing을 복구 시키고 세로로만 스크롤 되게 해보자</p>
+
+<p>y축을 -100 줘보자.</p>
+
+<p><img src="/assets/images/2021-03-18/img-23.png" style="zoom:40%;" /></p>
+
+<p><br /><br /></p>
+
+<p>축 자체가 -100이 되기 위해선 x2만큼 늘어나야해서 200이 늘어나게 된다.</p>
+
+<p>어찌 됐든 스크롤은 되지만 영역잡기엔 굉장히 별로 안좋은 방법이다.</p>
+
+<p>그냥 상하좌우와 X,Y축 AutoLayout만으로도 스크롤을 가능하게 할 수 있다! 정도만 알게 되었다.</p>
+
+<p><br /><br /></p>
+
+<p><strong>Height, Width값 설정</strong></p>
+
+<p>(Y는 마찬가지로 초기화) 이건 한꺼번에 설정 해도 생각한대로 그려지므로 한꺼번에 설정.</p>
+
+<p>100, 100 으로 잡아보자</p>
+
+<p><img src="/assets/images/2021-03-18/img-21.png" style="zoom:40%;" /></p>
+
+<p>아주 귀엽게 됐다, 아직은 컨텐츠 양이 작아서 드래그가 안되니 조금 많이 키워보자</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2021-03-18/img-22.png" style="zoom:40%;" /></p>
+
+<p>오 이것도 된다.</p>
+
+<p>자체적인 Width, Height로도 스크롤은 가능하게 할 수 있다.</p>
+
+<p><br /><br /></p>
+
+<p>하지만, 보통은 X방향 또는 Y방향으로만 스크롤이 되게 하므로 위에 방법들은 보통의 경우에 쓰긴 추천하지 않는다.</p>
+
+<p>그럼 Y축 스크롤만 예를 들었을때, 좌우 폭을 잡는 방법은 다음과 같은 방식이 있다.</p>
+
+<ol>
+  <li>Frame Layout Guide와 Width를 동일시한다.</li>
+  <li>ScrollView와 Width를 동일시한다.</li>
+</ol>
+
+<p><br /><br /></p>
+
+<p>둘의 차이점은 없다고 생각한다.</p>
+
+<p>다만, 구조적으로 봤을때 Frame Layout Guide를 사용한다면 스크롤뷰 내의 뷰의 사이즈를 <code class="language-plaintext highlighter-rouge">Guide</code>들을 이용해서 사이즈를 잡을 수 있다.</p>
+
+<p><img src="/assets/images/2021-03-18/img-24.png" style="zoom:100%;" /></p>
+
+<p><br /><br /></p>
+
+<p>스크롤뷰 내의 컨텐츠 사이즈를 정의할때, 괜히 엄한것이랑 AutoLayout 잡지 말고 Guide들로 잡아! 라는 뜻이 아닐까?</p>
+

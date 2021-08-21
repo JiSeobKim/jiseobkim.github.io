@@ -1,0 +1,242 @@
+<p><br /></p>
+
+<p>이전 글에서 API 결과값의 변수명과 다른 변수명을 쓰는 것에 대해 포스팅을 하였다.
+<a href="https://jiseobkim.github.io/swift/network/2021/05/19/swift-CodingKey-API와-다른-변수명-쓰기.html">(이전글 링크)</a></p>
+
+<p>이러한 느낌으로 
+이번엔 
+“서버에서 내려준 자료형과 다른 자료형을 쓰고 싶다!”
+라는 생각이 든적이 있었다.</p>
+
+<p><br /></p>
+
+<p>예를 들어 서버에서 다음과 같이 준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"userName"</span> <span class="p">:</span> <span class="s">"JS"</span><span class="p">,</span>
+    <span class="s">"isHidden"</span> <span class="p">:</span> <span class="s">"Y"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그렇담,
+일반적으로 서버와 자료명을 맞춰서 쓴다고 가정하면 
+모델은 다음과  같을 것이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Model</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그럼 이제 이것을 쓸때 어떻게 쓰는지를 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">nameLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span>
+
+<span class="c1">// ...</span>
+<span class="c1">// label도 어디선가 초기화 했고, Model도 어디선가 Codable로 초기화 되었다고 가정!</span>
+
+<span class="c1">// 통신 후 화면 업데이트</span>
+<span class="kd">func</span> <span class="nf">updateView</span><span class="p">(</span><span class="nv">model</span><span class="p">:</span> <span class="kt">Model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 1. 이름 적용</span>
+    <span class="n">nameLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">userName</span>
+    <span class="c1">// 2. 숨김 적용</span>
+    <span class="n">nameLabel</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">==</span> <span class="s">"Y"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>여기서 1의 경우 모델 그대로 가공 없이 넣어주면 그만이었다.</p>
+
+<p>그런데 2의 경우는 <code class="language-plaintext highlighter-rouge">Bool</code> 타입으로 가공하여 적용을 해주었다.</p>
+
+<p><br /></p>
+
+<p>이게 아쉬웠다.</p>
+
+<p>쓰는 곳에서 별도로 처리하는게 뭔가 귀찮고 깔끔해보이지도 않는다.</p>
+
+<p>모델 안에 <code class="language-plaintext highlighter-rouge">getter</code>를 써도 되겠지만 이또한 뭔가 아쉬움이 남는다.</p>
+
+<p><br /></p>
+
+<p>그러다가 <code class="language-plaintext highlighter-rouge">CodingKey</code>를 알게 되고, 이 <code class="language-plaintext highlighter-rouge">Key</code>가 초기화 할때 사용이 된다는걸 알게 되었고,</p>
+
+<p><br /></p>
+
+<p><strong>초기화할때 커스텀이 가능함을 알게 되었다.</strong></p>
+
+<p><br />
+<br /></p>
+
+<h1 id="codingkey와-init">CodingKey와 Init</h1>
+
+<p>지난편에 <code class="language-plaintext highlighter-rouge">CodingKey</code> 를 정의를 하였지만 구체적으로 어떻게 사용 되는지는 다루지 않았다.</p>
+
+<p>마치 타입추론 같이 알아서 가져다 쓰나보다.</p>
+
+<p><br /></p>
+
+<p>아래 코드를 보자</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Model</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">response</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>자주본 Codable을 이용하여 객체를 얻는 부분이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">decode</code>를 기억하자.</p>
+
+<p><br /></p>
+
+<p>그리고 모델 부분에 CodingKey Enum을 만들어주고</p>
+
+<p>해당 모델 내에서 init을 입력해서 제안을 보자</p>
+
+<p><img src="/assets/images/2021-05-26/img-1.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>파란줄을 보면 <code class="language-plaintext highlighter-rouge">decoder</code>가 써있다.</p>
+
+<p>딱봐도 기억하자한 <code class="language-plaintext highlighter-rouge">decode</code>와 아래의 <code class="language-plaintext highlighter-rouge">decoder</code> 뭔가 관련이 있을듯 하다.</p>
+
+<p><br /></p>
+
+<p>그리고 다음과 같이 <code class="language-plaintext highlighter-rouge">container</code>라는 변수를 만들어준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>저 <code class="language-plaintext highlighter-rouge">container</code>는 무엇인가?</p>
+
+<p><img src="/assets/images/2021-05-26/img-2.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>음 대충  <strong>“디코더에 저장된 데이터를 새 키로 박아서 데이터를 반환한다.”</strong> 라는 것 같다.</p>
+
+<p>다시 말해,</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Model</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">response</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>여기서 decode 했을때 들어간 <code class="language-plaintext highlighter-rouge">response</code>가 위에서 말한 <code class="language-plaintext highlighter-rouge">데이터</code>이고</p>
+
+<p>그 데이터와 <code class="language-plaintext highlighter-rouge">Codingkeys.self</code> 의 키를 연결해서 뱉어 준값이 <code class="language-plaintext highlighter-rouge">container</code>인 것이다.</p>
+
+<blockquote>
+  <p>설명하자니 어렵다</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>아무튼,</p>
+
+<p>그럼 현재 <code class="language-plaintext highlighter-rouge">Model</code>이라는 것은 초기화가 되지 않은 상태다.</p>
+
+<p>이제 할 일은 <code class="language-plaintext highlighter-rouge">container</code> 데이터를 이용하여 <code class="language-plaintext highlighter-rouge">Model</code>을 <strong>초기화</strong> 해주는 것!</p>
+
+<p><br /></p>
+
+<h1 id="container와-초기화">Container와 초기화</h1>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+    
+    <span class="c1">// 1. 사용자명 초기화</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">userName</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">userName</span><span class="p">)</span>
+    <span class="c1">// 2. 숨김처리 초기화</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">isHidden</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>1,2의 <code class="language-plaintext highlighter-rouge">try</code> 부분을 보면 다음과 같이 해석할 수 있다.</p>
+
+<p><strong>“컨테이너(데이터) 안에서 forKey로 넣은 것에 맞는 데이터를 빼오고, String 타입으로 가져와”</strong></p>
+
+<p>라는 것이다.</p>
+
+<p><br /></p>
+
+<p>그럼 이제 <code class="language-plaintext highlighter-rouge">Decode</code>하면 다음과 같이 이쁘게 출력된다.</p>
+
+<p><img src="/assets/images/2021-05-26/img-3.png" style="zoom:40%;" /></p>
+
+<p>이 방식을 이용하여 글의 주제였던 <strong>“API 결과 값과 다른 자료형 쓰기”</strong>를 하는 것이다.</p>
+
+<p><br /></p>
+
+<h1 id="자료형-바꾸기">자료형 바꾸기</h1>
+
+<p>우리가 바꿀 것은 <code class="language-plaintext highlighter-rouge">isHidden</code>의 자료형을 <code class="language-plaintext highlighter-rouge">String</code> -&gt; <code class="language-plaintext highlighter-rouge">Bool</code> 하는 것!</p>
+
+<p>우선 모델의 자료형부터 바꾸자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+<span class="k">let</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">Bool</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그러면 자료형이 안맞기 때문에 <code class="language-plaintext highlighter-rouge">init</code> 부분에서 아래와 같이 에러가 발생한다.</p>
+
+<p><img src="/assets/images/2021-05-26/img-4.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>현재 저 결과 값은 <code class="language-plaintext highlighter-rouge">String</code>이므로 조건을 넣어 <code class="language-plaintext highlighter-rouge">Bool</code>로 바꿔주자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">isHidden</span><span class="p">)</span> <span class="o">==</span> <span class="s">"Y"</span>
+</code></pre></div></div>
+
+<p>그럼 오류는 사라지게 된다.</p>
+
+<p><br /></p>
+
+<p>그리고 빌드해서 브레이크를 걸고 <code class="language-plaintext highlighter-rouge">Variables View</code>를 보면 다음과 같다.</p>
+
+<p><img src="/assets/images/2021-05-26/img-5.png" style="zoom:40%;" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">isHidden</code>은 <code class="language-plaintext highlighter-rouge">Bool</code> 타입이라고 정확하게 나왔다!</p>
+
+<p>그러면 이제 맨 처음 예제를 든 코드의 Before 와 After를 보자</p>
+
+<h3 id="before">Before</h3>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 이름 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">userName</span>
+<span class="c1">// 2. 숨김 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">==</span> <span class="s">"Y"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="after">After</h3>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 이름 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">userName</span>
+<span class="c1">// 2. 숨김 적용</span>
+<span class="n">nameLabel</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">isHidden</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p>이건 예제이기 때문에 저 한줄을 위해 너무 많은 코드가 추가된 느낌이 든다면 기분탓으로 치자.</p>
+
+<p>아래와 같이 이것을 이용하면 많은 것을 내 맘대로 바꿀 수 있다.</p>
+
+<ul>
+  <li>시간 타임 스탬프를 바로 <code class="language-plaintext highlighter-rouge">Date</code>로 정의하기</li>
+  <li>enum과 연계하여 정의하기(이게 은근 꿀이다)</li>
+</ul>
+
+<p>등등!</p>
+
+<p><br /></p>
+
+<p>끝!</p>
