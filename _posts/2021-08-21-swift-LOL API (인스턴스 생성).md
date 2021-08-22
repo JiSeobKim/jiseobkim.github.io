@@ -7,8 +7,9 @@ categories: [Swift]
 
 ---
 
+<br>
 
-오늘도 LOL API와 관련이 있다.
+오늘의 주제도 LOL API와 관련이 있다.
 
 <br>
 
@@ -17,6 +18,8 @@ categories: [Swift]
 `QuickType`이라는 것인데,
 
 [앱스토어](https://apps.apple.com/kr/app/paste-json-as-code-quicktype/id1330801220?mt=12)에서 받아도 되고, 다운받기 싫다면 [웹사이트](https://quicktype.io)에서 진행해도 된다.
+
+<br>
 
 ## 언제 쓸까
 
@@ -27,40 +30,38 @@ categories: [Swift]
 글을 게제하기 위해서 다음과 같은 순서로 진행 했었다.
 
 1. `JSON`파일을 만들거나 `String`을 `JSON`형태로 만든뒤 `Data`로 변경
-2. `JSON` 형태 기준으로 구조체 또는 클래스를 만든다.
+2. **`JSON` 형태 기준으로 구조체 또는 클래스를 만든다.**
 3. `Codable`을 이용하여 `JSON` 데이터로 인스턴스를 생성한다.
 
+<br>
 
-여기서 3번! 3번이 은근히 귀찮았다.
+여기서 2번! 2번이 은근히 귀찮았다.
 
 그치만 짧기 때문에 해볼만한 귀찮음이었다.
 
 <br>
 
-회사에서는 데이터 파악할겸 프로퍼티  하나하나 복붙하느라
+회사에서는 데이터 파악할겸 프로퍼티  하나하나 **복붙하느라**
 
 `QuickType`을 적용해볼 생각 조차 안했다.
 
-> 복붙한 이유는,,, 타이핑 치다가 오타나면 귀찮음이 x3
+> 복붙한 이유는,,, 타이핑 치다가 오타나면 귀찮음이 x3...
 
 <br>
 
 
-그러다가 `LOL API` 관련 포스팅하다가 아주 아주 소름 돋는 경험을 했다.
+그러다가 `LOL API` 관련 포스팅하다가 아주 아주 재미난 경험을 했다.
 
 
 <br>
 
 제공하는 정보중에 `챔피언 리스트` 라는 것이 있다.
 
-이는 `JSON` 형태로 주는데,  아래 링크를 들어가보면
+이는 `JSON` 형태로 주는데,  [링크](http://ddragon.leagueoflegends.com/cdn/11.16.1/data/en_US/champion.json)를 들어가보면
 
-[링크](http://ddragon.leagueoflegends.com/cdn/11.16.1/data/en_US/champion.json)
 
-> macOS 빅서 사파리에선 파싱이 이상하네? 
-
-> 몬테레이에선 잘됐는데,, 
-
+> macOS 빅서 사파리에선 파싱이 이상하네? <br> 
+> 몬테레이에선 잘됐는데,, <br>
 > 크롬에선 잘된다.
 
 <br>
@@ -82,6 +83,8 @@ categories: [Swift]
 그랬더니 놀랍게도 다음과 같은 처리가 되었다.
 
 <img src="/assets/images/2021-08-21/img-1.png" style="zoom:40%;" />
+
+(왼쪽 어두운 영역: `JSON`, 오른쪽 밝은 영역: `변환된 값`)
 
 <br>
 
@@ -134,6 +137,8 @@ enum Version: String, Codable {
     case the11161 = "11.16.1"
 }
 ```
+
+<br>
 
 이것들은 `String` 또는 `[String]` 중 일부가 자동으로 생성 된건데,
 
@@ -200,7 +205,7 @@ api.request { result in
 
 너무 많을 테니 한 캐릭터만 가져오자
 
-> Dictionary라 순서 보장이 안된다
+> `Dictionary`라 `first`의 순서 보장은 안된다
 
 ```swift
 let api = API.getChampionList
@@ -225,7 +230,7 @@ api.request(dataType: ChampionList.self) { result in
 
 인스턴스가 잘 생성되었다!
 
-> 안이쁜건 넘어가자
+> 출력이 안이쁜건 넘어가자
 
 <br>
 
@@ -234,6 +239,8 @@ api.request(dataType: ChampionList.self) { result in
 으 이것들 하나하나 입력했으면 시간이 많이 걸렸을 텐데
 
 이렇게 만들어 주다니 너무 좋다.
+
+이 예제에는 없지만 심지어 `CodingKey`도 만들어준다!
 
 마음에 안드는 부분은 살짝만 손보면 되니, 앞으론 적극적으로 사용해봐야겠다.
 

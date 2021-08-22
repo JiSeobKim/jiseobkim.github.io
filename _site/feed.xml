@@ -5,13 +5,15 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 22 Aug 2021 20:55:51 +0900</pubDate>
-    <lastBuildDate>Sun, 22 Aug 2021 20:55:51 +0900</lastBuildDate>
+    <pubDate>Mon, 23 Aug 2021 06:41:27 +0900</pubDate>
+    <lastBuildDate>Mon, 23 Aug 2021 06:41:27 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
         <title>Swift - JSON 데이터 쉽게 모델 만들기(feat. QuickType)</title>
-        <description>&lt;p&gt;오늘도 LOL API와 관련이 있다.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;오늘의 주제도 LOL API와 관련이 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -20,6 +22,8 @@
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QuickType&lt;/code&gt;이라는 것인데,&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://apps.apple.com/kr/app/paste-json-as-code-quicktype/id1330801220?mt=12&quot;&gt;앱스토어&lt;/a&gt;에서 받아도 되고, 다운받기 싫다면 &lt;a href=&quot;https://quicktype.io&quot;&gt;웹사이트&lt;/a&gt;에서 진행해도 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;언제-쓸까&quot;&gt;언제 쓸까&lt;/h2&gt;
 
@@ -31,46 +35,40 @@
 
 &lt;ol&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt;파일을 만들거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt;형태로 만든뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Data&lt;/code&gt;로 변경&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 형태 기준으로 구조체 또는 클래스를 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 형태 기준으로 구조체 또는 클래스를 만든다.&lt;/strong&gt;&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codable&lt;/code&gt;을 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 데이터로 인스턴스를 생성한다.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;여기서 3번! 3번이 은근히 귀찮았다.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 2번! 2번이 은근히 귀찮았다.&lt;/p&gt;
 
 &lt;p&gt;그치만 짧기 때문에 해볼만한 귀찮음이었다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;회사에서는 데이터 파악할겸 프로퍼티  하나하나 복붙하느라&lt;/p&gt;
+&lt;p&gt;회사에서는 데이터 파악할겸 프로퍼티  하나하나 &lt;strong&gt;복붙하느라&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QuickType&lt;/code&gt;을 적용해볼 생각 조차 안했다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;복붙한 이유는,,, 타이핑 치다가 오타나면 귀찮음이 x3&lt;/p&gt;
+  &lt;p&gt;복붙한 이유는,,, 타이핑 치다가 오타나면 귀찮음이 x3…&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그러다가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOL API&lt;/code&gt; 관련 포스팅하다가 아주 아주 소름 돋는 경험을 했다.&lt;/p&gt;
+&lt;p&gt;그러다가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOL API&lt;/code&gt; 관련 포스팅하다가 아주 아주 재미난 경험을 했다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;제공하는 정보중에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;챔피언 리스트&lt;/code&gt; 라는 것이 있다.&lt;/p&gt;
 
-&lt;p&gt;이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 형태로 주는데,  아래 링크를 들어가보면&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://ddragon.leagueoflegends.com/cdn/11.16.1/data/en_US/champion.json&quot;&gt;링크&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt; 형태로 주는데,  &lt;a href=&quot;http://ddragon.leagueoflegends.com/cdn/11.16.1/data/en_US/champion.json&quot;&gt;링크&lt;/a&gt;를 들어가보면&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;macOS 빅서 사파리에선 파싱이 이상하네?&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;몬테레이에선 잘됐는데,,&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;크롬에선 잘된다.&lt;/p&gt;
+  &lt;p&gt;macOS 빅서 사파리에선 파싱이 이상하네? &lt;br /&gt; 
+몬테레이에선 잘됐는데,, &lt;br /&gt;
+크롬에선 잘된다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -92,6 +90,8 @@
 &lt;p&gt;그랬더니 놀랍게도 다음과 같은 처리가 되었다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-21/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(왼쪽 어두운 영역: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSON&lt;/code&gt;, 오른쪽 밝은 영역: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;변환된 값&lt;/code&gt;)&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -141,6 +141,8 @@
     &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the11161&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;11.16.1&quot;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이것들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[String]&lt;/code&gt; 중 일부가 자동으로 생성 된건데,&lt;/p&gt;
 
@@ -208,7 +210,7 @@
 &lt;p&gt;너무 많을 테니 한 캐릭터만 가져오자&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Dictionary라 순서 보장이 안된다&lt;/p&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dictionary&lt;/code&gt;라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;first&lt;/code&gt;의 순서 보장은 안된다&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;API&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getChampionList&lt;/span&gt;
@@ -234,7 +236,7 @@
 &lt;p&gt;인스턴스가 잘 생성되었다!&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;안이쁜건 넘어가자&lt;/p&gt;
+  &lt;p&gt;출력이 안이쁜건 넘어가자&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -244,6 +246,8 @@
 &lt;p&gt;으 이것들 하나하나 입력했으면 시간이 많이 걸렸을 텐데&lt;/p&gt;
 
 &lt;p&gt;이렇게 만들어 주다니 너무 좋다.&lt;/p&gt;
+
+&lt;p&gt;이 예제에는 없지만 심지어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CodingKey&lt;/code&gt;도 만들어준다!&lt;/p&gt;
 
 &lt;p&gt;마음에 안드는 부분은 살짝만 손보면 되니, 앞으론 적극적으로 사용해봐야겠다.&lt;/p&gt;
 
