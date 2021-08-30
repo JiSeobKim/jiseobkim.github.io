@@ -239,24 +239,26 @@
 <p><br /></p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">ButtonConcreteBuilder</span><span class="p">:</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
-  	<span class="kd">private</span> <span class="k">var</span> <span class="nv">product</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">()</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">product</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">()</span>
 
-	  <span class="o">...</span> <span class="n">생략</span>
- 		<span class="c1">// 텍스트 입력</span>
-  	<span class="kd">func</span> <span class="nf">setTitle</span><span class="p">(</span><span class="n">_</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
+    <span class="o">...</span> <span class="n">생략</span>
+    <span class="c1">// 텍스트 입력</span>
+    <span class="kd">func</span> <span class="nf">setTitle</span><span class="p">(</span><span class="n">_</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
         <span class="k">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="nf">setTitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
         <span class="k">return</span> <span class="k">self</span>
-		<span class="p">}</span>
-  	<span class="c1">// 테두리 적용 (컬러와 폭을 한번에 받아 보다 쉽게 적용)</span>
-  	<span class="kd">func</span> <span class="nf">setBolder</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 테두리 적용 (컬러와 폭을 한번에 받아 보다 쉽게 적용)</span>
+    <span class="kd">func</span> <span class="nf">setBolder</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ButtonBuilder</span> <span class="p">{</span>
         <span class="k">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="n">width</span>
         <span class="k">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">cgColor</span>
         <span class="k">return</span> <span class="k">self</span>
-		<span class="p">}</span>
-  	<span class="c1">// 객체 반환</span>
-  	<span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIButton</span><span class="p">?</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 객체 반환</span>
+    <span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIButton</span><span class="p">?</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">product</span>
-		<span class="p">}</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -315,9 +317,8 @@
 <h1 id="사용">사용</h1>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
-
-		<span class="o">...</span>
-  
+		
+    <span class="o">...</span>
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">super</span><span class="o">.</span><span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
         <span class="k">self</span><span class="o">.</span><span class="nf">addBottomButton</span><span class="p">()</span>

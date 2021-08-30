@@ -133,24 +133,26 @@ Concrete Builder를 이용하여 객체를 `return` 해주는 구현 클래스
 
 ```swift
 class ButtonConcreteBuilder: ButtonBuilder {
-  	private var product = UIButton()
+    private var product = UIButton()
 
-	  ... 생략
- 		// 텍스트 입력
-  	func setTitle(_ title: String) -> ButtonBuilder {
+    ... 생략
+    // 텍스트 입력
+    func setTitle(_ title: String) -> ButtonBuilder {
         self.product.setTitle(title, for: .normal)
         return self
-		}
-  	// 테두리 적용 (컬러와 폭을 한번에 받아 보다 쉽게 적용)
-  	func setBolder(color: UIColor, width: CGFloat) -> ButtonBuilder {
+    }
+
+    // 테두리 적용 (컬러와 폭을 한번에 받아 보다 쉽게 적용)
+    func setBolder(color: UIColor, width: CGFloat) -> ButtonBuilder {
         self.product.layer.borderWidth = width
         self.product.layer.borderColor = color.cgColor
         return self
-		}
-  	// 객체 반환
-  	func build() -> UIButton? {
+    }
+
+    // 객체 반환
+    func build() -> UIButton? {
         return self.product
-		}
+    }
 }
 ```
 
@@ -213,9 +215,8 @@ Director도 프로토콜을 생성하여 준수하게 만들면 좋겠지만? �
 
 ```swift
 class ViewController: UIViewController {
-
-		...
-  
+		
+    ...
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addBottomButton()
