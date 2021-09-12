@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>DesignPattern - Adapter Pattern 알아보기 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="DesignPattern - Adapter Pattern 알아보기" />
+    <meta name="keywords" content="DesignPattern - Adapter Pattern 알아보기, 😀😍😉 JS 개발 블로그 😁😆😄, DesignPattern" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="DesignPattern - Adapter Pattern 알아보기" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/designpattern/2021/09/12/designPattern-DesignPattern-Adapter-Pattern-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html" property="og:url">
+    
+
+    
+      <meta content="2021-09-12T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="DesignPattern" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="DesignPattern - Adapter Pattern 알아보기">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/designpattern/2021/09/12/designPattern-DesignPattern-Adapter-Pattern-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">DesignPattern - Adapter Pattern 알아보기</h1>
+</header>
+
+<span class="time">12 Sep 2021</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/DesignPattern">DesignPattern</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<blockquote>
+  <p>요즘 체텔카스텐과 롬 리서치 매력에 빠졌다. 이것도 포스팅 해봐야지</p>
+</blockquote>
+
+<p>오랫만에 디자인 패턴 적용하기!</p>
+
+<p>오늘의 주제는 어댑터 패턴이다.</p>
+
+<p><br /></p>
+
+<h1 id="어댑터의-의미">어댑터의 의미</h1>
+
+<p>현실에서 가장 이해하기 쉬운건 역시나 돼지코인듯 하다.</p>
+
+<p>해외 전자 제품은 110v인 경우가 있다.</p>
+
+<p>그런데 이것을 국내로 가져와서 사용하려면 코드와 돼지코를 연결해줘야한다.</p>
+
+<p>이때 돼지코의 역할이 오늘 포스팅 주제인 어댑터 패턴이라고 이해하면 될 것 같다.</p>
+
+<p><br /></p>
+
+<h1 id="어댑터-패턴의-필요성">어댑터 패턴의 필요성</h1>
+<p>위와 같은 예제는 이해하기 참 쉽다.</p>
+
+<p>하지만 코드로 적용하려면 어쩌지 라는 생각이 많이 들었다.</p>
+
+<p><br /></p>
+
+<p>나름 열심히 고심해서 나온 예제는 다음과 같다.</p>
+
+<p>주제는 재난 지원금이다.</p>
+
+<p><br /></p>
+
+<p>기존 카드사에서 돈을 쓰고 나면 남기는 기록 형태가 있을 것이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">class</span> <span class="kt">UsedInfo</span> <span class="p">{</span>
+     <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span>
+     <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span>
+     <span class="k">var</span> <span class="nv">usedDate</span><span class="p">:</span> <span class="kt">Date</span>
+     <span class="k">var</span> <span class="nv">usedPrice</span><span class="p">:</span> <span class="kt">Double</span>
+     
+     <span class="nf">init</span><span class="p">(</span><span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">usedDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">usedPrice</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">self</span><span class="o">.</span><span class="n">userName</span> <span class="o">=</span> <span class="n">userName</span>
+         <span class="k">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">id</span>
+         <span class="k">self</span><span class="o">.</span><span class="n">usedDate</span> <span class="o">=</span> <span class="n">usedDate</span>
+         <span class="k">self</span><span class="o">.</span><span class="n">usedPrice</span> <span class="o">=</span> <span class="n">usedPrice</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그런데, 정부에서 지원을 했으므로 그에 맞게 기록을 남기던 어떤 처리를 하던간에</p>
+
+<p>그에 맞는 맞춤형 객체를 따로 만들어두는게 여러모로 편할 것이다.</p>
+
+<p><br /></p>
+
+<p>근데 고맙게도 아래처럼 형태를 지정해줬다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">GovUsedInfoAvailable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">date</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span> <span class="c1">// yyyy.MM.dd</span>
+    <span class="k">var</span> <span class="nv">price</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그런데, 프로퍼티의 의미적으론 같으나, <strong>이름이 조금씩 다르고, 자료형 또한 다르다.</strong></p>
+
+<p>간단하게 생각하면, 이 <code class="language-plaintext highlighter-rouge">프로토콜</code>을 적용해버리면 그만이다.</p>
+
+<p>하지만, 그랬을 경우 다음과 같은 문제가 생긴다.</p>
+
+<p><br /></p>
+
+<h3 id="usedinfo의-객체의-코드가-늘어난다"><code class="language-plaintext highlighter-rouge">UsedInfo</code>의 객체의 코드가 늘어난다.</h3>
+
+<p><code class="language-plaintext highlighter-rouge">getter</code>로 만들면 되지만 이와 같은 방식을 이용하게 된다면, 또 다른 어딘가와 협업을 할때도</p>
+
+<p>프로토콜을 적용해버리겠지?</p>
+
+<p>그렇담 얼마나 지저분해질지는 개인의 판단에 맡기겠다.</p>
+
+<p><br /></p>
+
+<h3 id="usedinfo의-객체에-영향을-끼친다"><code class="language-plaintext highlighter-rouge">UsedInfo</code>의 객체에 영향을 끼친다.</h3>
+
+<p>미관상도 별로지만, 만에 하나 이 프로토콜을 따르는 어떤 값을 정부와 관련된 코드 외에서 써버린다?</p>
+
+<p>그랬을 경우 나~중에 정부와 협업이 끝나서 필요 없어질 경우, 정부와 일한 코드 부분 외에도 다른 곳도 손을 봐야한다.</p>
+
+<p><br /></p>
+
+<p>이 행위를 돼지코로 비유해보자 생각해보자.</p>
+
+<p>쓰고자 하는 전자 제품을 분해해서 원하는 형태로 바꾸고 다시 재조립하는 격이다.</p>
+
+<p><br /></p>
+
+<p>돼지코의 장점은 무엇인가?</p>
+
+<p>220v에 필요한곳에서만 끼우고, 필요 없어지면 빼면 그만이다.</p>
+
+<p>기존 제품에 전혀 영향을 주지 않는다.</p>
+
+<p><br /></p>
+
+<p>마찬가지로 어댑터 패턴을 쓰려는 이유는</p>
+
+<p><strong>기존 객체에 영향을 주지 않으면서, 다른 곳에 이용을 하는 것</strong>이라 생각한다.</p>
+
+<p><br /></p>
+
+<h1 id="adapter-pattern-사용">Adapter Pattern 사용</h1>
+
+<p>어댑터 패턴을 사용해보자</p>
+
+<p>기존 <code class="language-plaintext highlighter-rouge">UsedInfo</code>란 객체를 초기화 인자를 받는 새로운 객체 <code class="language-plaintext highlighter-rouge">UsedInfoForGov</code>를 만들자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">UsedInfoForGov</span><span class="p">:</span> <span class="kt">GovUsedInfoAvailable</span> <span class="p">{</span>
+
+    <span class="c1">// 0. 기존 객체를 받는 지정 초기화 구문</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">usedInfo</span><span class="p">:</span> <span class="kt">UsedInfo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">usedInfo</span> <span class="o">=</span> <span class="n">usedInfo</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 1. 프로토콜 규약을 따른 프로퍼티들</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="n">usedInfo</span><span class="o">.</span><span class="n">userName</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="n">usedInfo</span><span class="o">.</span><span class="n">id</span><span class="p">}</span>
+    <span class="k">var</span> <span class="nv">date</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="n">formatter</span><span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">usedInfo</span><span class="o">.</span><span class="n">usedDate</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">price</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">Int</span><span class="p">(</span><span class="n">usedInfo</span><span class="o">.</span><span class="n">usedPrice</span><span class="p">)</span> <span class="p">}</span>
+    
+    <span class="c1">// 2. 기존 객체를 받는 프로퍼티</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">usedInfo</span><span class="p">:</span> <span class="kt">UsedInfo</span>
+    
+    <span class="c1">// 3. 날짜 형 변환을 위한 프로퍼티</span>
+    <span class="kd">private</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">formatter</span><span class="p">:</span> <span class="kt">DateFormatter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">DateFormatter</span><span class="p">()</span>
+        <span class="n">formatter</span><span class="o">.</span><span class="n">dateFormat</span> <span class="o">=</span> <span class="s">"yyyy.MM.dd"</span>
+        <span class="k">return</span> <span class="n">formatter</span>
+    <span class="p">}()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<p>내용은 정말 간단하다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GovUsedInfoAvailable</code> 프로토콜을 준수한다.</li>
+  <li>주석<code class="language-plaintext highlighter-rouge">0</code> - 기존 객체를 받는다</li>
+  <li>주석<code class="language-plaintext highlighter-rouge">1</code> - 정부 요청대로 필요한 규격을 따르며 전부 <code class="language-plaintext highlighter-rouge">getter</code>로만 구현함으로써 필요시 다른 연산이 들어 갈 수 있다.</li>
+  <li>주석<code class="language-plaintext highlighter-rouge">2</code> - 기존 객체를 담는 프로퍼티</li>
+  <li>주석<code class="language-plaintext highlighter-rouge">3</code> - <code class="language-plaintext highlighter-rouge">date</code>에서 쓰일 <code class="language-plaintext highlighter-rouge">DateFormatter</code>이다. 요청 사항 형태가 <code class="language-plaintext highlighter-rouge">yyyy.MM.dd</code> 였어서 그렇다!</li>
+</ul>
+
+<p><br /></p>
+
+<p>다시 한번 장점을 말하자면,</p>
+
+<p><strong>원본 객체를 전혀 손상 시키지 않는다. 이 부분만 버려도 무방하다. 즉, 유지보수가 쉬워진다.</strong></p>
+
+<p>끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/designpattern/2021/09/12/designPattern-DesignPattern-Adapter-Pattern-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/designpattern/2020/11/12/designPattern-DesignPattern-Builder.html">DesignPattern - Builder</a>
+                  
+                    (Categories: <a href="/category/DesignPattern">DesignPattern</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/swift/2021/08/21/swift-LOL-API-(%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1).html">&laquo; Swift - JSON 데이터 쉽게 모델 만들기(feat. QuickType)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_DesignPattern - Adapter Pattern 알아보기";
+    var disqus_title = "DesignPattern - Adapter Pattern 알아보기";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
