@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>Gossip - 블로그 테마 변경 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <title>SOLID 원칙 - SRP 알아보기 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="Gossip - 블로그 테마 변경" />
-    <meta name="keywords" content="Gossip - 블로그 테마 변경, 😀😍😉 JS 개발 블로그 😁😆😄, Gossip" />
+    <meta name="description" content="SOLID 원칙 - SRP 알아보기" />
+    <meta name="keywords" content="SOLID 원칙 - SRP 알아보기, 😀😍😉 JS 개발 블로그 😁😆😄, DesignPattern" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="Gossip - 블로그 테마 변경" property="og:title">
+      <meta content="SOLID 원칙 - SRP 알아보기" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -25,11 +25,11 @@
     
 
     
-      <meta content="http://localhost:4000/gossip/2019/02/17/Gossip-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD.html" property="og:url">
+      <meta content="http://localhost:4000/designpattern/2021/09/25/SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SRP-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html" property="og:url">
     
 
     
-      <meta content="2019-02-17T00:00:00+09:00" property="article:published_time">
+      <meta content="2021-09-25T00:00:00+09:00" property="article:published_time">
       <meta content="http://localhost:4000/about/" property="article:author">
     
 
@@ -39,7 +39,7 @@
 
     
       
-        <meta content="Gossip" property="article:section">
+        <meta content="DesignPattern" property="article:section">
       
     
 
@@ -52,11 +52,11 @@
     <meta name="twitter:creator" content="@">
 
     
-      <meta name="twitter:title" content="Gossip - 블로그 테마 변경">
+      <meta name="twitter:title" content="SOLID 원칙 - SRP 알아보기">
     
 
     
-      <meta name="twitter:url" content="http://localhost:4000/gossip/2019/02/17/Gossip-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD.html">
+      <meta name="twitter:url" content="http://localhost:4000/designpattern/2021/09/25/SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SRP-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html">
     
 
     
@@ -118,35 +118,125 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">Gossip - 블로그 테마 변경</h1>
+  <h1 class="post-title">SOLID 원칙 - SRP 알아보기</h1>
 </header>
 
-<span class="time">17 Feb 2019</span>
+<span class="time">25 Sep 2021</span>
 
   <span class="categories">
-    &raquo; <a href="/category/Gossip">Gossip</a>
+    &raquo; <a href="/category/DesignPattern">DesignPattern</a>
   </span>
 
 
 <div class="content">
-  <div class="post"><p>블로그가 생각보다 너무 어렵다,</p>
+  <div class="post"><p><br /></p>
 
-<p>마지막 테마 변경일줄 알았더니만</p>
+<p>관련 키워드: <code class="language-plaintext highlighter-rouge">ISP</code>, <code class="language-plaintext highlighter-rouge">Facade Pattern</code></p>
 
-<p>2019년 글이 포스팅이 안되는 문제가 있어서</p>
+<p><br /></p>
 
-<p>19년 되자마자 글썼었지만 올라가지 않아서</p>
+<blockquote>
+  <p>Single Responsibility Principle</p>
+  <ul>
+    <li>단일 책임 원칙</li>
+  </ul>
+</blockquote>
 
-<p>그걸 핑계 삼아 귀차니즘이 살아났다.</p>
+<p><br /></p>
 
-<p>에버노트를 시작하면서 티스토리와 연동이 된다해서</p>
+<p>하나만 책임 지게 하면되잖아? 이름 자체는 쉬워 보인다.</p>
 
-<p>티스토리도 갔다가 MarkDown로 글쓰는 재미가 떨어져서</p>
+<p>책 <code class="language-plaintext highlighter-rouge">Clean Architecture</code>에서 말하길 가장 의미가 잘 전달되지 못한 원칙이라고 한다.</p>
 
-<p>결국 jekyll로 복귀!</p>
+<p>이 책에서 말하는 것은 하나의 모듈은 하나의 액터에 대해서만 책임을 져야한다는 의미이다.</p>
 
-<p>심플 이즈 베스트!</p>
+<p><br /></p>
 
+<p>이 또한 어려운 말이다.</p>
+
+<p><br /></p>
+
+<p>구독 서비스를 제공하는 서비스를 생각해보자. 유투브나 쿠팡 등등</p>
+
+<p>근데 위 예시들은 사용자들이 구독을 안하더라도 무료로도 사용이 가능하다.</p>
+
+<p><br /></p>
+
+<p>즉, 사용자들의 상태는 두가지다. 일반 유저와 구독 유저</p>
+
+<p><br /></p>
+
+<p>기본 제공 되는 기능들은 거의 같을 것이다.</p>
+
+<p>결제시 혜택이 있다거나, 영상 재생시 광고가 없다거나?</p>
+
+<p><br /></p>
+
+<p>그런데, 이 두 유저를 하나의 모듈로 만들고,</p>
+
+<p>플래그 등을 써서 일부 추가적인 기능 제공한다고 가정해보자.</p>
+
+<p><br /></p>
+
+<p>어느날 구독 유저에 대한 기능이 추가되었다.</p>
+
+<p>근데 같은 모듈을 쓰기 때문에 서로간의 의존도가 생긴다.</p>
+
+<p>다시 말하면 구독 유저 기능을 수정 했더니 일반 유저들에도 영향이 갈 수 있다는 의미다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Clean Architecture</code> 책에서 말하는 액터란,</p>
+
+<p>이 예제에서 구독 유저와, 일반 유저들을 <code class="language-plaintext highlighter-rouge">액터</code>라고 칭하는 것이다.</p>
+
+<p><br /></p>
+
+<p>그렇기에 <code class="language-plaintext highlighter-rouge">SRP</code> 원칙의 단일 책임이란 것은</p>
+
+<p>하나의 액터에 대해서만 책임을 지도록 모듈을 구성하라는 것.</p>
+
+<p><br /></p>
+
+<p>그렇게 된다면 개념적으론 통하는 부분들이 있지만</p>
+
+<p>기능이 서로 다른 모듈들은 서로를 알지 못하게 된다</p>
+
+<p>즉, 의존성이 낮아지게 된다. (개념적으로 통하는 부분은 프로토콜로 묶으면 좋겠지?)</p>
+
+<p><br /></p>
+
+<p>하지만 단점 또한 존재한다.</p>
+
+<p>위의 예제만 봐도 하나가 되던게 두개가 되었다.</p>
+
+<p>그렇다는것은 관리해야할 대상이 늘어난 것이다.</p>
+
+<p>사용하기 위해선 두가지에 대해 잘 파악을 해야한다는 건데,</p>
+
+<p>이 단점을 커버하기 위해선 Facade Pattern을 이용하면 좋다.</p>
+
+<p>이전 글 - <a href="https://jiseobkim.github.io/designpattern/2021/09/22/designPattern-DesignPattern-Facade-Pattern-알아보기.html">Facade Pattern 알아보기</a></p>
+
+<p><br /></p>
+
+<hr />
+
+<p>SOLID 원칙들을 공부하면서 느낀점은 어떻게 하면 유지보수를 쉽게 할 수 있을까? 에 대해 고민한 원칙인듯 하다.</p>
+
+<blockquote>
+  <p>SOLID 원칙은 2000년대 초반 로버트 마틴이 원칙들을 세우고 마이클 페더스가 소개한 개념이다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>하다보니 더 좋게 만들 수 있겠다란 생각이 들어서</p>
+
+<p>기분이 좋다.</p>
+
+<p><br /></p>
+
+<p>끝!</p>
 </div>
   <div class="share-page">
   <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
@@ -156,7 +246,7 @@
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   <!-- Facebook -->
-  <div class="fb-share-button" data-href="http://localhost:4000/gossip/2019/02/17/Gossip-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+  <div class="fb-share-button" data-href="http://localhost:4000/designpattern/2021/09/25/SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SRP-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 
 <div id="fb-root"></div>
@@ -183,6 +273,226 @@
       
         
           
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/designpattern/2021/09/22/designPattern-DesignPattern-Facade-Pattern-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html">DesignPattern - Facade Pattern 알아보기</a>
+                  
+                    (Categories: <a href="/category/DesignPattern">DesignPattern</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/designpattern/2021/09/12/designPattern-DesignPattern-Adapter-Pattern-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html">DesignPattern - Adapter Pattern 알아보기</a>
+                  
+                    (Categories: <a href="/category/DesignPattern">DesignPattern</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/designpattern/2020/11/12/designPattern-DesignPattern-Builder.html">DesignPattern - Builder</a>
+                  
+                    (Categories: <a href="/category/DesignPattern">DesignPattern</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
       
     
   
@@ -276,192 +586,6 @@
           
       
     
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
   
     
       
@@ -527,13 +651,14 @@
     
   
   
+  </ul>
+</div>
+
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/xcode/2019/01/02/Xcode-Cartage%EC%84%A4%EC%B9%98.html">&laquo; Xcode - Carthage 설치</a>
+    <a class="prev" href="/designpattern/2021/09/22/designPattern-DesignPattern-Facade-Pattern-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html">&laquo; DesignPattern - Facade Pattern 알아보기</a>
   
-  
-    <a class="next" href="/objective-c/2019/02/19/Objc-%EC%BB%A4%EC%8A%A4%ED%85%80%EB%84%A4%EB%B9%84%EA%B2%8C%EC%9D%B4%EC%85%98%EB%B0%94.html">Objective-C - 커스텀 네비게이션바 &raquo;</a>
   
 </div>
 
@@ -542,8 +667,8 @@
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_Gossip - 블로그 테마 변경";
-    var disqus_title = "Gossip - 블로그 테마 변경";
+    var disqus_identifier = "http://localhost:4000_SOLID 원칙 - SRP 알아보기";
+    var disqus_title = "SOLID 원칙 - SRP 알아보기";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
