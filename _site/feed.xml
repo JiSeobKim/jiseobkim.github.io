@@ -5,127 +5,334 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 25 Sep 2021 18:16:18 +0900</pubDate>
-    <lastBuildDate>Sat, 25 Sep 2021 18:16:18 +0900</lastBuildDate>
+    <pubDate>Mon, 04 Oct 2021 14:58:58 +0900</pubDate>
+    <lastBuildDate>Mon, 04 Oct 2021 14:58:58 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
-        <title>SOLID 원칙 - SRP 알아보기</title>
+        <title>Swift - 일급 객체</title>
         <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;관련 키워드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISP&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Facade Pattern&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;오늘 정리할 내용은 일급 객체에 관해서이다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;영어로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;First Class Citizen&lt;/code&gt;라고 하는데,&lt;/p&gt;
+
+&lt;p&gt;이는 태그 같은 개념으로 생각하자.&lt;/p&gt;
+
+&lt;p&gt;조건을 만족하는 객체들에 대해서&lt;/p&gt;
+
+&lt;p&gt;‘너는 일급객체야’ 라고 태그를 붙여준다고 생각하면 좋다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Single Responsibility Principle&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;단일 책임 원칙&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;p&gt;Citizen 대신 object, type, value 등등 다양하게 불리는 것 같다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;하나만 책임 지게 하면되잖아? 이름 자체는 쉬워 보인다.&lt;/p&gt;
-
-&lt;p&gt;책 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Clean Architecture&lt;/code&gt;에서 말하길 가장 의미가 잘 전달되지 못한 원칙이라고 한다.&lt;/p&gt;
-
-&lt;p&gt;이 책에서 말하는 것은 하나의 모듈은 하나의 액터에 대해서만 책임을 져야한다는 의미이다.&lt;/p&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;이 또한 어려운 말이다.&lt;/p&gt;
+&lt;h1 id=&quot;일급-객체의-조건&quot;&gt;일급 객체의 조건&lt;/h1&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;구독 서비스를 제공하는 서비스를 생각해보자. 유투브나 쿠팡 등등&lt;/p&gt;
+&lt;p&gt;첫째, 변수 또는 상수로 할당이 가능하다.&lt;/p&gt;
 
-&lt;p&gt;근데 위 예시들은 사용자들이 구독을 안하더라도 무료로도 사용이 가능하다.&lt;/p&gt;
+&lt;p&gt;둘째, 함수의 매개변수로 사용이 가능하다.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;즉, 사용자들의 상태는 두가지다. 일반 유저와 구독 유저&lt;/p&gt;
+&lt;p&gt;셋째, 함수의 리턴값으로 사용이 가능하다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;기본 제공 되는 기능들은 거의 같을 것이다.&lt;/p&gt;
+&lt;p&gt;딱 읽었을 때 들었던 생각은 일반적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Int&lt;/code&gt;나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Class&lt;/code&gt; 등등 처럼 많이 사용하던거네? 싶었다.&lt;/p&gt;
 
-&lt;p&gt;결제시 혜택이 있다거나, 영상 재생시 광고가 없다거나?&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그런데, 이 두 유저를 하나의 모듈로 만들고,&lt;/p&gt;
-
-&lt;p&gt;플래그 등을 써서 일부 추가적인 기능 제공한다고 가정해보자.&lt;/p&gt;
+&lt;p&gt;그래서 이 많이 본 자료형들 가지곤 따로 일급 객체란 주제로 포스팅이 되지 않는 것 같다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;어느날 구독 유저에 대한 기능이 추가되었다.&lt;/p&gt;
+&lt;p&gt;그렇지만 함수가 일급 객체 조건을 만족한다는 것에 대한 글은 넘쳐날까?&lt;/p&gt;
 
-&lt;p&gt;근데 같은 모듈을 쓰기 때문에 서로간의 의존도가 생긴다.&lt;/p&gt;
+&lt;p&gt;당연하지 않기 때문이겠지?&lt;/p&gt;
 
-&lt;p&gt;다시 말하면 구독 유저 기능을 수정 했더니 일반 유저들에도 영향이 갈 수 있다는 의미다.&lt;/p&gt;
+&lt;p&gt;그게 가능한 언어가 있고 아닌 언어들이 있는데,&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Clean Architecture&lt;/code&gt; 책에서 말하는 액터란,&lt;/p&gt;
-
-&lt;p&gt;이 예제에서 구독 유저와, 일반 유저들을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;액터&lt;/code&gt;라고 칭하는 것이다.&lt;/p&gt;
+&lt;p&gt;스위프트는 이를 만족하기때문에 포스팅들이 많이 되나보다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그렇기에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt; 원칙의 단일 책임이란 것은&lt;/p&gt;
+&lt;p&gt;또한, 함수가 일급 객체로써 사용이 가능하다면&lt;/p&gt;
 
-&lt;p&gt;하나의 액터에 대해서만 책임을 지도록 모듈을 구성하라는 것.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그렇게 된다면 개념적으론 통하는 부분들이 있지만&lt;/p&gt;
-
-&lt;p&gt;기능이 서로 다른 모듈들은 서로를 알지 못하게 된다&lt;/p&gt;
-
-&lt;p&gt;즉, 의존성이 낮아지게 된다. (개념적으로 통하는 부분은 프로토콜로 묶으면 좋겠지?)&lt;/p&gt;
+&lt;p&gt;그 언어는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;함수형 프로그래밍 언어&lt;/code&gt; 라고도 부를 수 있다&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;하지만 단점 또한 존재한다.&lt;/p&gt;
-
-&lt;p&gt;위의 예제만 봐도 하나가 되던게 두개가 되었다.&lt;/p&gt;
-
-&lt;p&gt;그렇다는것은 관리해야할 대상이 늘어난 것이다.&lt;/p&gt;
-
-&lt;p&gt;사용하기 위해선 두가지에 대해 잘 파악을 해야한다는 건데,&lt;/p&gt;
-
-&lt;p&gt;이 단점을 커버하기 위해선 Facade Pattern을 이용하면 좋다.&lt;/p&gt;
-
-&lt;p&gt;이전 글 - &lt;a href=&quot;https://jiseobkim.github.io/designpattern/2021/09/22/designPattern-DesignPattern-Facade-Pattern-알아보기.html&quot;&gt;Facade Pattern 알아보기&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;만족을 한다는건 알았으니 어떻게 쓰일 수 있는지 보자.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;SOLID 원칙들을 공부하면서 느낀점은 어떻게 하면 유지보수를 쉽게 할 수 있을까? 에 대해 고민한 원칙인듯 하다.&lt;/p&gt;
+&lt;h3 id=&quot;첫째-변수-또는-상수로-할당이-가능하다&quot;&gt;첫째, 변수 또는 상수로 할당이 가능하다.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;우선, 일반적인 함수를 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hellowFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;안녕?&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 생겼다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;사용&lt;/code&gt;할때 이렇게 쓴다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hellowFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그러면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Return&lt;/code&gt;값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;안녕?&quot;&lt;/code&gt;이 저장된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이것은 사용이다. 사용의 포인트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;함수명&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;소괄호&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;뒤에 소괄호 부분이 사용하겠다는 의미다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그렇다면 할당은 간단하다. 사용을 의미하는 소괄호를 제거해주면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hellowFunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;에 대해 출력을 해보면 다음과 같이 나온다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;----&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;콘솔창&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;안녕&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아주 친절하게 “b는 함수야” 라고 말해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그럼, 이것을 다시 사용하고자 한다면?&lt;/p&gt;
+
+&lt;p&gt;위에 말했던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;소괄호&lt;/code&gt;를 붙여주면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 다시 한번 3가지 경우에 대해 출력을 해보면 다음과 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hellowFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hellowFunction&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;----&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;콘솔창&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;안녕&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;안녕&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;둘째-함수의-매개변수로-사용이-가능하다&quot;&gt;둘째, 함수의 매개변수로 사용이 가능하다.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;함수에 입력 파라미터로 함수를 넣을 수 있다는 말이니깐, 생긴건 이렇게 생겼다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;useParameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 사용은 어떻게? 소괄호 붙여서!&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;보통 같았으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Int&lt;/code&gt; 같은 것들이 들어 갈 자리에&lt;/p&gt;
+
+&lt;p&gt;함수 뒷부분에 붙을만한 것들이 매개변수로서 들어가있다.&lt;/p&gt;
+
+&lt;p&gt;사용법은 주석과 같이 소괄호 붙여서 사용해주면 되는 거고&lt;/p&gt;
+
+&lt;p&gt;이 함수의 호출에 대해서 보면 다음과 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;useParameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hellowFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hellowFunction&lt;/code&gt;은 분명히 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;함수&lt;/code&gt;였고, 파라미터로 들어갔다.&lt;/p&gt;
+
+&lt;p&gt;그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useParameter&lt;/code&gt; 함수에서 받은 함수를 사용 했기때문에&lt;/p&gt;
+
+&lt;p&gt;콘솔창에 역시나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;안녕?&quot;&lt;/code&gt;이 찍히게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 같은 경우를 도대체 언제 쓰게 될지를 고민해보면 좋다.&lt;/p&gt;
+
+&lt;p&gt;함수라는 것은 결국의 하나의 로직이다.&lt;/p&gt;
+
+&lt;p&gt;함수 내에서 어떤 추가적인 로직을 하고 싶을때, 함수를 인자로써 받으면 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;단순하게 생각해서 “그냥,,, 추가적으로 쓰고 싶으면 함수에서 호출하면 되자나?”&lt;/p&gt;
+
+&lt;p&gt;라고 생각이 들었다면, 이렇게 생각해보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;함수A내에서 특정 함수명B을 넣어버린다면, 함수A는 함수B에 맞춤형이 되어버린다.&lt;/p&gt;
+
+&lt;p&gt;즉, 다른 함수 C,D,E 동작에 대해서도 유연하게 대처 할 수 있다는 점이 매력 포인트!&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;SOLID 원칙은 2000년대 초반 로버트 마틴이 원칙들을 세우고 마이클 페더스가 소개한 개념이다.&lt;/p&gt;
+  &lt;p&gt;이부분은 SOLID 원칙중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt;를 떠올리게 해주는 것 같다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;확장에는 열려(open)있고, 변경에는 닫혀(closed)있도록 해라!!&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;하다보니 더 좋게 만들 수 있겠다란 생각이 들어서&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;기분이 좋다.&lt;/p&gt;
+&lt;h3 id=&quot;셋째-함수의-리턴값으로-사용이-가능하다&quot;&gt;셋째, 함수의 리턴값으로 사용이 가능하다.&lt;/h3&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;끝!&lt;/p&gt;
+&lt;p&gt;고민을 해보았다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;returnFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hellowFunction&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이라 하고 끝! 이라 하면 너무 성의 없을 거 같았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 함수 두개 준비&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. 더하기&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 2. 빼기&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;하나는 더하기 하는 함수, 하나는 빼기하는 함수다.&lt;/p&gt;
+
+&lt;p&gt;공통점은 두개의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Int&lt;/code&gt; 인자를 받고 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Int&lt;/code&gt;로 리턴을 해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;자 이제 함수를 리턴하는 함수를 보자&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;operation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;fatalError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아아주 간단하다
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+&lt;/code&gt;를 인자로 넣으면 더하기 함수를 뱉고
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt;를 인자로 넣으면 빼기 함수를 뱉는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음과 같은 코드를 작성해보자&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;cal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;+&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;cal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;콘솔창&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+이렇게하게 되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;두 값&lt;/code&gt;을 인자로 받고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;하나의 값&lt;/code&gt;을 뱉어주는 함수를 반환하게 된다.&lt;/p&gt;
+
+&lt;p&gt;하나의 함수명을 갖고 있지만 서로 다른 역할을 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예시로 계산기에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt;와 같은 버튼이 눌렸을 때,&lt;/p&gt;
+
+&lt;p&gt;동작하는 함수를 뱉어주게하고,&lt;/p&gt;
+
+&lt;p&gt;실제로 연산을 할때는 한가지 함수 타입의 변수로 돌려쓰기가 가능하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;음 만족스런 예제야&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;생각하고보니 어디서 본 예제같기도하고,, 공식 문서에 있었나..&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
+
+&lt;p&gt;아무튼 이렇게해서 일급 객체에 대해서 알아보았다.&lt;/p&gt;
+
+&lt;p&gt;사실 3가지 조건외에도 더있다. 런타임시 생성이 가능해야한다느니, 비교 연산이 가능해야한다느니,,,&lt;/p&gt;
+
+&lt;p&gt;근데 런타임시 조건은 위키에도 나왔지만 그런 조건을 말하기도 한다!&lt;/p&gt;
+
+&lt;p&gt;라고 해서 제외 시켰고,&lt;/p&gt;
+
+&lt;p&gt;비교 연산 같은 경우 Swift에선 권장되지 않는다고 하여서 제외하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;사실 이것이 나를 더 헷갈리게 만든건 클로저 때문이라&lt;/p&gt;
+
+&lt;p&gt;다음 포스팅은 클로저를 하고&lt;/p&gt;
+
+&lt;p&gt;그 다음 포스팅은 클로저와 일급객체로 해야겠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;끝.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 25 Sep 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/designpattern/2021/09/25/SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SRP-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/designpattern/2021/09/25/SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SOLID-%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8-SRP-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5.html</guid>
+        <pubDate>Mon, 04 Oct 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2021/10/04/Swift-%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8-%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/10/04/Swift-%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8-%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6.html</guid>
         
         
-        <category>DesignPattern</category>
+        <category>Swift</category>
         
       </item>
     
