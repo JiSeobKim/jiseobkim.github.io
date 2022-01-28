@@ -5,9 +5,183 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 04 Oct 2021 14:58:58 +0900</pubDate>
-    <lastBuildDate>Mon, 04 Oct 2021 14:58:58 +0900</lastBuildDate>
+    <pubDate>Fri, 28 Jan 2022 18:03:26 +0900</pubDate>
+    <lastBuildDate>Fri, 28 Jan 2022 18:03:26 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서</title>
+        <description>&lt;p&gt;이직 준비하느라 블로그에 소홀에 졌었지만,&lt;/p&gt;
+
+&lt;p&gt;성공적인 이직을 했으니 다시 블로그에 관심 주기!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cocoapods&lt;/code&gt;에 대해서 혼자서 일할때는 사실 크게 관심을 갖지 않았다.&lt;/p&gt;
+
+&lt;p&gt;컴퓨터가 바뀔일이 거의 없었으므로 단순히 라이브러리 설치 용도로만 쓰이고&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile&lt;/code&gt;내의 연산기호, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt;에 대해서는 잘 몰랐기에 이참에 정리해보기.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;podfile&quot;&gt;Podfile&lt;/h1&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Alamofire&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;간단한 사용법은 패스, 여기서 내 관심사는 뒤에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;5.0&lt;/code&gt;에 관해서다.&lt;/p&gt;
+
+&lt;p&gt;기타 연산 기호인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;gt;=&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;=&lt;/code&gt; 등에 대해서는 패스하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&lt;/code&gt;에 대해서만!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 중요한 점은 소수점의 위치이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;4.8.1&lt;/code&gt; : 4.8.1 ~&amp;lt; 4.9&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;4.8&lt;/code&gt;: 4.8 ~&amp;lt; 5&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;4&lt;/code&gt;: 4 ~&amp;lt; 5 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;4.0&lt;/code&gt;과 동일로 보임)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;세번째 자리까지 기입한다면 두번째 자리까진 고정.&lt;/p&gt;
+
+&lt;p&gt;두번째 자리까지 기입한다면 첫번째 자리까진 고정.&lt;/p&gt;
+
+&lt;p&gt;한자리만 입력한다면 두번째자리에 0을 넣은 것(4.0)과 동일.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 최초 설치시엔 해당 버전에 범위내에 최고 버전이 설치가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;podfilelock&quot;&gt;Podfile.lock&lt;/h1&gt;
+
+&lt;p&gt;이것과 관련지으면 좋을 키워드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod update&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;두 명령어를 입력했을시 차이는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Podfile.lock이 없다면?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Podfile&lt;/code&gt; 파일 조건에 따른 설치, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 생성&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod update&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Podfile&lt;/code&gt; 파일 조건에 따른 설치, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 생성&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;동일하다&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;strong&gt;Podfile.lock이 있다면?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;여기선 조금 나눠서 설명을 나눠보자.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod update&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Podfile&lt;/code&gt; 파일 조건에 따른 설치, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 재생성&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lock&lt;/code&gt;을 무시하며 해당 파일이 없을때와 동일하게 동작한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+문제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile&lt;/code&gt;의 조건이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 조건을 만족한다면 미설치.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile&lt;/code&gt;의 조건이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 조건을 만족하지 않는다면 새 조건으로 설치 및 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 수정.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이 부분은 예시를 통해 이해를 돕는게 좋을듯 싶다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;예시&quot;&gt;예시&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alamofire&lt;/code&gt;를 이용할 것이고, 글을 작성하는 시점에서 최신 버전은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5.5.0&lt;/code&gt;이 최신이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;실험 1. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;4.8.1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.8 버전 중 최신 버전인 4.8.2가 설치됨&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alamofire (~&amp;gt; 4.8.1)&lt;/code&gt; 생성&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;실험 2-1. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt; 4.8&lt;/code&gt;로 수정, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;변화 x 4.8.2 유지&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;why: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt;이 존재하며 현재 설치된 버전이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4.8.2&lt;/code&gt; 이기에
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DEPENDENCIES&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alamofire (~&amp;gt; 4.8.1)&lt;/code&gt; 조건 만족하므로 변화 x&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;실험 2-2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt; 4.8&lt;/code&gt;로 수정, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod update&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.9.1로 변경&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;why: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 무시, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; 미변경&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;에 “Installing Alamofire 4.9.1 (was 4.8.2)” 문구 표출&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;실험 2-3 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;5.0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;5버전대 최신인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5.5.0&lt;/code&gt;으로 변경&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;why: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt;이 존재하지만 새 조건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;5.0&lt;/code&gt;이 
+기존 조건문인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt; 4.8.1&lt;/code&gt;를 만족하지 않으므로 새로 적용.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;podfile.lock&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DEPENDENCY&lt;/code&gt;변경됨. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alamofire (~&amp;gt; 5.0)&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt;에 “Installing Alamofire 5.5.0 (was 4.9.1)” 문구 표출&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이렇게 실험적으로 해보고나니 확실하게 이해가 되었다.&lt;/p&gt;
+
+&lt;p&gt;해당 연산자는 마이너업데이트 또는 패치 정도는 허용하겠다! 라는&lt;/p&gt;
+
+&lt;p&gt;용도로 사용을 하면 좋을것 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;끝!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 28 Jan 2022 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/xcode/2022/01/28/Swift-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/xcode/2022/01/28/Swift-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html</guid>
+        
+        
+        <category>Xcode</category>
+        
+      </item>
     
       <item>
         <title>Swift - 일급 객체</title>

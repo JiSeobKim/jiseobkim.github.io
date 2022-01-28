@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <title>Xcode - Carthage 서론 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <title>Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서 - 😀😍😉 JS 개발 블로그 😁😆😄</title>
     <meta name="author" content="Jiseob Kim" />
-    <meta name="description" content="Xcode - Carthage 서론" />
-    <meta name="keywords" content="Xcode - Carthage 서론, 😀😍😉 JS 개발 블로그 😁😆😄, Xcode" />
+    <meta name="description" content="Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서" />
+    <meta name="keywords" content="Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서, 😀😍😉 JS 개발 블로그 😁😆😄, Xcode" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="" property="fb:app_id">
     <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
@@ -16,7 +16,7 @@
     
 
     
-      <meta content="Xcode - Carthage 서론" property="og:title">
+      <meta content="Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서" property="og:title">
       <meta content="article" property="og:type">
     
 
@@ -25,11 +25,11 @@
     
 
     
-      <meta content="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html" property="og:url">
+      <meta content="http://localhost:4000/xcode/2022/01/28/Swift-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html" property="og:url">
     
 
     
-      <meta content="2018-12-26T00:00:00+09:00" property="article:published_time">
+      <meta content="2022-01-28T00:00:00+09:00" property="article:published_time">
       <meta content="http://localhost:4000/about/" property="article:author">
     
 
@@ -52,11 +52,11 @@
     <meta name="twitter:creator" content="@">
 
     
-      <meta name="twitter:title" content="Xcode - Carthage 서론">
+      <meta name="twitter:title" content="Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서">
     
 
     
-      <meta name="twitter:url" content="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html">
+      <meta name="twitter:url" content="http://localhost:4000/xcode/2022/01/28/Swift-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html">
     
 
     
@@ -118,10 +118,10 @@
       </div>
       <div class="col-sm-8 col-offset-1 main-layout">
         <header class="post-header">
-  <h1 class="post-title">Xcode - Carthage 서론</h1>
+  <h1 class="post-title">Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서</h1>
 </header>
 
-<span class="time">26 Dec 2018</span>
+<span class="time">28 Jan 2022</span>
 
   <span class="categories">
     &raquo; <a href="/category/Xcode">Xcode</a>
@@ -129,108 +129,168 @@
 
 
 <div class="content">
-  <div class="post"><p>게으름 때문에 오랜만에 글을 쓰는 기분!</p>
+  <div class="post"><p>이직 준비하느라 블로그에 소홀에 졌었지만,</p>
 
-<p>그 동안 귀차니즘에 빠져 나만의 시간을 가졌던것 같다! 다시 열심히!</p>
-
-<p>우선 기존에는 너무 시간이 많이 소요가되어서 평일에 쓰기가 더욱 힘들었던거 같기에</p>
-
-<p>분량을 조금 줄이면서 도전!</p>
-
-<p>(세벌식 도전중)</p>
-
-<p>오늘 쓰려는 주제는 Carthage에 관한것이며,</p>
-
-<p>기존 앱에 적용하다 충돌을 일으켜 이를 해결하면서 굉장히 이상했던점도 있었던거 같다.</p>
-
-<p>오늘은 서론정도만!</p>
+<p>성공적인 이직을 했으니 다시 블로그에 관심 주기!</p>
 
 <p><br /></p>
 
-<h1 id="swift-package-manager란">Swift Package Manager란?</h1>
+<p><code class="language-plaintext highlighter-rouge">cocoapods</code>에 대해서 혼자서 일할때는 사실 크게 관심을 갖지 않았다.</p>
 
-<hr />
+<p>컴퓨터가 바뀔일이 거의 없었으므로 단순히 라이브러리 설치 용도로만 쓰이고</p>
 
-<p>우선 주제인 Carthage 라는것은 <code class="language-plaintext highlighter-rouge">Swift Package Manager</code>의 일종이다.</p>
-
-<p><br /></p>
-
-<p><strong><u>Swift Package Manager? 어렵다.</u></strong></p>
+<p><code class="language-plaintext highlighter-rouge">podfile</code>내의 연산기호, <code class="language-plaintext highlighter-rouge">podfile.lock</code>에 대해서는 잘 몰랐기에 이참에 정리해보기.</p>
 
 <p><br /></p>
 
-<p>이에 속하는것은 CocoaPods! 라이브러리들을 좀 더 쉽게 관리하는 것!</p>
+<h1 id="podfile">Podfile</h1>
 
-<p>자세한 내용들은 나중에보는것으로 하고,</p>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pod</span> <span class="err">'</span><span class="kt">Alamofire</span><span class="err">'</span><span class="p">,</span> <span class="err">'</span><span class="o">~&gt;</span><span class="mf">5.0</span><span class="err">'</span>
+</code></pre></div></div>
 
-<p><br /></p>
+<p>간단한 사용법은 패스, 여기서 내 관심사는 뒤에 <code class="language-plaintext highlighter-rouge">~&gt;5.0</code>에 관해서다.</p>
 
-<p>개인적으로 CocoaPods이 편한 이유</p>
-
-<ol>
-  <li>라이브러리 관리 및 새로 추가가 쉽다.</li>
-  <li>구글등 큰 회사에서 Cocoapods으로 라이브러리를 제공하는것이 많다.</li>
-</ol>
+<p>기타 연산 기호인 <code class="language-plaintext highlighter-rouge">&gt;</code>, <code class="language-plaintext highlighter-rouge">=</code>, <code class="language-plaintext highlighter-rouge">&gt;=</code>, <code class="language-plaintext highlighter-rouge">&lt;</code>, <code class="language-plaintext highlighter-rouge">&lt;=</code> 등에 대해서는 패스하고 <code class="language-plaintext highlighter-rouge">~</code>에 대해서만!</p>
 
 <p><br /></p>
 
-<p>아마 1의 이유 때문에 2가 생긴게 아닐까?</p>
+<p>여기서 중요한 점은 소수점의 위치이다.</p>
 
-<p>이번에 회사에서 추가한 Google CloudSpeechAPI도 Cocoapods으로 제공해서 쉽게 설치가 가능했다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">~&gt;4.8.1</code> : 4.8.1 ~&lt; 4.9</li>
+  <li><code class="language-plaintext highlighter-rouge">~&gt;4.8</code>: 4.8 ~&lt; 5</li>
+  <li><code class="language-plaintext highlighter-rouge">~&gt;4</code>: 4 ~&lt; 5 (<code class="language-plaintext highlighter-rouge">~&gt;4.0</code>과 동일로 보임)</li>
+</ul>
 
-<blockquote>
-  <p>설치는 쉬웠으나 담당하던 앱 셋팅이 꼬일때로 꼬여서
-Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는줄… 성공하고 소리지를뻔..</p>
-</blockquote>
+<p><br /></p>
+
+<p>세번째 자리까지 기입한다면 두번째 자리까진 고정.</p>
+
+<p>두번째 자리까지 기입한다면 첫번째 자리까진 고정.</p>
+
+<p>한자리만 입력한다면 두번째자리에 0을 넣은 것(4.0)과 동일.</p>
+
+<p><br /></p>
+
+<p>그리고 최초 설치시엔 해당 버전에 범위내에 최고 버전이 설치가 된다.</p>
+
+<p><br /></p>
+
+<h1 id="podfilelock">Podfile.lock</h1>
+
+<p>이것과 관련지으면 좋을 키워드는 <code class="language-plaintext highlighter-rouge">pod update</code>와 <code class="language-plaintext highlighter-rouge">pod install</code>이다.</p>
+
+<p>두 명령어를 입력했을시 차이는 다음과 같다.</p>
+
+<p><br /></p>
+
+<p><strong>Podfile.lock이 없다면?</strong></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">pod install</code>: <code class="language-plaintext highlighter-rouge">Podfile</code> 파일 조건에 따른 설치, <code class="language-plaintext highlighter-rouge">podfile.lock</code> 생성</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">pod update</code>: <code class="language-plaintext highlighter-rouge">Podfile</code> 파일 조건에 따른 설치, <code class="language-plaintext highlighter-rouge">podfile.lock</code> 생성</p>
+  </li>
+</ul>
+
+<p>동일하다</p>
 
 <p><br />
-아무튼! 그런데 단점이 있으니 이 글을 포스팅하게 되었다.</p>
+<strong>Podfile.lock이 있다면?</strong></p>
+
+<p>여기선 조금 나눠서 설명을 나눠보자.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pod update</code>: <code class="language-plaintext highlighter-rouge">Podfile</code> 파일 조건에 따른 설치, <code class="language-plaintext highlighter-rouge">podfile.lock</code> 재생성</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">lock</code>을 무시하며 해당 파일이 없을때와 동일하게 동작한다.</p>
+
+<p><br />
+문제는 <code class="language-plaintext highlighter-rouge">pod install</code>이다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">podfile</code>의 조건이 <code class="language-plaintext highlighter-rouge">podfile.lock</code> 조건을 만족한다면 미설치.</li>
+  <li><code class="language-plaintext highlighter-rouge">podfile</code>의 조건이 <code class="language-plaintext highlighter-rouge">podfile.lock</code> 조건을 만족하지 않는다면 새 조건으로 설치 및 <code class="language-plaintext highlighter-rouge">podfile.lock</code> 수정.</li>
+</ul>
+
+<p>이 부분은 예시를 통해 이해를 돕는게 좋을듯 싶다.</p>
 
 <p><br /></p>
 
-<p>내가 생각하는 단점</p>
-<ol>
-  <li>빌드를 할때 프레임워크도 빌드를 한다.</li>
-</ol>
+<h3 id="예시">예시</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Alamofire</code>를 이용할 것이고, 글을 작성하는 시점에서 최신 버전은 <code class="language-plaintext highlighter-rouge">5.5.0</code>이 최신이다.</p>
 
 <p><br /></p>
 
-<p>이것의 같은 말은 프레임워크 사이즈가 쫌 된다면, 빌드시간이 길어질텐데 (gRPC 프레임워크가 내가 본것중 가장 어마무시)</p>
-
-<p>그렇다면! 하루에도 수십번 빌드를 하는데 시간 낭비가 그만큼 심해진다는것이다!</p>
-
-<p>그런데 Carthage 라는걸 알게 되었는데, 이 점을 커버한다고 한다!</p>
-
-<p><br /></p>
-
-<h1 id="carthage">Carthage</h1>
-
-<hr />
-
-<p>(발음: 카르타고, 영어 발음은 카르타지)</p>
-
-<p><u>CocoaPods의 단점을 커버하는 이유는 간단하다.</u>
-<u>미리 빌드가 되어있고, 다시 빌드를 안한다는것?</u></p>
-
-<p>깔끔하게 상쇄한다. 이 점이 굉장히 매력적이었다.</p>
-
-<p>실제로 스터디에서 만들었던 MemCoo(홍보)라는 앱에 TesseractOCR 라이브러리에 적용 해봤더니 빌드할때 700 몇개던 것이 4~500대로 떨어졌던것 같았고, RxSwift도 빼봤더니 100대로 떨어진거 같다.  맥북이 회사에 있어서 정확한 수치는 다음글에!!</p>
+<p><strong>실험 1. <code class="language-plaintext highlighter-rouge">~&gt;4.8.1</code>, <code class="language-plaintext highlighter-rouge">pod install</code></strong></p>
+<ul>
+  <li>4.8 버전 중 최신 버전인 4.8.2가 설치됨</li>
+  <li><code class="language-plaintext highlighter-rouge">podfile.lock</code>에 <code class="language-plaintext highlighter-rouge">Alamofire (~&gt; 4.8.1)</code> 생성</li>
+</ul>
 
 <p><br /></p>
 
-<p>또 하나의 장점이 있다.</p>
+<p><strong>실험 2-1. <code class="language-plaintext highlighter-rouge">~&gt; 4.8</code>로 수정, <code class="language-plaintext highlighter-rouge">pod install</code></strong></p>
+<ul>
+  <li>변화 x 4.8.2 유지</li>
+</ul>
 
-<p>Workspace를 안쓰고 프로젝트 단위로만 가능하다는것?</p>
-
-<p>Cocoapods을 쓰면 처음 생성되는 프로젝트에 들어갈일이 없었다. 코코아팟을 쓰게되면 Workspace를 써야 라이브러리를 쓸 수 있으니깐! 근데 안써도 된다니 참 좋군!</p>
+<blockquote>
+  <p>why: <code class="language-plaintext highlighter-rouge">podfile.lock</code>이 존재하며 현재 설치된 버전이 <code class="language-plaintext highlighter-rouge">4.8.2</code> 이기에
+<code class="language-plaintext highlighter-rouge">DEPENDENCIES</code>에 <code class="language-plaintext highlighter-rouge">Alamofire (~&gt; 4.8.1)</code> 조건 만족하므로 변화 x</p>
+</blockquote>
 
 <p><br /></p>
 
-<p>다른 장점들도 있지만 단점을 얘기하자면</p>
+<p><strong>실험 2-2. <code class="language-plaintext highlighter-rouge">~&gt; 4.8</code>로 수정, <code class="language-plaintext highlighter-rouge">pod update</code></strong></p>
+<ul>
+  <li>4.9.1로 변경</li>
+</ul>
 
-<p>CocoaPods보다 라이브러리가 적다는것? 하지만 다른 블로그들에 의하면 빠르게 늘어나고 있다고 한다!</p>
+<blockquote>
+  <p>why: <code class="language-plaintext highlighter-rouge">podfile.lock</code> 무시, <code class="language-plaintext highlighter-rouge">podfile.lock</code> 미변경</p>
+</blockquote>
 
-<p>다음 편에선 간단하게 사용법에 대하여 적어보려한다!</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Terminal</code>에 “Installing Alamofire 4.9.1 (was 4.8.2)” 문구 표출</li>
+</ul>
+
+<p><br /></p>
+
+<p><strong>실험 2-3 <code class="language-plaintext highlighter-rouge">~&gt;5.0</code>, <code class="language-plaintext highlighter-rouge">pod install</code></strong></p>
+<ul>
+  <li>5버전대 최신인 <code class="language-plaintext highlighter-rouge">5.5.0</code>으로 변경</li>
+</ul>
+
+<blockquote>
+  <p>why: <code class="language-plaintext highlighter-rouge">podfile.lock</code>이 존재하지만 새 조건 <code class="language-plaintext highlighter-rouge">~&gt;5.0</code>이 
+기존 조건문인 <code class="language-plaintext highlighter-rouge">~&gt; 4.8.1</code>를 만족하지 않으므로 새로 적용.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">podfile.lock</code> <code class="language-plaintext highlighter-rouge">DEPENDENCY</code>변경됨. <code class="language-plaintext highlighter-rouge">Alamofire (~&gt; 5.0)</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Terminal</code>에 “Installing Alamofire 5.5.0 (was 4.9.1)” 문구 표출</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p>이렇게 실험적으로 해보고나니 확실하게 이해가 되었다.</p>
+
+<p>해당 연산자는 마이너업데이트 또는 패치 정도는 허용하겠다! 라는</p>
+
+<p>용도로 사용을 하면 좋을것 같다.</p>
+
+<p><br /></p>
+
+<p>끝!</p>
 </div>
   <div class="share-page">
   <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
@@ -240,7 +300,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   <!-- Facebook -->
-  <div class="fb-share-button" data-href="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+  <div class="fb-share-button" data-href="http://localhost:4000/xcode/2022/01/28/Swift-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 
 <div id="fb-root"></div>
@@ -260,198 +320,188 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
       
         
           
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
             
             <div class="panel-body">
               <h4>Related Posts</h4>
               <ul>
-            
-                <li class="relatedPost">
-                  <a href="http://localhost:4000/xcode/2022/01/28/Swift-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html">Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서</a>
-                  
-                    (Categories: <a href="/category/Xcode">Xcode</a>)
-                  
-                </li>
-          
-          
-        
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-        
-          
-      
-    
-  
-    
-      
-        
-          
-      
-    
-  
-    
-      
-        
-          
             
                 <li class="relatedPost">
                   <a href="http://localhost:4000/xcode/2020/03/29/xcode-PreventDarkMode.html">Xcode - 반성글 - 다크모드 적용 안하기</a>
@@ -591,6 +641,16 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
       
         
           
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/xcode/2018/12/26/Xcode-Cartage.html">Xcode - Carthage 서론</a>
+                  
+                    (Categories: <a href="/category/Xcode">Xcode</a>)
+                  
+                </li>
+          
+          
+        
       
     
   
@@ -678,10 +738,8 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/swift/2018/11/04/swift-Tag.html">&laquo; Swift - Tag 알아보기</a>
+    <a class="prev" href="/swift/2021/10/04/Swift-%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8-%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6.html">&laquo; Swift - 일급 객체</a>
   
-  
-    <a class="next" href="/xcode/2019/01/02/Xcode-Cartage%EC%84%A4%EC%B9%98.html">Xcode - Carthage 설치 &raquo;</a>
   
 </div>
 
@@ -690,8 +748,8 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
   <script type="text/javascript">
     /* <![CDATA[ */
     var disqus_shortname = "https-jiseobkim-github-io";
-    var disqus_identifier = "http://localhost:4000_Xcode - Carthage 서론";
-    var disqus_title = "Xcode - Carthage 서론";
+    var disqus_identifier = "http://localhost:4000_Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서";
+    var disqus_title = "Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
