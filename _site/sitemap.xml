@@ -5,9 +5,240 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 28 Jan 2022 18:03:26 +0900</pubDate>
-    <lastBuildDate>Fri, 28 Jan 2022 18:03:26 +0900</lastBuildDate>
+    <pubDate>Fri, 04 Feb 2022 17:45:10 +0900</pubDate>
+    <lastBuildDate>Fri, 04 Feb 2022 17:45:10 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>(RxSwift) Single 알아보기(1)</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;RxSwift의 포스팅은 이게 처음인듯하다.&lt;/p&gt;
+
+&lt;p&gt;사용은 많이 했지만 심도있게 알고 싶으니깐 이제 글로도 써보기!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;주제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Single&lt;/code&gt;! 순서가 이상하긴 한데,,,&lt;/p&gt;
+
+&lt;p&gt;아무튼 내가 생각한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RxSwift&lt;/code&gt;는 단순하다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;방출하고 구독한다&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;개인적으로 생각하는 Rx의 이점은 다음과 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;방출하는 입장에선 누가 구독을 하던 방출만 하면 된다. (의존성 낮추기)&lt;/li&gt;
+  &lt;li&gt;구독하는 입장에선 방출된 값을 실시간으로 받을 수 있다.&lt;/li&gt;
+  &lt;li&gt;한 방출자에 대해 여러 구독자가 생길 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만, 개발자라면 욕심이 생기기 마련인듯 싶다.&lt;/p&gt;
+
+&lt;p&gt;OOP나 디자인 패턴이라던가 아키텍쳐라던가&lt;/p&gt;
+
+&lt;p&gt;어떠한 목적에 대해 조금 더 편하고,&lt;/p&gt;
+
+&lt;p&gt;좋게 발전시키고자 하는 욕심들은 있는 듯 하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rx&lt;/code&gt; 또한 비슷하다 생각한다. 방출을 하고 구독하면 끝이지만&lt;/p&gt;
+
+&lt;p&gt;어떻게 조금 더 방출을 쉽고 편하게 할까?&lt;/p&gt;
+
+&lt;p&gt;어떻게 조금 더 구독을 쉽고 편하게 할까?&lt;/p&gt;
+
+&lt;p&gt;라는 생각에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rx&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Operator&lt;/code&gt;들과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Single&lt;/code&gt;등등 많은 것이 생겨난 것으로 생각한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;지극히 개인적인 견해입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이러한 생각을 가지고 있기 때문에 Rx에 대해 글을 쓴다면&lt;/p&gt;
+
+&lt;p&gt;“왜 이 Operator가 나왔을까?, Single은 왜 나왔을까?”&lt;/p&gt;
+
+&lt;p&gt;라는 식의 접근을 할 예정이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;기존-observable의-불편한-점&quot;&gt;기존 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Observable&lt;/code&gt;의 불편한 점.&lt;/h1&gt;
+
+&lt;p&gt;개인적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Swift 5&lt;/code&gt;부터 지원되는 문법인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Result&lt;/code&gt;를 정말 좋아한다.&lt;/p&gt;
+
+&lt;p&gt;이름도 결과 라는 직설적인 이름이고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Result&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;열거형&lt;/code&gt;이다&lt;/p&gt;
+
+&lt;p&gt;해당되는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case&lt;/code&gt;는 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;success&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;failure&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이처럼, 단순화 시키고 명확하게 만들 수 있다면 좋겠지만&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Observable&lt;/code&gt;이 방출하는 이벤트의 종류는 조금 다양하다&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;onNext&lt;/li&gt;
+  &lt;li&gt;onError&lt;/li&gt;
+  &lt;li&gt;onCompleted&lt;/li&gt;
+  &lt;li&gt;onDisposed&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그런데, 나 같은 경우는 보통 데이터 바인딩 목적을 위해서 써서 그런걸까?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNext&lt;/code&gt;만 엄청나게 사용 비중이 높았다.&lt;/p&gt;
+
+&lt;p&gt;나만 그런가..&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아무튼 나는 다른 것을 많이 사용 안하기 때문에&lt;/p&gt;
+
+&lt;p&gt;단순하고 명확하게 방출에 대해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;성공&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;실패&lt;/code&gt; 두가지만 받고 싶었고,&lt;/p&gt;
+
+&lt;p&gt;나같은 사람들이 많았는지?&lt;/p&gt;
+
+&lt;p&gt;이를 해소 할 수 있는 것이 역시나 존재 하였고,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Single&lt;/code&gt;이었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;single&quot;&gt;Single&lt;/h1&gt;
+
+&lt;p&gt;이번 글의 목적은 불편함을 해소하는 것에 초점을 맞췄기 때문에&lt;/p&gt;
+
+&lt;p&gt;단순하게 알아보고 다음편에서 조금더 심도있게 글을 쓰려한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Single&lt;/code&gt;의 중요한 점은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;성공&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;실패&lt;/code&gt;에 대해서&lt;/p&gt;
+
+&lt;p&gt;방출한다는 점이 포인트다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;성공 방출&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleInt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;just&lt;/code&gt;를 이용해 단순히 방출 할수 있음을 보았고,&lt;/p&gt;
+
+&lt;p&gt;이는 타입 추론을 통해 조금더 축약을 하자면 이렇게도 가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleInt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;실패 방출&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;userInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;error&lt;/code&gt;를 사용해서 간단하게 가능하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;구독&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. Single &amp;amp; DisposeBag 생성&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;singleString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Single&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;just&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DisposeBag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 2. Single 구독&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;singleString&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subscribe&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    
+        &lt;span class=&quot;c1&quot;&gt;// 3. event switch 처리 &lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            
+            &lt;span class=&quot;c1&quot;&gt;// 4. 성공시 text 출력&lt;/span&gt;
+            &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;failure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 5. 실패시 에러 출력&lt;/span&gt;
+            &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;disposed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Console&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Result&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;hi&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기서 중요한 것은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Single&lt;/code&gt;을 구독 할 때,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;event&lt;/code&gt;를 받고 이것의 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Result&amp;lt;String, Error&amp;gt;&lt;/code&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Result&lt;/code&gt;!! 위에 나왔던 내가 좋아하는 그것.&lt;/p&gt;
+
+&lt;p&gt;이를 통해 구독시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;성공&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;실패&lt;/code&gt;만으로 구문되기 때문에&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Observable&lt;/code&gt; 보단 단순해지기 때문에 굉장히 마음에 든다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;사실 이렇게만 쓸 일은 거의 없을 듯하지만,&lt;/p&gt;
+
+&lt;p&gt;이것을 알아두면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt;를 사용할때, 어떻게 사용하지?는 패스 해도 되므로,&lt;/p&gt;
+
+&lt;p&gt;이런게 있다 정도 알아두자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 흥미로운건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt;의 시그니처다&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;시그니처: 간단하게 말해서 (메소드 이름, 파라미터의 이름&amp;amp;자료형, 리턴 값의 자료형)을 나타내는 것&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;closer&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;escaping&lt;/code&gt;이 많이 나와서 이해하는데 시간이 조금 걸렸지만,&lt;/p&gt;
+
+&lt;p&gt;이해하고 나니 재밌는 점이 많았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이거슨 2편에 계속.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;끝!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 04 Feb 2022 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/rxswift/2022/02/04/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(1).html</link>
+        <guid isPermaLink="true">http://localhost:4000/rxswift/2022/02/04/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(1).html</guid>
+        
+        
+        <category>RxSwift</category>
+        
+      </item>
     
       <item>
         <title>Xcode - Cocoapods Podfile, Podfile.lock 파일에 대해서</title>
