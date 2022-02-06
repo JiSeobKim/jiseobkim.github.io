@@ -1,5 +1,5 @@
 current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
-/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20210822-2084-wydq5z.rb extconf.rb
+/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20220206-92951-rc3zt0.rb extconf.rb
 checking for -lstdc++... yes
 creating Makefile
 
@@ -13,4 +13,4 @@ linking shared-object unf_ext.bundle
 
 current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20210822-2084-hlqlr4
+/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20220206-92951-y9ottj

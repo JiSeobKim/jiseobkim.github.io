@@ -1,5 +1,5 @@
 current directory: /Users/jiseob/Developer/Personal/Blog/vendor/bundle/ruby/3.0.0/gems/ffi-1.15.3/ext/ffi_c
-/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20210822-2084-4fhahs.rb extconf.rb
+/Users/jiseob/.rbenv/versions/3.0.2/bin/ruby -I /Users/jiseob/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20220206-92951-e99rzb.rb extconf.rb
 checking for ffi_prep_closure_loc() in -lffi... no
 checking for ffi_prep_closure_loc() in -llibffi... no
 checking for ffi_prep_closure_loc() in -llibffi-8... no
@@ -124,4 +124,4 @@ compiling Types.c
 compiling Variadic.c
 compiling ffi.c
 linking shared-object ffi_c.bundle
-/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20210822-2084-4tucum
+/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20220206-92951-t4oizw

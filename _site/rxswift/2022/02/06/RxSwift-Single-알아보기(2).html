@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(RxSwift) Single 알아보기(2) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(RxSwift) Single 알아보기(2)" />
+    <meta name="keywords" content="(RxSwift) Single 알아보기(2), 😀😍😉 JS 개발 블로그 😁😆😄, RxSwift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(RxSwift) Single 알아보기(2)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html" property="og:url">
+    
+
+    
+      <meta content="2022-02-06T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="RxSwift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="(RxSwift) Single 알아보기(2)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(RxSwift) Single 알아보기(2)</h1>
+</header>
+
+<span class="time">06 Feb 2022</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/RxSwift">RxSwift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><a href="https://jiseobkim.github.io/rxswift/2022/02/04/RxSwift-Single-알아보기(1).html">이전 글</a>에서 <code class="language-plaintext highlighter-rouge">just</code>로 간단하게 방출을 보았다.</p>
+
+<p>이번 글에서는 <code class="language-plaintext highlighter-rouge">create</code>에 대해 좀더 심도 있게 보면서 원리를 보고자 한다.</p>
+
+<p><br /></p>
+
+<h1 id="single의-create">Single의 Create</h1>
+
+<p>이전 편 <code class="language-plaintext highlighter-rouge">just</code>로 한 것을 <code class="language-plaintext highlighter-rouge">create</code>로 만들어보자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. just로 구현</span>
+<span class="k">let</span> <span class="nv">singleString</span> <span class="o">=</span> <span class="kt">Single</span><span class="o">.</span><span class="nf">just</span><span class="p">(</span><span class="s">"hi"</span><span class="p">)</span>
+
+<span class="c1">// 2. create로 구현</span>
+<span class="k">let</span> <span class="nv">singleString</span> <span class="o">=</span> <span class="kt">Single</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">singleCloser</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span> <span class="k">in</span>
+    <span class="nf">singleCloser</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="s">"hi"</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kt">Disposables</span><span class="o">.</span><span class="nf">create</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그런데, 여기서 흥미로운 점은 <code class="language-plaintext highlighter-rouge">create</code>의 시그니처이다.</p>
+
+<p><br /></p>
+
+<h3 id="create-시그니처의-입력-파라미터">Create 시그니처의 입력 파라미터</h3>
+
+<blockquote>
+  <p>시그니처: 간단하게 말해서 (메소드 이름, 파라미터의 이름&amp;자료형, 리턴 값의 자료형)을 나타내는 것</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">subscribe</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="kt">SingleObserver</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Single</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">escaping</code>은 일단 무시하고 파라미터 값만 보면 다음과 같다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">subscribe</span><span class="p">:</span> <span class="p">(</span><span class="kt">SingleObserver</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">SingleObserver</code>은 뭘까? (<code class="language-plaintext highlighter-rouge">Disposable</code>은 안다는 가정하에)</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">SingleObserver</span> <span class="o">=</span> <span class="p">(</span><span class="kt">SingleEvent</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">typealias</code>이고 또 다시 안에 있는<code class="language-plaintext highlighter-rouge">SingleEvent</code>는 또 <code class="language-plaintext highlighter-rouge">typealias</code>다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">SingleEvent</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">,</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>드디어 알아 볼 수 있는 것 까지 나왔다.</p>
+
+<p>즉, <code class="language-plaintext highlighter-rouge">subscribe</code>는 클로저였고, 그 클로저의 입력 파라미터 또한 클로저였다.</p>
+
+<p><br /></p>
+
+<p>저 <code class="language-plaintext highlighter-rouge">Result</code>를 이용해서 <code class="language-plaintext highlighter-rouge">성공</code>과 <code class="language-plaintext highlighter-rouge">실패</code>를 나타낸 것이었다.</p>
+
+<p>별것 없다! 그저 <code class="language-plaintext highlighter-rouge">Observable</code>에 <code class="language-plaintext highlighter-rouge">Result</code>를 이용한 것이 <code class="language-plaintext highlighter-rouge">Single</code>이다.</p>
+
+<p><br /></p>
+
+<p>이제 어떻게 이용을 했는지 <code class="language-plaintext highlighter-rouge">create</code> 메소드의 내용을 보자.</p>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="create-내용">create 내용</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. Observable 생성</span>
+<span class="k">let</span> <span class="nv">source</span> <span class="o">=</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">observer</span> <span class="k">in</span>
+
+    <span class="c1">// 2. 입력 파라미터였던 subscribe는 Disposable을 리턴 하기에 return에 사용 가능하다.</span>
+    <span class="k">return</span> <span class="n">subscribe</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+    
+        <span class="c1">// 3. event는 Result이므로 switch를 이용한 분기 처리</span>
+        <span class="k">switch</span> <span class="n">event</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">element</span><span class="p">):</span>
+            <span class="c1">// 4. 입력 받은 element를 곧바로 방출.</span>
+            <span class="n">observer</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="nf">next</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+            <span class="c1">// 5. completed 방출</span>
+            <span class="n">observer</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="n">completed</span><span class="p">)</span>
+            
+        <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+            <span class="c1">// 6. 실패시 error 방출</span>
+            <span class="n">observer</span><span class="o">.</span><span class="nf">on</span><span class="p">(</span><span class="o">.</span><span class="nf">error</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 7. Single&lt;Element&gt; 또한 PrimitiveSequence의 typealias이다.</span>
+<span class="k">return</span> <span class="kt">PrimitiveSequence</span><span class="p">(</span><span class="nv">raw</span><span class="p">:</span> <span class="n">source</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>메소드 내용에서 <code class="language-plaintext highlighter-rouge">Observable</code>을 생성하였고, <code class="language-plaintext highlighter-rouge">Result</code>을 다음과 같이 이용했다.</p>
+
+<ul>
+  <li>성공시: <code class="language-plaintext highlighter-rouge">next</code>후 <code class="language-plaintext highlighter-rouge">completed</code> 방출</li>
+  <li>실패시: <code class="language-plaintext highlighter-rouge">error</code> 방출</li>
+</ul>
+
+<p><br /></p>
+
+<p>성공과 실패로만 나누기 위해서 <code class="language-plaintext highlighter-rouge">Observable</code>과 <code class="language-plaintext highlighter-rouge">Result</code>를 어떻게 응용했는지 알 수 있는 부분이다.</p>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="create-시그니처의-escaping">create 시그니처의 escaping</h3>
+
+<p><code class="language-plaintext highlighter-rouge">주석 1</code>을 보면 <code class="language-plaintext highlighter-rouge">Observable&lt;Element&gt;.create</code>라는 부분 또한 클로저이며,</p>
+
+<p>이것 또한 <code class="language-plaintext highlighter-rouge">escaping</code>으로 작성되어 있기 때문에 그 안에서 <code class="language-plaintext highlighter-rouge">주석2</code>와 같이  <code class="language-plaintext highlighter-rouge">subscribe</code>를 쓰기 위해선 <code class="language-plaintext highlighter-rouge">escaping</code>이 있어야한다.</p>
+
+<p><br /></p>
+
+<p>이게 시그니처에 있던 첫번째 <code class="language-plaintext highlighter-rouge">escaping</code>의 이유이다.</p>
+
+<p>그렇다면, 시그니처의 두번째 <code class="language-plaintext highlighter-rouge">escaping</code>은 왜 필요한 것일까?</p>
+
+<p><br /></p>
+
+<p>이것은 글의 첫번째 코드 블록으로 가보자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">singleString</span> <span class="o">=</span> <span class="kt">Single</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">singleCloser</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span> <span class="k">in</span>
+    <span class="nf">singleCloser</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="s">"hi"</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kt">Disposables</span><span class="o">.</span><span class="nf">create</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">singleCloser</code>라는 파라미터를 사용하고 있다.</p>
+
+<p><br /></p>
+
+<p>여기서 만약 지금 당장 <code class="language-plaintext highlighter-rouge">success</code>나 <code class="language-plaintext highlighter-rouge">failure</code>를 넣을 수 없다면?</p>
+
+<p>통신과 같이 값을 지금 당장 보낼 수 없고, 캡쳐하고 후에 처리를 해야한다면 아래처럼 작성될 것이다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">singleString</span> <span class="o">=</span> <span class="kt">Single</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">singleCloser</span> <span class="o">-&gt;</span> <span class="kt">Disposable</span> <span class="k">in</span>
+
+    <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"www.naver.com"</span><span class="p">)</span><span class="o">!</span>
+    
+    <span class="k">let</span> <span class="nv">task</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="c1">// 1. 통신 후 분기 처리</span>
+        <span class="k">guard</span> <span class="n">data</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 2. 실패 에러 방출</span>
+            <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="kt">NSError</span><span class="p">(</span><span class="nv">domain</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+            <span class="nf">singleCloser</span><span class="p">(</span><span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+    
+        <span class="c1">// 3. 성공 방출</span>
+        <span class="nf">singleCloser</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">))</span>
+    <span class="p">}</span>
+        
+    <span class="n">task</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="kt">Disposables</span><span class="o">.</span><span class="nf">create</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">singleObserver</code> 또한 캡쳐가 되기 위해선 두번째 <code class="language-plaintext highlighter-rouge">escaping</code>을 넣어주지 않는다면 이런 오류가 나온다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Escaping closure captures non-escaping parameter 'singleCloser'
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>따라서 <code class="language-plaintext highlighter-rouge">singleCloser</code>도 <code class="language-plaintext highlighter-rouge">escaping</code>이 붙어야한다.</p>
+
+<p>이게 두번째 이유이다.</p>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="마무리">마무리</h3>
+
+<p>이렇게 쓰다보니 시간이 생각보다 오래걸렸다. 알았다 싶었는데, 정리와는 역시 별개였다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Single</code>은 확실히 통신과 잘 어울린다 생각이 된다. 앞으로는 통신 모듈 붙일때 적극적으로 도입을 해봐야겠다.</p>
+
+<p><br /></p>
+
+<p>끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/rxswift/2022/02/04/RxSwift-Single-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0(1).html">(RxSwift) Single 알아보기(1)</a>
+                  
+                    (Categories: <a href="/category/RxSwift">RxSwift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/rxswift/2022/02/04/RxSwift-Single-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0(1).html">&laquo; (RxSwift) Single 알아보기(1)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(RxSwift) Single 알아보기(2)";
+    var disqus_title = "(RxSwift) Single 알아보기(2)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
