@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)" />
+    <meta name="keywords" content="(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?), 😀😍😉 JS 개발 블로그 😁😆😄, Swift" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html" property="og:url">
+    
+
+    
+      <meta content="2022-02-06T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Swift" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)</h1>
+</header>
+
+<span class="time">06 Feb 2022</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Swift">Swift</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>글 제목 방식을 조금 바꿔 보기로 했다!</p>
+
+<p>글을 쓰려했던 이유를 부제로 달기로!</p>
+
+<p><br /></p>
+
+<p>본론으로 가보자</p>
+
+<p><br /></p>
+
+<p>점점 TDD와 아키텍쳐에 관심을 갖다 보니</p>
+
+<p>어떤 자료에서 <code class="language-plaintext highlighter-rouge">Stub</code>과 <code class="language-plaintext highlighter-rouge">Mock</code>에 대한 얘기가 나와서</p>
+
+<p>혼란이 왔다.</p>
+
+<p><br /></p>
+
+<p>테스트를 진행하면서 테스트 대상(SUT)를 제외하곤 여기서 실제 객체로 쓸 필요 없으니</p>
+
+<p>나머지 의존성은 가짜 객체로 꽂아 두는 그런게 <code class="language-plaintext highlighter-rouge">Mock</code>으로 알고 있었다.</p>
+
+<p><br /></p>
+
+<p>하지만, 그렇지 않았다.</p>
+
+<p><br /></p>
+
+<h1 id="test-double">Test Double</h1>
+
+<p>위에서 말한 것이 100% 틀리진 않았다.</p>
+
+<p>하지만, 그것이 <code class="language-plaintext highlighter-rouge">Mock</code>일수도 아닐 수도 있었다.</p>
+
+<p><br /></p>
+
+<p>이 역할과 국내에서 잘 매칭이 되는 단어는<code class="language-plaintext highlighter-rouge">스턴트맨</code>이다.</p>
+
+<p>실제로 위험한 액션이 있을 경우 이 <code class="language-plaintext highlighter-rouge">스턴트맨</code>이 대신 해준다.</p>
+
+<p>마치 내가 이해한 <code class="language-plaintext highlighter-rouge">Mock</code>과 찰떡이다.</p>
+
+<p><br /></p>
+
+<p>이 단어는 해외에서 <code class="language-plaintext highlighter-rouge">Sturnt Double</code>이라고 한다.</p>
+
+<p><br /></p>
+
+<p>그리고 이 글의 주제는 <code class="language-plaintext highlighter-rouge">Test Double</code>.</p>
+
+<p>이때부터 감이 서서히 왔다.</p>
+
+<p><br /></p>
+
+<p>(아마??)스턴트 맨들도 다양한 분야가 있을 것이다. 자동차 액션 전문, 싸움 전문 등등</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Mock</code> 또한 마찬가지였다.</p>
+
+<p>그저 <code class="language-plaintext highlighter-rouge">Test Double</code>의 종류 중 하나였던 것이다.</p>
+
+<p><br /></p>
+
+<p>그 외에 종류들은 다음과 같다.</p>
+
+<ul>
+  <li>Dummy</li>
+  <li>Fake</li>
+  <li>Stub</li>
+  <li>Mock</li>
+  <li>Stub</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="test-double은-왜-쓰는가">Test Double은 왜 쓰는가?</h2>
+
+<p>다음에 대해서  OX를 생각해보자</p>
+
+<ul>
+  <li>
+    <p>(전제) <code class="language-plaintext highlighter-rouge">ViewModel</code>이 <code class="language-plaintext highlighter-rouge">Repository(Network)</code>를 프로퍼티로 가지고 있다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ViewModel</code> 테스트 코드를 작성할때, 실제 통신하는 <code class="language-plaintext highlighter-rouge">Respository</code>가 필요할까?</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p>내 생각은 아니다,</p>
+
+<p>그 이유는 <code class="language-plaintext highlighter-rouge">Repository</code>는 <code class="language-plaintext highlighter-rouge">Repository Test</code>를 별도로 작성해서</p>
+
+<p>거기서 통신이 잘되는지 문제가 없는지 테스트를 작성하면 되고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">ViewModel</code>에선 할 필요가 없다 생각한다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">ViewModel</code>을 테스트 하는데,</p>
+
+<p>현재 통신이 잘되는지, 와이파이가 잘 되는지, 실제 서버가 장애가 있는지를 고려할 필요가 없기 때문이다.</p>
+
+<p>그러한 요소는 위에 말한 <code class="language-plaintext highlighter-rouge">Repsotiroy Test</code>에서 걸러질것이다.</p>
+
+<p><br /></p>
+
+<p>즉, 현재 테스트 대상에 대해서만 집중하고 싶은 것이다.</p>
+
+<p><br /></p>
+
+<p>위의 예시처럼 실제 객체를 대신해서 가짜 객체 역할을 하지만,</p>
+
+<p>그것들이 하는 것은 조금씩 다르다.</p>
+
+<p><br /></p>
+
+<p>하지만,</p>
+
+<p>개발자끼리 실제 정확한 의사소통이 되기 위해서 그 역할별로 명칭을 쪼개었고,</p>
+
+<p>그러다 보니 위에 말한 5가지로 구분이 된게 아닐까 싶다.</p>
+
+<p><br /></p>
+
+<h2 id="dummy">Dummy</h2>
+
+<p><strong>아무것도 하지 않고, 단순히 자리만 채워줄뿐인 그런 역할.</strong></p>
+
+<p><br /></p>
+
+<p>예를 들자,</p>
+
+<p><code class="language-plaintext highlighter-rouge">X</code>라는 객체를 초기화 할때 <code class="language-plaintext highlighter-rouge">A</code>라는 객체가 필요하다. 근데 <code class="language-plaintext highlighter-rouge">A</code>는 <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">C</code>라는 객체가 필요하다.</p>
+
+<p>또 다른 <code class="language-plaintext highlighter-rouge">Y</code>라는 객체는 테스팅 하기 위해서 <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">C</code> 기능이 모두 구현이 필요하다.</p>
+
+<p>근데, <code class="language-plaintext highlighter-rouge">X</code>는 실제 <code class="language-plaintext highlighter-rouge">C</code>의 기능에 영향을 받지 않는다.</p>
+
+<p>그렇다면, <code class="language-plaintext highlighter-rouge">X</code>라는 것을 테스트 할때,</p>
+
+<p><code class="language-plaintext highlighter-rouge">A</code>를 구현하기 위해 <code class="language-plaintext highlighter-rouge">B</code>는 필요하지만 <code class="language-plaintext highlighter-rouge">C</code>라는 것의 실제 객체가 필요할까?</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">C</code>처럼, 파라미터로써 어쩔 수 없이 채워야하지만 실제론 아무 역할을 하지 않는 것에 <code class="language-plaintext highlighter-rouge">Dummy</code>를 쓴다</p>
+
+<p><br /></p>
+
+<h2 id="fake">Fake</h2>
+
+<p><strong>실제 객체와 핵심 로직은 동일하게 작성 되어있다. 하지만, 다른 불필요 요소는 제거 되어있다.</strong></p>
+
+<p><br /></p>
+
+<p>예를 들자,</p>
+
+<p>계산기 메소드 중 <code class="language-plaintext highlighter-rouge">sum</code>이라는게 있다.</p>
+
+<p>이 <code class="language-plaintext highlighter-rouge">sum</code>은 호출 되었을때 <code class="language-plaintext highlighter-rouge">(a+b)</code> 값을 리턴하는게 목적이다.</p>
+
+<p>근데, 실제 코드에선 <code class="language-plaintext highlighter-rouge">sum</code>에 대한 로그를 서버에 남기기 위해 통신을 하는 코드가 들어 갔다거나,</p>
+
+<p>다른 객체에 전달을 하는 역할을 하는 코드도 들어 갔을 수도 있다.</p>
+
+<p><br /></p>
+
+<p>하지만, 이것은 현재 불필요하다.</p>
+
+<p><br /></p>
+
+<p>코드로써 다시 표현해보자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Calculator</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">sum</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">CalculatorImp</span><span class="p">:</span> <span class="kt">Calculator</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">Some</span>
+    <span class="k">let</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">Some2</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">b</span><span class="p">:</span> <span class="kt">Some</span><span class="p">,</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">Some2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">sum</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="c1">// 불필요</span>
+        <span class="n">b</span><span class="o">.</span><span class="nf">callMethod</span><span class="p">()</span>
+        <span class="n">b</span><span class="o">.</span><span class="nf">callMethod2</span><span class="p">()</span>
+        <span class="n">b</span><span class="o">.</span><span class="nf">callMethod3</span><span class="p">()</span>
+    
+        <span class="c1">// 불필요</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="n">c</span><span class="o">.</span><span class="nf">callLogMethod</span><span class="p">()</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// 핵심 코드</span>
+        <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>주석과 같이 핵심 코드를 제외한 나머지는 불필요하다.</p>
+
+<p>그렇담, 이렇게 간소화가 가능하다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">CalculatorFake</span><span class="p">:</span> <span class="kt">Calculator</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">sum</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="k">return</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이게 <code class="language-plaintext highlighter-rouge">Fake</code>다.</p>
+
+<p><br /></p>
+
+<h2 id="mock-spy-stub-설명의-전제">Mock, SPY, Stub 설명의 전제</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Mock</code>, <code class="language-plaintext highlighter-rouge">SPY</code>, <code class="language-plaintext highlighter-rouge">Stub</code>에 들어가기전에</p>
+
+<p>다음과 같은 전제를 공통으로 사용하므로 먼저 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 프린터 프로토콜</span>
+<span class="kd">protocol</span> <span class="kt">Printer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">network</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 2. 프린터 구현체</span>
+<span class="kd">class</span> <span class="kt">PrinterImp</span><span class="p">:</span> <span class="kt">Printer</span> <span class="p">{</span>
+    
+    <span class="c1">// 2-1. 통신(예시를 위해 임의로 작성했습니다.)</span>
+    <span class="kd">func</span> <span class="nf">network</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"naver.com"</span><span class="p">)</span><span class="o">!</span>
+        <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span>
+        
+        <span class="k">let</span> <span class="nv">task</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="c1">// 어떤 액션들 블라 블라...</span>
+            <span class="k">guard</span>
+                <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span>
+                <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="c1">// handler 사용</span>
+            <span class="nf">handler</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="n">task</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 3. 회사 Class, Printer, PrintedText를 프로퍼티로 갖고 있다.</span>
+<span class="kd">class</span> <span class="kt">Company</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">printer</span><span class="p">:</span> <span class="kt">Printer</span>
+    <span class="k">var</span> <span class="nv">printedText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    
+    <span class="nf">init</span><span class="p">(</span><span class="nv">printer</span><span class="p">:</span> <span class="kt">Printer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">printer</span> <span class="o">=</span> <span class="n">printer</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 3-1. 해당 메소드 실행시  </span>
+    <span class="kd">func</span> <span class="nf">submit</span><span class="p">(</span><span class="nv">complete</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    
+        <span class="c1">// 3-2. `Printer`의 `network` 통해 통신 후</span>
+        <span class="n">printer</span><span class="o">.</span><span class="nf">network</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">value</span> <span class="k">in</span>
+            <span class="c1">// 3-3. 출력된 결과를 프로퍼티로 갖고 있으며,</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">printedText</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="c1">// 3-4. 클로져를 실행한다.</span>
+            <span class="nf">complete</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>간단하다. <code class="language-plaintext highlighter-rouge">Company</code>는 <code class="language-plaintext highlighter-rouge">Printer</code>를 프로퍼티로 갖고 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Company</code>의 <code class="language-plaintext highlighter-rouge">submit()</code>시 <code class="language-plaintext highlighter-rouge">Printer</code>의 <code class="language-plaintext highlighter-rouge">network()</code>를 동작하게 한다.</p>
+
+<p><br /></p>
+
+<p>이후의 내용은 <code class="language-plaintext highlighter-rouge">Company</code>를 테스트한다는 전제하에 작성되었다.</p>
+
+<p><br /></p>
+
+<h3 id="stub">Stub</h3>
+
+<p><strong>가짜 객체지만 미리 지정한 가짜 결과 값을 되돌려줌으로써 나머지 동작을 진행 할 수 있도록 해준다.</strong></p>
+
+<p><br /></p>
+
+<p>글 초입에 예시 부분에 해당 된다. <code class="language-plaintext highlighter-rouge">통신</code>를 이용하는 부분이 <code class="language-plaintext highlighter-rouge">Company</code> 테스트에 영향을 줄 필요는 없다.</p>
+
+<p>단지 통신 코드처럼 어떠한 값을 콜백으로 돌려주면 된다.</p>
+
+<p><br /></p>
+
+<p>그것을 코드로 구현하면 <code class="language-plaintext highlighter-rouge">Print Stub</code>은 다음과 같다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">PrinterStub</span><span class="p">:</span> <span class="kt">Printer</span> <span class="p">{</span>
+    
+    <span class="c1">// 1. 미리 돌려줄 값을 정해둔다.</span>
+    <span class="k">var</span> <span class="nv">handlerValue</span> <span class="o">=</span> <span class="s">"안녕 Stub?"</span>
+    
+    <span class="kd">func</span> <span class="nf">network</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 2. 실제 통신처럼 비동기로 클로저를 실행하도록 한다.</span>
+        <span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">global</span><span class="p">()</span><span class="o">.</span><span class="nf">asyncAfter</span><span class="p">(</span><span class="nv">deadline</span><span class="p">:</span> <span class="o">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 3. 미리 만들어둔 값을 돌려준다.</span>
+            <span class="nf">handler</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">handlerValue</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Printer</code> 프로토콜을 받고 있기 때문에, 구현을 해줘야한다.</p>
+
+<p><br /></p>
+
+<p>그렇지만 주석처럼 실제 통신이 아닌 <code class="language-plaintext highlighter-rouge">GCD</code>를 이용하여,</p>
+
+<p>연기를 해준뒤 1초 뒤에 값을 돌려준다.</p>
+
+<p><br /></p>
+
+<p>이것을 테스트 코드를 작성하면 다음과 같다.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">StubTests</span><span class="p">:</span> <span class="kt">XCTestCase</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">sut</span><span class="p">:</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">Company</span><span class="o">!</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">printerStub</span><span class="p">:</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">PrinterStub</span><span class="o">!</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 1. PrintImp 대신 Stub을 이용한다</span>
+        <span class="n">printerStub</span> <span class="o">=</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">PrinterStub</span><span class="p">()</span>
+        <span class="n">sut</span> <span class="o">=</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">Company</span><span class="p">(</span><span class="nv">printer</span><span class="p">:</span> <span class="n">printerStub</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">test_submit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// given</span>
+        <span class="k">let</span> <span class="nv">exp</span> <span class="o">=</span> <span class="nf">expectation</span><span class="p">(</span><span class="nv">description</span><span class="p">:</span> <span class="s">"exp"</span><span class="p">)</span>
+        
+        <span class="c1">// when</span>
+        <span class="n">sut</span><span class="o">.</span><span class="nf">submit</span><span class="p">(</span><span class="nv">complete</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">exp</span><span class="o">.</span><span class="nf">fulfill</span><span class="p">()</span>
+        <span class="p">})</span>
+        
+        <span class="nf">wait</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="p">[</span><span class="n">exp</span><span class="p">],</span> <span class="nv">timeout</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+        
+        <span class="c1">// then</span>
+        <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">sut</span><span class="o">.</span><span class="n">printedText</span><span class="p">,</span> <span class="s">"안녕 Stub?"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>테스트 하고자 한것은 <code class="language-plaintext highlighter-rouge">submit()</code>을 했을 때,</p>
+
+<p>통신 후 <code class="language-plaintext highlighter-rouge">String</code>을 <code class="language-plaintext highlighter-rouge">printedText</code>(프로퍼티)로 잘 가지고 있는지를 보고 싶었다.</p>
+
+<p><br /></p>
+
+<p>여기서 실제로 통신은 될 필요 없기에 <code class="language-plaintext highlighter-rouge">Stub</code>을 이용하였고,</p>
+
+<p>거기서 미리 정해둔 값<code class="language-plaintext highlighter-rouge">"안녕 Stub?"</code>이 잘 들어 왔는지를 확인하는 코드를 작성했다.</p>
+
+<p><br /></p>
+
+<p>더 이상 실제 통신이 잘 되는지, 서버가 멀쩡한지 영향을 받지 않는다.</p>
+
+<p><br /></p>
+
+<h2 id="mock">Mock</h2>
+
+<p><strong>리턴값, 콜백은 중요하지 않다. 해당 메소드가 잘, 얼마나 실행 되었는지가 중요하다.</strong></p>
+
+<p><br /></p>
+
+<p>만약의 테스트 요소가 결과값 테스트가 아닌</p>
+
+<p>Company의 <code class="language-plaintext highlighter-rouge">submit</code>을 통해</p>
+
+<p>Printer의 <code class="language-plaintext highlighter-rouge">network</code>가 잘 호출 되었는지가 중요하다면 다음과 같이 <code class="language-plaintext highlighter-rouge">Mock</code>을 생성한다.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">PrinterMock</span><span class="p">:</span> <span class="kt">Printer</span> <span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">networkCallCount</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="kd">func</span> <span class="nf">network</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">networkCallCount</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">networkCallCount</code>라는 변수를 만들고 <code class="language-plaintext highlighter-rouge">network</code>메소드가 실행 되면 <code class="language-plaintext highlighter-rouge">+1</code>을 해주는 게 끝이다.</p>
+
+<p><br /></p>
+
+<p>이제 테스트 코드를 보자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">MockTests</span><span class="p">:</span> <span class="kt">XCTestCase</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">sut</span><span class="p">:</span> <span class="kt">Company</span><span class="o">!</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">printerMock</span><span class="p">:</span> <span class="kt">PrinterMock</span><span class="o">!</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">printerMock</span> <span class="o">=</span> <span class="kt">PrinterMock</span><span class="p">()</span>
+        <span class="c1">// 1. PrintImp 대신 Mock을 넣어준다.</span>
+        <span class="n">sut</span> <span class="o">=</span> <span class="kt">Company</span><span class="p">(</span><span class="nv">printer</span><span class="p">:</span> <span class="n">printerMock</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">test_call_network</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// given</span>
+        <span class="c1">// when</span>
+        <span class="n">sut</span><span class="o">.</span><span class="nf">submit</span><span class="p">()</span>
+        
+        <span class="c1">// then</span>
+        <span class="c1">// 2. printerMock에 메소드가 잘 호출되었는지 테스트 한다.</span>
+        <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">printerMock</span><span class="o">.</span><span class="n">networkCallCount</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>간단하다! <code class="language-plaintext highlighter-rouge">submit</code>은 한번 호출했으니 <code class="language-plaintext highlighter-rouge">callCount</code>는 <code class="language-plaintext highlighter-rouge">1</code>이여야한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">2</code>라면 뭔가 많이 잘못된 것이다.</p>
+
+<p><br /></p>
+
+<h2 id="spy">SPY</h2>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Mock</code> + <code class="language-plaintext highlighter-rouge">Stub</code>이다. 상태도 확인하고 행위도 테스트한다.</strong></p>
+
+<p>이게 내가 잘못 이해했던 <code class="language-plaintext highlighter-rouge">Mock</code>이다…</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">PrinterSPY</span><span class="p">:</span> <span class="kt">Printer</span> <span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">handlerValue</span> <span class="o">=</span> <span class="s">"안녕 SPY?"</span>
+    
+    <span class="k">var</span> <span class="nv">networkCallCount</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="kd">func</span> <span class="nf">network</span><span class="p">(</span><span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">networkCallCount</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">global</span><span class="p">()</span><span class="o">.</span><span class="nf">asyncAfter</span><span class="p">(</span><span class="nv">deadline</span><span class="p">:</span> <span class="o">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">handler</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">handlerValue</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>주석도 필요 없을 듯하다. 간단하다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Stub</code>처럼 미리 돌려줄 값 <code class="language-plaintext highlighter-rouge">handlerValue</code>도 만들어 줬고</p>
+
+<p>메소드가 호출 되었는지 확인할 <code class="language-plaintext highlighter-rouge">networkCallCount</code>도 넣었다.</p>
+
+<p><br /></p>
+
+<p>테스트 코드를 보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">SPYTests</span><span class="p">:</span> <span class="kt">XCTestCase</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">sut</span><span class="p">:</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">Company</span><span class="o">!</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">printerSPY</span><span class="p">:</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">PrinterSPY</span><span class="o">!</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">printerSPY</span> <span class="o">=</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">PrinterSPY</span><span class="p">()</span>
+        <span class="n">sut</span> <span class="o">=</span> <span class="kt">TestDouble</span><span class="o">.</span><span class="kt">Company</span><span class="p">(</span><span class="nv">printer</span><span class="p">:</span> <span class="n">printerSPY</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">test_call_network</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// given</span>
+        <span class="k">let</span> <span class="nv">exp</span> <span class="o">=</span> <span class="nf">expectation</span><span class="p">(</span><span class="nv">description</span><span class="p">:</span> <span class="s">"exp"</span><span class="p">)</span>
+        
+        <span class="c1">// when</span>
+        <span class="n">sut</span><span class="o">.</span><span class="nf">submit</span><span class="p">(</span><span class="nv">complete</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">exp</span><span class="o">.</span><span class="nf">fulfill</span><span class="p">()</span>
+        <span class="p">})</span>
+        
+        <span class="nf">wait</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="p">[</span><span class="n">exp</span><span class="p">],</span> <span class="nv">timeout</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+        
+        <span class="c1">// then</span>
+        <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">sut</span><span class="o">.</span><span class="n">printedText</span><span class="p">,</span> <span class="s">"안녕 SPY?"</span><span class="p">)</span>
+        <span class="kt">XCTAssertEqual</span><span class="p">(</span><span class="n">printerSPY</span><span class="o">.</span><span class="n">networkCallCount</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>마지막 <code class="language-plaintext highlighter-rouge">then</code>을 보자.</p>
+
+<p>두가지를 확인한다.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">printedText</code> 상태 체크</li>
+  <li><code class="language-plaintext highlighter-rouge">networkCallCount</code> 행위 체크</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="상태-검증과-행위-검증">상태 검증과 행위 검증</h2>
+
+<p>이젠 누군가 <code class="language-plaintext highlighter-rouge">Mock</code>과 <code class="language-plaintext highlighter-rouge">Stub</code>의 차이는 뭐에요? 라고 하면</p>
+
+<p>이렇게 대답할 수 있을 것 같다.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Mock</code>은 행위 검증이고, <code class="language-plaintext highlighter-rouge">Stub</code>은 상태 검증이에요</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>하지만, 부연 설명을 더 하겠지. 저렇게 말하면 의아해 할 확률이 있다.</p>
+
+<p>나도 그랬으니.. 나 같은 사람은 있을 것이다…</p>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Mock</code>은 해당 메소드가 잘 호출되었는지, 얼마나 호출되었는지가 중요할때 쓰는 것이고,</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Stub</code>은 실제 객체 대신 가짜 객체를 넣어야하는데, 실제 로직은 필요없고</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p>리턴 값 또는 콜백을 통해 데이터를 반환하는 가짜 객체가 필요할때 쓰인다.</p>
+
+<p><br /></p>
+
+<h2 id="마무리">마무리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">TDD</code>로 시작해서 <code class="language-plaintext highlighter-rouge">Unit Test</code>, <code class="language-plaintext highlighter-rouge">BDD</code> 등을 알게 되었고,</p>
+
+<p>이제는 <code class="language-plaintext highlighter-rouge">Test Double</code>도 알게 되었다.</p>
+
+<p><br /></p>
+
+<p>알게 되면 될수록 재미를 느끼고 있다.</p>
+
+<p><br /></p>
+
+<p>이번 글을 통해 다른 개발자와 의사소통시</p>
+
+<p><code class="language-plaintext highlighter-rouge">Test Double</code> 종류에 맞는 것을 얘기하면,</p>
+
+<p>사소하지만 조금이라도 명확한 의사소통을 할 수 있는 한걸음을 내딘 것 같다.</p>
+
+<p><br /></p>
+
+<p>끝!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/10/04/Swift-%EC%9D%BC%EA%B8%89-%EA%B0%9D%EC%B2%B4.html">Swift - 일급 객체</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/08/21/swift-LOL-API-(%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1).html">Swift - JSON 데이터 쉽게 모델 만들기(feat. QuickType)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/08/16/swift-%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1-%E1%84%8A%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB-Network-Request-%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF(Moya-%E1%84%8E%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%A1%E1%86%AB).html">Swift - 내가 쓰는 Network Request 스타일(Moya 착안)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/08/08/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0(feat.-PropertyWrapper%ED%8E%B8).html">Swift - SPM 만들기(feat.  PropertyWrapper편)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/31/swift-SPM-%EB%A7%8C%EB%93%A4%EA%B8%B0.html">Swift - SPM 만들기</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/swift/2021/07/18/swift-Property-Wrapper-(feat.-Codable-%EC%BD%94%EB%93%9C-%EC%A0%95%EB%A6%AC).html">Swift - Property Wrapper (feat. Codable 코드 정리)</a>
+                  
+                    (Categories: <a href="/category/Swift">Swift</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html">&laquo; (RxSwift) Single 알아보기(2)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)";
+    var disqus_title = "(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
