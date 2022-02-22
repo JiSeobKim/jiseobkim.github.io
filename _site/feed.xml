@@ -5,9 +5,411 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 09 Feb 2022 22:02:21 +0900</pubDate>
-    <lastBuildDate>Wed, 09 Feb 2022 22:02:21 +0900</lastBuildDate>
+    <pubDate>Tue, 22 Feb 2022 21:52:50 +0900</pubDate>
+    <lastBuildDate>Tue, 22 Feb 2022 21:52:50 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>(Swift) RIBs를 쓰기로 마음 먹은 개인적 이유</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;주의: 극히 개인적인 의견입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;앞으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;에 대해 포스팅을 하기전 쓰려는 이유부터 정리하고 써나가면 좋을 듯 싶어서&lt;/p&gt;
+
+&lt;p&gt;시작은 사용하려는 이유를 포스팅하기로 하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVC&lt;/code&gt; 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;을 지나서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;로 가게된 내 생각의 흐름이랄까?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;컨퍼런스 참석하는 것을 좋아해서, 2016년정도부터 였을까?&lt;/p&gt;
+
+&lt;p&gt;단체 카톡방을 통해 정보를 얻고 자주 참석했었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RxSwift&lt;/code&gt;와 자주 나오는 세션이 있었다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;그건 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mvvm&quot;&gt;MVVM&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;“MVC의 M은 메시브래!”&lt;/p&gt;
+
+&lt;p&gt;하는 말을 이제는 많은 iOS 개발자가 들었을 것 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;음 그렇구나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;가 하는게 너무 많구나 싶었다.&lt;/p&gt;
+
+&lt;p&gt;비즈니스 로직, 데이터 소스, UI컨트롤 처리 등등 많이 하긴 했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그 와중에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RxSwift&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;은 거의 한 몸 아닌가 싶을정도로&lt;/p&gt;
+
+&lt;p&gt;세션들에서 자주 같이 등장했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;비동기식 프로그래밍을 할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RxSwift&lt;/code&gt;를 쓰면&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;을 좀 더 잘 쓸 수 있게 도와주는 그런 요소인 것이었다.&lt;/p&gt;
+
+&lt;p&gt;한 몸까진 아니었다. 안 쓰면 불편할 뿐,,&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVC&lt;/code&gt; 대신 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;이 좋았던 점은&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;는 이벤트 컨트롤과 데이터 뿌리는 정도만 하고,&lt;/p&gt;
+
+&lt;p&gt;데이터 소스나 비즈니스 로직들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt;에게 넘긴다는 점이 좋았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt;로 만들면 테스트도 용이해진다! 라는 말이 나왔다.&lt;/p&gt;
+
+&lt;p&gt;그쯤부터였을까?  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TDD&lt;/code&gt;도 많이 나오기 시작하면서 테스트의 붐에 가속이 붙은 것 같았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;나도 어느샌가 대열에 합류했다.&lt;/p&gt;
+
+&lt;p&gt;자동화 테스트에도 관심이 많이 생기고,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RxSwift&lt;/code&gt; 스터디도 하면서 시간을 많이 투자했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그런데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;을 할수록 어려워졌다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;날 혼란스럽게 한 것은 자료들마다 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;에 대한 설명이 제각각이었다는 점이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mvvm의-어려움&quot;&gt;MVVM의 어려움&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt; 자료는 많았다. 정말 정말 많았었다.&lt;/p&gt;
+
+&lt;p&gt;그치만 왜인지 설명들의 큰 틀은 같았으나, 세부적으로 갈수록 자기들만의 스타일이 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜 그렇게 하는지는 대충 이해는 됐지만, 이해가 된게 더 무서웠다.&lt;/p&gt;
+
+&lt;p&gt;이것도 저것도 말이 된다는건 룰이 없다는 것 같았기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;개인적으로 화면이 복잡해지고 코드가 길어질수록 나중에 봤을때 느낀게 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;한테 입력을 주는 경우가 있고, 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;이 출력을 하는 경우도 있을 때,&lt;/p&gt;
+
+&lt;p&gt;먼 훗날 보면 이건 입력이야 출력이야..? 하는 경우가 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 말해,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rx&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subject&lt;/code&gt;들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Observer &amp;amp; Observable&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;즉, 방출과 구독을 어찌하냐에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt; 입장에선 입력이 될 수도, 출력이 될 수도 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;나와 같은 생각을 한 해외 개발자가 있었다.&lt;/p&gt;
+
+&lt;p&gt;이를 명확하게 해줄 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;input&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output&lt;/code&gt;을 프로토콜로 정의하고&lt;/p&gt;
+
+&lt;p&gt;이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt; 프로토콜이 준수하는 형태였다.&lt;/p&gt;
+
+&lt;p&gt;어느 정도 해소 되긴 했지만 뭔가 먼길로 돌아간다는 느낌이 떨쳐지진 않았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그러다가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 처음 봤을땐&lt;/p&gt;
+
+&lt;p&gt;오 이 부분을 해소할 수 있겠는데? 싶었다.&lt;/p&gt;
+
+&lt;p&gt;하지만 첫만남은 거기서 끝났다.&lt;/p&gt;
+
+&lt;p&gt;보다보니 든 생각은 이랬다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“이렇게까지 해야해?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mvvm에서-메시브-뷰컨트롤러가-보이다&quot;&gt;MVVM에서 메시브 뷰컨트롤러가 보이다.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt;을 보다보니 이전의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;가 생각났다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt; 이후로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;는 상당히 단순해졌다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 그럴까?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt;가 메시브해지는거 같단 생각이 들었다.&lt;/p&gt;
+
+&lt;p&gt;데이터 소스 역할도 하랴, 비즈니스 로직도 하랴,,,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;그래서 조금씩 다른 것들이 보이기 시작했다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;interactor와-coordinator&quot;&gt;Interactor와 Coordinator&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 잠깐 보았을 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;라는 요소가 눈여겨졌다.&lt;/p&gt;
+
+&lt;p&gt;비즈니스 로직을 전담을 했다는 장점이 보여서&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;를 찾아보았더니 역시나 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM-I&lt;/code&gt; 라는 식으로 불리우는 듯 했고,&lt;/p&gt;
+
+&lt;p&gt;이를 도입하면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt;의 비즈니스 로직은 해결이 된 듯 했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그리고 화면 이동에 관해서도 어느 귀인의 조언도 듣고,&lt;/p&gt;
+
+&lt;p&gt;찾아보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Coordinator&lt;/code&gt;라는게 있었고 이를 통해 화면 이동 관련 부분을 도려내서&lt;/p&gt;
+
+&lt;p&gt;다이어트 했던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;를 좀 더 다이어트시킬 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;그리고 이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM-C&lt;/code&gt;라 불리고 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;결론적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Coordinator&lt;/code&gt;를 통해 기존 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;보단 더 다이어트 할 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;근데 이렇게하고 보다보니&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;에서 느꼈던 “이렇게까지 해야해..?” 를 내가 찾아서 하고 있다는 생각이 들었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;다시-보인-ribs&quot;&gt;다시 보인 RIBs&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위에 쓰인 대로 내가 결국에 하던게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;로 향하는거였구나 싶었다.&lt;/p&gt;
+
+&lt;p&gt;그리고 나서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 기반으로 강의하신 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;노수진&lt;/code&gt;님의 유료강의를 다시 보았다.&lt;/p&gt;
+
+&lt;p&gt;(리스펙합니다! 노수진님 팬이에요!)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;가려운 부분을 명확하게 긁어 주는 아키텍쳐였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. VM에게 명확하지 않던 입력, 출력이 너무 명확해졌다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Router&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Builder&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;각 요소들이 역할을 잘 나누어 가졌기 때문에 많은 것들이 명확했다.&lt;/p&gt;
+
+&lt;p&gt;의문이 필요 없을 정도로?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 메시브해 보이던 것이 많이 줄었다&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;이 말은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;보다는 그렇다는 말이다.&lt;/p&gt;
+
+&lt;p&gt;노수진님은 RIBs도 결국 쓰다보면 메시브해지는 감이 있어서&lt;/p&gt;
+
+&lt;p&gt;아키텍쳐의 문제가 아니라는 부분을 말하셨다. 다시볼때 들으니 많이 공감이 되었다.&lt;/p&gt;
+
+&lt;p&gt;그리고 그 부분을 잘 해소한 것을 강의로 만드셨다.&lt;/p&gt;
+
+&lt;p&gt;(패캠 강의 강추!)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. 부모 리블렛이 자식 리블렛의 생명 주기를 관리한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;일반적으로도, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Coordinator 패턴&lt;/code&gt;도 부모가 자식을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;present&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;push&lt;/code&gt;하고 나면&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dismiss&lt;/code&gt;나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pop&lt;/code&gt;을 하는 것은 자식 뷰컨이었다.&lt;/p&gt;
+
+&lt;p&gt;하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;는 달랐다. 내가 띄운 화면은 내가 책임진다는 형태가 굉장히 마음에 들었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위에 말했듯 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 처음엔 피했지만,&lt;/p&gt;
+
+&lt;p&gt;내 아키텍쳐를 개선하다보니 어느샌가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;에 가까워진 모습이었고,&lt;/p&gt;
+
+&lt;p&gt;내가 개선한 부분도 아쉬움이 있었지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;에선 그 부분도 많이 해소되었다.&lt;/p&gt;
+
+&lt;p&gt;그러다보니 내 입장에선 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 하지 않을 이유가 없다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;그렇지만 단점이 아예 없는 것은 아니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;ribs의-단점&quot;&gt;RIBs의 단점&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. 너무 높은 러닝 커브&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVC&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;은 보면&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewController&lt;/code&gt;에서 일부를 떼어내서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewModel&lt;/code&gt;로 만들었기에&lt;/p&gt;
+
+&lt;p&gt;간단한 편이었다. (물론 처음엔 어려웠다.)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;는 각 요소들도 파악하고 이해해야 할 것이 너무 많다.&lt;/p&gt;
+
+&lt;p&gt;화면 띄우는 것도, 데이터 주고 받는 것도, 생성하는 것도 모두 다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Uber의 Tutorial는 처음엔 따라 가는 것 조차도 힘들었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt;는 뭐고,, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Router&lt;/code&gt;는 뭔데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing&lt;/code&gt;은 또 뭐고?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;튜토리얼을 마치고, 3번정도 따라 만들었다. 이제 좀 감이 왔다.&lt;/p&gt;
+
+&lt;p&gt;이번엔 안보고 해보자 하고 새 프로젝트 생성부터 했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;시작을 전혀 못했다.&lt;/p&gt;
+
+&lt;p&gt;다른 것 할땐 아무렇지 않게 계속 해오던 프로젝트 생성과 화면 띄우기인데,&lt;/p&gt;
+
+&lt;p&gt;이번엔 아무것도 구현 안한 뷰컨 하나 조차를 못띄우다니!&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Root&lt;/code&gt; 리블렛을 못 붙여서 결국 튜토리얼 파일 보면서 구조를 파악했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 기계가 된 기분이다&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Uber&lt;/code&gt;의 첫 설명은 다음과 같다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RIBs is the cross-platform architecture framework behind many mobile apps at Uber&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;프레임워크다.&lt;/p&gt;
+
+&lt;p&gt;정말 프레임이 잘 잡혀있고, 그 안에서만 놀다보니깐&lt;/p&gt;
+
+&lt;p&gt;이렇게 해볼까? 저렇게 해볼까? 고민할 틈도 없다.&lt;/p&gt;
+
+&lt;p&gt;그냥 정해진 규칙대로 진행하면 된다.&lt;/p&gt;
+
+&lt;p&gt;(물론 세부적인 요소는 논외로!)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이게 장점이기도 하지만 개인적으로 뽑은 단점으로도 볼 수 있을 것 같다.&lt;/p&gt;
+
+&lt;p&gt;너무 규칙적이라 나중에 개발자 자리를 AI한테 뺏겨서 없어지는거 아닌가 라는 과대 망상도 들긴 했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. 테스트도 다시 익혀야한다&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;이제서야 어느정도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TDD&lt;/code&gt;를 지키면서 개발하는 방법을 습득했다 생각했다.&lt;/p&gt;
+
+&lt;p&gt;근데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;에서 적용하려니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TDD&lt;/code&gt;엄두를 못내겠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Test Double&lt;/code&gt;도 많이 생성되어야 하고,&lt;/p&gt;
+
+&lt;p&gt;미숙하다보니 하나 만드는데도 생각보다 시간이 많이 걸린다!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이제 익숙해진 테스트가 다시 낯설어진 느낌이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;그럼에도-불구하고-익히고-싶다&quot;&gt;그럼에도 불구하고 익히고 싶다.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위에서 말한 틀이 잘짜여져서 단점이라 하긴 했지만,&lt;/p&gt;
+
+&lt;p&gt;이는 사실 큰 장점이다.&lt;/p&gt;
+
+&lt;p&gt;구조에 대한 시간 소모는 상당한데, 이를 많이 줄여줬으니,&lt;/p&gt;
+
+&lt;p&gt;내가 좋아하는 UI나 다른 요소에 그만큼 투자를 할 수 있다는 점이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;또한, 큰 기업들에서도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 적용 하는 경우가 생각보다 많은 듯하다.&lt;/p&gt;
+
+&lt;p&gt;많은 이들이 투입되었을 때, 사용하기 좋은 아키텍쳐라는 증거가 아닐까 싶다.&lt;/p&gt;
+
+&lt;p&gt;그만큼 잘 나눠져 있다는 거겠지!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;생각보다 글 길이 길어졌지만&lt;/p&gt;
+
+&lt;p&gt;결론은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVC&lt;/code&gt;보다 잘 나눠진 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVVM&lt;/code&gt;도 어느샌가 아쉬움이 있어서,&lt;/p&gt;
+
+&lt;p&gt;개선하다보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIBs&lt;/code&gt;를 지향하고 있었기에,&lt;/p&gt;
+
+&lt;p&gt;러닝커브가 좀 높다해도 이제는 도전해보려고 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 21 Feb 2022 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/swift/2022/02/21/Swift-RIBs%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9-%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B3%E1%86%B7-%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/21/Swift-RIBs%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9-%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B3%E1%86%B7-%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2.html</guid>
+        
+        
+        <category>Swift</category>
+        
+      </item>
     
       <item>
         <title>(Swift) Test Double이란 (부제- Mock, Stub, SPY 이런게 뭐지?)</title>
@@ -2756,186 +3158,6 @@ summonerLevel: 274
         
         
         <category>Swift</category>
-        
-      </item>
-    
-      <item>
-        <title>Project - LOL API (문서 살펴보기)</title>
-        <description>&lt;p&gt;노마드코더 영상에서 그런말이 나오더라&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;공부할 리스트만 만들면 쉽게 지치기 쉽다, 
-만들고 싶은 목록을 만들어라, 
-그럼 거기에 필요한 것들을 공부하게 될 것이다&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;크, 그래서 가끔 즐기는 롤에서 전적 관련 APP을 간단하게 만들어보려고한다.&lt;/p&gt;
-
-&lt;p&gt;카피 앱이 아니기 때문에 UI 다루는 스킬보단&lt;/p&gt;
-
-&lt;p&gt;라이엇은 API 응답값 형태가 이렇구나 저렇구나 하면서 다른 회사의 API를 체험해보는 경험이 될 듯하다.&lt;/p&gt;
-
-&lt;p&gt;깃헙에 저장소를 만들면서 공개용으로 만들고 싶었지만,,, Key 부분이 조금 걸려서
-프라이빗으로 만들게 된 점은 다소 아쉽다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://developer.riotgames.com&quot;&gt;개발자 사이트&lt;/a&gt;에 들어가서 가입하고 나오는 화면은 다음과 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;저기 중간에 나오는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;API Key&lt;/code&gt; 는 필요한거니 잘 가지고 있자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그리고 상단에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;API 탭&lt;/code&gt;에 들어가보면 수많은 API들이 기다리고 있다.&lt;/p&gt;
-
-&lt;p&gt;처음에 너무 많아서 정신도 없고 문서 양식 파악이 안되어서 무슨말인지 한참 봤다.&lt;/p&gt;
-
-&lt;p&gt;처음엔 어려웠지만 읽는 방법을 알고 나니 술술 읽히는 부분이 마음에 들었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아무래도 게임내의 정보다 보니 모든 API 들이 URL Path 부분에 값을 채워줘야했다.&lt;/p&gt;
-
-&lt;p&gt;그 중 제일 기본이 사용자 정보였다.&lt;/p&gt;
-
-&lt;p&gt;사용자 정보를 알아야 그 사람의 전적이라던가 게임 정보라던가 알 수 있으니 당연한 것이었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;사용자-정보-문서-확인&quot;&gt;사용자 정보 문서 확인&lt;/h1&gt;
-
-&lt;p&gt;문서 보는 방식을 사용자 정보 보는것으로 알아보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;API 탭&lt;/code&gt;으로 이동한뒤 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Summoner&lt;/code&gt;을 찾자&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Summoner는 소환사라는 의미다&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-1.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;상단엔 페이지 이름 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMMONER_V4&lt;/code&gt;가 적혀있고,&lt;/p&gt;
-
-&lt;p&gt;오른쪽엔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;모두 접기&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;모두 펼치기&lt;/code&gt;가 있다.&lt;/p&gt;
-
-&lt;p&gt;아래 API들을 접고 펴기 하겠다는 것이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그아래는 왼쪽부터&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Method&lt;/code&gt; - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URL Path&lt;/code&gt; - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Description&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get&lt;/code&gt;이 압도적으로 많겠지? 라이엇은 정보를 제공만 할테니.&lt;/p&gt;
-
-&lt;p&gt;그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path&lt;/code&gt;에 보면 괄호&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{}&lt;/code&gt; 안에 것이 필요한 정보인데,&lt;/p&gt;
-
-&lt;p&gt;현재는 다른 값들은 알지 못하고 두번째 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{summonerName}&lt;/code&gt;을 이용해서 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그리고 오른쪽에는 간단하게 설명이 되어있고 클릭이 가능해서 파란색으로 되어있다.&lt;/p&gt;
-
-&lt;p&gt;눌러보면 펼쳐지게 되니 눌러보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-2.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;그럼 해당 API에 대한 정보가 나오는데,&lt;/p&gt;
-
-&lt;p&gt;처음 나오는건 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response Data Type&lt;/code&gt;에 대한 것이다.&lt;/p&gt;
-
-&lt;p&gt;응답값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SummonerDTO&lt;/code&gt;라는 형태로 돌려주고 바로 아래에
-이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SummonerDTO&lt;/code&gt;라는 것에 대한 자료형을 설명해준다.&lt;/p&gt;
-
-&lt;p&gt;단순히 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dictionary&lt;/code&gt;로 뿌려주는게 아니라 데이터 형태의 이름을 붙여주니
-이 부분이 아주 좋았다.&lt;/p&gt;
-
-&lt;p&gt;서버도 클라이언트도 모두 자료형에 대해 네이밍을 통일할 수 있겠다 싶었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;왜냐면 응답값이 형태가 정의가 제대로 안되어있으면&lt;/p&gt;
-
-&lt;p&gt;비슷하지만 미묘하게 달라서다른게 자료형이 많아지는 현상이…&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;다른 API들을 보면 알겠지만 설명해주는 부분에 또 다른게 있으면&lt;/p&gt;
-
-&lt;p&gt;그 아래에 또 다른 것에 대한 설명을 해주기 때문에 여기 저기 찾아볼 필요가 없었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그 다음은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ErrorCode&lt;/code&gt;에 대해 정의가 되어있다&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-3.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그 아래 부분엔 편리한것이 있는데, API를 바로 테스트해 볼 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2021-08-14/img-4.png&quot; style=&quot;zoom:40%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;path에 필요했던 값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;summonerName&lt;/code&gt;이란 필드 값을 채우고&lt;/p&gt;
-
-&lt;p&gt;아래에 빨간 버튼을 눌러주면 실행값이 나온다.&lt;/p&gt;
-
-&lt;p&gt;보여주는 항목들은 다음과 같다&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Request URL&lt;/li&gt;
-  &lt;li&gt;Request Headers&lt;/li&gt;
-  &lt;li&gt;Response Status Code&lt;/li&gt;
-  &lt;li&gt;Response HEADERS&lt;/li&gt;
-  &lt;li&gt;Response Body&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;정말 친절하다! 따로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PostMan&lt;/code&gt;이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Paw&lt;/code&gt; 같은 프로그램들을 켜서&lt;/p&gt;
-
-&lt;p&gt;테스트를 해볼 필요가 없었다. 크 역시 큰 곳은 다르다 이건가…&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그 중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response Body&lt;/code&gt;를 보자&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;waVzd7W1xB47_2P650Jn67EO8iijoAoX6fOEdWqDQVvs0io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;accountId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;8VOqFMdQDXwTKPsbSBg5wo08GjcaZlpUmjBs9aSHUn0ap8Y&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;puuid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ywGOQDCvN_7PsLZChEIyW-4c535T2w5Hi2WfB8E-uIeVpCuQZHT3LuuGIUQ9g7XX-dysavsFfHFtnA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2세트짬뽕2탕슉1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;profileIconId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4569&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;revisionDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1628400316000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;summonerLevel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;274&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위 같은 형태로 내려준다.&lt;/p&gt;
-
-&lt;p&gt;다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;puuid&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accountId&lt;/code&gt; 이런 것 들을 이용해서 다른 API를 통해
-이런 저런 값들을 얻을 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;다음 편을 통해서 실제로 호출해보자.&lt;/p&gt;
-
-&lt;p&gt;끝.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 14 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/project/2021/08/14/project-LOL-API-(%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5-%E1%84%89%E1%85%A1%E1%86%AF%E1%84%91%E1%85%A7%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5).html</link>
-        <guid isPermaLink="true">http://localhost:4000/project/2021/08/14/project-LOL-API-(%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5-%E1%84%89%E1%85%A1%E1%86%AF%E1%84%91%E1%85%A7%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5).html</guid>
-        
-        
-        <category>Project</category>
         
       </item>
     
