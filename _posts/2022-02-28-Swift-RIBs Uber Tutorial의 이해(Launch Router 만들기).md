@@ -9,11 +9,11 @@ categories: [Architeture]
 
 <br>
 
-`Tutorial`을 따라하고, 
+`Uber/Tutorial`을 따라하고, 
 
-"프로젝트 생성부터 다시 해봐야지!" 
+"프로젝트 생성부터 다시 해봐야지!" 라고 생각해본 사람들은 
 
-라고 생각해본 사람들은 다음과 같이 생각 해봤을 것이라 예상된다.
+다음과 같이 생각 해봤을 것이라 예상된다.
 
 <br>
 
@@ -22,7 +22,7 @@ categories: [Architeture]
 <br>
 <br>
 
-### 글의 목적
+# 글의 목적
 
 우버의 튜토리얼은 도움이 많이 되었다. 
 
@@ -35,19 +35,17 @@ categories: [Architeture]
 조금 더 이해를 돕기 위해 쓰기로 했다.
 
 <br>
-<br>
 
-### 글의 순서
+이번 포스팅은 그 중에서도 `LuanchRouter`에 대해서이다.
 
-1. Launch Router 생성 (Root)
-2. Root에 텍스트 필드 2개 만들기 (유저 네임 2개 입력 받기)
+<br> 
 
 (Project 생성과 RIBs 설치는 생략!)
 
 <br>
 <br>
 
-### 초기 설정 제거
+# 초기 설정 제거
 
 기본적으로 프로젝트를 생성하면 
 
@@ -59,7 +57,9 @@ categories: [Architeture]
 
 <br>
 
-하지만 우리는 `RIBs`를 쓰고 싶다.
+하지만 나는 스토리보드로 띄운 컨트롤러가 아닌
+
+`RIBs` 를 사용하여 만든 컨트롤러를 띄우고 싶다.
 
 <br>
 
@@ -67,7 +67,7 @@ categories: [Architeture]
 
 <br>
 
-**Info.plist 에서 StoryBoard Name 제거**
+### Info.plist 에서 StoryBoard Name 제거 
 
 `Scene Delegate`가 생긴 이후로 `plist` 파일도 구성이 달라졌다.
 
@@ -78,7 +78,7 @@ categories: [Architeture]
 
 <br>
 
-**Target에 Main Interface 제거**
+### Target에 Main Interface 제거
 
 <img src="/assets/images/2022-02-28/img-1.png" style="zoom:40%;" />
 
@@ -91,7 +91,9 @@ categories: [Architeture]
 <br>
 <br>
 
-### Root 리블렛 생성
+# Root 리블렛 생성
+
+<br>
 
 RIBs를 설치 했지만, 각 요소들을 일일히 생성하는건 매우 귀찮을테고, 쉽지도 않을 것이다.
 
@@ -107,7 +109,9 @@ RIBs를 설치 했지만, 각 요소들을 일일히 생성하는건 매우 귀�
 
 터미널로 해당 폴더로 이동한 후에 다음 명령어 실행
 
-`sh install-xcode-template.sh`
+```shell
+sh install-xcode-template.sh
+```
 
 
 <br> 
@@ -135,7 +139,7 @@ RIBs를 설치 했지만, 각 요소들을 일일히 생성하는건 매우 귀�
 
 <br>
 
-즉, `ViewController` 처럼 `View`는 없지만, 
+즉, `ViewController`와 같은 `View`는 없지만, 
 
 비즈니스 로직을 가지고 (interactor),
 
@@ -145,9 +149,9 @@ RIBs를 설치 했지만, 각 요소들을 일일히 생성하는건 매우 귀�
 
 첫번째의 체크 요소는 위에 설명처럼 `ViewLess`에 대해 여부다.
 
-첫번째가 체크 되어있다면, 코드로도 화면을 짤 수 있지만
+첫번째가 체크 되어있다면, 코드로도 화면을 그릴 수 있다.
 
-`XIB`, `Storyboard`으로도 화면 구성을 하고 싶다면 필요에 맞게 체크하면 된다.
+만약 `XIB`, `Storyboard`으로도 화면 구성을 하고 싶다면 필요에 맞게 체크하면 된다.
 
 <br>
 
@@ -160,7 +164,11 @@ RIBs를 설치 했지만, 각 요소들을 일일히 생성하는건 매우 귀�
 
 <br>
 
-### SceneDelegate에서 RootViewController 설정?
+# SceneDelegate에서 RootViewController 설정?
+
+<br>
+
+> 튜토리얼은 AppDelegate 기준으로 작성되어 있다.
 
 `SceneDelegate`에서 `RootViewController` 설정을 위해서 다음과 같이 코드를 짰을 것이다.
 
@@ -187,7 +195,7 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
 
 <br>
 
-**그래 builder를 우선 만들자**
+### 그래 builder를 우선 만들자
 
 ```swift
 let rootBuilder = RootBuilder(dependency: ??)
@@ -206,11 +214,13 @@ let rootBuilder = RootBuilder(dependency: ??)
 <br> 
 
 
-**필요한 것은 비어있는 Component**
+### 필요한 것은 비어있는 Component
 
-nil은 안되지만 아무것도 없는 비어있는 `Component`를 생성해줘야 한다.
+`nil`은 안되지만 아무것도 없는 비어있는 `Component`를 생성해줘야 한다.
 
 `swift` 파일 하나 만들자. 파일 이름은 튜토리얼을 따라 `AppComponent`.
+
+그리고 아래와 같이 코드를 채우자.
 
 <br>
 
@@ -231,20 +241,22 @@ class AppComponent: Component<EmptyComponent> {
 
 `<>`안에는 `DependencyType`을 넣어줘야하는데,
 
-비어있는 것을 만들어야하니깐 `EmptyComponent`라는 타입을 넣어주겠다고 명시해준다.
+비어있는 것을 만들어야하니깐 `EmptyComponent`라는 타입 사용할 것이다.
 
 
 <br>
 
-** 생성한 AppComponent를 넣어준다.**
+### 생성한 AppComponent를 넣어준다.
 
-다시 `SceneDelegate`로 돌아가 막혔던 부분을 채워준다.
+빈것을 만들 수 있으니, 다시 `SceneDelegate`로 돌아가 막혔던 부분을 채워준다.
 
 <img src="/assets/images/2022-02-28/img-5.png" style="zoom:40%;" />
 
 <br>
 
 오류난다! `AppComponent`가 `RootDependency`를 따르지 않는다고...
+
+<br>
 
 하 빈것 하나 만드는것도 쉽지 않다고 생각이 들었다.
 
@@ -257,10 +269,12 @@ class AppComponent: Component<EmptyComponent> {
 class AppComponent: Component<EmptyComponent>, RootDependency
 ```
 
+그러면 이제 `component`에 관해서는 오류가 사라진다.
+
 
 <br>
 
-**builder로부터 router를 생성한다.**
+### builder로부터 router를 생성한다.
 
 ```swift
 let router = rootBuilder.build(withListener: ??)
@@ -328,9 +342,11 @@ func build() -> RootRouting {
 let router = rootBuilder.build()
 ```
 
-`Router`를 간단히 설명하면 화면 전환을 담당하며, 해당 `ViewController` 또한 가지고 있다.
+<br>
 
-근데 위에 `Builder`는 `RootRouting`을 반환한다. (Router다)
+> `Router`를 간단히 설명하면 화면 전환을 담당하며, 해당 `ViewController` 또한 가지고 있다.
+
+근데 위에 `Builder`는 `RootRouting`을 반환한다.
 
 <br>
 
@@ -346,6 +362,10 @@ let vc = router.viewControllable.uiviewController
 window.rootViewController = vc
 window.makeKeyAndVisible()
 ```
+
+<br>
+
+하지만 어림없지  
 
 이렇게 하고 실행하면, 아래와 같은 에러 로그를 남기고 앱이 죽는다.
 
@@ -473,12 +493,15 @@ private func setUI() {
 
 <br>
 
+무슨 말이냐면 쉽게 말해 컨트롤러는 띄웠지만 리블렛으로써는 불완전하다는 의미!
+
+
 여기서 3차 멘붕이 왔다.
 
 <br>
 <br>
 
-**Root 리블렛 활성화**
+### Root 리블렛 활성화
 
 
 튜토리얼을 해본 개발자라면 알겠지만 `Router`가 다른 리블렛을 띄우기 위해선
@@ -495,9 +518,6 @@ public final func attachChild(_ child: Routing) {
 
     children.append(child)
 
-    // Activate child first before loading. Router usually attaches immutable children in didLoad.
-    // We need to make sure the RIB is activated before letting it attach immutable children.
-    
     // 1 여기
     child.interactable.activate()
     // 2 여기
@@ -545,6 +565,206 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
 
 <br>
 
-아직 끝이 아니다. `LaunchRouter`가 안나왔다. 
+정상적으로 된 것 같지만 아직 끝이 아니다. 
 
-`SceneDelegate`의 코드를 정리 해보자
+글 제목에 있는 `LaunchRouter`가 안나왔다. 
+
+<br>
+
+`SceneDelegate`의 `window`관련 부분 코드를 다시 보자 
+
+<br>
+
+```swift
+guard let scene = (scene as? UIWindowScene) else { return }
+
+let window = UIWindow(windowScene: scene)
+self.window = window
+
+let component = AppComponent()
+let rootBuilder = RootBuilder(dependency: component)
+
+let router = rootBuilder.build()
+self.routing = router
+let vc = router.viewControllable.uiviewController
+
+window.rootViewController = vc
+window.makeKeyAndVisible()
+
+router.interactable.activate()
+router.load()
+```
+
+깔끔하지가 않다. `component` 생성 및 `router` 생성까진 ok
+
+<br>
+
+그 이후 부분들은 로직들이 너무 공개된 느낌이다. 깔끔하지 않다. 
+
+<br>
+
+`RIBs`는 각 요소가 해줘야 할 일들을 잘 모아두었다는 점이 좋았는데,
+
+이 부분은 그렇지 않다 생각했다.
+
+<br>
+
+역시나 이 부분도 개선이 가능하다.
+
+`LaunchRouter`를 이용하면!
+
+<br>
+
+**LaunchRouter**
+
+`RootBuilder`에 보면 `build()`를 통해 `RootRouting`을 반환하는 메소드가 있다.
+
+이때 반환 값을 `LaunchRouting`으로 바꿔보자
+
+```swift
+// 변경 전
+func build() -> RootRouting
+
+// 변경 후 
+func build() -> LaunchRouting
+```
+
+<br>
+
+딱봐도 앱을 실행시 뭔가 해줄거 같다.
+
+<br>
+
+하지만, 이렇게만 하면 `LaunchRouting`을 따르지 않는다는 오류가 발생한다.
+
+<img src="/assets/images/2022-02-28/img-8.png" style="zoom:40%;" />
+
+<br>
+
+`RootRouter`의 클래스의 부모 클래스를 다음과 같이 바꿔주자
+
+```swift
+// 변경 전
+final class RootRouter: ViewableRouter<RootInteractable, RootViewControllable>, RootRouting
+
+// 변경 후
+final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting
+```
+
+<br>
+
+그러면 에러는 사라진다.
+
+<br>
+
+그런데 `LaunchRouter`는 뭘까?
+
+```swift
+open class LaunchRouter<InteractorType, ViewControllerType>: ViewableRouter<InteractorType, ViewControllerType>, LaunchRouting {
+
+    public override init(interactor: InteractorType, viewController: ViewControllerType) {
+        super.init(interactor: interactor, viewController: viewController)
+    }
+
+    public final func launch(from window: UIWindow) {
+        window.rootViewController = viewControllable.uiviewController
+        window.makeKeyAndVisible()
+
+        interactable.activate()
+        load()
+    }
+}
+```
+
+<br>
+
+부모 클래스는 `ViewableRouter`이다. 바로 위에 코드에서 변경해준 그 `ViewableRouter`다.
+
+즉, `ViewableRouter`를 `LaunchRouter`로 바꾼것은 `ViewableRouter`의 자식 클래스로 바꿔준 것이다.
+
+<br>
+
+왜냐하면 그 자식 클래스에 정의된 메소드 때문이며 다음과 같다.
+
+```swift
+public final func launch(from window: UIWindow) {
+    window.rootViewController = viewControllable.uiviewController
+    window.makeKeyAndVisible()
+
+    interactable.activate()
+    load()
+}
+```
+
+많이 본 코드이다. `SceneDelegate`에서 정의한 부분이다!
+
+그럼, `Launch`관련해서 바꿔줬으므로 `SceneDelegate`코드도 바꿔주자
+
+<br>
+
+변경 전
+
+```swift
+
+private var routing: RootRouting?
+
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    
+    guard let scene = (scene as? UIWindowScene) else { return }
+    
+    let window = UIWindow(windowScene: scene)
+    self.window = window
+    
+    let component = AppComponent()
+    let rootBuilder = RootBuilder(dependency: component)
+    
+    let router = rootBuilder.build()
+    self.routing = router
+    let vc = router.viewControllable.uiviewController
+    
+    window.rootViewController = vc
+    window.makeKeyAndVisible()
+    
+    router.interactable.activate()
+    router.load()
+}
+```
+
+<br>
+
+변경 후
+
+```swift
+
+// 1. RootRouting -> LaunchRouting 변경
+private var routing: LaunchRouting?
+
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    
+    guard let scene = (scene as? UIWindowScene) else { return }
+    
+    let window = UIWindow(windowScene: scene)
+    self.window = window
+    
+    let component = AppComponent()
+    let rootBuilder = RootBuilder(dependency: component)
+    
+    let router = rootBuilder.build()
+    self.routing = router
+    
+    // 2. launch로 메소드들 대체
+    router.launch(from: window)
+}
+```
+
+<br>
+
+# 마무리
+
+이렇게 하면 우버 튜토리얼을 따라가기 위한 초기 세팅이 끝났다고 볼 수 있다.
+
+참 길었다. 이래서 다들 러닝커브가 높다고 하나보다.
+
+첫 시작 화면 띄우기 설정 조차 이렇게 어렵다니!
+
+

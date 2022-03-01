@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0
+topdir = /Users/jiseob/.rbenv/versions/3.0.0/include/ruby-3.0.0
 hdrdir = $(topdir)
-arch_hdrdir = /Users/jiseob/.rbenv/versions/3.0.2/include/ruby-3.0.0/x86_64-darwin21
+arch_hdrdir = /Users/jiseob/.rbenv/versions/3.0.0/include/ruby-3.0.0/arm64-darwin20
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/jiseob/.rbenv/versions/3.0.2
+prefix = $(DESTDIR)/Users/jiseob/.rbenv/versions/3.0.0
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20220206-92951-t4oizw
-sitelibdir = $(DESTDIR)./.gem.20220206-92951-t4oizw
+sitearchdir = $(DESTDIR)./.gem.20220228-27773-n7jbwj
+sitelibdir = $(DESTDIR)./.gem.20220228-27773-n7jbwj
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -84,14 +84,14 @@ debugflags = -ggdb3
 warnflags = 
 cppflags = 
 CCDLFLAGS = -fno-common
-CFLAGS   = $(CCDLFLAGS) $(cflags)  -fno-common -pipe  $(ARCH_FLAG)
+CFLAGS   = $(CCDLFLAGS) $(cflags) -fno-common -pipe  $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) -I/Library/Developer/CommandLineTools/SDKs/MacOSX11.sdk/usr/include/ffi
 DEFS     = 
-CPPFLAGS = -DRUBY_EXTCONF_H=\"$(RUBY_EXTCONF_H)\" -I/Users/jiseob/.rbenv/versions/3.0.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
+CPPFLAGS = -DRUBY_EXTCONF_H=\"$(RUBY_EXTCONF_H)\" -I/Users/jiseob/.rbenv/versions/3.0.0/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS)   $(ARCH_FLAG)
-ldflags  = -L. -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -fstack-protector-strong -L/usr/local/lib  -pthread
-dldflags = -L/Users/jiseob/.rbenv/versions/3.0.2/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
-ARCH_FLAG = 
+ldflags  = -L. -L/Users/jiseob/.rbenv/versions/3.0.0/lib  -fstack-protector-strong  -pthread
+dldflags = -L/Users/jiseob/.rbenv/versions/3.0.0/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
+ARCH_FLAG = -m64
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -dynamic -bundle
 LDSHAREDXX = $(CXX) -dynamic -bundle
@@ -105,7 +105,7 @@ RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-darwin21
+arch = arm64-darwin20
 sitearch = $(arch)
 ruby_version = 3.0.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -155,8 +155,8 @@ BINDIR        = $(bindir)
 RUBYCOMMONDIR = $(sitedir)$(target_prefix)
 RUBYLIBDIR    = $(sitelibdir)$(target_prefix)
 RUBYARCHDIR   = $(sitearchdir)$(target_prefix)
-HDRDIR        = $(sitehdrdir)$(target_prefix)
-ARCHHDRDIR    = $(sitearchhdrdir)$(target_prefix)
+HDRDIR        = $(rubyhdrdir)/ruby$(target_prefix)
+ARCHHDRDIR    = $(rubyhdrdir)/$(arch)/ruby$(target_prefix)
 TARGET_SO_DIR =
 TARGET_SO     = $(TARGET_SO_DIR)$(DLLIB)
 CLEANLIBS     = $(TARGET_SO) 
@@ -266,4 +266,5 @@ $(TARGET_SO): $(OBJS) Makefile
 
 $(OBJS): $(HDRS) $(ruby_headers)
 LIBFFI_HOST=--host=
+LIBFFI_HOST=--host=aarch64-apple-darwin20
 include ${srcdir}/libffi.darwin.mk
