@@ -1,7 +1,7 @@
 ---
 layout: post
 
-title: "(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)"
+title: "(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (Without Component)"
 
 categories: [Architeture]
 
@@ -38,6 +38,10 @@ categories: [Architeture]
 의존성 주입까지 하려하면 너무 끔찍했다.
 
 <br>
+
+그래서 이번 편에서는 `Component`가 없이 기본적인 화면 붙이기만 다룰 예정
+
+<br>
 <br>
 
 # 구조 설명
@@ -52,19 +56,18 @@ Uber/Ribs Tutorial을 기반으로 설명을 할 예정이다.
 
 <br>
 
-> 앱 자체는 로그아웃 상태에서 로그인해서 게임을 하는 간단한 앱.
-
 - `Root`: 이전편에 생성
 
-- `LoggedOut`: 사용자 이름 2개를 입력 받는 화면
+- `LoggedOut`: 사용자 이름 2개를 입력 받는 화면 (이번편에서는 빈 화면만)
 
-- `OffGame`: 받은 사용자 이름, 점수를 표시하며, 게임 시작 버튼이 존재
 
 <br>
 
-그리고 `LoggedOut`과 `OffGame` 리블렛을 생성해주자.
+그리고 `LoggedOut` 리블렛을 생성해주자.
 
 <img src="/assets/images/2022-03-02/img-1.png" style="zoom:40%;" />
+
+<br>
 
 <br>
 <br>
@@ -102,13 +105,15 @@ Uber/Ribs Tutorial을 기반으로 설명을 할 예정이다.
 
 누가 지시를 해야할까?
 
-두뇌 역할을 하는 인터렉터가 명령을 내려야한다.
+두뇌 역할을 하는 `Interactor`가 명령을 내려야한다.
 
 <br>
 
 그러기 위해선 `RootRouting`에 시그니처를 다음과 같이 적어준다.
 
 ```swift
+// In RootInteractor.swift
+
 protocol RootRouting: ViewableRouting {
     func attachLoggedOut()
 }
@@ -144,7 +149,9 @@ override func didBecomeActive() {
 
 그러면 이제 빌드를 해보면 에러가 날 것이다.
 
-왜냐면 `attachLoggedOut()`을 명시해준 것은 프로토콜이었고,
+<br>
+
+왜냐하면 `attachLoggedOut()`을 명시해준 것은 프로토콜이었고,
 
 이를 준수하는 실제 `RootRouter`는 이 메소드를 구현 해주지 않았기 때문이다.
 
@@ -259,9 +266,11 @@ let loggedOutBuilder = LoggedOutBuilder(dependency: ??)
 
 <br>
 
-하 개인적으로 처음에 이것도 어려웠다.
+하 개인적으로 처음에 이정도 왔을때 
 
-뭐이리 할게 많아... 싶었다.
+뭐이리 할게 많아...? 싶었다... 
+
+
 
 <br>
 
@@ -273,9 +282,9 @@ let loggedOutBuilder = LoggedOutBuilder(dependency: ??)
 
 즉, `LoggedOutBuilder`에 필요한 의존성을 주입하라는 얘기다.
 
-`component`를 넣어주게 되면 에러가 난다.
-
 <br>
+
+그런데 `component`를 넣어주게 되면 에러가 난다.
  
 `LoggedOutBuilder`가 뭐가 필요한지도 모르는데,
 
@@ -310,7 +319,7 @@ let loggedOutBuilder = LoggedOutBuilder(dependency: ??)
 
 하면 할수록 빨라지고 명확해서 좋다는 기분이 들어서 좋다.
 
-> 그럼에도 가끔식 너무많아... 싶긴하다...
+> 그럼에도 가끔씩 너무많아... 싶긴하다...
 
  
 <br>
@@ -327,6 +336,8 @@ let loggedOutBuilder = LoggedOutBuilder(dependency: ??)
 let router = loggedOutBuildable.build(withListener: interactor)
 ```
 
+<br>
+ 
 `interactor`를 넣어주는 이유는 
 
 하위 리블렛(`LoggedOut`)과 상위 리블렛(`Root`)의 
@@ -335,7 +346,9 @@ let router = loggedOutBuildable.build(withListener: interactor)
 
 <br> 
 
-예를 들어, 화면을 띄운 리블렛은 닫을 책임도 있기 때문에 
+예를 들어, 화면을 띄울 리블렛은 
+
+띄운 리블렛을 닫을 책임도 있기 때문에 
 
 하위가 상위한테 "화면 닫아줘" 같은 요청을 해야할 때도 있다.
 
@@ -343,11 +356,15 @@ let router = loggedOutBuildable.build(withListener: interactor)
 
 그럴때 하위 `interactor`가 상위 `interactor`에게 전달할 방법이 필요하므로
 
-`listener`로써 위 코드와 같이 작성이 되어야한다.
+`listener`로써 위 코드와 같이 
+
+현재의 `interactor`가 전달되어야 한다.
 
 <br>
 
 하지만, 아직 하위 리블렛이 무엇을 요청할 수 있는 지를 모른다.
+
+<br>
 
 따라서, 현재 `interactor`가 하위 `interactor`의 요청을 처리할 수 있도록 
 
@@ -378,7 +395,7 @@ loggedOutRouting = router
 
 <br>
 
-보험처리로 이미 attach 되어 있는데 또 하면 안되니깐
+보험처리로 이미 `attach` 되어 있는데 또 하면 안되니깐
 
 안전 장치 하나 마련해주고 나면 전체 코드는 다음과 같다.
 
@@ -420,7 +437,9 @@ func attachLoggedOut() {
 
 <br>
 
-그래서 다른 사람들은 `extension`을 이용해서 이를 해소했다.
+그래서 다른 사람들은 아래 코드처럼
+
+`extension`을 이용해서 이를 해소했다.
 
 ```swift
 public extension ViewControllable {
@@ -503,11 +522,6 @@ private func setUI() {
 이제 나온다. 핑크 화면!!
 
 <br>
-
-하지만 핑크 화면만 보면 아쉬우니깐
-
-텍스트 필드 몇개랑 레이블 몇개 추가해서 넣어주자. 
-
 <br>
 
 # 마무리
@@ -518,4 +532,12 @@ private func setUI() {
 
 하지만 중간에 썼던 것처럼 각각의 요소가 할 일이 잘 나뉘어져 있는 것이 포인트이다.
 
- 
+<br>
+
+다음편에서는 `Component`가 실제로 사용되는 리블렛을 붙일 예정이다.
+
+`LoggedOut`에 입력받을 UI도 그때 추가가 맞다 판단되어,
+
+UI도 다음편에 꾸밀 예정!
+
+
