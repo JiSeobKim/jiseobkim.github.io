@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)" />
+    <meta name="keywords" content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기), 😀😍😉 JS 개발 블로그 😁😆😄, Architeture" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/architeture/2022/03/02/Swift-RIBs-Uber-Tutorial%E1%84%8B%E1%85%B4-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2(%E1%84%92%E1%85%A1%E1%84%8B%E1%85%B1-%E1%84%85%E1%85%B5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A6%E1%86%BA-%E1%84%87%E1%85%AE%E1%87%80%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B5).html" property="og:url">
+    
+
+    
+      <meta content="2022-03-02T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Architeture" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/architeture/2022/03/02/Swift-RIBs-Uber-Tutorial%E1%84%8B%E1%85%B4-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2(%E1%84%92%E1%85%A1%E1%84%8B%E1%85%B1-%E1%84%85%E1%85%B5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A6%E1%86%BA-%E1%84%87%E1%85%AE%E1%87%80%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B5).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)</h1>
+</header>
+
+<span class="time">02 Mar 2022</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Architeture">Architeture</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p><a href="https://jiseobkim.github.io/architeture/2022/02/28/Swift-RIBs-Uber-Tutorial의-이해(Launch-Router-만들기).html">이전편</a>에서 <code class="language-plaintext highlighter-rouge">LaunchRouter</code>를 만들고</p>
+
+<p>립스로 최초 화면을 띄우는 것에 대해 포스팅을 하였다.</p>
+
+<p>이번 편에서는 하위 리블렛을 붙이는 것을 주제로 잡았다.</p>
+
+<blockquote>
+  <p>리블렛(Riblet): Ribs 라는 요리를 본적 있다면, 그 뼈대 하나를 리블렛이라고 한다고 한다.
+아키텍쳐에서 의미는 이전편에 Root처럼 하나의 단위를 리블렛이라한다고 한다.</p>
+</blockquote>
+
+<p><br /> 
+<br /></p>
+
+<h1 id="분류">분류</h1>
+
+<p><br /></p>
+
+<p>쉽게 이해를 돕기 위해 나눠서 설명을 하고자 한다.</p>
+
+<ol>
+  <li>
+    <p>의존성 주입이 필요없는 경우</p>
+  </li>
+  <li>
+    <p>의존성 주입이 필요한 경우 (<code class="language-plaintext highlighter-rouge">Component</code>가 필요한 경우)</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<p>그 이유는 <code class="language-plaintext highlighter-rouge">Router</code>의 역할을 먼저 알아보기만해도 처음엔 저세상 이야기 같은데</p>
+
+<p>의존성 주입까지 하려하면 너무 끔찍했다.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="구조-설명">구조 설명</h1>
+
+<p><br /></p>
+
+<p>Uber/Ribs Tutorial을 기반으로 설명을 할 예정이다.</p>
+
+<p>그리고 이번편에서 하고자 하는 것의 구조는 다음과 같다.</p>
+
+<p><img src="/assets/images/2022-03-02/img.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>앱 자체는 로그아웃 상태에서 로그인해서 게임을 하는 간단한 앱.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Root</code>: 이전편에 생성</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">LoggedOut</code>: 사용자 이름 2개를 입력 받는 화면</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">OffGame</code>: 받은 사용자 이름, 점수를 표시하며, 게임 시작 버튼이 존재</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">LoggedOut</code>과 <code class="language-plaintext highlighter-rouge">OffGame</code> 리블렛을 생성해주자.</p>
+
+<p><img src="/assets/images/2022-03-02/img-1.png" style="zoom:40%;" /></p>
+
+<p><br />
+<br /></p>
+
+<h1 id="attach-loggedout">Attach LoggedOut</h1>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Root</code>는 하는게 없다. 단순히 로그아웃된 화면을 띄워줄 뿐이다.</p>
+
+<p>그렇다는 말은 로그아웃된 화면에선 의존성 주입을 받을 필요가 없다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">attach</code>를 통해 화면 전환이 어떻게 이뤄지는지</p>
+
+<p>시작하기 딱 좋은 예제라 생각 된다.</p>
+
+<p><br /></p>
+
+<p>중점은 <code class="language-plaintext highlighter-rouge">Attach</code>를 어떻게 하는지이다.</p>
+
+<p><br />
+<br /></p>
+
+<h3 id="root-interactor">Root Interactor</h3>
+
+<p><br /></p>
+
+<p>누구한테 명령을 해야할까?</p>
+
+<p>화면 전환을 담당하는 <code class="language-plaintext highlighter-rouge">Router</code>에게 명령을 해야한다.</p>
+
+<p><br /></p>
+
+<p>누가 지시를 해야할까?</p>
+
+<p>두뇌 역할을 하는 인터렉터가 명령을 내려야한다.</p>
+
+<p><br /></p>
+
+<p>그러기 위해선 <code class="language-plaintext highlighter-rouge">RootRouting</code>에 시그니처를 다음과 같이 적어준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">RootRouting</span><span class="p">:</span> <span class="kt">ViewableRouting</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">attachLoggedOut</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">Router</code>에게 명령을 할 수 있다.</p>
+
+<p><br /></p>
+
+<p>그럼 언제 지시를 내릴까?</p>
+
+<p><br /></p>
+
+<p>시점은 <code class="language-plaintext highlighter-rouge">interactor</code> 안에 존재하는 메소드인</p>
+
+<p><code class="language-plaintext highlighter-rouge">didBecomeActive()</code>가 적당해 보인다.</p>
+
+<p>다음과 같이 작성하자.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">didBecomeActive</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">didBecomeActive</span><span class="p">()</span>
+    
+    <span class="n">router</span><span class="p">?</span><span class="o">.</span><span class="nf">attachLoggedOut</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그러면 이제 빌드를 해보면 에러가 날 것이다.</p>
+
+<p>왜냐면 <code class="language-plaintext highlighter-rouge">attachLoggedOut()</code>을 명시해준 것은 프로토콜이었고,</p>
+
+<p>이를 준수하는 실제 <code class="language-plaintext highlighter-rouge">RootRouter</code>는 이 메소드를 구현 해주지 않았기 때문이다.</p>
+
+<blockquote>
+  <p>직접적으로 <code class="language-plaintext highlighter-rouge">router</code>에게 하는것이 아닌 
+<code class="language-plaintext highlighter-rouge">protocol</code> 타입의 객체를 통해 명령을 내려줌으로써 
+서로간의 의존성을 끊을 수 있다는 장점도 존재.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그럼 이제 실제 <code class="language-plaintext highlighter-rouge">RootRouter</code>로 가서 빈 메소드를 만들자.</p>
+
+<p><br />
+<br /></p>
+
+<h3 id="root-router">Root Router</h3>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// in RootRouter Class</span>
+
+<span class="kd">func</span> <span class="nf">attachLoggedOut</span><span class="p">()</span> <span class="p">{</span>
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>일단은 에러는 피했고, 이제 화면 전환을 하기 위한 준비물들이 필요하다.</p>
+
+<p><br /></p>
+
+<p>리블렛의 생성을 담당하는건 <code class="language-plaintext highlighter-rouge">Builder</code>다.</p>
+
+<p>그래서 이 <code class="language-plaintext highlighter-rouge">Builder</code>가 필요하지만,</p>
+
+<p>위에서 본 것과 같이 <code class="language-plaintext highlighter-rouge">interactor</code>도 직접 <code class="language-plaintext highlighter-rouge">router</code>객체를 들고 있지 않았다.</p>
+
+<p><br /></p>
+
+<p>여기서도 실제 <code class="language-plaintext highlighter-rouge">Builder</code>가 아닌 빌더가 따르는 <code class="language-plaintext highlighter-rouge">Buildable</code>을 프로퍼티로 들고 있자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// in RootRouter Class</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">loggedOutBuildable</span><span class="p">:</span> <span class="kt">LoggedOutBuildable</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">loggedOutRouting</span><span class="p">:</span> <span class="kt">Routing</span><span class="p">?</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">loggedOutRouting</code>은 화면을 띄우고 끝이 아닌 제거도 필요할때가 있다.</p>
+
+<p>따라서, 화면을 띄우면 객체로써 들고 있자!</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">loggedOutBuildable</code>은 초기화가 안되어 있어서 오류가 난다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">init</code>시 초기화 해주자 (<code class="language-plaintext highlighter-rouge">override</code>는 제거!)</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span>
+    <span class="nv">interactor</span><span class="p">:</span> <span class="kt">RootInteractable</span><span class="p">,</span>
+    <span class="nv">viewController</span><span class="p">:</span> <span class="kt">RootViewControllable</span><span class="p">,</span>
+    <span class="nv">loggedOutBuildable</span><span class="p">:</span> <span class="kt">LoggedOutBuildable</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">loggedOutBuildable</span> <span class="o">=</span> <span class="n">loggedOutBuildable</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">interactor</span><span class="p">:</span> <span class="n">interactor</span><span class="p">,</span> <span class="nv">viewController</span><span class="p">:</span> <span class="n">viewController</span><span class="p">)</span>
+    <span class="n">interactor</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="k">self</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그럼 우선은 <code class="language-plaintext highlighter-rouge">RootRouter.swift</code>파일 내의 오류는 사라진다.</p>
+
+<p><br /></p>
+
+<p>하지만, 다른 오류가 나온다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">init</code>을 수정했기 때문에 어디선가 해당 <code class="language-plaintext highlighter-rouge">init</code>을 쓰고 있던 부분은 오류가 난다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Router</code>가 생성되는 곳은 어딜까</p>
+
+<p>역시 리블렛의 생성 담당인 <code class="language-plaintext highlighter-rouge">Builder</code>에 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">RootBuilder.swift</code>로 이동하자.</p>
+
+<p><br />
+<br /></p>
+
+<h3 id="root-builder">Root Builder</h3>
+
+<p><br /></p>
+
+<p>아래에 이미지와 같이 <code class="language-plaintext highlighter-rouge">RootRouter</code> 생성하는 부분인을 채워줘야한다.</p>
+
+<p><img src="/assets/images/2022-03-02/img-2.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>빌더를 하나 생성해준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">loggedOutBuilder</span> <span class="o">=</span> <span class="kt">LoggedOutBuilder</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="p">??)</span>
+</code></pre></div></div>
+
+<p>이제 또 위 코드의 <code class="language-plaintext highlighter-rouge">??</code>을 채워야한다.</p>
+
+<p><br /></p>
+
+<p>하 개인적으로 처음에 이것도 어려웠다.</p>
+
+<p>뭐이리 할게 많아… 싶었다.</p>
+
+<p><br /></p>
+
+<p>결론은 같은 메소드 내에 있는 <code class="language-plaintext highlighter-rouge">component</code>가 들어가면 된다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Component</code>는 이전편에서 필요한 객체를 담아두는 주머니 정도로 설명을 했다.</p>
+
+<p><br /></p>
+
+<p>즉, <code class="language-plaintext highlighter-rouge">LoggedOutBuilder</code>에 필요한 의존성을 주입하라는 얘기다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">component</code>를 넣어주게 되면 에러가 난다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOutBuilder</code>가 뭐가 필요한지도 모르는데,</p>
+
+<p>일단 아무거나 껴넣었기 때문이다.</p>
+
+<p><br /></p>
+
+<p>따라서 <code class="language-plaintext highlighter-rouge">RootComponent</code>가 <code class="language-plaintext highlighter-rouge">LoggedOutDependency</code>를 준수하도록 해줘야</p>
+
+<p>비로서 에러는 사라지며 정상적으로 사용이 가능하다.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2022-03-02/img-3.png" style="zoom:40%;" /></p>
+
+<p>위의 사진을 보면 3개의 빨간 박스가 있으며 위의 말들을 정리한 것이다.</p>
+
+<p><br />
+<br /></p>
+
+<h3 id="다시-root-router">다시 Root Router</h3>
+
+<p><br /></p>
+
+<p>돌고 돌아 다시 라우터로 왔다.</p>
+
+<p>화면 하나 붙이기 위한 준비 과정이 이제서야 끝났다.</p>
+
+<p><br /></p>
+
+<p>처음엔 이게 뭐야 도대체 왜이래 싶었지만,</p>
+
+<p>하면 할수록 빨라지고 명확해서 좋다는 기분이 들어서 좋다.</p>
+
+<blockquote>
+  <p>그럼에도 가끔식 너무많아… 싶긴하다…</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>아까 빈 메소드로 남겨두었던 <code class="language-plaintext highlighter-rouge">attachLoggedOut()</code>를 채워보자</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">router</code>가 이제 <code class="language-plaintext highlighter-rouge">loggedOutBuildable</code>이 있으니</p>
+
+<p><code class="language-plaintext highlighter-rouge">build</code>메소드를 통해 <code class="language-plaintext highlighter-rouge">router</code>를 얻을 수 있다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">router</span> <span class="o">=</span> <span class="n">loggedOutBuildable</span><span class="o">.</span><span class="nf">build</span><span class="p">(</span><span class="nv">withListener</span><span class="p">:</span> <span class="n">interactor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">interactor</code>를 넣어주는 이유는</p>
+
+<p>하위 리블렛(<code class="language-plaintext highlighter-rouge">LoggedOut</code>)과 상위 리블렛(<code class="language-plaintext highlighter-rouge">Root</code>)의</p>
+
+<p><code class="language-plaintext highlighter-rouge">interactor</code>끼리 상호작용이 가능하게 하기 위함이다!</p>
+
+<p><br /></p>
+
+<p>예를 들어, 화면을 띄운 리블렛은 닫을 책임도 있기 때문에</p>
+
+<p>하위가 상위한테 “화면 닫아줘” 같은 요청을 해야할 때도 있다.</p>
+
+<p><br /></p>
+
+<p>그럴때 하위 <code class="language-plaintext highlighter-rouge">interactor</code>가 상위 <code class="language-plaintext highlighter-rouge">interactor</code>에게 전달할 방법이 필요하므로</p>
+
+<p><code class="language-plaintext highlighter-rouge">listener</code>로써 위 코드와 같이 작성이 되어야한다.</p>
+
+<p><br /></p>
+
+<p>하지만, 아직 하위 리블렛이 무엇을 요청할 수 있는 지를 모른다.</p>
+
+<p>따라서, 현재 <code class="language-plaintext highlighter-rouge">interactor</code>가 하위 <code class="language-plaintext highlighter-rouge">interactor</code>의 요청을 처리할 수 있도록</p>
+
+<p>같은 파일내에 존재하는 <code class="language-plaintext highlighter-rouge">RootInteractable</code> 또한 프로토콜을 추가해줘야한다.</p>
+
+<p><img src="/assets/images/2022-03-02/img-4.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>다시 <code class="language-plaintext highlighter-rouge">attachLoggedOut()</code> 메소드로 돌아가서 아래 코드를 추가 해주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">attachChild</span><span class="p">(</span><span class="n">router</span><span class="p">)</span>
+<span class="n">loggedOutRouting</span> <span class="o">=</span> <span class="n">router</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">attachChild</code>는 이전편에서 본 것과 같이 몇가지 로직이 수행된다.</p>
+
+<p>이때, <code class="language-plaintext highlighter-rouge">interactor</code>도 활성화가 된다는 정도만 알면 될 듯 하다.</p>
+
+<p><br /></p>
+
+<p>그리고 나중에 <code class="language-plaintext highlighter-rouge">detach</code>할 경우를 대비해,</p>
+
+<p>아까 만들어둔 <code class="language-plaintext highlighter-rouge">loggedOutRouting</code>를 <code class="language-plaintext highlighter-rouge">router</code>로 초기화 해주자.</p>
+
+<p><br /></p>
+
+<p>보험처리로 이미 attach 되어 있는데 또 하면 안되니깐</p>
+
+<p>안전 장치 하나 마련해주고 나면 전체 코드는 다음과 같다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">attachLoggedOut</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 안전 장치</span>
+    <span class="k">guard</span> <span class="n">loggedOutRouting</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+    
+    <span class="k">let</span> <span class="nv">router</span> <span class="o">=</span> <span class="n">loggedOutBuildable</span><span class="o">.</span><span class="nf">build</span><span class="p">(</span><span class="nv">withListener</span><span class="p">:</span> <span class="n">interactor</span><span class="p">)</span>
+    
+    <span class="nf">attachChild</span><span class="p">(</span><span class="n">router</span><span class="p">)</span>
+    <span class="n">loggedOutRouting</span> <span class="o">=</span> <span class="n">router</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>사실 여기까지는 하위 리블렛을 붙여서 활성화 하기까지의 과정이었다.</p>
+
+<p>이제부터는 어떻게 화면을 쓸 것인지를 결정하면 된다!</p>
+
+<p><code class="language-plaintext highlighter-rouge">present</code>하던지 <code class="language-plaintext highlighter-rouge">navigation</code>에 <code class="language-plaintext highlighter-rouge">push</code>하던지</p>
+
+<p><code class="language-plaintext highlighter-rouge">navigation</code>이 없다면 <code class="language-plaintext highlighter-rouge">navigation</code>으로 감싸서 <code class="language-plaintext highlighter-rouge">present</code> 하던지 등등…</p>
+
+<p><br /></p>
+
+<p>하지만, 여기서 Tutorial의 불편한 점이 나온다.</p>
+
+<p>프로토콜 <code class="language-plaintext highlighter-rouge">RootViewControllable</code> 안에 <code class="language-plaintext highlighter-rouge">present</code>, <code class="language-plaintext highlighter-rouge">dismiss</code>를 넣어주고,</p>
+
+<p>이를 <code class="language-plaintext highlighter-rouge">RootViewController</code>에서 구현을 하여,</p>
+
+<p><code class="language-plaintext highlighter-rouge">router</code>가 <code class="language-plaintext highlighter-rouge">viewController</code>에게 명령을 내리는 식으로 작성되어 있다.</p>
+
+<p><br /></p>
+
+<p>각각의 리블렛마다 그것을 구현하기엔 너무나도 불편했다</p>
+
+<p><br /></p>
+
+<p>그래서 다른 사람들은 <code class="language-plaintext highlighter-rouge">extension</code>을 이용해서 이를 해소했다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">ViewControllable</span> <span class="p">{</span>
+    
+    <span class="kd">func</span> <span class="nf">present</span><span class="p">(</span><span class="n">_</span> <span class="nv">viewControllable</span><span class="p">:</span> <span class="kt">ViewControllable</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">uiviewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">viewControllable</span><span class="o">.</span><span class="n">uiviewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="n">animated</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="n">completion</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">dismiss</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">uiviewController</span><span class="o">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="n">completion</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이제 우리는 이 추가된 메소드를 통해서 호출을 할것이다.</p>
+
+<p>그러면 화면 전환까지 추가된 전체 코드는 다음과 같다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">attachLoggedOut</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">loggedOutRouting</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+    
+    <span class="k">let</span> <span class="nv">router</span> <span class="o">=</span> <span class="n">loggedOutBuildable</span><span class="o">.</span><span class="nf">build</span><span class="p">(</span><span class="nv">withListener</span><span class="p">:</span> <span class="n">interactor</span><span class="p">)</span>
+    
+    <span class="nf">attachChild</span><span class="p">(</span><span class="n">router</span><span class="p">)</span>
+    <span class="n">loggedOutRouting</span> <span class="o">=</span> <span class="n">router</span>
+    
+    <span class="c1">// 추가된 화면 전환 코드</span>
+    <span class="n">viewControllable</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span>
+        <span class="n">router</span><span class="o">.</span><span class="n">viewControllable</span><span class="p">,</span>
+        <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>아 너무 힘들었다.</p>
+
+<p>뷰컨하나 <code class="language-plaintext highlighter-rouge">present</code>하기에 대한 설명이 이토록 길다니!!</p>
+
+<p><br /></p>
+
+<p>실행 해보자.</p>
+
+<p><img src="/assets/images/2022-03-02/img-5.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>이런 화면이 나와도 놀라지 말자</p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOutViewController</code>의 백그라운드 컬러가 없는 것이다.</p>
+
+<p>아래 코드를 뷰컨에 추가 해주자.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In LoggedOutViewController</span>
+<span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nf">setUI</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">coder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">coder</span><span class="p">)</span>
+    <span class="nf">setUI</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">setUI</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemPink</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="/assets/images/2022-03-02/img-6.png" style="zoom:40%;" /></p>
+
+<p>이제 나온다. 핑크 화면!!</p>
+
+<p><br /></p>
+
+<p>하지만 핑크 화면만 보면 아쉬우니깐</p>
+
+<p>텍스트 필드 몇개랑 레이블 몇개 추가해서 넣어주자.</p>
+
+<p><br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p><br /></p>
+
+<p>뷰컨 하나를 띄우기 위해서 기존 대비 정말 많은 일을 해야한다.</p>
+
+<p>하지만 중간에 썼던 것처럼 각각의 요소가 할 일이 잘 나뉘어져 있는 것이 포인트이다.</p>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/architeture/2022/03/02/Swift-RIBs-Uber-Tutorial%E1%84%8B%E1%85%B4-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2(%E1%84%92%E1%85%A1%E1%84%8B%E1%85%B1-%E1%84%85%E1%85%B5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A6%E1%86%BA-%E1%84%87%E1%85%AE%E1%87%80%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B5).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/architeture/2022/02/28/Swift-RIBs-Uber-Tutorial%E1%84%8B%E1%85%B4-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2(Launch-Router-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5).html">(RIBs) Uber/Tutorial의 이해 (Launch Router 만들기)</a>
+                  
+                    (Categories: <a href="/category/Architeture">Architeture</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/architeture/2022/02/28/Swift-RIBs-Uber-Tutorial%E1%84%8B%E1%85%B4-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2(Launch-Router-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5).html">&laquo; (RIBs) Uber/Tutorial의 이해 (Launch Router 만들기)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)";
+    var disqus_title = "(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
