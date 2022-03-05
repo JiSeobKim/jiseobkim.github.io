@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component) - 😀😍😉 JS 개발 블로그 😁😆😄</title>
+    <meta name="author" content="Jiseob Kim" />
+    <meta name="description" content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component)" />
+    <meta name="keywords" content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component), 😀😍😉 JS 개발 블로그 😁😆😄, Architeture" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="😀😍😉 JS 개발 블로그 😁😆😄" property="og:site_name">
+
+    
+
+    
+      <meta content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component)" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="나만의 공간" property="og:description">
+    
+
+    
+      <meta content="http://localhost:4000/architeture/2022/03/03/Swift-RIBs-Uber-Tutorial%EC%9D%98-%EC%9D%B4%ED%95%B4(%ED%95%98%EC%9C%84-%EB%A6%AC%EB%B8%94%EB%A0%9B-%EB%B6%99%EC%9D%B4%EA%B8%B02).html" property="og:url">
+    
+
+    
+      <meta content="2022-03-03T00:00:00+09:00" property="article:published_time">
+      <meta content="http://localhost:4000/about/" property="article:author">
+    
+
+    
+      <meta content="http://localhost:4000/static/img/mainIcon2.png" property="og:image">
+    
+
+    
+      
+        <meta content="Architeture" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component)">
+    
+
+    
+      <meta name="twitter:url" content="http://localhost:4000/architeture/2022/03/03/Swift-RIBs-Uber-Tutorial%EC%9D%98-%EC%9D%B4%ED%95%B4(%ED%95%98%EC%9C%84-%EB%A6%AC%EB%B8%94%EB%A0%9B-%EB%B6%99%EC%9D%B4%EA%B8%B02).html">
+    
+
+    
+      <meta name="twitter:description" content="나만의 공간">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/mainIcon2.png" height="75px" width="75px" /></a>
+          <h1 class="author-name">Jiseob Kim</h1>
+          
+            <div class="profile-about">
+              iOS Developer
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://github.com/JiSeobKim" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="글 검색하기" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/category/Swift">Category</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component)</h1>
+</header>
+
+<span class="time">03 Mar 2022</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/Architeture">Architeture</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p><br /></p>
+
+<p>요즘 열심히 했더니 깃헙 잔디밭이 잘 자라고 있다.</p>
+
+<p>연속으로 채워졌더니 중간에 비면 마음 아플거 같아서</p>
+
+<p>더 하게 되는 좋은 효과가 나타나는 중!</p>
+
+<p><br /></p>
+
+<p><a href="https://jiseobkim.github.io/architeture/2022/03/02/Swift-RIBs-Uber-Tutorial의-이해(하위-리블렛-붙이기).html">이전 편</a> 에서는 <code class="language-plaintext highlighter-rouge">Component</code>를 신경 쓸 필요 없는 단순한 화면 붙이기를 하였다.</p>
+
+<p>이번 편에서는 화면 전환시 <code class="language-plaintext highlighter-rouge">Component</code>를 신경써야할 부분을 다룰 예정!</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="포인트">포인트</h1>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p>화면을 떼는것 (Detach)을 해보기</p>
+  </li>
+  <li>
+    <p>이전편 화면 전환은 <code class="language-plaintext highlighter-rouge">Router</code>는 중점으로 다뤘으니 이번엔 <code class="language-plaintext highlighter-rouge">Component</code>에 초점을 맞추자.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="결과-화면">결과 화면</h1>
+
+<p><br /></p>
+
+<p>전체 구조는 다음과 같다.</p>
+
+<p><img src="/assets/images/2022-03-03/img.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>이전 <code class="language-plaintext highlighter-rouge">LoggedOut</code> 화면은 입력을 받기 위해 다음과 같이 구성된다.</p>
+
+<p><img src="/assets/images/2022-03-03/img-1.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>이번에 추가될 <code class="language-plaintext highlighter-rouge">OffGame</code> 화면은 다음과 같다.</p>
+
+<p><img src="/assets/images/2022-03-03/img-2.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>로직은</p>
+
+<ol>
+  <li>사용자가 두개의 플레이어 네임 입력후 <code class="language-plaintext highlighter-rouge">Enter</code>를 누른다.</li>
+  <li><code class="language-plaintext highlighter-rouge">LoggedOut</code>은 <code class="language-plaintext highlighter-rouge">Detach</code> 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">OffGame</code>은 <code class="language-plaintext highlighter-rouge">Attach</code> 된다.</li>
+</ol>
+
+<p><br /></p>
+
+<p>여기서 우버 튜토리얼과 다른 점은 <code class="language-plaintext highlighter-rouge">ViewLess</code> 특징을 갖는 <code class="language-plaintext highlighter-rouge">LoggedIn</code>이 없다.</p>
+
+<p>그 이유는 <code class="language-plaintext highlighter-rouge">Component</code>에 조금 더 초점을 맞추고 싶었기 때문이다.</p>
+
+<p><br /></p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">ViewLess</code>는 별도로 포스팅을 할 예정!</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="loggedin-ui-구성">LoggedIn UI 구성</h1>
+
+<p>전에는 핑크 핑크 화면만 띄우고 끝났다.</p>
+
+<p>이번엔 간단하게 <code class="language-plaintext highlighter-rouge">TextField</code> 2개, <code class="language-plaintext highlighter-rouge">Button</code> 1개 넣었다.</p>
+
+<p><br /></p>
+
+<p>하지만, UI 그리는데에 시간 낭비를 막기 위해 뷰컨의 풀코드 공유</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">LoggedOutViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">LoggedOutPresentable</span><span class="p">,</span> <span class="kt">LoggedOutViewControllable</span> <span class="p">{</span>
+
+    <span class="k">weak</span> <span class="k">var</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">LoggedOutPresentableListener</span><span class="p">?</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">firstTextField</span><span class="p">:</span> <span class="kt">UITextField</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">field</span> <span class="o">=</span> <span class="kt">UITextField</span><span class="p">()</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"Player 1"</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">borderStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">roundedRect</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">semibold</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">field</span>
+    <span class="p">}()</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">secondTextField</span><span class="p">:</span> <span class="kt">UITextField</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">field</span> <span class="o">=</span> <span class="kt">UITextField</span><span class="p">()</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"Player 2"</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">borderStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">roundedRect</span>
+        <span class="n">field</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">semibold</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">field</span>
+    <span class="p">}()</span>
+    
+    <span class="kd">private</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">enterButton</span><span class="p">:</span> <span class="kt">UIButton</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">btn</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">system</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemCyan</span>
+        <span class="n">btn</span><span class="o">.</span><span class="nf">setTitle</span><span class="p">(</span><span class="s">"Enter"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">titleLabel</span><span class="p">?</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">bold</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">enterAction</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="o">.</span><span class="n">white</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">12</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerCurve</span> <span class="o">=</span> <span class="o">.</span><span class="n">continuous</span>
+        <span class="k">return</span> <span class="n">btn</span>
+    <span class="p">}()</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">stackView</span><span class="p">:</span> <span class="kt">UIStackView</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">stack</span> <span class="o">=</span> <span class="kt">UIStackView</span><span class="p">()</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="o">.</span><span class="n">vertical</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="o">.</span><span class="n">equalSpacing</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">alignment</span> <span class="o">=</span> <span class="o">.</span><span class="n">fill</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="k">return</span> <span class="n">stack</span>
+    <span class="p">}()</span>
+    
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="nf">setUI</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">coder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">coder</span><span class="p">)</span>
+        <span class="nf">setUI</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">setUI</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemPink</span>
+        
+        <span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">stackView</span><span class="p">)</span>
+        
+        <span class="n">stackView</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">firstTextField</span><span class="p">)</span>
+        <span class="n">stackView</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">secondTextField</span><span class="p">)</span>
+        <span class="n">stackView</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">enterButton</span><span class="p">)</span>
+        
+        <span class="kt">NSLayoutConstraint</span><span class="o">.</span><span class="nf">activate</span><span class="p">([</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">centerXAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">centerXAnchor</span><span class="p">),</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">topAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">topAnchor</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="mi">100</span><span class="p">),</span>
+            
+            <span class="n">stackView</span><span class="o">.</span><span class="n">leadingAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">leadingAnchor</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">trailingAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">trailingAnchor</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="o">-</span><span class="mi">20</span><span class="p">),</span>
+            
+            <span class="n">firstTextField</span><span class="o">.</span><span class="n">heightAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalToConstant</span><span class="p">:</span> <span class="mi">40</span><span class="p">),</span>
+            <span class="n">secondTextField</span><span class="o">.</span><span class="n">heightAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalToConstant</span><span class="p">:</span> <span class="mi">40</span><span class="p">),</span>
+            <span class="n">enterButton</span><span class="o">.</span><span class="n">heightAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalToConstant</span><span class="p">:</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="p">])</span>
+    <span class="p">}</span>
+    
+    <span class="kd">@objc</span>
+    <span class="kd">func</span> <span class="nf">enterAction</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"탭탭탭 엔터 탭"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>따로 링크를 걸까도 했지만, 이게 나은 듯하다.</p>
+
+<p><br /></p>
+
+<p>그럼 이제 버튼을 누르면 콘솔창에 프린터문 하나가 찍힐 것이다.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="offgame이-필요한-것">OffGame이 필요한 것</h1>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">OffGame</code>은 게임의 결과 화면이라고 보면 좋을 듯하다.</p>
+
+<p>예상 구성은 다음과 같다.</p>
+
+<ol>
+  <li>Player 1 &amp; 2의 이름</li>
+  <li>Player 1 &amp; 2의 결과 점수</li>
+</ol>
+
+<p><br /></p>
+
+<p>최대한 튜토리얼과 비슷하게 간다면,</p>
+
+<p>이름과 점수의 데이터는 구분을 지어둔다.</p>
+
+<p><br /></p>
+
+<p>이름은 한번 입력하고 나면 변하지 않는 고정 값이다.</p>
+
+<p>하지만 점수는 게임에 따라 변동이 일어나는 값이다.</p>
+
+<p><br /></p>
+
+<p>그렇다면 이름은 <code class="language-plaintext highlighter-rouge">String</code>이면 충분할 듯 하다.</p>
+
+<p>점수는 변동이 있기 때문에 <code class="language-plaintext highlighter-rouge">RxSwift</code>의 <code class="language-plaintext highlighter-rouge">BehaviorRelay</code>가 적당할 듯 하다.</p>
+
+<p><br /></p>
+
+<p>그렇다면, 우선 아래 사진처럼 만들어두자</p>
+
+<p><img src="/assets/images/2022-03-03/img-3.png" style="zoom:40%;" /></p>
+
+<p><br />
+<br /></p>
+
+<h1 id="필요한-것은-component에-정의">필요한 것은 Component에 정의</h1>
+
+<p><br /></p>
+
+<p>위에서 말한 필요 정보들을 명시해줄 차례이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">OffGameBuilder.swift</code>에 가보면 <code class="language-plaintext highlighter-rouge">OffGameComponent</code>가 있다.</p>
+
+<p><br /></p>
+
+<p>여기에 이 정보들을 적어준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">OffGameComponent</span><span class="p">:</span> <span class="kt">Component</span><span class="o">&lt;</span><span class="kt">OffGameDependency</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">fileprivate</span> <span class="k">var</span> <span class="nv">player1Name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">fileprivate</span> <span class="k">var</span> <span class="nv">player2Name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">fileprivate</span> <span class="k">var</span> <span class="nv">score</span><span class="p">:</span> <span class="kt">BehaviorRelay</span><span class="o">&lt;</span><span class="kt">GameScore</span><span class="o">&gt;</span>
+    
+    <span class="nf">init</span><span class="p">(</span>
+        <span class="nv">player1Name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">player2Name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">dependency</span><span class="p">:</span> <span class="kt">OffGameDependency</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player1Name</span> <span class="o">=</span> <span class="n">player1Name</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player2Name</span> <span class="o">=</span> <span class="n">player2Name</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">GameScore</span><span class="p">(</span><span class="nv">player1Score</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">player2Score</span><span class="p">:</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">dependency</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">GameScore</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">player1Score</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">var</span> <span class="nv">player2Score</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>위에서 말한것 처럼 고정 값 <code class="language-plaintext highlighter-rouge">String</code> 2개, 변동 값 <code class="language-plaintext highlighter-rouge">BehaviorRelay</code> 1개 선언 해주었다.</p>
+
+<blockquote>
+  <p>해당 프로퍼티들은 하위 리블렛이 참고할 일도 없다. 따라서 이 파일만 쓰이면 되므로 <code class="language-plaintext highlighter-rouge">filePrivate</code> 접근제어자 사용</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그러면 이제 아래 이미지처럼 <code class="language-plaintext highlighter-rouge">Component</code>를 생성하는 곳에서 에러가 하나 생겼을 것이다.</p>
+
+<p><img src="/assets/images/2022-03-03/img-4.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p>이 필요 값들은 <code class="language-plaintext highlighter-rouge">OffGame</code>이 생성되는 당시에 받아와서 초기화 해주는게 맞다.</p>
+
+<p><br /></p>
+
+<p>따라서, <code class="language-plaintext highlighter-rouge">build</code> 메소드 관련 프로토콜과 구현부를 수정해주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">OffGameBuildable</span><span class="p">:</span> <span class="kt">Buildable</span> <span class="p">{</span>
+    <span class="c1">// 수정 전</span>
+    <span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="n">withListener</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGameListener</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OffGameRouting</span>
+    <span class="c1">// 수정 후</span>
+    <span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="n">withListener</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGameListener</span><span class="p">,</span> <span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OffGameRouting</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그리고 이를 따르는 구현체도 수정을 해준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="n">withListener</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGameListener</span><span class="p">,</span> <span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OffGameRouting</span> <span class="p">{</span>
+    <span class="c1">// 변경 전</span>
+    <span class="k">let</span> <span class="nv">component</span> <span class="o">=</span> <span class="kt">OffGameComponent</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">dependency</span><span class="p">)</span>
+    
+    <span class="c1">// 변경 후</span>
+    <span class="k">let</span> <span class="nv">component</span> <span class="o">=</span> <span class="kt">OffGameComponent</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">dependency</span><span class="p">,</span> <span class="nv">player1Name</span><span class="p">:</span> <span class="n">player1</span><span class="p">,</span> <span class="nv">player2Name</span><span class="p">:</span> <span class="n">player2</span><span class="p">)</span>
+    
+    <span class="c1">// 아래는 생략</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그럼 이제 한가지 고민을 할 수 있다.</p>
+
+<p>추가한 <code class="language-plaintext highlighter-rouge">String</code> 2개와 <code class="language-plaintext highlighter-rouge">BehaviorRelay</code>를 누가 가지고 있을 것인가?</p>
+
+<p><br /></p>
+
+<p>사실, 죄다 <code class="language-plaintext highlighter-rouge">Interactor</code>에 넣고 <code class="language-plaintext highlighter-rouge">Interactor</code>에서 쓰던지</p>
+
+<p><code class="language-plaintext highlighter-rouge">Interactor</code>가 <code class="language-plaintext highlighter-rouge">VC</code>에게 넘기던지 할 수있다.</p>
+
+<p><br /></p>
+
+<p>그치만, 하다보니 튜토리얼처럼 화면 고정 값 같은 것들은</p>
+
+<p><code class="language-plaintext highlighter-rouge">ViewController</code>에 바로 넘기는 것도 좋다고 생각이 되었다.</p>
+
+<p><br /></p>
+
+<p>바뀔 일이 없다면, 굳이 <code class="language-plaintext highlighter-rouge">Interactor</code> 거쳐서 <code class="language-plaintext highlighter-rouge">Presentor</code>에 메소드를 추가해서 <code class="language-plaintext highlighter-rouge">View</code>로 전달 하느니</p>
+
+<p><code class="language-plaintext highlighter-rouge">Builder</code>에서 바로 <code class="language-plaintext highlighter-rouge">View</code>로 넘기는 것도 좋다 판단 되었다.</p>
+
+<p><br /></p>
+
+<p>그래서 우선 <code class="language-plaintext highlighter-rouge">OffGameViewController</code>로 이동해서 초기화 구문과 UI셋팅 부분을 작성해주자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">OffGameViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">OffGamePresentable</span><span class="p">,</span> <span class="kt">OffGameViewControllable</span> <span class="p">{</span>
+
+    <span class="k">weak</span> <span class="k">var</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGamePresentableListener</span><span class="p">?</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">player1Name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">player2Name</span><span class="p">:</span> <span class="kt">String</span>
+    
+    <span class="nf">init</span><span class="p">(</span>
+        <span class="nv">player1Name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">player2Name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player1Name</span> <span class="o">=</span> <span class="n">player1Name</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player2Name</span> <span class="o">=</span> <span class="n">player2Name</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="nf">setUI</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">coder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">fatalError</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">setUI</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemOrange</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그럼, 초기화 부분에 <code class="language-plaintext highlighter-rouge">String</code>을 2개 받게 해두었으니,</p>
+
+<p>다시 <code class="language-plaintext highlighter-rouge">Builder</code>로 돌아가서 초기화할때 값을 할당해주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OffGameBuilder Class</span>
+<span class="c1">// In build Method</span>
+
+<span class="c1">// 변경 전</span>
+<span class="k">let</span> <span class="nv">viewController</span> <span class="o">=</span> <span class="kt">OffGameViewController</span><span class="p">()</span>
+
+<span class="c1">// 변경 후</span>
+<span class="k">let</span> <span class="nv">viewController</span> <span class="o">=</span> <span class="kt">OffGameViewController</span><span class="p">(</span>
+    <span class="nv">player1Name</span><span class="p">:</span> <span class="n">component</span><span class="o">.</span><span class="n">player1Name</span><span class="p">,</span>
+    <span class="nv">player2Name</span><span class="p">:</span> <span class="n">component</span><span class="o">.</span><span class="n">player2Name</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이제 다른 변수 였던 <code class="language-plaintext highlighter-rouge">score</code>를 생각해보자</p>
+
+<p><code class="language-plaintext highlighter-rouge">BehaivorRelay</code> 타입의 변동 가능한 값이고</p>
+
+<p><code class="language-plaintext highlighter-rouge">score</code>는 비즈니스 로직에 쓰일 수 있으니 <code class="language-plaintext highlighter-rouge">Interactor</code>가 적당해보인다.</p>
+
+<p><br /></p>
+
+<p>따라서, <code class="language-plaintext highlighter-rouge">OffGameInteractor</code>의 <code class="language-plaintext highlighter-rouge">init</code>도 수정해주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 변경 전</span>
+<span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">presenter</span><span class="p">:</span> <span class="kt">OffGamePresentable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">presenter</span><span class="p">:</span> <span class="n">presenter</span><span class="p">)</span>
+    <span class="n">presenter</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="k">self</span>
+<span class="p">}</span>
+
+<span class="c1">// 변경 후</span>
+<span class="kd">import</span> <span class="kt">RxRelay</span>
+
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">score</span><span class="p">:</span> <span class="kt">BehaviorRelay</span><span class="o">&lt;</span><span class="kt">GameScore</span><span class="o">&gt;</span>
+
+<span class="nf">init</span><span class="p">(</span>
+    <span class="nv">presenter</span><span class="p">:</span> <span class="kt">OffGamePresentable</span><span class="p">,</span>
+    <span class="nv">score</span><span class="p">:</span> <span class="kt">BehaviorRelay</span><span class="o">&lt;</span><span class="kt">GameScore</span><span class="o">&gt;</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">score</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">presenter</span><span class="p">:</span> <span class="n">presenter</span><span class="p">)</span>
+    <span class="n">presenter</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="k">self</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>사실 여기서는 구독만 하면 되기 때문에 <code class="language-plaintext highlighter-rouge">Observable</code>이면 충분하고</p>
+
+<p>굳이 <code class="language-plaintext highlighter-rouge">BehaivorRelay</code>로 받을 필요는 없지만,,,</p>
+
+<p>설명이 너무 길어지니….. Pass…</p>
+
+<p><br /></p>
+
+<p>그럼 이제 빌드하면 에러가 나고 어디서 날지는 감이 점점 온다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Builder</code>로 가서 수정해주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In OffGameBuilder class</span>
+
+<span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="n">withListener</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGameListener</span><span class="p">,</span> <span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OffGameRouting</span> <span class="p">{</span>
+    
+    <span class="k">let</span> <span class="nv">component</span> <span class="o">=</span> <span class="kt">OffGameComponent</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">dependency</span><span class="p">,</span> <span class="nv">player1Name</span><span class="p">:</span> <span class="n">player1</span><span class="p">,</span> <span class="nv">player2Name</span><span class="p">:</span> <span class="n">player2</span><span class="p">)</span>
+    <span class="c1">// ... 중간 생략</span>
+    
+    <span class="c1">// 변경 전</span>
+    <span class="k">let</span> <span class="nv">interactor</span> <span class="o">=</span> <span class="kt">OffGameInteractor</span><span class="p">(</span><span class="nv">presenter</span><span class="p">:</span> <span class="n">viewController</span><span class="p">)</span>
+ 
+    <span class="c1">// 변경 후</span>
+    <span class="k">let</span> <span class="nv">interactor</span> <span class="o">=</span> <span class="kt">OffGameInteractor</span><span class="p">(</span>
+        <span class="nv">presenter</span><span class="p">:</span> <span class="n">viewController</span><span class="p">,</span>
+        <span class="nv">score</span><span class="p">:</span> <span class="n">component</span><span class="o">.</span><span class="n">score</span>
+    <span class="p">)</span>
+    
+    <span class="c1">// .. 여기도 생략...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>수정하고 나면 이제 에러는 안나지만 지금 여기까지 한김에 <code class="language-plaintext highlighter-rouge">Interactor</code> 넘어온 <code class="language-plaintext highlighter-rouge">score</code>를 구독해서</p>
+
+<p>값 방출시 <code class="language-plaintext highlighter-rouge">viewController</code>에게 전달하는 코드도 짜놓자.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">OffGameInteractor.swift</code> 파일을 보면 <code class="language-plaintext highlighter-rouge">OffGamePresentable</code>가 있다.</p>
+
+<p>이것은 <code class="language-plaintext highlighter-rouge">OffGameViewController</code>가 따르고 있다.</p>
+
+<p><br /></p>
+
+<p>그러므로, 저 프로토콜에 메소드를 만든다면 뷰컨트롤러는 이를 지켜야한다.</p>
+
+<p><br /></p>
+
+<p>이 점을 이용해서 방출된 값을 업데이트 해주도록 하자.</p>
+
+<p>아래 코드를 추가</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">OffGamePresentable</span><span class="p">:</span> <span class="kt">Presentable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGamePresentableListener</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span>
+    
+    <span class="c1">// 추가</span>
+    <span class="kd">func</span> <span class="nf">updateScore</span><span class="p">(</span><span class="nv">playerScore1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">playerScore2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그리고 이제 <code class="language-plaintext highlighter-rouge">Interactor</code>가 활성화되면 구독을 할 수 있도록</p>
+
+<p><code class="language-plaintext highlighter-rouge">didBecomeActive()</code> 또한 수정해주자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">didBecomeActive</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">didBecomeActive</span><span class="p">()</span>
+    
+    <span class="n">score</span>
+        <span class="o">.</span><span class="nf">observe</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="kt">MainScheduler</span><span class="o">.</span><span class="n">instance</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="n">score</span> <span class="k">in</span>
+            <span class="k">let</span> <span class="nv">score1</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">player1Score</span><span class="p">)</span>
+            <span class="k">let</span> <span class="nv">score2</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">player2Score</span><span class="p">)</span>
+            
+            <span class="k">self</span><span class="o">.</span><span class="n">presenter</span><span class="o">.</span><span class="nf">updateScore</span><span class="p">(</span><span class="nv">playerScore1</span><span class="p">:</span> <span class="n">score1</span><span class="p">,</span> <span class="nv">playerScore2</span><span class="p">:</span> <span class="n">score2</span><span class="p">)</span>
+            
+        <span class="p">})</span><span class="o">.</span><span class="nf">disposeOnDeactivate</span><span class="p">(</span><span class="nv">interactor</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>여기서 재밌는 점이있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">disposeOnDeactivate</code>라는 것을 볼 수 있다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">RxSwift</code>를 쓰면 항상 <code class="language-plaintext highlighter-rouge">DisposeBag</code>을 만들어줬는데,</p>
+
+<p>자체적으로 이미 다 구현이 되어있어서 저렇게 메소드를 이용하여</p>
+
+<p>쉽게 처리할 수 있다.</p>
+
+<p><br /></p>
+
+<p>그럼, <code class="language-plaintext highlighter-rouge">OffGameViewController</code>의 오류만 잡기 위해 우선 빈 메소드로 두자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In OffGameViewController</span>
+<span class="kd">func</span> <span class="nf">updateScore</span><span class="p">(</span><span class="nv">playerScore1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">playerScore2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 이따가 채우기</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>UI는 안만들었지만, <code class="language-plaintext highlighter-rouge">score</code> 방출시 <code class="language-plaintext highlighter-rouge">Interactor</code>는 <code class="language-plaintext highlighter-rouge">View</code>에게 새로운 값을 넘겨주도록 완성 됐다.</p>
+
+<p><br /></p>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">Root</code> 하위에 있던 <code class="language-plaintext highlighter-rouge">LoggedOut</code>의 <code class="language-plaintext highlighter-rouge">Enter</code>버튼을 눌렀을때</p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOut</code>을 제거하고 <code class="language-plaintext highlighter-rouge">OffGame</code>을 띄워보도록하자</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="loggedout-enter-버튼-처리">LoggedOut Enter 버튼 처리</h1>
+
+<p><br /></p>
+
+<p>로직은 다음과 같다.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Ènter</code> 터치</li>
+  <li><code class="language-plaintext highlighter-rouge">Interactor</code>에게 <code class="language-plaintext highlighter-rouge">TextField</code> 두개의 입력된 값 전달</li>
+</ol>
+
+<p><br /></p>
+
+<p>2번을 하기 위해서 <code class="language-plaintext highlighter-rouge">Interactor</code>에게 전달할 수 있도록</p>
+
+<p>같은 파일 내에 존재하는 <code class="language-plaintext highlighter-rouge">LoggedOutPresentableListener</code>에 메소드를 추가하자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">LoggedOutPresentableListener</span><span class="p">:</span> <span class="kt">AnyObject</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">didTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이렇게 해두면 전달해줄 수 있다.</p>
+
+<p><br /></p>
+
+<p>여담으로 직접적으로 <code class="language-plaintext highlighter-rouge">Interactor</code>라 안쓰고 <code class="language-plaintext highlighter-rouge">Listener</code>라 쓰는 것은</p>
+
+<p>RIBs 가이드에 보면 아래 사진처럼 실제로는 <code class="language-plaintext highlighter-rouge">View</code>와 <code class="language-plaintext highlighter-rouge">Interactor</code> 사이에</p>
+
+<p><code class="language-plaintext highlighter-rouge">Presenter</code>가 존재하므로 <code class="language-plaintext highlighter-rouge">PresentableListener</code>라는 표현을 쓰는듯 하였다.</p>
+
+<p><img src="/assets/images/2022-03-03/img-5.png" style="zoom:40%;" /></p>
+
+<p>(이미지 출처: <a href="https://github.com/uber/RIBs/wiki">RIBs Github</a>)</p>
+
+<p><br /></p>
+
+<p>그럼 이제 실제 버튼 탭 되었을때 액션을 정의해주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">enterAction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">player1Text</span> <span class="o">=</span> <span class="n">firstTextField</span><span class="o">.</span><span class="n">text</span>
+    <span class="k">let</span> <span class="nv">player2Text</span> <span class="o">=</span> <span class="n">secondTextField</span><span class="o">.</span><span class="n">text</span>
+    
+    <span class="n">listener</span><span class="p">?</span><span class="o">.</span><span class="nf">didTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="n">player1Text</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="n">player2Text</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그리고 빌드를 해보면 에러가 날텐데</p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOutInteractor</code>로 이동해서 프로토콜에 적었던 메소드를 구현해주자.</p>
+
+<blockquote>
+  <p>프로토콜은 이게 너무 좋다. 구현은 조금 나중에 하더라도<br />
+현재 화면에서는 코드를 계속 짤 수 있으니깐 !</p>
+</blockquote>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// </span>
+<span class="c1">// in LoggedOutInteractor of LoggedOutInteractor.swift</span>
+<span class="kd">func</span> <span class="nf">didTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="p">{</span>
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위의 메소드를 만들어주고 나면 이제 해야할 일은 무엇일까?</p>
+
+<p><br /></p>
+
+<p>현재는 <code class="language-plaintext highlighter-rouge">LoggedOutInteractor</code>이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOut</code>을 띄운 <code class="language-plaintext highlighter-rouge">RootRouter</code>한테 <code class="language-plaintext highlighter-rouge">LoggedOutInteractor</code>가 <code class="language-plaintext highlighter-rouge">LoggedOut</code>을 닫아달라고 해야할까?</p>
+
+<p><br /></p>
+
+<p>아니다</p>
+
+<p>닫아 달라고 명령하는 것은 <code class="language-plaintext highlighter-rouge">Router</code>의 역할이고</p>
+
+<p><code class="language-plaintext highlighter-rouge">Router</code>에게 명령을 하는 것은 <code class="language-plaintext highlighter-rouge">Interactor</code>가 할 일이다.</p>
+
+<p><br /></p>
+
+<p>다른 리블렛끼리 상호작용을 하는 것은 <code class="language-plaintext highlighter-rouge">Interactor</code>의 몫이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOutInteractor</code>는 <code class="language-plaintext highlighter-rouge">RootÌnteractor</code>에게</p>
+
+<p>입력을 받았다고 정도만 알려주면 된다.</p>
+
+<p><br /></p>
+
+<p>그럼 <code class="language-plaintext highlighter-rouge">RootInteractor</code>가 <code class="language-plaintext highlighter-rouge">RootRouter</code>에게</p>
+
+<p>“오케이, 입력했으니깐 <code class="language-plaintext highlighter-rouge">LoggedOut</code>닫고 <code class="language-plaintext highlighter-rouge">OffGame</code> 띄워!”</p>
+
+<p>라고 해야한다.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>문서를 보니 다음과 같이 써있었다.<br />
+상위 리블렛 to 하위 리블렛: 스트림 이용,<br />
+하위 리블렛 to 상위 리블렛: 리스너의 인터페이스 이용<br /></p>
+</blockquote>
+
+<p><br /></p>
+
+<p>그럼 <code class="language-plaintext highlighter-rouge">RootInteractor</code>에게 액션을 전달 할 수 있게 다음과 같이 코드를 추가하자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In LoggedOutInteractor.swift</span>
+
+<span class="kd">protocol</span> <span class="kt">LoggedOutListener</span><span class="p">:</span> <span class="kt">AnyObject</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">loggedOutDidTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>네이밍은 몇가지 방식을 보았지만</p>
+
+<p>위와 같이 <code class="language-plaintext highlighter-rouge">어디서</code> + <code class="language-plaintext highlighter-rouge">무엇을</code> 형식으로</p>
+
+<p>위 코드와 같이 작명을 하면 보기가 더 좋았던 것 같다.</p>
+
+<p><br /></p>
+
+<p>그러면 아까 공백이었던 메소드를 채워주자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In LoggedOutInteractor Class</span>
+
+<span class="kd">func</span> <span class="nf">didTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="c1">// 옵셔널 제거</span>
+    <span class="k">let</span> <span class="nv">name1</span> <span class="o">=</span> <span class="p">(</span><span class="n">player1</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="n">player1</span><span class="p">?</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">==</span> <span class="kc">true</span><span class="p">)</span> <span class="p">?</span> <span class="s">"Player 1"</span> <span class="p">:</span>  <span class="n">player1</span><span class="o">!</span>
+    <span class="k">let</span> <span class="nv">name2</span> <span class="o">=</span> <span class="p">(</span><span class="n">player2</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="n">player2</span><span class="p">?</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">==</span> <span class="kc">true</span><span class="p">)</span> <span class="p">?</span> <span class="s">"Player 2"</span> <span class="p">:</span>  <span class="n">player2</span><span class="o">!</span>
+    
+    <span class="n">listener</span><span class="p">?</span><span class="o">.</span><span class="nf">loggedOutDidTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="n">name1</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="n">name2</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이제 또 빌드 해주면 에러가 난다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">RootInteractor</code>에 메소드를 구현 안해줬기 때문이다!</p>
+
+<p><br /></p>
+
+<p>드디어 <code class="language-plaintext highlighter-rouge">Root</code>쪽으로 넘어간다..</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="detach">Detach</h1>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">RootInteractor</code>에 에러를 없애기 위해 프로토콜에 적었던 메소드를 구현해주자.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">loggedOutDidTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>여기엔 무슨 내용이 들어가야할까?</p>
+
+<p>“붙였던 <code class="language-plaintext highlighter-rouge">LoggedOut</code>을 제거하고 <code class="language-plaintext highlighter-rouge">OffGame</code>을 붙여!”</p>
+
+<p><br /></p>
+
+<p>하지만, 튜토리얼에 있는 메소드명(<code class="language-plaintext highlighter-rouge">routeToLoggedIn</code>)은 제거하라는 뉘앙스가 없다.</p>
+
+<p>그래서 좀더 명확히 하기 위해, <code class="language-plaintext highlighter-rouge">router</code>에게 내리는 명령을 두가지로 나눠보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">RootRouting</span><span class="p">:</span> <span class="kt">ViewableRouting</span> <span class="p">{</span>
+    <span class="c1">// 기존에 있던 시그니처</span>
+    <span class="kd">func</span> <span class="nf">attachLoggedOut</span><span class="p">()</span>
+    
+    <span class="c1">// 추가된 시그니처</span>
+    <span class="kd">func</span> <span class="nf">detachLoggedOut</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">attachOffGame</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그러면 아까 비워있던 메소드를 채워보자</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">loggedOutDidTapEnter</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">router</span><span class="p">?</span><span class="o">.</span><span class="nf">detachLoggedOut</span><span class="p">()</span>
+    <span class="n">router</span><span class="p">?</span><span class="o">.</span><span class="nf">attachOffGame</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="n">player1</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="n">player2</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이렇게 짜두면 이해가 조금 더 쉬울 것이라 예상된다.</p>
+
+<p>메소드를 파악할때</p>
+
+<p>메소드 명을 보고는 <code class="language-plaintext highlighter-rouge">LoggedOut</code>에서 엔터 눌렀을때 이름 정보를 받는 메소드임을 알 수 있고,</p>
+
+<p>실행되는 코드는 <code class="language-plaintext highlighter-rouge">LoggedOut</code>을 제거하고 <code class="language-plaintext highlighter-rouge">OffGame</code>을 파라미터 넘겨주면서 띄우라는 것을 알 수 있다.</p>
+
+<p><br /></p>
+
+<p>여기서 중요한건 의존성 주입이 이뤄지기 위해선</p>
+
+<p><code class="language-plaintext highlighter-rouge">attach</code> 하면서 이런식으로 진행이 되어야한다는 점을</p>
+
+<p>다시 한번 상기하고 <code class="language-plaintext highlighter-rouge">Router</code>로 이동해 계속 해보자</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">RootRouter</code>에 위의 메소드들을 만들어준다.</p>
+
+<p><br /></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In RootRouter Class</span>
+
+<span class="kd">func</span> <span class="nf">detachLoggedOut</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">router</span> <span class="o">=</span> <span class="n">loggedOutRouting</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+    
+    <span class="nf">detachChild</span><span class="p">(</span><span class="n">router</span><span class="p">)</span>
+    <span class="n">viewController</span><span class="o">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="n">loggedOutRouting</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">attachOffGame</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">attach</code>는 조금 후에 보고, <code class="language-plaintext highlighter-rouge">detach</code>의 코드는 위와 같다.</p>
+
+<p>어려울 것 없다!</p>
+
+<p><code class="language-plaintext highlighter-rouge">detach</code>해주고 <code class="language-plaintext highlighter-rouge">viewController</code> 닫아 주었고, 저장해두었던 값을 날렸다.</p>
+
+<p><br /></p>
+
+<p>이 상태로 앱 실행 후 <code class="language-plaintext highlighter-rouge">Enter</code>를 눌러보자.</p>
+
+<p>그럼 핑크 화면이 닫히고 민트 화면이 나오는 것을 볼 수 있다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Detach</code>는 잘 되었다. 그럼 이제 <code class="language-plaintext highlighter-rouge">attach</code>차례!</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="attach">Attach</h1>
+
+<p><br /></p>
+
+<p>지난편에 상세히 다뤘기 때문에 간단히 보면</p>
+
+<p><code class="language-plaintext highlighter-rouge">buildable</code> &amp; <code class="language-plaintext highlighter-rouge">routing</code> 프로퍼티를 선언해주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">offGameBuildable</span><span class="p">:</span> <span class="kt">OffGameBuildable</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">offgameRouting</span><span class="p">:</span> <span class="kt">Routing</span><span class="p">?</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>초기화 구문 수정해주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span><span class="p">(</span>
+    <span class="nv">interactor</span><span class="p">:</span> <span class="kt">RootInteractable</span><span class="p">,</span>
+    <span class="nv">viewController</span><span class="p">:</span> <span class="kt">RootViewControllable</span><span class="p">,</span>
+    <span class="nv">loggedOutBuildable</span><span class="p">:</span> <span class="kt">LoggedOutBuildable</span><span class="p">,</span>
+    <span class="nv">offGameBuildable</span><span class="p">:</span> <span class="kt">OffGameBuildable</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">offGameBuildable</span> <span class="o">=</span> <span class="n">offGameBuildable</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">loggedOutBuildable</span> <span class="o">=</span> <span class="n">loggedOutBuildable</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">interactor</span><span class="p">:</span> <span class="n">interactor</span><span class="p">,</span> <span class="nv">viewController</span><span class="p">:</span> <span class="n">viewController</span><span class="p">)</span>
+    <span class="n">interactor</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="k">self</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">attach</code> 메소드 수정해주고</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">attachOffGame</span><span class="p">(</span><span class="nv">player1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">offgameRouting</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+    
+    <span class="c1">// 현재는 withListener의 interactor를 넣으면 오류난다</span>
+    <span class="k">let</span> <span class="nv">router</span> <span class="o">=</span> <span class="n">offGameBuildable</span><span class="o">.</span><span class="nf">build</span><span class="p">(</span><span class="nv">withListener</span><span class="p">:</span> <span class="n">interactor</span><span class="p">,</span> <span class="nv">player1</span><span class="p">:</span> <span class="n">player1</span><span class="p">,</span> <span class="nv">player2</span><span class="p">:</span> <span class="n">player2</span><span class="p">)</span>
+    <span class="n">offgameRouting</span> <span class="o">=</span> <span class="n">router</span>
+    <span class="nf">attachChild</span><span class="p">(</span><span class="n">router</span><span class="p">)</span>
+    <span class="n">viewControllable</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">viewControllable</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>위의 주석처럼 현재는 <code class="language-plaintext highlighter-rouge">interactor</code> 넣으면 에러가 나기 때문에 아래처럼 <code class="language-plaintext highlighter-rouge">RootInteractable</code>을 수정해주면 에러는 사라진다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 변경전</span>
+<span class="kd">protocol</span> <span class="kt">RootInteractable</span><span class="p">:</span> <span class="kt">Interactable</span><span class="p">,</span> <span class="kt">LoggedOutListener</span>
+
+<span class="c1">// 변경후</span>
+<span class="kd">protocol</span> <span class="kt">RootInteractable</span><span class="p">:</span> <span class="kt">Interactable</span><span class="p">,</span> <span class="kt">LoggedOutListener</span><span class="p">,</span> <span class="kt">OffGameListener</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그리고 마지막으로 <code class="language-plaintext highlighter-rouge">Router</code>를 초기화 했던 <code class="language-plaintext highlighter-rouge">Builder</code>를 수정해준다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LaunchRouting</span> <span class="p">{</span>
+    
+    <span class="c1">// 위는 생략..</span>
+    
+    <span class="c1">// component를 넣으면 현재는 오류난다.</span>
+    <span class="k">let</span> <span class="nv">offGameBuilder</span> <span class="o">=</span> <span class="kt">OffGameBuilder</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">component</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="kt">RootRouter</span><span class="p">(</span>
+        <span class="nv">interactor</span><span class="p">:</span> <span class="n">interactor</span><span class="p">,</span>
+        <span class="nv">viewController</span><span class="p">:</span> <span class="n">viewController</span><span class="p">,</span>
+        <span class="nv">loggedOutBuildable</span><span class="p">:</span> <span class="n">loggedOutBuilder</span><span class="p">,</span>
+        <span class="nv">offGameBuildable</span><span class="p">:</span> <span class="n">offGameBuilder</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>주석처럼 <code class="language-plaintext highlighter-rouge">component</code>를 넣게되면 <code class="language-plaintext highlighter-rouge">component</code>가 <code class="language-plaintext highlighter-rouge">OffGame</code>의 <code class="language-plaintext highlighter-rouge">Depedency</code>를 준수하지 않기 때문에 오류가 난다.</p>
+
+<p>그래서 아래처럼 수정</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 수정 전</span>
+<span class="kd">final</span> <span class="kd">class</span> <span class="kt">RootComponent</span><span class="p">:</span> <span class="kt">Component</span><span class="o">&lt;</span><span class="kt">RootDependency</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">LoggedOutDependency</span>
+
+<span class="c1">// 수정 후</span>
+<span class="kd">final</span> <span class="kd">class</span> <span class="kt">RootComponent</span><span class="p">:</span> <span class="kt">Component</span><span class="o">&lt;</span><span class="kt">RootDependency</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">LoggedOutDependency</span><span class="p">,</span> <span class="kt">OffGameDependency</span>
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>실행해보자</p>
+
+<p><img src="/assets/images/2022-03-03/gif.gif" style="zoom:80%;" /></p>
+
+<p><br /></p>
+
+<p>드디어…!</p>
+
+<p>후……. ㅠ</p>
+
+<p><br /></p>
+
+<p>끝이 보인다.</p>
+
+<p>데이터들을 뿌려주기 위해 <code class="language-plaintext highlighter-rouge">OffGameViewController</code>의 UI를 짜보자.</p>
+
+<p><br /></p>
+
+<p>긁어가기 쉽게 코드로 짰다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">OffGameViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">OffGamePresentable</span><span class="p">,</span> <span class="kt">OffGameViewControllable</span> <span class="p">{</span>
+
+    <span class="k">weak</span> <span class="k">var</span> <span class="nv">listener</span><span class="p">:</span> <span class="kt">OffGamePresentableListener</span><span class="p">?</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">player1Name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">player2Name</span><span class="p">:</span> <span class="kt">String</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">player1Label</span><span class="p">:</span> <span class="kt">UILabel</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">label</span> <span class="o">=</span> <span class="kt">UILabel</span><span class="p">()</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">semibold</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">textColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">white</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="o">.</span><span class="n">center</span>
+        <span class="k">return</span> <span class="n">label</span>
+    <span class="p">}()</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">player2Label</span><span class="p">:</span> <span class="kt">UILabel</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">label</span> <span class="o">=</span> <span class="kt">UILabel</span><span class="p">()</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">semibold</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="o">.</span><span class="n">center</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">textColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">white</span>
+        <span class="k">return</span> <span class="n">label</span>
+    <span class="p">}()</span>
+    
+    <span class="kd">private</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">playButton</span><span class="p">:</span> <span class="kt">UIButton</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">btn</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">system</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">btn</span><span class="o">.</span><span class="nf">setTitle</span><span class="p">(</span><span class="s">"PLAY"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="nf">setTitleColor</span><span class="p">(</span><span class="o">.</span><span class="n">white</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">titleLabel</span><span class="p">?</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="o">.</span><span class="nf">systemFont</span><span class="p">(</span><span class="nv">ofSize</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">bold</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemCyan</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">12</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerCurve</span> <span class="o">=</span> <span class="o">.</span><span class="n">continuous</span>
+        <span class="n">btn</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">playAction</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">btn</span>
+    <span class="p">}()</span>
+    
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">stackView</span><span class="p">:</span> <span class="kt">UIStackView</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">stack</span> <span class="o">=</span> <span class="kt">UIStackView</span><span class="p">()</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="o">.</span><span class="n">vertical</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="o">.</span><span class="n">equalSpacing</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">alignment</span> <span class="o">=</span> <span class="o">.</span><span class="n">fill</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="k">return</span> <span class="n">stack</span>
+    <span class="p">}()</span>
+    
+    <span class="nf">init</span><span class="p">(</span>
+        <span class="nv">player1Name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">player2Name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player1Name</span> <span class="o">=</span> <span class="n">player1Name</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player2Name</span> <span class="o">=</span> <span class="n">player2Name</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="nf">setUI</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">coder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">fatalError</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">setUI</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemOrange</span>
+        
+        <span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">stackView</span><span class="p">)</span>
+        <span class="n">stackView</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">player1Label</span><span class="p">)</span>
+        <span class="n">stackView</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">player2Label</span><span class="p">)</span>
+        <span class="n">stackView</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">playButton</span><span class="p">)</span>
+        
+        <span class="kt">NSLayoutConstraint</span><span class="o">.</span><span class="nf">activate</span><span class="p">([</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">centerXAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">centerXAnchor</span><span class="p">),</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">topAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">topAnchor</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">leadingAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">leadingAnchor</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="n">stackView</span><span class="o">.</span><span class="n">trailingAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">trailingAnchor</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="o">-</span><span class="mi">20</span><span class="p">),</span>
+            
+            <span class="n">player1Label</span><span class="o">.</span><span class="n">heightAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalToConstant</span><span class="p">:</span> <span class="mi">50</span><span class="p">),</span>
+            <span class="n">player2Label</span><span class="o">.</span><span class="n">heightAnchor</span><span class="o">.</span><span class="nf">constraint</span><span class="p">(</span><span class="nv">equalToConstant</span><span class="p">:</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="p">])</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">updateScore</span><span class="p">(</span><span class="nv">playerScore1</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">playerScore2</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">player1Text</span> <span class="o">=</span> <span class="s">"</span><span class="se">\(</span><span class="n">player1Name</span><span class="se">)</span><span class="s"> : </span><span class="se">\(</span><span class="n">playerScore1</span><span class="se">)</span><span class="s">"</span>
+        <span class="k">let</span> <span class="nv">player2Text</span> <span class="o">=</span> <span class="s">"</span><span class="se">\(</span><span class="n">player2Name</span><span class="se">)</span><span class="s"> : </span><span class="se">\(</span><span class="n">playerScore2</span><span class="se">)</span><span class="s">"</span>
+        
+        <span class="n">player1Label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">player1Text</span>
+        <span class="n">player2Label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">player2Text</span>
+    <span class="p">}</span>
+    
+    <span class="kd">@objc</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">playAction</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"플레이는 다음에!!"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그러면 다음과 같은 화면이 나올 것이다.</p>
+
+<p><img src="/assets/images/2022-03-03/img-2.png" style="zoom:40%;" /></p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">LoggedOut</code>에서 받은 값을 이용해서 <code class="language-plaintext highlighter-rouge">OffGame</code>이라는 것을 만들었다.</p>
+
+<p>글의 중점은 다시 한번 얘기히자면!</p>
+
+<p>하위 리블렛을 붙이면서 <code class="language-plaintext highlighter-rouge">Component</code>를 이용하려 했다는 점을 잊지말자.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="마무리">마무리</h1>
+
+<p><br /></p>
+
+<p>진짜 튜토리얼이 왜이렇게 생략을 많이 했는지 알 것 같았다…</p>
+
+<p>하 중간에 생략을 나도 어느정도 할까 하다가</p>
+
+<p><br /></p>
+
+<p>혹여나 튜토리얼 이해 안되는 개발자가 이 글을 읽었을 때,</p>
+
+<p>똑같이 뭐야 왜 생략됐어 ㅠ</p>
+
+<p>하고 다른 글을 찾아 가는 일을 방지하고자… 길지만 써봤다….</p>
+
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="http://localhost:4000/architeture/2022/03/03/Swift-RIBs-Uber-Tutorial%EC%9D%98-%EC%9D%B4%ED%95%B4(%ED%95%98%EC%9C%84-%EB%A6%AC%EB%B8%94%EB%A0%9B-%EB%B6%99%EC%9D%B4%EA%B8%B02).html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/architeture/2022/03/02/Swift-RIBs-Uber-Tutorial%EC%9D%98-%EC%9D%B4%ED%95%B4(%ED%95%98%EC%9C%84-%EB%A6%AC%EB%B8%94%EB%A0%9B-%EB%B6%99%EC%9D%B4%EA%B8%B0).html">(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (Without Component)</a>
+                  
+                    (Categories: <a href="/category/Architeture">Architeture</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="http://localhost:4000/architeture/2022/02/28/Swift-RIBs-Uber-Tutorial%EC%9D%98-%EC%9D%B4%ED%95%B4(Launch-Router-%EB%A7%8C%EB%93%A4%EA%B8%B0).html">(RIBs) Uber/Tutorial의 이해 (Launch Router 만들기)</a>
+                  
+                    (Categories: <a href="/category/Architeture">Architeture</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/architeture/2022/03/02/Swift-RIBs-Uber-Tutorial%EC%9D%98-%EC%9D%B4%ED%95%B4(%ED%95%98%EC%9C%84-%EB%A6%AC%EB%B8%94%EB%A0%9B-%EB%B6%99%EC%9D%B4%EA%B8%B0).html">&laquo; (RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (Without Component)</a>
+  
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "https-jiseobkim-github-io";
+    var disqus_identifier = "http://localhost:4000_(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component)";
+    var disqus_title = "(RIBs) Uber/Tutorial의 이해 (하위 리블렛 붙이기) (With Component)";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Jiseob Kim
+          
+            - <a href="https://github.com/JiSeobKim">https://github.com/JiSeobKim</a> - Powered by Jekyll.
+          
+          <div class="btn-github" style="float:right;">
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=star&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&repo=agusmakmun.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+          </div>
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
