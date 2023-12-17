@@ -1,0 +1,18 @@
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/racc-1.5.2/ext/racc/cparse
+/Users/jiseob/.rbenv/versions/2.7.8/bin/ruby -I /Users/jiseob/.rbenv/versions/2.7.8/lib/ruby/2.7.0 -r ./siteconf20231217-21501-1y04ejk.rb extconf.rb
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/racc-1.5.2/ext/racc/cparse
+make "DESTDIR=" clean
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/racc-1.5.2/ext/racc/cparse
+make "DESTDIR="
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.2.7'
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/racc-1.5.2/ext/racc/cparse
+make "DESTDIR=" install
+/opt/homebrew/bin/ginstall -c -m 0755 cparse.bundle ./.gem.20231217-21501-9tdp2z/racc

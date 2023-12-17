@@ -1,0 +1,18 @@
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/Users/jiseob/.rbenv/versions/2.7.8/bin/ruby -I /Users/jiseob/.rbenv/versions/2.7.8/lib/ruby/2.7.0 -r ./siteconf20231217-21501-1v99kw0.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" clean
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR="
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.2.7'
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" install
+/opt/homebrew/bin/ginstall -c -m 0755 ruby_http_parser.bundle ./.gem.20231217-21501-1h1qo6k

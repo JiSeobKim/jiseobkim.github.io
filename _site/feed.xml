@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Mar 2022 22:11:48 +0900</pubDate>
-    <lastBuildDate>Sat, 05 Mar 2022 22:11:48 +0900</lastBuildDate>
+    <pubDate>Sun, 17 Dec 2023 23:55:24 +0900</pubDate>
+    <lastBuildDate>Sun, 17 Dec 2023 23:55:24 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -2734,8 +2734,8 @@
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 Feb 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2022/02/21/Swift-RIBs%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9-%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B3%E1%86%B7-%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/21/Swift-RIBs%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9-%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B3%E1%86%B7-%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2.html</guid>
+        <link>http://localhost:4000/swift/2022/02/21/Swift-RIBs%EB%A5%BC-%EC%93%B0%EA%B8%B0%EB%A1%9C-%EB%A7%88%EC%9D%8C-%EB%A8%B9%EC%9D%80-%EA%B0%9C%EC%9D%B8%EC%A0%81-%EC%9D%B4%EC%9C%A0.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/21/Swift-RIBs%EB%A5%BC-%EC%93%B0%EA%B8%B0%EB%A1%9C-%EB%A7%88%EC%9D%8C-%EB%A8%B9%EC%9D%80-%EA%B0%9C%EC%9D%B8%EC%A0%81-%EC%9D%B4%EC%9C%A0.html</guid>
         
         
         <category>Swift</category>
@@ -3322,8 +3322,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Sun, 06 Feb 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html</guid>
+        <link>http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%EB%B6%80%EC%A0%9C-Mock-&-Stub-&-SPY-%EC%9D%B4%EB%9F%B0%EA%B2%8C-%EB%AD%90%EC%A7%80-).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%EB%B6%80%EC%A0%9C-Mock-&-Stub-&-SPY-%EC%9D%B4%EB%9F%B0%EA%B2%8C-%EB%AD%90%EC%A7%80-).html</guid>
         
         
         <category>Swift</category>
@@ -3505,7 +3505,7 @@
 
 &lt;p&gt;여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;singleObserver&lt;/code&gt; 또한 캡쳐가 되기 위해선 두번째 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;escaping&lt;/code&gt;을 넣어주지 않는다면 이런 오류가 나온다.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Escaping closure captures non-escaping parameter &apos;singleCloser&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Escaping closure captures non-escaping parameter 'singleCloser'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -3529,8 +3529,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Sun, 06 Feb 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html</link>
-        <guid isPermaLink="true">http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html</guid>
+        <link>http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0(2).html</link>
+        <guid isPermaLink="true">http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0(2).html</guid>
         
         
         <category>RxSwift</category>
@@ -3785,7 +3785,7 @@
 
 &lt;h1 id=&quot;podfile&quot;&gt;Podfile&lt;/h1&gt;
 
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Alamofire&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Alamofire&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;간단한 사용법은 패스, 여기서 내 관심사는 뒤에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;5.0&lt;/code&gt;에 관해서다.&lt;/p&gt;
@@ -3933,8 +3933,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Fri, 28 Jan 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html</guid>
+        <link>http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%ED%8C%8C%EC%9D%BC%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C.html</link>
+        <guid isPermaLink="true">http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%ED%8C%8C%EC%9D%BC%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C.html</guid>
         
         
         <category>Xcode</category>

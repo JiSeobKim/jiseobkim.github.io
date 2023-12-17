@@ -5,8 +5,8 @@
     <description>나만의 공간</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Mar 2022 22:11:48 +0900</pubDate>
-    <lastBuildDate>Sat, 05 Mar 2022 22:11:48 +0900</lastBuildDate>
+    <pubDate>Sun, 17 Dec 2023 23:55:24 +0900</pubDate>
+    <lastBuildDate>Sun, 17 Dec 2023 23:55:24 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -2734,8 +2734,8 @@
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 Feb 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2022/02/21/Swift-RIBs%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9-%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B3%E1%86%B7-%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/21/Swift-RIBs%E1%84%85%E1%85%B3%E1%86%AF-%E1%84%8A%E1%85%B3%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9-%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B3%E1%86%B7-%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2.html</guid>
+        <link>http://localhost:4000/swift/2022/02/21/Swift-RIBs%EB%A5%BC-%EC%93%B0%EA%B8%B0%EB%A1%9C-%EB%A7%88%EC%9D%8C-%EB%A8%B9%EC%9D%80-%EA%B0%9C%EC%9D%B8%EC%A0%81-%EC%9D%B4%EC%9C%A0.html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/21/Swift-RIBs%EB%A5%BC-%EC%93%B0%EA%B8%B0%EB%A1%9C-%EB%A7%88%EC%9D%8C-%EB%A8%B9%EC%9D%80-%EA%B0%9C%EC%9D%B8%EC%A0%81-%EC%9D%B4%EC%9C%A0.html</guid>
         
         
         <category>Swift</category>
@@ -3322,8 +3322,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Sun, 06 Feb 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A6-Mock-&-Stub-&-SPY-%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A6-%E1%84%86%E1%85%AF%E1%84%8C%E1%85%B5-).html</guid>
+        <link>http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%EB%B6%80%EC%A0%9C-Mock-&-Stub-&-SPY-%EC%9D%B4%EB%9F%B0%EA%B2%8C-%EB%AD%90%EC%A7%80-).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2022/02/06/Swift-Test-Double(%EB%B6%80%EC%A0%9C-Mock-&-Stub-&-SPY-%EC%9D%B4%EB%9F%B0%EA%B2%8C-%EB%AD%90%EC%A7%80-).html</guid>
         
         
         <category>Swift</category>
@@ -3505,7 +3505,7 @@
 
 &lt;p&gt;여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;singleObserver&lt;/code&gt; 또한 캡쳐가 되기 위해선 두번째 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;escaping&lt;/code&gt;을 넣어주지 않는다면 이런 오류가 나온다.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Escaping closure captures non-escaping parameter &apos;singleCloser&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Escaping closure captures non-escaping parameter 'singleCloser'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -3529,8 +3529,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Sun, 06 Feb 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html</link>
-        <guid isPermaLink="true">http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5(2).html</guid>
+        <link>http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0(2).html</link>
+        <guid isPermaLink="true">http://localhost:4000/rxswift/2022/02/06/RxSwift-Single-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0(2).html</guid>
         
         
         <category>RxSwift</category>
@@ -3785,7 +3785,7 @@
 
 &lt;h1 id=&quot;podfile&quot;&gt;Podfile&lt;/h1&gt;
 
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Alamofire&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Alamofire&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;간단한 사용법은 패스, 여기서 내 관심사는 뒤에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&amp;gt;5.0&lt;/code&gt;에 관해서다.&lt;/p&gt;
@@ -3933,8 +3933,8 @@
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Fri, 28 Jan 2022 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6-%E1%84%83%E1%85%A2%E1%84%92%E1%85%A2%E1%84%89%E1%85%A5.html</guid>
+        <link>http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%ED%8C%8C%EC%9D%BC%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C.html</link>
+        <guid isPermaLink="true">http://localhost:4000/xcode/2022/01/28/xcode-Cocoapods-Podfile.lock-%ED%8C%8C%EC%9D%BC%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C.html</guid>
         
         
         <category>Xcode</category>
@@ -5484,8 +5484,8 @@ summonerLevel: 274
 &lt;p&gt;끝!&lt;/p&gt;
 </description>
         <pubDate>Mon, 16 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2021/08/16/swift-%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1-%E1%84%8A%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB-Network-Request-%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF(Moya-%E1%84%8E%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%A1%E1%86%AB).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2021/08/16/swift-%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1-%E1%84%8A%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB-Network-Request-%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF(Moya-%E1%84%8E%E1%85%A1%E1%86%A8%E1%84%8B%E1%85%A1%E1%86%AB).html</guid>
+        <link>http://localhost:4000/swift/2021/08/16/swift-%EB%82%B4%EA%B0%80-%EC%93%B0%EB%8A%94-Network-Request-%EC%8A%A4%ED%83%80%EC%9D%BC(Moya-%EC%B0%A9%EC%95%88).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/08/16/swift-%EB%82%B4%EA%B0%80-%EC%93%B0%EB%8A%94-Network-Request-%EC%8A%A4%ED%83%80%EC%9D%BC(Moya-%EC%B0%A9%EC%95%88).html</guid>
         
         
         <category>Swift</category>
@@ -5664,8 +5664,8 @@ summonerLevel: 274
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 14 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/project/2021/08/14/project-LOL-API-(%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5-%E1%84%89%E1%85%A1%E1%86%AF%E1%84%91%E1%85%A7%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5).html</link>
-        <guid isPermaLink="true">http://localhost:4000/project/2021/08/14/project-LOL-API-(%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5-%E1%84%89%E1%85%A1%E1%86%AF%E1%84%91%E1%85%A7%E1%84%87%E1%85%A9%E1%84%80%E1%85%B5).html</guid>
+        <link>http://localhost:4000/project/2021/08/14/project-LOL-API-(%EB%AC%B8%EC%84%9C-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0).html</link>
+        <guid isPermaLink="true">http://localhost:4000/project/2021/08/14/project-LOL-API-(%EB%AC%B8%EC%84%9C-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0).html</guid>
         
         
         <category>Project</category>
@@ -7730,8 +7730,8 @@ summonerLevel: 274
 &lt;p&gt;끝.&lt;/p&gt;
 </description>
         <pubDate>Sun, 27 Jun 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%E1%84%91%E1%85%A7%E1%86%AB).html</guid>
+        <link>http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/2021/06/27/swift-Property-Wrapper-(feat.-Codable-2%ED%8E%B8).html</guid>
         
         
         <category>Swift</category>
@@ -8726,8 +8726,8 @@ summonerLevel: 274
 
 </description>
         <pubDate>Sun, 30 May 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html</link>
-        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5-(feat.-CodingKey).html</guid>
+        <link>http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%EC%B2%98%EB%A6%AC-(feat.-CodingKey).html</link>
+        <guid isPermaLink="true">http://localhost:4000/swift/network/2021/05/30/swift-Codable-Throw-%EC%B2%98%EB%A6%AC-(feat.-CodingKey).html</guid>
         
         
         <category>Swift</category>
@@ -10951,7 +10951,7 @@ A point in the local coordinate system of view that identifies the location of t
   &lt;li&gt;개발 서버 깔고 나갔다가, 결제 직전 알아차려서 앱스토어에서 다시 받아야하는 귀차니즘 발생&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let&apos;s Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
+&lt;p&gt;그래서, 예전에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Let's Swift 2017&lt;/code&gt; 이란 Swift 컨퍼런스에서 봤던 세션이 기억이 났다.&lt;/p&gt;
 
 &lt;p&gt;(여러번 시도했었지만 실패,,, 하지만 성공했으니 포스팅을 아하하, 해당 세션 Toss개발자님 사랑합니다. 토스 가고싶어요)&lt;/p&gt;
 
@@ -11275,9 +11275,9 @@ view.layer.masksToBounds = true 많이 보셨을 겁니다.  &lt;br /&gt;
 &lt;h3 id=&quot;for-enum-값들-objective-c-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; enum 값들 (Objective C Enum)&lt;/h3&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;documentDirectory   // documents (Documents)
 developerDirectory  // (Developer) DEPRECATED - there is no one single Developer directory.
-desktopDirectory    // location of user&apos;s desktop
-downloadsDirectory  // location of the user&apos;s &quot;Downloads&quot; directory
-musicDirectory      // location of user&apos;s Music directory (~/Music)
+desktopDirectory    // location of user's desktop
+downloadsDirectory  // location of the user's &quot;Downloads&quot; directory
+musicDirectory      // location of user's Music directory (~/Music)
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;굉장히 설명을 잘해놨고, 굉장히 많다.  그 중  친숙해 보이는 몇개만 가져왔다. 이런식으로 접근 폴더를 지정해준다.&lt;/p&gt;
@@ -11286,7 +11286,7 @@ musicDirectory      // location of user&apos;s Music directory (~/Music)
 
 &lt;h3 id=&quot;in-enum-값들-swift-enum&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;in&lt;/code&gt; enum 값들 (Swift Enum)&lt;/h3&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static var userDomainMask: FileManager.SearchPathDomainMask { get } 
-// user&apos;s home directory --- place to install user&apos;s personal items (~)
+// user's home directory --- place to install user's personal items (~)
 
 public static var localDomainMask: FileManager.SearchPathDomainMask { get } 
 // local to the current machine --- place to install items available to everyone on this machine (/Library)
@@ -15174,7 +15174,7 @@ Cocoapods 적용자체 하는데 5일 걸렸다, 5일 동안 정신병 걸리는
     &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;anyData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// + 추가 확인&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;anyData&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;It&apos;s Any&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;It's Any&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;

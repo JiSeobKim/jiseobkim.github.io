@@ -1,0 +1,18 @@
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+/Users/jiseob/.rbenv/versions/2.7.8/bin/ruby -I /Users/jiseob/.rbenv/versions/2.7.8/lib/ruby/2.7.0 -r ./siteconf20231217-21501-caqxv3.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lc++', '-lruby.2.7'
+
+current directory: /Users/jiseob/Developer/Blog/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make "DESTDIR=" install
+/opt/homebrew/bin/ginstall -c -m 0755 unf_ext.bundle ./.gem.20231217-21501-nngyze
